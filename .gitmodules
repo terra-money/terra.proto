@@ -1,0 +1,3 @@
+[submodule "terrad"]
+	path = terrad
+	url = https://github.com/terra-money/core
