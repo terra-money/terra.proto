@@ -3,6 +3,7 @@ import org.gradle.kotlin.dsl.proto
 
 plugins {
     id("java-library")
+    id("signing")
     id("maven-publish")
     kotlin("jvm") version "1.5.30" apply false
     id("com.google.protobuf") version "0.8.17"
@@ -12,6 +13,7 @@ allprojects {
     apply {
         plugin("java-library")
         plugin("com.google.protobuf")
+        plugin("signing")
         plugin("maven-publish")
     }
 
@@ -38,6 +40,9 @@ allprojects {
     java {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+
+        withJavadocJar()
+        withSourcesJar()
     }
 
     tasks.getByName<Test>("test") {
@@ -47,6 +52,59 @@ allprojects {
     gradle.taskGraph.whenReady {
         allTasks.filter { it.name.contains("proto", true) }
             .forEach { it.outputs.upToDateWhen { false } }
+    }
+
+    publishing {
+        publications {
+            create<MavenPublication>("lib") {
+                groupId = project.group.toString()
+                artifactId = project.name
+                version = project.version.toString()
+
+                from(components["java"])
+
+                pom {
+                    name.set(project.name)
+                    description.set("Terra Core Protobuf Builds")
+                    url.set("https://github.com/terra-money/terra.proto")
+                    licenses {
+                        license {
+                            name.set("The Apache License, Version 2.0")
+                            url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                        }
+                    }
+                    developers {
+                        developer {
+                            id.set("terraformlabs")
+                            name.set("Terraform Labs Korea")
+                        }
+                    }
+                    scm {
+                        connection.set("scm:git:git://github.com/terra-money/terra.proto.git")
+                        developerConnection.set("scm:git:git://github.com/terra-money/terra.proto.git")
+                        url.set("https://github.com/terra-money/terra.proto")
+                    }
+                }
+            }
+        }
+
+        repositories {
+            val ossrhUsername: String by project
+            val ossrhPassword: String by project
+
+            maven {
+                name = "mavenCentral"
+                setUrl("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+                credentials {
+                    username = ossrhUsername
+                    password = ossrhPassword
+                }
+            }
+        }
+    }
+
+    signing {
+        sign(publishing.publications["lib"])
     }
 }
 
