@@ -1,6 +1,6 @@
 {
   "name": "@terra-money/terra.proto",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "JS and TS types relating to Protocol Buffers used by Terra project",
   "contributors": [
     "Yun Yeo <YunSuk-Yeo@users.noreply.github.com>"
@@ -14,25 +14,30 @@
     "access": "public"
   },
   "files": [
-    "src/*"
+    "confio/",
+    "cosmos/",
+    "cosmos_proto/",
+    "terra/",
+    "gogoproto/",
+    "google/",
+    "ibc/",
+    "tendermint/",
+    "*.md"
   ],
   "scripts": {
-    "format": "prettier --write --loglevel warn \"./src/**/*.ts\""
+    "format": "prettier --write --loglevel warn \"./src/**/*.ts\"",
+    "build": "rm -rf ./build && tsc --module commonjs && ./scripts/prepare.sh",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@grpc/grpc-js": "^1.3.7",
-    "@types/google-protobuf": "^3.15.5",
-    "google-protobuf": "^3.17.3",
-    "grpc-tools": "^1.11.2",
     "long": "^4.0.0",
-    "protobufjs": "~6.11.2",
-    "ts-protoc-gen": "^0.15.0"
+    "protobufjs": "~6.11.2"
   },
   "devDependencies": {
     "@types/long": "^4.0.1",
     "@types/node": "^15.6.2",
     "prettier": "^2.3.0",
-    "ts-proto": "^1.81.1",
+    "ts-proto": "^1.82.5",
     "typescript": "~4.0"
   }
 }

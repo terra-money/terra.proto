@@ -15,4 +15,10 @@ proto-gen:
 	@echo "Generating Protobuf files"
 	./scripts/proto-gen.sh
 
-.PHONY: all proto-gen format init
+build: 
+	npm run build
+
+publish:
+	npm publish
+
+.PHONY: all proto-gen format init build publish

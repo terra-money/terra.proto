@@ -1,3 +1,13 @@
 node_modules
 
 .vscode/
+
+/build/
+/confio/
+/cosmos/
+/cosmos_proto/
+/terra/
+/gogoproto/
+/google/
+/ibc/
+/tendermint/
