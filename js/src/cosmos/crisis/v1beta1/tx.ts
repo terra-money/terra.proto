@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "cosmos.crisis.v1beta1";
@@ -142,27 +154,47 @@ export const MsgVerifyInvariantResponse = {
 };
 
 /** Msg defines the bank Msg service. */
-export interface Msg {
+export const MsgService = {
   /** VerifyInvariant defines a method to verify a particular invariance. */
-  VerifyInvariant(request: MsgVerifyInvariant): Promise<MsgVerifyInvariantResponse>;
+  verifyInvariant: {
+    path: "/cosmos.crisis.v1beta1.Msg/VerifyInvariant",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgVerifyInvariant) => Buffer.from(MsgVerifyInvariant.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgVerifyInvariant.decode(value),
+    responseSerialize: (value: MsgVerifyInvariantResponse) =>
+      Buffer.from(MsgVerifyInvariantResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgVerifyInvariantResponse.decode(value),
+  },
+} as const;
+
+export interface MsgServer extends UntypedServiceImplementation {
+  /** VerifyInvariant defines a method to verify a particular invariance. */
+  verifyInvariant: handleUnaryCall<MsgVerifyInvariant, MsgVerifyInvariantResponse>;
 }
 
-export class MsgClientImpl implements Msg {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.VerifyInvariant = this.VerifyInvariant.bind(this);
-  }
-  VerifyInvariant(request: MsgVerifyInvariant): Promise<MsgVerifyInvariantResponse> {
-    const data = MsgVerifyInvariant.encode(request).finish();
-    const promise = this.rpc.request("cosmos.crisis.v1beta1.Msg", "VerifyInvariant", data);
-    return promise.then((data) => MsgVerifyInvariantResponse.decode(new _m0.Reader(data)));
-  }
+export interface MsgClient extends Client {
+  /** VerifyInvariant defines a method to verify a particular invariance. */
+  verifyInvariant(
+    request: MsgVerifyInvariant,
+    callback: (error: ServiceError | null, response: MsgVerifyInvariantResponse) => void,
+  ): ClientUnaryCall;
+  verifyInvariant(
+    request: MsgVerifyInvariant,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgVerifyInvariantResponse) => void,
+  ): ClientUnaryCall;
+  verifyInvariant(
+    request: MsgVerifyInvariant,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgVerifyInvariantResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const MsgClient = makeGenericClientConstructor(MsgService, "cosmos.crisis.v1beta1.Msg") as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Header } from "../../tendermint/types/types";
 import { ProofOps } from "../../tendermint/crypto/proof";
@@ -4907,138 +4919,408 @@ export const Snapshot = {
   },
 };
 
-export interface ABCIApplication {
-  Echo(request: RequestEcho): Promise<ResponseEcho>;
-  Flush(request: RequestFlush): Promise<ResponseFlush>;
-  Info(request: RequestInfo): Promise<ResponseInfo>;
-  SetOption(request: RequestSetOption): Promise<ResponseSetOption>;
-  DeliverTx(request: RequestDeliverTx): Promise<ResponseDeliverTx>;
-  CheckTx(request: RequestCheckTx): Promise<ResponseCheckTx>;
-  Query(request: RequestQuery): Promise<ResponseQuery>;
-  Commit(request: RequestCommit): Promise<ResponseCommit>;
-  InitChain(request: RequestInitChain): Promise<ResponseInitChain>;
-  BeginBlock(request: RequestBeginBlock): Promise<ResponseBeginBlock>;
-  EndBlock(request: RequestEndBlock): Promise<ResponseEndBlock>;
-  ListSnapshots(request: RequestListSnapshots): Promise<ResponseListSnapshots>;
-  OfferSnapshot(request: RequestOfferSnapshot): Promise<ResponseOfferSnapshot>;
-  LoadSnapshotChunk(request: RequestLoadSnapshotChunk): Promise<ResponseLoadSnapshotChunk>;
-  ApplySnapshotChunk(request: RequestApplySnapshotChunk): Promise<ResponseApplySnapshotChunk>;
+export const ABCIApplicationService = {
+  echo: {
+    path: "/tendermint.abci.ABCIApplication/Echo",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: RequestEcho) => Buffer.from(RequestEcho.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => RequestEcho.decode(value),
+    responseSerialize: (value: ResponseEcho) => Buffer.from(ResponseEcho.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ResponseEcho.decode(value),
+  },
+  flush: {
+    path: "/tendermint.abci.ABCIApplication/Flush",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: RequestFlush) => Buffer.from(RequestFlush.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => RequestFlush.decode(value),
+    responseSerialize: (value: ResponseFlush) => Buffer.from(ResponseFlush.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ResponseFlush.decode(value),
+  },
+  info: {
+    path: "/tendermint.abci.ABCIApplication/Info",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: RequestInfo) => Buffer.from(RequestInfo.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => RequestInfo.decode(value),
+    responseSerialize: (value: ResponseInfo) => Buffer.from(ResponseInfo.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ResponseInfo.decode(value),
+  },
+  setOption: {
+    path: "/tendermint.abci.ABCIApplication/SetOption",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: RequestSetOption) => Buffer.from(RequestSetOption.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => RequestSetOption.decode(value),
+    responseSerialize: (value: ResponseSetOption) => Buffer.from(ResponseSetOption.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ResponseSetOption.decode(value),
+  },
+  deliverTx: {
+    path: "/tendermint.abci.ABCIApplication/DeliverTx",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: RequestDeliverTx) => Buffer.from(RequestDeliverTx.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => RequestDeliverTx.decode(value),
+    responseSerialize: (value: ResponseDeliverTx) => Buffer.from(ResponseDeliverTx.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ResponseDeliverTx.decode(value),
+  },
+  checkTx: {
+    path: "/tendermint.abci.ABCIApplication/CheckTx",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: RequestCheckTx) => Buffer.from(RequestCheckTx.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => RequestCheckTx.decode(value),
+    responseSerialize: (value: ResponseCheckTx) => Buffer.from(ResponseCheckTx.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ResponseCheckTx.decode(value),
+  },
+  query: {
+    path: "/tendermint.abci.ABCIApplication/Query",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: RequestQuery) => Buffer.from(RequestQuery.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => RequestQuery.decode(value),
+    responseSerialize: (value: ResponseQuery) => Buffer.from(ResponseQuery.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ResponseQuery.decode(value),
+  },
+  commit: {
+    path: "/tendermint.abci.ABCIApplication/Commit",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: RequestCommit) => Buffer.from(RequestCommit.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => RequestCommit.decode(value),
+    responseSerialize: (value: ResponseCommit) => Buffer.from(ResponseCommit.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ResponseCommit.decode(value),
+  },
+  initChain: {
+    path: "/tendermint.abci.ABCIApplication/InitChain",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: RequestInitChain) => Buffer.from(RequestInitChain.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => RequestInitChain.decode(value),
+    responseSerialize: (value: ResponseInitChain) => Buffer.from(ResponseInitChain.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ResponseInitChain.decode(value),
+  },
+  beginBlock: {
+    path: "/tendermint.abci.ABCIApplication/BeginBlock",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: RequestBeginBlock) => Buffer.from(RequestBeginBlock.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => RequestBeginBlock.decode(value),
+    responseSerialize: (value: ResponseBeginBlock) => Buffer.from(ResponseBeginBlock.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ResponseBeginBlock.decode(value),
+  },
+  endBlock: {
+    path: "/tendermint.abci.ABCIApplication/EndBlock",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: RequestEndBlock) => Buffer.from(RequestEndBlock.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => RequestEndBlock.decode(value),
+    responseSerialize: (value: ResponseEndBlock) => Buffer.from(ResponseEndBlock.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ResponseEndBlock.decode(value),
+  },
+  listSnapshots: {
+    path: "/tendermint.abci.ABCIApplication/ListSnapshots",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: RequestListSnapshots) =>
+      Buffer.from(RequestListSnapshots.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => RequestListSnapshots.decode(value),
+    responseSerialize: (value: ResponseListSnapshots) =>
+      Buffer.from(ResponseListSnapshots.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ResponseListSnapshots.decode(value),
+  },
+  offerSnapshot: {
+    path: "/tendermint.abci.ABCIApplication/OfferSnapshot",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: RequestOfferSnapshot) =>
+      Buffer.from(RequestOfferSnapshot.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => RequestOfferSnapshot.decode(value),
+    responseSerialize: (value: ResponseOfferSnapshot) =>
+      Buffer.from(ResponseOfferSnapshot.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ResponseOfferSnapshot.decode(value),
+  },
+  loadSnapshotChunk: {
+    path: "/tendermint.abci.ABCIApplication/LoadSnapshotChunk",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: RequestLoadSnapshotChunk) =>
+      Buffer.from(RequestLoadSnapshotChunk.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => RequestLoadSnapshotChunk.decode(value),
+    responseSerialize: (value: ResponseLoadSnapshotChunk) =>
+      Buffer.from(ResponseLoadSnapshotChunk.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ResponseLoadSnapshotChunk.decode(value),
+  },
+  applySnapshotChunk: {
+    path: "/tendermint.abci.ABCIApplication/ApplySnapshotChunk",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: RequestApplySnapshotChunk) =>
+      Buffer.from(RequestApplySnapshotChunk.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => RequestApplySnapshotChunk.decode(value),
+    responseSerialize: (value: ResponseApplySnapshotChunk) =>
+      Buffer.from(ResponseApplySnapshotChunk.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ResponseApplySnapshotChunk.decode(value),
+  },
+} as const;
+
+export interface ABCIApplicationServer extends UntypedServiceImplementation {
+  echo: handleUnaryCall<RequestEcho, ResponseEcho>;
+  flush: handleUnaryCall<RequestFlush, ResponseFlush>;
+  info: handleUnaryCall<RequestInfo, ResponseInfo>;
+  setOption: handleUnaryCall<RequestSetOption, ResponseSetOption>;
+  deliverTx: handleUnaryCall<RequestDeliverTx, ResponseDeliverTx>;
+  checkTx: handleUnaryCall<RequestCheckTx, ResponseCheckTx>;
+  query: handleUnaryCall<RequestQuery, ResponseQuery>;
+  commit: handleUnaryCall<RequestCommit, ResponseCommit>;
+  initChain: handleUnaryCall<RequestInitChain, ResponseInitChain>;
+  beginBlock: handleUnaryCall<RequestBeginBlock, ResponseBeginBlock>;
+  endBlock: handleUnaryCall<RequestEndBlock, ResponseEndBlock>;
+  listSnapshots: handleUnaryCall<RequestListSnapshots, ResponseListSnapshots>;
+  offerSnapshot: handleUnaryCall<RequestOfferSnapshot, ResponseOfferSnapshot>;
+  loadSnapshotChunk: handleUnaryCall<RequestLoadSnapshotChunk, ResponseLoadSnapshotChunk>;
+  applySnapshotChunk: handleUnaryCall<RequestApplySnapshotChunk, ResponseApplySnapshotChunk>;
 }
 
-export class ABCIApplicationClientImpl implements ABCIApplication {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Echo = this.Echo.bind(this);
-    this.Flush = this.Flush.bind(this);
-    this.Info = this.Info.bind(this);
-    this.SetOption = this.SetOption.bind(this);
-    this.DeliverTx = this.DeliverTx.bind(this);
-    this.CheckTx = this.CheckTx.bind(this);
-    this.Query = this.Query.bind(this);
-    this.Commit = this.Commit.bind(this);
-    this.InitChain = this.InitChain.bind(this);
-    this.BeginBlock = this.BeginBlock.bind(this);
-    this.EndBlock = this.EndBlock.bind(this);
-    this.ListSnapshots = this.ListSnapshots.bind(this);
-    this.OfferSnapshot = this.OfferSnapshot.bind(this);
-    this.LoadSnapshotChunk = this.LoadSnapshotChunk.bind(this);
-    this.ApplySnapshotChunk = this.ApplySnapshotChunk.bind(this);
-  }
-  Echo(request: RequestEcho): Promise<ResponseEcho> {
-    const data = RequestEcho.encode(request).finish();
-    const promise = this.rpc.request("tendermint.abci.ABCIApplication", "Echo", data);
-    return promise.then((data) => ResponseEcho.decode(new _m0.Reader(data)));
-  }
-
-  Flush(request: RequestFlush): Promise<ResponseFlush> {
-    const data = RequestFlush.encode(request).finish();
-    const promise = this.rpc.request("tendermint.abci.ABCIApplication", "Flush", data);
-    return promise.then((data) => ResponseFlush.decode(new _m0.Reader(data)));
-  }
-
-  Info(request: RequestInfo): Promise<ResponseInfo> {
-    const data = RequestInfo.encode(request).finish();
-    const promise = this.rpc.request("tendermint.abci.ABCIApplication", "Info", data);
-    return promise.then((data) => ResponseInfo.decode(new _m0.Reader(data)));
-  }
-
-  SetOption(request: RequestSetOption): Promise<ResponseSetOption> {
-    const data = RequestSetOption.encode(request).finish();
-    const promise = this.rpc.request("tendermint.abci.ABCIApplication", "SetOption", data);
-    return promise.then((data) => ResponseSetOption.decode(new _m0.Reader(data)));
-  }
-
-  DeliverTx(request: RequestDeliverTx): Promise<ResponseDeliverTx> {
-    const data = RequestDeliverTx.encode(request).finish();
-    const promise = this.rpc.request("tendermint.abci.ABCIApplication", "DeliverTx", data);
-    return promise.then((data) => ResponseDeliverTx.decode(new _m0.Reader(data)));
-  }
-
-  CheckTx(request: RequestCheckTx): Promise<ResponseCheckTx> {
-    const data = RequestCheckTx.encode(request).finish();
-    const promise = this.rpc.request("tendermint.abci.ABCIApplication", "CheckTx", data);
-    return promise.then((data) => ResponseCheckTx.decode(new _m0.Reader(data)));
-  }
-
-  Query(request: RequestQuery): Promise<ResponseQuery> {
-    const data = RequestQuery.encode(request).finish();
-    const promise = this.rpc.request("tendermint.abci.ABCIApplication", "Query", data);
-    return promise.then((data) => ResponseQuery.decode(new _m0.Reader(data)));
-  }
-
-  Commit(request: RequestCommit): Promise<ResponseCommit> {
-    const data = RequestCommit.encode(request).finish();
-    const promise = this.rpc.request("tendermint.abci.ABCIApplication", "Commit", data);
-    return promise.then((data) => ResponseCommit.decode(new _m0.Reader(data)));
-  }
-
-  InitChain(request: RequestInitChain): Promise<ResponseInitChain> {
-    const data = RequestInitChain.encode(request).finish();
-    const promise = this.rpc.request("tendermint.abci.ABCIApplication", "InitChain", data);
-    return promise.then((data) => ResponseInitChain.decode(new _m0.Reader(data)));
-  }
-
-  BeginBlock(request: RequestBeginBlock): Promise<ResponseBeginBlock> {
-    const data = RequestBeginBlock.encode(request).finish();
-    const promise = this.rpc.request("tendermint.abci.ABCIApplication", "BeginBlock", data);
-    return promise.then((data) => ResponseBeginBlock.decode(new _m0.Reader(data)));
-  }
-
-  EndBlock(request: RequestEndBlock): Promise<ResponseEndBlock> {
-    const data = RequestEndBlock.encode(request).finish();
-    const promise = this.rpc.request("tendermint.abci.ABCIApplication", "EndBlock", data);
-    return promise.then((data) => ResponseEndBlock.decode(new _m0.Reader(data)));
-  }
-
-  ListSnapshots(request: RequestListSnapshots): Promise<ResponseListSnapshots> {
-    const data = RequestListSnapshots.encode(request).finish();
-    const promise = this.rpc.request("tendermint.abci.ABCIApplication", "ListSnapshots", data);
-    return promise.then((data) => ResponseListSnapshots.decode(new _m0.Reader(data)));
-  }
-
-  OfferSnapshot(request: RequestOfferSnapshot): Promise<ResponseOfferSnapshot> {
-    const data = RequestOfferSnapshot.encode(request).finish();
-    const promise = this.rpc.request("tendermint.abci.ABCIApplication", "OfferSnapshot", data);
-    return promise.then((data) => ResponseOfferSnapshot.decode(new _m0.Reader(data)));
-  }
-
-  LoadSnapshotChunk(request: RequestLoadSnapshotChunk): Promise<ResponseLoadSnapshotChunk> {
-    const data = RequestLoadSnapshotChunk.encode(request).finish();
-    const promise = this.rpc.request("tendermint.abci.ABCIApplication", "LoadSnapshotChunk", data);
-    return promise.then((data) => ResponseLoadSnapshotChunk.decode(new _m0.Reader(data)));
-  }
-
-  ApplySnapshotChunk(request: RequestApplySnapshotChunk): Promise<ResponseApplySnapshotChunk> {
-    const data = RequestApplySnapshotChunk.encode(request).finish();
-    const promise = this.rpc.request("tendermint.abci.ABCIApplication", "ApplySnapshotChunk", data);
-    return promise.then((data) => ResponseApplySnapshotChunk.decode(new _m0.Reader(data)));
-  }
+export interface ABCIApplicationClient extends Client {
+  echo(
+    request: RequestEcho,
+    callback: (error: ServiceError | null, response: ResponseEcho) => void,
+  ): ClientUnaryCall;
+  echo(
+    request: RequestEcho,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ResponseEcho) => void,
+  ): ClientUnaryCall;
+  echo(
+    request: RequestEcho,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ResponseEcho) => void,
+  ): ClientUnaryCall;
+  flush(
+    request: RequestFlush,
+    callback: (error: ServiceError | null, response: ResponseFlush) => void,
+  ): ClientUnaryCall;
+  flush(
+    request: RequestFlush,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ResponseFlush) => void,
+  ): ClientUnaryCall;
+  flush(
+    request: RequestFlush,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ResponseFlush) => void,
+  ): ClientUnaryCall;
+  info(
+    request: RequestInfo,
+    callback: (error: ServiceError | null, response: ResponseInfo) => void,
+  ): ClientUnaryCall;
+  info(
+    request: RequestInfo,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ResponseInfo) => void,
+  ): ClientUnaryCall;
+  info(
+    request: RequestInfo,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ResponseInfo) => void,
+  ): ClientUnaryCall;
+  setOption(
+    request: RequestSetOption,
+    callback: (error: ServiceError | null, response: ResponseSetOption) => void,
+  ): ClientUnaryCall;
+  setOption(
+    request: RequestSetOption,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ResponseSetOption) => void,
+  ): ClientUnaryCall;
+  setOption(
+    request: RequestSetOption,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ResponseSetOption) => void,
+  ): ClientUnaryCall;
+  deliverTx(
+    request: RequestDeliverTx,
+    callback: (error: ServiceError | null, response: ResponseDeliverTx) => void,
+  ): ClientUnaryCall;
+  deliverTx(
+    request: RequestDeliverTx,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ResponseDeliverTx) => void,
+  ): ClientUnaryCall;
+  deliverTx(
+    request: RequestDeliverTx,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ResponseDeliverTx) => void,
+  ): ClientUnaryCall;
+  checkTx(
+    request: RequestCheckTx,
+    callback: (error: ServiceError | null, response: ResponseCheckTx) => void,
+  ): ClientUnaryCall;
+  checkTx(
+    request: RequestCheckTx,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ResponseCheckTx) => void,
+  ): ClientUnaryCall;
+  checkTx(
+    request: RequestCheckTx,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ResponseCheckTx) => void,
+  ): ClientUnaryCall;
+  query(
+    request: RequestQuery,
+    callback: (error: ServiceError | null, response: ResponseQuery) => void,
+  ): ClientUnaryCall;
+  query(
+    request: RequestQuery,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ResponseQuery) => void,
+  ): ClientUnaryCall;
+  query(
+    request: RequestQuery,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ResponseQuery) => void,
+  ): ClientUnaryCall;
+  commit(
+    request: RequestCommit,
+    callback: (error: ServiceError | null, response: ResponseCommit) => void,
+  ): ClientUnaryCall;
+  commit(
+    request: RequestCommit,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ResponseCommit) => void,
+  ): ClientUnaryCall;
+  commit(
+    request: RequestCommit,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ResponseCommit) => void,
+  ): ClientUnaryCall;
+  initChain(
+    request: RequestInitChain,
+    callback: (error: ServiceError | null, response: ResponseInitChain) => void,
+  ): ClientUnaryCall;
+  initChain(
+    request: RequestInitChain,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ResponseInitChain) => void,
+  ): ClientUnaryCall;
+  initChain(
+    request: RequestInitChain,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ResponseInitChain) => void,
+  ): ClientUnaryCall;
+  beginBlock(
+    request: RequestBeginBlock,
+    callback: (error: ServiceError | null, response: ResponseBeginBlock) => void,
+  ): ClientUnaryCall;
+  beginBlock(
+    request: RequestBeginBlock,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ResponseBeginBlock) => void,
+  ): ClientUnaryCall;
+  beginBlock(
+    request: RequestBeginBlock,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ResponseBeginBlock) => void,
+  ): ClientUnaryCall;
+  endBlock(
+    request: RequestEndBlock,
+    callback: (error: ServiceError | null, response: ResponseEndBlock) => void,
+  ): ClientUnaryCall;
+  endBlock(
+    request: RequestEndBlock,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ResponseEndBlock) => void,
+  ): ClientUnaryCall;
+  endBlock(
+    request: RequestEndBlock,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ResponseEndBlock) => void,
+  ): ClientUnaryCall;
+  listSnapshots(
+    request: RequestListSnapshots,
+    callback: (error: ServiceError | null, response: ResponseListSnapshots) => void,
+  ): ClientUnaryCall;
+  listSnapshots(
+    request: RequestListSnapshots,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ResponseListSnapshots) => void,
+  ): ClientUnaryCall;
+  listSnapshots(
+    request: RequestListSnapshots,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ResponseListSnapshots) => void,
+  ): ClientUnaryCall;
+  offerSnapshot(
+    request: RequestOfferSnapshot,
+    callback: (error: ServiceError | null, response: ResponseOfferSnapshot) => void,
+  ): ClientUnaryCall;
+  offerSnapshot(
+    request: RequestOfferSnapshot,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ResponseOfferSnapshot) => void,
+  ): ClientUnaryCall;
+  offerSnapshot(
+    request: RequestOfferSnapshot,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ResponseOfferSnapshot) => void,
+  ): ClientUnaryCall;
+  loadSnapshotChunk(
+    request: RequestLoadSnapshotChunk,
+    callback: (error: ServiceError | null, response: ResponseLoadSnapshotChunk) => void,
+  ): ClientUnaryCall;
+  loadSnapshotChunk(
+    request: RequestLoadSnapshotChunk,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ResponseLoadSnapshotChunk) => void,
+  ): ClientUnaryCall;
+  loadSnapshotChunk(
+    request: RequestLoadSnapshotChunk,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ResponseLoadSnapshotChunk) => void,
+  ): ClientUnaryCall;
+  applySnapshotChunk(
+    request: RequestApplySnapshotChunk,
+    callback: (error: ServiceError | null, response: ResponseApplySnapshotChunk) => void,
+  ): ClientUnaryCall;
+  applySnapshotChunk(
+    request: RequestApplySnapshotChunk,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ResponseApplySnapshotChunk) => void,
+  ): ClientUnaryCall;
+  applySnapshotChunk(
+    request: RequestApplySnapshotChunk,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ResponseApplySnapshotChunk) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const ABCIApplicationClient = makeGenericClientConstructor(
+  ABCIApplicationService,
+  "tendermint.abci.ABCIApplication",
+) as unknown as {
+  new (
+    address: string,
+    credentials: ChannelCredentials,
+    options?: Partial<ChannelOptions>,
+  ): ABCIApplicationClient;
+};
 
 declare var self: any | undefined;
 declare var window: any | undefined;

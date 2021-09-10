@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "cosmos.slashing.v1beta1";
@@ -106,31 +118,61 @@ export const MsgUnjailResponse = {
 };
 
 /** Msg defines the slashing Msg service. */
-export interface Msg {
+export const MsgService = {
   /**
    * Unjail defines a method for unjailing a jailed validator, thus returning
    * them into the bonded validator set, so they can begin receiving provisions
    * and rewards again.
    */
-  Unjail(request: MsgUnjail): Promise<MsgUnjailResponse>;
+  unjail: {
+    path: "/cosmos.slashing.v1beta1.Msg/Unjail",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgUnjail) => Buffer.from(MsgUnjail.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgUnjail.decode(value),
+    responseSerialize: (value: MsgUnjailResponse) => Buffer.from(MsgUnjailResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgUnjailResponse.decode(value),
+  },
+} as const;
+
+export interface MsgServer extends UntypedServiceImplementation {
+  /**
+   * Unjail defines a method for unjailing a jailed validator, thus returning
+   * them into the bonded validator set, so they can begin receiving provisions
+   * and rewards again.
+   */
+  unjail: handleUnaryCall<MsgUnjail, MsgUnjailResponse>;
 }
 
-export class MsgClientImpl implements Msg {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Unjail = this.Unjail.bind(this);
-  }
-  Unjail(request: MsgUnjail): Promise<MsgUnjailResponse> {
-    const data = MsgUnjail.encode(request).finish();
-    const promise = this.rpc.request("cosmos.slashing.v1beta1.Msg", "Unjail", data);
-    return promise.then((data) => MsgUnjailResponse.decode(new _m0.Reader(data)));
-  }
+export interface MsgClient extends Client {
+  /**
+   * Unjail defines a method for unjailing a jailed validator, thus returning
+   * them into the bonded validator set, so they can begin receiving provisions
+   * and rewards again.
+   */
+  unjail(
+    request: MsgUnjail,
+    callback: (error: ServiceError | null, response: MsgUnjailResponse) => void,
+  ): ClientUnaryCall;
+  unjail(
+    request: MsgUnjail,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgUnjailResponse) => void,
+  ): ClientUnaryCall;
+  unjail(
+    request: MsgUnjail,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgUnjailResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const MsgClient = makeGenericClientConstructor(
+  MsgService,
+  "cosmos.slashing.v1beta1.Msg",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

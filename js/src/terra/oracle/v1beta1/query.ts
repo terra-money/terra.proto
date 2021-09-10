@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import {
   AggregateExchangeRatePrevote,
@@ -1549,135 +1561,409 @@ export const QueryParamsResponse = {
 };
 
 /** Query defines the gRPC querier service. */
-export interface Query {
+export const QueryService = {
   /** ExchangeRate returns exchange rate of a denom */
-  ExchangeRate(request: QueryExchangeRateRequest): Promise<QueryExchangeRateResponse>;
+  exchangeRate: {
+    path: "/terra.oracle.v1beta1.Query/ExchangeRate",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryExchangeRateRequest) =>
+      Buffer.from(QueryExchangeRateRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryExchangeRateRequest.decode(value),
+    responseSerialize: (value: QueryExchangeRateResponse) =>
+      Buffer.from(QueryExchangeRateResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryExchangeRateResponse.decode(value),
+  },
   /** ExchangeRates returns exchange rates of all denoms */
-  ExchangeRates(request: QueryExchangeRatesRequest): Promise<QueryExchangeRatesResponse>;
+  exchangeRates: {
+    path: "/terra.oracle.v1beta1.Query/ExchangeRates",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryExchangeRatesRequest) =>
+      Buffer.from(QueryExchangeRatesRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryExchangeRatesRequest.decode(value),
+    responseSerialize: (value: QueryExchangeRatesResponse) =>
+      Buffer.from(QueryExchangeRatesResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryExchangeRatesResponse.decode(value),
+  },
   /** TobinTax returns tobin tax of a denom */
-  TobinTax(request: QueryTobinTaxRequest): Promise<QueryTobinTaxResponse>;
+  tobinTax: {
+    path: "/terra.oracle.v1beta1.Query/TobinTax",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryTobinTaxRequest) =>
+      Buffer.from(QueryTobinTaxRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryTobinTaxRequest.decode(value),
+    responseSerialize: (value: QueryTobinTaxResponse) =>
+      Buffer.from(QueryTobinTaxResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryTobinTaxResponse.decode(value),
+  },
   /** TobinTaxes returns tobin taxes of all denoms */
-  TobinTaxes(request: QueryTobinTaxesRequest): Promise<QueryTobinTaxesResponse>;
+  tobinTaxes: {
+    path: "/terra.oracle.v1beta1.Query/TobinTaxes",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryTobinTaxesRequest) =>
+      Buffer.from(QueryTobinTaxesRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryTobinTaxesRequest.decode(value),
+    responseSerialize: (value: QueryTobinTaxesResponse) =>
+      Buffer.from(QueryTobinTaxesResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryTobinTaxesResponse.decode(value),
+  },
   /** Actives returns all active denoms */
-  Actives(request: QueryActivesRequest): Promise<QueryActivesResponse>;
+  actives: {
+    path: "/terra.oracle.v1beta1.Query/Actives",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryActivesRequest) => Buffer.from(QueryActivesRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryActivesRequest.decode(value),
+    responseSerialize: (value: QueryActivesResponse) =>
+      Buffer.from(QueryActivesResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryActivesResponse.decode(value),
+  },
   /** VoteTargets returns all vote target denoms */
-  VoteTargets(request: QueryVoteTargetsRequest): Promise<QueryVoteTargetsResponse>;
+  voteTargets: {
+    path: "/terra.oracle.v1beta1.Query/VoteTargets",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryVoteTargetsRequest) =>
+      Buffer.from(QueryVoteTargetsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryVoteTargetsRequest.decode(value),
+    responseSerialize: (value: QueryVoteTargetsResponse) =>
+      Buffer.from(QueryVoteTargetsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryVoteTargetsResponse.decode(value),
+  },
   /** FeederDelegation returns feeder delegation of a validator */
-  FeederDelegation(request: QueryFeederDelegationRequest): Promise<QueryFeederDelegationResponse>;
+  feederDelegation: {
+    path: "/terra.oracle.v1beta1.Query/FeederDelegation",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryFeederDelegationRequest) =>
+      Buffer.from(QueryFeederDelegationRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryFeederDelegationRequest.decode(value),
+    responseSerialize: (value: QueryFeederDelegationResponse) =>
+      Buffer.from(QueryFeederDelegationResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryFeederDelegationResponse.decode(value),
+  },
   /** MissCounter returns oracle miss counter of a validator */
-  MissCounter(request: QueryMissCounterRequest): Promise<QueryMissCounterResponse>;
+  missCounter: {
+    path: "/terra.oracle.v1beta1.Query/MissCounter",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryMissCounterRequest) =>
+      Buffer.from(QueryMissCounterRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryMissCounterRequest.decode(value),
+    responseSerialize: (value: QueryMissCounterResponse) =>
+      Buffer.from(QueryMissCounterResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryMissCounterResponse.decode(value),
+  },
   /** AggregatePrevote returns an aggregate prevote of a validator */
-  AggregatePrevote(request: QueryAggregatePrevoteRequest): Promise<QueryAggregatePrevoteResponse>;
+  aggregatePrevote: {
+    path: "/terra.oracle.v1beta1.Query/AggregatePrevote",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryAggregatePrevoteRequest) =>
+      Buffer.from(QueryAggregatePrevoteRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryAggregatePrevoteRequest.decode(value),
+    responseSerialize: (value: QueryAggregatePrevoteResponse) =>
+      Buffer.from(QueryAggregatePrevoteResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryAggregatePrevoteResponse.decode(value),
+  },
   /** AggregatePrevotes returns aggregate prevotes of all validators */
-  AggregatePrevotes(request: QueryAggregatePrevotesRequest): Promise<QueryAggregatePrevotesResponse>;
+  aggregatePrevotes: {
+    path: "/terra.oracle.v1beta1.Query/AggregatePrevotes",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryAggregatePrevotesRequest) =>
+      Buffer.from(QueryAggregatePrevotesRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryAggregatePrevotesRequest.decode(value),
+    responseSerialize: (value: QueryAggregatePrevotesResponse) =>
+      Buffer.from(QueryAggregatePrevotesResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryAggregatePrevotesResponse.decode(value),
+  },
   /** AggregateVote returns an aggregate vote of a validator */
-  AggregateVote(request: QueryAggregateVoteRequest): Promise<QueryAggregateVoteResponse>;
+  aggregateVote: {
+    path: "/terra.oracle.v1beta1.Query/AggregateVote",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryAggregateVoteRequest) =>
+      Buffer.from(QueryAggregateVoteRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryAggregateVoteRequest.decode(value),
+    responseSerialize: (value: QueryAggregateVoteResponse) =>
+      Buffer.from(QueryAggregateVoteResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryAggregateVoteResponse.decode(value),
+  },
   /** AggregateVotes returns aggregate votes of all validators */
-  AggregateVotes(request: QueryAggregateVotesRequest): Promise<QueryAggregateVotesResponse>;
+  aggregateVotes: {
+    path: "/terra.oracle.v1beta1.Query/AggregateVotes",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryAggregateVotesRequest) =>
+      Buffer.from(QueryAggregateVotesRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryAggregateVotesRequest.decode(value),
+    responseSerialize: (value: QueryAggregateVotesResponse) =>
+      Buffer.from(QueryAggregateVotesResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryAggregateVotesResponse.decode(value),
+  },
   /** Params queries all parameters. */
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+  params: {
+    path: "/terra.oracle.v1beta1.Query/Params",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryParamsRequest) => Buffer.from(QueryParamsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryParamsRequest.decode(value),
+    responseSerialize: (value: QueryParamsResponse) =>
+      Buffer.from(QueryParamsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryParamsResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** ExchangeRate returns exchange rate of a denom */
+  exchangeRate: handleUnaryCall<QueryExchangeRateRequest, QueryExchangeRateResponse>;
+  /** ExchangeRates returns exchange rates of all denoms */
+  exchangeRates: handleUnaryCall<QueryExchangeRatesRequest, QueryExchangeRatesResponse>;
+  /** TobinTax returns tobin tax of a denom */
+  tobinTax: handleUnaryCall<QueryTobinTaxRequest, QueryTobinTaxResponse>;
+  /** TobinTaxes returns tobin taxes of all denoms */
+  tobinTaxes: handleUnaryCall<QueryTobinTaxesRequest, QueryTobinTaxesResponse>;
+  /** Actives returns all active denoms */
+  actives: handleUnaryCall<QueryActivesRequest, QueryActivesResponse>;
+  /** VoteTargets returns all vote target denoms */
+  voteTargets: handleUnaryCall<QueryVoteTargetsRequest, QueryVoteTargetsResponse>;
+  /** FeederDelegation returns feeder delegation of a validator */
+  feederDelegation: handleUnaryCall<QueryFeederDelegationRequest, QueryFeederDelegationResponse>;
+  /** MissCounter returns oracle miss counter of a validator */
+  missCounter: handleUnaryCall<QueryMissCounterRequest, QueryMissCounterResponse>;
+  /** AggregatePrevote returns an aggregate prevote of a validator */
+  aggregatePrevote: handleUnaryCall<QueryAggregatePrevoteRequest, QueryAggregatePrevoteResponse>;
+  /** AggregatePrevotes returns aggregate prevotes of all validators */
+  aggregatePrevotes: handleUnaryCall<QueryAggregatePrevotesRequest, QueryAggregatePrevotesResponse>;
+  /** AggregateVote returns an aggregate vote of a validator */
+  aggregateVote: handleUnaryCall<QueryAggregateVoteRequest, QueryAggregateVoteResponse>;
+  /** AggregateVotes returns aggregate votes of all validators */
+  aggregateVotes: handleUnaryCall<QueryAggregateVotesRequest, QueryAggregateVotesResponse>;
+  /** Params queries all parameters. */
+  params: handleUnaryCall<QueryParamsRequest, QueryParamsResponse>;
 }
 
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.ExchangeRate = this.ExchangeRate.bind(this);
-    this.ExchangeRates = this.ExchangeRates.bind(this);
-    this.TobinTax = this.TobinTax.bind(this);
-    this.TobinTaxes = this.TobinTaxes.bind(this);
-    this.Actives = this.Actives.bind(this);
-    this.VoteTargets = this.VoteTargets.bind(this);
-    this.FeederDelegation = this.FeederDelegation.bind(this);
-    this.MissCounter = this.MissCounter.bind(this);
-    this.AggregatePrevote = this.AggregatePrevote.bind(this);
-    this.AggregatePrevotes = this.AggregatePrevotes.bind(this);
-    this.AggregateVote = this.AggregateVote.bind(this);
-    this.AggregateVotes = this.AggregateVotes.bind(this);
-    this.Params = this.Params.bind(this);
-  }
-  ExchangeRate(request: QueryExchangeRateRequest): Promise<QueryExchangeRateResponse> {
-    const data = QueryExchangeRateRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.oracle.v1beta1.Query", "ExchangeRate", data);
-    return promise.then((data) => QueryExchangeRateResponse.decode(new _m0.Reader(data)));
-  }
-
-  ExchangeRates(request: QueryExchangeRatesRequest): Promise<QueryExchangeRatesResponse> {
-    const data = QueryExchangeRatesRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.oracle.v1beta1.Query", "ExchangeRates", data);
-    return promise.then((data) => QueryExchangeRatesResponse.decode(new _m0.Reader(data)));
-  }
-
-  TobinTax(request: QueryTobinTaxRequest): Promise<QueryTobinTaxResponse> {
-    const data = QueryTobinTaxRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.oracle.v1beta1.Query", "TobinTax", data);
-    return promise.then((data) => QueryTobinTaxResponse.decode(new _m0.Reader(data)));
-  }
-
-  TobinTaxes(request: QueryTobinTaxesRequest): Promise<QueryTobinTaxesResponse> {
-    const data = QueryTobinTaxesRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.oracle.v1beta1.Query", "TobinTaxes", data);
-    return promise.then((data) => QueryTobinTaxesResponse.decode(new _m0.Reader(data)));
-  }
-
-  Actives(request: QueryActivesRequest): Promise<QueryActivesResponse> {
-    const data = QueryActivesRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.oracle.v1beta1.Query", "Actives", data);
-    return promise.then((data) => QueryActivesResponse.decode(new _m0.Reader(data)));
-  }
-
-  VoteTargets(request: QueryVoteTargetsRequest): Promise<QueryVoteTargetsResponse> {
-    const data = QueryVoteTargetsRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.oracle.v1beta1.Query", "VoteTargets", data);
-    return promise.then((data) => QueryVoteTargetsResponse.decode(new _m0.Reader(data)));
-  }
-
-  FeederDelegation(request: QueryFeederDelegationRequest): Promise<QueryFeederDelegationResponse> {
-    const data = QueryFeederDelegationRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.oracle.v1beta1.Query", "FeederDelegation", data);
-    return promise.then((data) => QueryFeederDelegationResponse.decode(new _m0.Reader(data)));
-  }
-
-  MissCounter(request: QueryMissCounterRequest): Promise<QueryMissCounterResponse> {
-    const data = QueryMissCounterRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.oracle.v1beta1.Query", "MissCounter", data);
-    return promise.then((data) => QueryMissCounterResponse.decode(new _m0.Reader(data)));
-  }
-
-  AggregatePrevote(request: QueryAggregatePrevoteRequest): Promise<QueryAggregatePrevoteResponse> {
-    const data = QueryAggregatePrevoteRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.oracle.v1beta1.Query", "AggregatePrevote", data);
-    return promise.then((data) => QueryAggregatePrevoteResponse.decode(new _m0.Reader(data)));
-  }
-
-  AggregatePrevotes(request: QueryAggregatePrevotesRequest): Promise<QueryAggregatePrevotesResponse> {
-    const data = QueryAggregatePrevotesRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.oracle.v1beta1.Query", "AggregatePrevotes", data);
-    return promise.then((data) => QueryAggregatePrevotesResponse.decode(new _m0.Reader(data)));
-  }
-
-  AggregateVote(request: QueryAggregateVoteRequest): Promise<QueryAggregateVoteResponse> {
-    const data = QueryAggregateVoteRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.oracle.v1beta1.Query", "AggregateVote", data);
-    return promise.then((data) => QueryAggregateVoteResponse.decode(new _m0.Reader(data)));
-  }
-
-  AggregateVotes(request: QueryAggregateVotesRequest): Promise<QueryAggregateVotesResponse> {
-    const data = QueryAggregateVotesRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.oracle.v1beta1.Query", "AggregateVotes", data);
-    return promise.then((data) => QueryAggregateVotesResponse.decode(new _m0.Reader(data)));
-  }
-
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
-    const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.oracle.v1beta1.Query", "Params", data);
-    return promise.then((data) => QueryParamsResponse.decode(new _m0.Reader(data)));
-  }
+export interface QueryClient extends Client {
+  /** ExchangeRate returns exchange rate of a denom */
+  exchangeRate(
+    request: QueryExchangeRateRequest,
+    callback: (error: ServiceError | null, response: QueryExchangeRateResponse) => void,
+  ): ClientUnaryCall;
+  exchangeRate(
+    request: QueryExchangeRateRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryExchangeRateResponse) => void,
+  ): ClientUnaryCall;
+  exchangeRate(
+    request: QueryExchangeRateRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryExchangeRateResponse) => void,
+  ): ClientUnaryCall;
+  /** ExchangeRates returns exchange rates of all denoms */
+  exchangeRates(
+    request: QueryExchangeRatesRequest,
+    callback: (error: ServiceError | null, response: QueryExchangeRatesResponse) => void,
+  ): ClientUnaryCall;
+  exchangeRates(
+    request: QueryExchangeRatesRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryExchangeRatesResponse) => void,
+  ): ClientUnaryCall;
+  exchangeRates(
+    request: QueryExchangeRatesRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryExchangeRatesResponse) => void,
+  ): ClientUnaryCall;
+  /** TobinTax returns tobin tax of a denom */
+  tobinTax(
+    request: QueryTobinTaxRequest,
+    callback: (error: ServiceError | null, response: QueryTobinTaxResponse) => void,
+  ): ClientUnaryCall;
+  tobinTax(
+    request: QueryTobinTaxRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryTobinTaxResponse) => void,
+  ): ClientUnaryCall;
+  tobinTax(
+    request: QueryTobinTaxRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryTobinTaxResponse) => void,
+  ): ClientUnaryCall;
+  /** TobinTaxes returns tobin taxes of all denoms */
+  tobinTaxes(
+    request: QueryTobinTaxesRequest,
+    callback: (error: ServiceError | null, response: QueryTobinTaxesResponse) => void,
+  ): ClientUnaryCall;
+  tobinTaxes(
+    request: QueryTobinTaxesRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryTobinTaxesResponse) => void,
+  ): ClientUnaryCall;
+  tobinTaxes(
+    request: QueryTobinTaxesRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryTobinTaxesResponse) => void,
+  ): ClientUnaryCall;
+  /** Actives returns all active denoms */
+  actives(
+    request: QueryActivesRequest,
+    callback: (error: ServiceError | null, response: QueryActivesResponse) => void,
+  ): ClientUnaryCall;
+  actives(
+    request: QueryActivesRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryActivesResponse) => void,
+  ): ClientUnaryCall;
+  actives(
+    request: QueryActivesRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryActivesResponse) => void,
+  ): ClientUnaryCall;
+  /** VoteTargets returns all vote target denoms */
+  voteTargets(
+    request: QueryVoteTargetsRequest,
+    callback: (error: ServiceError | null, response: QueryVoteTargetsResponse) => void,
+  ): ClientUnaryCall;
+  voteTargets(
+    request: QueryVoteTargetsRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryVoteTargetsResponse) => void,
+  ): ClientUnaryCall;
+  voteTargets(
+    request: QueryVoteTargetsRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryVoteTargetsResponse) => void,
+  ): ClientUnaryCall;
+  /** FeederDelegation returns feeder delegation of a validator */
+  feederDelegation(
+    request: QueryFeederDelegationRequest,
+    callback: (error: ServiceError | null, response: QueryFeederDelegationResponse) => void,
+  ): ClientUnaryCall;
+  feederDelegation(
+    request: QueryFeederDelegationRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryFeederDelegationResponse) => void,
+  ): ClientUnaryCall;
+  feederDelegation(
+    request: QueryFeederDelegationRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryFeederDelegationResponse) => void,
+  ): ClientUnaryCall;
+  /** MissCounter returns oracle miss counter of a validator */
+  missCounter(
+    request: QueryMissCounterRequest,
+    callback: (error: ServiceError | null, response: QueryMissCounterResponse) => void,
+  ): ClientUnaryCall;
+  missCounter(
+    request: QueryMissCounterRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryMissCounterResponse) => void,
+  ): ClientUnaryCall;
+  missCounter(
+    request: QueryMissCounterRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryMissCounterResponse) => void,
+  ): ClientUnaryCall;
+  /** AggregatePrevote returns an aggregate prevote of a validator */
+  aggregatePrevote(
+    request: QueryAggregatePrevoteRequest,
+    callback: (error: ServiceError | null, response: QueryAggregatePrevoteResponse) => void,
+  ): ClientUnaryCall;
+  aggregatePrevote(
+    request: QueryAggregatePrevoteRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryAggregatePrevoteResponse) => void,
+  ): ClientUnaryCall;
+  aggregatePrevote(
+    request: QueryAggregatePrevoteRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryAggregatePrevoteResponse) => void,
+  ): ClientUnaryCall;
+  /** AggregatePrevotes returns aggregate prevotes of all validators */
+  aggregatePrevotes(
+    request: QueryAggregatePrevotesRequest,
+    callback: (error: ServiceError | null, response: QueryAggregatePrevotesResponse) => void,
+  ): ClientUnaryCall;
+  aggregatePrevotes(
+    request: QueryAggregatePrevotesRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryAggregatePrevotesResponse) => void,
+  ): ClientUnaryCall;
+  aggregatePrevotes(
+    request: QueryAggregatePrevotesRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryAggregatePrevotesResponse) => void,
+  ): ClientUnaryCall;
+  /** AggregateVote returns an aggregate vote of a validator */
+  aggregateVote(
+    request: QueryAggregateVoteRequest,
+    callback: (error: ServiceError | null, response: QueryAggregateVoteResponse) => void,
+  ): ClientUnaryCall;
+  aggregateVote(
+    request: QueryAggregateVoteRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryAggregateVoteResponse) => void,
+  ): ClientUnaryCall;
+  aggregateVote(
+    request: QueryAggregateVoteRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryAggregateVoteResponse) => void,
+  ): ClientUnaryCall;
+  /** AggregateVotes returns aggregate votes of all validators */
+  aggregateVotes(
+    request: QueryAggregateVotesRequest,
+    callback: (error: ServiceError | null, response: QueryAggregateVotesResponse) => void,
+  ): ClientUnaryCall;
+  aggregateVotes(
+    request: QueryAggregateVotesRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryAggregateVotesResponse) => void,
+  ): ClientUnaryCall;
+  aggregateVotes(
+    request: QueryAggregateVotesRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryAggregateVotesResponse) => void,
+  ): ClientUnaryCall;
+  /** Params queries all parameters. */
+  params(
+    request: QueryParamsRequest,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "terra.oracle.v1beta1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

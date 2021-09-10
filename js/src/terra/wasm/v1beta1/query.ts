@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { CodeInfo, ContractInfo, Params } from "../../../terra/wasm/v1beta1/wasm";
 
@@ -771,72 +783,200 @@ export const QueryParamsResponse = {
 };
 
 /** Query defines the gRPC querier service. */
-export interface Query {
+export const QueryService = {
   /** CodeInfo returns the stored code info */
-  CodeInfo(request: QueryCodeInfoRequest): Promise<QueryCodeInfoResponse>;
+  codeInfo: {
+    path: "/terra.wasm.v1beta1.Query/CodeInfo",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryCodeInfoRequest) =>
+      Buffer.from(QueryCodeInfoRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryCodeInfoRequest.decode(value),
+    responseSerialize: (value: QueryCodeInfoResponse) =>
+      Buffer.from(QueryCodeInfoResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryCodeInfoResponse.decode(value),
+  },
   /** ByteCode returns the stored byte code */
-  ByteCode(request: QueryByteCodeRequest): Promise<QueryByteCodeResponse>;
+  byteCode: {
+    path: "/terra.wasm.v1beta1.Query/ByteCode",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryByteCodeRequest) =>
+      Buffer.from(QueryByteCodeRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryByteCodeRequest.decode(value),
+    responseSerialize: (value: QueryByteCodeResponse) =>
+      Buffer.from(QueryByteCodeResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryByteCodeResponse.decode(value),
+  },
   /** ContractInfo returns the stored contract info */
-  ContractInfo(request: QueryContractInfoRequest): Promise<QueryContractInfoResponse>;
+  contractInfo: {
+    path: "/terra.wasm.v1beta1.Query/ContractInfo",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryContractInfoRequest) =>
+      Buffer.from(QueryContractInfoRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryContractInfoRequest.decode(value),
+    responseSerialize: (value: QueryContractInfoResponse) =>
+      Buffer.from(QueryContractInfoResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryContractInfoResponse.decode(value),
+  },
   /** ContractStore return smart query result from the contract */
-  ContractStore(request: QueryContractStoreRequest): Promise<QueryContractStoreResponse>;
+  contractStore: {
+    path: "/terra.wasm.v1beta1.Query/ContractStore",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryContractStoreRequest) =>
+      Buffer.from(QueryContractStoreRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryContractStoreRequest.decode(value),
+    responseSerialize: (value: QueryContractStoreResponse) =>
+      Buffer.from(QueryContractStoreResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryContractStoreResponse.decode(value),
+  },
   /** RawStore return single key from the raw store data of a contract */
-  RawStore(request: QueryRawStoreRequest): Promise<QueryRawStoreResponse>;
+  rawStore: {
+    path: "/terra.wasm.v1beta1.Query/RawStore",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryRawStoreRequest) =>
+      Buffer.from(QueryRawStoreRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryRawStoreRequest.decode(value),
+    responseSerialize: (value: QueryRawStoreResponse) =>
+      Buffer.from(QueryRawStoreResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryRawStoreResponse.decode(value),
+  },
   /** Params queries all parameters. */
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+  params: {
+    path: "/terra.wasm.v1beta1.Query/Params",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryParamsRequest) => Buffer.from(QueryParamsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryParamsRequest.decode(value),
+    responseSerialize: (value: QueryParamsResponse) =>
+      Buffer.from(QueryParamsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryParamsResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** CodeInfo returns the stored code info */
+  codeInfo: handleUnaryCall<QueryCodeInfoRequest, QueryCodeInfoResponse>;
+  /** ByteCode returns the stored byte code */
+  byteCode: handleUnaryCall<QueryByteCodeRequest, QueryByteCodeResponse>;
+  /** ContractInfo returns the stored contract info */
+  contractInfo: handleUnaryCall<QueryContractInfoRequest, QueryContractInfoResponse>;
+  /** ContractStore return smart query result from the contract */
+  contractStore: handleUnaryCall<QueryContractStoreRequest, QueryContractStoreResponse>;
+  /** RawStore return single key from the raw store data of a contract */
+  rawStore: handleUnaryCall<QueryRawStoreRequest, QueryRawStoreResponse>;
+  /** Params queries all parameters. */
+  params: handleUnaryCall<QueryParamsRequest, QueryParamsResponse>;
 }
 
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.CodeInfo = this.CodeInfo.bind(this);
-    this.ByteCode = this.ByteCode.bind(this);
-    this.ContractInfo = this.ContractInfo.bind(this);
-    this.ContractStore = this.ContractStore.bind(this);
-    this.RawStore = this.RawStore.bind(this);
-    this.Params = this.Params.bind(this);
-  }
-  CodeInfo(request: QueryCodeInfoRequest): Promise<QueryCodeInfoResponse> {
-    const data = QueryCodeInfoRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.wasm.v1beta1.Query", "CodeInfo", data);
-    return promise.then((data) => QueryCodeInfoResponse.decode(new _m0.Reader(data)));
-  }
-
-  ByteCode(request: QueryByteCodeRequest): Promise<QueryByteCodeResponse> {
-    const data = QueryByteCodeRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.wasm.v1beta1.Query", "ByteCode", data);
-    return promise.then((data) => QueryByteCodeResponse.decode(new _m0.Reader(data)));
-  }
-
-  ContractInfo(request: QueryContractInfoRequest): Promise<QueryContractInfoResponse> {
-    const data = QueryContractInfoRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.wasm.v1beta1.Query", "ContractInfo", data);
-    return promise.then((data) => QueryContractInfoResponse.decode(new _m0.Reader(data)));
-  }
-
-  ContractStore(request: QueryContractStoreRequest): Promise<QueryContractStoreResponse> {
-    const data = QueryContractStoreRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.wasm.v1beta1.Query", "ContractStore", data);
-    return promise.then((data) => QueryContractStoreResponse.decode(new _m0.Reader(data)));
-  }
-
-  RawStore(request: QueryRawStoreRequest): Promise<QueryRawStoreResponse> {
-    const data = QueryRawStoreRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.wasm.v1beta1.Query", "RawStore", data);
-    return promise.then((data) => QueryRawStoreResponse.decode(new _m0.Reader(data)));
-  }
-
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
-    const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.wasm.v1beta1.Query", "Params", data);
-    return promise.then((data) => QueryParamsResponse.decode(new _m0.Reader(data)));
-  }
+export interface QueryClient extends Client {
+  /** CodeInfo returns the stored code info */
+  codeInfo(
+    request: QueryCodeInfoRequest,
+    callback: (error: ServiceError | null, response: QueryCodeInfoResponse) => void,
+  ): ClientUnaryCall;
+  codeInfo(
+    request: QueryCodeInfoRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryCodeInfoResponse) => void,
+  ): ClientUnaryCall;
+  codeInfo(
+    request: QueryCodeInfoRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryCodeInfoResponse) => void,
+  ): ClientUnaryCall;
+  /** ByteCode returns the stored byte code */
+  byteCode(
+    request: QueryByteCodeRequest,
+    callback: (error: ServiceError | null, response: QueryByteCodeResponse) => void,
+  ): ClientUnaryCall;
+  byteCode(
+    request: QueryByteCodeRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryByteCodeResponse) => void,
+  ): ClientUnaryCall;
+  byteCode(
+    request: QueryByteCodeRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryByteCodeResponse) => void,
+  ): ClientUnaryCall;
+  /** ContractInfo returns the stored contract info */
+  contractInfo(
+    request: QueryContractInfoRequest,
+    callback: (error: ServiceError | null, response: QueryContractInfoResponse) => void,
+  ): ClientUnaryCall;
+  contractInfo(
+    request: QueryContractInfoRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryContractInfoResponse) => void,
+  ): ClientUnaryCall;
+  contractInfo(
+    request: QueryContractInfoRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryContractInfoResponse) => void,
+  ): ClientUnaryCall;
+  /** ContractStore return smart query result from the contract */
+  contractStore(
+    request: QueryContractStoreRequest,
+    callback: (error: ServiceError | null, response: QueryContractStoreResponse) => void,
+  ): ClientUnaryCall;
+  contractStore(
+    request: QueryContractStoreRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryContractStoreResponse) => void,
+  ): ClientUnaryCall;
+  contractStore(
+    request: QueryContractStoreRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryContractStoreResponse) => void,
+  ): ClientUnaryCall;
+  /** RawStore return single key from the raw store data of a contract */
+  rawStore(
+    request: QueryRawStoreRequest,
+    callback: (error: ServiceError | null, response: QueryRawStoreResponse) => void,
+  ): ClientUnaryCall;
+  rawStore(
+    request: QueryRawStoreRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryRawStoreResponse) => void,
+  ): ClientUnaryCall;
+  rawStore(
+    request: QueryRawStoreRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryRawStoreResponse) => void,
+  ): ClientUnaryCall;
+  /** Params queries all parameters. */
+  params(
+    request: QueryParamsRequest,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "terra.wasm.v1beta1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 declare var self: any | undefined;
 declare var window: any | undefined;

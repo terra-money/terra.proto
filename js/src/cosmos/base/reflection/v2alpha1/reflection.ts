@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "cosmos.base.reflection.v2alpha1";
@@ -1885,108 +1897,223 @@ export const QueryMethodDescriptor = {
 };
 
 /** ReflectionService defines a service for application reflection. */
-export interface ReflectionService {
+export const ReflectionServiceService = {
   /**
    * GetAuthnDescriptor returns information on how to authenticate transactions in the application
    * NOTE: this RPC is still experimental and might be subject to breaking changes or removal in
    * future releases of the cosmos-sdk.
    */
-  GetAuthnDescriptor(request: GetAuthnDescriptorRequest): Promise<GetAuthnDescriptorResponse>;
+  getAuthnDescriptor: {
+    path: "/cosmos.base.reflection.v2alpha1.ReflectionService/GetAuthnDescriptor",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: GetAuthnDescriptorRequest) =>
+      Buffer.from(GetAuthnDescriptorRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => GetAuthnDescriptorRequest.decode(value),
+    responseSerialize: (value: GetAuthnDescriptorResponse) =>
+      Buffer.from(GetAuthnDescriptorResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => GetAuthnDescriptorResponse.decode(value),
+  },
   /** GetChainDescriptor returns the description of the chain */
-  GetChainDescriptor(request: GetChainDescriptorRequest): Promise<GetChainDescriptorResponse>;
+  getChainDescriptor: {
+    path: "/cosmos.base.reflection.v2alpha1.ReflectionService/GetChainDescriptor",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: GetChainDescriptorRequest) =>
+      Buffer.from(GetChainDescriptorRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => GetChainDescriptorRequest.decode(value),
+    responseSerialize: (value: GetChainDescriptorResponse) =>
+      Buffer.from(GetChainDescriptorResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => GetChainDescriptorResponse.decode(value),
+  },
   /** GetCodecDescriptor returns the descriptor of the codec of the application */
-  GetCodecDescriptor(request: GetCodecDescriptorRequest): Promise<GetCodecDescriptorResponse>;
+  getCodecDescriptor: {
+    path: "/cosmos.base.reflection.v2alpha1.ReflectionService/GetCodecDescriptor",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: GetCodecDescriptorRequest) =>
+      Buffer.from(GetCodecDescriptorRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => GetCodecDescriptorRequest.decode(value),
+    responseSerialize: (value: GetCodecDescriptorResponse) =>
+      Buffer.from(GetCodecDescriptorResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => GetCodecDescriptorResponse.decode(value),
+  },
   /** GetConfigurationDescriptor returns the descriptor for the sdk.Config of the application */
-  GetConfigurationDescriptor(
-    request: GetConfigurationDescriptorRequest,
-  ): Promise<GetConfigurationDescriptorResponse>;
+  getConfigurationDescriptor: {
+    path: "/cosmos.base.reflection.v2alpha1.ReflectionService/GetConfigurationDescriptor",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: GetConfigurationDescriptorRequest) =>
+      Buffer.from(GetConfigurationDescriptorRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => GetConfigurationDescriptorRequest.decode(value),
+    responseSerialize: (value: GetConfigurationDescriptorResponse) =>
+      Buffer.from(GetConfigurationDescriptorResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => GetConfigurationDescriptorResponse.decode(value),
+  },
   /** GetQueryServicesDescriptor returns the available gRPC queryable services of the application */
-  GetQueryServicesDescriptor(
-    request: GetQueryServicesDescriptorRequest,
-  ): Promise<GetQueryServicesDescriptorResponse>;
+  getQueryServicesDescriptor: {
+    path: "/cosmos.base.reflection.v2alpha1.ReflectionService/GetQueryServicesDescriptor",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: GetQueryServicesDescriptorRequest) =>
+      Buffer.from(GetQueryServicesDescriptorRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => GetQueryServicesDescriptorRequest.decode(value),
+    responseSerialize: (value: GetQueryServicesDescriptorResponse) =>
+      Buffer.from(GetQueryServicesDescriptorResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => GetQueryServicesDescriptorResponse.decode(value),
+  },
   /** GetTxDescriptor returns information on the used transaction object and available msgs that can be used */
-  GetTxDescriptor(request: GetTxDescriptorRequest): Promise<GetTxDescriptorResponse>;
+  getTxDescriptor: {
+    path: "/cosmos.base.reflection.v2alpha1.ReflectionService/GetTxDescriptor",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: GetTxDescriptorRequest) =>
+      Buffer.from(GetTxDescriptorRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => GetTxDescriptorRequest.decode(value),
+    responseSerialize: (value: GetTxDescriptorResponse) =>
+      Buffer.from(GetTxDescriptorResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => GetTxDescriptorResponse.decode(value),
+  },
+} as const;
+
+export interface ReflectionServiceServer extends UntypedServiceImplementation {
+  /**
+   * GetAuthnDescriptor returns information on how to authenticate transactions in the application
+   * NOTE: this RPC is still experimental and might be subject to breaking changes or removal in
+   * future releases of the cosmos-sdk.
+   */
+  getAuthnDescriptor: handleUnaryCall<GetAuthnDescriptorRequest, GetAuthnDescriptorResponse>;
+  /** GetChainDescriptor returns the description of the chain */
+  getChainDescriptor: handleUnaryCall<GetChainDescriptorRequest, GetChainDescriptorResponse>;
+  /** GetCodecDescriptor returns the descriptor of the codec of the application */
+  getCodecDescriptor: handleUnaryCall<GetCodecDescriptorRequest, GetCodecDescriptorResponse>;
+  /** GetConfigurationDescriptor returns the descriptor for the sdk.Config of the application */
+  getConfigurationDescriptor: handleUnaryCall<
+    GetConfigurationDescriptorRequest,
+    GetConfigurationDescriptorResponse
+  >;
+  /** GetQueryServicesDescriptor returns the available gRPC queryable services of the application */
+  getQueryServicesDescriptor: handleUnaryCall<
+    GetQueryServicesDescriptorRequest,
+    GetQueryServicesDescriptorResponse
+  >;
+  /** GetTxDescriptor returns information on the used transaction object and available msgs that can be used */
+  getTxDescriptor: handleUnaryCall<GetTxDescriptorRequest, GetTxDescriptorResponse>;
 }
 
-export class ReflectionServiceClientImpl implements ReflectionService {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.GetAuthnDescriptor = this.GetAuthnDescriptor.bind(this);
-    this.GetChainDescriptor = this.GetChainDescriptor.bind(this);
-    this.GetCodecDescriptor = this.GetCodecDescriptor.bind(this);
-    this.GetConfigurationDescriptor = this.GetConfigurationDescriptor.bind(this);
-    this.GetQueryServicesDescriptor = this.GetQueryServicesDescriptor.bind(this);
-    this.GetTxDescriptor = this.GetTxDescriptor.bind(this);
-  }
-  GetAuthnDescriptor(request: GetAuthnDescriptorRequest): Promise<GetAuthnDescriptorResponse> {
-    const data = GetAuthnDescriptorRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "cosmos.base.reflection.v2alpha1.ReflectionService",
-      "GetAuthnDescriptor",
-      data,
-    );
-    return promise.then((data) => GetAuthnDescriptorResponse.decode(new _m0.Reader(data)));
-  }
-
-  GetChainDescriptor(request: GetChainDescriptorRequest): Promise<GetChainDescriptorResponse> {
-    const data = GetChainDescriptorRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "cosmos.base.reflection.v2alpha1.ReflectionService",
-      "GetChainDescriptor",
-      data,
-    );
-    return promise.then((data) => GetChainDescriptorResponse.decode(new _m0.Reader(data)));
-  }
-
-  GetCodecDescriptor(request: GetCodecDescriptorRequest): Promise<GetCodecDescriptorResponse> {
-    const data = GetCodecDescriptorRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "cosmos.base.reflection.v2alpha1.ReflectionService",
-      "GetCodecDescriptor",
-      data,
-    );
-    return promise.then((data) => GetCodecDescriptorResponse.decode(new _m0.Reader(data)));
-  }
-
-  GetConfigurationDescriptor(
+export interface ReflectionServiceClient extends Client {
+  /**
+   * GetAuthnDescriptor returns information on how to authenticate transactions in the application
+   * NOTE: this RPC is still experimental and might be subject to breaking changes or removal in
+   * future releases of the cosmos-sdk.
+   */
+  getAuthnDescriptor(
+    request: GetAuthnDescriptorRequest,
+    callback: (error: ServiceError | null, response: GetAuthnDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  getAuthnDescriptor(
+    request: GetAuthnDescriptorRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: GetAuthnDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  getAuthnDescriptor(
+    request: GetAuthnDescriptorRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: GetAuthnDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  /** GetChainDescriptor returns the description of the chain */
+  getChainDescriptor(
+    request: GetChainDescriptorRequest,
+    callback: (error: ServiceError | null, response: GetChainDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  getChainDescriptor(
+    request: GetChainDescriptorRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: GetChainDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  getChainDescriptor(
+    request: GetChainDescriptorRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: GetChainDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  /** GetCodecDescriptor returns the descriptor of the codec of the application */
+  getCodecDescriptor(
+    request: GetCodecDescriptorRequest,
+    callback: (error: ServiceError | null, response: GetCodecDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  getCodecDescriptor(
+    request: GetCodecDescriptorRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: GetCodecDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  getCodecDescriptor(
+    request: GetCodecDescriptorRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: GetCodecDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  /** GetConfigurationDescriptor returns the descriptor for the sdk.Config of the application */
+  getConfigurationDescriptor(
     request: GetConfigurationDescriptorRequest,
-  ): Promise<GetConfigurationDescriptorResponse> {
-    const data = GetConfigurationDescriptorRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "cosmos.base.reflection.v2alpha1.ReflectionService",
-      "GetConfigurationDescriptor",
-      data,
-    );
-    return promise.then((data) => GetConfigurationDescriptorResponse.decode(new _m0.Reader(data)));
-  }
-
-  GetQueryServicesDescriptor(
+    callback: (error: ServiceError | null, response: GetConfigurationDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  getConfigurationDescriptor(
+    request: GetConfigurationDescriptorRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: GetConfigurationDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  getConfigurationDescriptor(
+    request: GetConfigurationDescriptorRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: GetConfigurationDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  /** GetQueryServicesDescriptor returns the available gRPC queryable services of the application */
+  getQueryServicesDescriptor(
     request: GetQueryServicesDescriptorRequest,
-  ): Promise<GetQueryServicesDescriptorResponse> {
-    const data = GetQueryServicesDescriptorRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "cosmos.base.reflection.v2alpha1.ReflectionService",
-      "GetQueryServicesDescriptor",
-      data,
-    );
-    return promise.then((data) => GetQueryServicesDescriptorResponse.decode(new _m0.Reader(data)));
-  }
-
-  GetTxDescriptor(request: GetTxDescriptorRequest): Promise<GetTxDescriptorResponse> {
-    const data = GetTxDescriptorRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "cosmos.base.reflection.v2alpha1.ReflectionService",
-      "GetTxDescriptor",
-      data,
-    );
-    return promise.then((data) => GetTxDescriptorResponse.decode(new _m0.Reader(data)));
-  }
+    callback: (error: ServiceError | null, response: GetQueryServicesDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  getQueryServicesDescriptor(
+    request: GetQueryServicesDescriptorRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: GetQueryServicesDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  getQueryServicesDescriptor(
+    request: GetQueryServicesDescriptorRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: GetQueryServicesDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  /** GetTxDescriptor returns information on the used transaction object and available msgs that can be used */
+  getTxDescriptor(
+    request: GetTxDescriptorRequest,
+    callback: (error: ServiceError | null, response: GetTxDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  getTxDescriptor(
+    request: GetTxDescriptorRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: GetTxDescriptorResponse) => void,
+  ): ClientUnaryCall;
+  getTxDescriptor(
+    request: GetTxDescriptorRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: GetTxDescriptorResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const ReflectionServiceClient = makeGenericClientConstructor(
+  ReflectionServiceService,
+  "cosmos.base.reflection.v2alpha1.ReflectionService",
+) as unknown as {
+  new (
+    address: string,
+    credentials: ChannelCredentials,
+    options?: Partial<ChannelOptions>,
+  ): ReflectionServiceClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

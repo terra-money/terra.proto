@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Tx } from "../../../cosmos/tx/v1beta1/tx";
 import { Coin } from "../../../cosmos/base/v1beta1/coin";
@@ -142,27 +154,49 @@ export const ComputeTaxResponse = {
 };
 
 /** Service defines a gRPC service for interacting with transactions. */
-export interface Service {
+export const ServiceService = {
   /** EstimateFee simulates executing a transaction for estimating gas usage. */
-  ComputeTax(request: ComputeTaxRequest): Promise<ComputeTaxResponse>;
+  computeTax: {
+    path: "/terra.tx.v1beta1.Service/ComputeTax",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: ComputeTaxRequest) => Buffer.from(ComputeTaxRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => ComputeTaxRequest.decode(value),
+    responseSerialize: (value: ComputeTaxResponse) => Buffer.from(ComputeTaxResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ComputeTaxResponse.decode(value),
+  },
+} as const;
+
+export interface ServiceServer extends UntypedServiceImplementation {
+  /** EstimateFee simulates executing a transaction for estimating gas usage. */
+  computeTax: handleUnaryCall<ComputeTaxRequest, ComputeTaxResponse>;
 }
 
-export class ServiceClientImpl implements Service {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.ComputeTax = this.ComputeTax.bind(this);
-  }
-  ComputeTax(request: ComputeTaxRequest): Promise<ComputeTaxResponse> {
-    const data = ComputeTaxRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.tx.v1beta1.Service", "ComputeTax", data);
-    return promise.then((data) => ComputeTaxResponse.decode(new _m0.Reader(data)));
-  }
+export interface ServiceClient extends Client {
+  /** EstimateFee simulates executing a transaction for estimating gas usage. */
+  computeTax(
+    request: ComputeTaxRequest,
+    callback: (error: ServiceError | null, response: ComputeTaxResponse) => void,
+  ): ClientUnaryCall;
+  computeTax(
+    request: ComputeTaxRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: ComputeTaxResponse) => void,
+  ): ClientUnaryCall;
+  computeTax(
+    request: ComputeTaxRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ComputeTaxResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const ServiceClient = makeGenericClientConstructor(
+  ServiceService,
+  "terra.tx.v1beta1.Service",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): ServiceClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

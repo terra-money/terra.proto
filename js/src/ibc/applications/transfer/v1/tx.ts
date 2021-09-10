@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Coin } from "../../../../cosmos/base/v1beta1/coin";
 import { Height } from "../../../../ibc/core/client/v1/client";
@@ -241,27 +253,50 @@ export const MsgTransferResponse = {
 };
 
 /** Msg defines the ibc/transfer Msg service. */
-export interface Msg {
+export const MsgService = {
   /** Transfer defines a rpc handler method for MsgTransfer. */
-  Transfer(request: MsgTransfer): Promise<MsgTransferResponse>;
+  transfer: {
+    path: "/ibc.applications.transfer.v1.Msg/Transfer",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgTransfer) => Buffer.from(MsgTransfer.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgTransfer.decode(value),
+    responseSerialize: (value: MsgTransferResponse) =>
+      Buffer.from(MsgTransferResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgTransferResponse.decode(value),
+  },
+} as const;
+
+export interface MsgServer extends UntypedServiceImplementation {
+  /** Transfer defines a rpc handler method for MsgTransfer. */
+  transfer: handleUnaryCall<MsgTransfer, MsgTransferResponse>;
 }
 
-export class MsgClientImpl implements Msg {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Transfer = this.Transfer.bind(this);
-  }
-  Transfer(request: MsgTransfer): Promise<MsgTransferResponse> {
-    const data = MsgTransfer.encode(request).finish();
-    const promise = this.rpc.request("ibc.applications.transfer.v1.Msg", "Transfer", data);
-    return promise.then((data) => MsgTransferResponse.decode(new _m0.Reader(data)));
-  }
+export interface MsgClient extends Client {
+  /** Transfer defines a rpc handler method for MsgTransfer. */
+  transfer(
+    request: MsgTransfer,
+    callback: (error: ServiceError | null, response: MsgTransferResponse) => void,
+  ): ClientUnaryCall;
+  transfer(
+    request: MsgTransfer,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgTransferResponse) => void,
+  ): ClientUnaryCall;
+  transfer(
+    request: MsgTransfer,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgTransferResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const MsgClient = makeGenericClientConstructor(
+  MsgService,
+  "ibc.applications.transfer.v1.Msg",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

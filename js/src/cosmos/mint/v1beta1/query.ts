@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Params } from "../../../cosmos/mint/v1beta1/mint";
 
@@ -327,45 +339,110 @@ export const QueryAnnualProvisionsResponse = {
 };
 
 /** Query provides defines the gRPC querier service. */
-export interface Query {
+export const QueryService = {
   /** Params returns the total set of minting parameters. */
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+  params: {
+    path: "/cosmos.mint.v1beta1.Query/Params",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryParamsRequest) => Buffer.from(QueryParamsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryParamsRequest.decode(value),
+    responseSerialize: (value: QueryParamsResponse) =>
+      Buffer.from(QueryParamsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryParamsResponse.decode(value),
+  },
   /** Inflation returns the current minting inflation value. */
-  Inflation(request: QueryInflationRequest): Promise<QueryInflationResponse>;
+  inflation: {
+    path: "/cosmos.mint.v1beta1.Query/Inflation",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryInflationRequest) =>
+      Buffer.from(QueryInflationRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryInflationRequest.decode(value),
+    responseSerialize: (value: QueryInflationResponse) =>
+      Buffer.from(QueryInflationResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryInflationResponse.decode(value),
+  },
   /** AnnualProvisions current minting annual provisions value. */
-  AnnualProvisions(request: QueryAnnualProvisionsRequest): Promise<QueryAnnualProvisionsResponse>;
+  annualProvisions: {
+    path: "/cosmos.mint.v1beta1.Query/AnnualProvisions",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryAnnualProvisionsRequest) =>
+      Buffer.from(QueryAnnualProvisionsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryAnnualProvisionsRequest.decode(value),
+    responseSerialize: (value: QueryAnnualProvisionsResponse) =>
+      Buffer.from(QueryAnnualProvisionsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryAnnualProvisionsResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** Params returns the total set of minting parameters. */
+  params: handleUnaryCall<QueryParamsRequest, QueryParamsResponse>;
+  /** Inflation returns the current minting inflation value. */
+  inflation: handleUnaryCall<QueryInflationRequest, QueryInflationResponse>;
+  /** AnnualProvisions current minting annual provisions value. */
+  annualProvisions: handleUnaryCall<QueryAnnualProvisionsRequest, QueryAnnualProvisionsResponse>;
 }
 
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Params = this.Params.bind(this);
-    this.Inflation = this.Inflation.bind(this);
-    this.AnnualProvisions = this.AnnualProvisions.bind(this);
-  }
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
-    const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.mint.v1beta1.Query", "Params", data);
-    return promise.then((data) => QueryParamsResponse.decode(new _m0.Reader(data)));
-  }
-
-  Inflation(request: QueryInflationRequest): Promise<QueryInflationResponse> {
-    const data = QueryInflationRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.mint.v1beta1.Query", "Inflation", data);
-    return promise.then((data) => QueryInflationResponse.decode(new _m0.Reader(data)));
-  }
-
-  AnnualProvisions(request: QueryAnnualProvisionsRequest): Promise<QueryAnnualProvisionsResponse> {
-    const data = QueryAnnualProvisionsRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.mint.v1beta1.Query", "AnnualProvisions", data);
-    return promise.then((data) => QueryAnnualProvisionsResponse.decode(new _m0.Reader(data)));
-  }
+export interface QueryClient extends Client {
+  /** Params returns the total set of minting parameters. */
+  params(
+    request: QueryParamsRequest,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  /** Inflation returns the current minting inflation value. */
+  inflation(
+    request: QueryInflationRequest,
+    callback: (error: ServiceError | null, response: QueryInflationResponse) => void,
+  ): ClientUnaryCall;
+  inflation(
+    request: QueryInflationRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryInflationResponse) => void,
+  ): ClientUnaryCall;
+  inflation(
+    request: QueryInflationRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryInflationResponse) => void,
+  ): ClientUnaryCall;
+  /** AnnualProvisions current minting annual provisions value. */
+  annualProvisions(
+    request: QueryAnnualProvisionsRequest,
+    callback: (error: ServiceError | null, response: QueryAnnualProvisionsResponse) => void,
+  ): ClientUnaryCall;
+  annualProvisions(
+    request: QueryAnnualProvisionsRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryAnnualProvisionsResponse) => void,
+  ): ClientUnaryCall;
+  annualProvisions(
+    request: QueryAnnualProvisionsRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryAnnualProvisionsResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "cosmos.mint.v1beta1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 declare var self: any | undefined;
 declare var window: any | undefined;

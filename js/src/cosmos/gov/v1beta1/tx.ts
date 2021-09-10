@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Any } from "../../../google/protobuf/any";
 import {
@@ -605,54 +617,132 @@ export const MsgDepositResponse = {
 };
 
 /** Msg defines the bank Msg service. */
-export interface Msg {
+export const MsgService = {
   /** SubmitProposal defines a method to create new proposal given a content. */
-  SubmitProposal(request: MsgSubmitProposal): Promise<MsgSubmitProposalResponse>;
+  submitProposal: {
+    path: "/cosmos.gov.v1beta1.Msg/SubmitProposal",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgSubmitProposal) => Buffer.from(MsgSubmitProposal.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgSubmitProposal.decode(value),
+    responseSerialize: (value: MsgSubmitProposalResponse) =>
+      Buffer.from(MsgSubmitProposalResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgSubmitProposalResponse.decode(value),
+  },
   /** Vote defines a method to add a vote on a specific proposal. */
-  Vote(request: MsgVote): Promise<MsgVoteResponse>;
+  vote: {
+    path: "/cosmos.gov.v1beta1.Msg/Vote",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgVote) => Buffer.from(MsgVote.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgVote.decode(value),
+    responseSerialize: (value: MsgVoteResponse) => Buffer.from(MsgVoteResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgVoteResponse.decode(value),
+  },
   /** VoteWeighted defines a method to add a weighted vote on a specific proposal. */
-  VoteWeighted(request: MsgVoteWeighted): Promise<MsgVoteWeightedResponse>;
+  voteWeighted: {
+    path: "/cosmos.gov.v1beta1.Msg/VoteWeighted",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgVoteWeighted) => Buffer.from(MsgVoteWeighted.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgVoteWeighted.decode(value),
+    responseSerialize: (value: MsgVoteWeightedResponse) =>
+      Buffer.from(MsgVoteWeightedResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgVoteWeightedResponse.decode(value),
+  },
   /** Deposit defines a method to add deposit on a specific proposal. */
-  Deposit(request: MsgDeposit): Promise<MsgDepositResponse>;
+  deposit: {
+    path: "/cosmos.gov.v1beta1.Msg/Deposit",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgDeposit) => Buffer.from(MsgDeposit.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgDeposit.decode(value),
+    responseSerialize: (value: MsgDepositResponse) => Buffer.from(MsgDepositResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgDepositResponse.decode(value),
+  },
+} as const;
+
+export interface MsgServer extends UntypedServiceImplementation {
+  /** SubmitProposal defines a method to create new proposal given a content. */
+  submitProposal: handleUnaryCall<MsgSubmitProposal, MsgSubmitProposalResponse>;
+  /** Vote defines a method to add a vote on a specific proposal. */
+  vote: handleUnaryCall<MsgVote, MsgVoteResponse>;
+  /** VoteWeighted defines a method to add a weighted vote on a specific proposal. */
+  voteWeighted: handleUnaryCall<MsgVoteWeighted, MsgVoteWeightedResponse>;
+  /** Deposit defines a method to add deposit on a specific proposal. */
+  deposit: handleUnaryCall<MsgDeposit, MsgDepositResponse>;
 }
 
-export class MsgClientImpl implements Msg {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.SubmitProposal = this.SubmitProposal.bind(this);
-    this.Vote = this.Vote.bind(this);
-    this.VoteWeighted = this.VoteWeighted.bind(this);
-    this.Deposit = this.Deposit.bind(this);
-  }
-  SubmitProposal(request: MsgSubmitProposal): Promise<MsgSubmitProposalResponse> {
-    const data = MsgSubmitProposal.encode(request).finish();
-    const promise = this.rpc.request("cosmos.gov.v1beta1.Msg", "SubmitProposal", data);
-    return promise.then((data) => MsgSubmitProposalResponse.decode(new _m0.Reader(data)));
-  }
-
-  Vote(request: MsgVote): Promise<MsgVoteResponse> {
-    const data = MsgVote.encode(request).finish();
-    const promise = this.rpc.request("cosmos.gov.v1beta1.Msg", "Vote", data);
-    return promise.then((data) => MsgVoteResponse.decode(new _m0.Reader(data)));
-  }
-
-  VoteWeighted(request: MsgVoteWeighted): Promise<MsgVoteWeightedResponse> {
-    const data = MsgVoteWeighted.encode(request).finish();
-    const promise = this.rpc.request("cosmos.gov.v1beta1.Msg", "VoteWeighted", data);
-    return promise.then((data) => MsgVoteWeightedResponse.decode(new _m0.Reader(data)));
-  }
-
-  Deposit(request: MsgDeposit): Promise<MsgDepositResponse> {
-    const data = MsgDeposit.encode(request).finish();
-    const promise = this.rpc.request("cosmos.gov.v1beta1.Msg", "Deposit", data);
-    return promise.then((data) => MsgDepositResponse.decode(new _m0.Reader(data)));
-  }
+export interface MsgClient extends Client {
+  /** SubmitProposal defines a method to create new proposal given a content. */
+  submitProposal(
+    request: MsgSubmitProposal,
+    callback: (error: ServiceError | null, response: MsgSubmitProposalResponse) => void,
+  ): ClientUnaryCall;
+  submitProposal(
+    request: MsgSubmitProposal,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgSubmitProposalResponse) => void,
+  ): ClientUnaryCall;
+  submitProposal(
+    request: MsgSubmitProposal,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgSubmitProposalResponse) => void,
+  ): ClientUnaryCall;
+  /** Vote defines a method to add a vote on a specific proposal. */
+  vote(
+    request: MsgVote,
+    callback: (error: ServiceError | null, response: MsgVoteResponse) => void,
+  ): ClientUnaryCall;
+  vote(
+    request: MsgVote,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgVoteResponse) => void,
+  ): ClientUnaryCall;
+  vote(
+    request: MsgVote,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgVoteResponse) => void,
+  ): ClientUnaryCall;
+  /** VoteWeighted defines a method to add a weighted vote on a specific proposal. */
+  voteWeighted(
+    request: MsgVoteWeighted,
+    callback: (error: ServiceError | null, response: MsgVoteWeightedResponse) => void,
+  ): ClientUnaryCall;
+  voteWeighted(
+    request: MsgVoteWeighted,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgVoteWeightedResponse) => void,
+  ): ClientUnaryCall;
+  voteWeighted(
+    request: MsgVoteWeighted,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgVoteWeightedResponse) => void,
+  ): ClientUnaryCall;
+  /** Deposit defines a method to add deposit on a specific proposal. */
+  deposit(
+    request: MsgDeposit,
+    callback: (error: ServiceError | null, response: MsgDepositResponse) => void,
+  ): ClientUnaryCall;
+  deposit(
+    request: MsgDeposit,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgDepositResponse) => void,
+  ): ClientUnaryCall;
+  deposit(
+    request: MsgDeposit,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgDepositResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const MsgClient = makeGenericClientConstructor(MsgService, "cosmos.gov.v1beta1.Msg") as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

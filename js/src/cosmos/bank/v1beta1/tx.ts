@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Coin } from "../../../cosmos/base/v1beta1/coin";
 import { Input, Output } from "../../../cosmos/bank/v1beta1/bank";
@@ -284,36 +296,75 @@ export const MsgMultiSendResponse = {
 };
 
 /** Msg defines the bank Msg service. */
-export interface Msg {
+export const MsgService = {
   /** Send defines a method for sending coins from one account to another account. */
-  Send(request: MsgSend): Promise<MsgSendResponse>;
+  send: {
+    path: "/cosmos.bank.v1beta1.Msg/Send",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgSend) => Buffer.from(MsgSend.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgSend.decode(value),
+    responseSerialize: (value: MsgSendResponse) => Buffer.from(MsgSendResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgSendResponse.decode(value),
+  },
   /** MultiSend defines a method for sending coins from some accounts to other accounts. */
-  MultiSend(request: MsgMultiSend): Promise<MsgMultiSendResponse>;
+  multiSend: {
+    path: "/cosmos.bank.v1beta1.Msg/MultiSend",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgMultiSend) => Buffer.from(MsgMultiSend.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgMultiSend.decode(value),
+    responseSerialize: (value: MsgMultiSendResponse) =>
+      Buffer.from(MsgMultiSendResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgMultiSendResponse.decode(value),
+  },
+} as const;
+
+export interface MsgServer extends UntypedServiceImplementation {
+  /** Send defines a method for sending coins from one account to another account. */
+  send: handleUnaryCall<MsgSend, MsgSendResponse>;
+  /** MultiSend defines a method for sending coins from some accounts to other accounts. */
+  multiSend: handleUnaryCall<MsgMultiSend, MsgMultiSendResponse>;
 }
 
-export class MsgClientImpl implements Msg {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Send = this.Send.bind(this);
-    this.MultiSend = this.MultiSend.bind(this);
-  }
-  Send(request: MsgSend): Promise<MsgSendResponse> {
-    const data = MsgSend.encode(request).finish();
-    const promise = this.rpc.request("cosmos.bank.v1beta1.Msg", "Send", data);
-    return promise.then((data) => MsgSendResponse.decode(new _m0.Reader(data)));
-  }
-
-  MultiSend(request: MsgMultiSend): Promise<MsgMultiSendResponse> {
-    const data = MsgMultiSend.encode(request).finish();
-    const promise = this.rpc.request("cosmos.bank.v1beta1.Msg", "MultiSend", data);
-    return promise.then((data) => MsgMultiSendResponse.decode(new _m0.Reader(data)));
-  }
+export interface MsgClient extends Client {
+  /** Send defines a method for sending coins from one account to another account. */
+  send(
+    request: MsgSend,
+    callback: (error: ServiceError | null, response: MsgSendResponse) => void,
+  ): ClientUnaryCall;
+  send(
+    request: MsgSend,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgSendResponse) => void,
+  ): ClientUnaryCall;
+  send(
+    request: MsgSend,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgSendResponse) => void,
+  ): ClientUnaryCall;
+  /** MultiSend defines a method for sending coins from some accounts to other accounts. */
+  multiSend(
+    request: MsgMultiSend,
+    callback: (error: ServiceError | null, response: MsgMultiSendResponse) => void,
+  ): ClientUnaryCall;
+  multiSend(
+    request: MsgMultiSend,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgMultiSendResponse) => void,
+  ): ClientUnaryCall;
+  multiSend(
+    request: MsgMultiSend,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgMultiSendResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const MsgClient = makeGenericClientConstructor(MsgService, "cosmos.bank.v1beta1.Msg") as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

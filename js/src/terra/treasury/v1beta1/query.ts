@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Params } from "../../../terra/treasury/v1beta1/treasury";
 import { Coin } from "../../../cosmos/base/v1beta1/coin";
@@ -970,90 +982,257 @@ export const QueryParamsResponse = {
 };
 
 /** Query defines the gRPC querier service. */
-export interface Query {
+export const QueryService = {
   /** TaxRate return the current tax rate */
-  TaxRate(request: QueryTaxRateRequest): Promise<QueryTaxRateResponse>;
+  taxRate: {
+    path: "/terra.treasury.v1beta1.Query/TaxRate",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryTaxRateRequest) => Buffer.from(QueryTaxRateRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryTaxRateRequest.decode(value),
+    responseSerialize: (value: QueryTaxRateResponse) =>
+      Buffer.from(QueryTaxRateResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryTaxRateResponse.decode(value),
+  },
   /** TaxCap returns the tax cap of a denom */
-  TaxCap(request: QueryTaxCapRequest): Promise<QueryTaxCapResponse>;
+  taxCap: {
+    path: "/terra.treasury.v1beta1.Query/TaxCap",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryTaxCapRequest) => Buffer.from(QueryTaxCapRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryTaxCapRequest.decode(value),
+    responseSerialize: (value: QueryTaxCapResponse) =>
+      Buffer.from(QueryTaxCapResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryTaxCapResponse.decode(value),
+  },
   /** TaxCaps returns the all tax caps */
-  TaxCaps(request: QueryTaxCapsRequest): Promise<QueryTaxCapsResponse>;
+  taxCaps: {
+    path: "/terra.treasury.v1beta1.Query/TaxCaps",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryTaxCapsRequest) => Buffer.from(QueryTaxCapsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryTaxCapsRequest.decode(value),
+    responseSerialize: (value: QueryTaxCapsResponse) =>
+      Buffer.from(QueryTaxCapsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryTaxCapsResponse.decode(value),
+  },
   /** RewardWeight return the current reward weight */
-  RewardWeight(request: QueryRewardWeightRequest): Promise<QueryRewardWeightResponse>;
+  rewardWeight: {
+    path: "/terra.treasury.v1beta1.Query/RewardWeight",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryRewardWeightRequest) =>
+      Buffer.from(QueryRewardWeightRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryRewardWeightRequest.decode(value),
+    responseSerialize: (value: QueryRewardWeightResponse) =>
+      Buffer.from(QueryRewardWeightResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryRewardWeightResponse.decode(value),
+  },
   /** SeigniorageProceeds return the current seigniorage proceeds */
-  SeigniorageProceeds(request: QuerySeigniorageProceedsRequest): Promise<QuerySeigniorageProceedsResponse>;
+  seigniorageProceeds: {
+    path: "/terra.treasury.v1beta1.Query/SeigniorageProceeds",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QuerySeigniorageProceedsRequest) =>
+      Buffer.from(QuerySeigniorageProceedsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QuerySeigniorageProceedsRequest.decode(value),
+    responseSerialize: (value: QuerySeigniorageProceedsResponse) =>
+      Buffer.from(QuerySeigniorageProceedsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QuerySeigniorageProceedsResponse.decode(value),
+  },
   /** TaxProceeds return the current tax proceeds */
-  TaxProceeds(request: QueryTaxProceedsRequest): Promise<QueryTaxProceedsResponse>;
+  taxProceeds: {
+    path: "/terra.treasury.v1beta1.Query/TaxProceeds",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryTaxProceedsRequest) =>
+      Buffer.from(QueryTaxProceedsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryTaxProceedsRequest.decode(value),
+    responseSerialize: (value: QueryTaxProceedsResponse) =>
+      Buffer.from(QueryTaxProceedsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryTaxProceedsResponse.decode(value),
+  },
   /** Indicators return the current trl informations */
-  Indicators(request: QueryIndicatorsRequest): Promise<QueryIndicatorsResponse>;
+  indicators: {
+    path: "/terra.treasury.v1beta1.Query/Indicators",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryIndicatorsRequest) =>
+      Buffer.from(QueryIndicatorsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryIndicatorsRequest.decode(value),
+    responseSerialize: (value: QueryIndicatorsResponse) =>
+      Buffer.from(QueryIndicatorsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryIndicatorsResponse.decode(value),
+  },
   /** Params queries all parameters. */
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+  params: {
+    path: "/terra.treasury.v1beta1.Query/Params",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryParamsRequest) => Buffer.from(QueryParamsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryParamsRequest.decode(value),
+    responseSerialize: (value: QueryParamsResponse) =>
+      Buffer.from(QueryParamsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryParamsResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** TaxRate return the current tax rate */
+  taxRate: handleUnaryCall<QueryTaxRateRequest, QueryTaxRateResponse>;
+  /** TaxCap returns the tax cap of a denom */
+  taxCap: handleUnaryCall<QueryTaxCapRequest, QueryTaxCapResponse>;
+  /** TaxCaps returns the all tax caps */
+  taxCaps: handleUnaryCall<QueryTaxCapsRequest, QueryTaxCapsResponse>;
+  /** RewardWeight return the current reward weight */
+  rewardWeight: handleUnaryCall<QueryRewardWeightRequest, QueryRewardWeightResponse>;
+  /** SeigniorageProceeds return the current seigniorage proceeds */
+  seigniorageProceeds: handleUnaryCall<QuerySeigniorageProceedsRequest, QuerySeigniorageProceedsResponse>;
+  /** TaxProceeds return the current tax proceeds */
+  taxProceeds: handleUnaryCall<QueryTaxProceedsRequest, QueryTaxProceedsResponse>;
+  /** Indicators return the current trl informations */
+  indicators: handleUnaryCall<QueryIndicatorsRequest, QueryIndicatorsResponse>;
+  /** Params queries all parameters. */
+  params: handleUnaryCall<QueryParamsRequest, QueryParamsResponse>;
 }
 
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.TaxRate = this.TaxRate.bind(this);
-    this.TaxCap = this.TaxCap.bind(this);
-    this.TaxCaps = this.TaxCaps.bind(this);
-    this.RewardWeight = this.RewardWeight.bind(this);
-    this.SeigniorageProceeds = this.SeigniorageProceeds.bind(this);
-    this.TaxProceeds = this.TaxProceeds.bind(this);
-    this.Indicators = this.Indicators.bind(this);
-    this.Params = this.Params.bind(this);
-  }
-  TaxRate(request: QueryTaxRateRequest): Promise<QueryTaxRateResponse> {
-    const data = QueryTaxRateRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.treasury.v1beta1.Query", "TaxRate", data);
-    return promise.then((data) => QueryTaxRateResponse.decode(new _m0.Reader(data)));
-  }
-
-  TaxCap(request: QueryTaxCapRequest): Promise<QueryTaxCapResponse> {
-    const data = QueryTaxCapRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.treasury.v1beta1.Query", "TaxCap", data);
-    return promise.then((data) => QueryTaxCapResponse.decode(new _m0.Reader(data)));
-  }
-
-  TaxCaps(request: QueryTaxCapsRequest): Promise<QueryTaxCapsResponse> {
-    const data = QueryTaxCapsRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.treasury.v1beta1.Query", "TaxCaps", data);
-    return promise.then((data) => QueryTaxCapsResponse.decode(new _m0.Reader(data)));
-  }
-
-  RewardWeight(request: QueryRewardWeightRequest): Promise<QueryRewardWeightResponse> {
-    const data = QueryRewardWeightRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.treasury.v1beta1.Query", "RewardWeight", data);
-    return promise.then((data) => QueryRewardWeightResponse.decode(new _m0.Reader(data)));
-  }
-
-  SeigniorageProceeds(request: QuerySeigniorageProceedsRequest): Promise<QuerySeigniorageProceedsResponse> {
-    const data = QuerySeigniorageProceedsRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.treasury.v1beta1.Query", "SeigniorageProceeds", data);
-    return promise.then((data) => QuerySeigniorageProceedsResponse.decode(new _m0.Reader(data)));
-  }
-
-  TaxProceeds(request: QueryTaxProceedsRequest): Promise<QueryTaxProceedsResponse> {
-    const data = QueryTaxProceedsRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.treasury.v1beta1.Query", "TaxProceeds", data);
-    return promise.then((data) => QueryTaxProceedsResponse.decode(new _m0.Reader(data)));
-  }
-
-  Indicators(request: QueryIndicatorsRequest): Promise<QueryIndicatorsResponse> {
-    const data = QueryIndicatorsRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.treasury.v1beta1.Query", "Indicators", data);
-    return promise.then((data) => QueryIndicatorsResponse.decode(new _m0.Reader(data)));
-  }
-
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
-    const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.treasury.v1beta1.Query", "Params", data);
-    return promise.then((data) => QueryParamsResponse.decode(new _m0.Reader(data)));
-  }
+export interface QueryClient extends Client {
+  /** TaxRate return the current tax rate */
+  taxRate(
+    request: QueryTaxRateRequest,
+    callback: (error: ServiceError | null, response: QueryTaxRateResponse) => void,
+  ): ClientUnaryCall;
+  taxRate(
+    request: QueryTaxRateRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryTaxRateResponse) => void,
+  ): ClientUnaryCall;
+  taxRate(
+    request: QueryTaxRateRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryTaxRateResponse) => void,
+  ): ClientUnaryCall;
+  /** TaxCap returns the tax cap of a denom */
+  taxCap(
+    request: QueryTaxCapRequest,
+    callback: (error: ServiceError | null, response: QueryTaxCapResponse) => void,
+  ): ClientUnaryCall;
+  taxCap(
+    request: QueryTaxCapRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryTaxCapResponse) => void,
+  ): ClientUnaryCall;
+  taxCap(
+    request: QueryTaxCapRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryTaxCapResponse) => void,
+  ): ClientUnaryCall;
+  /** TaxCaps returns the all tax caps */
+  taxCaps(
+    request: QueryTaxCapsRequest,
+    callback: (error: ServiceError | null, response: QueryTaxCapsResponse) => void,
+  ): ClientUnaryCall;
+  taxCaps(
+    request: QueryTaxCapsRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryTaxCapsResponse) => void,
+  ): ClientUnaryCall;
+  taxCaps(
+    request: QueryTaxCapsRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryTaxCapsResponse) => void,
+  ): ClientUnaryCall;
+  /** RewardWeight return the current reward weight */
+  rewardWeight(
+    request: QueryRewardWeightRequest,
+    callback: (error: ServiceError | null, response: QueryRewardWeightResponse) => void,
+  ): ClientUnaryCall;
+  rewardWeight(
+    request: QueryRewardWeightRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryRewardWeightResponse) => void,
+  ): ClientUnaryCall;
+  rewardWeight(
+    request: QueryRewardWeightRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryRewardWeightResponse) => void,
+  ): ClientUnaryCall;
+  /** SeigniorageProceeds return the current seigniorage proceeds */
+  seigniorageProceeds(
+    request: QuerySeigniorageProceedsRequest,
+    callback: (error: ServiceError | null, response: QuerySeigniorageProceedsResponse) => void,
+  ): ClientUnaryCall;
+  seigniorageProceeds(
+    request: QuerySeigniorageProceedsRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QuerySeigniorageProceedsResponse) => void,
+  ): ClientUnaryCall;
+  seigniorageProceeds(
+    request: QuerySeigniorageProceedsRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QuerySeigniorageProceedsResponse) => void,
+  ): ClientUnaryCall;
+  /** TaxProceeds return the current tax proceeds */
+  taxProceeds(
+    request: QueryTaxProceedsRequest,
+    callback: (error: ServiceError | null, response: QueryTaxProceedsResponse) => void,
+  ): ClientUnaryCall;
+  taxProceeds(
+    request: QueryTaxProceedsRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryTaxProceedsResponse) => void,
+  ): ClientUnaryCall;
+  taxProceeds(
+    request: QueryTaxProceedsRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryTaxProceedsResponse) => void,
+  ): ClientUnaryCall;
+  /** Indicators return the current trl informations */
+  indicators(
+    request: QueryIndicatorsRequest,
+    callback: (error: ServiceError | null, response: QueryIndicatorsResponse) => void,
+  ): ClientUnaryCall;
+  indicators(
+    request: QueryIndicatorsRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryIndicatorsResponse) => void,
+  ): ClientUnaryCall;
+  indicators(
+    request: QueryIndicatorsRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryIndicatorsResponse) => void,
+  ): ClientUnaryCall;
+  /** Params queries all parameters. */
+  params(
+    request: QueryParamsRequest,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "terra.treasury.v1beta1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

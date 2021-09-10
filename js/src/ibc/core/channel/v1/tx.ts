@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Channel, Packet } from "../../../../ibc/core/channel/v1/channel";
 import { Height } from "../../../../ibc/core/client/v1/client";
@@ -1815,111 +1827,318 @@ export const MsgAcknowledgementResponse = {
 };
 
 /** Msg defines the ibc/channel Msg service. */
-export interface Msg {
+export const MsgService = {
   /** ChannelOpenInit defines a rpc handler method for MsgChannelOpenInit. */
-  ChannelOpenInit(request: MsgChannelOpenInit): Promise<MsgChannelOpenInitResponse>;
+  channelOpenInit: {
+    path: "/ibc.core.channel.v1.Msg/ChannelOpenInit",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgChannelOpenInit) => Buffer.from(MsgChannelOpenInit.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgChannelOpenInit.decode(value),
+    responseSerialize: (value: MsgChannelOpenInitResponse) =>
+      Buffer.from(MsgChannelOpenInitResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgChannelOpenInitResponse.decode(value),
+  },
   /** ChannelOpenTry defines a rpc handler method for MsgChannelOpenTry. */
-  ChannelOpenTry(request: MsgChannelOpenTry): Promise<MsgChannelOpenTryResponse>;
+  channelOpenTry: {
+    path: "/ibc.core.channel.v1.Msg/ChannelOpenTry",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgChannelOpenTry) => Buffer.from(MsgChannelOpenTry.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgChannelOpenTry.decode(value),
+    responseSerialize: (value: MsgChannelOpenTryResponse) =>
+      Buffer.from(MsgChannelOpenTryResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgChannelOpenTryResponse.decode(value),
+  },
   /** ChannelOpenAck defines a rpc handler method for MsgChannelOpenAck. */
-  ChannelOpenAck(request: MsgChannelOpenAck): Promise<MsgChannelOpenAckResponse>;
+  channelOpenAck: {
+    path: "/ibc.core.channel.v1.Msg/ChannelOpenAck",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgChannelOpenAck) => Buffer.from(MsgChannelOpenAck.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgChannelOpenAck.decode(value),
+    responseSerialize: (value: MsgChannelOpenAckResponse) =>
+      Buffer.from(MsgChannelOpenAckResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgChannelOpenAckResponse.decode(value),
+  },
   /** ChannelOpenConfirm defines a rpc handler method for MsgChannelOpenConfirm. */
-  ChannelOpenConfirm(request: MsgChannelOpenConfirm): Promise<MsgChannelOpenConfirmResponse>;
+  channelOpenConfirm: {
+    path: "/ibc.core.channel.v1.Msg/ChannelOpenConfirm",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgChannelOpenConfirm) =>
+      Buffer.from(MsgChannelOpenConfirm.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgChannelOpenConfirm.decode(value),
+    responseSerialize: (value: MsgChannelOpenConfirmResponse) =>
+      Buffer.from(MsgChannelOpenConfirmResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgChannelOpenConfirmResponse.decode(value),
+  },
   /** ChannelCloseInit defines a rpc handler method for MsgChannelCloseInit. */
-  ChannelCloseInit(request: MsgChannelCloseInit): Promise<MsgChannelCloseInitResponse>;
+  channelCloseInit: {
+    path: "/ibc.core.channel.v1.Msg/ChannelCloseInit",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgChannelCloseInit) => Buffer.from(MsgChannelCloseInit.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgChannelCloseInit.decode(value),
+    responseSerialize: (value: MsgChannelCloseInitResponse) =>
+      Buffer.from(MsgChannelCloseInitResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgChannelCloseInitResponse.decode(value),
+  },
   /**
    * ChannelCloseConfirm defines a rpc handler method for
    * MsgChannelCloseConfirm.
    */
-  ChannelCloseConfirm(request: MsgChannelCloseConfirm): Promise<MsgChannelCloseConfirmResponse>;
+  channelCloseConfirm: {
+    path: "/ibc.core.channel.v1.Msg/ChannelCloseConfirm",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgChannelCloseConfirm) =>
+      Buffer.from(MsgChannelCloseConfirm.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgChannelCloseConfirm.decode(value),
+    responseSerialize: (value: MsgChannelCloseConfirmResponse) =>
+      Buffer.from(MsgChannelCloseConfirmResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgChannelCloseConfirmResponse.decode(value),
+  },
   /** RecvPacket defines a rpc handler method for MsgRecvPacket. */
-  RecvPacket(request: MsgRecvPacket): Promise<MsgRecvPacketResponse>;
+  recvPacket: {
+    path: "/ibc.core.channel.v1.Msg/RecvPacket",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgRecvPacket) => Buffer.from(MsgRecvPacket.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgRecvPacket.decode(value),
+    responseSerialize: (value: MsgRecvPacketResponse) =>
+      Buffer.from(MsgRecvPacketResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgRecvPacketResponse.decode(value),
+  },
   /** Timeout defines a rpc handler method for MsgTimeout. */
-  Timeout(request: MsgTimeout): Promise<MsgTimeoutResponse>;
+  timeout: {
+    path: "/ibc.core.channel.v1.Msg/Timeout",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgTimeout) => Buffer.from(MsgTimeout.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgTimeout.decode(value),
+    responseSerialize: (value: MsgTimeoutResponse) => Buffer.from(MsgTimeoutResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgTimeoutResponse.decode(value),
+  },
   /** TimeoutOnClose defines a rpc handler method for MsgTimeoutOnClose. */
-  TimeoutOnClose(request: MsgTimeoutOnClose): Promise<MsgTimeoutOnCloseResponse>;
+  timeoutOnClose: {
+    path: "/ibc.core.channel.v1.Msg/TimeoutOnClose",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgTimeoutOnClose) => Buffer.from(MsgTimeoutOnClose.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgTimeoutOnClose.decode(value),
+    responseSerialize: (value: MsgTimeoutOnCloseResponse) =>
+      Buffer.from(MsgTimeoutOnCloseResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgTimeoutOnCloseResponse.decode(value),
+  },
   /** Acknowledgement defines a rpc handler method for MsgAcknowledgement. */
-  Acknowledgement(request: MsgAcknowledgement): Promise<MsgAcknowledgementResponse>;
+  acknowledgement: {
+    path: "/ibc.core.channel.v1.Msg/Acknowledgement",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgAcknowledgement) => Buffer.from(MsgAcknowledgement.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgAcknowledgement.decode(value),
+    responseSerialize: (value: MsgAcknowledgementResponse) =>
+      Buffer.from(MsgAcknowledgementResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgAcknowledgementResponse.decode(value),
+  },
+} as const;
+
+export interface MsgServer extends UntypedServiceImplementation {
+  /** ChannelOpenInit defines a rpc handler method for MsgChannelOpenInit. */
+  channelOpenInit: handleUnaryCall<MsgChannelOpenInit, MsgChannelOpenInitResponse>;
+  /** ChannelOpenTry defines a rpc handler method for MsgChannelOpenTry. */
+  channelOpenTry: handleUnaryCall<MsgChannelOpenTry, MsgChannelOpenTryResponse>;
+  /** ChannelOpenAck defines a rpc handler method for MsgChannelOpenAck. */
+  channelOpenAck: handleUnaryCall<MsgChannelOpenAck, MsgChannelOpenAckResponse>;
+  /** ChannelOpenConfirm defines a rpc handler method for MsgChannelOpenConfirm. */
+  channelOpenConfirm: handleUnaryCall<MsgChannelOpenConfirm, MsgChannelOpenConfirmResponse>;
+  /** ChannelCloseInit defines a rpc handler method for MsgChannelCloseInit. */
+  channelCloseInit: handleUnaryCall<MsgChannelCloseInit, MsgChannelCloseInitResponse>;
+  /**
+   * ChannelCloseConfirm defines a rpc handler method for
+   * MsgChannelCloseConfirm.
+   */
+  channelCloseConfirm: handleUnaryCall<MsgChannelCloseConfirm, MsgChannelCloseConfirmResponse>;
+  /** RecvPacket defines a rpc handler method for MsgRecvPacket. */
+  recvPacket: handleUnaryCall<MsgRecvPacket, MsgRecvPacketResponse>;
+  /** Timeout defines a rpc handler method for MsgTimeout. */
+  timeout: handleUnaryCall<MsgTimeout, MsgTimeoutResponse>;
+  /** TimeoutOnClose defines a rpc handler method for MsgTimeoutOnClose. */
+  timeoutOnClose: handleUnaryCall<MsgTimeoutOnClose, MsgTimeoutOnCloseResponse>;
+  /** Acknowledgement defines a rpc handler method for MsgAcknowledgement. */
+  acknowledgement: handleUnaryCall<MsgAcknowledgement, MsgAcknowledgementResponse>;
 }
 
-export class MsgClientImpl implements Msg {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.ChannelOpenInit = this.ChannelOpenInit.bind(this);
-    this.ChannelOpenTry = this.ChannelOpenTry.bind(this);
-    this.ChannelOpenAck = this.ChannelOpenAck.bind(this);
-    this.ChannelOpenConfirm = this.ChannelOpenConfirm.bind(this);
-    this.ChannelCloseInit = this.ChannelCloseInit.bind(this);
-    this.ChannelCloseConfirm = this.ChannelCloseConfirm.bind(this);
-    this.RecvPacket = this.RecvPacket.bind(this);
-    this.Timeout = this.Timeout.bind(this);
-    this.TimeoutOnClose = this.TimeoutOnClose.bind(this);
-    this.Acknowledgement = this.Acknowledgement.bind(this);
-  }
-  ChannelOpenInit(request: MsgChannelOpenInit): Promise<MsgChannelOpenInitResponse> {
-    const data = MsgChannelOpenInit.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelOpenInit", data);
-    return promise.then((data) => MsgChannelOpenInitResponse.decode(new _m0.Reader(data)));
-  }
-
-  ChannelOpenTry(request: MsgChannelOpenTry): Promise<MsgChannelOpenTryResponse> {
-    const data = MsgChannelOpenTry.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelOpenTry", data);
-    return promise.then((data) => MsgChannelOpenTryResponse.decode(new _m0.Reader(data)));
-  }
-
-  ChannelOpenAck(request: MsgChannelOpenAck): Promise<MsgChannelOpenAckResponse> {
-    const data = MsgChannelOpenAck.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelOpenAck", data);
-    return promise.then((data) => MsgChannelOpenAckResponse.decode(new _m0.Reader(data)));
-  }
-
-  ChannelOpenConfirm(request: MsgChannelOpenConfirm): Promise<MsgChannelOpenConfirmResponse> {
-    const data = MsgChannelOpenConfirm.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelOpenConfirm", data);
-    return promise.then((data) => MsgChannelOpenConfirmResponse.decode(new _m0.Reader(data)));
-  }
-
-  ChannelCloseInit(request: MsgChannelCloseInit): Promise<MsgChannelCloseInitResponse> {
-    const data = MsgChannelCloseInit.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelCloseInit", data);
-    return promise.then((data) => MsgChannelCloseInitResponse.decode(new _m0.Reader(data)));
-  }
-
-  ChannelCloseConfirm(request: MsgChannelCloseConfirm): Promise<MsgChannelCloseConfirmResponse> {
-    const data = MsgChannelCloseConfirm.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelCloseConfirm", data);
-    return promise.then((data) => MsgChannelCloseConfirmResponse.decode(new _m0.Reader(data)));
-  }
-
-  RecvPacket(request: MsgRecvPacket): Promise<MsgRecvPacketResponse> {
-    const data = MsgRecvPacket.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "RecvPacket", data);
-    return promise.then((data) => MsgRecvPacketResponse.decode(new _m0.Reader(data)));
-  }
-
-  Timeout(request: MsgTimeout): Promise<MsgTimeoutResponse> {
-    const data = MsgTimeout.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "Timeout", data);
-    return promise.then((data) => MsgTimeoutResponse.decode(new _m0.Reader(data)));
-  }
-
-  TimeoutOnClose(request: MsgTimeoutOnClose): Promise<MsgTimeoutOnCloseResponse> {
-    const data = MsgTimeoutOnClose.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "TimeoutOnClose", data);
-    return promise.then((data) => MsgTimeoutOnCloseResponse.decode(new _m0.Reader(data)));
-  }
-
-  Acknowledgement(request: MsgAcknowledgement): Promise<MsgAcknowledgementResponse> {
-    const data = MsgAcknowledgement.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "Acknowledgement", data);
-    return promise.then((data) => MsgAcknowledgementResponse.decode(new _m0.Reader(data)));
-  }
+export interface MsgClient extends Client {
+  /** ChannelOpenInit defines a rpc handler method for MsgChannelOpenInit. */
+  channelOpenInit(
+    request: MsgChannelOpenInit,
+    callback: (error: ServiceError | null, response: MsgChannelOpenInitResponse) => void,
+  ): ClientUnaryCall;
+  channelOpenInit(
+    request: MsgChannelOpenInit,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgChannelOpenInitResponse) => void,
+  ): ClientUnaryCall;
+  channelOpenInit(
+    request: MsgChannelOpenInit,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgChannelOpenInitResponse) => void,
+  ): ClientUnaryCall;
+  /** ChannelOpenTry defines a rpc handler method for MsgChannelOpenTry. */
+  channelOpenTry(
+    request: MsgChannelOpenTry,
+    callback: (error: ServiceError | null, response: MsgChannelOpenTryResponse) => void,
+  ): ClientUnaryCall;
+  channelOpenTry(
+    request: MsgChannelOpenTry,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgChannelOpenTryResponse) => void,
+  ): ClientUnaryCall;
+  channelOpenTry(
+    request: MsgChannelOpenTry,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgChannelOpenTryResponse) => void,
+  ): ClientUnaryCall;
+  /** ChannelOpenAck defines a rpc handler method for MsgChannelOpenAck. */
+  channelOpenAck(
+    request: MsgChannelOpenAck,
+    callback: (error: ServiceError | null, response: MsgChannelOpenAckResponse) => void,
+  ): ClientUnaryCall;
+  channelOpenAck(
+    request: MsgChannelOpenAck,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgChannelOpenAckResponse) => void,
+  ): ClientUnaryCall;
+  channelOpenAck(
+    request: MsgChannelOpenAck,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgChannelOpenAckResponse) => void,
+  ): ClientUnaryCall;
+  /** ChannelOpenConfirm defines a rpc handler method for MsgChannelOpenConfirm. */
+  channelOpenConfirm(
+    request: MsgChannelOpenConfirm,
+    callback: (error: ServiceError | null, response: MsgChannelOpenConfirmResponse) => void,
+  ): ClientUnaryCall;
+  channelOpenConfirm(
+    request: MsgChannelOpenConfirm,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgChannelOpenConfirmResponse) => void,
+  ): ClientUnaryCall;
+  channelOpenConfirm(
+    request: MsgChannelOpenConfirm,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgChannelOpenConfirmResponse) => void,
+  ): ClientUnaryCall;
+  /** ChannelCloseInit defines a rpc handler method for MsgChannelCloseInit. */
+  channelCloseInit(
+    request: MsgChannelCloseInit,
+    callback: (error: ServiceError | null, response: MsgChannelCloseInitResponse) => void,
+  ): ClientUnaryCall;
+  channelCloseInit(
+    request: MsgChannelCloseInit,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgChannelCloseInitResponse) => void,
+  ): ClientUnaryCall;
+  channelCloseInit(
+    request: MsgChannelCloseInit,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgChannelCloseInitResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * ChannelCloseConfirm defines a rpc handler method for
+   * MsgChannelCloseConfirm.
+   */
+  channelCloseConfirm(
+    request: MsgChannelCloseConfirm,
+    callback: (error: ServiceError | null, response: MsgChannelCloseConfirmResponse) => void,
+  ): ClientUnaryCall;
+  channelCloseConfirm(
+    request: MsgChannelCloseConfirm,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgChannelCloseConfirmResponse) => void,
+  ): ClientUnaryCall;
+  channelCloseConfirm(
+    request: MsgChannelCloseConfirm,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgChannelCloseConfirmResponse) => void,
+  ): ClientUnaryCall;
+  /** RecvPacket defines a rpc handler method for MsgRecvPacket. */
+  recvPacket(
+    request: MsgRecvPacket,
+    callback: (error: ServiceError | null, response: MsgRecvPacketResponse) => void,
+  ): ClientUnaryCall;
+  recvPacket(
+    request: MsgRecvPacket,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgRecvPacketResponse) => void,
+  ): ClientUnaryCall;
+  recvPacket(
+    request: MsgRecvPacket,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgRecvPacketResponse) => void,
+  ): ClientUnaryCall;
+  /** Timeout defines a rpc handler method for MsgTimeout. */
+  timeout(
+    request: MsgTimeout,
+    callback: (error: ServiceError | null, response: MsgTimeoutResponse) => void,
+  ): ClientUnaryCall;
+  timeout(
+    request: MsgTimeout,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgTimeoutResponse) => void,
+  ): ClientUnaryCall;
+  timeout(
+    request: MsgTimeout,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgTimeoutResponse) => void,
+  ): ClientUnaryCall;
+  /** TimeoutOnClose defines a rpc handler method for MsgTimeoutOnClose. */
+  timeoutOnClose(
+    request: MsgTimeoutOnClose,
+    callback: (error: ServiceError | null, response: MsgTimeoutOnCloseResponse) => void,
+  ): ClientUnaryCall;
+  timeoutOnClose(
+    request: MsgTimeoutOnClose,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgTimeoutOnCloseResponse) => void,
+  ): ClientUnaryCall;
+  timeoutOnClose(
+    request: MsgTimeoutOnClose,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgTimeoutOnCloseResponse) => void,
+  ): ClientUnaryCall;
+  /** Acknowledgement defines a rpc handler method for MsgAcknowledgement. */
+  acknowledgement(
+    request: MsgAcknowledgement,
+    callback: (error: ServiceError | null, response: MsgAcknowledgementResponse) => void,
+  ): ClientUnaryCall;
+  acknowledgement(
+    request: MsgAcknowledgement,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgAcknowledgementResponse) => void,
+  ): ClientUnaryCall;
+  acknowledgement(
+    request: MsgAcknowledgement,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgAcknowledgementResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const MsgClient = makeGenericClientConstructor(MsgService, "ibc.core.channel.v1.Msg") as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+};
 
 declare var self: any | undefined;
 declare var window: any | undefined;

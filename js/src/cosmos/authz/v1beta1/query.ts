@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../../cosmos/base/query/v1beta1/pagination";
 import { Grant } from "../../../cosmos/authz/v1beta1/authz";
@@ -212,27 +224,50 @@ export const QueryGrantsResponse = {
 };
 
 /** Query defines the gRPC querier service. */
-export interface Query {
+export const QueryService = {
   /** Returns list of `Authorization`, granted to the grantee by the granter. */
-  Grants(request: QueryGrantsRequest): Promise<QueryGrantsResponse>;
+  grants: {
+    path: "/cosmos.authz.v1beta1.Query/Grants",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryGrantsRequest) => Buffer.from(QueryGrantsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryGrantsRequest.decode(value),
+    responseSerialize: (value: QueryGrantsResponse) =>
+      Buffer.from(QueryGrantsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryGrantsResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** Returns list of `Authorization`, granted to the grantee by the granter. */
+  grants: handleUnaryCall<QueryGrantsRequest, QueryGrantsResponse>;
 }
 
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Grants = this.Grants.bind(this);
-  }
-  Grants(request: QueryGrantsRequest): Promise<QueryGrantsResponse> {
-    const data = QueryGrantsRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.authz.v1beta1.Query", "Grants", data);
-    return promise.then((data) => QueryGrantsResponse.decode(new _m0.Reader(data)));
-  }
+export interface QueryClient extends Client {
+  /** Returns list of `Authorization`, granted to the grantee by the granter. */
+  grants(
+    request: QueryGrantsRequest,
+    callback: (error: ServiceError | null, response: QueryGrantsResponse) => void,
+  ): ClientUnaryCall;
+  grants(
+    request: QueryGrantsRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryGrantsResponse) => void,
+  ): ClientUnaryCall;
+  grants(
+    request: QueryGrantsRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryGrantsResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "cosmos.authz.v1beta1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Any } from "../../../google/protobuf/any";
 import { PageRequest, PageResponse } from "../../../cosmos/base/query/v1beta1/pagination";
@@ -289,36 +301,81 @@ export const QueryAllEvidenceResponse = {
 };
 
 /** Query defines the gRPC querier service. */
-export interface Query {
+export const QueryService = {
   /** Evidence queries evidence based on evidence hash. */
-  Evidence(request: QueryEvidenceRequest): Promise<QueryEvidenceResponse>;
+  evidence: {
+    path: "/cosmos.evidence.v1beta1.Query/Evidence",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryEvidenceRequest) =>
+      Buffer.from(QueryEvidenceRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryEvidenceRequest.decode(value),
+    responseSerialize: (value: QueryEvidenceResponse) =>
+      Buffer.from(QueryEvidenceResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryEvidenceResponse.decode(value),
+  },
   /** AllEvidence queries all evidence. */
-  AllEvidence(request: QueryAllEvidenceRequest): Promise<QueryAllEvidenceResponse>;
+  allEvidence: {
+    path: "/cosmos.evidence.v1beta1.Query/AllEvidence",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryAllEvidenceRequest) =>
+      Buffer.from(QueryAllEvidenceRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryAllEvidenceRequest.decode(value),
+    responseSerialize: (value: QueryAllEvidenceResponse) =>
+      Buffer.from(QueryAllEvidenceResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryAllEvidenceResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** Evidence queries evidence based on evidence hash. */
+  evidence: handleUnaryCall<QueryEvidenceRequest, QueryEvidenceResponse>;
+  /** AllEvidence queries all evidence. */
+  allEvidence: handleUnaryCall<QueryAllEvidenceRequest, QueryAllEvidenceResponse>;
 }
 
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Evidence = this.Evidence.bind(this);
-    this.AllEvidence = this.AllEvidence.bind(this);
-  }
-  Evidence(request: QueryEvidenceRequest): Promise<QueryEvidenceResponse> {
-    const data = QueryEvidenceRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.evidence.v1beta1.Query", "Evidence", data);
-    return promise.then((data) => QueryEvidenceResponse.decode(new _m0.Reader(data)));
-  }
-
-  AllEvidence(request: QueryAllEvidenceRequest): Promise<QueryAllEvidenceResponse> {
-    const data = QueryAllEvidenceRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.evidence.v1beta1.Query", "AllEvidence", data);
-    return promise.then((data) => QueryAllEvidenceResponse.decode(new _m0.Reader(data)));
-  }
+export interface QueryClient extends Client {
+  /** Evidence queries evidence based on evidence hash. */
+  evidence(
+    request: QueryEvidenceRequest,
+    callback: (error: ServiceError | null, response: QueryEvidenceResponse) => void,
+  ): ClientUnaryCall;
+  evidence(
+    request: QueryEvidenceRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryEvidenceResponse) => void,
+  ): ClientUnaryCall;
+  evidence(
+    request: QueryEvidenceRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryEvidenceResponse) => void,
+  ): ClientUnaryCall;
+  /** AllEvidence queries all evidence. */
+  allEvidence(
+    request: QueryAllEvidenceRequest,
+    callback: (error: ServiceError | null, response: QueryAllEvidenceResponse) => void,
+  ): ClientUnaryCall;
+  allEvidence(
+    request: QueryAllEvidenceRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryAllEvidenceResponse) => void,
+  ): ClientUnaryCall;
+  allEvidence(
+    request: QueryAllEvidenceRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryAllEvidenceResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "cosmos.evidence.v1beta1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 declare var self: any | undefined;
 declare var window: any | undefined;

@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../../../cosmos/base/query/v1beta1/pagination";
 import { Any } from "../../../../google/protobuf/any";
@@ -1262,76 +1274,198 @@ export const Module = {
 };
 
 /** Service defines the gRPC querier service for tendermint queries. */
-export interface Service {
+export const ServiceService = {
   /** GetNodeInfo queries the current node info. */
-  GetNodeInfo(request: GetNodeInfoRequest): Promise<GetNodeInfoResponse>;
+  getNodeInfo: {
+    path: "/cosmos.base.tendermint.v1beta1.Service/GetNodeInfo",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: GetNodeInfoRequest) => Buffer.from(GetNodeInfoRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => GetNodeInfoRequest.decode(value),
+    responseSerialize: (value: GetNodeInfoResponse) =>
+      Buffer.from(GetNodeInfoResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => GetNodeInfoResponse.decode(value),
+  },
   /** GetSyncing queries node syncing. */
-  GetSyncing(request: GetSyncingRequest): Promise<GetSyncingResponse>;
+  getSyncing: {
+    path: "/cosmos.base.tendermint.v1beta1.Service/GetSyncing",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: GetSyncingRequest) => Buffer.from(GetSyncingRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => GetSyncingRequest.decode(value),
+    responseSerialize: (value: GetSyncingResponse) => Buffer.from(GetSyncingResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => GetSyncingResponse.decode(value),
+  },
   /** GetLatestBlock returns the latest block. */
-  GetLatestBlock(request: GetLatestBlockRequest): Promise<GetLatestBlockResponse>;
+  getLatestBlock: {
+    path: "/cosmos.base.tendermint.v1beta1.Service/GetLatestBlock",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: GetLatestBlockRequest) =>
+      Buffer.from(GetLatestBlockRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => GetLatestBlockRequest.decode(value),
+    responseSerialize: (value: GetLatestBlockResponse) =>
+      Buffer.from(GetLatestBlockResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => GetLatestBlockResponse.decode(value),
+  },
   /** GetBlockByHeight queries block for given height. */
-  GetBlockByHeight(request: GetBlockByHeightRequest): Promise<GetBlockByHeightResponse>;
+  getBlockByHeight: {
+    path: "/cosmos.base.tendermint.v1beta1.Service/GetBlockByHeight",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: GetBlockByHeightRequest) =>
+      Buffer.from(GetBlockByHeightRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => GetBlockByHeightRequest.decode(value),
+    responseSerialize: (value: GetBlockByHeightResponse) =>
+      Buffer.from(GetBlockByHeightResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => GetBlockByHeightResponse.decode(value),
+  },
   /** GetLatestValidatorSet queries latest validator-set. */
-  GetLatestValidatorSet(request: GetLatestValidatorSetRequest): Promise<GetLatestValidatorSetResponse>;
+  getLatestValidatorSet: {
+    path: "/cosmos.base.tendermint.v1beta1.Service/GetLatestValidatorSet",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: GetLatestValidatorSetRequest) =>
+      Buffer.from(GetLatestValidatorSetRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => GetLatestValidatorSetRequest.decode(value),
+    responseSerialize: (value: GetLatestValidatorSetResponse) =>
+      Buffer.from(GetLatestValidatorSetResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => GetLatestValidatorSetResponse.decode(value),
+  },
   /** GetValidatorSetByHeight queries validator-set at a given height. */
-  GetValidatorSetByHeight(request: GetValidatorSetByHeightRequest): Promise<GetValidatorSetByHeightResponse>;
+  getValidatorSetByHeight: {
+    path: "/cosmos.base.tendermint.v1beta1.Service/GetValidatorSetByHeight",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: GetValidatorSetByHeightRequest) =>
+      Buffer.from(GetValidatorSetByHeightRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => GetValidatorSetByHeightRequest.decode(value),
+    responseSerialize: (value: GetValidatorSetByHeightResponse) =>
+      Buffer.from(GetValidatorSetByHeightResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => GetValidatorSetByHeightResponse.decode(value),
+  },
+} as const;
+
+export interface ServiceServer extends UntypedServiceImplementation {
+  /** GetNodeInfo queries the current node info. */
+  getNodeInfo: handleUnaryCall<GetNodeInfoRequest, GetNodeInfoResponse>;
+  /** GetSyncing queries node syncing. */
+  getSyncing: handleUnaryCall<GetSyncingRequest, GetSyncingResponse>;
+  /** GetLatestBlock returns the latest block. */
+  getLatestBlock: handleUnaryCall<GetLatestBlockRequest, GetLatestBlockResponse>;
+  /** GetBlockByHeight queries block for given height. */
+  getBlockByHeight: handleUnaryCall<GetBlockByHeightRequest, GetBlockByHeightResponse>;
+  /** GetLatestValidatorSet queries latest validator-set. */
+  getLatestValidatorSet: handleUnaryCall<GetLatestValidatorSetRequest, GetLatestValidatorSetResponse>;
+  /** GetValidatorSetByHeight queries validator-set at a given height. */
+  getValidatorSetByHeight: handleUnaryCall<GetValidatorSetByHeightRequest, GetValidatorSetByHeightResponse>;
 }
 
-export class ServiceClientImpl implements Service {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.GetNodeInfo = this.GetNodeInfo.bind(this);
-    this.GetSyncing = this.GetSyncing.bind(this);
-    this.GetLatestBlock = this.GetLatestBlock.bind(this);
-    this.GetBlockByHeight = this.GetBlockByHeight.bind(this);
-    this.GetLatestValidatorSet = this.GetLatestValidatorSet.bind(this);
-    this.GetValidatorSetByHeight = this.GetValidatorSetByHeight.bind(this);
-  }
-  GetNodeInfo(request: GetNodeInfoRequest): Promise<GetNodeInfoResponse> {
-    const data = GetNodeInfoRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.base.tendermint.v1beta1.Service", "GetNodeInfo", data);
-    return promise.then((data) => GetNodeInfoResponse.decode(new _m0.Reader(data)));
-  }
-
-  GetSyncing(request: GetSyncingRequest): Promise<GetSyncingResponse> {
-    const data = GetSyncingRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.base.tendermint.v1beta1.Service", "GetSyncing", data);
-    return promise.then((data) => GetSyncingResponse.decode(new _m0.Reader(data)));
-  }
-
-  GetLatestBlock(request: GetLatestBlockRequest): Promise<GetLatestBlockResponse> {
-    const data = GetLatestBlockRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.base.tendermint.v1beta1.Service", "GetLatestBlock", data);
-    return promise.then((data) => GetLatestBlockResponse.decode(new _m0.Reader(data)));
-  }
-
-  GetBlockByHeight(request: GetBlockByHeightRequest): Promise<GetBlockByHeightResponse> {
-    const data = GetBlockByHeightRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.base.tendermint.v1beta1.Service", "GetBlockByHeight", data);
-    return promise.then((data) => GetBlockByHeightResponse.decode(new _m0.Reader(data)));
-  }
-
-  GetLatestValidatorSet(request: GetLatestValidatorSetRequest): Promise<GetLatestValidatorSetResponse> {
-    const data = GetLatestValidatorSetRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.base.tendermint.v1beta1.Service", "GetLatestValidatorSet", data);
-    return promise.then((data) => GetLatestValidatorSetResponse.decode(new _m0.Reader(data)));
-  }
-
-  GetValidatorSetByHeight(request: GetValidatorSetByHeightRequest): Promise<GetValidatorSetByHeightResponse> {
-    const data = GetValidatorSetByHeightRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "cosmos.base.tendermint.v1beta1.Service",
-      "GetValidatorSetByHeight",
-      data,
-    );
-    return promise.then((data) => GetValidatorSetByHeightResponse.decode(new _m0.Reader(data)));
-  }
+export interface ServiceClient extends Client {
+  /** GetNodeInfo queries the current node info. */
+  getNodeInfo(
+    request: GetNodeInfoRequest,
+    callback: (error: ServiceError | null, response: GetNodeInfoResponse) => void,
+  ): ClientUnaryCall;
+  getNodeInfo(
+    request: GetNodeInfoRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: GetNodeInfoResponse) => void,
+  ): ClientUnaryCall;
+  getNodeInfo(
+    request: GetNodeInfoRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: GetNodeInfoResponse) => void,
+  ): ClientUnaryCall;
+  /** GetSyncing queries node syncing. */
+  getSyncing(
+    request: GetSyncingRequest,
+    callback: (error: ServiceError | null, response: GetSyncingResponse) => void,
+  ): ClientUnaryCall;
+  getSyncing(
+    request: GetSyncingRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: GetSyncingResponse) => void,
+  ): ClientUnaryCall;
+  getSyncing(
+    request: GetSyncingRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: GetSyncingResponse) => void,
+  ): ClientUnaryCall;
+  /** GetLatestBlock returns the latest block. */
+  getLatestBlock(
+    request: GetLatestBlockRequest,
+    callback: (error: ServiceError | null, response: GetLatestBlockResponse) => void,
+  ): ClientUnaryCall;
+  getLatestBlock(
+    request: GetLatestBlockRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: GetLatestBlockResponse) => void,
+  ): ClientUnaryCall;
+  getLatestBlock(
+    request: GetLatestBlockRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: GetLatestBlockResponse) => void,
+  ): ClientUnaryCall;
+  /** GetBlockByHeight queries block for given height. */
+  getBlockByHeight(
+    request: GetBlockByHeightRequest,
+    callback: (error: ServiceError | null, response: GetBlockByHeightResponse) => void,
+  ): ClientUnaryCall;
+  getBlockByHeight(
+    request: GetBlockByHeightRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: GetBlockByHeightResponse) => void,
+  ): ClientUnaryCall;
+  getBlockByHeight(
+    request: GetBlockByHeightRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: GetBlockByHeightResponse) => void,
+  ): ClientUnaryCall;
+  /** GetLatestValidatorSet queries latest validator-set. */
+  getLatestValidatorSet(
+    request: GetLatestValidatorSetRequest,
+    callback: (error: ServiceError | null, response: GetLatestValidatorSetResponse) => void,
+  ): ClientUnaryCall;
+  getLatestValidatorSet(
+    request: GetLatestValidatorSetRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: GetLatestValidatorSetResponse) => void,
+  ): ClientUnaryCall;
+  getLatestValidatorSet(
+    request: GetLatestValidatorSetRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: GetLatestValidatorSetResponse) => void,
+  ): ClientUnaryCall;
+  /** GetValidatorSetByHeight queries validator-set at a given height. */
+  getValidatorSetByHeight(
+    request: GetValidatorSetByHeightRequest,
+    callback: (error: ServiceError | null, response: GetValidatorSetByHeightResponse) => void,
+  ): ClientUnaryCall;
+  getValidatorSetByHeight(
+    request: GetValidatorSetByHeightRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: GetValidatorSetByHeightResponse) => void,
+  ): ClientUnaryCall;
+  getValidatorSetByHeight(
+    request: GetValidatorSetByHeightRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: GetValidatorSetByHeightResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const ServiceClient = makeGenericClientConstructor(
+  ServiceService,
+  "cosmos.base.tendermint.v1beta1.Service",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): ServiceClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

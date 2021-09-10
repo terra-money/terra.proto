@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Plan, ModuleVersion } from "../../../cosmos/upgrade/v1beta1/upgrade";
 
@@ -514,63 +526,159 @@ export const QueryModuleVersionsResponse = {
 };
 
 /** Query defines the gRPC upgrade querier service. */
-export interface Query {
+export const QueryService = {
   /** CurrentPlan queries the current upgrade plan. */
-  CurrentPlan(request: QueryCurrentPlanRequest): Promise<QueryCurrentPlanResponse>;
+  currentPlan: {
+    path: "/cosmos.upgrade.v1beta1.Query/CurrentPlan",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryCurrentPlanRequest) =>
+      Buffer.from(QueryCurrentPlanRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryCurrentPlanRequest.decode(value),
+    responseSerialize: (value: QueryCurrentPlanResponse) =>
+      Buffer.from(QueryCurrentPlanResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryCurrentPlanResponse.decode(value),
+  },
   /** AppliedPlan queries a previously applied upgrade plan by its name. */
-  AppliedPlan(request: QueryAppliedPlanRequest): Promise<QueryAppliedPlanResponse>;
+  appliedPlan: {
+    path: "/cosmos.upgrade.v1beta1.Query/AppliedPlan",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryAppliedPlanRequest) =>
+      Buffer.from(QueryAppliedPlanRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryAppliedPlanRequest.decode(value),
+    responseSerialize: (value: QueryAppliedPlanResponse) =>
+      Buffer.from(QueryAppliedPlanResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryAppliedPlanResponse.decode(value),
+  },
   /**
    * UpgradedConsensusState queries the consensus state that will serve
    * as a trusted kernel for the next version of this chain. It will only be
    * stored at the last height of this chain.
    * UpgradedConsensusState RPC not supported with legacy querier
    */
-  UpgradedConsensusState(
-    request: QueryUpgradedConsensusStateRequest,
-  ): Promise<QueryUpgradedConsensusStateResponse>;
+  upgradedConsensusState: {
+    path: "/cosmos.upgrade.v1beta1.Query/UpgradedConsensusState",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryUpgradedConsensusStateRequest) =>
+      Buffer.from(QueryUpgradedConsensusStateRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryUpgradedConsensusStateRequest.decode(value),
+    responseSerialize: (value: QueryUpgradedConsensusStateResponse) =>
+      Buffer.from(QueryUpgradedConsensusStateResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryUpgradedConsensusStateResponse.decode(value),
+  },
   /** ModuleVersions queries the list of module versions from state. */
-  ModuleVersions(request: QueryModuleVersionsRequest): Promise<QueryModuleVersionsResponse>;
+  moduleVersions: {
+    path: "/cosmos.upgrade.v1beta1.Query/ModuleVersions",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryModuleVersionsRequest) =>
+      Buffer.from(QueryModuleVersionsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryModuleVersionsRequest.decode(value),
+    responseSerialize: (value: QueryModuleVersionsResponse) =>
+      Buffer.from(QueryModuleVersionsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryModuleVersionsResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** CurrentPlan queries the current upgrade plan. */
+  currentPlan: handleUnaryCall<QueryCurrentPlanRequest, QueryCurrentPlanResponse>;
+  /** AppliedPlan queries a previously applied upgrade plan by its name. */
+  appliedPlan: handleUnaryCall<QueryAppliedPlanRequest, QueryAppliedPlanResponse>;
+  /**
+   * UpgradedConsensusState queries the consensus state that will serve
+   * as a trusted kernel for the next version of this chain. It will only be
+   * stored at the last height of this chain.
+   * UpgradedConsensusState RPC not supported with legacy querier
+   */
+  upgradedConsensusState: handleUnaryCall<
+    QueryUpgradedConsensusStateRequest,
+    QueryUpgradedConsensusStateResponse
+  >;
+  /** ModuleVersions queries the list of module versions from state. */
+  moduleVersions: handleUnaryCall<QueryModuleVersionsRequest, QueryModuleVersionsResponse>;
 }
 
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.CurrentPlan = this.CurrentPlan.bind(this);
-    this.AppliedPlan = this.AppliedPlan.bind(this);
-    this.UpgradedConsensusState = this.UpgradedConsensusState.bind(this);
-    this.ModuleVersions = this.ModuleVersions.bind(this);
-  }
-  CurrentPlan(request: QueryCurrentPlanRequest): Promise<QueryCurrentPlanResponse> {
-    const data = QueryCurrentPlanRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "CurrentPlan", data);
-    return promise.then((data) => QueryCurrentPlanResponse.decode(new _m0.Reader(data)));
-  }
-
-  AppliedPlan(request: QueryAppliedPlanRequest): Promise<QueryAppliedPlanResponse> {
-    const data = QueryAppliedPlanRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "AppliedPlan", data);
-    return promise.then((data) => QueryAppliedPlanResponse.decode(new _m0.Reader(data)));
-  }
-
-  UpgradedConsensusState(
+export interface QueryClient extends Client {
+  /** CurrentPlan queries the current upgrade plan. */
+  currentPlan(
+    request: QueryCurrentPlanRequest,
+    callback: (error: ServiceError | null, response: QueryCurrentPlanResponse) => void,
+  ): ClientUnaryCall;
+  currentPlan(
+    request: QueryCurrentPlanRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryCurrentPlanResponse) => void,
+  ): ClientUnaryCall;
+  currentPlan(
+    request: QueryCurrentPlanRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryCurrentPlanResponse) => void,
+  ): ClientUnaryCall;
+  /** AppliedPlan queries a previously applied upgrade plan by its name. */
+  appliedPlan(
+    request: QueryAppliedPlanRequest,
+    callback: (error: ServiceError | null, response: QueryAppliedPlanResponse) => void,
+  ): ClientUnaryCall;
+  appliedPlan(
+    request: QueryAppliedPlanRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryAppliedPlanResponse) => void,
+  ): ClientUnaryCall;
+  appliedPlan(
+    request: QueryAppliedPlanRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryAppliedPlanResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * UpgradedConsensusState queries the consensus state that will serve
+   * as a trusted kernel for the next version of this chain. It will only be
+   * stored at the last height of this chain.
+   * UpgradedConsensusState RPC not supported with legacy querier
+   */
+  upgradedConsensusState(
     request: QueryUpgradedConsensusStateRequest,
-  ): Promise<QueryUpgradedConsensusStateResponse> {
-    const data = QueryUpgradedConsensusStateRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "UpgradedConsensusState", data);
-    return promise.then((data) => QueryUpgradedConsensusStateResponse.decode(new _m0.Reader(data)));
-  }
-
-  ModuleVersions(request: QueryModuleVersionsRequest): Promise<QueryModuleVersionsResponse> {
-    const data = QueryModuleVersionsRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "ModuleVersions", data);
-    return promise.then((data) => QueryModuleVersionsResponse.decode(new _m0.Reader(data)));
-  }
+    callback: (error: ServiceError | null, response: QueryUpgradedConsensusStateResponse) => void,
+  ): ClientUnaryCall;
+  upgradedConsensusState(
+    request: QueryUpgradedConsensusStateRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryUpgradedConsensusStateResponse) => void,
+  ): ClientUnaryCall;
+  upgradedConsensusState(
+    request: QueryUpgradedConsensusStateRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryUpgradedConsensusStateResponse) => void,
+  ): ClientUnaryCall;
+  /** ModuleVersions queries the list of module versions from state. */
+  moduleVersions(
+    request: QueryModuleVersionsRequest,
+    callback: (error: ServiceError | null, response: QueryModuleVersionsResponse) => void,
+  ): ClientUnaryCall;
+  moduleVersions(
+    request: QueryModuleVersionsRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryModuleVersionsResponse) => void,
+  ): ClientUnaryCall;
+  moduleVersions(
+    request: QueryModuleVersionsRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryModuleVersionsResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "cosmos.upgrade.v1beta1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 declare var self: any | undefined;
 declare var window: any | undefined;

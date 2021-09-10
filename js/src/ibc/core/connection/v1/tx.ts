@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Counterparty, Version } from "../../../../ibc/core/connection/v1/connection";
 import { Any } from "../../../../google/protobuf/any";
@@ -974,57 +986,150 @@ export const MsgConnectionOpenConfirmResponse = {
 };
 
 /** Msg defines the ibc/connection Msg service. */
-export interface Msg {
+export const MsgService = {
   /** ConnectionOpenInit defines a rpc handler method for MsgConnectionOpenInit. */
-  ConnectionOpenInit(request: MsgConnectionOpenInit): Promise<MsgConnectionOpenInitResponse>;
+  connectionOpenInit: {
+    path: "/ibc.core.connection.v1.Msg/ConnectionOpenInit",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgConnectionOpenInit) =>
+      Buffer.from(MsgConnectionOpenInit.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgConnectionOpenInit.decode(value),
+    responseSerialize: (value: MsgConnectionOpenInitResponse) =>
+      Buffer.from(MsgConnectionOpenInitResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgConnectionOpenInitResponse.decode(value),
+  },
   /** ConnectionOpenTry defines a rpc handler method for MsgConnectionOpenTry. */
-  ConnectionOpenTry(request: MsgConnectionOpenTry): Promise<MsgConnectionOpenTryResponse>;
+  connectionOpenTry: {
+    path: "/ibc.core.connection.v1.Msg/ConnectionOpenTry",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgConnectionOpenTry) =>
+      Buffer.from(MsgConnectionOpenTry.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgConnectionOpenTry.decode(value),
+    responseSerialize: (value: MsgConnectionOpenTryResponse) =>
+      Buffer.from(MsgConnectionOpenTryResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgConnectionOpenTryResponse.decode(value),
+  },
   /** ConnectionOpenAck defines a rpc handler method for MsgConnectionOpenAck. */
-  ConnectionOpenAck(request: MsgConnectionOpenAck): Promise<MsgConnectionOpenAckResponse>;
+  connectionOpenAck: {
+    path: "/ibc.core.connection.v1.Msg/ConnectionOpenAck",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgConnectionOpenAck) =>
+      Buffer.from(MsgConnectionOpenAck.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgConnectionOpenAck.decode(value),
+    responseSerialize: (value: MsgConnectionOpenAckResponse) =>
+      Buffer.from(MsgConnectionOpenAckResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgConnectionOpenAckResponse.decode(value),
+  },
   /**
    * ConnectionOpenConfirm defines a rpc handler method for
    * MsgConnectionOpenConfirm.
    */
-  ConnectionOpenConfirm(request: MsgConnectionOpenConfirm): Promise<MsgConnectionOpenConfirmResponse>;
+  connectionOpenConfirm: {
+    path: "/ibc.core.connection.v1.Msg/ConnectionOpenConfirm",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgConnectionOpenConfirm) =>
+      Buffer.from(MsgConnectionOpenConfirm.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgConnectionOpenConfirm.decode(value),
+    responseSerialize: (value: MsgConnectionOpenConfirmResponse) =>
+      Buffer.from(MsgConnectionOpenConfirmResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgConnectionOpenConfirmResponse.decode(value),
+  },
+} as const;
+
+export interface MsgServer extends UntypedServiceImplementation {
+  /** ConnectionOpenInit defines a rpc handler method for MsgConnectionOpenInit. */
+  connectionOpenInit: handleUnaryCall<MsgConnectionOpenInit, MsgConnectionOpenInitResponse>;
+  /** ConnectionOpenTry defines a rpc handler method for MsgConnectionOpenTry. */
+  connectionOpenTry: handleUnaryCall<MsgConnectionOpenTry, MsgConnectionOpenTryResponse>;
+  /** ConnectionOpenAck defines a rpc handler method for MsgConnectionOpenAck. */
+  connectionOpenAck: handleUnaryCall<MsgConnectionOpenAck, MsgConnectionOpenAckResponse>;
+  /**
+   * ConnectionOpenConfirm defines a rpc handler method for
+   * MsgConnectionOpenConfirm.
+   */
+  connectionOpenConfirm: handleUnaryCall<MsgConnectionOpenConfirm, MsgConnectionOpenConfirmResponse>;
 }
 
-export class MsgClientImpl implements Msg {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.ConnectionOpenInit = this.ConnectionOpenInit.bind(this);
-    this.ConnectionOpenTry = this.ConnectionOpenTry.bind(this);
-    this.ConnectionOpenAck = this.ConnectionOpenAck.bind(this);
-    this.ConnectionOpenConfirm = this.ConnectionOpenConfirm.bind(this);
-  }
-  ConnectionOpenInit(request: MsgConnectionOpenInit): Promise<MsgConnectionOpenInitResponse> {
-    const data = MsgConnectionOpenInit.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.connection.v1.Msg", "ConnectionOpenInit", data);
-    return promise.then((data) => MsgConnectionOpenInitResponse.decode(new _m0.Reader(data)));
-  }
-
-  ConnectionOpenTry(request: MsgConnectionOpenTry): Promise<MsgConnectionOpenTryResponse> {
-    const data = MsgConnectionOpenTry.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.connection.v1.Msg", "ConnectionOpenTry", data);
-    return promise.then((data) => MsgConnectionOpenTryResponse.decode(new _m0.Reader(data)));
-  }
-
-  ConnectionOpenAck(request: MsgConnectionOpenAck): Promise<MsgConnectionOpenAckResponse> {
-    const data = MsgConnectionOpenAck.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.connection.v1.Msg", "ConnectionOpenAck", data);
-    return promise.then((data) => MsgConnectionOpenAckResponse.decode(new _m0.Reader(data)));
-  }
-
-  ConnectionOpenConfirm(request: MsgConnectionOpenConfirm): Promise<MsgConnectionOpenConfirmResponse> {
-    const data = MsgConnectionOpenConfirm.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.connection.v1.Msg", "ConnectionOpenConfirm", data);
-    return promise.then((data) => MsgConnectionOpenConfirmResponse.decode(new _m0.Reader(data)));
-  }
+export interface MsgClient extends Client {
+  /** ConnectionOpenInit defines a rpc handler method for MsgConnectionOpenInit. */
+  connectionOpenInit(
+    request: MsgConnectionOpenInit,
+    callback: (error: ServiceError | null, response: MsgConnectionOpenInitResponse) => void,
+  ): ClientUnaryCall;
+  connectionOpenInit(
+    request: MsgConnectionOpenInit,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgConnectionOpenInitResponse) => void,
+  ): ClientUnaryCall;
+  connectionOpenInit(
+    request: MsgConnectionOpenInit,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgConnectionOpenInitResponse) => void,
+  ): ClientUnaryCall;
+  /** ConnectionOpenTry defines a rpc handler method for MsgConnectionOpenTry. */
+  connectionOpenTry(
+    request: MsgConnectionOpenTry,
+    callback: (error: ServiceError | null, response: MsgConnectionOpenTryResponse) => void,
+  ): ClientUnaryCall;
+  connectionOpenTry(
+    request: MsgConnectionOpenTry,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgConnectionOpenTryResponse) => void,
+  ): ClientUnaryCall;
+  connectionOpenTry(
+    request: MsgConnectionOpenTry,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgConnectionOpenTryResponse) => void,
+  ): ClientUnaryCall;
+  /** ConnectionOpenAck defines a rpc handler method for MsgConnectionOpenAck. */
+  connectionOpenAck(
+    request: MsgConnectionOpenAck,
+    callback: (error: ServiceError | null, response: MsgConnectionOpenAckResponse) => void,
+  ): ClientUnaryCall;
+  connectionOpenAck(
+    request: MsgConnectionOpenAck,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgConnectionOpenAckResponse) => void,
+  ): ClientUnaryCall;
+  connectionOpenAck(
+    request: MsgConnectionOpenAck,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgConnectionOpenAckResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * ConnectionOpenConfirm defines a rpc handler method for
+   * MsgConnectionOpenConfirm.
+   */
+  connectionOpenConfirm(
+    request: MsgConnectionOpenConfirm,
+    callback: (error: ServiceError | null, response: MsgConnectionOpenConfirmResponse) => void,
+  ): ClientUnaryCall;
+  connectionOpenConfirm(
+    request: MsgConnectionOpenConfirm,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgConnectionOpenConfirmResponse) => void,
+  ): ClientUnaryCall;
+  connectionOpenConfirm(
+    request: MsgConnectionOpenConfirm,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgConnectionOpenConfirmResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const MsgClient = makeGenericClientConstructor(
+  MsgService,
+  "ibc.core.connection.v1.Msg",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+};
 
 declare var self: any | undefined;
 declare var window: any | undefined;

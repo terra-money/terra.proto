@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { ConnectionEnd, IdentifiedConnection } from "../../../../ibc/core/connection/v1/connection";
 import { Height, IdentifiedClientState } from "../../../../ibc/core/client/v1/client";
@@ -939,80 +951,204 @@ export const QueryConnectionConsensusStateResponse = {
 };
 
 /** Query provides defines the gRPC querier service */
-export interface Query {
+export const QueryService = {
   /** Connection queries an IBC connection end. */
-  Connection(request: QueryConnectionRequest): Promise<QueryConnectionResponse>;
+  connection: {
+    path: "/ibc.core.connection.v1.Query/Connection",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryConnectionRequest) =>
+      Buffer.from(QueryConnectionRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryConnectionRequest.decode(value),
+    responseSerialize: (value: QueryConnectionResponse) =>
+      Buffer.from(QueryConnectionResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryConnectionResponse.decode(value),
+  },
   /** Connections queries all the IBC connections of a chain. */
-  Connections(request: QueryConnectionsRequest): Promise<QueryConnectionsResponse>;
+  connections: {
+    path: "/ibc.core.connection.v1.Query/Connections",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryConnectionsRequest) =>
+      Buffer.from(QueryConnectionsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryConnectionsRequest.decode(value),
+    responseSerialize: (value: QueryConnectionsResponse) =>
+      Buffer.from(QueryConnectionsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryConnectionsResponse.decode(value),
+  },
   /**
    * ClientConnections queries the connection paths associated with a client
    * state.
    */
-  ClientConnections(request: QueryClientConnectionsRequest): Promise<QueryClientConnectionsResponse>;
+  clientConnections: {
+    path: "/ibc.core.connection.v1.Query/ClientConnections",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryClientConnectionsRequest) =>
+      Buffer.from(QueryClientConnectionsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryClientConnectionsRequest.decode(value),
+    responseSerialize: (value: QueryClientConnectionsResponse) =>
+      Buffer.from(QueryClientConnectionsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryClientConnectionsResponse.decode(value),
+  },
   /**
    * ConnectionClientState queries the client state associated with the
    * connection.
    */
-  ConnectionClientState(
-    request: QueryConnectionClientStateRequest,
-  ): Promise<QueryConnectionClientStateResponse>;
+  connectionClientState: {
+    path: "/ibc.core.connection.v1.Query/ConnectionClientState",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryConnectionClientStateRequest) =>
+      Buffer.from(QueryConnectionClientStateRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryConnectionClientStateRequest.decode(value),
+    responseSerialize: (value: QueryConnectionClientStateResponse) =>
+      Buffer.from(QueryConnectionClientStateResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryConnectionClientStateResponse.decode(value),
+  },
   /**
    * ConnectionConsensusState queries the consensus state associated with the
    * connection.
    */
-  ConnectionConsensusState(
-    request: QueryConnectionConsensusStateRequest,
-  ): Promise<QueryConnectionConsensusStateResponse>;
+  connectionConsensusState: {
+    path: "/ibc.core.connection.v1.Query/ConnectionConsensusState",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryConnectionConsensusStateRequest) =>
+      Buffer.from(QueryConnectionConsensusStateRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryConnectionConsensusStateRequest.decode(value),
+    responseSerialize: (value: QueryConnectionConsensusStateResponse) =>
+      Buffer.from(QueryConnectionConsensusStateResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryConnectionConsensusStateResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** Connection queries an IBC connection end. */
+  connection: handleUnaryCall<QueryConnectionRequest, QueryConnectionResponse>;
+  /** Connections queries all the IBC connections of a chain. */
+  connections: handleUnaryCall<QueryConnectionsRequest, QueryConnectionsResponse>;
+  /**
+   * ClientConnections queries the connection paths associated with a client
+   * state.
+   */
+  clientConnections: handleUnaryCall<QueryClientConnectionsRequest, QueryClientConnectionsResponse>;
+  /**
+   * ConnectionClientState queries the client state associated with the
+   * connection.
+   */
+  connectionClientState: handleUnaryCall<
+    QueryConnectionClientStateRequest,
+    QueryConnectionClientStateResponse
+  >;
+  /**
+   * ConnectionConsensusState queries the consensus state associated with the
+   * connection.
+   */
+  connectionConsensusState: handleUnaryCall<
+    QueryConnectionConsensusStateRequest,
+    QueryConnectionConsensusStateResponse
+  >;
 }
 
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Connection = this.Connection.bind(this);
-    this.Connections = this.Connections.bind(this);
-    this.ClientConnections = this.ClientConnections.bind(this);
-    this.ConnectionClientState = this.ConnectionClientState.bind(this);
-    this.ConnectionConsensusState = this.ConnectionConsensusState.bind(this);
-  }
-  Connection(request: QueryConnectionRequest): Promise<QueryConnectionResponse> {
-    const data = QueryConnectionRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.connection.v1.Query", "Connection", data);
-    return promise.then((data) => QueryConnectionResponse.decode(new _m0.Reader(data)));
-  }
-
-  Connections(request: QueryConnectionsRequest): Promise<QueryConnectionsResponse> {
-    const data = QueryConnectionsRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.connection.v1.Query", "Connections", data);
-    return promise.then((data) => QueryConnectionsResponse.decode(new _m0.Reader(data)));
-  }
-
-  ClientConnections(request: QueryClientConnectionsRequest): Promise<QueryClientConnectionsResponse> {
-    const data = QueryClientConnectionsRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.connection.v1.Query", "ClientConnections", data);
-    return promise.then((data) => QueryClientConnectionsResponse.decode(new _m0.Reader(data)));
-  }
-
-  ConnectionClientState(
+export interface QueryClient extends Client {
+  /** Connection queries an IBC connection end. */
+  connection(
+    request: QueryConnectionRequest,
+    callback: (error: ServiceError | null, response: QueryConnectionResponse) => void,
+  ): ClientUnaryCall;
+  connection(
+    request: QueryConnectionRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryConnectionResponse) => void,
+  ): ClientUnaryCall;
+  connection(
+    request: QueryConnectionRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryConnectionResponse) => void,
+  ): ClientUnaryCall;
+  /** Connections queries all the IBC connections of a chain. */
+  connections(
+    request: QueryConnectionsRequest,
+    callback: (error: ServiceError | null, response: QueryConnectionsResponse) => void,
+  ): ClientUnaryCall;
+  connections(
+    request: QueryConnectionsRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryConnectionsResponse) => void,
+  ): ClientUnaryCall;
+  connections(
+    request: QueryConnectionsRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryConnectionsResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * ClientConnections queries the connection paths associated with a client
+   * state.
+   */
+  clientConnections(
+    request: QueryClientConnectionsRequest,
+    callback: (error: ServiceError | null, response: QueryClientConnectionsResponse) => void,
+  ): ClientUnaryCall;
+  clientConnections(
+    request: QueryClientConnectionsRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryClientConnectionsResponse) => void,
+  ): ClientUnaryCall;
+  clientConnections(
+    request: QueryClientConnectionsRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryClientConnectionsResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * ConnectionClientState queries the client state associated with the
+   * connection.
+   */
+  connectionClientState(
     request: QueryConnectionClientStateRequest,
-  ): Promise<QueryConnectionClientStateResponse> {
-    const data = QueryConnectionClientStateRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.connection.v1.Query", "ConnectionClientState", data);
-    return promise.then((data) => QueryConnectionClientStateResponse.decode(new _m0.Reader(data)));
-  }
-
-  ConnectionConsensusState(
+    callback: (error: ServiceError | null, response: QueryConnectionClientStateResponse) => void,
+  ): ClientUnaryCall;
+  connectionClientState(
+    request: QueryConnectionClientStateRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryConnectionClientStateResponse) => void,
+  ): ClientUnaryCall;
+  connectionClientState(
+    request: QueryConnectionClientStateRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryConnectionClientStateResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * ConnectionConsensusState queries the consensus state associated with the
+   * connection.
+   */
+  connectionConsensusState(
     request: QueryConnectionConsensusStateRequest,
-  ): Promise<QueryConnectionConsensusStateResponse> {
-    const data = QueryConnectionConsensusStateRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.connection.v1.Query", "ConnectionConsensusState", data);
-    return promise.then((data) => QueryConnectionConsensusStateResponse.decode(new _m0.Reader(data)));
-  }
+    callback: (error: ServiceError | null, response: QueryConnectionConsensusStateResponse) => void,
+  ): ClientUnaryCall;
+  connectionConsensusState(
+    request: QueryConnectionConsensusStateRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryConnectionConsensusStateResponse) => void,
+  ): ClientUnaryCall;
+  connectionConsensusState(
+    request: QueryConnectionConsensusStateRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryConnectionConsensusStateResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "ibc.core.connection.v1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 declare var self: any | undefined;
 declare var window: any | undefined;

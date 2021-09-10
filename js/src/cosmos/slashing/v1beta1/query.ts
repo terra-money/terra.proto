@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Params, ValidatorSigningInfo } from "../../../cosmos/slashing/v1beta1/slashing";
 import { PageRequest, PageResponse } from "../../../cosmos/base/query/v1beta1/pagination";
@@ -393,45 +405,110 @@ export const QuerySigningInfosResponse = {
 };
 
 /** Query provides defines the gRPC querier service */
-export interface Query {
+export const QueryService = {
   /** Params queries the parameters of slashing module */
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+  params: {
+    path: "/cosmos.slashing.v1beta1.Query/Params",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryParamsRequest) => Buffer.from(QueryParamsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryParamsRequest.decode(value),
+    responseSerialize: (value: QueryParamsResponse) =>
+      Buffer.from(QueryParamsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryParamsResponse.decode(value),
+  },
   /** SigningInfo queries the signing info of given cons address */
-  SigningInfo(request: QuerySigningInfoRequest): Promise<QuerySigningInfoResponse>;
+  signingInfo: {
+    path: "/cosmos.slashing.v1beta1.Query/SigningInfo",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QuerySigningInfoRequest) =>
+      Buffer.from(QuerySigningInfoRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QuerySigningInfoRequest.decode(value),
+    responseSerialize: (value: QuerySigningInfoResponse) =>
+      Buffer.from(QuerySigningInfoResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QuerySigningInfoResponse.decode(value),
+  },
   /** SigningInfos queries signing info of all validators */
-  SigningInfos(request: QuerySigningInfosRequest): Promise<QuerySigningInfosResponse>;
+  signingInfos: {
+    path: "/cosmos.slashing.v1beta1.Query/SigningInfos",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QuerySigningInfosRequest) =>
+      Buffer.from(QuerySigningInfosRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QuerySigningInfosRequest.decode(value),
+    responseSerialize: (value: QuerySigningInfosResponse) =>
+      Buffer.from(QuerySigningInfosResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QuerySigningInfosResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** Params queries the parameters of slashing module */
+  params: handleUnaryCall<QueryParamsRequest, QueryParamsResponse>;
+  /** SigningInfo queries the signing info of given cons address */
+  signingInfo: handleUnaryCall<QuerySigningInfoRequest, QuerySigningInfoResponse>;
+  /** SigningInfos queries signing info of all validators */
+  signingInfos: handleUnaryCall<QuerySigningInfosRequest, QuerySigningInfosResponse>;
 }
 
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Params = this.Params.bind(this);
-    this.SigningInfo = this.SigningInfo.bind(this);
-    this.SigningInfos = this.SigningInfos.bind(this);
-  }
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
-    const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.slashing.v1beta1.Query", "Params", data);
-    return promise.then((data) => QueryParamsResponse.decode(new _m0.Reader(data)));
-  }
-
-  SigningInfo(request: QuerySigningInfoRequest): Promise<QuerySigningInfoResponse> {
-    const data = QuerySigningInfoRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.slashing.v1beta1.Query", "SigningInfo", data);
-    return promise.then((data) => QuerySigningInfoResponse.decode(new _m0.Reader(data)));
-  }
-
-  SigningInfos(request: QuerySigningInfosRequest): Promise<QuerySigningInfosResponse> {
-    const data = QuerySigningInfosRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.slashing.v1beta1.Query", "SigningInfos", data);
-    return promise.then((data) => QuerySigningInfosResponse.decode(new _m0.Reader(data)));
-  }
+export interface QueryClient extends Client {
+  /** Params queries the parameters of slashing module */
+  params(
+    request: QueryParamsRequest,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  /** SigningInfo queries the signing info of given cons address */
+  signingInfo(
+    request: QuerySigningInfoRequest,
+    callback: (error: ServiceError | null, response: QuerySigningInfoResponse) => void,
+  ): ClientUnaryCall;
+  signingInfo(
+    request: QuerySigningInfoRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QuerySigningInfoResponse) => void,
+  ): ClientUnaryCall;
+  signingInfo(
+    request: QuerySigningInfoRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QuerySigningInfoResponse) => void,
+  ): ClientUnaryCall;
+  /** SigningInfos queries signing info of all validators */
+  signingInfos(
+    request: QuerySigningInfosRequest,
+    callback: (error: ServiceError | null, response: QuerySigningInfosResponse) => void,
+  ): ClientUnaryCall;
+  signingInfos(
+    request: QuerySigningInfosRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QuerySigningInfosResponse) => void,
+  ): ClientUnaryCall;
+  signingInfos(
+    request: QuerySigningInfosRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QuerySigningInfosResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "cosmos.slashing.v1beta1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

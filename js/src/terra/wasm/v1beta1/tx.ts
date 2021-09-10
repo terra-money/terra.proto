@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Coin } from "../../../cosmos/base/v1beta1/coin";
 
@@ -1175,81 +1187,224 @@ export const MsgClearContractAdminResponse = {
 };
 
 /** Msg defines the oracle Msg service. */
-export interface Msg {
+export const MsgService = {
   /** StoreCode to submit Wasm code to the system */
-  StoreCode(request: MsgStoreCode): Promise<MsgStoreCodeResponse>;
+  storeCode: {
+    path: "/terra.wasm.v1beta1.Msg/StoreCode",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgStoreCode) => Buffer.from(MsgStoreCode.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgStoreCode.decode(value),
+    responseSerialize: (value: MsgStoreCodeResponse) =>
+      Buffer.from(MsgStoreCodeResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgStoreCodeResponse.decode(value),
+  },
   /** MigrateCode to submit new version Wasm code to the system */
-  MigrateCode(request: MsgMigrateCode): Promise<MsgMigrateCodeResponse>;
+  migrateCode: {
+    path: "/terra.wasm.v1beta1.Msg/MigrateCode",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgMigrateCode) => Buffer.from(MsgMigrateCode.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgMigrateCode.decode(value),
+    responseSerialize: (value: MsgMigrateCodeResponse) =>
+      Buffer.from(MsgMigrateCodeResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgMigrateCodeResponse.decode(value),
+  },
   /** Instantiate creates a new smart contract instance for the given code id. */
-  InstantiateContract(request: MsgInstantiateContract): Promise<MsgInstantiateContractResponse>;
+  instantiateContract: {
+    path: "/terra.wasm.v1beta1.Msg/InstantiateContract",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgInstantiateContract) =>
+      Buffer.from(MsgInstantiateContract.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgInstantiateContract.decode(value),
+    responseSerialize: (value: MsgInstantiateContractResponse) =>
+      Buffer.from(MsgInstantiateContractResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgInstantiateContractResponse.decode(value),
+  },
   /** Execute submits the given message data to a smart contract */
-  ExecuteContract(request: MsgExecuteContract): Promise<MsgExecuteContractResponse>;
+  executeContract: {
+    path: "/terra.wasm.v1beta1.Msg/ExecuteContract",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgExecuteContract) => Buffer.from(MsgExecuteContract.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgExecuteContract.decode(value),
+    responseSerialize: (value: MsgExecuteContractResponse) =>
+      Buffer.from(MsgExecuteContractResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgExecuteContractResponse.decode(value),
+  },
   /** Migrate runs a code upgrade/ downgrade for a smart contract */
-  MigrateContract(request: MsgMigrateContract): Promise<MsgMigrateContractResponse>;
+  migrateContract: {
+    path: "/terra.wasm.v1beta1.Msg/MigrateContract",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgMigrateContract) => Buffer.from(MsgMigrateContract.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgMigrateContract.decode(value),
+    responseSerialize: (value: MsgMigrateContractResponse) =>
+      Buffer.from(MsgMigrateContractResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgMigrateContractResponse.decode(value),
+  },
   /** UpdateContractAdmin sets a new admin for a smart contract */
-  UpdateContractAdmin(request: MsgUpdateContractAdmin): Promise<MsgUpdateContractAdminResponse>;
+  updateContractAdmin: {
+    path: "/terra.wasm.v1beta1.Msg/UpdateContractAdmin",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgUpdateContractAdmin) =>
+      Buffer.from(MsgUpdateContractAdmin.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgUpdateContractAdmin.decode(value),
+    responseSerialize: (value: MsgUpdateContractAdminResponse) =>
+      Buffer.from(MsgUpdateContractAdminResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgUpdateContractAdminResponse.decode(value),
+  },
   /** ClearContractAdmin remove admin flag from a smart contract */
-  ClearContractAdmin(request: MsgClearContractAdmin): Promise<MsgClearContractAdminResponse>;
+  clearContractAdmin: {
+    path: "/terra.wasm.v1beta1.Msg/ClearContractAdmin",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgClearContractAdmin) =>
+      Buffer.from(MsgClearContractAdmin.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgClearContractAdmin.decode(value),
+    responseSerialize: (value: MsgClearContractAdminResponse) =>
+      Buffer.from(MsgClearContractAdminResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgClearContractAdminResponse.decode(value),
+  },
+} as const;
+
+export interface MsgServer extends UntypedServiceImplementation {
+  /** StoreCode to submit Wasm code to the system */
+  storeCode: handleUnaryCall<MsgStoreCode, MsgStoreCodeResponse>;
+  /** MigrateCode to submit new version Wasm code to the system */
+  migrateCode: handleUnaryCall<MsgMigrateCode, MsgMigrateCodeResponse>;
+  /** Instantiate creates a new smart contract instance for the given code id. */
+  instantiateContract: handleUnaryCall<MsgInstantiateContract, MsgInstantiateContractResponse>;
+  /** Execute submits the given message data to a smart contract */
+  executeContract: handleUnaryCall<MsgExecuteContract, MsgExecuteContractResponse>;
+  /** Migrate runs a code upgrade/ downgrade for a smart contract */
+  migrateContract: handleUnaryCall<MsgMigrateContract, MsgMigrateContractResponse>;
+  /** UpdateContractAdmin sets a new admin for a smart contract */
+  updateContractAdmin: handleUnaryCall<MsgUpdateContractAdmin, MsgUpdateContractAdminResponse>;
+  /** ClearContractAdmin remove admin flag from a smart contract */
+  clearContractAdmin: handleUnaryCall<MsgClearContractAdmin, MsgClearContractAdminResponse>;
 }
 
-export class MsgClientImpl implements Msg {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.StoreCode = this.StoreCode.bind(this);
-    this.MigrateCode = this.MigrateCode.bind(this);
-    this.InstantiateContract = this.InstantiateContract.bind(this);
-    this.ExecuteContract = this.ExecuteContract.bind(this);
-    this.MigrateContract = this.MigrateContract.bind(this);
-    this.UpdateContractAdmin = this.UpdateContractAdmin.bind(this);
-    this.ClearContractAdmin = this.ClearContractAdmin.bind(this);
-  }
-  StoreCode(request: MsgStoreCode): Promise<MsgStoreCodeResponse> {
-    const data = MsgStoreCode.encode(request).finish();
-    const promise = this.rpc.request("terra.wasm.v1beta1.Msg", "StoreCode", data);
-    return promise.then((data) => MsgStoreCodeResponse.decode(new _m0.Reader(data)));
-  }
-
-  MigrateCode(request: MsgMigrateCode): Promise<MsgMigrateCodeResponse> {
-    const data = MsgMigrateCode.encode(request).finish();
-    const promise = this.rpc.request("terra.wasm.v1beta1.Msg", "MigrateCode", data);
-    return promise.then((data) => MsgMigrateCodeResponse.decode(new _m0.Reader(data)));
-  }
-
-  InstantiateContract(request: MsgInstantiateContract): Promise<MsgInstantiateContractResponse> {
-    const data = MsgInstantiateContract.encode(request).finish();
-    const promise = this.rpc.request("terra.wasm.v1beta1.Msg", "InstantiateContract", data);
-    return promise.then((data) => MsgInstantiateContractResponse.decode(new _m0.Reader(data)));
-  }
-
-  ExecuteContract(request: MsgExecuteContract): Promise<MsgExecuteContractResponse> {
-    const data = MsgExecuteContract.encode(request).finish();
-    const promise = this.rpc.request("terra.wasm.v1beta1.Msg", "ExecuteContract", data);
-    return promise.then((data) => MsgExecuteContractResponse.decode(new _m0.Reader(data)));
-  }
-
-  MigrateContract(request: MsgMigrateContract): Promise<MsgMigrateContractResponse> {
-    const data = MsgMigrateContract.encode(request).finish();
-    const promise = this.rpc.request("terra.wasm.v1beta1.Msg", "MigrateContract", data);
-    return promise.then((data) => MsgMigrateContractResponse.decode(new _m0.Reader(data)));
-  }
-
-  UpdateContractAdmin(request: MsgUpdateContractAdmin): Promise<MsgUpdateContractAdminResponse> {
-    const data = MsgUpdateContractAdmin.encode(request).finish();
-    const promise = this.rpc.request("terra.wasm.v1beta1.Msg", "UpdateContractAdmin", data);
-    return promise.then((data) => MsgUpdateContractAdminResponse.decode(new _m0.Reader(data)));
-  }
-
-  ClearContractAdmin(request: MsgClearContractAdmin): Promise<MsgClearContractAdminResponse> {
-    const data = MsgClearContractAdmin.encode(request).finish();
-    const promise = this.rpc.request("terra.wasm.v1beta1.Msg", "ClearContractAdmin", data);
-    return promise.then((data) => MsgClearContractAdminResponse.decode(new _m0.Reader(data)));
-  }
+export interface MsgClient extends Client {
+  /** StoreCode to submit Wasm code to the system */
+  storeCode(
+    request: MsgStoreCode,
+    callback: (error: ServiceError | null, response: MsgStoreCodeResponse) => void,
+  ): ClientUnaryCall;
+  storeCode(
+    request: MsgStoreCode,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgStoreCodeResponse) => void,
+  ): ClientUnaryCall;
+  storeCode(
+    request: MsgStoreCode,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgStoreCodeResponse) => void,
+  ): ClientUnaryCall;
+  /** MigrateCode to submit new version Wasm code to the system */
+  migrateCode(
+    request: MsgMigrateCode,
+    callback: (error: ServiceError | null, response: MsgMigrateCodeResponse) => void,
+  ): ClientUnaryCall;
+  migrateCode(
+    request: MsgMigrateCode,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgMigrateCodeResponse) => void,
+  ): ClientUnaryCall;
+  migrateCode(
+    request: MsgMigrateCode,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgMigrateCodeResponse) => void,
+  ): ClientUnaryCall;
+  /** Instantiate creates a new smart contract instance for the given code id. */
+  instantiateContract(
+    request: MsgInstantiateContract,
+    callback: (error: ServiceError | null, response: MsgInstantiateContractResponse) => void,
+  ): ClientUnaryCall;
+  instantiateContract(
+    request: MsgInstantiateContract,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgInstantiateContractResponse) => void,
+  ): ClientUnaryCall;
+  instantiateContract(
+    request: MsgInstantiateContract,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgInstantiateContractResponse) => void,
+  ): ClientUnaryCall;
+  /** Execute submits the given message data to a smart contract */
+  executeContract(
+    request: MsgExecuteContract,
+    callback: (error: ServiceError | null, response: MsgExecuteContractResponse) => void,
+  ): ClientUnaryCall;
+  executeContract(
+    request: MsgExecuteContract,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgExecuteContractResponse) => void,
+  ): ClientUnaryCall;
+  executeContract(
+    request: MsgExecuteContract,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgExecuteContractResponse) => void,
+  ): ClientUnaryCall;
+  /** Migrate runs a code upgrade/ downgrade for a smart contract */
+  migrateContract(
+    request: MsgMigrateContract,
+    callback: (error: ServiceError | null, response: MsgMigrateContractResponse) => void,
+  ): ClientUnaryCall;
+  migrateContract(
+    request: MsgMigrateContract,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgMigrateContractResponse) => void,
+  ): ClientUnaryCall;
+  migrateContract(
+    request: MsgMigrateContract,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgMigrateContractResponse) => void,
+  ): ClientUnaryCall;
+  /** UpdateContractAdmin sets a new admin for a smart contract */
+  updateContractAdmin(
+    request: MsgUpdateContractAdmin,
+    callback: (error: ServiceError | null, response: MsgUpdateContractAdminResponse) => void,
+  ): ClientUnaryCall;
+  updateContractAdmin(
+    request: MsgUpdateContractAdmin,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgUpdateContractAdminResponse) => void,
+  ): ClientUnaryCall;
+  updateContractAdmin(
+    request: MsgUpdateContractAdmin,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgUpdateContractAdminResponse) => void,
+  ): ClientUnaryCall;
+  /** ClearContractAdmin remove admin flag from a smart contract */
+  clearContractAdmin(
+    request: MsgClearContractAdmin,
+    callback: (error: ServiceError | null, response: MsgClearContractAdminResponse) => void,
+  ): ClientUnaryCall;
+  clearContractAdmin(
+    request: MsgClearContractAdmin,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgClearContractAdminResponse) => void,
+  ): ClientUnaryCall;
+  clearContractAdmin(
+    request: MsgClearContractAdmin,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgClearContractAdminResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const MsgClient = makeGenericClientConstructor(MsgService, "terra.wasm.v1beta1.Msg") as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+};
 
 declare var self: any | undefined;
 declare var window: any | undefined;

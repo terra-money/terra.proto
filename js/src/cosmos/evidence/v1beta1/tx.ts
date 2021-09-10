@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Any } from "../../../google/protobuf/any";
 
@@ -150,30 +162,59 @@ export const MsgSubmitEvidenceResponse = {
 };
 
 /** Msg defines the evidence Msg service. */
-export interface Msg {
+export const MsgService = {
   /**
    * SubmitEvidence submits an arbitrary Evidence of misbehavior such as equivocation or
    * counterfactual signing.
    */
-  SubmitEvidence(request: MsgSubmitEvidence): Promise<MsgSubmitEvidenceResponse>;
+  submitEvidence: {
+    path: "/cosmos.evidence.v1beta1.Msg/SubmitEvidence",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgSubmitEvidence) => Buffer.from(MsgSubmitEvidence.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgSubmitEvidence.decode(value),
+    responseSerialize: (value: MsgSubmitEvidenceResponse) =>
+      Buffer.from(MsgSubmitEvidenceResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgSubmitEvidenceResponse.decode(value),
+  },
+} as const;
+
+export interface MsgServer extends UntypedServiceImplementation {
+  /**
+   * SubmitEvidence submits an arbitrary Evidence of misbehavior such as equivocation or
+   * counterfactual signing.
+   */
+  submitEvidence: handleUnaryCall<MsgSubmitEvidence, MsgSubmitEvidenceResponse>;
 }
 
-export class MsgClientImpl implements Msg {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.SubmitEvidence = this.SubmitEvidence.bind(this);
-  }
-  SubmitEvidence(request: MsgSubmitEvidence): Promise<MsgSubmitEvidenceResponse> {
-    const data = MsgSubmitEvidence.encode(request).finish();
-    const promise = this.rpc.request("cosmos.evidence.v1beta1.Msg", "SubmitEvidence", data);
-    return promise.then((data) => MsgSubmitEvidenceResponse.decode(new _m0.Reader(data)));
-  }
+export interface MsgClient extends Client {
+  /**
+   * SubmitEvidence submits an arbitrary Evidence of misbehavior such as equivocation or
+   * counterfactual signing.
+   */
+  submitEvidence(
+    request: MsgSubmitEvidence,
+    callback: (error: ServiceError | null, response: MsgSubmitEvidenceResponse) => void,
+  ): ClientUnaryCall;
+  submitEvidence(
+    request: MsgSubmitEvidence,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgSubmitEvidenceResponse) => void,
+  ): ClientUnaryCall;
+  submitEvidence(
+    request: MsgSubmitEvidence,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgSubmitEvidenceResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const MsgClient = makeGenericClientConstructor(
+  MsgService,
+  "cosmos.evidence.v1beta1.Msg",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+};
 
 declare var self: any | undefined;
 declare var window: any | undefined;

@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Any } from "../../../../google/protobuf/any";
 
@@ -654,54 +666,135 @@ export const MsgSubmitMisbehaviourResponse = {
 };
 
 /** Msg defines the ibc/client Msg service. */
-export interface Msg {
+export const MsgService = {
   /** CreateClient defines a rpc handler method for MsgCreateClient. */
-  CreateClient(request: MsgCreateClient): Promise<MsgCreateClientResponse>;
+  createClient: {
+    path: "/ibc.core.client.v1.Msg/CreateClient",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgCreateClient) => Buffer.from(MsgCreateClient.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgCreateClient.decode(value),
+    responseSerialize: (value: MsgCreateClientResponse) =>
+      Buffer.from(MsgCreateClientResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgCreateClientResponse.decode(value),
+  },
   /** UpdateClient defines a rpc handler method for MsgUpdateClient. */
-  UpdateClient(request: MsgUpdateClient): Promise<MsgUpdateClientResponse>;
+  updateClient: {
+    path: "/ibc.core.client.v1.Msg/UpdateClient",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgUpdateClient) => Buffer.from(MsgUpdateClient.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgUpdateClient.decode(value),
+    responseSerialize: (value: MsgUpdateClientResponse) =>
+      Buffer.from(MsgUpdateClientResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgUpdateClientResponse.decode(value),
+  },
   /** UpgradeClient defines a rpc handler method for MsgUpgradeClient. */
-  UpgradeClient(request: MsgUpgradeClient): Promise<MsgUpgradeClientResponse>;
+  upgradeClient: {
+    path: "/ibc.core.client.v1.Msg/UpgradeClient",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgUpgradeClient) => Buffer.from(MsgUpgradeClient.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgUpgradeClient.decode(value),
+    responseSerialize: (value: MsgUpgradeClientResponse) =>
+      Buffer.from(MsgUpgradeClientResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgUpgradeClientResponse.decode(value),
+  },
   /** SubmitMisbehaviour defines a rpc handler method for MsgSubmitMisbehaviour. */
-  SubmitMisbehaviour(request: MsgSubmitMisbehaviour): Promise<MsgSubmitMisbehaviourResponse>;
+  submitMisbehaviour: {
+    path: "/ibc.core.client.v1.Msg/SubmitMisbehaviour",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgSubmitMisbehaviour) =>
+      Buffer.from(MsgSubmitMisbehaviour.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgSubmitMisbehaviour.decode(value),
+    responseSerialize: (value: MsgSubmitMisbehaviourResponse) =>
+      Buffer.from(MsgSubmitMisbehaviourResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgSubmitMisbehaviourResponse.decode(value),
+  },
+} as const;
+
+export interface MsgServer extends UntypedServiceImplementation {
+  /** CreateClient defines a rpc handler method for MsgCreateClient. */
+  createClient: handleUnaryCall<MsgCreateClient, MsgCreateClientResponse>;
+  /** UpdateClient defines a rpc handler method for MsgUpdateClient. */
+  updateClient: handleUnaryCall<MsgUpdateClient, MsgUpdateClientResponse>;
+  /** UpgradeClient defines a rpc handler method for MsgUpgradeClient. */
+  upgradeClient: handleUnaryCall<MsgUpgradeClient, MsgUpgradeClientResponse>;
+  /** SubmitMisbehaviour defines a rpc handler method for MsgSubmitMisbehaviour. */
+  submitMisbehaviour: handleUnaryCall<MsgSubmitMisbehaviour, MsgSubmitMisbehaviourResponse>;
 }
 
-export class MsgClientImpl implements Msg {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.CreateClient = this.CreateClient.bind(this);
-    this.UpdateClient = this.UpdateClient.bind(this);
-    this.UpgradeClient = this.UpgradeClient.bind(this);
-    this.SubmitMisbehaviour = this.SubmitMisbehaviour.bind(this);
-  }
-  CreateClient(request: MsgCreateClient): Promise<MsgCreateClientResponse> {
-    const data = MsgCreateClient.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.client.v1.Msg", "CreateClient", data);
-    return promise.then((data) => MsgCreateClientResponse.decode(new _m0.Reader(data)));
-  }
-
-  UpdateClient(request: MsgUpdateClient): Promise<MsgUpdateClientResponse> {
-    const data = MsgUpdateClient.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.client.v1.Msg", "UpdateClient", data);
-    return promise.then((data) => MsgUpdateClientResponse.decode(new _m0.Reader(data)));
-  }
-
-  UpgradeClient(request: MsgUpgradeClient): Promise<MsgUpgradeClientResponse> {
-    const data = MsgUpgradeClient.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.client.v1.Msg", "UpgradeClient", data);
-    return promise.then((data) => MsgUpgradeClientResponse.decode(new _m0.Reader(data)));
-  }
-
-  SubmitMisbehaviour(request: MsgSubmitMisbehaviour): Promise<MsgSubmitMisbehaviourResponse> {
-    const data = MsgSubmitMisbehaviour.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.client.v1.Msg", "SubmitMisbehaviour", data);
-    return promise.then((data) => MsgSubmitMisbehaviourResponse.decode(new _m0.Reader(data)));
-  }
+export interface MsgClient extends Client {
+  /** CreateClient defines a rpc handler method for MsgCreateClient. */
+  createClient(
+    request: MsgCreateClient,
+    callback: (error: ServiceError | null, response: MsgCreateClientResponse) => void,
+  ): ClientUnaryCall;
+  createClient(
+    request: MsgCreateClient,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgCreateClientResponse) => void,
+  ): ClientUnaryCall;
+  createClient(
+    request: MsgCreateClient,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgCreateClientResponse) => void,
+  ): ClientUnaryCall;
+  /** UpdateClient defines a rpc handler method for MsgUpdateClient. */
+  updateClient(
+    request: MsgUpdateClient,
+    callback: (error: ServiceError | null, response: MsgUpdateClientResponse) => void,
+  ): ClientUnaryCall;
+  updateClient(
+    request: MsgUpdateClient,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgUpdateClientResponse) => void,
+  ): ClientUnaryCall;
+  updateClient(
+    request: MsgUpdateClient,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgUpdateClientResponse) => void,
+  ): ClientUnaryCall;
+  /** UpgradeClient defines a rpc handler method for MsgUpgradeClient. */
+  upgradeClient(
+    request: MsgUpgradeClient,
+    callback: (error: ServiceError | null, response: MsgUpgradeClientResponse) => void,
+  ): ClientUnaryCall;
+  upgradeClient(
+    request: MsgUpgradeClient,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgUpgradeClientResponse) => void,
+  ): ClientUnaryCall;
+  upgradeClient(
+    request: MsgUpgradeClient,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgUpgradeClientResponse) => void,
+  ): ClientUnaryCall;
+  /** SubmitMisbehaviour defines a rpc handler method for MsgSubmitMisbehaviour. */
+  submitMisbehaviour(
+    request: MsgSubmitMisbehaviour,
+    callback: (error: ServiceError | null, response: MsgSubmitMisbehaviourResponse) => void,
+  ): ClientUnaryCall;
+  submitMisbehaviour(
+    request: MsgSubmitMisbehaviour,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgSubmitMisbehaviourResponse) => void,
+  ): ClientUnaryCall;
+  submitMisbehaviour(
+    request: MsgSubmitMisbehaviour,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgSubmitMisbehaviourResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const MsgClient = makeGenericClientConstructor(MsgService, "ibc.core.client.v1.Msg") as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+};
 
 declare var self: any | undefined;
 declare var window: any | undefined;

@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Coin } from "../../../cosmos/base/v1beta1/coin";
 
@@ -378,42 +390,93 @@ export const MsgSwapSendResponse = {
 };
 
 /** Msg defines the market Msg service. */
-export interface Msg {
+export const MsgService = {
   /**
    * Swap defines a method for swapping coin from one denom to another
    * denom.
    */
-  Swap(request: MsgSwap): Promise<MsgSwapResponse>;
+  swap: {
+    path: "/terra.market.v1beta1.Msg/Swap",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgSwap) => Buffer.from(MsgSwap.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgSwap.decode(value),
+    responseSerialize: (value: MsgSwapResponse) => Buffer.from(MsgSwapResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgSwapResponse.decode(value),
+  },
   /**
    * SwapSend defines a method for swapping and sending coin from a account to other
    * account.
    */
-  SwapSend(request: MsgSwapSend): Promise<MsgSwapSendResponse>;
+  swapSend: {
+    path: "/terra.market.v1beta1.Msg/SwapSend",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgSwapSend) => Buffer.from(MsgSwapSend.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgSwapSend.decode(value),
+    responseSerialize: (value: MsgSwapSendResponse) =>
+      Buffer.from(MsgSwapSendResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgSwapSendResponse.decode(value),
+  },
+} as const;
+
+export interface MsgServer extends UntypedServiceImplementation {
+  /**
+   * Swap defines a method for swapping coin from one denom to another
+   * denom.
+   */
+  swap: handleUnaryCall<MsgSwap, MsgSwapResponse>;
+  /**
+   * SwapSend defines a method for swapping and sending coin from a account to other
+   * account.
+   */
+  swapSend: handleUnaryCall<MsgSwapSend, MsgSwapSendResponse>;
 }
 
-export class MsgClientImpl implements Msg {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Swap = this.Swap.bind(this);
-    this.SwapSend = this.SwapSend.bind(this);
-  }
-  Swap(request: MsgSwap): Promise<MsgSwapResponse> {
-    const data = MsgSwap.encode(request).finish();
-    const promise = this.rpc.request("terra.market.v1beta1.Msg", "Swap", data);
-    return promise.then((data) => MsgSwapResponse.decode(new _m0.Reader(data)));
-  }
-
-  SwapSend(request: MsgSwapSend): Promise<MsgSwapSendResponse> {
-    const data = MsgSwapSend.encode(request).finish();
-    const promise = this.rpc.request("terra.market.v1beta1.Msg", "SwapSend", data);
-    return promise.then((data) => MsgSwapSendResponse.decode(new _m0.Reader(data)));
-  }
+export interface MsgClient extends Client {
+  /**
+   * Swap defines a method for swapping coin from one denom to another
+   * denom.
+   */
+  swap(
+    request: MsgSwap,
+    callback: (error: ServiceError | null, response: MsgSwapResponse) => void,
+  ): ClientUnaryCall;
+  swap(
+    request: MsgSwap,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgSwapResponse) => void,
+  ): ClientUnaryCall;
+  swap(
+    request: MsgSwap,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgSwapResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * SwapSend defines a method for swapping and sending coin from a account to other
+   * account.
+   */
+  swapSend(
+    request: MsgSwapSend,
+    callback: (error: ServiceError | null, response: MsgSwapSendResponse) => void,
+  ): ClientUnaryCall;
+  swapSend(
+    request: MsgSwapSend,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgSwapSendResponse) => void,
+  ): ClientUnaryCall;
+  swapSend(
+    request: MsgSwapSend,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgSwapSendResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const MsgClient = makeGenericClientConstructor(MsgService, "terra.market.v1beta1.Msg") as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

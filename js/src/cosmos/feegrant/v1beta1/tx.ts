@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Any } from "../../../google/protobuf/any";
 
@@ -271,42 +283,97 @@ export const MsgRevokeAllowanceResponse = {
 };
 
 /** Msg defines the feegrant msg service. */
-export interface Msg {
+export const MsgService = {
   /**
    * GrantAllowance grants fee allowance to the grantee on the granter's
    * account with the provided expiration time.
    */
-  GrantAllowance(request: MsgGrantAllowance): Promise<MsgGrantAllowanceResponse>;
+  grantAllowance: {
+    path: "/cosmos.feegrant.v1beta1.Msg/GrantAllowance",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgGrantAllowance) => Buffer.from(MsgGrantAllowance.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgGrantAllowance.decode(value),
+    responseSerialize: (value: MsgGrantAllowanceResponse) =>
+      Buffer.from(MsgGrantAllowanceResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgGrantAllowanceResponse.decode(value),
+  },
   /**
    * RevokeAllowance revokes any fee allowance of granter's account that
    * has been granted to the grantee.
    */
-  RevokeAllowance(request: MsgRevokeAllowance): Promise<MsgRevokeAllowanceResponse>;
+  revokeAllowance: {
+    path: "/cosmos.feegrant.v1beta1.Msg/RevokeAllowance",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgRevokeAllowance) => Buffer.from(MsgRevokeAllowance.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgRevokeAllowance.decode(value),
+    responseSerialize: (value: MsgRevokeAllowanceResponse) =>
+      Buffer.from(MsgRevokeAllowanceResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgRevokeAllowanceResponse.decode(value),
+  },
+} as const;
+
+export interface MsgServer extends UntypedServiceImplementation {
+  /**
+   * GrantAllowance grants fee allowance to the grantee on the granter's
+   * account with the provided expiration time.
+   */
+  grantAllowance: handleUnaryCall<MsgGrantAllowance, MsgGrantAllowanceResponse>;
+  /**
+   * RevokeAllowance revokes any fee allowance of granter's account that
+   * has been granted to the grantee.
+   */
+  revokeAllowance: handleUnaryCall<MsgRevokeAllowance, MsgRevokeAllowanceResponse>;
 }
 
-export class MsgClientImpl implements Msg {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.GrantAllowance = this.GrantAllowance.bind(this);
-    this.RevokeAllowance = this.RevokeAllowance.bind(this);
-  }
-  GrantAllowance(request: MsgGrantAllowance): Promise<MsgGrantAllowanceResponse> {
-    const data = MsgGrantAllowance.encode(request).finish();
-    const promise = this.rpc.request("cosmos.feegrant.v1beta1.Msg", "GrantAllowance", data);
-    return promise.then((data) => MsgGrantAllowanceResponse.decode(new _m0.Reader(data)));
-  }
-
-  RevokeAllowance(request: MsgRevokeAllowance): Promise<MsgRevokeAllowanceResponse> {
-    const data = MsgRevokeAllowance.encode(request).finish();
-    const promise = this.rpc.request("cosmos.feegrant.v1beta1.Msg", "RevokeAllowance", data);
-    return promise.then((data) => MsgRevokeAllowanceResponse.decode(new _m0.Reader(data)));
-  }
+export interface MsgClient extends Client {
+  /**
+   * GrantAllowance grants fee allowance to the grantee on the granter's
+   * account with the provided expiration time.
+   */
+  grantAllowance(
+    request: MsgGrantAllowance,
+    callback: (error: ServiceError | null, response: MsgGrantAllowanceResponse) => void,
+  ): ClientUnaryCall;
+  grantAllowance(
+    request: MsgGrantAllowance,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgGrantAllowanceResponse) => void,
+  ): ClientUnaryCall;
+  grantAllowance(
+    request: MsgGrantAllowance,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgGrantAllowanceResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * RevokeAllowance revokes any fee allowance of granter's account that
+   * has been granted to the grantee.
+   */
+  revokeAllowance(
+    request: MsgRevokeAllowance,
+    callback: (error: ServiceError | null, response: MsgRevokeAllowanceResponse) => void,
+  ): ClientUnaryCall;
+  revokeAllowance(
+    request: MsgRevokeAllowance,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgRevokeAllowanceResponse) => void,
+  ): ClientUnaryCall;
+  revokeAllowance(
+    request: MsgRevokeAllowance,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgRevokeAllowanceResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const MsgClient = makeGenericClientConstructor(
+  MsgService,
+  "cosmos.feegrant.v1beta1.Msg",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Channel, IdentifiedChannel, PacketState } from "../../../../ibc/core/channel/v1/channel";
 import { Height, IdentifiedClientState } from "../../../../ibc/core/client/v1/client";
@@ -2679,171 +2691,491 @@ export const QueryNextSequenceReceiveResponse = {
 };
 
 /** Query provides defines the gRPC querier service */
-export interface Query {
+export const QueryService = {
   /** Channel queries an IBC Channel. */
-  Channel(request: QueryChannelRequest): Promise<QueryChannelResponse>;
+  channel: {
+    path: "/ibc.core.channel.v1.Query/Channel",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryChannelRequest) => Buffer.from(QueryChannelRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryChannelRequest.decode(value),
+    responseSerialize: (value: QueryChannelResponse) =>
+      Buffer.from(QueryChannelResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryChannelResponse.decode(value),
+  },
   /** Channels queries all the IBC channels of a chain. */
-  Channels(request: QueryChannelsRequest): Promise<QueryChannelsResponse>;
+  channels: {
+    path: "/ibc.core.channel.v1.Query/Channels",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryChannelsRequest) =>
+      Buffer.from(QueryChannelsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryChannelsRequest.decode(value),
+    responseSerialize: (value: QueryChannelsResponse) =>
+      Buffer.from(QueryChannelsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryChannelsResponse.decode(value),
+  },
   /**
    * ConnectionChannels queries all the channels associated with a connection
    * end.
    */
-  ConnectionChannels(request: QueryConnectionChannelsRequest): Promise<QueryConnectionChannelsResponse>;
+  connectionChannels: {
+    path: "/ibc.core.channel.v1.Query/ConnectionChannels",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryConnectionChannelsRequest) =>
+      Buffer.from(QueryConnectionChannelsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryConnectionChannelsRequest.decode(value),
+    responseSerialize: (value: QueryConnectionChannelsResponse) =>
+      Buffer.from(QueryConnectionChannelsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryConnectionChannelsResponse.decode(value),
+  },
   /**
    * ChannelClientState queries for the client state for the channel associated
    * with the provided channel identifiers.
    */
-  ChannelClientState(request: QueryChannelClientStateRequest): Promise<QueryChannelClientStateResponse>;
+  channelClientState: {
+    path: "/ibc.core.channel.v1.Query/ChannelClientState",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryChannelClientStateRequest) =>
+      Buffer.from(QueryChannelClientStateRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryChannelClientStateRequest.decode(value),
+    responseSerialize: (value: QueryChannelClientStateResponse) =>
+      Buffer.from(QueryChannelClientStateResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryChannelClientStateResponse.decode(value),
+  },
   /**
    * ChannelConsensusState queries for the consensus state for the channel
    * associated with the provided channel identifiers.
    */
-  ChannelConsensusState(
-    request: QueryChannelConsensusStateRequest,
-  ): Promise<QueryChannelConsensusStateResponse>;
+  channelConsensusState: {
+    path: "/ibc.core.channel.v1.Query/ChannelConsensusState",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryChannelConsensusStateRequest) =>
+      Buffer.from(QueryChannelConsensusStateRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryChannelConsensusStateRequest.decode(value),
+    responseSerialize: (value: QueryChannelConsensusStateResponse) =>
+      Buffer.from(QueryChannelConsensusStateResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryChannelConsensusStateResponse.decode(value),
+  },
   /** PacketCommitment queries a stored packet commitment hash. */
-  PacketCommitment(request: QueryPacketCommitmentRequest): Promise<QueryPacketCommitmentResponse>;
+  packetCommitment: {
+    path: "/ibc.core.channel.v1.Query/PacketCommitment",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryPacketCommitmentRequest) =>
+      Buffer.from(QueryPacketCommitmentRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryPacketCommitmentRequest.decode(value),
+    responseSerialize: (value: QueryPacketCommitmentResponse) =>
+      Buffer.from(QueryPacketCommitmentResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryPacketCommitmentResponse.decode(value),
+  },
   /**
    * PacketCommitments returns all the packet commitments hashes associated
    * with a channel.
    */
-  PacketCommitments(request: QueryPacketCommitmentsRequest): Promise<QueryPacketCommitmentsResponse>;
+  packetCommitments: {
+    path: "/ibc.core.channel.v1.Query/PacketCommitments",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryPacketCommitmentsRequest) =>
+      Buffer.from(QueryPacketCommitmentsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryPacketCommitmentsRequest.decode(value),
+    responseSerialize: (value: QueryPacketCommitmentsResponse) =>
+      Buffer.from(QueryPacketCommitmentsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryPacketCommitmentsResponse.decode(value),
+  },
   /**
    * PacketReceipt queries if a given packet sequence has been received on the
    * queried chain
    */
-  PacketReceipt(request: QueryPacketReceiptRequest): Promise<QueryPacketReceiptResponse>;
+  packetReceipt: {
+    path: "/ibc.core.channel.v1.Query/PacketReceipt",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryPacketReceiptRequest) =>
+      Buffer.from(QueryPacketReceiptRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryPacketReceiptRequest.decode(value),
+    responseSerialize: (value: QueryPacketReceiptResponse) =>
+      Buffer.from(QueryPacketReceiptResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryPacketReceiptResponse.decode(value),
+  },
   /** PacketAcknowledgement queries a stored packet acknowledgement hash. */
-  PacketAcknowledgement(
-    request: QueryPacketAcknowledgementRequest,
-  ): Promise<QueryPacketAcknowledgementResponse>;
+  packetAcknowledgement: {
+    path: "/ibc.core.channel.v1.Query/PacketAcknowledgement",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryPacketAcknowledgementRequest) =>
+      Buffer.from(QueryPacketAcknowledgementRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryPacketAcknowledgementRequest.decode(value),
+    responseSerialize: (value: QueryPacketAcknowledgementResponse) =>
+      Buffer.from(QueryPacketAcknowledgementResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryPacketAcknowledgementResponse.decode(value),
+  },
   /**
    * PacketAcknowledgements returns all the packet acknowledgements associated
    * with a channel.
    */
-  PacketAcknowledgements(
-    request: QueryPacketAcknowledgementsRequest,
-  ): Promise<QueryPacketAcknowledgementsResponse>;
+  packetAcknowledgements: {
+    path: "/ibc.core.channel.v1.Query/PacketAcknowledgements",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryPacketAcknowledgementsRequest) =>
+      Buffer.from(QueryPacketAcknowledgementsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryPacketAcknowledgementsRequest.decode(value),
+    responseSerialize: (value: QueryPacketAcknowledgementsResponse) =>
+      Buffer.from(QueryPacketAcknowledgementsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryPacketAcknowledgementsResponse.decode(value),
+  },
   /**
    * UnreceivedPackets returns all the unreceived IBC packets associated with a
    * channel and sequences.
    */
-  UnreceivedPackets(request: QueryUnreceivedPacketsRequest): Promise<QueryUnreceivedPacketsResponse>;
+  unreceivedPackets: {
+    path: "/ibc.core.channel.v1.Query/UnreceivedPackets",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryUnreceivedPacketsRequest) =>
+      Buffer.from(QueryUnreceivedPacketsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryUnreceivedPacketsRequest.decode(value),
+    responseSerialize: (value: QueryUnreceivedPacketsResponse) =>
+      Buffer.from(QueryUnreceivedPacketsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryUnreceivedPacketsResponse.decode(value),
+  },
   /**
    * UnreceivedAcks returns all the unreceived IBC acknowledgements associated
    * with a channel and sequences.
    */
-  UnreceivedAcks(request: QueryUnreceivedAcksRequest): Promise<QueryUnreceivedAcksResponse>;
+  unreceivedAcks: {
+    path: "/ibc.core.channel.v1.Query/UnreceivedAcks",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryUnreceivedAcksRequest) =>
+      Buffer.from(QueryUnreceivedAcksRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryUnreceivedAcksRequest.decode(value),
+    responseSerialize: (value: QueryUnreceivedAcksResponse) =>
+      Buffer.from(QueryUnreceivedAcksResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryUnreceivedAcksResponse.decode(value),
+  },
   /** NextSequenceReceive returns the next receive sequence for a given channel. */
-  NextSequenceReceive(request: QueryNextSequenceReceiveRequest): Promise<QueryNextSequenceReceiveResponse>;
+  nextSequenceReceive: {
+    path: "/ibc.core.channel.v1.Query/NextSequenceReceive",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryNextSequenceReceiveRequest) =>
+      Buffer.from(QueryNextSequenceReceiveRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryNextSequenceReceiveRequest.decode(value),
+    responseSerialize: (value: QueryNextSequenceReceiveResponse) =>
+      Buffer.from(QueryNextSequenceReceiveResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryNextSequenceReceiveResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** Channel queries an IBC Channel. */
+  channel: handleUnaryCall<QueryChannelRequest, QueryChannelResponse>;
+  /** Channels queries all the IBC channels of a chain. */
+  channels: handleUnaryCall<QueryChannelsRequest, QueryChannelsResponse>;
+  /**
+   * ConnectionChannels queries all the channels associated with a connection
+   * end.
+   */
+  connectionChannels: handleUnaryCall<QueryConnectionChannelsRequest, QueryConnectionChannelsResponse>;
+  /**
+   * ChannelClientState queries for the client state for the channel associated
+   * with the provided channel identifiers.
+   */
+  channelClientState: handleUnaryCall<QueryChannelClientStateRequest, QueryChannelClientStateResponse>;
+  /**
+   * ChannelConsensusState queries for the consensus state for the channel
+   * associated with the provided channel identifiers.
+   */
+  channelConsensusState: handleUnaryCall<
+    QueryChannelConsensusStateRequest,
+    QueryChannelConsensusStateResponse
+  >;
+  /** PacketCommitment queries a stored packet commitment hash. */
+  packetCommitment: handleUnaryCall<QueryPacketCommitmentRequest, QueryPacketCommitmentResponse>;
+  /**
+   * PacketCommitments returns all the packet commitments hashes associated
+   * with a channel.
+   */
+  packetCommitments: handleUnaryCall<QueryPacketCommitmentsRequest, QueryPacketCommitmentsResponse>;
+  /**
+   * PacketReceipt queries if a given packet sequence has been received on the
+   * queried chain
+   */
+  packetReceipt: handleUnaryCall<QueryPacketReceiptRequest, QueryPacketReceiptResponse>;
+  /** PacketAcknowledgement queries a stored packet acknowledgement hash. */
+  packetAcknowledgement: handleUnaryCall<
+    QueryPacketAcknowledgementRequest,
+    QueryPacketAcknowledgementResponse
+  >;
+  /**
+   * PacketAcknowledgements returns all the packet acknowledgements associated
+   * with a channel.
+   */
+  packetAcknowledgements: handleUnaryCall<
+    QueryPacketAcknowledgementsRequest,
+    QueryPacketAcknowledgementsResponse
+  >;
+  /**
+   * UnreceivedPackets returns all the unreceived IBC packets associated with a
+   * channel and sequences.
+   */
+  unreceivedPackets: handleUnaryCall<QueryUnreceivedPacketsRequest, QueryUnreceivedPacketsResponse>;
+  /**
+   * UnreceivedAcks returns all the unreceived IBC acknowledgements associated
+   * with a channel and sequences.
+   */
+  unreceivedAcks: handleUnaryCall<QueryUnreceivedAcksRequest, QueryUnreceivedAcksResponse>;
+  /** NextSequenceReceive returns the next receive sequence for a given channel. */
+  nextSequenceReceive: handleUnaryCall<QueryNextSequenceReceiveRequest, QueryNextSequenceReceiveResponse>;
 }
 
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Channel = this.Channel.bind(this);
-    this.Channels = this.Channels.bind(this);
-    this.ConnectionChannels = this.ConnectionChannels.bind(this);
-    this.ChannelClientState = this.ChannelClientState.bind(this);
-    this.ChannelConsensusState = this.ChannelConsensusState.bind(this);
-    this.PacketCommitment = this.PacketCommitment.bind(this);
-    this.PacketCommitments = this.PacketCommitments.bind(this);
-    this.PacketReceipt = this.PacketReceipt.bind(this);
-    this.PacketAcknowledgement = this.PacketAcknowledgement.bind(this);
-    this.PacketAcknowledgements = this.PacketAcknowledgements.bind(this);
-    this.UnreceivedPackets = this.UnreceivedPackets.bind(this);
-    this.UnreceivedAcks = this.UnreceivedAcks.bind(this);
-    this.NextSequenceReceive = this.NextSequenceReceive.bind(this);
-  }
-  Channel(request: QueryChannelRequest): Promise<QueryChannelResponse> {
-    const data = QueryChannelRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Query", "Channel", data);
-    return promise.then((data) => QueryChannelResponse.decode(new _m0.Reader(data)));
-  }
-
-  Channels(request: QueryChannelsRequest): Promise<QueryChannelsResponse> {
-    const data = QueryChannelsRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Query", "Channels", data);
-    return promise.then((data) => QueryChannelsResponse.decode(new _m0.Reader(data)));
-  }
-
-  ConnectionChannels(request: QueryConnectionChannelsRequest): Promise<QueryConnectionChannelsResponse> {
-    const data = QueryConnectionChannelsRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Query", "ConnectionChannels", data);
-    return promise.then((data) => QueryConnectionChannelsResponse.decode(new _m0.Reader(data)));
-  }
-
-  ChannelClientState(request: QueryChannelClientStateRequest): Promise<QueryChannelClientStateResponse> {
-    const data = QueryChannelClientStateRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Query", "ChannelClientState", data);
-    return promise.then((data) => QueryChannelClientStateResponse.decode(new _m0.Reader(data)));
-  }
-
-  ChannelConsensusState(
+export interface QueryClient extends Client {
+  /** Channel queries an IBC Channel. */
+  channel(
+    request: QueryChannelRequest,
+    callback: (error: ServiceError | null, response: QueryChannelResponse) => void,
+  ): ClientUnaryCall;
+  channel(
+    request: QueryChannelRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryChannelResponse) => void,
+  ): ClientUnaryCall;
+  channel(
+    request: QueryChannelRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryChannelResponse) => void,
+  ): ClientUnaryCall;
+  /** Channels queries all the IBC channels of a chain. */
+  channels(
+    request: QueryChannelsRequest,
+    callback: (error: ServiceError | null, response: QueryChannelsResponse) => void,
+  ): ClientUnaryCall;
+  channels(
+    request: QueryChannelsRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryChannelsResponse) => void,
+  ): ClientUnaryCall;
+  channels(
+    request: QueryChannelsRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryChannelsResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * ConnectionChannels queries all the channels associated with a connection
+   * end.
+   */
+  connectionChannels(
+    request: QueryConnectionChannelsRequest,
+    callback: (error: ServiceError | null, response: QueryConnectionChannelsResponse) => void,
+  ): ClientUnaryCall;
+  connectionChannels(
+    request: QueryConnectionChannelsRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryConnectionChannelsResponse) => void,
+  ): ClientUnaryCall;
+  connectionChannels(
+    request: QueryConnectionChannelsRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryConnectionChannelsResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * ChannelClientState queries for the client state for the channel associated
+   * with the provided channel identifiers.
+   */
+  channelClientState(
+    request: QueryChannelClientStateRequest,
+    callback: (error: ServiceError | null, response: QueryChannelClientStateResponse) => void,
+  ): ClientUnaryCall;
+  channelClientState(
+    request: QueryChannelClientStateRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryChannelClientStateResponse) => void,
+  ): ClientUnaryCall;
+  channelClientState(
+    request: QueryChannelClientStateRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryChannelClientStateResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * ChannelConsensusState queries for the consensus state for the channel
+   * associated with the provided channel identifiers.
+   */
+  channelConsensusState(
     request: QueryChannelConsensusStateRequest,
-  ): Promise<QueryChannelConsensusStateResponse> {
-    const data = QueryChannelConsensusStateRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Query", "ChannelConsensusState", data);
-    return promise.then((data) => QueryChannelConsensusStateResponse.decode(new _m0.Reader(data)));
-  }
-
-  PacketCommitment(request: QueryPacketCommitmentRequest): Promise<QueryPacketCommitmentResponse> {
-    const data = QueryPacketCommitmentRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Query", "PacketCommitment", data);
-    return promise.then((data) => QueryPacketCommitmentResponse.decode(new _m0.Reader(data)));
-  }
-
-  PacketCommitments(request: QueryPacketCommitmentsRequest): Promise<QueryPacketCommitmentsResponse> {
-    const data = QueryPacketCommitmentsRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Query", "PacketCommitments", data);
-    return promise.then((data) => QueryPacketCommitmentsResponse.decode(new _m0.Reader(data)));
-  }
-
-  PacketReceipt(request: QueryPacketReceiptRequest): Promise<QueryPacketReceiptResponse> {
-    const data = QueryPacketReceiptRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Query", "PacketReceipt", data);
-    return promise.then((data) => QueryPacketReceiptResponse.decode(new _m0.Reader(data)));
-  }
-
-  PacketAcknowledgement(
+    callback: (error: ServiceError | null, response: QueryChannelConsensusStateResponse) => void,
+  ): ClientUnaryCall;
+  channelConsensusState(
+    request: QueryChannelConsensusStateRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryChannelConsensusStateResponse) => void,
+  ): ClientUnaryCall;
+  channelConsensusState(
+    request: QueryChannelConsensusStateRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryChannelConsensusStateResponse) => void,
+  ): ClientUnaryCall;
+  /** PacketCommitment queries a stored packet commitment hash. */
+  packetCommitment(
+    request: QueryPacketCommitmentRequest,
+    callback: (error: ServiceError | null, response: QueryPacketCommitmentResponse) => void,
+  ): ClientUnaryCall;
+  packetCommitment(
+    request: QueryPacketCommitmentRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryPacketCommitmentResponse) => void,
+  ): ClientUnaryCall;
+  packetCommitment(
+    request: QueryPacketCommitmentRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryPacketCommitmentResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * PacketCommitments returns all the packet commitments hashes associated
+   * with a channel.
+   */
+  packetCommitments(
+    request: QueryPacketCommitmentsRequest,
+    callback: (error: ServiceError | null, response: QueryPacketCommitmentsResponse) => void,
+  ): ClientUnaryCall;
+  packetCommitments(
+    request: QueryPacketCommitmentsRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryPacketCommitmentsResponse) => void,
+  ): ClientUnaryCall;
+  packetCommitments(
+    request: QueryPacketCommitmentsRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryPacketCommitmentsResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * PacketReceipt queries if a given packet sequence has been received on the
+   * queried chain
+   */
+  packetReceipt(
+    request: QueryPacketReceiptRequest,
+    callback: (error: ServiceError | null, response: QueryPacketReceiptResponse) => void,
+  ): ClientUnaryCall;
+  packetReceipt(
+    request: QueryPacketReceiptRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryPacketReceiptResponse) => void,
+  ): ClientUnaryCall;
+  packetReceipt(
+    request: QueryPacketReceiptRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryPacketReceiptResponse) => void,
+  ): ClientUnaryCall;
+  /** PacketAcknowledgement queries a stored packet acknowledgement hash. */
+  packetAcknowledgement(
     request: QueryPacketAcknowledgementRequest,
-  ): Promise<QueryPacketAcknowledgementResponse> {
-    const data = QueryPacketAcknowledgementRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Query", "PacketAcknowledgement", data);
-    return promise.then((data) => QueryPacketAcknowledgementResponse.decode(new _m0.Reader(data)));
-  }
-
-  PacketAcknowledgements(
+    callback: (error: ServiceError | null, response: QueryPacketAcknowledgementResponse) => void,
+  ): ClientUnaryCall;
+  packetAcknowledgement(
+    request: QueryPacketAcknowledgementRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryPacketAcknowledgementResponse) => void,
+  ): ClientUnaryCall;
+  packetAcknowledgement(
+    request: QueryPacketAcknowledgementRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryPacketAcknowledgementResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * PacketAcknowledgements returns all the packet acknowledgements associated
+   * with a channel.
+   */
+  packetAcknowledgements(
     request: QueryPacketAcknowledgementsRequest,
-  ): Promise<QueryPacketAcknowledgementsResponse> {
-    const data = QueryPacketAcknowledgementsRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Query", "PacketAcknowledgements", data);
-    return promise.then((data) => QueryPacketAcknowledgementsResponse.decode(new _m0.Reader(data)));
-  }
-
-  UnreceivedPackets(request: QueryUnreceivedPacketsRequest): Promise<QueryUnreceivedPacketsResponse> {
-    const data = QueryUnreceivedPacketsRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Query", "UnreceivedPackets", data);
-    return promise.then((data) => QueryUnreceivedPacketsResponse.decode(new _m0.Reader(data)));
-  }
-
-  UnreceivedAcks(request: QueryUnreceivedAcksRequest): Promise<QueryUnreceivedAcksResponse> {
-    const data = QueryUnreceivedAcksRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Query", "UnreceivedAcks", data);
-    return promise.then((data) => QueryUnreceivedAcksResponse.decode(new _m0.Reader(data)));
-  }
-
-  NextSequenceReceive(request: QueryNextSequenceReceiveRequest): Promise<QueryNextSequenceReceiveResponse> {
-    const data = QueryNextSequenceReceiveRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Query", "NextSequenceReceive", data);
-    return promise.then((data) => QueryNextSequenceReceiveResponse.decode(new _m0.Reader(data)));
-  }
+    callback: (error: ServiceError | null, response: QueryPacketAcknowledgementsResponse) => void,
+  ): ClientUnaryCall;
+  packetAcknowledgements(
+    request: QueryPacketAcknowledgementsRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryPacketAcknowledgementsResponse) => void,
+  ): ClientUnaryCall;
+  packetAcknowledgements(
+    request: QueryPacketAcknowledgementsRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryPacketAcknowledgementsResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * UnreceivedPackets returns all the unreceived IBC packets associated with a
+   * channel and sequences.
+   */
+  unreceivedPackets(
+    request: QueryUnreceivedPacketsRequest,
+    callback: (error: ServiceError | null, response: QueryUnreceivedPacketsResponse) => void,
+  ): ClientUnaryCall;
+  unreceivedPackets(
+    request: QueryUnreceivedPacketsRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryUnreceivedPacketsResponse) => void,
+  ): ClientUnaryCall;
+  unreceivedPackets(
+    request: QueryUnreceivedPacketsRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryUnreceivedPacketsResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * UnreceivedAcks returns all the unreceived IBC acknowledgements associated
+   * with a channel and sequences.
+   */
+  unreceivedAcks(
+    request: QueryUnreceivedAcksRequest,
+    callback: (error: ServiceError | null, response: QueryUnreceivedAcksResponse) => void,
+  ): ClientUnaryCall;
+  unreceivedAcks(
+    request: QueryUnreceivedAcksRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryUnreceivedAcksResponse) => void,
+  ): ClientUnaryCall;
+  unreceivedAcks(
+    request: QueryUnreceivedAcksRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryUnreceivedAcksResponse) => void,
+  ): ClientUnaryCall;
+  /** NextSequenceReceive returns the next receive sequence for a given channel. */
+  nextSequenceReceive(
+    request: QueryNextSequenceReceiveRequest,
+    callback: (error: ServiceError | null, response: QueryNextSequenceReceiveResponse) => void,
+  ): ClientUnaryCall;
+  nextSequenceReceive(
+    request: QueryNextSequenceReceiveRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryNextSequenceReceiveResponse) => void,
+  ): ClientUnaryCall;
+  nextSequenceReceive(
+    request: QueryNextSequenceReceiveRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryNextSequenceReceiveResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "ibc.core.channel.v1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 declare var self: any | undefined;
 declare var window: any | undefined;

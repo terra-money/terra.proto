@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Coin } from "../../../cosmos/base/v1beta1/coin";
 import { Params } from "../../../terra/market/v1beta1/market";
@@ -356,45 +368,108 @@ export const QueryParamsResponse = {
 };
 
 /** Query defines the gRPC querier service. */
-export interface Query {
+export const QueryService = {
   /** Swap returns simulated swap amount. */
-  Swap(request: QuerySwapRequest): Promise<QuerySwapResponse>;
+  swap: {
+    path: "/terra.market.v1beta1.Query/Swap",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QuerySwapRequest) => Buffer.from(QuerySwapRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QuerySwapRequest.decode(value),
+    responseSerialize: (value: QuerySwapResponse) => Buffer.from(QuerySwapResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QuerySwapResponse.decode(value),
+  },
   /** TerraPoolDelta returns terra_pool_delta amount. */
-  TerraPoolDelta(request: QueryTerraPoolDeltaRequest): Promise<QueryTerraPoolDeltaResponse>;
+  terraPoolDelta: {
+    path: "/terra.market.v1beta1.Query/TerraPoolDelta",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryTerraPoolDeltaRequest) =>
+      Buffer.from(QueryTerraPoolDeltaRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryTerraPoolDeltaRequest.decode(value),
+    responseSerialize: (value: QueryTerraPoolDeltaResponse) =>
+      Buffer.from(QueryTerraPoolDeltaResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryTerraPoolDeltaResponse.decode(value),
+  },
   /** Params queries all parameters. */
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+  params: {
+    path: "/terra.market.v1beta1.Query/Params",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryParamsRequest) => Buffer.from(QueryParamsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryParamsRequest.decode(value),
+    responseSerialize: (value: QueryParamsResponse) =>
+      Buffer.from(QueryParamsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryParamsResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** Swap returns simulated swap amount. */
+  swap: handleUnaryCall<QuerySwapRequest, QuerySwapResponse>;
+  /** TerraPoolDelta returns terra_pool_delta amount. */
+  terraPoolDelta: handleUnaryCall<QueryTerraPoolDeltaRequest, QueryTerraPoolDeltaResponse>;
+  /** Params queries all parameters. */
+  params: handleUnaryCall<QueryParamsRequest, QueryParamsResponse>;
 }
 
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Swap = this.Swap.bind(this);
-    this.TerraPoolDelta = this.TerraPoolDelta.bind(this);
-    this.Params = this.Params.bind(this);
-  }
-  Swap(request: QuerySwapRequest): Promise<QuerySwapResponse> {
-    const data = QuerySwapRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.market.v1beta1.Query", "Swap", data);
-    return promise.then((data) => QuerySwapResponse.decode(new _m0.Reader(data)));
-  }
-
-  TerraPoolDelta(request: QueryTerraPoolDeltaRequest): Promise<QueryTerraPoolDeltaResponse> {
-    const data = QueryTerraPoolDeltaRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.market.v1beta1.Query", "TerraPoolDelta", data);
-    return promise.then((data) => QueryTerraPoolDeltaResponse.decode(new _m0.Reader(data)));
-  }
-
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
-    const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request("terra.market.v1beta1.Query", "Params", data);
-    return promise.then((data) => QueryParamsResponse.decode(new _m0.Reader(data)));
-  }
+export interface QueryClient extends Client {
+  /** Swap returns simulated swap amount. */
+  swap(
+    request: QuerySwapRequest,
+    callback: (error: ServiceError | null, response: QuerySwapResponse) => void,
+  ): ClientUnaryCall;
+  swap(
+    request: QuerySwapRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QuerySwapResponse) => void,
+  ): ClientUnaryCall;
+  swap(
+    request: QuerySwapRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QuerySwapResponse) => void,
+  ): ClientUnaryCall;
+  /** TerraPoolDelta returns terra_pool_delta amount. */
+  terraPoolDelta(
+    request: QueryTerraPoolDeltaRequest,
+    callback: (error: ServiceError | null, response: QueryTerraPoolDeltaResponse) => void,
+  ): ClientUnaryCall;
+  terraPoolDelta(
+    request: QueryTerraPoolDeltaRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryTerraPoolDeltaResponse) => void,
+  ): ClientUnaryCall;
+  terraPoolDelta(
+    request: QueryTerraPoolDeltaRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryTerraPoolDeltaResponse) => void,
+  ): ClientUnaryCall;
+  /** Params queries all parameters. */
+  params(
+    request: QueryParamsRequest,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "terra.market.v1beta1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 declare var self: any | undefined;
 declare var window: any | undefined;

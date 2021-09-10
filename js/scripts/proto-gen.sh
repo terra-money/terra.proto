@@ -16,7 +16,7 @@ TERRAD_THIRD_PARTY_DIR="../terrad/third_party/proto"
 protoc \
   --plugin="protoc-gen-ts_proto=${PROTOC_GEN_TS_PROTO_PATH}" \
   --ts_proto_out="${OUT_DIR}" \
-  --ts_proto_opt="esModuleInterop=true,forceLong=long,useOptionals=true" \
+  --ts_proto_opt="esModuleInterop=true,forceLong=long,useOptionals=true,outputServices=grpc-js" \
   --proto_path="$TERRAD_DIR" \
   --proto_path="$TERRAD_THIRD_PARTY_DIR" \
   $(find ${TERRAD_DIR} ${TERRAD_THIRD_PARTY_DIR} -path -prune -o -name '*.proto' -print0 | xargs -0)

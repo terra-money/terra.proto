@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "cosmos.base.reflection.v1beta1";
@@ -248,50 +260,103 @@ export const ListImplementationsResponse = {
 };
 
 /** ReflectionService defines a service for interface reflection. */
-export interface ReflectionService {
+export const ReflectionServiceService = {
   /**
    * ListAllInterfaces lists all the interfaces registered in the interface
    * registry.
    */
-  ListAllInterfaces(request: ListAllInterfacesRequest): Promise<ListAllInterfacesResponse>;
+  listAllInterfaces: {
+    path: "/cosmos.base.reflection.v1beta1.ReflectionService/ListAllInterfaces",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: ListAllInterfacesRequest) =>
+      Buffer.from(ListAllInterfacesRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => ListAllInterfacesRequest.decode(value),
+    responseSerialize: (value: ListAllInterfacesResponse) =>
+      Buffer.from(ListAllInterfacesResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ListAllInterfacesResponse.decode(value),
+  },
   /**
    * ListImplementations list all the concrete types that implement a given
    * interface.
    */
-  ListImplementations(request: ListImplementationsRequest): Promise<ListImplementationsResponse>;
+  listImplementations: {
+    path: "/cosmos.base.reflection.v1beta1.ReflectionService/ListImplementations",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: ListImplementationsRequest) =>
+      Buffer.from(ListImplementationsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => ListImplementationsRequest.decode(value),
+    responseSerialize: (value: ListImplementationsResponse) =>
+      Buffer.from(ListImplementationsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => ListImplementationsResponse.decode(value),
+  },
+} as const;
+
+export interface ReflectionServiceServer extends UntypedServiceImplementation {
+  /**
+   * ListAllInterfaces lists all the interfaces registered in the interface
+   * registry.
+   */
+  listAllInterfaces: handleUnaryCall<ListAllInterfacesRequest, ListAllInterfacesResponse>;
+  /**
+   * ListImplementations list all the concrete types that implement a given
+   * interface.
+   */
+  listImplementations: handleUnaryCall<ListImplementationsRequest, ListImplementationsResponse>;
 }
 
-export class ReflectionServiceClientImpl implements ReflectionService {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.ListAllInterfaces = this.ListAllInterfaces.bind(this);
-    this.ListImplementations = this.ListImplementations.bind(this);
-  }
-  ListAllInterfaces(request: ListAllInterfacesRequest): Promise<ListAllInterfacesResponse> {
-    const data = ListAllInterfacesRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "cosmos.base.reflection.v1beta1.ReflectionService",
-      "ListAllInterfaces",
-      data,
-    );
-    return promise.then((data) => ListAllInterfacesResponse.decode(new _m0.Reader(data)));
-  }
-
-  ListImplementations(request: ListImplementationsRequest): Promise<ListImplementationsResponse> {
-    const data = ListImplementationsRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "cosmos.base.reflection.v1beta1.ReflectionService",
-      "ListImplementations",
-      data,
-    );
-    return promise.then((data) => ListImplementationsResponse.decode(new _m0.Reader(data)));
-  }
+export interface ReflectionServiceClient extends Client {
+  /**
+   * ListAllInterfaces lists all the interfaces registered in the interface
+   * registry.
+   */
+  listAllInterfaces(
+    request: ListAllInterfacesRequest,
+    callback: (error: ServiceError | null, response: ListAllInterfacesResponse) => void,
+  ): ClientUnaryCall;
+  listAllInterfaces(
+    request: ListAllInterfacesRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ListAllInterfacesResponse) => void,
+  ): ClientUnaryCall;
+  listAllInterfaces(
+    request: ListAllInterfacesRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ListAllInterfacesResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * ListImplementations list all the concrete types that implement a given
+   * interface.
+   */
+  listImplementations(
+    request: ListImplementationsRequest,
+    callback: (error: ServiceError | null, response: ListImplementationsResponse) => void,
+  ): ClientUnaryCall;
+  listImplementations(
+    request: ListImplementationsRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: ListImplementationsResponse) => void,
+  ): ClientUnaryCall;
+  listImplementations(
+    request: ListImplementationsRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: ListImplementationsResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const ReflectionServiceClient = makeGenericClientConstructor(
+  ReflectionServiceService,
+  "cosmos.base.reflection.v1beta1.ReflectionService",
+) as unknown as {
+  new (
+    address: string,
+    credentials: ChannelCredentials,
+    options?: Partial<ChannelOptions>,
+  ): ReflectionServiceClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

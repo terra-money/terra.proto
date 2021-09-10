@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Grant } from "../../../cosmos/feegrant/v1beta1/feegrant";
 import { PageRequest, PageResponse } from "../../../cosmos/base/query/v1beta1/pagination";
@@ -317,36 +329,81 @@ export const QueryAllowancesResponse = {
 };
 
 /** Query defines the gRPC querier service. */
-export interface Query {
+export const QueryService = {
   /** Allowance returns fee granted to the grantee by the granter. */
-  Allowance(request: QueryAllowanceRequest): Promise<QueryAllowanceResponse>;
+  allowance: {
+    path: "/cosmos.feegrant.v1beta1.Query/Allowance",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryAllowanceRequest) =>
+      Buffer.from(QueryAllowanceRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryAllowanceRequest.decode(value),
+    responseSerialize: (value: QueryAllowanceResponse) =>
+      Buffer.from(QueryAllowanceResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryAllowanceResponse.decode(value),
+  },
   /** Allowances returns all the grants for address. */
-  Allowances(request: QueryAllowancesRequest): Promise<QueryAllowancesResponse>;
+  allowances: {
+    path: "/cosmos.feegrant.v1beta1.Query/Allowances",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryAllowancesRequest) =>
+      Buffer.from(QueryAllowancesRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryAllowancesRequest.decode(value),
+    responseSerialize: (value: QueryAllowancesResponse) =>
+      Buffer.from(QueryAllowancesResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryAllowancesResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** Allowance returns fee granted to the grantee by the granter. */
+  allowance: handleUnaryCall<QueryAllowanceRequest, QueryAllowanceResponse>;
+  /** Allowances returns all the grants for address. */
+  allowances: handleUnaryCall<QueryAllowancesRequest, QueryAllowancesResponse>;
 }
 
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Allowance = this.Allowance.bind(this);
-    this.Allowances = this.Allowances.bind(this);
-  }
-  Allowance(request: QueryAllowanceRequest): Promise<QueryAllowanceResponse> {
-    const data = QueryAllowanceRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.feegrant.v1beta1.Query", "Allowance", data);
-    return promise.then((data) => QueryAllowanceResponse.decode(new _m0.Reader(data)));
-  }
-
-  Allowances(request: QueryAllowancesRequest): Promise<QueryAllowancesResponse> {
-    const data = QueryAllowancesRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.feegrant.v1beta1.Query", "Allowances", data);
-    return promise.then((data) => QueryAllowancesResponse.decode(new _m0.Reader(data)));
-  }
+export interface QueryClient extends Client {
+  /** Allowance returns fee granted to the grantee by the granter. */
+  allowance(
+    request: QueryAllowanceRequest,
+    callback: (error: ServiceError | null, response: QueryAllowanceResponse) => void,
+  ): ClientUnaryCall;
+  allowance(
+    request: QueryAllowanceRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryAllowanceResponse) => void,
+  ): ClientUnaryCall;
+  allowance(
+    request: QueryAllowanceRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryAllowanceResponse) => void,
+  ): ClientUnaryCall;
+  /** Allowances returns all the grants for address. */
+  allowances(
+    request: QueryAllowancesRequest,
+    callback: (error: ServiceError | null, response: QueryAllowancesResponse) => void,
+  ): ClientUnaryCall;
+  allowances(
+    request: QueryAllowancesRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryAllowancesResponse) => void,
+  ): ClientUnaryCall;
+  allowances(
+    request: QueryAllowancesRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryAllowancesResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "cosmos.feegrant.v1beta1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

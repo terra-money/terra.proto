@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import {
   Proposal,
@@ -1259,90 +1271,255 @@ export const QueryTallyResultResponse = {
 };
 
 /** Query defines the gRPC querier service for gov module */
-export interface Query {
+export const QueryService = {
   /** Proposal queries proposal details based on ProposalID. */
-  Proposal(request: QueryProposalRequest): Promise<QueryProposalResponse>;
+  proposal: {
+    path: "/cosmos.gov.v1beta1.Query/Proposal",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryProposalRequest) =>
+      Buffer.from(QueryProposalRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryProposalRequest.decode(value),
+    responseSerialize: (value: QueryProposalResponse) =>
+      Buffer.from(QueryProposalResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryProposalResponse.decode(value),
+  },
   /** Proposals queries all proposals based on given status. */
-  Proposals(request: QueryProposalsRequest): Promise<QueryProposalsResponse>;
+  proposals: {
+    path: "/cosmos.gov.v1beta1.Query/Proposals",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryProposalsRequest) =>
+      Buffer.from(QueryProposalsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryProposalsRequest.decode(value),
+    responseSerialize: (value: QueryProposalsResponse) =>
+      Buffer.from(QueryProposalsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryProposalsResponse.decode(value),
+  },
   /** Vote queries voted information based on proposalID, voterAddr. */
-  Vote(request: QueryVoteRequest): Promise<QueryVoteResponse>;
+  vote: {
+    path: "/cosmos.gov.v1beta1.Query/Vote",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryVoteRequest) => Buffer.from(QueryVoteRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryVoteRequest.decode(value),
+    responseSerialize: (value: QueryVoteResponse) => Buffer.from(QueryVoteResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryVoteResponse.decode(value),
+  },
   /** Votes queries votes of a given proposal. */
-  Votes(request: QueryVotesRequest): Promise<QueryVotesResponse>;
+  votes: {
+    path: "/cosmos.gov.v1beta1.Query/Votes",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryVotesRequest) => Buffer.from(QueryVotesRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryVotesRequest.decode(value),
+    responseSerialize: (value: QueryVotesResponse) => Buffer.from(QueryVotesResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryVotesResponse.decode(value),
+  },
   /** Params queries all parameters of the gov module. */
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+  params: {
+    path: "/cosmos.gov.v1beta1.Query/Params",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryParamsRequest) => Buffer.from(QueryParamsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryParamsRequest.decode(value),
+    responseSerialize: (value: QueryParamsResponse) =>
+      Buffer.from(QueryParamsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryParamsResponse.decode(value),
+  },
   /** Deposit queries single deposit information based proposalID, depositAddr. */
-  Deposit(request: QueryDepositRequest): Promise<QueryDepositResponse>;
+  deposit: {
+    path: "/cosmos.gov.v1beta1.Query/Deposit",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryDepositRequest) => Buffer.from(QueryDepositRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryDepositRequest.decode(value),
+    responseSerialize: (value: QueryDepositResponse) =>
+      Buffer.from(QueryDepositResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryDepositResponse.decode(value),
+  },
   /** Deposits queries all deposits of a single proposal. */
-  Deposits(request: QueryDepositsRequest): Promise<QueryDepositsResponse>;
+  deposits: {
+    path: "/cosmos.gov.v1beta1.Query/Deposits",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryDepositsRequest) =>
+      Buffer.from(QueryDepositsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryDepositsRequest.decode(value),
+    responseSerialize: (value: QueryDepositsResponse) =>
+      Buffer.from(QueryDepositsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryDepositsResponse.decode(value),
+  },
   /** TallyResult queries the tally of a proposal vote. */
-  TallyResult(request: QueryTallyResultRequest): Promise<QueryTallyResultResponse>;
+  tallyResult: {
+    path: "/cosmos.gov.v1beta1.Query/TallyResult",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryTallyResultRequest) =>
+      Buffer.from(QueryTallyResultRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryTallyResultRequest.decode(value),
+    responseSerialize: (value: QueryTallyResultResponse) =>
+      Buffer.from(QueryTallyResultResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryTallyResultResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** Proposal queries proposal details based on ProposalID. */
+  proposal: handleUnaryCall<QueryProposalRequest, QueryProposalResponse>;
+  /** Proposals queries all proposals based on given status. */
+  proposals: handleUnaryCall<QueryProposalsRequest, QueryProposalsResponse>;
+  /** Vote queries voted information based on proposalID, voterAddr. */
+  vote: handleUnaryCall<QueryVoteRequest, QueryVoteResponse>;
+  /** Votes queries votes of a given proposal. */
+  votes: handleUnaryCall<QueryVotesRequest, QueryVotesResponse>;
+  /** Params queries all parameters of the gov module. */
+  params: handleUnaryCall<QueryParamsRequest, QueryParamsResponse>;
+  /** Deposit queries single deposit information based proposalID, depositAddr. */
+  deposit: handleUnaryCall<QueryDepositRequest, QueryDepositResponse>;
+  /** Deposits queries all deposits of a single proposal. */
+  deposits: handleUnaryCall<QueryDepositsRequest, QueryDepositsResponse>;
+  /** TallyResult queries the tally of a proposal vote. */
+  tallyResult: handleUnaryCall<QueryTallyResultRequest, QueryTallyResultResponse>;
 }
 
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Proposal = this.Proposal.bind(this);
-    this.Proposals = this.Proposals.bind(this);
-    this.Vote = this.Vote.bind(this);
-    this.Votes = this.Votes.bind(this);
-    this.Params = this.Params.bind(this);
-    this.Deposit = this.Deposit.bind(this);
-    this.Deposits = this.Deposits.bind(this);
-    this.TallyResult = this.TallyResult.bind(this);
-  }
-  Proposal(request: QueryProposalRequest): Promise<QueryProposalResponse> {
-    const data = QueryProposalRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.gov.v1beta1.Query", "Proposal", data);
-    return promise.then((data) => QueryProposalResponse.decode(new _m0.Reader(data)));
-  }
-
-  Proposals(request: QueryProposalsRequest): Promise<QueryProposalsResponse> {
-    const data = QueryProposalsRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.gov.v1beta1.Query", "Proposals", data);
-    return promise.then((data) => QueryProposalsResponse.decode(new _m0.Reader(data)));
-  }
-
-  Vote(request: QueryVoteRequest): Promise<QueryVoteResponse> {
-    const data = QueryVoteRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.gov.v1beta1.Query", "Vote", data);
-    return promise.then((data) => QueryVoteResponse.decode(new _m0.Reader(data)));
-  }
-
-  Votes(request: QueryVotesRequest): Promise<QueryVotesResponse> {
-    const data = QueryVotesRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.gov.v1beta1.Query", "Votes", data);
-    return promise.then((data) => QueryVotesResponse.decode(new _m0.Reader(data)));
-  }
-
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
-    const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.gov.v1beta1.Query", "Params", data);
-    return promise.then((data) => QueryParamsResponse.decode(new _m0.Reader(data)));
-  }
-
-  Deposit(request: QueryDepositRequest): Promise<QueryDepositResponse> {
-    const data = QueryDepositRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.gov.v1beta1.Query", "Deposit", data);
-    return promise.then((data) => QueryDepositResponse.decode(new _m0.Reader(data)));
-  }
-
-  Deposits(request: QueryDepositsRequest): Promise<QueryDepositsResponse> {
-    const data = QueryDepositsRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.gov.v1beta1.Query", "Deposits", data);
-    return promise.then((data) => QueryDepositsResponse.decode(new _m0.Reader(data)));
-  }
-
-  TallyResult(request: QueryTallyResultRequest): Promise<QueryTallyResultResponse> {
-    const data = QueryTallyResultRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.gov.v1beta1.Query", "TallyResult", data);
-    return promise.then((data) => QueryTallyResultResponse.decode(new _m0.Reader(data)));
-  }
+export interface QueryClient extends Client {
+  /** Proposal queries proposal details based on ProposalID. */
+  proposal(
+    request: QueryProposalRequest,
+    callback: (error: ServiceError | null, response: QueryProposalResponse) => void,
+  ): ClientUnaryCall;
+  proposal(
+    request: QueryProposalRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryProposalResponse) => void,
+  ): ClientUnaryCall;
+  proposal(
+    request: QueryProposalRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryProposalResponse) => void,
+  ): ClientUnaryCall;
+  /** Proposals queries all proposals based on given status. */
+  proposals(
+    request: QueryProposalsRequest,
+    callback: (error: ServiceError | null, response: QueryProposalsResponse) => void,
+  ): ClientUnaryCall;
+  proposals(
+    request: QueryProposalsRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryProposalsResponse) => void,
+  ): ClientUnaryCall;
+  proposals(
+    request: QueryProposalsRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryProposalsResponse) => void,
+  ): ClientUnaryCall;
+  /** Vote queries voted information based on proposalID, voterAddr. */
+  vote(
+    request: QueryVoteRequest,
+    callback: (error: ServiceError | null, response: QueryVoteResponse) => void,
+  ): ClientUnaryCall;
+  vote(
+    request: QueryVoteRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryVoteResponse) => void,
+  ): ClientUnaryCall;
+  vote(
+    request: QueryVoteRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryVoteResponse) => void,
+  ): ClientUnaryCall;
+  /** Votes queries votes of a given proposal. */
+  votes(
+    request: QueryVotesRequest,
+    callback: (error: ServiceError | null, response: QueryVotesResponse) => void,
+  ): ClientUnaryCall;
+  votes(
+    request: QueryVotesRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryVotesResponse) => void,
+  ): ClientUnaryCall;
+  votes(
+    request: QueryVotesRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryVotesResponse) => void,
+  ): ClientUnaryCall;
+  /** Params queries all parameters of the gov module. */
+  params(
+    request: QueryParamsRequest,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  /** Deposit queries single deposit information based proposalID, depositAddr. */
+  deposit(
+    request: QueryDepositRequest,
+    callback: (error: ServiceError | null, response: QueryDepositResponse) => void,
+  ): ClientUnaryCall;
+  deposit(
+    request: QueryDepositRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryDepositResponse) => void,
+  ): ClientUnaryCall;
+  deposit(
+    request: QueryDepositRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryDepositResponse) => void,
+  ): ClientUnaryCall;
+  /** Deposits queries all deposits of a single proposal. */
+  deposits(
+    request: QueryDepositsRequest,
+    callback: (error: ServiceError | null, response: QueryDepositsResponse) => void,
+  ): ClientUnaryCall;
+  deposits(
+    request: QueryDepositsRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryDepositsResponse) => void,
+  ): ClientUnaryCall;
+  deposits(
+    request: QueryDepositsRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryDepositsResponse) => void,
+  ): ClientUnaryCall;
+  /** TallyResult queries the tally of a proposal vote. */
+  tallyResult(
+    request: QueryTallyResultRequest,
+    callback: (error: ServiceError | null, response: QueryTallyResultResponse) => void,
+  ): ClientUnaryCall;
+  tallyResult(
+    request: QueryTallyResultRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryTallyResultResponse) => void,
+  ): ClientUnaryCall;
+  tallyResult(
+    request: QueryTallyResultRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryTallyResultResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "cosmos.gov.v1beta1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

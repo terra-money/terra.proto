@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Any } from "../../../../google/protobuf/any";
 import {
@@ -1210,100 +1222,282 @@ export const QueryUpgradedConsensusStateResponse = {
 };
 
 /** Query provides defines the gRPC querier service */
-export interface Query {
+export const QueryService = {
   /** ClientState queries an IBC light client. */
-  ClientState(request: QueryClientStateRequest): Promise<QueryClientStateResponse>;
+  clientState: {
+    path: "/ibc.core.client.v1.Query/ClientState",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryClientStateRequest) =>
+      Buffer.from(QueryClientStateRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryClientStateRequest.decode(value),
+    responseSerialize: (value: QueryClientStateResponse) =>
+      Buffer.from(QueryClientStateResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryClientStateResponse.decode(value),
+  },
   /** ClientStates queries all the IBC light clients of a chain. */
-  ClientStates(request: QueryClientStatesRequest): Promise<QueryClientStatesResponse>;
+  clientStates: {
+    path: "/ibc.core.client.v1.Query/ClientStates",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryClientStatesRequest) =>
+      Buffer.from(QueryClientStatesRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryClientStatesRequest.decode(value),
+    responseSerialize: (value: QueryClientStatesResponse) =>
+      Buffer.from(QueryClientStatesResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryClientStatesResponse.decode(value),
+  },
   /**
    * ConsensusState queries a consensus state associated with a client state at
    * a given height.
    */
-  ConsensusState(request: QueryConsensusStateRequest): Promise<QueryConsensusStateResponse>;
+  consensusState: {
+    path: "/ibc.core.client.v1.Query/ConsensusState",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryConsensusStateRequest) =>
+      Buffer.from(QueryConsensusStateRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryConsensusStateRequest.decode(value),
+    responseSerialize: (value: QueryConsensusStateResponse) =>
+      Buffer.from(QueryConsensusStateResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryConsensusStateResponse.decode(value),
+  },
   /**
    * ConsensusStates queries all the consensus state associated with a given
    * client.
    */
-  ConsensusStates(request: QueryConsensusStatesRequest): Promise<QueryConsensusStatesResponse>;
+  consensusStates: {
+    path: "/ibc.core.client.v1.Query/ConsensusStates",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryConsensusStatesRequest) =>
+      Buffer.from(QueryConsensusStatesRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryConsensusStatesRequest.decode(value),
+    responseSerialize: (value: QueryConsensusStatesResponse) =>
+      Buffer.from(QueryConsensusStatesResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryConsensusStatesResponse.decode(value),
+  },
   /** Status queries the status of an IBC client. */
-  ClientStatus(request: QueryClientStatusRequest): Promise<QueryClientStatusResponse>;
+  clientStatus: {
+    path: "/ibc.core.client.v1.Query/ClientStatus",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryClientStatusRequest) =>
+      Buffer.from(QueryClientStatusRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryClientStatusRequest.decode(value),
+    responseSerialize: (value: QueryClientStatusResponse) =>
+      Buffer.from(QueryClientStatusResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryClientStatusResponse.decode(value),
+  },
   /** ClientParams queries all parameters of the ibc client. */
-  ClientParams(request: QueryClientParamsRequest): Promise<QueryClientParamsResponse>;
+  clientParams: {
+    path: "/ibc.core.client.v1.Query/ClientParams",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryClientParamsRequest) =>
+      Buffer.from(QueryClientParamsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryClientParamsRequest.decode(value),
+    responseSerialize: (value: QueryClientParamsResponse) =>
+      Buffer.from(QueryClientParamsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryClientParamsResponse.decode(value),
+  },
   /** UpgradedClientState queries an Upgraded IBC light client. */
-  UpgradedClientState(request: QueryUpgradedClientStateRequest): Promise<QueryUpgradedClientStateResponse>;
+  upgradedClientState: {
+    path: "/ibc.core.client.v1.Query/UpgradedClientState",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryUpgradedClientStateRequest) =>
+      Buffer.from(QueryUpgradedClientStateRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryUpgradedClientStateRequest.decode(value),
+    responseSerialize: (value: QueryUpgradedClientStateResponse) =>
+      Buffer.from(QueryUpgradedClientStateResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryUpgradedClientStateResponse.decode(value),
+  },
   /** UpgradedConsensusState queries an Upgraded IBC consensus state. */
-  UpgradedConsensusState(
+  upgradedConsensusState: {
+    path: "/ibc.core.client.v1.Query/UpgradedConsensusState",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryUpgradedConsensusStateRequest) =>
+      Buffer.from(QueryUpgradedConsensusStateRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryUpgradedConsensusStateRequest.decode(value),
+    responseSerialize: (value: QueryUpgradedConsensusStateResponse) =>
+      Buffer.from(QueryUpgradedConsensusStateResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryUpgradedConsensusStateResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** ClientState queries an IBC light client. */
+  clientState: handleUnaryCall<QueryClientStateRequest, QueryClientStateResponse>;
+  /** ClientStates queries all the IBC light clients of a chain. */
+  clientStates: handleUnaryCall<QueryClientStatesRequest, QueryClientStatesResponse>;
+  /**
+   * ConsensusState queries a consensus state associated with a client state at
+   * a given height.
+   */
+  consensusState: handleUnaryCall<QueryConsensusStateRequest, QueryConsensusStateResponse>;
+  /**
+   * ConsensusStates queries all the consensus state associated with a given
+   * client.
+   */
+  consensusStates: handleUnaryCall<QueryConsensusStatesRequest, QueryConsensusStatesResponse>;
+  /** Status queries the status of an IBC client. */
+  clientStatus: handleUnaryCall<QueryClientStatusRequest, QueryClientStatusResponse>;
+  /** ClientParams queries all parameters of the ibc client. */
+  clientParams: handleUnaryCall<QueryClientParamsRequest, QueryClientParamsResponse>;
+  /** UpgradedClientState queries an Upgraded IBC light client. */
+  upgradedClientState: handleUnaryCall<QueryUpgradedClientStateRequest, QueryUpgradedClientStateResponse>;
+  /** UpgradedConsensusState queries an Upgraded IBC consensus state. */
+  upgradedConsensusState: handleUnaryCall<
+    QueryUpgradedConsensusStateRequest,
+    QueryUpgradedConsensusStateResponse
+  >;
+}
+
+export interface QueryClient extends Client {
+  /** ClientState queries an IBC light client. */
+  clientState(
+    request: QueryClientStateRequest,
+    callback: (error: ServiceError | null, response: QueryClientStateResponse) => void,
+  ): ClientUnaryCall;
+  clientState(
+    request: QueryClientStateRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryClientStateResponse) => void,
+  ): ClientUnaryCall;
+  clientState(
+    request: QueryClientStateRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryClientStateResponse) => void,
+  ): ClientUnaryCall;
+  /** ClientStates queries all the IBC light clients of a chain. */
+  clientStates(
+    request: QueryClientStatesRequest,
+    callback: (error: ServiceError | null, response: QueryClientStatesResponse) => void,
+  ): ClientUnaryCall;
+  clientStates(
+    request: QueryClientStatesRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryClientStatesResponse) => void,
+  ): ClientUnaryCall;
+  clientStates(
+    request: QueryClientStatesRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryClientStatesResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * ConsensusState queries a consensus state associated with a client state at
+   * a given height.
+   */
+  consensusState(
+    request: QueryConsensusStateRequest,
+    callback: (error: ServiceError | null, response: QueryConsensusStateResponse) => void,
+  ): ClientUnaryCall;
+  consensusState(
+    request: QueryConsensusStateRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryConsensusStateResponse) => void,
+  ): ClientUnaryCall;
+  consensusState(
+    request: QueryConsensusStateRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryConsensusStateResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * ConsensusStates queries all the consensus state associated with a given
+   * client.
+   */
+  consensusStates(
+    request: QueryConsensusStatesRequest,
+    callback: (error: ServiceError | null, response: QueryConsensusStatesResponse) => void,
+  ): ClientUnaryCall;
+  consensusStates(
+    request: QueryConsensusStatesRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryConsensusStatesResponse) => void,
+  ): ClientUnaryCall;
+  consensusStates(
+    request: QueryConsensusStatesRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryConsensusStatesResponse) => void,
+  ): ClientUnaryCall;
+  /** Status queries the status of an IBC client. */
+  clientStatus(
+    request: QueryClientStatusRequest,
+    callback: (error: ServiceError | null, response: QueryClientStatusResponse) => void,
+  ): ClientUnaryCall;
+  clientStatus(
+    request: QueryClientStatusRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryClientStatusResponse) => void,
+  ): ClientUnaryCall;
+  clientStatus(
+    request: QueryClientStatusRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryClientStatusResponse) => void,
+  ): ClientUnaryCall;
+  /** ClientParams queries all parameters of the ibc client. */
+  clientParams(
+    request: QueryClientParamsRequest,
+    callback: (error: ServiceError | null, response: QueryClientParamsResponse) => void,
+  ): ClientUnaryCall;
+  clientParams(
+    request: QueryClientParamsRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryClientParamsResponse) => void,
+  ): ClientUnaryCall;
+  clientParams(
+    request: QueryClientParamsRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryClientParamsResponse) => void,
+  ): ClientUnaryCall;
+  /** UpgradedClientState queries an Upgraded IBC light client. */
+  upgradedClientState(
+    request: QueryUpgradedClientStateRequest,
+    callback: (error: ServiceError | null, response: QueryUpgradedClientStateResponse) => void,
+  ): ClientUnaryCall;
+  upgradedClientState(
+    request: QueryUpgradedClientStateRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryUpgradedClientStateResponse) => void,
+  ): ClientUnaryCall;
+  upgradedClientState(
+    request: QueryUpgradedClientStateRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryUpgradedClientStateResponse) => void,
+  ): ClientUnaryCall;
+  /** UpgradedConsensusState queries an Upgraded IBC consensus state. */
+  upgradedConsensusState(
     request: QueryUpgradedConsensusStateRequest,
-  ): Promise<QueryUpgradedConsensusStateResponse>;
-}
-
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.ClientState = this.ClientState.bind(this);
-    this.ClientStates = this.ClientStates.bind(this);
-    this.ConsensusState = this.ConsensusState.bind(this);
-    this.ConsensusStates = this.ConsensusStates.bind(this);
-    this.ClientStatus = this.ClientStatus.bind(this);
-    this.ClientParams = this.ClientParams.bind(this);
-    this.UpgradedClientState = this.UpgradedClientState.bind(this);
-    this.UpgradedConsensusState = this.UpgradedConsensusState.bind(this);
-  }
-  ClientState(request: QueryClientStateRequest): Promise<QueryClientStateResponse> {
-    const data = QueryClientStateRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.client.v1.Query", "ClientState", data);
-    return promise.then((data) => QueryClientStateResponse.decode(new _m0.Reader(data)));
-  }
-
-  ClientStates(request: QueryClientStatesRequest): Promise<QueryClientStatesResponse> {
-    const data = QueryClientStatesRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.client.v1.Query", "ClientStates", data);
-    return promise.then((data) => QueryClientStatesResponse.decode(new _m0.Reader(data)));
-  }
-
-  ConsensusState(request: QueryConsensusStateRequest): Promise<QueryConsensusStateResponse> {
-    const data = QueryConsensusStateRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.client.v1.Query", "ConsensusState", data);
-    return promise.then((data) => QueryConsensusStateResponse.decode(new _m0.Reader(data)));
-  }
-
-  ConsensusStates(request: QueryConsensusStatesRequest): Promise<QueryConsensusStatesResponse> {
-    const data = QueryConsensusStatesRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.client.v1.Query", "ConsensusStates", data);
-    return promise.then((data) => QueryConsensusStatesResponse.decode(new _m0.Reader(data)));
-  }
-
-  ClientStatus(request: QueryClientStatusRequest): Promise<QueryClientStatusResponse> {
-    const data = QueryClientStatusRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.client.v1.Query", "ClientStatus", data);
-    return promise.then((data) => QueryClientStatusResponse.decode(new _m0.Reader(data)));
-  }
-
-  ClientParams(request: QueryClientParamsRequest): Promise<QueryClientParamsResponse> {
-    const data = QueryClientParamsRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.client.v1.Query", "ClientParams", data);
-    return promise.then((data) => QueryClientParamsResponse.decode(new _m0.Reader(data)));
-  }
-
-  UpgradedClientState(request: QueryUpgradedClientStateRequest): Promise<QueryUpgradedClientStateResponse> {
-    const data = QueryUpgradedClientStateRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.client.v1.Query", "UpgradedClientState", data);
-    return promise.then((data) => QueryUpgradedClientStateResponse.decode(new _m0.Reader(data)));
-  }
-
-  UpgradedConsensusState(
+    callback: (error: ServiceError | null, response: QueryUpgradedConsensusStateResponse) => void,
+  ): ClientUnaryCall;
+  upgradedConsensusState(
     request: QueryUpgradedConsensusStateRequest,
-  ): Promise<QueryUpgradedConsensusStateResponse> {
-    const data = QueryUpgradedConsensusStateRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.client.v1.Query", "UpgradedConsensusState", data);
-    return promise.then((data) => QueryUpgradedConsensusStateResponse.decode(new _m0.Reader(data)));
-  }
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryUpgradedConsensusStateResponse) => void,
+  ): ClientUnaryCall;
+  upgradedConsensusState(
+    request: QueryUpgradedConsensusStateRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryUpgradedConsensusStateResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "ibc.core.client.v1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 declare var self: any | undefined;
 declare var window: any | undefined;

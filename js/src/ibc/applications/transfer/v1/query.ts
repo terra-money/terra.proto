@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { DenomTrace, Params } from "../../../../ibc/applications/transfer/v1/transfer";
 import { PageRequest, PageResponse } from "../../../../cosmos/base/query/v1beta1/pagination";
@@ -394,45 +406,110 @@ export const QueryParamsResponse = {
 };
 
 /** Query provides defines the gRPC querier service. */
-export interface Query {
+export const QueryService = {
   /** DenomTrace queries a denomination trace information. */
-  DenomTrace(request: QueryDenomTraceRequest): Promise<QueryDenomTraceResponse>;
+  denomTrace: {
+    path: "/ibc.applications.transfer.v1.Query/DenomTrace",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryDenomTraceRequest) =>
+      Buffer.from(QueryDenomTraceRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryDenomTraceRequest.decode(value),
+    responseSerialize: (value: QueryDenomTraceResponse) =>
+      Buffer.from(QueryDenomTraceResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryDenomTraceResponse.decode(value),
+  },
   /** DenomTraces queries all denomination traces. */
-  DenomTraces(request: QueryDenomTracesRequest): Promise<QueryDenomTracesResponse>;
+  denomTraces: {
+    path: "/ibc.applications.transfer.v1.Query/DenomTraces",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryDenomTracesRequest) =>
+      Buffer.from(QueryDenomTracesRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryDenomTracesRequest.decode(value),
+    responseSerialize: (value: QueryDenomTracesResponse) =>
+      Buffer.from(QueryDenomTracesResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryDenomTracesResponse.decode(value),
+  },
   /** Params queries all parameters of the ibc-transfer module. */
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+  params: {
+    path: "/ibc.applications.transfer.v1.Query/Params",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryParamsRequest) => Buffer.from(QueryParamsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryParamsRequest.decode(value),
+    responseSerialize: (value: QueryParamsResponse) =>
+      Buffer.from(QueryParamsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryParamsResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** DenomTrace queries a denomination trace information. */
+  denomTrace: handleUnaryCall<QueryDenomTraceRequest, QueryDenomTraceResponse>;
+  /** DenomTraces queries all denomination traces. */
+  denomTraces: handleUnaryCall<QueryDenomTracesRequest, QueryDenomTracesResponse>;
+  /** Params queries all parameters of the ibc-transfer module. */
+  params: handleUnaryCall<QueryParamsRequest, QueryParamsResponse>;
 }
 
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.DenomTrace = this.DenomTrace.bind(this);
-    this.DenomTraces = this.DenomTraces.bind(this);
-    this.Params = this.Params.bind(this);
-  }
-  DenomTrace(request: QueryDenomTraceRequest): Promise<QueryDenomTraceResponse> {
-    const data = QueryDenomTraceRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.applications.transfer.v1.Query", "DenomTrace", data);
-    return promise.then((data) => QueryDenomTraceResponse.decode(new _m0.Reader(data)));
-  }
-
-  DenomTraces(request: QueryDenomTracesRequest): Promise<QueryDenomTracesResponse> {
-    const data = QueryDenomTracesRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.applications.transfer.v1.Query", "DenomTraces", data);
-    return promise.then((data) => QueryDenomTracesResponse.decode(new _m0.Reader(data)));
-  }
-
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
-    const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.applications.transfer.v1.Query", "Params", data);
-    return promise.then((data) => QueryParamsResponse.decode(new _m0.Reader(data)));
-  }
+export interface QueryClient extends Client {
+  /** DenomTrace queries a denomination trace information. */
+  denomTrace(
+    request: QueryDenomTraceRequest,
+    callback: (error: ServiceError | null, response: QueryDenomTraceResponse) => void,
+  ): ClientUnaryCall;
+  denomTrace(
+    request: QueryDenomTraceRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryDenomTraceResponse) => void,
+  ): ClientUnaryCall;
+  denomTrace(
+    request: QueryDenomTraceRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryDenomTraceResponse) => void,
+  ): ClientUnaryCall;
+  /** DenomTraces queries all denomination traces. */
+  denomTraces(
+    request: QueryDenomTracesRequest,
+    callback: (error: ServiceError | null, response: QueryDenomTracesResponse) => void,
+  ): ClientUnaryCall;
+  denomTraces(
+    request: QueryDenomTracesRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryDenomTracesResponse) => void,
+  ): ClientUnaryCall;
+  denomTraces(
+    request: QueryDenomTracesRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryDenomTracesResponse) => void,
+  ): ClientUnaryCall;
+  /** Params queries all parameters of the ibc-transfer module. */
+  params(
+    request: QueryParamsRequest,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "ibc.applications.transfer.v1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

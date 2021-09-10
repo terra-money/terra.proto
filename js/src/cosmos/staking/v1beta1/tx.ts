@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Description, CommissionRates } from "../../../cosmos/staking/v1beta1/staking";
 import { Any } from "../../../google/protobuf/any";
@@ -862,72 +874,193 @@ export const MsgUndelegateResponse = {
 };
 
 /** Msg defines the staking Msg service. */
-export interface Msg {
+export const MsgService = {
   /** CreateValidator defines a method for creating a new validator. */
-  CreateValidator(request: MsgCreateValidator): Promise<MsgCreateValidatorResponse>;
+  createValidator: {
+    path: "/cosmos.staking.v1beta1.Msg/CreateValidator",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgCreateValidator) => Buffer.from(MsgCreateValidator.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgCreateValidator.decode(value),
+    responseSerialize: (value: MsgCreateValidatorResponse) =>
+      Buffer.from(MsgCreateValidatorResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgCreateValidatorResponse.decode(value),
+  },
   /** EditValidator defines a method for editing an existing validator. */
-  EditValidator(request: MsgEditValidator): Promise<MsgEditValidatorResponse>;
+  editValidator: {
+    path: "/cosmos.staking.v1beta1.Msg/EditValidator",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgEditValidator) => Buffer.from(MsgEditValidator.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgEditValidator.decode(value),
+    responseSerialize: (value: MsgEditValidatorResponse) =>
+      Buffer.from(MsgEditValidatorResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgEditValidatorResponse.decode(value),
+  },
   /**
    * Delegate defines a method for performing a delegation of coins
    * from a delegator to a validator.
    */
-  Delegate(request: MsgDelegate): Promise<MsgDelegateResponse>;
+  delegate: {
+    path: "/cosmos.staking.v1beta1.Msg/Delegate",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgDelegate) => Buffer.from(MsgDelegate.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgDelegate.decode(value),
+    responseSerialize: (value: MsgDelegateResponse) =>
+      Buffer.from(MsgDelegateResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgDelegateResponse.decode(value),
+  },
   /**
    * BeginRedelegate defines a method for performing a redelegation
    * of coins from a delegator and source validator to a destination validator.
    */
-  BeginRedelegate(request: MsgBeginRedelegate): Promise<MsgBeginRedelegateResponse>;
+  beginRedelegate: {
+    path: "/cosmos.staking.v1beta1.Msg/BeginRedelegate",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgBeginRedelegate) => Buffer.from(MsgBeginRedelegate.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgBeginRedelegate.decode(value),
+    responseSerialize: (value: MsgBeginRedelegateResponse) =>
+      Buffer.from(MsgBeginRedelegateResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgBeginRedelegateResponse.decode(value),
+  },
   /**
    * Undelegate defines a method for performing an undelegation from a
    * delegate and a validator.
    */
-  Undelegate(request: MsgUndelegate): Promise<MsgUndelegateResponse>;
+  undelegate: {
+    path: "/cosmos.staking.v1beta1.Msg/Undelegate",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgUndelegate) => Buffer.from(MsgUndelegate.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgUndelegate.decode(value),
+    responseSerialize: (value: MsgUndelegateResponse) =>
+      Buffer.from(MsgUndelegateResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgUndelegateResponse.decode(value),
+  },
+} as const;
+
+export interface MsgServer extends UntypedServiceImplementation {
+  /** CreateValidator defines a method for creating a new validator. */
+  createValidator: handleUnaryCall<MsgCreateValidator, MsgCreateValidatorResponse>;
+  /** EditValidator defines a method for editing an existing validator. */
+  editValidator: handleUnaryCall<MsgEditValidator, MsgEditValidatorResponse>;
+  /**
+   * Delegate defines a method for performing a delegation of coins
+   * from a delegator to a validator.
+   */
+  delegate: handleUnaryCall<MsgDelegate, MsgDelegateResponse>;
+  /**
+   * BeginRedelegate defines a method for performing a redelegation
+   * of coins from a delegator and source validator to a destination validator.
+   */
+  beginRedelegate: handleUnaryCall<MsgBeginRedelegate, MsgBeginRedelegateResponse>;
+  /**
+   * Undelegate defines a method for performing an undelegation from a
+   * delegate and a validator.
+   */
+  undelegate: handleUnaryCall<MsgUndelegate, MsgUndelegateResponse>;
 }
 
-export class MsgClientImpl implements Msg {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.CreateValidator = this.CreateValidator.bind(this);
-    this.EditValidator = this.EditValidator.bind(this);
-    this.Delegate = this.Delegate.bind(this);
-    this.BeginRedelegate = this.BeginRedelegate.bind(this);
-    this.Undelegate = this.Undelegate.bind(this);
-  }
-  CreateValidator(request: MsgCreateValidator): Promise<MsgCreateValidatorResponse> {
-    const data = MsgCreateValidator.encode(request).finish();
-    const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "CreateValidator", data);
-    return promise.then((data) => MsgCreateValidatorResponse.decode(new _m0.Reader(data)));
-  }
-
-  EditValidator(request: MsgEditValidator): Promise<MsgEditValidatorResponse> {
-    const data = MsgEditValidator.encode(request).finish();
-    const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "EditValidator", data);
-    return promise.then((data) => MsgEditValidatorResponse.decode(new _m0.Reader(data)));
-  }
-
-  Delegate(request: MsgDelegate): Promise<MsgDelegateResponse> {
-    const data = MsgDelegate.encode(request).finish();
-    const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "Delegate", data);
-    return promise.then((data) => MsgDelegateResponse.decode(new _m0.Reader(data)));
-  }
-
-  BeginRedelegate(request: MsgBeginRedelegate): Promise<MsgBeginRedelegateResponse> {
-    const data = MsgBeginRedelegate.encode(request).finish();
-    const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "BeginRedelegate", data);
-    return promise.then((data) => MsgBeginRedelegateResponse.decode(new _m0.Reader(data)));
-  }
-
-  Undelegate(request: MsgUndelegate): Promise<MsgUndelegateResponse> {
-    const data = MsgUndelegate.encode(request).finish();
-    const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "Undelegate", data);
-    return promise.then((data) => MsgUndelegateResponse.decode(new _m0.Reader(data)));
-  }
+export interface MsgClient extends Client {
+  /** CreateValidator defines a method for creating a new validator. */
+  createValidator(
+    request: MsgCreateValidator,
+    callback: (error: ServiceError | null, response: MsgCreateValidatorResponse) => void,
+  ): ClientUnaryCall;
+  createValidator(
+    request: MsgCreateValidator,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgCreateValidatorResponse) => void,
+  ): ClientUnaryCall;
+  createValidator(
+    request: MsgCreateValidator,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgCreateValidatorResponse) => void,
+  ): ClientUnaryCall;
+  /** EditValidator defines a method for editing an existing validator. */
+  editValidator(
+    request: MsgEditValidator,
+    callback: (error: ServiceError | null, response: MsgEditValidatorResponse) => void,
+  ): ClientUnaryCall;
+  editValidator(
+    request: MsgEditValidator,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgEditValidatorResponse) => void,
+  ): ClientUnaryCall;
+  editValidator(
+    request: MsgEditValidator,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgEditValidatorResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * Delegate defines a method for performing a delegation of coins
+   * from a delegator to a validator.
+   */
+  delegate(
+    request: MsgDelegate,
+    callback: (error: ServiceError | null, response: MsgDelegateResponse) => void,
+  ): ClientUnaryCall;
+  delegate(
+    request: MsgDelegate,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgDelegateResponse) => void,
+  ): ClientUnaryCall;
+  delegate(
+    request: MsgDelegate,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgDelegateResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * BeginRedelegate defines a method for performing a redelegation
+   * of coins from a delegator and source validator to a destination validator.
+   */
+  beginRedelegate(
+    request: MsgBeginRedelegate,
+    callback: (error: ServiceError | null, response: MsgBeginRedelegateResponse) => void,
+  ): ClientUnaryCall;
+  beginRedelegate(
+    request: MsgBeginRedelegate,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgBeginRedelegateResponse) => void,
+  ): ClientUnaryCall;
+  beginRedelegate(
+    request: MsgBeginRedelegate,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgBeginRedelegateResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * Undelegate defines a method for performing an undelegation from a
+   * delegate and a validator.
+   */
+  undelegate(
+    request: MsgUndelegate,
+    callback: (error: ServiceError | null, response: MsgUndelegateResponse) => void,
+  ): ClientUnaryCall;
+  undelegate(
+    request: MsgUndelegate,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: MsgUndelegateResponse) => void,
+  ): ClientUnaryCall;
+  undelegate(
+    request: MsgUndelegate,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgUndelegateResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const MsgClient = makeGenericClientConstructor(
+  MsgService,
+  "cosmos.staking.v1beta1.Msg",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

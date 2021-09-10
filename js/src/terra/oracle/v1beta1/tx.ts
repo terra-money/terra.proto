@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "terra.oracle.v1beta1";
@@ -433,59 +445,132 @@ export const MsgDelegateFeedConsentResponse = {
 };
 
 /** Msg defines the oracle Msg service. */
-export interface Msg {
+export const MsgService = {
   /**
    * AggregateExchangeRatePrevote defines a method for submitting
    * aggregate exchange rate prevote
    */
-  AggregateExchangeRatePrevote(
-    request: MsgAggregateExchangeRatePrevote,
-  ): Promise<MsgAggregateExchangeRatePrevoteResponse>;
+  aggregateExchangeRatePrevote: {
+    path: "/terra.oracle.v1beta1.Msg/AggregateExchangeRatePrevote",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgAggregateExchangeRatePrevote) =>
+      Buffer.from(MsgAggregateExchangeRatePrevote.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgAggregateExchangeRatePrevote.decode(value),
+    responseSerialize: (value: MsgAggregateExchangeRatePrevoteResponse) =>
+      Buffer.from(MsgAggregateExchangeRatePrevoteResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgAggregateExchangeRatePrevoteResponse.decode(value),
+  },
   /**
    * AggregateExchangeRateVote defines a method for submitting
    * aggregate exchange rate vote
    */
-  AggregateExchangeRateVote(
-    request: MsgAggregateExchangeRateVote,
-  ): Promise<MsgAggregateExchangeRateVoteResponse>;
+  aggregateExchangeRateVote: {
+    path: "/terra.oracle.v1beta1.Msg/AggregateExchangeRateVote",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgAggregateExchangeRateVote) =>
+      Buffer.from(MsgAggregateExchangeRateVote.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgAggregateExchangeRateVote.decode(value),
+    responseSerialize: (value: MsgAggregateExchangeRateVoteResponse) =>
+      Buffer.from(MsgAggregateExchangeRateVoteResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgAggregateExchangeRateVoteResponse.decode(value),
+  },
   /** DelegateFeedConsent defines a method for setting the feeder delegation */
-  DelegateFeedConsent(request: MsgDelegateFeedConsent): Promise<MsgDelegateFeedConsentResponse>;
+  delegateFeedConsent: {
+    path: "/terra.oracle.v1beta1.Msg/DelegateFeedConsent",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: MsgDelegateFeedConsent) =>
+      Buffer.from(MsgDelegateFeedConsent.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => MsgDelegateFeedConsent.decode(value),
+    responseSerialize: (value: MsgDelegateFeedConsentResponse) =>
+      Buffer.from(MsgDelegateFeedConsentResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => MsgDelegateFeedConsentResponse.decode(value),
+  },
+} as const;
+
+export interface MsgServer extends UntypedServiceImplementation {
+  /**
+   * AggregateExchangeRatePrevote defines a method for submitting
+   * aggregate exchange rate prevote
+   */
+  aggregateExchangeRatePrevote: handleUnaryCall<
+    MsgAggregateExchangeRatePrevote,
+    MsgAggregateExchangeRatePrevoteResponse
+  >;
+  /**
+   * AggregateExchangeRateVote defines a method for submitting
+   * aggregate exchange rate vote
+   */
+  aggregateExchangeRateVote: handleUnaryCall<
+    MsgAggregateExchangeRateVote,
+    MsgAggregateExchangeRateVoteResponse
+  >;
+  /** DelegateFeedConsent defines a method for setting the feeder delegation */
+  delegateFeedConsent: handleUnaryCall<MsgDelegateFeedConsent, MsgDelegateFeedConsentResponse>;
 }
 
-export class MsgClientImpl implements Msg {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.AggregateExchangeRatePrevote = this.AggregateExchangeRatePrevote.bind(this);
-    this.AggregateExchangeRateVote = this.AggregateExchangeRateVote.bind(this);
-    this.DelegateFeedConsent = this.DelegateFeedConsent.bind(this);
-  }
-  AggregateExchangeRatePrevote(
+export interface MsgClient extends Client {
+  /**
+   * AggregateExchangeRatePrevote defines a method for submitting
+   * aggregate exchange rate prevote
+   */
+  aggregateExchangeRatePrevote(
     request: MsgAggregateExchangeRatePrevote,
-  ): Promise<MsgAggregateExchangeRatePrevoteResponse> {
-    const data = MsgAggregateExchangeRatePrevote.encode(request).finish();
-    const promise = this.rpc.request("terra.oracle.v1beta1.Msg", "AggregateExchangeRatePrevote", data);
-    return promise.then((data) => MsgAggregateExchangeRatePrevoteResponse.decode(new _m0.Reader(data)));
-  }
-
-  AggregateExchangeRateVote(
+    callback: (error: ServiceError | null, response: MsgAggregateExchangeRatePrevoteResponse) => void,
+  ): ClientUnaryCall;
+  aggregateExchangeRatePrevote(
+    request: MsgAggregateExchangeRatePrevote,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgAggregateExchangeRatePrevoteResponse) => void,
+  ): ClientUnaryCall;
+  aggregateExchangeRatePrevote(
+    request: MsgAggregateExchangeRatePrevote,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgAggregateExchangeRatePrevoteResponse) => void,
+  ): ClientUnaryCall;
+  /**
+   * AggregateExchangeRateVote defines a method for submitting
+   * aggregate exchange rate vote
+   */
+  aggregateExchangeRateVote(
     request: MsgAggregateExchangeRateVote,
-  ): Promise<MsgAggregateExchangeRateVoteResponse> {
-    const data = MsgAggregateExchangeRateVote.encode(request).finish();
-    const promise = this.rpc.request("terra.oracle.v1beta1.Msg", "AggregateExchangeRateVote", data);
-    return promise.then((data) => MsgAggregateExchangeRateVoteResponse.decode(new _m0.Reader(data)));
-  }
-
-  DelegateFeedConsent(request: MsgDelegateFeedConsent): Promise<MsgDelegateFeedConsentResponse> {
-    const data = MsgDelegateFeedConsent.encode(request).finish();
-    const promise = this.rpc.request("terra.oracle.v1beta1.Msg", "DelegateFeedConsent", data);
-    return promise.then((data) => MsgDelegateFeedConsentResponse.decode(new _m0.Reader(data)));
-  }
+    callback: (error: ServiceError | null, response: MsgAggregateExchangeRateVoteResponse) => void,
+  ): ClientUnaryCall;
+  aggregateExchangeRateVote(
+    request: MsgAggregateExchangeRateVote,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgAggregateExchangeRateVoteResponse) => void,
+  ): ClientUnaryCall;
+  aggregateExchangeRateVote(
+    request: MsgAggregateExchangeRateVote,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgAggregateExchangeRateVoteResponse) => void,
+  ): ClientUnaryCall;
+  /** DelegateFeedConsent defines a method for setting the feeder delegation */
+  delegateFeedConsent(
+    request: MsgDelegateFeedConsent,
+    callback: (error: ServiceError | null, response: MsgDelegateFeedConsentResponse) => void,
+  ): ClientUnaryCall;
+  delegateFeedConsent(
+    request: MsgDelegateFeedConsent,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: MsgDelegateFeedConsentResponse) => void,
+  ): ClientUnaryCall;
+  delegateFeedConsent(
+    request: MsgDelegateFeedConsent,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: MsgDelegateFeedConsentResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const MsgClient = makeGenericClientConstructor(MsgService, "terra.oracle.v1beta1.Msg") as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

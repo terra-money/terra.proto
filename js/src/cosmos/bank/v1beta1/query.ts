@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata as Metadata1,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Coin } from "../../../cosmos/base/v1beta1/coin";
 import { PageRequest, PageResponse } from "../../../cosmos/base/query/v1beta1/pagination";
@@ -980,81 +992,229 @@ export const QueryDenomMetadataResponse = {
 };
 
 /** Query defines the gRPC querier service. */
-export interface Query {
+export const QueryService = {
   /** Balance queries the balance of a single coin for a single account. */
-  Balance(request: QueryBalanceRequest): Promise<QueryBalanceResponse>;
+  balance: {
+    path: "/cosmos.bank.v1beta1.Query/Balance",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryBalanceRequest) => Buffer.from(QueryBalanceRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryBalanceRequest.decode(value),
+    responseSerialize: (value: QueryBalanceResponse) =>
+      Buffer.from(QueryBalanceResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryBalanceResponse.decode(value),
+  },
   /** AllBalances queries the balance of all coins for a single account. */
-  AllBalances(request: QueryAllBalancesRequest): Promise<QueryAllBalancesResponse>;
+  allBalances: {
+    path: "/cosmos.bank.v1beta1.Query/AllBalances",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryAllBalancesRequest) =>
+      Buffer.from(QueryAllBalancesRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryAllBalancesRequest.decode(value),
+    responseSerialize: (value: QueryAllBalancesResponse) =>
+      Buffer.from(QueryAllBalancesResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryAllBalancesResponse.decode(value),
+  },
   /** TotalSupply queries the total supply of all coins. */
-  TotalSupply(request: QueryTotalSupplyRequest): Promise<QueryTotalSupplyResponse>;
+  totalSupply: {
+    path: "/cosmos.bank.v1beta1.Query/TotalSupply",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryTotalSupplyRequest) =>
+      Buffer.from(QueryTotalSupplyRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryTotalSupplyRequest.decode(value),
+    responseSerialize: (value: QueryTotalSupplyResponse) =>
+      Buffer.from(QueryTotalSupplyResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryTotalSupplyResponse.decode(value),
+  },
   /** SupplyOf queries the supply of a single coin. */
-  SupplyOf(request: QuerySupplyOfRequest): Promise<QuerySupplyOfResponse>;
+  supplyOf: {
+    path: "/cosmos.bank.v1beta1.Query/SupplyOf",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QuerySupplyOfRequest) =>
+      Buffer.from(QuerySupplyOfRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QuerySupplyOfRequest.decode(value),
+    responseSerialize: (value: QuerySupplyOfResponse) =>
+      Buffer.from(QuerySupplyOfResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QuerySupplyOfResponse.decode(value),
+  },
   /** Params queries the parameters of x/bank module. */
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+  params: {
+    path: "/cosmos.bank.v1beta1.Query/Params",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryParamsRequest) => Buffer.from(QueryParamsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryParamsRequest.decode(value),
+    responseSerialize: (value: QueryParamsResponse) =>
+      Buffer.from(QueryParamsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryParamsResponse.decode(value),
+  },
   /** DenomsMetadata queries the client metadata of a given coin denomination. */
-  DenomMetadata(request: QueryDenomMetadataRequest): Promise<QueryDenomMetadataResponse>;
+  denomMetadata: {
+    path: "/cosmos.bank.v1beta1.Query/DenomMetadata",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryDenomMetadataRequest) =>
+      Buffer.from(QueryDenomMetadataRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryDenomMetadataRequest.decode(value),
+    responseSerialize: (value: QueryDenomMetadataResponse) =>
+      Buffer.from(QueryDenomMetadataResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryDenomMetadataResponse.decode(value),
+  },
   /** DenomsMetadata queries the client metadata for all registered coin denominations. */
-  DenomsMetadata(request: QueryDenomsMetadataRequest): Promise<QueryDenomsMetadataResponse>;
+  denomsMetadata: {
+    path: "/cosmos.bank.v1beta1.Query/DenomsMetadata",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryDenomsMetadataRequest) =>
+      Buffer.from(QueryDenomsMetadataRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryDenomsMetadataRequest.decode(value),
+    responseSerialize: (value: QueryDenomsMetadataResponse) =>
+      Buffer.from(QueryDenomsMetadataResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryDenomsMetadataResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** Balance queries the balance of a single coin for a single account. */
+  balance: handleUnaryCall<QueryBalanceRequest, QueryBalanceResponse>;
+  /** AllBalances queries the balance of all coins for a single account. */
+  allBalances: handleUnaryCall<QueryAllBalancesRequest, QueryAllBalancesResponse>;
+  /** TotalSupply queries the total supply of all coins. */
+  totalSupply: handleUnaryCall<QueryTotalSupplyRequest, QueryTotalSupplyResponse>;
+  /** SupplyOf queries the supply of a single coin. */
+  supplyOf: handleUnaryCall<QuerySupplyOfRequest, QuerySupplyOfResponse>;
+  /** Params queries the parameters of x/bank module. */
+  params: handleUnaryCall<QueryParamsRequest, QueryParamsResponse>;
+  /** DenomsMetadata queries the client metadata of a given coin denomination. */
+  denomMetadata: handleUnaryCall<QueryDenomMetadataRequest, QueryDenomMetadataResponse>;
+  /** DenomsMetadata queries the client metadata for all registered coin denominations. */
+  denomsMetadata: handleUnaryCall<QueryDenomsMetadataRequest, QueryDenomsMetadataResponse>;
 }
 
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Balance = this.Balance.bind(this);
-    this.AllBalances = this.AllBalances.bind(this);
-    this.TotalSupply = this.TotalSupply.bind(this);
-    this.SupplyOf = this.SupplyOf.bind(this);
-    this.Params = this.Params.bind(this);
-    this.DenomMetadata = this.DenomMetadata.bind(this);
-    this.DenomsMetadata = this.DenomsMetadata.bind(this);
-  }
-  Balance(request: QueryBalanceRequest): Promise<QueryBalanceResponse> {
-    const data = QueryBalanceRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "Balance", data);
-    return promise.then((data) => QueryBalanceResponse.decode(new _m0.Reader(data)));
-  }
-
-  AllBalances(request: QueryAllBalancesRequest): Promise<QueryAllBalancesResponse> {
-    const data = QueryAllBalancesRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "AllBalances", data);
-    return promise.then((data) => QueryAllBalancesResponse.decode(new _m0.Reader(data)));
-  }
-
-  TotalSupply(request: QueryTotalSupplyRequest): Promise<QueryTotalSupplyResponse> {
-    const data = QueryTotalSupplyRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "TotalSupply", data);
-    return promise.then((data) => QueryTotalSupplyResponse.decode(new _m0.Reader(data)));
-  }
-
-  SupplyOf(request: QuerySupplyOfRequest): Promise<QuerySupplyOfResponse> {
-    const data = QuerySupplyOfRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "SupplyOf", data);
-    return promise.then((data) => QuerySupplyOfResponse.decode(new _m0.Reader(data)));
-  }
-
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
-    const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "Params", data);
-    return promise.then((data) => QueryParamsResponse.decode(new _m0.Reader(data)));
-  }
-
-  DenomMetadata(request: QueryDenomMetadataRequest): Promise<QueryDenomMetadataResponse> {
-    const data = QueryDenomMetadataRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "DenomMetadata", data);
-    return promise.then((data) => QueryDenomMetadataResponse.decode(new _m0.Reader(data)));
-  }
-
-  DenomsMetadata(request: QueryDenomsMetadataRequest): Promise<QueryDenomsMetadataResponse> {
-    const data = QueryDenomsMetadataRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "DenomsMetadata", data);
-    return promise.then((data) => QueryDenomsMetadataResponse.decode(new _m0.Reader(data)));
-  }
+export interface QueryClient extends Client {
+  /** Balance queries the balance of a single coin for a single account. */
+  balance(
+    request: QueryBalanceRequest,
+    callback: (error: ServiceError | null, response: QueryBalanceResponse) => void,
+  ): ClientUnaryCall;
+  balance(
+    request: QueryBalanceRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryBalanceResponse) => void,
+  ): ClientUnaryCall;
+  balance(
+    request: QueryBalanceRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryBalanceResponse) => void,
+  ): ClientUnaryCall;
+  /** AllBalances queries the balance of all coins for a single account. */
+  allBalances(
+    request: QueryAllBalancesRequest,
+    callback: (error: ServiceError | null, response: QueryAllBalancesResponse) => void,
+  ): ClientUnaryCall;
+  allBalances(
+    request: QueryAllBalancesRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryAllBalancesResponse) => void,
+  ): ClientUnaryCall;
+  allBalances(
+    request: QueryAllBalancesRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryAllBalancesResponse) => void,
+  ): ClientUnaryCall;
+  /** TotalSupply queries the total supply of all coins. */
+  totalSupply(
+    request: QueryTotalSupplyRequest,
+    callback: (error: ServiceError | null, response: QueryTotalSupplyResponse) => void,
+  ): ClientUnaryCall;
+  totalSupply(
+    request: QueryTotalSupplyRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryTotalSupplyResponse) => void,
+  ): ClientUnaryCall;
+  totalSupply(
+    request: QueryTotalSupplyRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryTotalSupplyResponse) => void,
+  ): ClientUnaryCall;
+  /** SupplyOf queries the supply of a single coin. */
+  supplyOf(
+    request: QuerySupplyOfRequest,
+    callback: (error: ServiceError | null, response: QuerySupplyOfResponse) => void,
+  ): ClientUnaryCall;
+  supplyOf(
+    request: QuerySupplyOfRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QuerySupplyOfResponse) => void,
+  ): ClientUnaryCall;
+  supplyOf(
+    request: QuerySupplyOfRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QuerySupplyOfResponse) => void,
+  ): ClientUnaryCall;
+  /** Params queries the parameters of x/bank module. */
+  params(
+    request: QueryParamsRequest,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  /** DenomsMetadata queries the client metadata of a given coin denomination. */
+  denomMetadata(
+    request: QueryDenomMetadataRequest,
+    callback: (error: ServiceError | null, response: QueryDenomMetadataResponse) => void,
+  ): ClientUnaryCall;
+  denomMetadata(
+    request: QueryDenomMetadataRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryDenomMetadataResponse) => void,
+  ): ClientUnaryCall;
+  denomMetadata(
+    request: QueryDenomMetadataRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryDenomMetadataResponse) => void,
+  ): ClientUnaryCall;
+  /** DenomsMetadata queries the client metadata for all registered coin denominations. */
+  denomsMetadata(
+    request: QueryDenomsMetadataRequest,
+    callback: (error: ServiceError | null, response: QueryDenomsMetadataResponse) => void,
+  ): ClientUnaryCall;
+  denomsMetadata(
+    request: QueryDenomsMetadataRequest,
+    metadata: Metadata1,
+    callback: (error: ServiceError | null, response: QueryDenomsMetadataResponse) => void,
+  ): ClientUnaryCall;
+  denomsMetadata(
+    request: QueryDenomsMetadataRequest,
+    metadata: Metadata1,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryDenomsMetadataResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "cosmos.bank.v1beta1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

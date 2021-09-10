@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../../cosmos/base/query/v1beta1/pagination";
 import { Any } from "../../../google/protobuf/any";
@@ -383,45 +395,109 @@ export const QueryParamsResponse = {
 };
 
 /** Query defines the gRPC querier service. */
-export interface Query {
+export const QueryService = {
   /** Accounts returns all the existing accounts */
-  Accounts(request: QueryAccountsRequest): Promise<QueryAccountsResponse>;
+  accounts: {
+    path: "/cosmos.auth.v1beta1.Query/Accounts",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryAccountsRequest) =>
+      Buffer.from(QueryAccountsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryAccountsRequest.decode(value),
+    responseSerialize: (value: QueryAccountsResponse) =>
+      Buffer.from(QueryAccountsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryAccountsResponse.decode(value),
+  },
   /** Account returns account details based on address. */
-  Account(request: QueryAccountRequest): Promise<QueryAccountResponse>;
+  account: {
+    path: "/cosmos.auth.v1beta1.Query/Account",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryAccountRequest) => Buffer.from(QueryAccountRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryAccountRequest.decode(value),
+    responseSerialize: (value: QueryAccountResponse) =>
+      Buffer.from(QueryAccountResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryAccountResponse.decode(value),
+  },
   /** Params queries all parameters. */
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+  params: {
+    path: "/cosmos.auth.v1beta1.Query/Params",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: QueryParamsRequest) => Buffer.from(QueryParamsRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => QueryParamsRequest.decode(value),
+    responseSerialize: (value: QueryParamsResponse) =>
+      Buffer.from(QueryParamsResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => QueryParamsResponse.decode(value),
+  },
+} as const;
+
+export interface QueryServer extends UntypedServiceImplementation {
+  /** Accounts returns all the existing accounts */
+  accounts: handleUnaryCall<QueryAccountsRequest, QueryAccountsResponse>;
+  /** Account returns account details based on address. */
+  account: handleUnaryCall<QueryAccountRequest, QueryAccountResponse>;
+  /** Params queries all parameters. */
+  params: handleUnaryCall<QueryParamsRequest, QueryParamsResponse>;
 }
 
-export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.Accounts = this.Accounts.bind(this);
-    this.Account = this.Account.bind(this);
-    this.Params = this.Params.bind(this);
-  }
-  Accounts(request: QueryAccountsRequest): Promise<QueryAccountsResponse> {
-    const data = QueryAccountsRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "Accounts", data);
-    return promise.then((data) => QueryAccountsResponse.decode(new _m0.Reader(data)));
-  }
-
-  Account(request: QueryAccountRequest): Promise<QueryAccountResponse> {
-    const data = QueryAccountRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "Account", data);
-    return promise.then((data) => QueryAccountResponse.decode(new _m0.Reader(data)));
-  }
-
-  Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
-    const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "Params", data);
-    return promise.then((data) => QueryParamsResponse.decode(new _m0.Reader(data)));
-  }
+export interface QueryClient extends Client {
+  /** Accounts returns all the existing accounts */
+  accounts(
+    request: QueryAccountsRequest,
+    callback: (error: ServiceError | null, response: QueryAccountsResponse) => void,
+  ): ClientUnaryCall;
+  accounts(
+    request: QueryAccountsRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryAccountsResponse) => void,
+  ): ClientUnaryCall;
+  accounts(
+    request: QueryAccountsRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryAccountsResponse) => void,
+  ): ClientUnaryCall;
+  /** Account returns account details based on address. */
+  account(
+    request: QueryAccountRequest,
+    callback: (error: ServiceError | null, response: QueryAccountResponse) => void,
+  ): ClientUnaryCall;
+  account(
+    request: QueryAccountRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryAccountResponse) => void,
+  ): ClientUnaryCall;
+  account(
+    request: QueryAccountRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryAccountResponse) => void,
+  ): ClientUnaryCall;
+  /** Params queries all parameters. */
+  params(
+    request: QueryParamsRequest,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
+  params(
+    request: QueryParamsRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
-}
+export const QueryClient = makeGenericClientConstructor(
+  QueryService,
+  "cosmos.auth.v1beta1.Query",
+) as unknown as {
+  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+};
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin
