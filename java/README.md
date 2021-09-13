@@ -12,6 +12,7 @@ dependencies {
     implementation("money.terra:proto-kotlin:$terraCoreVersion")
     implementation("money.terra:grpc-java:$terraCoreVersion")
     implementation("money.terra:grpc-kotlin:$terraCoreVersion")
+    implementation("io.grpc:grpc-okhttp:1.40.1")
 }
 ```
 
