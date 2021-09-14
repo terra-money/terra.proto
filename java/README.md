@@ -1,4 +1,4 @@
-# terra.proto (Java, Kotlin)
+# terra.proto (Java and Kotlin)
 
 ## How to use
 ### Gradle
