@@ -1,20 +1,10 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata as Metadata1,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Coin } from "../../../../cosmos/base/v1beta1/coin";
 import { Height } from "../../../../ibc/core/client/v1/client";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "ibc.applications.transfer.v1";
 
@@ -253,50 +243,118 @@ export const MsgTransferResponse = {
 };
 
 /** Msg defines the ibc/transfer Msg service. */
-export const MsgService = {
+export interface Msg {
   /** Transfer defines a rpc handler method for MsgTransfer. */
-  transfer: {
-    path: "/ibc.applications.transfer.v1.Msg/Transfer",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgTransfer) => Buffer.from(MsgTransfer.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgTransfer.decode(value),
-    responseSerialize: (value: MsgTransferResponse) =>
-      Buffer.from(MsgTransferResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgTransferResponse.decode(value),
-  },
-} as const;
-
-export interface MsgServer extends UntypedServiceImplementation {
-  /** Transfer defines a rpc handler method for MsgTransfer. */
-  transfer: handleUnaryCall<MsgTransfer, MsgTransferResponse>;
+  Transfer(request: DeepPartial<MsgTransfer>, metadata?: grpc.Metadata): Promise<MsgTransferResponse>;
 }
 
-export interface MsgClient extends Client {
-  /** Transfer defines a rpc handler method for MsgTransfer. */
-  transfer(
-    request: MsgTransfer,
-    callback: (error: ServiceError | null, response: MsgTransferResponse) => void,
-  ): ClientUnaryCall;
-  transfer(
-    request: MsgTransfer,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: MsgTransferResponse) => void,
-  ): ClientUnaryCall;
-  transfer(
-    request: MsgTransfer,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgTransferResponse) => void,
-  ): ClientUnaryCall;
+export class MsgClientImpl implements Msg {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.Transfer = this.Transfer.bind(this);
+  }
+
+  Transfer(request: DeepPartial<MsgTransfer>, metadata?: grpc.Metadata): Promise<MsgTransferResponse> {
+    return this.rpc.unary(MsgTransferDesc, MsgTransfer.fromPartial(request), metadata);
+  }
 }
 
-export const MsgClient = makeGenericClientConstructor(
-  MsgService,
-  "ibc.applications.transfer.v1.Msg",
-) as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+export const MsgDesc = {
+  serviceName: "ibc.applications.transfer.v1.Msg",
 };
+
+export const MsgTransferDesc: UnaryMethodDefinitionish = {
+  methodName: "Transfer",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgTransfer.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgTransferResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

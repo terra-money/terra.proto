@@ -1,17 +1,6 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata as Metadata1,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import {
   Proposal,
@@ -26,6 +15,7 @@ import {
   proposalStatusToJSON,
 } from "../../../cosmos/gov/v1beta1/gov";
 import { PageRequest, PageResponse } from "../../../cosmos/base/query/v1beta1/pagination";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "cosmos.gov.v1beta1";
 
@@ -1271,255 +1261,348 @@ export const QueryTallyResultResponse = {
 };
 
 /** Query defines the gRPC querier service for gov module */
-export const QueryService = {
+export interface Query {
   /** Proposal queries proposal details based on ProposalID. */
-  proposal: {
-    path: "/cosmos.gov.v1beta1.Query/Proposal",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryProposalRequest) =>
-      Buffer.from(QueryProposalRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryProposalRequest.decode(value),
-    responseSerialize: (value: QueryProposalResponse) =>
-      Buffer.from(QueryProposalResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryProposalResponse.decode(value),
-  },
+  Proposal(
+    request: DeepPartial<QueryProposalRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryProposalResponse>;
   /** Proposals queries all proposals based on given status. */
-  proposals: {
-    path: "/cosmos.gov.v1beta1.Query/Proposals",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryProposalsRequest) =>
-      Buffer.from(QueryProposalsRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryProposalsRequest.decode(value),
-    responseSerialize: (value: QueryProposalsResponse) =>
-      Buffer.from(QueryProposalsResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryProposalsResponse.decode(value),
-  },
+  Proposals(
+    request: DeepPartial<QueryProposalsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryProposalsResponse>;
   /** Vote queries voted information based on proposalID, voterAddr. */
-  vote: {
-    path: "/cosmos.gov.v1beta1.Query/Vote",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryVoteRequest) => Buffer.from(QueryVoteRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryVoteRequest.decode(value),
-    responseSerialize: (value: QueryVoteResponse) => Buffer.from(QueryVoteResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryVoteResponse.decode(value),
-  },
+  Vote(request: DeepPartial<QueryVoteRequest>, metadata?: grpc.Metadata): Promise<QueryVoteResponse>;
   /** Votes queries votes of a given proposal. */
-  votes: {
-    path: "/cosmos.gov.v1beta1.Query/Votes",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryVotesRequest) => Buffer.from(QueryVotesRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryVotesRequest.decode(value),
-    responseSerialize: (value: QueryVotesResponse) => Buffer.from(QueryVotesResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryVotesResponse.decode(value),
-  },
+  Votes(request: DeepPartial<QueryVotesRequest>, metadata?: grpc.Metadata): Promise<QueryVotesResponse>;
   /** Params queries all parameters of the gov module. */
-  params: {
-    path: "/cosmos.gov.v1beta1.Query/Params",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryParamsRequest) => Buffer.from(QueryParamsRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryParamsRequest.decode(value),
-    responseSerialize: (value: QueryParamsResponse) =>
-      Buffer.from(QueryParamsResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryParamsResponse.decode(value),
-  },
+  Params(request: DeepPartial<QueryParamsRequest>, metadata?: grpc.Metadata): Promise<QueryParamsResponse>;
   /** Deposit queries single deposit information based proposalID, depositAddr. */
-  deposit: {
-    path: "/cosmos.gov.v1beta1.Query/Deposit",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryDepositRequest) => Buffer.from(QueryDepositRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryDepositRequest.decode(value),
-    responseSerialize: (value: QueryDepositResponse) =>
-      Buffer.from(QueryDepositResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryDepositResponse.decode(value),
-  },
+  Deposit(request: DeepPartial<QueryDepositRequest>, metadata?: grpc.Metadata): Promise<QueryDepositResponse>;
   /** Deposits queries all deposits of a single proposal. */
-  deposits: {
-    path: "/cosmos.gov.v1beta1.Query/Deposits",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryDepositsRequest) =>
-      Buffer.from(QueryDepositsRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryDepositsRequest.decode(value),
-    responseSerialize: (value: QueryDepositsResponse) =>
-      Buffer.from(QueryDepositsResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryDepositsResponse.decode(value),
-  },
+  Deposits(
+    request: DeepPartial<QueryDepositsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryDepositsResponse>;
   /** TallyResult queries the tally of a proposal vote. */
-  tallyResult: {
-    path: "/cosmos.gov.v1beta1.Query/TallyResult",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryTallyResultRequest) =>
-      Buffer.from(QueryTallyResultRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryTallyResultRequest.decode(value),
-    responseSerialize: (value: QueryTallyResultResponse) =>
-      Buffer.from(QueryTallyResultResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryTallyResultResponse.decode(value),
-  },
-} as const;
-
-export interface QueryServer extends UntypedServiceImplementation {
-  /** Proposal queries proposal details based on ProposalID. */
-  proposal: handleUnaryCall<QueryProposalRequest, QueryProposalResponse>;
-  /** Proposals queries all proposals based on given status. */
-  proposals: handleUnaryCall<QueryProposalsRequest, QueryProposalsResponse>;
-  /** Vote queries voted information based on proposalID, voterAddr. */
-  vote: handleUnaryCall<QueryVoteRequest, QueryVoteResponse>;
-  /** Votes queries votes of a given proposal. */
-  votes: handleUnaryCall<QueryVotesRequest, QueryVotesResponse>;
-  /** Params queries all parameters of the gov module. */
-  params: handleUnaryCall<QueryParamsRequest, QueryParamsResponse>;
-  /** Deposit queries single deposit information based proposalID, depositAddr. */
-  deposit: handleUnaryCall<QueryDepositRequest, QueryDepositResponse>;
-  /** Deposits queries all deposits of a single proposal. */
-  deposits: handleUnaryCall<QueryDepositsRequest, QueryDepositsResponse>;
-  /** TallyResult queries the tally of a proposal vote. */
-  tallyResult: handleUnaryCall<QueryTallyResultRequest, QueryTallyResultResponse>;
+  TallyResult(
+    request: DeepPartial<QueryTallyResultRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryTallyResultResponse>;
 }
 
-export interface QueryClient extends Client {
-  /** Proposal queries proposal details based on ProposalID. */
-  proposal(
-    request: QueryProposalRequest,
-    callback: (error: ServiceError | null, response: QueryProposalResponse) => void,
-  ): ClientUnaryCall;
-  proposal(
-    request: QueryProposalRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryProposalResponse) => void,
-  ): ClientUnaryCall;
-  proposal(
-    request: QueryProposalRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryProposalResponse) => void,
-  ): ClientUnaryCall;
-  /** Proposals queries all proposals based on given status. */
-  proposals(
-    request: QueryProposalsRequest,
-    callback: (error: ServiceError | null, response: QueryProposalsResponse) => void,
-  ): ClientUnaryCall;
-  proposals(
-    request: QueryProposalsRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryProposalsResponse) => void,
-  ): ClientUnaryCall;
-  proposals(
-    request: QueryProposalsRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryProposalsResponse) => void,
-  ): ClientUnaryCall;
-  /** Vote queries voted information based on proposalID, voterAddr. */
-  vote(
-    request: QueryVoteRequest,
-    callback: (error: ServiceError | null, response: QueryVoteResponse) => void,
-  ): ClientUnaryCall;
-  vote(
-    request: QueryVoteRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryVoteResponse) => void,
-  ): ClientUnaryCall;
-  vote(
-    request: QueryVoteRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryVoteResponse) => void,
-  ): ClientUnaryCall;
-  /** Votes queries votes of a given proposal. */
-  votes(
-    request: QueryVotesRequest,
-    callback: (error: ServiceError | null, response: QueryVotesResponse) => void,
-  ): ClientUnaryCall;
-  votes(
-    request: QueryVotesRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryVotesResponse) => void,
-  ): ClientUnaryCall;
-  votes(
-    request: QueryVotesRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryVotesResponse) => void,
-  ): ClientUnaryCall;
-  /** Params queries all parameters of the gov module. */
-  params(
-    request: QueryParamsRequest,
-    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
-  ): ClientUnaryCall;
-  params(
-    request: QueryParamsRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
-  ): ClientUnaryCall;
-  params(
-    request: QueryParamsRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
-  ): ClientUnaryCall;
-  /** Deposit queries single deposit information based proposalID, depositAddr. */
-  deposit(
-    request: QueryDepositRequest,
-    callback: (error: ServiceError | null, response: QueryDepositResponse) => void,
-  ): ClientUnaryCall;
-  deposit(
-    request: QueryDepositRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryDepositResponse) => void,
-  ): ClientUnaryCall;
-  deposit(
-    request: QueryDepositRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryDepositResponse) => void,
-  ): ClientUnaryCall;
-  /** Deposits queries all deposits of a single proposal. */
-  deposits(
-    request: QueryDepositsRequest,
-    callback: (error: ServiceError | null, response: QueryDepositsResponse) => void,
-  ): ClientUnaryCall;
-  deposits(
-    request: QueryDepositsRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryDepositsResponse) => void,
-  ): ClientUnaryCall;
-  deposits(
-    request: QueryDepositsRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryDepositsResponse) => void,
-  ): ClientUnaryCall;
-  /** TallyResult queries the tally of a proposal vote. */
-  tallyResult(
-    request: QueryTallyResultRequest,
-    callback: (error: ServiceError | null, response: QueryTallyResultResponse) => void,
-  ): ClientUnaryCall;
-  tallyResult(
-    request: QueryTallyResultRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryTallyResultResponse) => void,
-  ): ClientUnaryCall;
-  tallyResult(
-    request: QueryTallyResultRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryTallyResultResponse) => void,
-  ): ClientUnaryCall;
+export class QueryClientImpl implements Query {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.Proposal = this.Proposal.bind(this);
+    this.Proposals = this.Proposals.bind(this);
+    this.Vote = this.Vote.bind(this);
+    this.Votes = this.Votes.bind(this);
+    this.Params = this.Params.bind(this);
+    this.Deposit = this.Deposit.bind(this);
+    this.Deposits = this.Deposits.bind(this);
+    this.TallyResult = this.TallyResult.bind(this);
+  }
+
+  Proposal(
+    request: DeepPartial<QueryProposalRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryProposalResponse> {
+    return this.rpc.unary(QueryProposalDesc, QueryProposalRequest.fromPartial(request), metadata);
+  }
+
+  Proposals(
+    request: DeepPartial<QueryProposalsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryProposalsResponse> {
+    return this.rpc.unary(QueryProposalsDesc, QueryProposalsRequest.fromPartial(request), metadata);
+  }
+
+  Vote(request: DeepPartial<QueryVoteRequest>, metadata?: grpc.Metadata): Promise<QueryVoteResponse> {
+    return this.rpc.unary(QueryVoteDesc, QueryVoteRequest.fromPartial(request), metadata);
+  }
+
+  Votes(request: DeepPartial<QueryVotesRequest>, metadata?: grpc.Metadata): Promise<QueryVotesResponse> {
+    return this.rpc.unary(QueryVotesDesc, QueryVotesRequest.fromPartial(request), metadata);
+  }
+
+  Params(request: DeepPartial<QueryParamsRequest>, metadata?: grpc.Metadata): Promise<QueryParamsResponse> {
+    return this.rpc.unary(QueryParamsDesc, QueryParamsRequest.fromPartial(request), metadata);
+  }
+
+  Deposit(
+    request: DeepPartial<QueryDepositRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryDepositResponse> {
+    return this.rpc.unary(QueryDepositDesc, QueryDepositRequest.fromPartial(request), metadata);
+  }
+
+  Deposits(
+    request: DeepPartial<QueryDepositsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryDepositsResponse> {
+    return this.rpc.unary(QueryDepositsDesc, QueryDepositsRequest.fromPartial(request), metadata);
+  }
+
+  TallyResult(
+    request: DeepPartial<QueryTallyResultRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryTallyResultResponse> {
+    return this.rpc.unary(QueryTallyResultDesc, QueryTallyResultRequest.fromPartial(request), metadata);
+  }
 }
 
-export const QueryClient = makeGenericClientConstructor(
-  QueryService,
-  "cosmos.gov.v1beta1.Query",
-) as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+export const QueryDesc = {
+  serviceName: "cosmos.gov.v1beta1.Query",
 };
+
+export const QueryProposalDesc: UnaryMethodDefinitionish = {
+  methodName: "Proposal",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryProposalRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryProposalResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryProposalsDesc: UnaryMethodDefinitionish = {
+  methodName: "Proposals",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryProposalsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryProposalsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryVoteDesc: UnaryMethodDefinitionish = {
+  methodName: "Vote",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryVoteRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryVoteResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryVotesDesc: UnaryMethodDefinitionish = {
+  methodName: "Votes",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryVotesRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryVotesResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryParamsDesc: UnaryMethodDefinitionish = {
+  methodName: "Params",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryParamsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryParamsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryDepositDesc: UnaryMethodDefinitionish = {
+  methodName: "Deposit",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryDepositRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryDepositResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryDepositsDesc: UnaryMethodDefinitionish = {
+  methodName: "Deposits",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryDepositsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryDepositsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryTallyResultDesc: UnaryMethodDefinitionish = {
+  methodName: "TallyResult",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryTallyResultRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryTallyResultResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

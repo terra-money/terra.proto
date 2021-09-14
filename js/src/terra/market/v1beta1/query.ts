@@ -1,20 +1,10 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Coin } from "../../../cosmos/base/v1beta1/coin";
 import { Params } from "../../../terra/market/v1beta1/market";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "terra.market.v1beta1";
 
@@ -368,108 +358,182 @@ export const QueryParamsResponse = {
 };
 
 /** Query defines the gRPC querier service. */
-export const QueryService = {
+export interface Query {
   /** Swap returns simulated swap amount. */
-  swap: {
-    path: "/terra.market.v1beta1.Query/Swap",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QuerySwapRequest) => Buffer.from(QuerySwapRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QuerySwapRequest.decode(value),
-    responseSerialize: (value: QuerySwapResponse) => Buffer.from(QuerySwapResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QuerySwapResponse.decode(value),
-  },
+  Swap(request: DeepPartial<QuerySwapRequest>, metadata?: grpc.Metadata): Promise<QuerySwapResponse>;
   /** TerraPoolDelta returns terra_pool_delta amount. */
-  terraPoolDelta: {
-    path: "/terra.market.v1beta1.Query/TerraPoolDelta",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryTerraPoolDeltaRequest) =>
-      Buffer.from(QueryTerraPoolDeltaRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryTerraPoolDeltaRequest.decode(value),
-    responseSerialize: (value: QueryTerraPoolDeltaResponse) =>
-      Buffer.from(QueryTerraPoolDeltaResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryTerraPoolDeltaResponse.decode(value),
-  },
+  TerraPoolDelta(
+    request: DeepPartial<QueryTerraPoolDeltaRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryTerraPoolDeltaResponse>;
   /** Params queries all parameters. */
-  params: {
-    path: "/terra.market.v1beta1.Query/Params",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryParamsRequest) => Buffer.from(QueryParamsRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryParamsRequest.decode(value),
-    responseSerialize: (value: QueryParamsResponse) =>
-      Buffer.from(QueryParamsResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryParamsResponse.decode(value),
-  },
-} as const;
-
-export interface QueryServer extends UntypedServiceImplementation {
-  /** Swap returns simulated swap amount. */
-  swap: handleUnaryCall<QuerySwapRequest, QuerySwapResponse>;
-  /** TerraPoolDelta returns terra_pool_delta amount. */
-  terraPoolDelta: handleUnaryCall<QueryTerraPoolDeltaRequest, QueryTerraPoolDeltaResponse>;
-  /** Params queries all parameters. */
-  params: handleUnaryCall<QueryParamsRequest, QueryParamsResponse>;
+  Params(request: DeepPartial<QueryParamsRequest>, metadata?: grpc.Metadata): Promise<QueryParamsResponse>;
 }
 
-export interface QueryClient extends Client {
-  /** Swap returns simulated swap amount. */
-  swap(
-    request: QuerySwapRequest,
-    callback: (error: ServiceError | null, response: QuerySwapResponse) => void,
-  ): ClientUnaryCall;
-  swap(
-    request: QuerySwapRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QuerySwapResponse) => void,
-  ): ClientUnaryCall;
-  swap(
-    request: QuerySwapRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QuerySwapResponse) => void,
-  ): ClientUnaryCall;
-  /** TerraPoolDelta returns terra_pool_delta amount. */
-  terraPoolDelta(
-    request: QueryTerraPoolDeltaRequest,
-    callback: (error: ServiceError | null, response: QueryTerraPoolDeltaResponse) => void,
-  ): ClientUnaryCall;
-  terraPoolDelta(
-    request: QueryTerraPoolDeltaRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryTerraPoolDeltaResponse) => void,
-  ): ClientUnaryCall;
-  terraPoolDelta(
-    request: QueryTerraPoolDeltaRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryTerraPoolDeltaResponse) => void,
-  ): ClientUnaryCall;
-  /** Params queries all parameters. */
-  params(
-    request: QueryParamsRequest,
-    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
-  ): ClientUnaryCall;
-  params(
-    request: QueryParamsRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
-  ): ClientUnaryCall;
-  params(
-    request: QueryParamsRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
-  ): ClientUnaryCall;
+export class QueryClientImpl implements Query {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.Swap = this.Swap.bind(this);
+    this.TerraPoolDelta = this.TerraPoolDelta.bind(this);
+    this.Params = this.Params.bind(this);
+  }
+
+  Swap(request: DeepPartial<QuerySwapRequest>, metadata?: grpc.Metadata): Promise<QuerySwapResponse> {
+    return this.rpc.unary(QuerySwapDesc, QuerySwapRequest.fromPartial(request), metadata);
+  }
+
+  TerraPoolDelta(
+    request: DeepPartial<QueryTerraPoolDeltaRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryTerraPoolDeltaResponse> {
+    return this.rpc.unary(QueryTerraPoolDeltaDesc, QueryTerraPoolDeltaRequest.fromPartial(request), metadata);
+  }
+
+  Params(request: DeepPartial<QueryParamsRequest>, metadata?: grpc.Metadata): Promise<QueryParamsResponse> {
+    return this.rpc.unary(QueryParamsDesc, QueryParamsRequest.fromPartial(request), metadata);
+  }
 }
 
-export const QueryClient = makeGenericClientConstructor(
-  QueryService,
-  "terra.market.v1beta1.Query",
-) as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+export const QueryDesc = {
+  serviceName: "terra.market.v1beta1.Query",
 };
+
+export const QuerySwapDesc: UnaryMethodDefinitionish = {
+  methodName: "Swap",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QuerySwapRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QuerySwapResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryTerraPoolDeltaDesc: UnaryMethodDefinitionish = {
+  methodName: "TerraPoolDelta",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryTerraPoolDeltaRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryTerraPoolDeltaResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryParamsDesc: UnaryMethodDefinitionish = {
+  methodName: "Params",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryParamsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryParamsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

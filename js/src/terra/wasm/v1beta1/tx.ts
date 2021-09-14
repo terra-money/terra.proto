@@ -1,18 +1,8 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
+import { BrowserHeaders } from "browser-headers";
 import { Coin } from "../../../cosmos/base/v1beta1/coin";
 
 export const protobufPackage = "terra.wasm.v1beta1";
@@ -1187,224 +1177,328 @@ export const MsgClearContractAdminResponse = {
 };
 
 /** Msg defines the oracle Msg service. */
-export const MsgService = {
+export interface Msg {
   /** StoreCode to submit Wasm code to the system */
-  storeCode: {
-    path: "/terra.wasm.v1beta1.Msg/StoreCode",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgStoreCode) => Buffer.from(MsgStoreCode.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgStoreCode.decode(value),
-    responseSerialize: (value: MsgStoreCodeResponse) =>
-      Buffer.from(MsgStoreCodeResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgStoreCodeResponse.decode(value),
-  },
+  StoreCode(request: DeepPartial<MsgStoreCode>, metadata?: grpc.Metadata): Promise<MsgStoreCodeResponse>;
   /** MigrateCode to submit new version Wasm code to the system */
-  migrateCode: {
-    path: "/terra.wasm.v1beta1.Msg/MigrateCode",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgMigrateCode) => Buffer.from(MsgMigrateCode.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgMigrateCode.decode(value),
-    responseSerialize: (value: MsgMigrateCodeResponse) =>
-      Buffer.from(MsgMigrateCodeResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgMigrateCodeResponse.decode(value),
-  },
+  MigrateCode(
+    request: DeepPartial<MsgMigrateCode>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgMigrateCodeResponse>;
   /** Instantiate creates a new smart contract instance for the given code id. */
-  instantiateContract: {
-    path: "/terra.wasm.v1beta1.Msg/InstantiateContract",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgInstantiateContract) =>
-      Buffer.from(MsgInstantiateContract.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgInstantiateContract.decode(value),
-    responseSerialize: (value: MsgInstantiateContractResponse) =>
-      Buffer.from(MsgInstantiateContractResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgInstantiateContractResponse.decode(value),
-  },
+  InstantiateContract(
+    request: DeepPartial<MsgInstantiateContract>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgInstantiateContractResponse>;
   /** Execute submits the given message data to a smart contract */
-  executeContract: {
-    path: "/terra.wasm.v1beta1.Msg/ExecuteContract",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgExecuteContract) => Buffer.from(MsgExecuteContract.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgExecuteContract.decode(value),
-    responseSerialize: (value: MsgExecuteContractResponse) =>
-      Buffer.from(MsgExecuteContractResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgExecuteContractResponse.decode(value),
-  },
+  ExecuteContract(
+    request: DeepPartial<MsgExecuteContract>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgExecuteContractResponse>;
   /** Migrate runs a code upgrade/ downgrade for a smart contract */
-  migrateContract: {
-    path: "/terra.wasm.v1beta1.Msg/MigrateContract",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgMigrateContract) => Buffer.from(MsgMigrateContract.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgMigrateContract.decode(value),
-    responseSerialize: (value: MsgMigrateContractResponse) =>
-      Buffer.from(MsgMigrateContractResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgMigrateContractResponse.decode(value),
-  },
+  MigrateContract(
+    request: DeepPartial<MsgMigrateContract>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgMigrateContractResponse>;
   /** UpdateContractAdmin sets a new admin for a smart contract */
-  updateContractAdmin: {
-    path: "/terra.wasm.v1beta1.Msg/UpdateContractAdmin",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgUpdateContractAdmin) =>
-      Buffer.from(MsgUpdateContractAdmin.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgUpdateContractAdmin.decode(value),
-    responseSerialize: (value: MsgUpdateContractAdminResponse) =>
-      Buffer.from(MsgUpdateContractAdminResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgUpdateContractAdminResponse.decode(value),
-  },
+  UpdateContractAdmin(
+    request: DeepPartial<MsgUpdateContractAdmin>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgUpdateContractAdminResponse>;
   /** ClearContractAdmin remove admin flag from a smart contract */
-  clearContractAdmin: {
-    path: "/terra.wasm.v1beta1.Msg/ClearContractAdmin",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgClearContractAdmin) =>
-      Buffer.from(MsgClearContractAdmin.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgClearContractAdmin.decode(value),
-    responseSerialize: (value: MsgClearContractAdminResponse) =>
-      Buffer.from(MsgClearContractAdminResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgClearContractAdminResponse.decode(value),
-  },
-} as const;
-
-export interface MsgServer extends UntypedServiceImplementation {
-  /** StoreCode to submit Wasm code to the system */
-  storeCode: handleUnaryCall<MsgStoreCode, MsgStoreCodeResponse>;
-  /** MigrateCode to submit new version Wasm code to the system */
-  migrateCode: handleUnaryCall<MsgMigrateCode, MsgMigrateCodeResponse>;
-  /** Instantiate creates a new smart contract instance for the given code id. */
-  instantiateContract: handleUnaryCall<MsgInstantiateContract, MsgInstantiateContractResponse>;
-  /** Execute submits the given message data to a smart contract */
-  executeContract: handleUnaryCall<MsgExecuteContract, MsgExecuteContractResponse>;
-  /** Migrate runs a code upgrade/ downgrade for a smart contract */
-  migrateContract: handleUnaryCall<MsgMigrateContract, MsgMigrateContractResponse>;
-  /** UpdateContractAdmin sets a new admin for a smart contract */
-  updateContractAdmin: handleUnaryCall<MsgUpdateContractAdmin, MsgUpdateContractAdminResponse>;
-  /** ClearContractAdmin remove admin flag from a smart contract */
-  clearContractAdmin: handleUnaryCall<MsgClearContractAdmin, MsgClearContractAdminResponse>;
+  ClearContractAdmin(
+    request: DeepPartial<MsgClearContractAdmin>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgClearContractAdminResponse>;
 }
 
-export interface MsgClient extends Client {
-  /** StoreCode to submit Wasm code to the system */
-  storeCode(
-    request: MsgStoreCode,
-    callback: (error: ServiceError | null, response: MsgStoreCodeResponse) => void,
-  ): ClientUnaryCall;
-  storeCode(
-    request: MsgStoreCode,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgStoreCodeResponse) => void,
-  ): ClientUnaryCall;
-  storeCode(
-    request: MsgStoreCode,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgStoreCodeResponse) => void,
-  ): ClientUnaryCall;
-  /** MigrateCode to submit new version Wasm code to the system */
-  migrateCode(
-    request: MsgMigrateCode,
-    callback: (error: ServiceError | null, response: MsgMigrateCodeResponse) => void,
-  ): ClientUnaryCall;
-  migrateCode(
-    request: MsgMigrateCode,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgMigrateCodeResponse) => void,
-  ): ClientUnaryCall;
-  migrateCode(
-    request: MsgMigrateCode,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgMigrateCodeResponse) => void,
-  ): ClientUnaryCall;
-  /** Instantiate creates a new smart contract instance for the given code id. */
-  instantiateContract(
-    request: MsgInstantiateContract,
-    callback: (error: ServiceError | null, response: MsgInstantiateContractResponse) => void,
-  ): ClientUnaryCall;
-  instantiateContract(
-    request: MsgInstantiateContract,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgInstantiateContractResponse) => void,
-  ): ClientUnaryCall;
-  instantiateContract(
-    request: MsgInstantiateContract,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgInstantiateContractResponse) => void,
-  ): ClientUnaryCall;
-  /** Execute submits the given message data to a smart contract */
-  executeContract(
-    request: MsgExecuteContract,
-    callback: (error: ServiceError | null, response: MsgExecuteContractResponse) => void,
-  ): ClientUnaryCall;
-  executeContract(
-    request: MsgExecuteContract,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgExecuteContractResponse) => void,
-  ): ClientUnaryCall;
-  executeContract(
-    request: MsgExecuteContract,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgExecuteContractResponse) => void,
-  ): ClientUnaryCall;
-  /** Migrate runs a code upgrade/ downgrade for a smart contract */
-  migrateContract(
-    request: MsgMigrateContract,
-    callback: (error: ServiceError | null, response: MsgMigrateContractResponse) => void,
-  ): ClientUnaryCall;
-  migrateContract(
-    request: MsgMigrateContract,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgMigrateContractResponse) => void,
-  ): ClientUnaryCall;
-  migrateContract(
-    request: MsgMigrateContract,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgMigrateContractResponse) => void,
-  ): ClientUnaryCall;
-  /** UpdateContractAdmin sets a new admin for a smart contract */
-  updateContractAdmin(
-    request: MsgUpdateContractAdmin,
-    callback: (error: ServiceError | null, response: MsgUpdateContractAdminResponse) => void,
-  ): ClientUnaryCall;
-  updateContractAdmin(
-    request: MsgUpdateContractAdmin,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgUpdateContractAdminResponse) => void,
-  ): ClientUnaryCall;
-  updateContractAdmin(
-    request: MsgUpdateContractAdmin,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgUpdateContractAdminResponse) => void,
-  ): ClientUnaryCall;
-  /** ClearContractAdmin remove admin flag from a smart contract */
-  clearContractAdmin(
-    request: MsgClearContractAdmin,
-    callback: (error: ServiceError | null, response: MsgClearContractAdminResponse) => void,
-  ): ClientUnaryCall;
-  clearContractAdmin(
-    request: MsgClearContractAdmin,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgClearContractAdminResponse) => void,
-  ): ClientUnaryCall;
-  clearContractAdmin(
-    request: MsgClearContractAdmin,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgClearContractAdminResponse) => void,
-  ): ClientUnaryCall;
+export class MsgClientImpl implements Msg {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.StoreCode = this.StoreCode.bind(this);
+    this.MigrateCode = this.MigrateCode.bind(this);
+    this.InstantiateContract = this.InstantiateContract.bind(this);
+    this.ExecuteContract = this.ExecuteContract.bind(this);
+    this.MigrateContract = this.MigrateContract.bind(this);
+    this.UpdateContractAdmin = this.UpdateContractAdmin.bind(this);
+    this.ClearContractAdmin = this.ClearContractAdmin.bind(this);
+  }
+
+  StoreCode(request: DeepPartial<MsgStoreCode>, metadata?: grpc.Metadata): Promise<MsgStoreCodeResponse> {
+    return this.rpc.unary(MsgStoreCodeDesc, MsgStoreCode.fromPartial(request), metadata);
+  }
+
+  MigrateCode(
+    request: DeepPartial<MsgMigrateCode>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgMigrateCodeResponse> {
+    return this.rpc.unary(MsgMigrateCodeDesc, MsgMigrateCode.fromPartial(request), metadata);
+  }
+
+  InstantiateContract(
+    request: DeepPartial<MsgInstantiateContract>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgInstantiateContractResponse> {
+    return this.rpc.unary(MsgInstantiateContractDesc, MsgInstantiateContract.fromPartial(request), metadata);
+  }
+
+  ExecuteContract(
+    request: DeepPartial<MsgExecuteContract>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgExecuteContractResponse> {
+    return this.rpc.unary(MsgExecuteContractDesc, MsgExecuteContract.fromPartial(request), metadata);
+  }
+
+  MigrateContract(
+    request: DeepPartial<MsgMigrateContract>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgMigrateContractResponse> {
+    return this.rpc.unary(MsgMigrateContractDesc, MsgMigrateContract.fromPartial(request), metadata);
+  }
+
+  UpdateContractAdmin(
+    request: DeepPartial<MsgUpdateContractAdmin>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgUpdateContractAdminResponse> {
+    return this.rpc.unary(MsgUpdateContractAdminDesc, MsgUpdateContractAdmin.fromPartial(request), metadata);
+  }
+
+  ClearContractAdmin(
+    request: DeepPartial<MsgClearContractAdmin>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgClearContractAdminResponse> {
+    return this.rpc.unary(MsgClearContractAdminDesc, MsgClearContractAdmin.fromPartial(request), metadata);
+  }
 }
 
-export const MsgClient = makeGenericClientConstructor(MsgService, "terra.wasm.v1beta1.Msg") as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+export const MsgDesc = {
+  serviceName: "terra.wasm.v1beta1.Msg",
 };
+
+export const MsgStoreCodeDesc: UnaryMethodDefinitionish = {
+  methodName: "StoreCode",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgStoreCode.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgStoreCodeResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgMigrateCodeDesc: UnaryMethodDefinitionish = {
+  methodName: "MigrateCode",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgMigrateCode.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgMigrateCodeResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgInstantiateContractDesc: UnaryMethodDefinitionish = {
+  methodName: "InstantiateContract",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgInstantiateContract.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgInstantiateContractResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgExecuteContractDesc: UnaryMethodDefinitionish = {
+  methodName: "ExecuteContract",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgExecuteContract.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgExecuteContractResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgMigrateContractDesc: UnaryMethodDefinitionish = {
+  methodName: "MigrateContract",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgMigrateContract.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgMigrateContractResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgUpdateContractAdminDesc: UnaryMethodDefinitionish = {
+  methodName: "UpdateContractAdmin",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgUpdateContractAdmin.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgUpdateContractAdminResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgClearContractAdminDesc: UnaryMethodDefinitionish = {
+  methodName: "ClearContractAdmin",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgClearContractAdmin.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgClearContractAdminResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

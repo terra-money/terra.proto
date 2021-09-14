@@ -1,20 +1,10 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata as Metadata1,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Params, ValidatorSigningInfo } from "../../../cosmos/slashing/v1beta1/slashing";
 import { PageRequest, PageResponse } from "../../../cosmos/base/query/v1beta1/pagination";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "cosmos.slashing.v1beta1";
 
@@ -405,110 +395,188 @@ export const QuerySigningInfosResponse = {
 };
 
 /** Query provides defines the gRPC querier service */
-export const QueryService = {
+export interface Query {
   /** Params queries the parameters of slashing module */
-  params: {
-    path: "/cosmos.slashing.v1beta1.Query/Params",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryParamsRequest) => Buffer.from(QueryParamsRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryParamsRequest.decode(value),
-    responseSerialize: (value: QueryParamsResponse) =>
-      Buffer.from(QueryParamsResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryParamsResponse.decode(value),
-  },
+  Params(request: DeepPartial<QueryParamsRequest>, metadata?: grpc.Metadata): Promise<QueryParamsResponse>;
   /** SigningInfo queries the signing info of given cons address */
-  signingInfo: {
-    path: "/cosmos.slashing.v1beta1.Query/SigningInfo",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QuerySigningInfoRequest) =>
-      Buffer.from(QuerySigningInfoRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QuerySigningInfoRequest.decode(value),
-    responseSerialize: (value: QuerySigningInfoResponse) =>
-      Buffer.from(QuerySigningInfoResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QuerySigningInfoResponse.decode(value),
-  },
+  SigningInfo(
+    request: DeepPartial<QuerySigningInfoRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QuerySigningInfoResponse>;
   /** SigningInfos queries signing info of all validators */
-  signingInfos: {
-    path: "/cosmos.slashing.v1beta1.Query/SigningInfos",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QuerySigningInfosRequest) =>
-      Buffer.from(QuerySigningInfosRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QuerySigningInfosRequest.decode(value),
-    responseSerialize: (value: QuerySigningInfosResponse) =>
-      Buffer.from(QuerySigningInfosResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QuerySigningInfosResponse.decode(value),
-  },
-} as const;
-
-export interface QueryServer extends UntypedServiceImplementation {
-  /** Params queries the parameters of slashing module */
-  params: handleUnaryCall<QueryParamsRequest, QueryParamsResponse>;
-  /** SigningInfo queries the signing info of given cons address */
-  signingInfo: handleUnaryCall<QuerySigningInfoRequest, QuerySigningInfoResponse>;
-  /** SigningInfos queries signing info of all validators */
-  signingInfos: handleUnaryCall<QuerySigningInfosRequest, QuerySigningInfosResponse>;
+  SigningInfos(
+    request: DeepPartial<QuerySigningInfosRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QuerySigningInfosResponse>;
 }
 
-export interface QueryClient extends Client {
-  /** Params queries the parameters of slashing module */
-  params(
-    request: QueryParamsRequest,
-    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
-  ): ClientUnaryCall;
-  params(
-    request: QueryParamsRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
-  ): ClientUnaryCall;
-  params(
-    request: QueryParamsRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
-  ): ClientUnaryCall;
-  /** SigningInfo queries the signing info of given cons address */
-  signingInfo(
-    request: QuerySigningInfoRequest,
-    callback: (error: ServiceError | null, response: QuerySigningInfoResponse) => void,
-  ): ClientUnaryCall;
-  signingInfo(
-    request: QuerySigningInfoRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QuerySigningInfoResponse) => void,
-  ): ClientUnaryCall;
-  signingInfo(
-    request: QuerySigningInfoRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QuerySigningInfoResponse) => void,
-  ): ClientUnaryCall;
-  /** SigningInfos queries signing info of all validators */
-  signingInfos(
-    request: QuerySigningInfosRequest,
-    callback: (error: ServiceError | null, response: QuerySigningInfosResponse) => void,
-  ): ClientUnaryCall;
-  signingInfos(
-    request: QuerySigningInfosRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QuerySigningInfosResponse) => void,
-  ): ClientUnaryCall;
-  signingInfos(
-    request: QuerySigningInfosRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QuerySigningInfosResponse) => void,
-  ): ClientUnaryCall;
+export class QueryClientImpl implements Query {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.Params = this.Params.bind(this);
+    this.SigningInfo = this.SigningInfo.bind(this);
+    this.SigningInfos = this.SigningInfos.bind(this);
+  }
+
+  Params(request: DeepPartial<QueryParamsRequest>, metadata?: grpc.Metadata): Promise<QueryParamsResponse> {
+    return this.rpc.unary(QueryParamsDesc, QueryParamsRequest.fromPartial(request), metadata);
+  }
+
+  SigningInfo(
+    request: DeepPartial<QuerySigningInfoRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QuerySigningInfoResponse> {
+    return this.rpc.unary(QuerySigningInfoDesc, QuerySigningInfoRequest.fromPartial(request), metadata);
+  }
+
+  SigningInfos(
+    request: DeepPartial<QuerySigningInfosRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QuerySigningInfosResponse> {
+    return this.rpc.unary(QuerySigningInfosDesc, QuerySigningInfosRequest.fromPartial(request), metadata);
+  }
 }
 
-export const QueryClient = makeGenericClientConstructor(
-  QueryService,
-  "cosmos.slashing.v1beta1.Query",
-) as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+export const QueryDesc = {
+  serviceName: "cosmos.slashing.v1beta1.Query",
 };
+
+export const QueryParamsDesc: UnaryMethodDefinitionish = {
+  methodName: "Params",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryParamsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryParamsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QuerySigningInfoDesc: UnaryMethodDefinitionish = {
+  methodName: "SigningInfo",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QuerySigningInfoRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QuerySigningInfoResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QuerySigningInfosDesc: UnaryMethodDefinitionish = {
+  methodName: "SigningInfos",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QuerySigningInfosRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QuerySigningInfosResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

@@ -1,19 +1,9 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata as Metadata1,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../../cosmos/base/query/v1beta1/pagination";
+import { BrowserHeaders } from "browser-headers";
 import { Grant } from "../../../cosmos/authz/v1beta1/authz";
 
 export const protobufPackage = "cosmos.authz.v1beta1";
@@ -224,50 +214,118 @@ export const QueryGrantsResponse = {
 };
 
 /** Query defines the gRPC querier service. */
-export const QueryService = {
+export interface Query {
   /** Returns list of `Authorization`, granted to the grantee by the granter. */
-  grants: {
-    path: "/cosmos.authz.v1beta1.Query/Grants",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryGrantsRequest) => Buffer.from(QueryGrantsRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryGrantsRequest.decode(value),
-    responseSerialize: (value: QueryGrantsResponse) =>
-      Buffer.from(QueryGrantsResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryGrantsResponse.decode(value),
-  },
-} as const;
-
-export interface QueryServer extends UntypedServiceImplementation {
-  /** Returns list of `Authorization`, granted to the grantee by the granter. */
-  grants: handleUnaryCall<QueryGrantsRequest, QueryGrantsResponse>;
+  Grants(request: DeepPartial<QueryGrantsRequest>, metadata?: grpc.Metadata): Promise<QueryGrantsResponse>;
 }
 
-export interface QueryClient extends Client {
-  /** Returns list of `Authorization`, granted to the grantee by the granter. */
-  grants(
-    request: QueryGrantsRequest,
-    callback: (error: ServiceError | null, response: QueryGrantsResponse) => void,
-  ): ClientUnaryCall;
-  grants(
-    request: QueryGrantsRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryGrantsResponse) => void,
-  ): ClientUnaryCall;
-  grants(
-    request: QueryGrantsRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryGrantsResponse) => void,
-  ): ClientUnaryCall;
+export class QueryClientImpl implements Query {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.Grants = this.Grants.bind(this);
+  }
+
+  Grants(request: DeepPartial<QueryGrantsRequest>, metadata?: grpc.Metadata): Promise<QueryGrantsResponse> {
+    return this.rpc.unary(QueryGrantsDesc, QueryGrantsRequest.fromPartial(request), metadata);
+  }
 }
 
-export const QueryClient = makeGenericClientConstructor(
-  QueryService,
-  "cosmos.authz.v1beta1.Query",
-) as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+export const QueryDesc = {
+  serviceName: "cosmos.authz.v1beta1.Query",
 };
+
+export const QueryGrantsDesc: UnaryMethodDefinitionish = {
+  methodName: "Grants",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryGrantsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryGrantsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

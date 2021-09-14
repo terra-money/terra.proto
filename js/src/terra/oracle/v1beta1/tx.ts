@@ -1,18 +1,8 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "terra.oracle.v1beta1";
 
@@ -445,132 +435,208 @@ export const MsgDelegateFeedConsentResponse = {
 };
 
 /** Msg defines the oracle Msg service. */
-export const MsgService = {
+export interface Msg {
   /**
    * AggregateExchangeRatePrevote defines a method for submitting
    * aggregate exchange rate prevote
    */
-  aggregateExchangeRatePrevote: {
-    path: "/terra.oracle.v1beta1.Msg/AggregateExchangeRatePrevote",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgAggregateExchangeRatePrevote) =>
-      Buffer.from(MsgAggregateExchangeRatePrevote.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgAggregateExchangeRatePrevote.decode(value),
-    responseSerialize: (value: MsgAggregateExchangeRatePrevoteResponse) =>
-      Buffer.from(MsgAggregateExchangeRatePrevoteResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgAggregateExchangeRatePrevoteResponse.decode(value),
-  },
+  AggregateExchangeRatePrevote(
+    request: DeepPartial<MsgAggregateExchangeRatePrevote>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgAggregateExchangeRatePrevoteResponse>;
   /**
    * AggregateExchangeRateVote defines a method for submitting
    * aggregate exchange rate vote
    */
-  aggregateExchangeRateVote: {
-    path: "/terra.oracle.v1beta1.Msg/AggregateExchangeRateVote",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgAggregateExchangeRateVote) =>
-      Buffer.from(MsgAggregateExchangeRateVote.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgAggregateExchangeRateVote.decode(value),
-    responseSerialize: (value: MsgAggregateExchangeRateVoteResponse) =>
-      Buffer.from(MsgAggregateExchangeRateVoteResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgAggregateExchangeRateVoteResponse.decode(value),
-  },
+  AggregateExchangeRateVote(
+    request: DeepPartial<MsgAggregateExchangeRateVote>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgAggregateExchangeRateVoteResponse>;
   /** DelegateFeedConsent defines a method for setting the feeder delegation */
-  delegateFeedConsent: {
-    path: "/terra.oracle.v1beta1.Msg/DelegateFeedConsent",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgDelegateFeedConsent) =>
-      Buffer.from(MsgDelegateFeedConsent.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgDelegateFeedConsent.decode(value),
-    responseSerialize: (value: MsgDelegateFeedConsentResponse) =>
-      Buffer.from(MsgDelegateFeedConsentResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgDelegateFeedConsentResponse.decode(value),
-  },
-} as const;
-
-export interface MsgServer extends UntypedServiceImplementation {
-  /**
-   * AggregateExchangeRatePrevote defines a method for submitting
-   * aggregate exchange rate prevote
-   */
-  aggregateExchangeRatePrevote: handleUnaryCall<
-    MsgAggregateExchangeRatePrevote,
-    MsgAggregateExchangeRatePrevoteResponse
-  >;
-  /**
-   * AggregateExchangeRateVote defines a method for submitting
-   * aggregate exchange rate vote
-   */
-  aggregateExchangeRateVote: handleUnaryCall<
-    MsgAggregateExchangeRateVote,
-    MsgAggregateExchangeRateVoteResponse
-  >;
-  /** DelegateFeedConsent defines a method for setting the feeder delegation */
-  delegateFeedConsent: handleUnaryCall<MsgDelegateFeedConsent, MsgDelegateFeedConsentResponse>;
+  DelegateFeedConsent(
+    request: DeepPartial<MsgDelegateFeedConsent>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgDelegateFeedConsentResponse>;
 }
 
-export interface MsgClient extends Client {
-  /**
-   * AggregateExchangeRatePrevote defines a method for submitting
-   * aggregate exchange rate prevote
-   */
-  aggregateExchangeRatePrevote(
-    request: MsgAggregateExchangeRatePrevote,
-    callback: (error: ServiceError | null, response: MsgAggregateExchangeRatePrevoteResponse) => void,
-  ): ClientUnaryCall;
-  aggregateExchangeRatePrevote(
-    request: MsgAggregateExchangeRatePrevote,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgAggregateExchangeRatePrevoteResponse) => void,
-  ): ClientUnaryCall;
-  aggregateExchangeRatePrevote(
-    request: MsgAggregateExchangeRatePrevote,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgAggregateExchangeRatePrevoteResponse) => void,
-  ): ClientUnaryCall;
-  /**
-   * AggregateExchangeRateVote defines a method for submitting
-   * aggregate exchange rate vote
-   */
-  aggregateExchangeRateVote(
-    request: MsgAggregateExchangeRateVote,
-    callback: (error: ServiceError | null, response: MsgAggregateExchangeRateVoteResponse) => void,
-  ): ClientUnaryCall;
-  aggregateExchangeRateVote(
-    request: MsgAggregateExchangeRateVote,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgAggregateExchangeRateVoteResponse) => void,
-  ): ClientUnaryCall;
-  aggregateExchangeRateVote(
-    request: MsgAggregateExchangeRateVote,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgAggregateExchangeRateVoteResponse) => void,
-  ): ClientUnaryCall;
-  /** DelegateFeedConsent defines a method for setting the feeder delegation */
-  delegateFeedConsent(
-    request: MsgDelegateFeedConsent,
-    callback: (error: ServiceError | null, response: MsgDelegateFeedConsentResponse) => void,
-  ): ClientUnaryCall;
-  delegateFeedConsent(
-    request: MsgDelegateFeedConsent,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgDelegateFeedConsentResponse) => void,
-  ): ClientUnaryCall;
-  delegateFeedConsent(
-    request: MsgDelegateFeedConsent,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgDelegateFeedConsentResponse) => void,
-  ): ClientUnaryCall;
+export class MsgClientImpl implements Msg {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.AggregateExchangeRatePrevote = this.AggregateExchangeRatePrevote.bind(this);
+    this.AggregateExchangeRateVote = this.AggregateExchangeRateVote.bind(this);
+    this.DelegateFeedConsent = this.DelegateFeedConsent.bind(this);
+  }
+
+  AggregateExchangeRatePrevote(
+    request: DeepPartial<MsgAggregateExchangeRatePrevote>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgAggregateExchangeRatePrevoteResponse> {
+    return this.rpc.unary(
+      MsgAggregateExchangeRatePrevoteDesc,
+      MsgAggregateExchangeRatePrevote.fromPartial(request),
+      metadata,
+    );
+  }
+
+  AggregateExchangeRateVote(
+    request: DeepPartial<MsgAggregateExchangeRateVote>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgAggregateExchangeRateVoteResponse> {
+    return this.rpc.unary(
+      MsgAggregateExchangeRateVoteDesc,
+      MsgAggregateExchangeRateVote.fromPartial(request),
+      metadata,
+    );
+  }
+
+  DelegateFeedConsent(
+    request: DeepPartial<MsgDelegateFeedConsent>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgDelegateFeedConsentResponse> {
+    return this.rpc.unary(MsgDelegateFeedConsentDesc, MsgDelegateFeedConsent.fromPartial(request), metadata);
+  }
 }
 
-export const MsgClient = makeGenericClientConstructor(MsgService, "terra.oracle.v1beta1.Msg") as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+export const MsgDesc = {
+  serviceName: "terra.oracle.v1beta1.Msg",
 };
+
+export const MsgAggregateExchangeRatePrevoteDesc: UnaryMethodDefinitionish = {
+  methodName: "AggregateExchangeRatePrevote",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgAggregateExchangeRatePrevote.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgAggregateExchangeRatePrevoteResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgAggregateExchangeRateVoteDesc: UnaryMethodDefinitionish = {
+  methodName: "AggregateExchangeRateVote",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgAggregateExchangeRateVote.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgAggregateExchangeRateVoteResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgDelegateFeedConsentDesc: UnaryMethodDefinitionish = {
+  methodName: "DelegateFeedConsent",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgDelegateFeedConsent.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgDelegateFeedConsentResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

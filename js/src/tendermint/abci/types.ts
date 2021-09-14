@@ -1,22 +1,12 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata as Metadata1,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Header } from "../../tendermint/types/types";
 import { ProofOps } from "../../tendermint/crypto/proof";
 import { EvidenceParams, ValidatorParams, VersionParams } from "../../tendermint/types/params";
 import { PublicKey } from "../../tendermint/crypto/keys";
+import { BrowserHeaders } from "browser-headers";
 import { Timestamp } from "../../google/protobuf/timestamp";
 
 export const protobufPackage = "tendermint.abci";
@@ -4919,408 +4909,549 @@ export const Snapshot = {
   },
 };
 
-export const ABCIApplicationService = {
-  echo: {
-    path: "/tendermint.abci.ABCIApplication/Echo",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: RequestEcho) => Buffer.from(RequestEcho.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => RequestEcho.decode(value),
-    responseSerialize: (value: ResponseEcho) => Buffer.from(ResponseEcho.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => ResponseEcho.decode(value),
-  },
-  flush: {
-    path: "/tendermint.abci.ABCIApplication/Flush",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: RequestFlush) => Buffer.from(RequestFlush.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => RequestFlush.decode(value),
-    responseSerialize: (value: ResponseFlush) => Buffer.from(ResponseFlush.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => ResponseFlush.decode(value),
-  },
-  info: {
-    path: "/tendermint.abci.ABCIApplication/Info",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: RequestInfo) => Buffer.from(RequestInfo.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => RequestInfo.decode(value),
-    responseSerialize: (value: ResponseInfo) => Buffer.from(ResponseInfo.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => ResponseInfo.decode(value),
-  },
-  setOption: {
-    path: "/tendermint.abci.ABCIApplication/SetOption",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: RequestSetOption) => Buffer.from(RequestSetOption.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => RequestSetOption.decode(value),
-    responseSerialize: (value: ResponseSetOption) => Buffer.from(ResponseSetOption.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => ResponseSetOption.decode(value),
-  },
-  deliverTx: {
-    path: "/tendermint.abci.ABCIApplication/DeliverTx",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: RequestDeliverTx) => Buffer.from(RequestDeliverTx.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => RequestDeliverTx.decode(value),
-    responseSerialize: (value: ResponseDeliverTx) => Buffer.from(ResponseDeliverTx.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => ResponseDeliverTx.decode(value),
-  },
-  checkTx: {
-    path: "/tendermint.abci.ABCIApplication/CheckTx",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: RequestCheckTx) => Buffer.from(RequestCheckTx.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => RequestCheckTx.decode(value),
-    responseSerialize: (value: ResponseCheckTx) => Buffer.from(ResponseCheckTx.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => ResponseCheckTx.decode(value),
-  },
-  query: {
-    path: "/tendermint.abci.ABCIApplication/Query",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: RequestQuery) => Buffer.from(RequestQuery.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => RequestQuery.decode(value),
-    responseSerialize: (value: ResponseQuery) => Buffer.from(ResponseQuery.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => ResponseQuery.decode(value),
-  },
-  commit: {
-    path: "/tendermint.abci.ABCIApplication/Commit",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: RequestCommit) => Buffer.from(RequestCommit.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => RequestCommit.decode(value),
-    responseSerialize: (value: ResponseCommit) => Buffer.from(ResponseCommit.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => ResponseCommit.decode(value),
-  },
-  initChain: {
-    path: "/tendermint.abci.ABCIApplication/InitChain",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: RequestInitChain) => Buffer.from(RequestInitChain.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => RequestInitChain.decode(value),
-    responseSerialize: (value: ResponseInitChain) => Buffer.from(ResponseInitChain.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => ResponseInitChain.decode(value),
-  },
-  beginBlock: {
-    path: "/tendermint.abci.ABCIApplication/BeginBlock",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: RequestBeginBlock) => Buffer.from(RequestBeginBlock.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => RequestBeginBlock.decode(value),
-    responseSerialize: (value: ResponseBeginBlock) => Buffer.from(ResponseBeginBlock.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => ResponseBeginBlock.decode(value),
-  },
-  endBlock: {
-    path: "/tendermint.abci.ABCIApplication/EndBlock",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: RequestEndBlock) => Buffer.from(RequestEndBlock.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => RequestEndBlock.decode(value),
-    responseSerialize: (value: ResponseEndBlock) => Buffer.from(ResponseEndBlock.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => ResponseEndBlock.decode(value),
-  },
-  listSnapshots: {
-    path: "/tendermint.abci.ABCIApplication/ListSnapshots",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: RequestListSnapshots) =>
-      Buffer.from(RequestListSnapshots.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => RequestListSnapshots.decode(value),
-    responseSerialize: (value: ResponseListSnapshots) =>
-      Buffer.from(ResponseListSnapshots.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => ResponseListSnapshots.decode(value),
-  },
-  offerSnapshot: {
-    path: "/tendermint.abci.ABCIApplication/OfferSnapshot",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: RequestOfferSnapshot) =>
-      Buffer.from(RequestOfferSnapshot.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => RequestOfferSnapshot.decode(value),
-    responseSerialize: (value: ResponseOfferSnapshot) =>
-      Buffer.from(ResponseOfferSnapshot.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => ResponseOfferSnapshot.decode(value),
-  },
-  loadSnapshotChunk: {
-    path: "/tendermint.abci.ABCIApplication/LoadSnapshotChunk",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: RequestLoadSnapshotChunk) =>
-      Buffer.from(RequestLoadSnapshotChunk.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => RequestLoadSnapshotChunk.decode(value),
-    responseSerialize: (value: ResponseLoadSnapshotChunk) =>
-      Buffer.from(ResponseLoadSnapshotChunk.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => ResponseLoadSnapshotChunk.decode(value),
-  },
-  applySnapshotChunk: {
-    path: "/tendermint.abci.ABCIApplication/ApplySnapshotChunk",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: RequestApplySnapshotChunk) =>
-      Buffer.from(RequestApplySnapshotChunk.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => RequestApplySnapshotChunk.decode(value),
-    responseSerialize: (value: ResponseApplySnapshotChunk) =>
-      Buffer.from(ResponseApplySnapshotChunk.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => ResponseApplySnapshotChunk.decode(value),
-  },
-} as const;
-
-export interface ABCIApplicationServer extends UntypedServiceImplementation {
-  echo: handleUnaryCall<RequestEcho, ResponseEcho>;
-  flush: handleUnaryCall<RequestFlush, ResponseFlush>;
-  info: handleUnaryCall<RequestInfo, ResponseInfo>;
-  setOption: handleUnaryCall<RequestSetOption, ResponseSetOption>;
-  deliverTx: handleUnaryCall<RequestDeliverTx, ResponseDeliverTx>;
-  checkTx: handleUnaryCall<RequestCheckTx, ResponseCheckTx>;
-  query: handleUnaryCall<RequestQuery, ResponseQuery>;
-  commit: handleUnaryCall<RequestCommit, ResponseCommit>;
-  initChain: handleUnaryCall<RequestInitChain, ResponseInitChain>;
-  beginBlock: handleUnaryCall<RequestBeginBlock, ResponseBeginBlock>;
-  endBlock: handleUnaryCall<RequestEndBlock, ResponseEndBlock>;
-  listSnapshots: handleUnaryCall<RequestListSnapshots, ResponseListSnapshots>;
-  offerSnapshot: handleUnaryCall<RequestOfferSnapshot, ResponseOfferSnapshot>;
-  loadSnapshotChunk: handleUnaryCall<RequestLoadSnapshotChunk, ResponseLoadSnapshotChunk>;
-  applySnapshotChunk: handleUnaryCall<RequestApplySnapshotChunk, ResponseApplySnapshotChunk>;
+export interface ABCIApplication {
+  Echo(request: DeepPartial<RequestEcho>, metadata?: grpc.Metadata): Promise<ResponseEcho>;
+  Flush(request: DeepPartial<RequestFlush>, metadata?: grpc.Metadata): Promise<ResponseFlush>;
+  Info(request: DeepPartial<RequestInfo>, metadata?: grpc.Metadata): Promise<ResponseInfo>;
+  SetOption(request: DeepPartial<RequestSetOption>, metadata?: grpc.Metadata): Promise<ResponseSetOption>;
+  DeliverTx(request: DeepPartial<RequestDeliverTx>, metadata?: grpc.Metadata): Promise<ResponseDeliverTx>;
+  CheckTx(request: DeepPartial<RequestCheckTx>, metadata?: grpc.Metadata): Promise<ResponseCheckTx>;
+  Query(request: DeepPartial<RequestQuery>, metadata?: grpc.Metadata): Promise<ResponseQuery>;
+  Commit(request: DeepPartial<RequestCommit>, metadata?: grpc.Metadata): Promise<ResponseCommit>;
+  InitChain(request: DeepPartial<RequestInitChain>, metadata?: grpc.Metadata): Promise<ResponseInitChain>;
+  BeginBlock(request: DeepPartial<RequestBeginBlock>, metadata?: grpc.Metadata): Promise<ResponseBeginBlock>;
+  EndBlock(request: DeepPartial<RequestEndBlock>, metadata?: grpc.Metadata): Promise<ResponseEndBlock>;
+  ListSnapshots(
+    request: DeepPartial<RequestListSnapshots>,
+    metadata?: grpc.Metadata,
+  ): Promise<ResponseListSnapshots>;
+  OfferSnapshot(
+    request: DeepPartial<RequestOfferSnapshot>,
+    metadata?: grpc.Metadata,
+  ): Promise<ResponseOfferSnapshot>;
+  LoadSnapshotChunk(
+    request: DeepPartial<RequestLoadSnapshotChunk>,
+    metadata?: grpc.Metadata,
+  ): Promise<ResponseLoadSnapshotChunk>;
+  ApplySnapshotChunk(
+    request: DeepPartial<RequestApplySnapshotChunk>,
+    metadata?: grpc.Metadata,
+  ): Promise<ResponseApplySnapshotChunk>;
 }
 
-export interface ABCIApplicationClient extends Client {
-  echo(
-    request: RequestEcho,
-    callback: (error: ServiceError | null, response: ResponseEcho) => void,
-  ): ClientUnaryCall;
-  echo(
-    request: RequestEcho,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: ResponseEcho) => void,
-  ): ClientUnaryCall;
-  echo(
-    request: RequestEcho,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: ResponseEcho) => void,
-  ): ClientUnaryCall;
-  flush(
-    request: RequestFlush,
-    callback: (error: ServiceError | null, response: ResponseFlush) => void,
-  ): ClientUnaryCall;
-  flush(
-    request: RequestFlush,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: ResponseFlush) => void,
-  ): ClientUnaryCall;
-  flush(
-    request: RequestFlush,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: ResponseFlush) => void,
-  ): ClientUnaryCall;
-  info(
-    request: RequestInfo,
-    callback: (error: ServiceError | null, response: ResponseInfo) => void,
-  ): ClientUnaryCall;
-  info(
-    request: RequestInfo,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: ResponseInfo) => void,
-  ): ClientUnaryCall;
-  info(
-    request: RequestInfo,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: ResponseInfo) => void,
-  ): ClientUnaryCall;
-  setOption(
-    request: RequestSetOption,
-    callback: (error: ServiceError | null, response: ResponseSetOption) => void,
-  ): ClientUnaryCall;
-  setOption(
-    request: RequestSetOption,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: ResponseSetOption) => void,
-  ): ClientUnaryCall;
-  setOption(
-    request: RequestSetOption,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: ResponseSetOption) => void,
-  ): ClientUnaryCall;
-  deliverTx(
-    request: RequestDeliverTx,
-    callback: (error: ServiceError | null, response: ResponseDeliverTx) => void,
-  ): ClientUnaryCall;
-  deliverTx(
-    request: RequestDeliverTx,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: ResponseDeliverTx) => void,
-  ): ClientUnaryCall;
-  deliverTx(
-    request: RequestDeliverTx,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: ResponseDeliverTx) => void,
-  ): ClientUnaryCall;
-  checkTx(
-    request: RequestCheckTx,
-    callback: (error: ServiceError | null, response: ResponseCheckTx) => void,
-  ): ClientUnaryCall;
-  checkTx(
-    request: RequestCheckTx,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: ResponseCheckTx) => void,
-  ): ClientUnaryCall;
-  checkTx(
-    request: RequestCheckTx,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: ResponseCheckTx) => void,
-  ): ClientUnaryCall;
-  query(
-    request: RequestQuery,
-    callback: (error: ServiceError | null, response: ResponseQuery) => void,
-  ): ClientUnaryCall;
-  query(
-    request: RequestQuery,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: ResponseQuery) => void,
-  ): ClientUnaryCall;
-  query(
-    request: RequestQuery,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: ResponseQuery) => void,
-  ): ClientUnaryCall;
-  commit(
-    request: RequestCommit,
-    callback: (error: ServiceError | null, response: ResponseCommit) => void,
-  ): ClientUnaryCall;
-  commit(
-    request: RequestCommit,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: ResponseCommit) => void,
-  ): ClientUnaryCall;
-  commit(
-    request: RequestCommit,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: ResponseCommit) => void,
-  ): ClientUnaryCall;
-  initChain(
-    request: RequestInitChain,
-    callback: (error: ServiceError | null, response: ResponseInitChain) => void,
-  ): ClientUnaryCall;
-  initChain(
-    request: RequestInitChain,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: ResponseInitChain) => void,
-  ): ClientUnaryCall;
-  initChain(
-    request: RequestInitChain,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: ResponseInitChain) => void,
-  ): ClientUnaryCall;
-  beginBlock(
-    request: RequestBeginBlock,
-    callback: (error: ServiceError | null, response: ResponseBeginBlock) => void,
-  ): ClientUnaryCall;
-  beginBlock(
-    request: RequestBeginBlock,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: ResponseBeginBlock) => void,
-  ): ClientUnaryCall;
-  beginBlock(
-    request: RequestBeginBlock,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: ResponseBeginBlock) => void,
-  ): ClientUnaryCall;
-  endBlock(
-    request: RequestEndBlock,
-    callback: (error: ServiceError | null, response: ResponseEndBlock) => void,
-  ): ClientUnaryCall;
-  endBlock(
-    request: RequestEndBlock,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: ResponseEndBlock) => void,
-  ): ClientUnaryCall;
-  endBlock(
-    request: RequestEndBlock,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: ResponseEndBlock) => void,
-  ): ClientUnaryCall;
-  listSnapshots(
-    request: RequestListSnapshots,
-    callback: (error: ServiceError | null, response: ResponseListSnapshots) => void,
-  ): ClientUnaryCall;
-  listSnapshots(
-    request: RequestListSnapshots,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: ResponseListSnapshots) => void,
-  ): ClientUnaryCall;
-  listSnapshots(
-    request: RequestListSnapshots,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: ResponseListSnapshots) => void,
-  ): ClientUnaryCall;
-  offerSnapshot(
-    request: RequestOfferSnapshot,
-    callback: (error: ServiceError | null, response: ResponseOfferSnapshot) => void,
-  ): ClientUnaryCall;
-  offerSnapshot(
-    request: RequestOfferSnapshot,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: ResponseOfferSnapshot) => void,
-  ): ClientUnaryCall;
-  offerSnapshot(
-    request: RequestOfferSnapshot,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: ResponseOfferSnapshot) => void,
-  ): ClientUnaryCall;
-  loadSnapshotChunk(
-    request: RequestLoadSnapshotChunk,
-    callback: (error: ServiceError | null, response: ResponseLoadSnapshotChunk) => void,
-  ): ClientUnaryCall;
-  loadSnapshotChunk(
-    request: RequestLoadSnapshotChunk,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: ResponseLoadSnapshotChunk) => void,
-  ): ClientUnaryCall;
-  loadSnapshotChunk(
-    request: RequestLoadSnapshotChunk,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: ResponseLoadSnapshotChunk) => void,
-  ): ClientUnaryCall;
-  applySnapshotChunk(
-    request: RequestApplySnapshotChunk,
-    callback: (error: ServiceError | null, response: ResponseApplySnapshotChunk) => void,
-  ): ClientUnaryCall;
-  applySnapshotChunk(
-    request: RequestApplySnapshotChunk,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: ResponseApplySnapshotChunk) => void,
-  ): ClientUnaryCall;
-  applySnapshotChunk(
-    request: RequestApplySnapshotChunk,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: ResponseApplySnapshotChunk) => void,
-  ): ClientUnaryCall;
+export class ABCIApplicationClientImpl implements ABCIApplication {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.Echo = this.Echo.bind(this);
+    this.Flush = this.Flush.bind(this);
+    this.Info = this.Info.bind(this);
+    this.SetOption = this.SetOption.bind(this);
+    this.DeliverTx = this.DeliverTx.bind(this);
+    this.CheckTx = this.CheckTx.bind(this);
+    this.Query = this.Query.bind(this);
+    this.Commit = this.Commit.bind(this);
+    this.InitChain = this.InitChain.bind(this);
+    this.BeginBlock = this.BeginBlock.bind(this);
+    this.EndBlock = this.EndBlock.bind(this);
+    this.ListSnapshots = this.ListSnapshots.bind(this);
+    this.OfferSnapshot = this.OfferSnapshot.bind(this);
+    this.LoadSnapshotChunk = this.LoadSnapshotChunk.bind(this);
+    this.ApplySnapshotChunk = this.ApplySnapshotChunk.bind(this);
+  }
+
+  Echo(request: DeepPartial<RequestEcho>, metadata?: grpc.Metadata): Promise<ResponseEcho> {
+    return this.rpc.unary(ABCIApplicationEchoDesc, RequestEcho.fromPartial(request), metadata);
+  }
+
+  Flush(request: DeepPartial<RequestFlush>, metadata?: grpc.Metadata): Promise<ResponseFlush> {
+    return this.rpc.unary(ABCIApplicationFlushDesc, RequestFlush.fromPartial(request), metadata);
+  }
+
+  Info(request: DeepPartial<RequestInfo>, metadata?: grpc.Metadata): Promise<ResponseInfo> {
+    return this.rpc.unary(ABCIApplicationInfoDesc, RequestInfo.fromPartial(request), metadata);
+  }
+
+  SetOption(request: DeepPartial<RequestSetOption>, metadata?: grpc.Metadata): Promise<ResponseSetOption> {
+    return this.rpc.unary(ABCIApplicationSetOptionDesc, RequestSetOption.fromPartial(request), metadata);
+  }
+
+  DeliverTx(request: DeepPartial<RequestDeliverTx>, metadata?: grpc.Metadata): Promise<ResponseDeliverTx> {
+    return this.rpc.unary(ABCIApplicationDeliverTxDesc, RequestDeliverTx.fromPartial(request), metadata);
+  }
+
+  CheckTx(request: DeepPartial<RequestCheckTx>, metadata?: grpc.Metadata): Promise<ResponseCheckTx> {
+    return this.rpc.unary(ABCIApplicationCheckTxDesc, RequestCheckTx.fromPartial(request), metadata);
+  }
+
+  Query(request: DeepPartial<RequestQuery>, metadata?: grpc.Metadata): Promise<ResponseQuery> {
+    return this.rpc.unary(ABCIApplicationQueryDesc, RequestQuery.fromPartial(request), metadata);
+  }
+
+  Commit(request: DeepPartial<RequestCommit>, metadata?: grpc.Metadata): Promise<ResponseCommit> {
+    return this.rpc.unary(ABCIApplicationCommitDesc, RequestCommit.fromPartial(request), metadata);
+  }
+
+  InitChain(request: DeepPartial<RequestInitChain>, metadata?: grpc.Metadata): Promise<ResponseInitChain> {
+    return this.rpc.unary(ABCIApplicationInitChainDesc, RequestInitChain.fromPartial(request), metadata);
+  }
+
+  BeginBlock(request: DeepPartial<RequestBeginBlock>, metadata?: grpc.Metadata): Promise<ResponseBeginBlock> {
+    return this.rpc.unary(ABCIApplicationBeginBlockDesc, RequestBeginBlock.fromPartial(request), metadata);
+  }
+
+  EndBlock(request: DeepPartial<RequestEndBlock>, metadata?: grpc.Metadata): Promise<ResponseEndBlock> {
+    return this.rpc.unary(ABCIApplicationEndBlockDesc, RequestEndBlock.fromPartial(request), metadata);
+  }
+
+  ListSnapshots(
+    request: DeepPartial<RequestListSnapshots>,
+    metadata?: grpc.Metadata,
+  ): Promise<ResponseListSnapshots> {
+    return this.rpc.unary(
+      ABCIApplicationListSnapshotsDesc,
+      RequestListSnapshots.fromPartial(request),
+      metadata,
+    );
+  }
+
+  OfferSnapshot(
+    request: DeepPartial<RequestOfferSnapshot>,
+    metadata?: grpc.Metadata,
+  ): Promise<ResponseOfferSnapshot> {
+    return this.rpc.unary(
+      ABCIApplicationOfferSnapshotDesc,
+      RequestOfferSnapshot.fromPartial(request),
+      metadata,
+    );
+  }
+
+  LoadSnapshotChunk(
+    request: DeepPartial<RequestLoadSnapshotChunk>,
+    metadata?: grpc.Metadata,
+  ): Promise<ResponseLoadSnapshotChunk> {
+    return this.rpc.unary(
+      ABCIApplicationLoadSnapshotChunkDesc,
+      RequestLoadSnapshotChunk.fromPartial(request),
+      metadata,
+    );
+  }
+
+  ApplySnapshotChunk(
+    request: DeepPartial<RequestApplySnapshotChunk>,
+    metadata?: grpc.Metadata,
+  ): Promise<ResponseApplySnapshotChunk> {
+    return this.rpc.unary(
+      ABCIApplicationApplySnapshotChunkDesc,
+      RequestApplySnapshotChunk.fromPartial(request),
+      metadata,
+    );
+  }
 }
 
-export const ABCIApplicationClient = makeGenericClientConstructor(
-  ABCIApplicationService,
-  "tendermint.abci.ABCIApplication",
-) as unknown as {
-  new (
-    address: string,
-    credentials: ChannelCredentials,
-    options?: Partial<ChannelOptions>,
-  ): ABCIApplicationClient;
+export const ABCIApplicationDesc = {
+  serviceName: "tendermint.abci.ABCIApplication",
 };
+
+export const ABCIApplicationEchoDesc: UnaryMethodDefinitionish = {
+  methodName: "Echo",
+  service: ABCIApplicationDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return RequestEcho.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...ResponseEcho.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const ABCIApplicationFlushDesc: UnaryMethodDefinitionish = {
+  methodName: "Flush",
+  service: ABCIApplicationDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return RequestFlush.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...ResponseFlush.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const ABCIApplicationInfoDesc: UnaryMethodDefinitionish = {
+  methodName: "Info",
+  service: ABCIApplicationDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return RequestInfo.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...ResponseInfo.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const ABCIApplicationSetOptionDesc: UnaryMethodDefinitionish = {
+  methodName: "SetOption",
+  service: ABCIApplicationDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return RequestSetOption.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...ResponseSetOption.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const ABCIApplicationDeliverTxDesc: UnaryMethodDefinitionish = {
+  methodName: "DeliverTx",
+  service: ABCIApplicationDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return RequestDeliverTx.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...ResponseDeliverTx.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const ABCIApplicationCheckTxDesc: UnaryMethodDefinitionish = {
+  methodName: "CheckTx",
+  service: ABCIApplicationDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return RequestCheckTx.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...ResponseCheckTx.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const ABCIApplicationQueryDesc: UnaryMethodDefinitionish = {
+  methodName: "Query",
+  service: ABCIApplicationDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return RequestQuery.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...ResponseQuery.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const ABCIApplicationCommitDesc: UnaryMethodDefinitionish = {
+  methodName: "Commit",
+  service: ABCIApplicationDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return RequestCommit.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...ResponseCommit.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const ABCIApplicationInitChainDesc: UnaryMethodDefinitionish = {
+  methodName: "InitChain",
+  service: ABCIApplicationDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return RequestInitChain.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...ResponseInitChain.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const ABCIApplicationBeginBlockDesc: UnaryMethodDefinitionish = {
+  methodName: "BeginBlock",
+  service: ABCIApplicationDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return RequestBeginBlock.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...ResponseBeginBlock.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const ABCIApplicationEndBlockDesc: UnaryMethodDefinitionish = {
+  methodName: "EndBlock",
+  service: ABCIApplicationDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return RequestEndBlock.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...ResponseEndBlock.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const ABCIApplicationListSnapshotsDesc: UnaryMethodDefinitionish = {
+  methodName: "ListSnapshots",
+  service: ABCIApplicationDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return RequestListSnapshots.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...ResponseListSnapshots.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const ABCIApplicationOfferSnapshotDesc: UnaryMethodDefinitionish = {
+  methodName: "OfferSnapshot",
+  service: ABCIApplicationDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return RequestOfferSnapshot.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...ResponseOfferSnapshot.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const ABCIApplicationLoadSnapshotChunkDesc: UnaryMethodDefinitionish = {
+  methodName: "LoadSnapshotChunk",
+  service: ABCIApplicationDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return RequestLoadSnapshotChunk.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...ResponseLoadSnapshotChunk.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const ABCIApplicationApplySnapshotChunkDesc: UnaryMethodDefinitionish = {
+  methodName: "ApplySnapshotChunk",
+  service: ABCIApplicationDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return RequestApplySnapshotChunk.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...ResponseApplySnapshotChunk.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

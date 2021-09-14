@@ -1,19 +1,9 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Any } from "../../../google/protobuf/any";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "cosmos.evidence.v1beta1";
 
@@ -162,59 +152,127 @@ export const MsgSubmitEvidenceResponse = {
 };
 
 /** Msg defines the evidence Msg service. */
-export const MsgService = {
+export interface Msg {
   /**
    * SubmitEvidence submits an arbitrary Evidence of misbehavior such as equivocation or
    * counterfactual signing.
    */
-  submitEvidence: {
-    path: "/cosmos.evidence.v1beta1.Msg/SubmitEvidence",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgSubmitEvidence) => Buffer.from(MsgSubmitEvidence.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgSubmitEvidence.decode(value),
-    responseSerialize: (value: MsgSubmitEvidenceResponse) =>
-      Buffer.from(MsgSubmitEvidenceResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgSubmitEvidenceResponse.decode(value),
-  },
-} as const;
-
-export interface MsgServer extends UntypedServiceImplementation {
-  /**
-   * SubmitEvidence submits an arbitrary Evidence of misbehavior such as equivocation or
-   * counterfactual signing.
-   */
-  submitEvidence: handleUnaryCall<MsgSubmitEvidence, MsgSubmitEvidenceResponse>;
+  SubmitEvidence(
+    request: DeepPartial<MsgSubmitEvidence>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgSubmitEvidenceResponse>;
 }
 
-export interface MsgClient extends Client {
-  /**
-   * SubmitEvidence submits an arbitrary Evidence of misbehavior such as equivocation or
-   * counterfactual signing.
-   */
-  submitEvidence(
-    request: MsgSubmitEvidence,
-    callback: (error: ServiceError | null, response: MsgSubmitEvidenceResponse) => void,
-  ): ClientUnaryCall;
-  submitEvidence(
-    request: MsgSubmitEvidence,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgSubmitEvidenceResponse) => void,
-  ): ClientUnaryCall;
-  submitEvidence(
-    request: MsgSubmitEvidence,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgSubmitEvidenceResponse) => void,
-  ): ClientUnaryCall;
+export class MsgClientImpl implements Msg {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.SubmitEvidence = this.SubmitEvidence.bind(this);
+  }
+
+  SubmitEvidence(
+    request: DeepPartial<MsgSubmitEvidence>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgSubmitEvidenceResponse> {
+    return this.rpc.unary(MsgSubmitEvidenceDesc, MsgSubmitEvidence.fromPartial(request), metadata);
+  }
 }
 
-export const MsgClient = makeGenericClientConstructor(
-  MsgService,
-  "cosmos.evidence.v1beta1.Msg",
-) as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+export const MsgDesc = {
+  serviceName: "cosmos.evidence.v1beta1.Msg",
 };
+
+export const MsgSubmitEvidenceDesc: UnaryMethodDefinitionish = {
+  methodName: "SubmitEvidence",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgSubmitEvidence.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgSubmitEvidenceResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

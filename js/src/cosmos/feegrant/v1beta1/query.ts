@@ -1,20 +1,10 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Grant } from "../../../cosmos/feegrant/v1beta1/feegrant";
 import { PageRequest, PageResponse } from "../../../cosmos/base/query/v1beta1/pagination";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "cosmos.feegrant.v1beta1";
 
@@ -329,81 +319,159 @@ export const QueryAllowancesResponse = {
 };
 
 /** Query defines the gRPC querier service. */
-export const QueryService = {
+export interface Query {
   /** Allowance returns fee granted to the grantee by the granter. */
-  allowance: {
-    path: "/cosmos.feegrant.v1beta1.Query/Allowance",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryAllowanceRequest) =>
-      Buffer.from(QueryAllowanceRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryAllowanceRequest.decode(value),
-    responseSerialize: (value: QueryAllowanceResponse) =>
-      Buffer.from(QueryAllowanceResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryAllowanceResponse.decode(value),
-  },
+  Allowance(
+    request: DeepPartial<QueryAllowanceRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAllowanceResponse>;
   /** Allowances returns all the grants for address. */
-  allowances: {
-    path: "/cosmos.feegrant.v1beta1.Query/Allowances",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryAllowancesRequest) =>
-      Buffer.from(QueryAllowancesRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryAllowancesRequest.decode(value),
-    responseSerialize: (value: QueryAllowancesResponse) =>
-      Buffer.from(QueryAllowancesResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryAllowancesResponse.decode(value),
-  },
-} as const;
-
-export interface QueryServer extends UntypedServiceImplementation {
-  /** Allowance returns fee granted to the grantee by the granter. */
-  allowance: handleUnaryCall<QueryAllowanceRequest, QueryAllowanceResponse>;
-  /** Allowances returns all the grants for address. */
-  allowances: handleUnaryCall<QueryAllowancesRequest, QueryAllowancesResponse>;
+  Allowances(
+    request: DeepPartial<QueryAllowancesRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAllowancesResponse>;
 }
 
-export interface QueryClient extends Client {
-  /** Allowance returns fee granted to the grantee by the granter. */
-  allowance(
-    request: QueryAllowanceRequest,
-    callback: (error: ServiceError | null, response: QueryAllowanceResponse) => void,
-  ): ClientUnaryCall;
-  allowance(
-    request: QueryAllowanceRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryAllowanceResponse) => void,
-  ): ClientUnaryCall;
-  allowance(
-    request: QueryAllowanceRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryAllowanceResponse) => void,
-  ): ClientUnaryCall;
-  /** Allowances returns all the grants for address. */
-  allowances(
-    request: QueryAllowancesRequest,
-    callback: (error: ServiceError | null, response: QueryAllowancesResponse) => void,
-  ): ClientUnaryCall;
-  allowances(
-    request: QueryAllowancesRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryAllowancesResponse) => void,
-  ): ClientUnaryCall;
-  allowances(
-    request: QueryAllowancesRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryAllowancesResponse) => void,
-  ): ClientUnaryCall;
+export class QueryClientImpl implements Query {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.Allowance = this.Allowance.bind(this);
+    this.Allowances = this.Allowances.bind(this);
+  }
+
+  Allowance(
+    request: DeepPartial<QueryAllowanceRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAllowanceResponse> {
+    return this.rpc.unary(QueryAllowanceDesc, QueryAllowanceRequest.fromPartial(request), metadata);
+  }
+
+  Allowances(
+    request: DeepPartial<QueryAllowancesRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAllowancesResponse> {
+    return this.rpc.unary(QueryAllowancesDesc, QueryAllowancesRequest.fromPartial(request), metadata);
+  }
 }
 
-export const QueryClient = makeGenericClientConstructor(
-  QueryService,
-  "cosmos.feegrant.v1beta1.Query",
-) as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+export const QueryDesc = {
+  serviceName: "cosmos.feegrant.v1beta1.Query",
 };
+
+export const QueryAllowanceDesc: UnaryMethodDefinitionish = {
+  methodName: "Allowance",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryAllowanceRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryAllowanceResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryAllowancesDesc: UnaryMethodDefinitionish = {
+  methodName: "Allowances",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryAllowancesRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryAllowancesResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

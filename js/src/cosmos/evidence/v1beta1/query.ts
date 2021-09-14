@@ -1,20 +1,10 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Any } from "../../../google/protobuf/any";
 import { PageRequest, PageResponse } from "../../../cosmos/base/query/v1beta1/pagination";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "cosmos.evidence.v1beta1";
 
@@ -301,81 +291,159 @@ export const QueryAllEvidenceResponse = {
 };
 
 /** Query defines the gRPC querier service. */
-export const QueryService = {
+export interface Query {
   /** Evidence queries evidence based on evidence hash. */
-  evidence: {
-    path: "/cosmos.evidence.v1beta1.Query/Evidence",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryEvidenceRequest) =>
-      Buffer.from(QueryEvidenceRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryEvidenceRequest.decode(value),
-    responseSerialize: (value: QueryEvidenceResponse) =>
-      Buffer.from(QueryEvidenceResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryEvidenceResponse.decode(value),
-  },
+  Evidence(
+    request: DeepPartial<QueryEvidenceRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryEvidenceResponse>;
   /** AllEvidence queries all evidence. */
-  allEvidence: {
-    path: "/cosmos.evidence.v1beta1.Query/AllEvidence",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryAllEvidenceRequest) =>
-      Buffer.from(QueryAllEvidenceRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryAllEvidenceRequest.decode(value),
-    responseSerialize: (value: QueryAllEvidenceResponse) =>
-      Buffer.from(QueryAllEvidenceResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryAllEvidenceResponse.decode(value),
-  },
-} as const;
-
-export interface QueryServer extends UntypedServiceImplementation {
-  /** Evidence queries evidence based on evidence hash. */
-  evidence: handleUnaryCall<QueryEvidenceRequest, QueryEvidenceResponse>;
-  /** AllEvidence queries all evidence. */
-  allEvidence: handleUnaryCall<QueryAllEvidenceRequest, QueryAllEvidenceResponse>;
+  AllEvidence(
+    request: DeepPartial<QueryAllEvidenceRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAllEvidenceResponse>;
 }
 
-export interface QueryClient extends Client {
-  /** Evidence queries evidence based on evidence hash. */
-  evidence(
-    request: QueryEvidenceRequest,
-    callback: (error: ServiceError | null, response: QueryEvidenceResponse) => void,
-  ): ClientUnaryCall;
-  evidence(
-    request: QueryEvidenceRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryEvidenceResponse) => void,
-  ): ClientUnaryCall;
-  evidence(
-    request: QueryEvidenceRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryEvidenceResponse) => void,
-  ): ClientUnaryCall;
-  /** AllEvidence queries all evidence. */
-  allEvidence(
-    request: QueryAllEvidenceRequest,
-    callback: (error: ServiceError | null, response: QueryAllEvidenceResponse) => void,
-  ): ClientUnaryCall;
-  allEvidence(
-    request: QueryAllEvidenceRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryAllEvidenceResponse) => void,
-  ): ClientUnaryCall;
-  allEvidence(
-    request: QueryAllEvidenceRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryAllEvidenceResponse) => void,
-  ): ClientUnaryCall;
+export class QueryClientImpl implements Query {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.Evidence = this.Evidence.bind(this);
+    this.AllEvidence = this.AllEvidence.bind(this);
+  }
+
+  Evidence(
+    request: DeepPartial<QueryEvidenceRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryEvidenceResponse> {
+    return this.rpc.unary(QueryEvidenceDesc, QueryEvidenceRequest.fromPartial(request), metadata);
+  }
+
+  AllEvidence(
+    request: DeepPartial<QueryAllEvidenceRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAllEvidenceResponse> {
+    return this.rpc.unary(QueryAllEvidenceDesc, QueryAllEvidenceRequest.fromPartial(request), metadata);
+  }
 }
 
-export const QueryClient = makeGenericClientConstructor(
-  QueryService,
-  "cosmos.evidence.v1beta1.Query",
-) as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+export const QueryDesc = {
+  serviceName: "cosmos.evidence.v1beta1.Query",
 };
+
+export const QueryEvidenceDesc: UnaryMethodDefinitionish = {
+  methodName: "Evidence",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryEvidenceRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryEvidenceResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryAllEvidenceDesc: UnaryMethodDefinitionish = {
+  methodName: "AllEvidence",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryAllEvidenceRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryAllEvidenceResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

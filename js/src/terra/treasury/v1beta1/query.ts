@@ -1,19 +1,9 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Params } from "../../../terra/treasury/v1beta1/treasury";
+import { BrowserHeaders } from "browser-headers";
 import { Coin } from "../../../cosmos/base/v1beta1/coin";
 
 export const protobufPackage = "terra.treasury.v1beta1";
@@ -982,257 +972,355 @@ export const QueryParamsResponse = {
 };
 
 /** Query defines the gRPC querier service. */
-export const QueryService = {
+export interface Query {
   /** TaxRate return the current tax rate */
-  taxRate: {
-    path: "/terra.treasury.v1beta1.Query/TaxRate",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryTaxRateRequest) => Buffer.from(QueryTaxRateRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryTaxRateRequest.decode(value),
-    responseSerialize: (value: QueryTaxRateResponse) =>
-      Buffer.from(QueryTaxRateResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryTaxRateResponse.decode(value),
-  },
+  TaxRate(request: DeepPartial<QueryTaxRateRequest>, metadata?: grpc.Metadata): Promise<QueryTaxRateResponse>;
   /** TaxCap returns the tax cap of a denom */
-  taxCap: {
-    path: "/terra.treasury.v1beta1.Query/TaxCap",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryTaxCapRequest) => Buffer.from(QueryTaxCapRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryTaxCapRequest.decode(value),
-    responseSerialize: (value: QueryTaxCapResponse) =>
-      Buffer.from(QueryTaxCapResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryTaxCapResponse.decode(value),
-  },
+  TaxCap(request: DeepPartial<QueryTaxCapRequest>, metadata?: grpc.Metadata): Promise<QueryTaxCapResponse>;
   /** TaxCaps returns the all tax caps */
-  taxCaps: {
-    path: "/terra.treasury.v1beta1.Query/TaxCaps",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryTaxCapsRequest) => Buffer.from(QueryTaxCapsRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryTaxCapsRequest.decode(value),
-    responseSerialize: (value: QueryTaxCapsResponse) =>
-      Buffer.from(QueryTaxCapsResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryTaxCapsResponse.decode(value),
-  },
+  TaxCaps(request: DeepPartial<QueryTaxCapsRequest>, metadata?: grpc.Metadata): Promise<QueryTaxCapsResponse>;
   /** RewardWeight return the current reward weight */
-  rewardWeight: {
-    path: "/terra.treasury.v1beta1.Query/RewardWeight",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryRewardWeightRequest) =>
-      Buffer.from(QueryRewardWeightRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryRewardWeightRequest.decode(value),
-    responseSerialize: (value: QueryRewardWeightResponse) =>
-      Buffer.from(QueryRewardWeightResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryRewardWeightResponse.decode(value),
-  },
+  RewardWeight(
+    request: DeepPartial<QueryRewardWeightRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryRewardWeightResponse>;
   /** SeigniorageProceeds return the current seigniorage proceeds */
-  seigniorageProceeds: {
-    path: "/terra.treasury.v1beta1.Query/SeigniorageProceeds",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QuerySeigniorageProceedsRequest) =>
-      Buffer.from(QuerySeigniorageProceedsRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QuerySeigniorageProceedsRequest.decode(value),
-    responseSerialize: (value: QuerySeigniorageProceedsResponse) =>
-      Buffer.from(QuerySeigniorageProceedsResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QuerySeigniorageProceedsResponse.decode(value),
-  },
+  SeigniorageProceeds(
+    request: DeepPartial<QuerySeigniorageProceedsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QuerySeigniorageProceedsResponse>;
   /** TaxProceeds return the current tax proceeds */
-  taxProceeds: {
-    path: "/terra.treasury.v1beta1.Query/TaxProceeds",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryTaxProceedsRequest) =>
-      Buffer.from(QueryTaxProceedsRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryTaxProceedsRequest.decode(value),
-    responseSerialize: (value: QueryTaxProceedsResponse) =>
-      Buffer.from(QueryTaxProceedsResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryTaxProceedsResponse.decode(value),
-  },
+  TaxProceeds(
+    request: DeepPartial<QueryTaxProceedsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryTaxProceedsResponse>;
   /** Indicators return the current trl informations */
-  indicators: {
-    path: "/terra.treasury.v1beta1.Query/Indicators",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryIndicatorsRequest) =>
-      Buffer.from(QueryIndicatorsRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryIndicatorsRequest.decode(value),
-    responseSerialize: (value: QueryIndicatorsResponse) =>
-      Buffer.from(QueryIndicatorsResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryIndicatorsResponse.decode(value),
-  },
+  Indicators(
+    request: DeepPartial<QueryIndicatorsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryIndicatorsResponse>;
   /** Params queries all parameters. */
-  params: {
-    path: "/terra.treasury.v1beta1.Query/Params",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryParamsRequest) => Buffer.from(QueryParamsRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryParamsRequest.decode(value),
-    responseSerialize: (value: QueryParamsResponse) =>
-      Buffer.from(QueryParamsResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryParamsResponse.decode(value),
-  },
-} as const;
-
-export interface QueryServer extends UntypedServiceImplementation {
-  /** TaxRate return the current tax rate */
-  taxRate: handleUnaryCall<QueryTaxRateRequest, QueryTaxRateResponse>;
-  /** TaxCap returns the tax cap of a denom */
-  taxCap: handleUnaryCall<QueryTaxCapRequest, QueryTaxCapResponse>;
-  /** TaxCaps returns the all tax caps */
-  taxCaps: handleUnaryCall<QueryTaxCapsRequest, QueryTaxCapsResponse>;
-  /** RewardWeight return the current reward weight */
-  rewardWeight: handleUnaryCall<QueryRewardWeightRequest, QueryRewardWeightResponse>;
-  /** SeigniorageProceeds return the current seigniorage proceeds */
-  seigniorageProceeds: handleUnaryCall<QuerySeigniorageProceedsRequest, QuerySeigniorageProceedsResponse>;
-  /** TaxProceeds return the current tax proceeds */
-  taxProceeds: handleUnaryCall<QueryTaxProceedsRequest, QueryTaxProceedsResponse>;
-  /** Indicators return the current trl informations */
-  indicators: handleUnaryCall<QueryIndicatorsRequest, QueryIndicatorsResponse>;
-  /** Params queries all parameters. */
-  params: handleUnaryCall<QueryParamsRequest, QueryParamsResponse>;
+  Params(request: DeepPartial<QueryParamsRequest>, metadata?: grpc.Metadata): Promise<QueryParamsResponse>;
 }
 
-export interface QueryClient extends Client {
-  /** TaxRate return the current tax rate */
-  taxRate(
-    request: QueryTaxRateRequest,
-    callback: (error: ServiceError | null, response: QueryTaxRateResponse) => void,
-  ): ClientUnaryCall;
-  taxRate(
-    request: QueryTaxRateRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryTaxRateResponse) => void,
-  ): ClientUnaryCall;
-  taxRate(
-    request: QueryTaxRateRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryTaxRateResponse) => void,
-  ): ClientUnaryCall;
-  /** TaxCap returns the tax cap of a denom */
-  taxCap(
-    request: QueryTaxCapRequest,
-    callback: (error: ServiceError | null, response: QueryTaxCapResponse) => void,
-  ): ClientUnaryCall;
-  taxCap(
-    request: QueryTaxCapRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryTaxCapResponse) => void,
-  ): ClientUnaryCall;
-  taxCap(
-    request: QueryTaxCapRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryTaxCapResponse) => void,
-  ): ClientUnaryCall;
-  /** TaxCaps returns the all tax caps */
-  taxCaps(
-    request: QueryTaxCapsRequest,
-    callback: (error: ServiceError | null, response: QueryTaxCapsResponse) => void,
-  ): ClientUnaryCall;
-  taxCaps(
-    request: QueryTaxCapsRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryTaxCapsResponse) => void,
-  ): ClientUnaryCall;
-  taxCaps(
-    request: QueryTaxCapsRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryTaxCapsResponse) => void,
-  ): ClientUnaryCall;
-  /** RewardWeight return the current reward weight */
-  rewardWeight(
-    request: QueryRewardWeightRequest,
-    callback: (error: ServiceError | null, response: QueryRewardWeightResponse) => void,
-  ): ClientUnaryCall;
-  rewardWeight(
-    request: QueryRewardWeightRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryRewardWeightResponse) => void,
-  ): ClientUnaryCall;
-  rewardWeight(
-    request: QueryRewardWeightRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryRewardWeightResponse) => void,
-  ): ClientUnaryCall;
-  /** SeigniorageProceeds return the current seigniorage proceeds */
-  seigniorageProceeds(
-    request: QuerySeigniorageProceedsRequest,
-    callback: (error: ServiceError | null, response: QuerySeigniorageProceedsResponse) => void,
-  ): ClientUnaryCall;
-  seigniorageProceeds(
-    request: QuerySeigniorageProceedsRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QuerySeigniorageProceedsResponse) => void,
-  ): ClientUnaryCall;
-  seigniorageProceeds(
-    request: QuerySeigniorageProceedsRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QuerySeigniorageProceedsResponse) => void,
-  ): ClientUnaryCall;
-  /** TaxProceeds return the current tax proceeds */
-  taxProceeds(
-    request: QueryTaxProceedsRequest,
-    callback: (error: ServiceError | null, response: QueryTaxProceedsResponse) => void,
-  ): ClientUnaryCall;
-  taxProceeds(
-    request: QueryTaxProceedsRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryTaxProceedsResponse) => void,
-  ): ClientUnaryCall;
-  taxProceeds(
-    request: QueryTaxProceedsRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryTaxProceedsResponse) => void,
-  ): ClientUnaryCall;
-  /** Indicators return the current trl informations */
-  indicators(
-    request: QueryIndicatorsRequest,
-    callback: (error: ServiceError | null, response: QueryIndicatorsResponse) => void,
-  ): ClientUnaryCall;
-  indicators(
-    request: QueryIndicatorsRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryIndicatorsResponse) => void,
-  ): ClientUnaryCall;
-  indicators(
-    request: QueryIndicatorsRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryIndicatorsResponse) => void,
-  ): ClientUnaryCall;
-  /** Params queries all parameters. */
-  params(
-    request: QueryParamsRequest,
-    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
-  ): ClientUnaryCall;
-  params(
-    request: QueryParamsRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
-  ): ClientUnaryCall;
-  params(
-    request: QueryParamsRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryParamsResponse) => void,
-  ): ClientUnaryCall;
+export class QueryClientImpl implements Query {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.TaxRate = this.TaxRate.bind(this);
+    this.TaxCap = this.TaxCap.bind(this);
+    this.TaxCaps = this.TaxCaps.bind(this);
+    this.RewardWeight = this.RewardWeight.bind(this);
+    this.SeigniorageProceeds = this.SeigniorageProceeds.bind(this);
+    this.TaxProceeds = this.TaxProceeds.bind(this);
+    this.Indicators = this.Indicators.bind(this);
+    this.Params = this.Params.bind(this);
+  }
+
+  TaxRate(
+    request: DeepPartial<QueryTaxRateRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryTaxRateResponse> {
+    return this.rpc.unary(QueryTaxRateDesc, QueryTaxRateRequest.fromPartial(request), metadata);
+  }
+
+  TaxCap(request: DeepPartial<QueryTaxCapRequest>, metadata?: grpc.Metadata): Promise<QueryTaxCapResponse> {
+    return this.rpc.unary(QueryTaxCapDesc, QueryTaxCapRequest.fromPartial(request), metadata);
+  }
+
+  TaxCaps(
+    request: DeepPartial<QueryTaxCapsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryTaxCapsResponse> {
+    return this.rpc.unary(QueryTaxCapsDesc, QueryTaxCapsRequest.fromPartial(request), metadata);
+  }
+
+  RewardWeight(
+    request: DeepPartial<QueryRewardWeightRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryRewardWeightResponse> {
+    return this.rpc.unary(QueryRewardWeightDesc, QueryRewardWeightRequest.fromPartial(request), metadata);
+  }
+
+  SeigniorageProceeds(
+    request: DeepPartial<QuerySeigniorageProceedsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QuerySeigniorageProceedsResponse> {
+    return this.rpc.unary(
+      QuerySeigniorageProceedsDesc,
+      QuerySeigniorageProceedsRequest.fromPartial(request),
+      metadata,
+    );
+  }
+
+  TaxProceeds(
+    request: DeepPartial<QueryTaxProceedsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryTaxProceedsResponse> {
+    return this.rpc.unary(QueryTaxProceedsDesc, QueryTaxProceedsRequest.fromPartial(request), metadata);
+  }
+
+  Indicators(
+    request: DeepPartial<QueryIndicatorsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryIndicatorsResponse> {
+    return this.rpc.unary(QueryIndicatorsDesc, QueryIndicatorsRequest.fromPartial(request), metadata);
+  }
+
+  Params(request: DeepPartial<QueryParamsRequest>, metadata?: grpc.Metadata): Promise<QueryParamsResponse> {
+    return this.rpc.unary(QueryParamsDesc, QueryParamsRequest.fromPartial(request), metadata);
+  }
 }
 
-export const QueryClient = makeGenericClientConstructor(
-  QueryService,
-  "terra.treasury.v1beta1.Query",
-) as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+export const QueryDesc = {
+  serviceName: "terra.treasury.v1beta1.Query",
 };
+
+export const QueryTaxRateDesc: UnaryMethodDefinitionish = {
+  methodName: "TaxRate",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryTaxRateRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryTaxRateResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryTaxCapDesc: UnaryMethodDefinitionish = {
+  methodName: "TaxCap",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryTaxCapRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryTaxCapResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryTaxCapsDesc: UnaryMethodDefinitionish = {
+  methodName: "TaxCaps",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryTaxCapsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryTaxCapsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryRewardWeightDesc: UnaryMethodDefinitionish = {
+  methodName: "RewardWeight",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryRewardWeightRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryRewardWeightResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QuerySeigniorageProceedsDesc: UnaryMethodDefinitionish = {
+  methodName: "SeigniorageProceeds",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QuerySeigniorageProceedsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QuerySeigniorageProceedsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryTaxProceedsDesc: UnaryMethodDefinitionish = {
+  methodName: "TaxProceeds",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryTaxProceedsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryTaxProceedsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryIndicatorsDesc: UnaryMethodDefinitionish = {
+  methodName: "Indicators",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryIndicatorsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryIndicatorsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryParamsDesc: UnaryMethodDefinitionish = {
+  methodName: "Params",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryParamsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryParamsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

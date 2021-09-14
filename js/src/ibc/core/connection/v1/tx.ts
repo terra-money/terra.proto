@@ -1,21 +1,11 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata as Metadata1,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Counterparty, Version } from "../../../../ibc/core/connection/v1/connection";
 import { Any } from "../../../../google/protobuf/any";
 import { Height } from "../../../../ibc/core/client/v1/client";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "ibc.core.connection.v1";
 
@@ -986,150 +976,236 @@ export const MsgConnectionOpenConfirmResponse = {
 };
 
 /** Msg defines the ibc/connection Msg service. */
-export const MsgService = {
+export interface Msg {
   /** ConnectionOpenInit defines a rpc handler method for MsgConnectionOpenInit. */
-  connectionOpenInit: {
-    path: "/ibc.core.connection.v1.Msg/ConnectionOpenInit",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgConnectionOpenInit) =>
-      Buffer.from(MsgConnectionOpenInit.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgConnectionOpenInit.decode(value),
-    responseSerialize: (value: MsgConnectionOpenInitResponse) =>
-      Buffer.from(MsgConnectionOpenInitResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgConnectionOpenInitResponse.decode(value),
-  },
+  ConnectionOpenInit(
+    request: DeepPartial<MsgConnectionOpenInit>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgConnectionOpenInitResponse>;
   /** ConnectionOpenTry defines a rpc handler method for MsgConnectionOpenTry. */
-  connectionOpenTry: {
-    path: "/ibc.core.connection.v1.Msg/ConnectionOpenTry",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgConnectionOpenTry) =>
-      Buffer.from(MsgConnectionOpenTry.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgConnectionOpenTry.decode(value),
-    responseSerialize: (value: MsgConnectionOpenTryResponse) =>
-      Buffer.from(MsgConnectionOpenTryResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgConnectionOpenTryResponse.decode(value),
-  },
+  ConnectionOpenTry(
+    request: DeepPartial<MsgConnectionOpenTry>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgConnectionOpenTryResponse>;
   /** ConnectionOpenAck defines a rpc handler method for MsgConnectionOpenAck. */
-  connectionOpenAck: {
-    path: "/ibc.core.connection.v1.Msg/ConnectionOpenAck",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgConnectionOpenAck) =>
-      Buffer.from(MsgConnectionOpenAck.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgConnectionOpenAck.decode(value),
-    responseSerialize: (value: MsgConnectionOpenAckResponse) =>
-      Buffer.from(MsgConnectionOpenAckResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgConnectionOpenAckResponse.decode(value),
-  },
+  ConnectionOpenAck(
+    request: DeepPartial<MsgConnectionOpenAck>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgConnectionOpenAckResponse>;
   /**
    * ConnectionOpenConfirm defines a rpc handler method for
    * MsgConnectionOpenConfirm.
    */
-  connectionOpenConfirm: {
-    path: "/ibc.core.connection.v1.Msg/ConnectionOpenConfirm",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgConnectionOpenConfirm) =>
-      Buffer.from(MsgConnectionOpenConfirm.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgConnectionOpenConfirm.decode(value),
-    responseSerialize: (value: MsgConnectionOpenConfirmResponse) =>
-      Buffer.from(MsgConnectionOpenConfirmResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgConnectionOpenConfirmResponse.decode(value),
-  },
-} as const;
-
-export interface MsgServer extends UntypedServiceImplementation {
-  /** ConnectionOpenInit defines a rpc handler method for MsgConnectionOpenInit. */
-  connectionOpenInit: handleUnaryCall<MsgConnectionOpenInit, MsgConnectionOpenInitResponse>;
-  /** ConnectionOpenTry defines a rpc handler method for MsgConnectionOpenTry. */
-  connectionOpenTry: handleUnaryCall<MsgConnectionOpenTry, MsgConnectionOpenTryResponse>;
-  /** ConnectionOpenAck defines a rpc handler method for MsgConnectionOpenAck. */
-  connectionOpenAck: handleUnaryCall<MsgConnectionOpenAck, MsgConnectionOpenAckResponse>;
-  /**
-   * ConnectionOpenConfirm defines a rpc handler method for
-   * MsgConnectionOpenConfirm.
-   */
-  connectionOpenConfirm: handleUnaryCall<MsgConnectionOpenConfirm, MsgConnectionOpenConfirmResponse>;
+  ConnectionOpenConfirm(
+    request: DeepPartial<MsgConnectionOpenConfirm>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgConnectionOpenConfirmResponse>;
 }
 
-export interface MsgClient extends Client {
-  /** ConnectionOpenInit defines a rpc handler method for MsgConnectionOpenInit. */
-  connectionOpenInit(
-    request: MsgConnectionOpenInit,
-    callback: (error: ServiceError | null, response: MsgConnectionOpenInitResponse) => void,
-  ): ClientUnaryCall;
-  connectionOpenInit(
-    request: MsgConnectionOpenInit,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: MsgConnectionOpenInitResponse) => void,
-  ): ClientUnaryCall;
-  connectionOpenInit(
-    request: MsgConnectionOpenInit,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgConnectionOpenInitResponse) => void,
-  ): ClientUnaryCall;
-  /** ConnectionOpenTry defines a rpc handler method for MsgConnectionOpenTry. */
-  connectionOpenTry(
-    request: MsgConnectionOpenTry,
-    callback: (error: ServiceError | null, response: MsgConnectionOpenTryResponse) => void,
-  ): ClientUnaryCall;
-  connectionOpenTry(
-    request: MsgConnectionOpenTry,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: MsgConnectionOpenTryResponse) => void,
-  ): ClientUnaryCall;
-  connectionOpenTry(
-    request: MsgConnectionOpenTry,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgConnectionOpenTryResponse) => void,
-  ): ClientUnaryCall;
-  /** ConnectionOpenAck defines a rpc handler method for MsgConnectionOpenAck. */
-  connectionOpenAck(
-    request: MsgConnectionOpenAck,
-    callback: (error: ServiceError | null, response: MsgConnectionOpenAckResponse) => void,
-  ): ClientUnaryCall;
-  connectionOpenAck(
-    request: MsgConnectionOpenAck,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: MsgConnectionOpenAckResponse) => void,
-  ): ClientUnaryCall;
-  connectionOpenAck(
-    request: MsgConnectionOpenAck,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgConnectionOpenAckResponse) => void,
-  ): ClientUnaryCall;
-  /**
-   * ConnectionOpenConfirm defines a rpc handler method for
-   * MsgConnectionOpenConfirm.
-   */
-  connectionOpenConfirm(
-    request: MsgConnectionOpenConfirm,
-    callback: (error: ServiceError | null, response: MsgConnectionOpenConfirmResponse) => void,
-  ): ClientUnaryCall;
-  connectionOpenConfirm(
-    request: MsgConnectionOpenConfirm,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: MsgConnectionOpenConfirmResponse) => void,
-  ): ClientUnaryCall;
-  connectionOpenConfirm(
-    request: MsgConnectionOpenConfirm,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgConnectionOpenConfirmResponse) => void,
-  ): ClientUnaryCall;
+export class MsgClientImpl implements Msg {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.ConnectionOpenInit = this.ConnectionOpenInit.bind(this);
+    this.ConnectionOpenTry = this.ConnectionOpenTry.bind(this);
+    this.ConnectionOpenAck = this.ConnectionOpenAck.bind(this);
+    this.ConnectionOpenConfirm = this.ConnectionOpenConfirm.bind(this);
+  }
+
+  ConnectionOpenInit(
+    request: DeepPartial<MsgConnectionOpenInit>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgConnectionOpenInitResponse> {
+    return this.rpc.unary(MsgConnectionOpenInitDesc, MsgConnectionOpenInit.fromPartial(request), metadata);
+  }
+
+  ConnectionOpenTry(
+    request: DeepPartial<MsgConnectionOpenTry>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgConnectionOpenTryResponse> {
+    return this.rpc.unary(MsgConnectionOpenTryDesc, MsgConnectionOpenTry.fromPartial(request), metadata);
+  }
+
+  ConnectionOpenAck(
+    request: DeepPartial<MsgConnectionOpenAck>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgConnectionOpenAckResponse> {
+    return this.rpc.unary(MsgConnectionOpenAckDesc, MsgConnectionOpenAck.fromPartial(request), metadata);
+  }
+
+  ConnectionOpenConfirm(
+    request: DeepPartial<MsgConnectionOpenConfirm>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgConnectionOpenConfirmResponse> {
+    return this.rpc.unary(
+      MsgConnectionOpenConfirmDesc,
+      MsgConnectionOpenConfirm.fromPartial(request),
+      metadata,
+    );
+  }
 }
 
-export const MsgClient = makeGenericClientConstructor(
-  MsgService,
-  "ibc.core.connection.v1.Msg",
-) as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+export const MsgDesc = {
+  serviceName: "ibc.core.connection.v1.Msg",
 };
+
+export const MsgConnectionOpenInitDesc: UnaryMethodDefinitionish = {
+  methodName: "ConnectionOpenInit",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgConnectionOpenInit.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgConnectionOpenInitResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgConnectionOpenTryDesc: UnaryMethodDefinitionish = {
+  methodName: "ConnectionOpenTry",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgConnectionOpenTry.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgConnectionOpenTryResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgConnectionOpenAckDesc: UnaryMethodDefinitionish = {
+  methodName: "ConnectionOpenAck",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgConnectionOpenAck.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgConnectionOpenAckResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgConnectionOpenConfirmDesc: UnaryMethodDefinitionish = {
+  methodName: "ConnectionOpenConfirm",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgConnectionOpenConfirm.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgConnectionOpenConfirmResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

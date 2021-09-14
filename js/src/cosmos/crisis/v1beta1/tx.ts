@@ -1,18 +1,8 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata as Metadata1,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "cosmos.crisis.v1beta1";
 
@@ -154,47 +144,124 @@ export const MsgVerifyInvariantResponse = {
 };
 
 /** Msg defines the bank Msg service. */
-export const MsgService = {
+export interface Msg {
   /** VerifyInvariant defines a method to verify a particular invariance. */
-  verifyInvariant: {
-    path: "/cosmos.crisis.v1beta1.Msg/VerifyInvariant",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgVerifyInvariant) => Buffer.from(MsgVerifyInvariant.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgVerifyInvariant.decode(value),
-    responseSerialize: (value: MsgVerifyInvariantResponse) =>
-      Buffer.from(MsgVerifyInvariantResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgVerifyInvariantResponse.decode(value),
-  },
-} as const;
-
-export interface MsgServer extends UntypedServiceImplementation {
-  /** VerifyInvariant defines a method to verify a particular invariance. */
-  verifyInvariant: handleUnaryCall<MsgVerifyInvariant, MsgVerifyInvariantResponse>;
+  VerifyInvariant(
+    request: DeepPartial<MsgVerifyInvariant>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgVerifyInvariantResponse>;
 }
 
-export interface MsgClient extends Client {
-  /** VerifyInvariant defines a method to verify a particular invariance. */
-  verifyInvariant(
-    request: MsgVerifyInvariant,
-    callback: (error: ServiceError | null, response: MsgVerifyInvariantResponse) => void,
-  ): ClientUnaryCall;
-  verifyInvariant(
-    request: MsgVerifyInvariant,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: MsgVerifyInvariantResponse) => void,
-  ): ClientUnaryCall;
-  verifyInvariant(
-    request: MsgVerifyInvariant,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgVerifyInvariantResponse) => void,
-  ): ClientUnaryCall;
+export class MsgClientImpl implements Msg {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.VerifyInvariant = this.VerifyInvariant.bind(this);
+  }
+
+  VerifyInvariant(
+    request: DeepPartial<MsgVerifyInvariant>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgVerifyInvariantResponse> {
+    return this.rpc.unary(MsgVerifyInvariantDesc, MsgVerifyInvariant.fromPartial(request), metadata);
+  }
 }
 
-export const MsgClient = makeGenericClientConstructor(MsgService, "cosmos.crisis.v1beta1.Msg") as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+export const MsgDesc = {
+  serviceName: "cosmos.crisis.v1beta1.Msg",
 };
+
+export const MsgVerifyInvariantDesc: UnaryMethodDefinitionish = {
+  methodName: "VerifyInvariant",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgVerifyInvariant.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgVerifyInvariantResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

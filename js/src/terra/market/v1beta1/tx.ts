@@ -1,19 +1,9 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Coin } from "../../../cosmos/base/v1beta1/coin";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "terra.market.v1beta1";
 
@@ -390,93 +380,153 @@ export const MsgSwapSendResponse = {
 };
 
 /** Msg defines the market Msg service. */
-export const MsgService = {
+export interface Msg {
   /**
    * Swap defines a method for swapping coin from one denom to another
    * denom.
    */
-  swap: {
-    path: "/terra.market.v1beta1.Msg/Swap",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgSwap) => Buffer.from(MsgSwap.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgSwap.decode(value),
-    responseSerialize: (value: MsgSwapResponse) => Buffer.from(MsgSwapResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgSwapResponse.decode(value),
-  },
+  Swap(request: DeepPartial<MsgSwap>, metadata?: grpc.Metadata): Promise<MsgSwapResponse>;
   /**
    * SwapSend defines a method for swapping and sending coin from a account to other
    * account.
    */
-  swapSend: {
-    path: "/terra.market.v1beta1.Msg/SwapSend",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgSwapSend) => Buffer.from(MsgSwapSend.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgSwapSend.decode(value),
-    responseSerialize: (value: MsgSwapSendResponse) =>
-      Buffer.from(MsgSwapSendResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgSwapSendResponse.decode(value),
-  },
-} as const;
-
-export interface MsgServer extends UntypedServiceImplementation {
-  /**
-   * Swap defines a method for swapping coin from one denom to another
-   * denom.
-   */
-  swap: handleUnaryCall<MsgSwap, MsgSwapResponse>;
-  /**
-   * SwapSend defines a method for swapping and sending coin from a account to other
-   * account.
-   */
-  swapSend: handleUnaryCall<MsgSwapSend, MsgSwapSendResponse>;
+  SwapSend(request: DeepPartial<MsgSwapSend>, metadata?: grpc.Metadata): Promise<MsgSwapSendResponse>;
 }
 
-export interface MsgClient extends Client {
-  /**
-   * Swap defines a method for swapping coin from one denom to another
-   * denom.
-   */
-  swap(
-    request: MsgSwap,
-    callback: (error: ServiceError | null, response: MsgSwapResponse) => void,
-  ): ClientUnaryCall;
-  swap(
-    request: MsgSwap,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgSwapResponse) => void,
-  ): ClientUnaryCall;
-  swap(
-    request: MsgSwap,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgSwapResponse) => void,
-  ): ClientUnaryCall;
-  /**
-   * SwapSend defines a method for swapping and sending coin from a account to other
-   * account.
-   */
-  swapSend(
-    request: MsgSwapSend,
-    callback: (error: ServiceError | null, response: MsgSwapSendResponse) => void,
-  ): ClientUnaryCall;
-  swapSend(
-    request: MsgSwapSend,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgSwapSendResponse) => void,
-  ): ClientUnaryCall;
-  swapSend(
-    request: MsgSwapSend,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgSwapSendResponse) => void,
-  ): ClientUnaryCall;
+export class MsgClientImpl implements Msg {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.Swap = this.Swap.bind(this);
+    this.SwapSend = this.SwapSend.bind(this);
+  }
+
+  Swap(request: DeepPartial<MsgSwap>, metadata?: grpc.Metadata): Promise<MsgSwapResponse> {
+    return this.rpc.unary(MsgSwapDesc, MsgSwap.fromPartial(request), metadata);
+  }
+
+  SwapSend(request: DeepPartial<MsgSwapSend>, metadata?: grpc.Metadata): Promise<MsgSwapSendResponse> {
+    return this.rpc.unary(MsgSwapSendDesc, MsgSwapSend.fromPartial(request), metadata);
+  }
 }
 
-export const MsgClient = makeGenericClientConstructor(MsgService, "terra.market.v1beta1.Msg") as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+export const MsgDesc = {
+  serviceName: "terra.market.v1beta1.Msg",
 };
+
+export const MsgSwapDesc: UnaryMethodDefinitionish = {
+  methodName: "Swap",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgSwap.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgSwapResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgSwapSendDesc: UnaryMethodDefinitionish = {
+  methodName: "SwapSend",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgSwapSend.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgSwapSendResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

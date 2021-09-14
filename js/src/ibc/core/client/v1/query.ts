@@ -1,17 +1,6 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata as Metadata1,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Any } from "../../../../google/protobuf/any";
 import {
@@ -21,6 +10,7 @@ import {
   ConsensusStateWithHeight,
 } from "../../../../ibc/core/client/v1/client";
 import { PageRequest, PageResponse } from "../../../../cosmos/base/query/v1beta1/pagination";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "ibc.core.client.v1";
 
@@ -1222,282 +1212,387 @@ export const QueryUpgradedConsensusStateResponse = {
 };
 
 /** Query provides defines the gRPC querier service */
-export const QueryService = {
+export interface Query {
   /** ClientState queries an IBC light client. */
-  clientState: {
-    path: "/ibc.core.client.v1.Query/ClientState",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryClientStateRequest) =>
-      Buffer.from(QueryClientStateRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryClientStateRequest.decode(value),
-    responseSerialize: (value: QueryClientStateResponse) =>
-      Buffer.from(QueryClientStateResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryClientStateResponse.decode(value),
-  },
+  ClientState(
+    request: DeepPartial<QueryClientStateRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryClientStateResponse>;
   /** ClientStates queries all the IBC light clients of a chain. */
-  clientStates: {
-    path: "/ibc.core.client.v1.Query/ClientStates",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryClientStatesRequest) =>
-      Buffer.from(QueryClientStatesRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryClientStatesRequest.decode(value),
-    responseSerialize: (value: QueryClientStatesResponse) =>
-      Buffer.from(QueryClientStatesResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryClientStatesResponse.decode(value),
-  },
+  ClientStates(
+    request: DeepPartial<QueryClientStatesRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryClientStatesResponse>;
   /**
    * ConsensusState queries a consensus state associated with a client state at
    * a given height.
    */
-  consensusState: {
-    path: "/ibc.core.client.v1.Query/ConsensusState",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryConsensusStateRequest) =>
-      Buffer.from(QueryConsensusStateRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryConsensusStateRequest.decode(value),
-    responseSerialize: (value: QueryConsensusStateResponse) =>
-      Buffer.from(QueryConsensusStateResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryConsensusStateResponse.decode(value),
-  },
+  ConsensusState(
+    request: DeepPartial<QueryConsensusStateRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryConsensusStateResponse>;
   /**
    * ConsensusStates queries all the consensus state associated with a given
    * client.
    */
-  consensusStates: {
-    path: "/ibc.core.client.v1.Query/ConsensusStates",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryConsensusStatesRequest) =>
-      Buffer.from(QueryConsensusStatesRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryConsensusStatesRequest.decode(value),
-    responseSerialize: (value: QueryConsensusStatesResponse) =>
-      Buffer.from(QueryConsensusStatesResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryConsensusStatesResponse.decode(value),
-  },
+  ConsensusStates(
+    request: DeepPartial<QueryConsensusStatesRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryConsensusStatesResponse>;
   /** Status queries the status of an IBC client. */
-  clientStatus: {
-    path: "/ibc.core.client.v1.Query/ClientStatus",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryClientStatusRequest) =>
-      Buffer.from(QueryClientStatusRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryClientStatusRequest.decode(value),
-    responseSerialize: (value: QueryClientStatusResponse) =>
-      Buffer.from(QueryClientStatusResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryClientStatusResponse.decode(value),
-  },
+  ClientStatus(
+    request: DeepPartial<QueryClientStatusRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryClientStatusResponse>;
   /** ClientParams queries all parameters of the ibc client. */
-  clientParams: {
-    path: "/ibc.core.client.v1.Query/ClientParams",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryClientParamsRequest) =>
-      Buffer.from(QueryClientParamsRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryClientParamsRequest.decode(value),
-    responseSerialize: (value: QueryClientParamsResponse) =>
-      Buffer.from(QueryClientParamsResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryClientParamsResponse.decode(value),
-  },
+  ClientParams(
+    request: DeepPartial<QueryClientParamsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryClientParamsResponse>;
   /** UpgradedClientState queries an Upgraded IBC light client. */
-  upgradedClientState: {
-    path: "/ibc.core.client.v1.Query/UpgradedClientState",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryUpgradedClientStateRequest) =>
-      Buffer.from(QueryUpgradedClientStateRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryUpgradedClientStateRequest.decode(value),
-    responseSerialize: (value: QueryUpgradedClientStateResponse) =>
-      Buffer.from(QueryUpgradedClientStateResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryUpgradedClientStateResponse.decode(value),
-  },
+  UpgradedClientState(
+    request: DeepPartial<QueryUpgradedClientStateRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryUpgradedClientStateResponse>;
   /** UpgradedConsensusState queries an Upgraded IBC consensus state. */
-  upgradedConsensusState: {
-    path: "/ibc.core.client.v1.Query/UpgradedConsensusState",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryUpgradedConsensusStateRequest) =>
-      Buffer.from(QueryUpgradedConsensusStateRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryUpgradedConsensusStateRequest.decode(value),
-    responseSerialize: (value: QueryUpgradedConsensusStateResponse) =>
-      Buffer.from(QueryUpgradedConsensusStateResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryUpgradedConsensusStateResponse.decode(value),
-  },
-} as const;
-
-export interface QueryServer extends UntypedServiceImplementation {
-  /** ClientState queries an IBC light client. */
-  clientState: handleUnaryCall<QueryClientStateRequest, QueryClientStateResponse>;
-  /** ClientStates queries all the IBC light clients of a chain. */
-  clientStates: handleUnaryCall<QueryClientStatesRequest, QueryClientStatesResponse>;
-  /**
-   * ConsensusState queries a consensus state associated with a client state at
-   * a given height.
-   */
-  consensusState: handleUnaryCall<QueryConsensusStateRequest, QueryConsensusStateResponse>;
-  /**
-   * ConsensusStates queries all the consensus state associated with a given
-   * client.
-   */
-  consensusStates: handleUnaryCall<QueryConsensusStatesRequest, QueryConsensusStatesResponse>;
-  /** Status queries the status of an IBC client. */
-  clientStatus: handleUnaryCall<QueryClientStatusRequest, QueryClientStatusResponse>;
-  /** ClientParams queries all parameters of the ibc client. */
-  clientParams: handleUnaryCall<QueryClientParamsRequest, QueryClientParamsResponse>;
-  /** UpgradedClientState queries an Upgraded IBC light client. */
-  upgradedClientState: handleUnaryCall<QueryUpgradedClientStateRequest, QueryUpgradedClientStateResponse>;
-  /** UpgradedConsensusState queries an Upgraded IBC consensus state. */
-  upgradedConsensusState: handleUnaryCall<
-    QueryUpgradedConsensusStateRequest,
-    QueryUpgradedConsensusStateResponse
-  >;
+  UpgradedConsensusState(
+    request: DeepPartial<QueryUpgradedConsensusStateRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryUpgradedConsensusStateResponse>;
 }
 
-export interface QueryClient extends Client {
-  /** ClientState queries an IBC light client. */
-  clientState(
-    request: QueryClientStateRequest,
-    callback: (error: ServiceError | null, response: QueryClientStateResponse) => void,
-  ): ClientUnaryCall;
-  clientState(
-    request: QueryClientStateRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryClientStateResponse) => void,
-  ): ClientUnaryCall;
-  clientState(
-    request: QueryClientStateRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryClientStateResponse) => void,
-  ): ClientUnaryCall;
-  /** ClientStates queries all the IBC light clients of a chain. */
-  clientStates(
-    request: QueryClientStatesRequest,
-    callback: (error: ServiceError | null, response: QueryClientStatesResponse) => void,
-  ): ClientUnaryCall;
-  clientStates(
-    request: QueryClientStatesRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryClientStatesResponse) => void,
-  ): ClientUnaryCall;
-  clientStates(
-    request: QueryClientStatesRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryClientStatesResponse) => void,
-  ): ClientUnaryCall;
-  /**
-   * ConsensusState queries a consensus state associated with a client state at
-   * a given height.
-   */
-  consensusState(
-    request: QueryConsensusStateRequest,
-    callback: (error: ServiceError | null, response: QueryConsensusStateResponse) => void,
-  ): ClientUnaryCall;
-  consensusState(
-    request: QueryConsensusStateRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryConsensusStateResponse) => void,
-  ): ClientUnaryCall;
-  consensusState(
-    request: QueryConsensusStateRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryConsensusStateResponse) => void,
-  ): ClientUnaryCall;
-  /**
-   * ConsensusStates queries all the consensus state associated with a given
-   * client.
-   */
-  consensusStates(
-    request: QueryConsensusStatesRequest,
-    callback: (error: ServiceError | null, response: QueryConsensusStatesResponse) => void,
-  ): ClientUnaryCall;
-  consensusStates(
-    request: QueryConsensusStatesRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryConsensusStatesResponse) => void,
-  ): ClientUnaryCall;
-  consensusStates(
-    request: QueryConsensusStatesRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryConsensusStatesResponse) => void,
-  ): ClientUnaryCall;
-  /** Status queries the status of an IBC client. */
-  clientStatus(
-    request: QueryClientStatusRequest,
-    callback: (error: ServiceError | null, response: QueryClientStatusResponse) => void,
-  ): ClientUnaryCall;
-  clientStatus(
-    request: QueryClientStatusRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryClientStatusResponse) => void,
-  ): ClientUnaryCall;
-  clientStatus(
-    request: QueryClientStatusRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryClientStatusResponse) => void,
-  ): ClientUnaryCall;
-  /** ClientParams queries all parameters of the ibc client. */
-  clientParams(
-    request: QueryClientParamsRequest,
-    callback: (error: ServiceError | null, response: QueryClientParamsResponse) => void,
-  ): ClientUnaryCall;
-  clientParams(
-    request: QueryClientParamsRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryClientParamsResponse) => void,
-  ): ClientUnaryCall;
-  clientParams(
-    request: QueryClientParamsRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryClientParamsResponse) => void,
-  ): ClientUnaryCall;
-  /** UpgradedClientState queries an Upgraded IBC light client. */
-  upgradedClientState(
-    request: QueryUpgradedClientStateRequest,
-    callback: (error: ServiceError | null, response: QueryUpgradedClientStateResponse) => void,
-  ): ClientUnaryCall;
-  upgradedClientState(
-    request: QueryUpgradedClientStateRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryUpgradedClientStateResponse) => void,
-  ): ClientUnaryCall;
-  upgradedClientState(
-    request: QueryUpgradedClientStateRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryUpgradedClientStateResponse) => void,
-  ): ClientUnaryCall;
-  /** UpgradedConsensusState queries an Upgraded IBC consensus state. */
-  upgradedConsensusState(
-    request: QueryUpgradedConsensusStateRequest,
-    callback: (error: ServiceError | null, response: QueryUpgradedConsensusStateResponse) => void,
-  ): ClientUnaryCall;
-  upgradedConsensusState(
-    request: QueryUpgradedConsensusStateRequest,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: QueryUpgradedConsensusStateResponse) => void,
-  ): ClientUnaryCall;
-  upgradedConsensusState(
-    request: QueryUpgradedConsensusStateRequest,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryUpgradedConsensusStateResponse) => void,
-  ): ClientUnaryCall;
+export class QueryClientImpl implements Query {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.ClientState = this.ClientState.bind(this);
+    this.ClientStates = this.ClientStates.bind(this);
+    this.ConsensusState = this.ConsensusState.bind(this);
+    this.ConsensusStates = this.ConsensusStates.bind(this);
+    this.ClientStatus = this.ClientStatus.bind(this);
+    this.ClientParams = this.ClientParams.bind(this);
+    this.UpgradedClientState = this.UpgradedClientState.bind(this);
+    this.UpgradedConsensusState = this.UpgradedConsensusState.bind(this);
+  }
+
+  ClientState(
+    request: DeepPartial<QueryClientStateRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryClientStateResponse> {
+    return this.rpc.unary(QueryClientStateDesc, QueryClientStateRequest.fromPartial(request), metadata);
+  }
+
+  ClientStates(
+    request: DeepPartial<QueryClientStatesRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryClientStatesResponse> {
+    return this.rpc.unary(QueryClientStatesDesc, QueryClientStatesRequest.fromPartial(request), metadata);
+  }
+
+  ConsensusState(
+    request: DeepPartial<QueryConsensusStateRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryConsensusStateResponse> {
+    return this.rpc.unary(QueryConsensusStateDesc, QueryConsensusStateRequest.fromPartial(request), metadata);
+  }
+
+  ConsensusStates(
+    request: DeepPartial<QueryConsensusStatesRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryConsensusStatesResponse> {
+    return this.rpc.unary(
+      QueryConsensusStatesDesc,
+      QueryConsensusStatesRequest.fromPartial(request),
+      metadata,
+    );
+  }
+
+  ClientStatus(
+    request: DeepPartial<QueryClientStatusRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryClientStatusResponse> {
+    return this.rpc.unary(QueryClientStatusDesc, QueryClientStatusRequest.fromPartial(request), metadata);
+  }
+
+  ClientParams(
+    request: DeepPartial<QueryClientParamsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryClientParamsResponse> {
+    return this.rpc.unary(QueryClientParamsDesc, QueryClientParamsRequest.fromPartial(request), metadata);
+  }
+
+  UpgradedClientState(
+    request: DeepPartial<QueryUpgradedClientStateRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryUpgradedClientStateResponse> {
+    return this.rpc.unary(
+      QueryUpgradedClientStateDesc,
+      QueryUpgradedClientStateRequest.fromPartial(request),
+      metadata,
+    );
+  }
+
+  UpgradedConsensusState(
+    request: DeepPartial<QueryUpgradedConsensusStateRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryUpgradedConsensusStateResponse> {
+    return this.rpc.unary(
+      QueryUpgradedConsensusStateDesc,
+      QueryUpgradedConsensusStateRequest.fromPartial(request),
+      metadata,
+    );
+  }
 }
 
-export const QueryClient = makeGenericClientConstructor(
-  QueryService,
-  "ibc.core.client.v1.Query",
-) as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+export const QueryDesc = {
+  serviceName: "ibc.core.client.v1.Query",
 };
+
+export const QueryClientStateDesc: UnaryMethodDefinitionish = {
+  methodName: "ClientState",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryClientStateRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryClientStateResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryClientStatesDesc: UnaryMethodDefinitionish = {
+  methodName: "ClientStates",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryClientStatesRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryClientStatesResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryConsensusStateDesc: UnaryMethodDefinitionish = {
+  methodName: "ConsensusState",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryConsensusStateRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryConsensusStateResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryConsensusStatesDesc: UnaryMethodDefinitionish = {
+  methodName: "ConsensusStates",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryConsensusStatesRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryConsensusStatesResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryClientStatusDesc: UnaryMethodDefinitionish = {
+  methodName: "ClientStatus",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryClientStatusRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryClientStatusResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryClientParamsDesc: UnaryMethodDefinitionish = {
+  methodName: "ClientParams",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryClientParamsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryClientParamsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryUpgradedClientStateDesc: UnaryMethodDefinitionish = {
+  methodName: "UpgradedClientState",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryUpgradedClientStateRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryUpgradedClientStateResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryUpgradedConsensusStateDesc: UnaryMethodDefinitionish = {
+  methodName: "UpgradedConsensusState",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryUpgradedConsensusStateRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryUpgradedConsensusStateResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

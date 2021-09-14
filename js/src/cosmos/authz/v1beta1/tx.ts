@@ -1,19 +1,9 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata as Metadata1,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Grant } from "../../../cosmos/authz/v1beta1/authz";
+import { BrowserHeaders } from "browser-headers";
 import { Any } from "../../../google/protobuf/any";
 
 export const protobufPackage = "cosmos.authz.v1beta1";
@@ -460,138 +450,188 @@ export const MsgRevokeResponse = {
 };
 
 /** Msg defines the authz Msg service. */
-export const MsgService = {
+export interface Msg {
   /**
    * Grant grants the provided authorization to the grantee on the granter's
    * account with the provided expiration time. If there is already a grant
    * for the given (granter, grantee, Authorization) triple, then the grant
    * will be overwritten.
    */
-  grant: {
-    path: "/cosmos.authz.v1beta1.Msg/Grant",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgGrant) => Buffer.from(MsgGrant.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgGrant.decode(value),
-    responseSerialize: (value: MsgGrantResponse) => Buffer.from(MsgGrantResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgGrantResponse.decode(value),
-  },
+  Grant(request: DeepPartial<MsgGrant>, metadata?: grpc.Metadata): Promise<MsgGrantResponse>;
   /**
    * Exec attempts to execute the provided messages using
    * authorizations granted to the grantee. Each message should have only
    * one signer corresponding to the granter of the authorization.
    */
-  exec: {
-    path: "/cosmos.authz.v1beta1.Msg/Exec",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgExec) => Buffer.from(MsgExec.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgExec.decode(value),
-    responseSerialize: (value: MsgExecResponse) => Buffer.from(MsgExecResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgExecResponse.decode(value),
-  },
+  Exec(request: DeepPartial<MsgExec>, metadata?: grpc.Metadata): Promise<MsgExecResponse>;
   /**
    * Revoke revokes any authorization corresponding to the provided method name on the
    * granter's account that has been granted to the grantee.
    */
-  revoke: {
-    path: "/cosmos.authz.v1beta1.Msg/Revoke",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgRevoke) => Buffer.from(MsgRevoke.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgRevoke.decode(value),
-    responseSerialize: (value: MsgRevokeResponse) => Buffer.from(MsgRevokeResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgRevokeResponse.decode(value),
-  },
-} as const;
-
-export interface MsgServer extends UntypedServiceImplementation {
-  /**
-   * Grant grants the provided authorization to the grantee on the granter's
-   * account with the provided expiration time. If there is already a grant
-   * for the given (granter, grantee, Authorization) triple, then the grant
-   * will be overwritten.
-   */
-  grant: handleUnaryCall<MsgGrant, MsgGrantResponse>;
-  /**
-   * Exec attempts to execute the provided messages using
-   * authorizations granted to the grantee. Each message should have only
-   * one signer corresponding to the granter of the authorization.
-   */
-  exec: handleUnaryCall<MsgExec, MsgExecResponse>;
-  /**
-   * Revoke revokes any authorization corresponding to the provided method name on the
-   * granter's account that has been granted to the grantee.
-   */
-  revoke: handleUnaryCall<MsgRevoke, MsgRevokeResponse>;
+  Revoke(request: DeepPartial<MsgRevoke>, metadata?: grpc.Metadata): Promise<MsgRevokeResponse>;
 }
 
-export interface MsgClient extends Client {
-  /**
-   * Grant grants the provided authorization to the grantee on the granter's
-   * account with the provided expiration time. If there is already a grant
-   * for the given (granter, grantee, Authorization) triple, then the grant
-   * will be overwritten.
-   */
-  grant(
-    request: MsgGrant,
-    callback: (error: ServiceError | null, response: MsgGrantResponse) => void,
-  ): ClientUnaryCall;
-  grant(
-    request: MsgGrant,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: MsgGrantResponse) => void,
-  ): ClientUnaryCall;
-  grant(
-    request: MsgGrant,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgGrantResponse) => void,
-  ): ClientUnaryCall;
-  /**
-   * Exec attempts to execute the provided messages using
-   * authorizations granted to the grantee. Each message should have only
-   * one signer corresponding to the granter of the authorization.
-   */
-  exec(
-    request: MsgExec,
-    callback: (error: ServiceError | null, response: MsgExecResponse) => void,
-  ): ClientUnaryCall;
-  exec(
-    request: MsgExec,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: MsgExecResponse) => void,
-  ): ClientUnaryCall;
-  exec(
-    request: MsgExec,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgExecResponse) => void,
-  ): ClientUnaryCall;
-  /**
-   * Revoke revokes any authorization corresponding to the provided method name on the
-   * granter's account that has been granted to the grantee.
-   */
-  revoke(
-    request: MsgRevoke,
-    callback: (error: ServiceError | null, response: MsgRevokeResponse) => void,
-  ): ClientUnaryCall;
-  revoke(
-    request: MsgRevoke,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: MsgRevokeResponse) => void,
-  ): ClientUnaryCall;
-  revoke(
-    request: MsgRevoke,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgRevokeResponse) => void,
-  ): ClientUnaryCall;
+export class MsgClientImpl implements Msg {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.Grant = this.Grant.bind(this);
+    this.Exec = this.Exec.bind(this);
+    this.Revoke = this.Revoke.bind(this);
+  }
+
+  Grant(request: DeepPartial<MsgGrant>, metadata?: grpc.Metadata): Promise<MsgGrantResponse> {
+    return this.rpc.unary(MsgGrantDesc, MsgGrant.fromPartial(request), metadata);
+  }
+
+  Exec(request: DeepPartial<MsgExec>, metadata?: grpc.Metadata): Promise<MsgExecResponse> {
+    return this.rpc.unary(MsgExecDesc, MsgExec.fromPartial(request), metadata);
+  }
+
+  Revoke(request: DeepPartial<MsgRevoke>, metadata?: grpc.Metadata): Promise<MsgRevokeResponse> {
+    return this.rpc.unary(MsgRevokeDesc, MsgRevoke.fromPartial(request), metadata);
+  }
 }
 
-export const MsgClient = makeGenericClientConstructor(MsgService, "cosmos.authz.v1beta1.Msg") as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+export const MsgDesc = {
+  serviceName: "cosmos.authz.v1beta1.Msg",
 };
+
+export const MsgGrantDesc: UnaryMethodDefinitionish = {
+  methodName: "Grant",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgGrant.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgGrantResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgExecDesc: UnaryMethodDefinitionish = {
+  methodName: "Exec",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgExec.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgExecResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgRevokeDesc: UnaryMethodDefinitionish = {
+  methodName: "Revoke",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgRevoke.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgRevokeResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

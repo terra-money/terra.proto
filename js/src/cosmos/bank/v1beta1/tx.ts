@@ -1,18 +1,8 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
+import { BrowserHeaders } from "browser-headers";
 import { Coin } from "../../../cosmos/base/v1beta1/coin";
 import { Input, Output } from "../../../cosmos/bank/v1beta1/bank";
 
@@ -296,75 +286,147 @@ export const MsgMultiSendResponse = {
 };
 
 /** Msg defines the bank Msg service. */
-export const MsgService = {
+export interface Msg {
   /** Send defines a method for sending coins from one account to another account. */
-  send: {
-    path: "/cosmos.bank.v1beta1.Msg/Send",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgSend) => Buffer.from(MsgSend.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgSend.decode(value),
-    responseSerialize: (value: MsgSendResponse) => Buffer.from(MsgSendResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgSendResponse.decode(value),
-  },
+  Send(request: DeepPartial<MsgSend>, metadata?: grpc.Metadata): Promise<MsgSendResponse>;
   /** MultiSend defines a method for sending coins from some accounts to other accounts. */
-  multiSend: {
-    path: "/cosmos.bank.v1beta1.Msg/MultiSend",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgMultiSend) => Buffer.from(MsgMultiSend.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgMultiSend.decode(value),
-    responseSerialize: (value: MsgMultiSendResponse) =>
-      Buffer.from(MsgMultiSendResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgMultiSendResponse.decode(value),
-  },
-} as const;
-
-export interface MsgServer extends UntypedServiceImplementation {
-  /** Send defines a method for sending coins from one account to another account. */
-  send: handleUnaryCall<MsgSend, MsgSendResponse>;
-  /** MultiSend defines a method for sending coins from some accounts to other accounts. */
-  multiSend: handleUnaryCall<MsgMultiSend, MsgMultiSendResponse>;
+  MultiSend(request: DeepPartial<MsgMultiSend>, metadata?: grpc.Metadata): Promise<MsgMultiSendResponse>;
 }
 
-export interface MsgClient extends Client {
-  /** Send defines a method for sending coins from one account to another account. */
-  send(
-    request: MsgSend,
-    callback: (error: ServiceError | null, response: MsgSendResponse) => void,
-  ): ClientUnaryCall;
-  send(
-    request: MsgSend,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgSendResponse) => void,
-  ): ClientUnaryCall;
-  send(
-    request: MsgSend,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgSendResponse) => void,
-  ): ClientUnaryCall;
-  /** MultiSend defines a method for sending coins from some accounts to other accounts. */
-  multiSend(
-    request: MsgMultiSend,
-    callback: (error: ServiceError | null, response: MsgMultiSendResponse) => void,
-  ): ClientUnaryCall;
-  multiSend(
-    request: MsgMultiSend,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgMultiSendResponse) => void,
-  ): ClientUnaryCall;
-  multiSend(
-    request: MsgMultiSend,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgMultiSendResponse) => void,
-  ): ClientUnaryCall;
+export class MsgClientImpl implements Msg {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.Send = this.Send.bind(this);
+    this.MultiSend = this.MultiSend.bind(this);
+  }
+
+  Send(request: DeepPartial<MsgSend>, metadata?: grpc.Metadata): Promise<MsgSendResponse> {
+    return this.rpc.unary(MsgSendDesc, MsgSend.fromPartial(request), metadata);
+  }
+
+  MultiSend(request: DeepPartial<MsgMultiSend>, metadata?: grpc.Metadata): Promise<MsgMultiSendResponse> {
+    return this.rpc.unary(MsgMultiSendDesc, MsgMultiSend.fromPartial(request), metadata);
+  }
 }
 
-export const MsgClient = makeGenericClientConstructor(MsgService, "cosmos.bank.v1beta1.Msg") as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+export const MsgDesc = {
+  serviceName: "cosmos.bank.v1beta1.Msg",
 };
+
+export const MsgSendDesc: UnaryMethodDefinitionish = {
+  methodName: "Send",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgSend.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgSendResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgMultiSendDesc: UnaryMethodDefinitionish = {
+  methodName: "MultiSend",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgMultiSend.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgMultiSendResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

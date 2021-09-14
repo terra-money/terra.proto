@@ -1,19 +1,9 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Any } from "../../../google/protobuf/any";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "cosmos.feegrant.v1beta1";
 
@@ -283,97 +273,165 @@ export const MsgRevokeAllowanceResponse = {
 };
 
 /** Msg defines the feegrant msg service. */
-export const MsgService = {
+export interface Msg {
   /**
    * GrantAllowance grants fee allowance to the grantee on the granter's
    * account with the provided expiration time.
    */
-  grantAllowance: {
-    path: "/cosmos.feegrant.v1beta1.Msg/GrantAllowance",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgGrantAllowance) => Buffer.from(MsgGrantAllowance.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgGrantAllowance.decode(value),
-    responseSerialize: (value: MsgGrantAllowanceResponse) =>
-      Buffer.from(MsgGrantAllowanceResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgGrantAllowanceResponse.decode(value),
-  },
+  GrantAllowance(
+    request: DeepPartial<MsgGrantAllowance>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgGrantAllowanceResponse>;
   /**
    * RevokeAllowance revokes any fee allowance of granter's account that
    * has been granted to the grantee.
    */
-  revokeAllowance: {
-    path: "/cosmos.feegrant.v1beta1.Msg/RevokeAllowance",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgRevokeAllowance) => Buffer.from(MsgRevokeAllowance.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgRevokeAllowance.decode(value),
-    responseSerialize: (value: MsgRevokeAllowanceResponse) =>
-      Buffer.from(MsgRevokeAllowanceResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgRevokeAllowanceResponse.decode(value),
-  },
-} as const;
-
-export interface MsgServer extends UntypedServiceImplementation {
-  /**
-   * GrantAllowance grants fee allowance to the grantee on the granter's
-   * account with the provided expiration time.
-   */
-  grantAllowance: handleUnaryCall<MsgGrantAllowance, MsgGrantAllowanceResponse>;
-  /**
-   * RevokeAllowance revokes any fee allowance of granter's account that
-   * has been granted to the grantee.
-   */
-  revokeAllowance: handleUnaryCall<MsgRevokeAllowance, MsgRevokeAllowanceResponse>;
+  RevokeAllowance(
+    request: DeepPartial<MsgRevokeAllowance>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgRevokeAllowanceResponse>;
 }
 
-export interface MsgClient extends Client {
-  /**
-   * GrantAllowance grants fee allowance to the grantee on the granter's
-   * account with the provided expiration time.
-   */
-  grantAllowance(
-    request: MsgGrantAllowance,
-    callback: (error: ServiceError | null, response: MsgGrantAllowanceResponse) => void,
-  ): ClientUnaryCall;
-  grantAllowance(
-    request: MsgGrantAllowance,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgGrantAllowanceResponse) => void,
-  ): ClientUnaryCall;
-  grantAllowance(
-    request: MsgGrantAllowance,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgGrantAllowanceResponse) => void,
-  ): ClientUnaryCall;
-  /**
-   * RevokeAllowance revokes any fee allowance of granter's account that
-   * has been granted to the grantee.
-   */
-  revokeAllowance(
-    request: MsgRevokeAllowance,
-    callback: (error: ServiceError | null, response: MsgRevokeAllowanceResponse) => void,
-  ): ClientUnaryCall;
-  revokeAllowance(
-    request: MsgRevokeAllowance,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: MsgRevokeAllowanceResponse) => void,
-  ): ClientUnaryCall;
-  revokeAllowance(
-    request: MsgRevokeAllowance,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgRevokeAllowanceResponse) => void,
-  ): ClientUnaryCall;
+export class MsgClientImpl implements Msg {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.GrantAllowance = this.GrantAllowance.bind(this);
+    this.RevokeAllowance = this.RevokeAllowance.bind(this);
+  }
+
+  GrantAllowance(
+    request: DeepPartial<MsgGrantAllowance>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgGrantAllowanceResponse> {
+    return this.rpc.unary(MsgGrantAllowanceDesc, MsgGrantAllowance.fromPartial(request), metadata);
+  }
+
+  RevokeAllowance(
+    request: DeepPartial<MsgRevokeAllowance>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgRevokeAllowanceResponse> {
+    return this.rpc.unary(MsgRevokeAllowanceDesc, MsgRevokeAllowance.fromPartial(request), metadata);
+  }
 }
 
-export const MsgClient = makeGenericClientConstructor(
-  MsgService,
-  "cosmos.feegrant.v1beta1.Msg",
-) as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+export const MsgDesc = {
+  serviceName: "cosmos.feegrant.v1beta1.Msg",
 };
+
+export const MsgGrantAllowanceDesc: UnaryMethodDefinitionish = {
+  methodName: "GrantAllowance",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgGrantAllowance.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgGrantAllowanceResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgRevokeAllowanceDesc: UnaryMethodDefinitionish = {
+  methodName: "RevokeAllowance",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgRevokeAllowance.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgRevokeAllowanceResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

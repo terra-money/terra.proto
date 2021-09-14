@@ -1,21 +1,11 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata as Metadata1,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Description, CommissionRates } from "../../../cosmos/staking/v1beta1/staking";
 import { Any } from "../../../google/protobuf/any";
 import { Coin } from "../../../cosmos/base/v1beta1/coin";
+import { BrowserHeaders } from "browser-headers";
 import { Timestamp } from "../../../google/protobuf/timestamp";
 
 export const protobufPackage = "cosmos.staking.v1beta1";
@@ -874,193 +864,261 @@ export const MsgUndelegateResponse = {
 };
 
 /** Msg defines the staking Msg service. */
-export const MsgService = {
+export interface Msg {
   /** CreateValidator defines a method for creating a new validator. */
-  createValidator: {
-    path: "/cosmos.staking.v1beta1.Msg/CreateValidator",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgCreateValidator) => Buffer.from(MsgCreateValidator.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgCreateValidator.decode(value),
-    responseSerialize: (value: MsgCreateValidatorResponse) =>
-      Buffer.from(MsgCreateValidatorResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgCreateValidatorResponse.decode(value),
-  },
+  CreateValidator(
+    request: DeepPartial<MsgCreateValidator>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgCreateValidatorResponse>;
   /** EditValidator defines a method for editing an existing validator. */
-  editValidator: {
-    path: "/cosmos.staking.v1beta1.Msg/EditValidator",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgEditValidator) => Buffer.from(MsgEditValidator.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgEditValidator.decode(value),
-    responseSerialize: (value: MsgEditValidatorResponse) =>
-      Buffer.from(MsgEditValidatorResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgEditValidatorResponse.decode(value),
-  },
+  EditValidator(
+    request: DeepPartial<MsgEditValidator>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgEditValidatorResponse>;
   /**
    * Delegate defines a method for performing a delegation of coins
    * from a delegator to a validator.
    */
-  delegate: {
-    path: "/cosmos.staking.v1beta1.Msg/Delegate",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgDelegate) => Buffer.from(MsgDelegate.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgDelegate.decode(value),
-    responseSerialize: (value: MsgDelegateResponse) =>
-      Buffer.from(MsgDelegateResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgDelegateResponse.decode(value),
-  },
+  Delegate(request: DeepPartial<MsgDelegate>, metadata?: grpc.Metadata): Promise<MsgDelegateResponse>;
   /**
    * BeginRedelegate defines a method for performing a redelegation
    * of coins from a delegator and source validator to a destination validator.
    */
-  beginRedelegate: {
-    path: "/cosmos.staking.v1beta1.Msg/BeginRedelegate",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgBeginRedelegate) => Buffer.from(MsgBeginRedelegate.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgBeginRedelegate.decode(value),
-    responseSerialize: (value: MsgBeginRedelegateResponse) =>
-      Buffer.from(MsgBeginRedelegateResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgBeginRedelegateResponse.decode(value),
-  },
+  BeginRedelegate(
+    request: DeepPartial<MsgBeginRedelegate>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgBeginRedelegateResponse>;
   /**
    * Undelegate defines a method for performing an undelegation from a
    * delegate and a validator.
    */
-  undelegate: {
-    path: "/cosmos.staking.v1beta1.Msg/Undelegate",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: MsgUndelegate) => Buffer.from(MsgUndelegate.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => MsgUndelegate.decode(value),
-    responseSerialize: (value: MsgUndelegateResponse) =>
-      Buffer.from(MsgUndelegateResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => MsgUndelegateResponse.decode(value),
-  },
-} as const;
-
-export interface MsgServer extends UntypedServiceImplementation {
-  /** CreateValidator defines a method for creating a new validator. */
-  createValidator: handleUnaryCall<MsgCreateValidator, MsgCreateValidatorResponse>;
-  /** EditValidator defines a method for editing an existing validator. */
-  editValidator: handleUnaryCall<MsgEditValidator, MsgEditValidatorResponse>;
-  /**
-   * Delegate defines a method for performing a delegation of coins
-   * from a delegator to a validator.
-   */
-  delegate: handleUnaryCall<MsgDelegate, MsgDelegateResponse>;
-  /**
-   * BeginRedelegate defines a method for performing a redelegation
-   * of coins from a delegator and source validator to a destination validator.
-   */
-  beginRedelegate: handleUnaryCall<MsgBeginRedelegate, MsgBeginRedelegateResponse>;
-  /**
-   * Undelegate defines a method for performing an undelegation from a
-   * delegate and a validator.
-   */
-  undelegate: handleUnaryCall<MsgUndelegate, MsgUndelegateResponse>;
+  Undelegate(request: DeepPartial<MsgUndelegate>, metadata?: grpc.Metadata): Promise<MsgUndelegateResponse>;
 }
 
-export interface MsgClient extends Client {
-  /** CreateValidator defines a method for creating a new validator. */
-  createValidator(
-    request: MsgCreateValidator,
-    callback: (error: ServiceError | null, response: MsgCreateValidatorResponse) => void,
-  ): ClientUnaryCall;
-  createValidator(
-    request: MsgCreateValidator,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: MsgCreateValidatorResponse) => void,
-  ): ClientUnaryCall;
-  createValidator(
-    request: MsgCreateValidator,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgCreateValidatorResponse) => void,
-  ): ClientUnaryCall;
-  /** EditValidator defines a method for editing an existing validator. */
-  editValidator(
-    request: MsgEditValidator,
-    callback: (error: ServiceError | null, response: MsgEditValidatorResponse) => void,
-  ): ClientUnaryCall;
-  editValidator(
-    request: MsgEditValidator,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: MsgEditValidatorResponse) => void,
-  ): ClientUnaryCall;
-  editValidator(
-    request: MsgEditValidator,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgEditValidatorResponse) => void,
-  ): ClientUnaryCall;
-  /**
-   * Delegate defines a method for performing a delegation of coins
-   * from a delegator to a validator.
-   */
-  delegate(
-    request: MsgDelegate,
-    callback: (error: ServiceError | null, response: MsgDelegateResponse) => void,
-  ): ClientUnaryCall;
-  delegate(
-    request: MsgDelegate,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: MsgDelegateResponse) => void,
-  ): ClientUnaryCall;
-  delegate(
-    request: MsgDelegate,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgDelegateResponse) => void,
-  ): ClientUnaryCall;
-  /**
-   * BeginRedelegate defines a method for performing a redelegation
-   * of coins from a delegator and source validator to a destination validator.
-   */
-  beginRedelegate(
-    request: MsgBeginRedelegate,
-    callback: (error: ServiceError | null, response: MsgBeginRedelegateResponse) => void,
-  ): ClientUnaryCall;
-  beginRedelegate(
-    request: MsgBeginRedelegate,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: MsgBeginRedelegateResponse) => void,
-  ): ClientUnaryCall;
-  beginRedelegate(
-    request: MsgBeginRedelegate,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgBeginRedelegateResponse) => void,
-  ): ClientUnaryCall;
-  /**
-   * Undelegate defines a method for performing an undelegation from a
-   * delegate and a validator.
-   */
-  undelegate(
-    request: MsgUndelegate,
-    callback: (error: ServiceError | null, response: MsgUndelegateResponse) => void,
-  ): ClientUnaryCall;
-  undelegate(
-    request: MsgUndelegate,
-    metadata: Metadata1,
-    callback: (error: ServiceError | null, response: MsgUndelegateResponse) => void,
-  ): ClientUnaryCall;
-  undelegate(
-    request: MsgUndelegate,
-    metadata: Metadata1,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: MsgUndelegateResponse) => void,
-  ): ClientUnaryCall;
+export class MsgClientImpl implements Msg {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.CreateValidator = this.CreateValidator.bind(this);
+    this.EditValidator = this.EditValidator.bind(this);
+    this.Delegate = this.Delegate.bind(this);
+    this.BeginRedelegate = this.BeginRedelegate.bind(this);
+    this.Undelegate = this.Undelegate.bind(this);
+  }
+
+  CreateValidator(
+    request: DeepPartial<MsgCreateValidator>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgCreateValidatorResponse> {
+    return this.rpc.unary(MsgCreateValidatorDesc, MsgCreateValidator.fromPartial(request), metadata);
+  }
+
+  EditValidator(
+    request: DeepPartial<MsgEditValidator>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgEditValidatorResponse> {
+    return this.rpc.unary(MsgEditValidatorDesc, MsgEditValidator.fromPartial(request), metadata);
+  }
+
+  Delegate(request: DeepPartial<MsgDelegate>, metadata?: grpc.Metadata): Promise<MsgDelegateResponse> {
+    return this.rpc.unary(MsgDelegateDesc, MsgDelegate.fromPartial(request), metadata);
+  }
+
+  BeginRedelegate(
+    request: DeepPartial<MsgBeginRedelegate>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgBeginRedelegateResponse> {
+    return this.rpc.unary(MsgBeginRedelegateDesc, MsgBeginRedelegate.fromPartial(request), metadata);
+  }
+
+  Undelegate(request: DeepPartial<MsgUndelegate>, metadata?: grpc.Metadata): Promise<MsgUndelegateResponse> {
+    return this.rpc.unary(MsgUndelegateDesc, MsgUndelegate.fromPartial(request), metadata);
+  }
 }
 
-export const MsgClient = makeGenericClientConstructor(
-  MsgService,
-  "cosmos.staking.v1beta1.Msg",
-) as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): MsgClient;
+export const MsgDesc = {
+  serviceName: "cosmos.staking.v1beta1.Msg",
 };
+
+export const MsgCreateValidatorDesc: UnaryMethodDefinitionish = {
+  methodName: "CreateValidator",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgCreateValidator.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgCreateValidatorResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgEditValidatorDesc: UnaryMethodDefinitionish = {
+  methodName: "EditValidator",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgEditValidator.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgEditValidatorResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgDelegateDesc: UnaryMethodDefinitionish = {
+  methodName: "Delegate",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgDelegate.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgDelegateResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgBeginRedelegateDesc: UnaryMethodDefinitionish = {
+  methodName: "BeginRedelegate",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgBeginRedelegate.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgBeginRedelegateResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgUndelegateDesc: UnaryMethodDefinitionish = {
+  methodName: "Undelegate",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgUndelegate.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgUndelegateResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

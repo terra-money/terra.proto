@@ -1,19 +1,9 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Tx } from "../../../cosmos/tx/v1beta1/tx";
+import { BrowserHeaders } from "browser-headers";
 import { Coin } from "../../../cosmos/base/v1beta1/coin";
 
 export const protobufPackage = "terra.tx.v1beta1";
@@ -154,49 +144,118 @@ export const ComputeTaxResponse = {
 };
 
 /** Service defines a gRPC service for interacting with transactions. */
-export const ServiceService = {
+export interface Service {
   /** EstimateFee simulates executing a transaction for estimating gas usage. */
-  computeTax: {
-    path: "/terra.tx.v1beta1.Service/ComputeTax",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: ComputeTaxRequest) => Buffer.from(ComputeTaxRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => ComputeTaxRequest.decode(value),
-    responseSerialize: (value: ComputeTaxResponse) => Buffer.from(ComputeTaxResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => ComputeTaxResponse.decode(value),
-  },
-} as const;
-
-export interface ServiceServer extends UntypedServiceImplementation {
-  /** EstimateFee simulates executing a transaction for estimating gas usage. */
-  computeTax: handleUnaryCall<ComputeTaxRequest, ComputeTaxResponse>;
+  ComputeTax(request: DeepPartial<ComputeTaxRequest>, metadata?: grpc.Metadata): Promise<ComputeTaxResponse>;
 }
 
-export interface ServiceClient extends Client {
-  /** EstimateFee simulates executing a transaction for estimating gas usage. */
-  computeTax(
-    request: ComputeTaxRequest,
-    callback: (error: ServiceError | null, response: ComputeTaxResponse) => void,
-  ): ClientUnaryCall;
-  computeTax(
-    request: ComputeTaxRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: ComputeTaxResponse) => void,
-  ): ClientUnaryCall;
-  computeTax(
-    request: ComputeTaxRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: ComputeTaxResponse) => void,
-  ): ClientUnaryCall;
+export class ServiceClientImpl implements Service {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.ComputeTax = this.ComputeTax.bind(this);
+  }
+
+  ComputeTax(request: DeepPartial<ComputeTaxRequest>, metadata?: grpc.Metadata): Promise<ComputeTaxResponse> {
+    return this.rpc.unary(ServiceComputeTaxDesc, ComputeTaxRequest.fromPartial(request), metadata);
+  }
 }
 
-export const ServiceClient = makeGenericClientConstructor(
-  ServiceService,
-  "terra.tx.v1beta1.Service",
-) as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): ServiceClient;
+export const ServiceDesc = {
+  serviceName: "terra.tx.v1beta1.Service",
 };
+
+export const ServiceComputeTaxDesc: UnaryMethodDefinitionish = {
+  methodName: "ComputeTax",
+  service: ServiceDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return ComputeTaxRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...ComputeTaxResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
 export type DeepPartial<T> = T extends Builtin

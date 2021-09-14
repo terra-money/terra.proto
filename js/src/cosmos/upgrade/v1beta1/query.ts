@@ -1,19 +1,9 @@
 /* eslint-disable */
 import Long from "long";
-import {
-  makeGenericClientConstructor,
-  ChannelCredentials,
-  ChannelOptions,
-  UntypedServiceImplementation,
-  handleUnaryCall,
-  Client,
-  ClientUnaryCall,
-  Metadata,
-  CallOptions,
-  ServiceError,
-} from "@grpc/grpc-js";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Plan, ModuleVersion } from "../../../cosmos/upgrade/v1beta1/upgrade";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "cosmos.upgrade.v1beta1";
 
@@ -526,159 +516,238 @@ export const QueryModuleVersionsResponse = {
 };
 
 /** Query defines the gRPC upgrade querier service. */
-export const QueryService = {
+export interface Query {
   /** CurrentPlan queries the current upgrade plan. */
-  currentPlan: {
-    path: "/cosmos.upgrade.v1beta1.Query/CurrentPlan",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryCurrentPlanRequest) =>
-      Buffer.from(QueryCurrentPlanRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryCurrentPlanRequest.decode(value),
-    responseSerialize: (value: QueryCurrentPlanResponse) =>
-      Buffer.from(QueryCurrentPlanResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryCurrentPlanResponse.decode(value),
-  },
+  CurrentPlan(
+    request: DeepPartial<QueryCurrentPlanRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryCurrentPlanResponse>;
   /** AppliedPlan queries a previously applied upgrade plan by its name. */
-  appliedPlan: {
-    path: "/cosmos.upgrade.v1beta1.Query/AppliedPlan",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryAppliedPlanRequest) =>
-      Buffer.from(QueryAppliedPlanRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryAppliedPlanRequest.decode(value),
-    responseSerialize: (value: QueryAppliedPlanResponse) =>
-      Buffer.from(QueryAppliedPlanResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryAppliedPlanResponse.decode(value),
-  },
+  AppliedPlan(
+    request: DeepPartial<QueryAppliedPlanRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAppliedPlanResponse>;
   /**
    * UpgradedConsensusState queries the consensus state that will serve
    * as a trusted kernel for the next version of this chain. It will only be
    * stored at the last height of this chain.
    * UpgradedConsensusState RPC not supported with legacy querier
    */
-  upgradedConsensusState: {
-    path: "/cosmos.upgrade.v1beta1.Query/UpgradedConsensusState",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryUpgradedConsensusStateRequest) =>
-      Buffer.from(QueryUpgradedConsensusStateRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryUpgradedConsensusStateRequest.decode(value),
-    responseSerialize: (value: QueryUpgradedConsensusStateResponse) =>
-      Buffer.from(QueryUpgradedConsensusStateResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryUpgradedConsensusStateResponse.decode(value),
-  },
+  UpgradedConsensusState(
+    request: DeepPartial<QueryUpgradedConsensusStateRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryUpgradedConsensusStateResponse>;
   /** ModuleVersions queries the list of module versions from state. */
-  moduleVersions: {
-    path: "/cosmos.upgrade.v1beta1.Query/ModuleVersions",
-    requestStream: false,
-    responseStream: false,
-    requestSerialize: (value: QueryModuleVersionsRequest) =>
-      Buffer.from(QueryModuleVersionsRequest.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => QueryModuleVersionsRequest.decode(value),
-    responseSerialize: (value: QueryModuleVersionsResponse) =>
-      Buffer.from(QueryModuleVersionsResponse.encode(value).finish()),
-    responseDeserialize: (value: Buffer) => QueryModuleVersionsResponse.decode(value),
-  },
-} as const;
-
-export interface QueryServer extends UntypedServiceImplementation {
-  /** CurrentPlan queries the current upgrade plan. */
-  currentPlan: handleUnaryCall<QueryCurrentPlanRequest, QueryCurrentPlanResponse>;
-  /** AppliedPlan queries a previously applied upgrade plan by its name. */
-  appliedPlan: handleUnaryCall<QueryAppliedPlanRequest, QueryAppliedPlanResponse>;
-  /**
-   * UpgradedConsensusState queries the consensus state that will serve
-   * as a trusted kernel for the next version of this chain. It will only be
-   * stored at the last height of this chain.
-   * UpgradedConsensusState RPC not supported with legacy querier
-   */
-  upgradedConsensusState: handleUnaryCall<
-    QueryUpgradedConsensusStateRequest,
-    QueryUpgradedConsensusStateResponse
-  >;
-  /** ModuleVersions queries the list of module versions from state. */
-  moduleVersions: handleUnaryCall<QueryModuleVersionsRequest, QueryModuleVersionsResponse>;
+  ModuleVersions(
+    request: DeepPartial<QueryModuleVersionsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryModuleVersionsResponse>;
 }
 
-export interface QueryClient extends Client {
-  /** CurrentPlan queries the current upgrade plan. */
-  currentPlan(
-    request: QueryCurrentPlanRequest,
-    callback: (error: ServiceError | null, response: QueryCurrentPlanResponse) => void,
-  ): ClientUnaryCall;
-  currentPlan(
-    request: QueryCurrentPlanRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryCurrentPlanResponse) => void,
-  ): ClientUnaryCall;
-  currentPlan(
-    request: QueryCurrentPlanRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryCurrentPlanResponse) => void,
-  ): ClientUnaryCall;
-  /** AppliedPlan queries a previously applied upgrade plan by its name. */
-  appliedPlan(
-    request: QueryAppliedPlanRequest,
-    callback: (error: ServiceError | null, response: QueryAppliedPlanResponse) => void,
-  ): ClientUnaryCall;
-  appliedPlan(
-    request: QueryAppliedPlanRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryAppliedPlanResponse) => void,
-  ): ClientUnaryCall;
-  appliedPlan(
-    request: QueryAppliedPlanRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryAppliedPlanResponse) => void,
-  ): ClientUnaryCall;
-  /**
-   * UpgradedConsensusState queries the consensus state that will serve
-   * as a trusted kernel for the next version of this chain. It will only be
-   * stored at the last height of this chain.
-   * UpgradedConsensusState RPC not supported with legacy querier
-   */
-  upgradedConsensusState(
-    request: QueryUpgradedConsensusStateRequest,
-    callback: (error: ServiceError | null, response: QueryUpgradedConsensusStateResponse) => void,
-  ): ClientUnaryCall;
-  upgradedConsensusState(
-    request: QueryUpgradedConsensusStateRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryUpgradedConsensusStateResponse) => void,
-  ): ClientUnaryCall;
-  upgradedConsensusState(
-    request: QueryUpgradedConsensusStateRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryUpgradedConsensusStateResponse) => void,
-  ): ClientUnaryCall;
-  /** ModuleVersions queries the list of module versions from state. */
-  moduleVersions(
-    request: QueryModuleVersionsRequest,
-    callback: (error: ServiceError | null, response: QueryModuleVersionsResponse) => void,
-  ): ClientUnaryCall;
-  moduleVersions(
-    request: QueryModuleVersionsRequest,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: QueryModuleVersionsResponse) => void,
-  ): ClientUnaryCall;
-  moduleVersions(
-    request: QueryModuleVersionsRequest,
-    metadata: Metadata,
-    options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: QueryModuleVersionsResponse) => void,
-  ): ClientUnaryCall;
+export class QueryClientImpl implements Query {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.CurrentPlan = this.CurrentPlan.bind(this);
+    this.AppliedPlan = this.AppliedPlan.bind(this);
+    this.UpgradedConsensusState = this.UpgradedConsensusState.bind(this);
+    this.ModuleVersions = this.ModuleVersions.bind(this);
+  }
+
+  CurrentPlan(
+    request: DeepPartial<QueryCurrentPlanRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryCurrentPlanResponse> {
+    return this.rpc.unary(QueryCurrentPlanDesc, QueryCurrentPlanRequest.fromPartial(request), metadata);
+  }
+
+  AppliedPlan(
+    request: DeepPartial<QueryAppliedPlanRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAppliedPlanResponse> {
+    return this.rpc.unary(QueryAppliedPlanDesc, QueryAppliedPlanRequest.fromPartial(request), metadata);
+  }
+
+  UpgradedConsensusState(
+    request: DeepPartial<QueryUpgradedConsensusStateRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryUpgradedConsensusStateResponse> {
+    return this.rpc.unary(
+      QueryUpgradedConsensusStateDesc,
+      QueryUpgradedConsensusStateRequest.fromPartial(request),
+      metadata,
+    );
+  }
+
+  ModuleVersions(
+    request: DeepPartial<QueryModuleVersionsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryModuleVersionsResponse> {
+    return this.rpc.unary(QueryModuleVersionsDesc, QueryModuleVersionsRequest.fromPartial(request), metadata);
+  }
 }
 
-export const QueryClient = makeGenericClientConstructor(
-  QueryService,
-  "cosmos.upgrade.v1beta1.Query",
-) as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ChannelOptions>): QueryClient;
+export const QueryDesc = {
+  serviceName: "cosmos.upgrade.v1beta1.Query",
 };
+
+export const QueryCurrentPlanDesc: UnaryMethodDefinitionish = {
+  methodName: "CurrentPlan",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryCurrentPlanRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryCurrentPlanResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryAppliedPlanDesc: UnaryMethodDefinitionish = {
+  methodName: "AppliedPlan",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryAppliedPlanRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryAppliedPlanResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryUpgradedConsensusStateDesc: UnaryMethodDefinitionish = {
+  methodName: "UpgradedConsensusState",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryUpgradedConsensusStateRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryUpgradedConsensusStateResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryModuleVersionsDesc: UnaryMethodDefinitionish = {
+  methodName: "ModuleVersions",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryModuleVersionsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryModuleVersionsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
+  requestStream: any;
+  responseStream: any;
+}
+
+type UnaryMethodDefinitionish = UnaryMethodDefinitionishR;
+
+interface Rpc {
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any>;
+}
+
+export class GrpcWebImpl {
+  private host: string;
+  private options: {
+    transport?: grpc.TransportFactory;
+
+    debug?: boolean;
+    metadata?: grpc.Metadata;
+  };
+
+  constructor(
+    host: string,
+    options: {
+      transport?: grpc.TransportFactory;
+
+      debug?: boolean;
+      metadata?: grpc.Metadata;
+    },
+  ) {
+    this.host = host;
+    this.options = options;
+  }
+
+  unary<T extends UnaryMethodDefinitionish>(
+    methodDesc: T,
+    _request: any,
+    metadata: grpc.Metadata | undefined,
+  ): Promise<any> {
+    const request = { ..._request, ...methodDesc.requestType };
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
+    return new Promise((resolve, reject) => {
+      grpc.unary(methodDesc, {
+        request,
+        host: this.host,
+        metadata: maybeCombinedMetadata,
+        transport: this.options.transport,
+        debug: this.options.debug,
+        onEnd: function (response) {
+          if (response.status === grpc.Code.OK) {
+            resolve(response.message);
+          } else {
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
+            reject(err);
+          }
+        },
+      });
+    });
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;
