@@ -219,8 +219,11 @@ public final class QueryGrpc {
      * as a trusted kernel for the next version of this chain. It will only be
      * stored at the last height of this chain.
      * UpgradedConsensusState RPC not supported with legacy querier
+     * This rpc is deprecated now that IBC has its own replacement
+     * (https://github.com/cosmos/ibc-go/blob/2c880a22e9f9cc75f62b527ca94aa75ce1106001/proto/ibc/core/client/v1/query.proto#L54)
      * </pre>
      */
+    @java.lang.Deprecated
     public void upgradedConsensusState(cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateRequest request,
         io.grpc.stub.StreamObserver<cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpgradedConsensusStateMethod(), responseObserver);
@@ -315,8 +318,11 @@ public final class QueryGrpc {
      * as a trusted kernel for the next version of this chain. It will only be
      * stored at the last height of this chain.
      * UpgradedConsensusState RPC not supported with legacy querier
+     * This rpc is deprecated now that IBC has its own replacement
+     * (https://github.com/cosmos/ibc-go/blob/2c880a22e9f9cc75f62b527ca94aa75ce1106001/proto/ibc/core/client/v1/query.proto#L54)
      * </pre>
      */
+    @java.lang.Deprecated
     public void upgradedConsensusState(cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateRequest request,
         io.grpc.stub.StreamObserver<cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
@@ -378,8 +384,11 @@ public final class QueryGrpc {
      * as a trusted kernel for the next version of this chain. It will only be
      * stored at the last height of this chain.
      * UpgradedConsensusState RPC not supported with legacy querier
+     * This rpc is deprecated now that IBC has its own replacement
+     * (https://github.com/cosmos/ibc-go/blob/2c880a22e9f9cc75f62b527ca94aa75ce1106001/proto/ibc/core/client/v1/query.proto#L54)
      * </pre>
      */
+    @java.lang.Deprecated
     public cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateResponse upgradedConsensusState(cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getUpgradedConsensusStateMethod(), getCallOptions(), request);
@@ -441,8 +450,11 @@ public final class QueryGrpc {
      * as a trusted kernel for the next version of this chain. It will only be
      * stored at the last height of this chain.
      * UpgradedConsensusState RPC not supported with legacy querier
+     * This rpc is deprecated now that IBC has its own replacement
+     * (https://github.com/cosmos/ibc-go/blob/2c880a22e9f9cc75f62b527ca94aa75ce1106001/proto/ibc/core/client/v1/query.proto#L54)
      * </pre>
      */
+    @java.lang.Deprecated
     public com.google.common.util.concurrent.ListenableFuture<cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateResponse> upgradedConsensusState(
         cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(

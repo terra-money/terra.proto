@@ -25,11 +25,12 @@ object ComputeTaxRequestKt {
     /**
      * <pre>
      * tx is the transaction to simulate.
+     * Deprecated. Send raw tx bytes instead.
      * </pre>
      *
-     * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+     * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
      */
-    var tx: cosmos.tx.v1beta1.TxOuterClass.Tx
+    @kotlin.Deprecated(message = "Field tx is deprecated") var tx: cosmos.tx.v1beta1.TxOuterClass.Tx
       @JvmName("getTx")
       get() = _builder.getTx()
       @JvmName("setTx")
@@ -39,9 +40,10 @@ object ComputeTaxRequestKt {
     /**
      * <pre>
      * tx is the transaction to simulate.
+     * Deprecated. Send raw tx bytes instead.
      * </pre>
      *
-     * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+     * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
      */
     fun clearTx() {
       _builder.clearTx()
@@ -49,13 +51,39 @@ object ComputeTaxRequestKt {
     /**
      * <pre>
      * tx is the transaction to simulate.
+     * Deprecated. Send raw tx bytes instead.
      * </pre>
      *
-     * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+     * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
      * @return Whether the tx field is set.
      */
     fun hasTx(): kotlin.Boolean {
       return _builder.hasTx()
+    }
+
+    /**
+     * <pre>
+     * tx_bytes is the raw transaction.
+     * </pre>
+     *
+     * <code>bytes tx_bytes = 2;</code>
+     */
+    var txBytes: com.google.protobuf.ByteString
+      @JvmName("getTxBytes")
+      get() = _builder.getTxBytes()
+      @JvmName("setTxBytes")
+      set(value) {
+        _builder.setTxBytes(value)
+      }
+    /**
+     * <pre>
+     * tx_bytes is the raw transaction.
+     * </pre>
+     *
+     * <code>bytes tx_bytes = 2;</code>
+     */
+    fun clearTxBytes() {
+      _builder.clearTxBytes()
     }
   }
 }
