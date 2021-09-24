@@ -16395,7 +16395,7 @@ public final class QueryOuterClass {
       "le.v1beta1.AggregateExchangeRateVoteB\004\310\336" +
       "\037\000\"\024\n\022QueryParamsRequest\"I\n\023QueryParamsR" +
       "esponse\0222\n\006params\030\001 \001(\0132\034.terra.oracle.v" +
-      "1beta1.ParamsB\004\310\336\037\0002\274\021\n\005Query\022\253\001\n\014Exchan" +
+      "1beta1.ParamsB\004\310\336\037\0002\275\021\n\005Query\022\253\001\n\014Exchan" +
       "geRate\022..terra.oracle.v1beta1.QueryExcha" +
       "ngeRateRequest\032/.terra.oracle.v1beta1.Qu" +
       "eryExchangeRateResponse\":\202\323\344\223\0024\0222/terra/" +
@@ -16438,21 +16438,21 @@ public final class QueryOuterClass {
       "cle.v1beta1.QueryAggregatePrevotesReques" +
       "t\0324.terra.oracle.v1beta1.QueryAggregateP" +
       "revotesResponse\";\202\323\344\223\0025\0223/terra/oracle/v" +
-      "1beta1/validators/aggregate_prevotes\022\273\001\n" +
+      "1beta1/validators/aggregate_prevotes\022\274\001\n" +
       "\rAggregateVote\022/.terra.oracle.v1beta1.Qu" +
       "eryAggregateVoteRequest\0320.terra.oracle.v" +
-      "1beta1.QueryAggregateVoteResponse\"G\202\323\344\223\002" +
-      "A\022?/terra/oracle/v1beta1/valdiator/{vali" +
-      "dator_addr}/aggregate_vote\022\257\001\n\016Aggregate" +
-      "Votes\0220.terra.oracle.v1beta1.QueryAggreg" +
-      "ateVotesRequest\0321.terra.oracle.v1beta1.Q" +
-      "ueryAggregateVotesResponse\"8\202\323\344\223\0022\0220/ter" +
-      "ra/oracle/v1beta1/validators/aggregate_v" +
-      "otes\022\203\001\n\006Params\022(.terra.oracle.v1beta1.Q" +
-      "ueryParamsRequest\032).terra.oracle.v1beta1" +
-      ".QueryParamsResponse\"$\202\323\344\223\002\036\022\034/terra/ora" +
-      "cle/v1beta1/paramsB,Z*github.com/terra-m" +
-      "oney/core/x/oracle/typesb\006proto3"
+      "1beta1.QueryAggregateVoteResponse\"H\202\323\344\223\002" +
+      "B\022@/terra/oracle/v1beta1/valdiators/{val" +
+      "idator_addr}/aggregate_vote\022\257\001\n\016Aggregat" +
+      "eVotes\0220.terra.oracle.v1beta1.QueryAggre" +
+      "gateVotesRequest\0321.terra.oracle.v1beta1." +
+      "QueryAggregateVotesResponse\"8\202\323\344\223\0022\0220/te" +
+      "rra/oracle/v1beta1/validators/aggregate_" +
+      "votes\022\203\001\n\006Params\022(.terra.oracle.v1beta1." +
+      "QueryParamsRequest\032).terra.oracle.v1beta" +
+      "1.QueryParamsResponse\"$\202\323\344\223\002\036\022\034/terra/or" +
+      "acle/v1beta1/paramsB,Z*github.com/terra-" +
+      "money/core/x/oracle/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

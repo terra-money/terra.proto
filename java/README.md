@@ -5,6 +5,9 @@
 ```
 repositories {
     mavenCentral()
+    
+    //If you want snapshot version
+    maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
 }
 
 dependencies {
@@ -38,6 +41,13 @@ or
 ```
 
 ### Publish to Maven
+```
+//Add to ~/.gradle/gradle.properties
+
+signing.keyId=[gpg key id]
+signing.password=[gpg key password]
+signing.secretKeyRingFile=[gpg keyring file path]
+```
 ```
 make publish
 

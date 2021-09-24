@@ -6919,7 +6919,7 @@ public final class QueryOuterClass {
       "ey\030\002 \001(\014:\010\350\240\037\000\210\240\037\000\"%\n\025QueryRawStoreRespo" +
       "nse\022\014\n\004data\030\001 \001(\014\"\024\n\022QueryParamsRequest\"" +
       "G\n\023QueryParamsResponse\0220\n\006params\030\001 \001(\0132\032" +
-      ".terra.wasm.v1beta1.ParamsB\004\310\336\037\0002\253\007\n\005Que" +
+      ".terra.wasm.v1beta1.ParamsB\004\310\336\037\0002\255\007\n\005Que" +
       "ry\022\214\001\n\010CodeInfo\022(.terra.wasm.v1beta1.Que" +
       "ryCodeInfoRequest\032).terra.wasm.v1beta1.Q" +
       "ueryCodeInfoResponse\"+\202\323\344\223\002%\022#/terra/was" +
@@ -6931,20 +6931,20 @@ public final class QueryOuterClass {
       "rra.wasm.v1beta1.QueryContractInfoReques" +
       "t\032-.terra.wasm.v1beta1.QueryContractInfo" +
       "Response\"8\202\323\344\223\0022\0220/terra/wasm/v1beta1/co" +
-      "ntracts/{contract_address}\022\255\001\n\rContractS" +
+      "ntracts/{contract_address}\022\256\001\n\rContractS" +
       "tore\022-.terra.wasm.v1beta1.QueryContractS" +
       "toreRequest\032..terra.wasm.v1beta1.QueryCo" +
-      "ntractStoreResponse\"=\202\323\344\223\0027\0225/terra/wasm" +
-      "/v1beta1/contract/{contract_address}/sto" +
-      "re\022\242\001\n\010RawStore\022(.terra.wasm.v1beta1.Que" +
-      "ryRawStoreRequest\032).terra.wasm.v1beta1.Q" +
-      "ueryRawStoreResponse\"A\202\323\344\223\002;\0229/terra/was" +
-      "m/v1beta1/contract/{contract_address}/st" +
-      "ore/raw\022}\n\006Params\022&.terra.wasm.v1beta1.Q" +
-      "ueryParamsRequest\032\'.terra.wasm.v1beta1.Q" +
-      "ueryParamsResponse\"\"\202\323\344\223\002\034\022\032/terra/wasm/" +
-      "v1beta1/paramsB*Z(github.com/terra-money" +
-      "/core/x/wasm/typesb\006proto3"
+      "ntractStoreResponse\">\202\323\344\223\0028\0226/terra/wasm" +
+      "/v1beta1/contracts/{contract_address}/st" +
+      "ore\022\243\001\n\010RawStore\022(.terra.wasm.v1beta1.Qu" +
+      "eryRawStoreRequest\032).terra.wasm.v1beta1." +
+      "QueryRawStoreResponse\"B\202\323\344\223\002<\022:/terra/wa" +
+      "sm/v1beta1/contracts/{contract_address}/" +
+      "store/raw\022}\n\006Params\022&.terra.wasm.v1beta1" +
+      ".QueryParamsRequest\032\'.terra.wasm.v1beta1" +
+      ".QueryParamsResponse\"\"\202\323\344\223\002\034\022\032/terra/was" +
+      "m/v1beta1/paramsB*Z(github.com/terra-mon" +
+      "ey/core/x/wasm/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

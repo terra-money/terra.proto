@@ -21,29 +21,42 @@ public final class ServiceOuterClass {
     /**
      * <pre>
      * tx is the transaction to simulate.
+     * Deprecated. Send raw tx bytes instead.
      * </pre>
      *
-     * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+     * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
      * @return Whether the tx field is set.
      */
-    boolean hasTx();
+    @java.lang.Deprecated boolean hasTx();
     /**
      * <pre>
      * tx is the transaction to simulate.
+     * Deprecated. Send raw tx bytes instead.
      * </pre>
      *
-     * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+     * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
      * @return The tx.
      */
-    cosmos.tx.v1beta1.TxOuterClass.Tx getTx();
+    @java.lang.Deprecated cosmos.tx.v1beta1.TxOuterClass.Tx getTx();
     /**
      * <pre>
      * tx is the transaction to simulate.
+     * Deprecated. Send raw tx bytes instead.
      * </pre>
      *
-     * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+     * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
      */
-    cosmos.tx.v1beta1.TxOuterClass.TxOrBuilder getTxOrBuilder();
+    @java.lang.Deprecated cosmos.tx.v1beta1.TxOuterClass.TxOrBuilder getTxOrBuilder();
+
+    /**
+     * <pre>
+     * tx_bytes is the raw transaction.
+     * </pre>
+     *
+     * <code>bytes tx_bytes = 2;</code>
+     * @return The txBytes.
+     */
+    com.google.protobuf.ByteString getTxBytes();
   }
   /**
    * <pre>
@@ -63,6 +76,7 @@ public final class ServiceOuterClass {
       super(builder);
     }
     private ComputeTaxRequest() {
+      txBytes_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -108,6 +122,11 @@ public final class ServiceOuterClass {
 
               break;
             }
+            case 18: {
+
+              txBytes_ = input.readBytes();
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -145,37 +164,55 @@ public final class ServiceOuterClass {
     /**
      * <pre>
      * tx is the transaction to simulate.
+     * Deprecated. Send raw tx bytes instead.
      * </pre>
      *
-     * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+     * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
      * @return Whether the tx field is set.
      */
     @java.lang.Override
-    public boolean hasTx() {
+    @java.lang.Deprecated public boolean hasTx() {
       return tx_ != null;
     }
     /**
      * <pre>
      * tx is the transaction to simulate.
+     * Deprecated. Send raw tx bytes instead.
      * </pre>
      *
-     * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+     * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
      * @return The tx.
      */
     @java.lang.Override
-    public cosmos.tx.v1beta1.TxOuterClass.Tx getTx() {
+    @java.lang.Deprecated public cosmos.tx.v1beta1.TxOuterClass.Tx getTx() {
       return tx_ == null ? cosmos.tx.v1beta1.TxOuterClass.Tx.getDefaultInstance() : tx_;
     }
     /**
      * <pre>
      * tx is the transaction to simulate.
+     * Deprecated. Send raw tx bytes instead.
      * </pre>
      *
-     * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+     * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
      */
     @java.lang.Override
-    public cosmos.tx.v1beta1.TxOuterClass.TxOrBuilder getTxOrBuilder() {
+    @java.lang.Deprecated public cosmos.tx.v1beta1.TxOuterClass.TxOrBuilder getTxOrBuilder() {
       return getTx();
+    }
+
+    public static final int TX_BYTES_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString txBytes_;
+    /**
+     * <pre>
+     * tx_bytes is the raw transaction.
+     * </pre>
+     *
+     * <code>bytes tx_bytes = 2;</code>
+     * @return The txBytes.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getTxBytes() {
+      return txBytes_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -195,6 +232,9 @@ public final class ServiceOuterClass {
       if (tx_ != null) {
         output.writeMessage(1, getTx());
       }
+      if (!txBytes_.isEmpty()) {
+        output.writeBytes(2, txBytes_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -207,6 +247,10 @@ public final class ServiceOuterClass {
       if (tx_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getTx());
+      }
+      if (!txBytes_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, txBytes_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -228,6 +272,8 @@ public final class ServiceOuterClass {
         if (!getTx()
             .equals(other.getTx())) return false;
       }
+      if (!getTxBytes()
+          .equals(other.getTxBytes())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -243,6 +289,8 @@ public final class ServiceOuterClass {
         hash = (37 * hash) + TX_FIELD_NUMBER;
         hash = (53 * hash) + getTx().hashCode();
       }
+      hash = (37 * hash) + TX_BYTES_FIELD_NUMBER;
+      hash = (53 * hash) + getTxBytes().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -387,6 +435,8 @@ public final class ServiceOuterClass {
           tx_ = null;
           txBuilder_ = null;
         }
+        txBytes_ = com.google.protobuf.ByteString.EMPTY;
+
         return this;
       }
 
@@ -418,6 +468,7 @@ public final class ServiceOuterClass {
         } else {
           result.tx_ = txBuilder_.build();
         }
+        result.txBytes_ = txBytes_;
         onBuilt();
         return result;
       }
@@ -469,6 +520,9 @@ public final class ServiceOuterClass {
         if (other.hasTx()) {
           mergeTx(other.getTx());
         }
+        if (other.getTxBytes() != com.google.protobuf.ByteString.EMPTY) {
+          setTxBytes(other.getTxBytes());
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -504,23 +558,25 @@ public final class ServiceOuterClass {
       /**
        * <pre>
        * tx is the transaction to simulate.
+       * Deprecated. Send raw tx bytes instead.
        * </pre>
        *
-       * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+       * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
        * @return Whether the tx field is set.
        */
-      public boolean hasTx() {
+      @java.lang.Deprecated public boolean hasTx() {
         return txBuilder_ != null || tx_ != null;
       }
       /**
        * <pre>
        * tx is the transaction to simulate.
+       * Deprecated. Send raw tx bytes instead.
        * </pre>
        *
-       * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+       * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
        * @return The tx.
        */
-      public cosmos.tx.v1beta1.TxOuterClass.Tx getTx() {
+      @java.lang.Deprecated public cosmos.tx.v1beta1.TxOuterClass.Tx getTx() {
         if (txBuilder_ == null) {
           return tx_ == null ? cosmos.tx.v1beta1.TxOuterClass.Tx.getDefaultInstance() : tx_;
         } else {
@@ -530,11 +586,12 @@ public final class ServiceOuterClass {
       /**
        * <pre>
        * tx is the transaction to simulate.
+       * Deprecated. Send raw tx bytes instead.
        * </pre>
        *
-       * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+       * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
        */
-      public Builder setTx(cosmos.tx.v1beta1.TxOuterClass.Tx value) {
+      @java.lang.Deprecated public Builder setTx(cosmos.tx.v1beta1.TxOuterClass.Tx value) {
         if (txBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -550,11 +607,12 @@ public final class ServiceOuterClass {
       /**
        * <pre>
        * tx is the transaction to simulate.
+       * Deprecated. Send raw tx bytes instead.
        * </pre>
        *
-       * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+       * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
        */
-      public Builder setTx(
+      @java.lang.Deprecated public Builder setTx(
           cosmos.tx.v1beta1.TxOuterClass.Tx.Builder builderForValue) {
         if (txBuilder_ == null) {
           tx_ = builderForValue.build();
@@ -568,11 +626,12 @@ public final class ServiceOuterClass {
       /**
        * <pre>
        * tx is the transaction to simulate.
+       * Deprecated. Send raw tx bytes instead.
        * </pre>
        *
-       * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+       * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
        */
-      public Builder mergeTx(cosmos.tx.v1beta1.TxOuterClass.Tx value) {
+      @java.lang.Deprecated public Builder mergeTx(cosmos.tx.v1beta1.TxOuterClass.Tx value) {
         if (txBuilder_ == null) {
           if (tx_ != null) {
             tx_ =
@@ -590,11 +649,12 @@ public final class ServiceOuterClass {
       /**
        * <pre>
        * tx is the transaction to simulate.
+       * Deprecated. Send raw tx bytes instead.
        * </pre>
        *
-       * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+       * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
        */
-      public Builder clearTx() {
+      @java.lang.Deprecated public Builder clearTx() {
         if (txBuilder_ == null) {
           tx_ = null;
           onChanged();
@@ -608,11 +668,12 @@ public final class ServiceOuterClass {
       /**
        * <pre>
        * tx is the transaction to simulate.
+       * Deprecated. Send raw tx bytes instead.
        * </pre>
        *
-       * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+       * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
        */
-      public cosmos.tx.v1beta1.TxOuterClass.Tx.Builder getTxBuilder() {
+      @java.lang.Deprecated public cosmos.tx.v1beta1.TxOuterClass.Tx.Builder getTxBuilder() {
         
         onChanged();
         return getTxFieldBuilder().getBuilder();
@@ -620,11 +681,12 @@ public final class ServiceOuterClass {
       /**
        * <pre>
        * tx is the transaction to simulate.
+       * Deprecated. Send raw tx bytes instead.
        * </pre>
        *
-       * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+       * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
        */
-      public cosmos.tx.v1beta1.TxOuterClass.TxOrBuilder getTxOrBuilder() {
+      @java.lang.Deprecated public cosmos.tx.v1beta1.TxOuterClass.TxOrBuilder getTxOrBuilder() {
         if (txBuilder_ != null) {
           return txBuilder_.getMessageOrBuilder();
         } else {
@@ -635,9 +697,10 @@ public final class ServiceOuterClass {
       /**
        * <pre>
        * tx is the transaction to simulate.
+       * Deprecated. Send raw tx bytes instead.
        * </pre>
        *
-       * <code>.cosmos.tx.v1beta1.Tx tx = 1;</code>
+       * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           cosmos.tx.v1beta1.TxOuterClass.Tx, cosmos.tx.v1beta1.TxOuterClass.Tx.Builder, cosmos.tx.v1beta1.TxOuterClass.TxOrBuilder> 
@@ -651,6 +714,52 @@ public final class ServiceOuterClass {
           tx_ = null;
         }
         return txBuilder_;
+      }
+
+      private com.google.protobuf.ByteString txBytes_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <pre>
+       * tx_bytes is the raw transaction.
+       * </pre>
+       *
+       * <code>bytes tx_bytes = 2;</code>
+       * @return The txBytes.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getTxBytes() {
+        return txBytes_;
+      }
+      /**
+       * <pre>
+       * tx_bytes is the raw transaction.
+       * </pre>
+       *
+       * <code>bytes tx_bytes = 2;</code>
+       * @param value The txBytes to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTxBytes(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        txBytes_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * tx_bytes is the raw transaction.
+       * </pre>
+       *
+       * <code>bytes tx_bytes = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTxBytes() {
+        
+        txBytes_ = getDefaultInstance().getTxBytes();
+        onChanged();
+        return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -1643,16 +1752,17 @@ public final class ServiceOuterClass {
       "tx.v1beta1\032\024gogoproto/gogo.proto\032\034google" +
       "/api/annotations.proto\032\036cosmos/base/v1be" +
       "ta1/coin.proto\032\032cosmos/tx/v1beta1/tx.pro" +
-      "to\"6\n\021ComputeTaxRequest\022!\n\002tx\030\001 \001(\0132\025.co" +
-      "smos.tx.v1beta1.Tx\"u\n\022ComputeTaxResponse" +
-      "\022_\n\ntax_amount\030\001 \003(\0132\031.cosmos.base.v1bet" +
-      "a1.CoinB0\310\336\037\000\252\337\037(github.com/cosmos/cosmo" +
-      "s-sdk/types.Coins2\215\001\n\007Service\022\201\001\n\nComput" +
-      "eTax\022#.terra.tx.v1beta1.ComputeTaxReques" +
-      "t\032$.terra.tx.v1beta1.ComputeTaxResponse\"" +
-      "(\202\323\344\223\002\"\"\035/terra/tx/v1beta1/compute_tax:\001" +
-      "*B0Z*github.com/terra-money/core/custom/" +
-      "auth/tx\300\343\036\001b\006proto3"
+      "to\"L\n\021ComputeTaxRequest\022%\n\002tx\030\001 \001(\0132\025.co" +
+      "smos.tx.v1beta1.TxB\002\030\001\022\020\n\010tx_bytes\030\002 \001(\014" +
+      "\"u\n\022ComputeTaxResponse\022_\n\ntax_amount\030\001 \003" +
+      "(\0132\031.cosmos.base.v1beta1.CoinB0\310\336\037\000\252\337\037(g" +
+      "ithub.com/cosmos/cosmos-sdk/types.Coins2" +
+      "\215\001\n\007Service\022\201\001\n\nComputeTax\022#.terra.tx.v1" +
+      "beta1.ComputeTaxRequest\032$.terra.tx.v1bet" +
+      "a1.ComputeTaxResponse\"(\202\323\344\223\002\"\"\035/terra/tx" +
+      "/v1beta1/compute_tax:\001*B0Z*github.com/te" +
+      "rra-money/core/custom/auth/tx\300\343\036\001b\006proto" +
+      "3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1667,7 +1777,7 @@ public final class ServiceOuterClass {
     internal_static_terra_tx_v1beta1_ComputeTaxRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_terra_tx_v1beta1_ComputeTaxRequest_descriptor,
-        new java.lang.String[] { "Tx", });
+        new java.lang.String[] { "Tx", "TxBytes", });
     internal_static_terra_tx_v1beta1_ComputeTaxResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_terra_tx_v1beta1_ComputeTaxResponse_fieldAccessorTable = new

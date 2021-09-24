@@ -1,5 +1,4 @@
-import com.google.protobuf.gradle.*
-import org.gradle.kotlin.dsl.proto
+import com.google.protobuf.gradle.protobuf
 
 plugins {
     id("java-library")
@@ -18,7 +17,7 @@ allprojects {
     }
 
     group = "money.terra"
-    version = "1.5.2"
+    version = "1.5.3"
 
     repositories {
         mavenCentral()
@@ -42,6 +41,7 @@ allprojects {
         targetCompatibility = JavaVersion.VERSION_1_8
 
         withSourcesJar()
+        withJavadocJar()
     }
 
     tasks.getByName<Test>("test") {
@@ -91,12 +91,23 @@ allprojects {
             val ossrhUsername: String by project
             val ossrhPassword: String by project
 
-            maven {
-                name = "mavenCentral"
-                setUrl("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-                credentials {
-                    username = ossrhUsername
-                    password = ossrhPassword
+            if (version.toString().endsWith("-SNAPSHOT", true)) {
+                maven {
+                    name = "mavenCentralSnapshot"
+                    setUrl("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+                    credentials {
+                        username = ossrhUsername
+                        password = ossrhPassword
+                    }
+                }
+            } else {
+                maven {
+                    name = "mavenCentral"
+                    setUrl("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+                    credentials {
+                        username = ossrhUsername
+                        password = ossrhPassword
+                    }
                 }
             }
         }
