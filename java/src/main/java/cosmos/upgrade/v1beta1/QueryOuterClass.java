@@ -2266,7 +2266,7 @@ public final class QueryOuterClass {
 
   }
 
-  public interface QueryUpgradedConsensusStateRequestOrBuilder extends
+  @java.lang.Deprecated public interface QueryUpgradedConsensusStateRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateRequest)
       com.google.protobuf.MessageOrBuilder {
 
@@ -2289,7 +2289,7 @@ public final class QueryOuterClass {
    *
    * Protobuf type {@code cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateRequest}
    */
-  public static final class QueryUpgradedConsensusStateRequest extends
+  @java.lang.Deprecated public static final class QueryUpgradedConsensusStateRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateRequest)
       QueryUpgradedConsensusStateRequestOrBuilder {
@@ -2790,7 +2790,7 @@ public final class QueryOuterClass {
 
   }
 
-  public interface QueryUpgradedConsensusStateResponseOrBuilder extends
+  @java.lang.Deprecated public interface QueryUpgradedConsensusStateResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponse)
       com.google.protobuf.MessageOrBuilder {
 
@@ -2808,7 +2808,7 @@ public final class QueryOuterClass {
    *
    * Protobuf type {@code cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponse}
    */
-  public static final class QueryUpgradedConsensusStateResponse extends
+  @java.lang.Deprecated public static final class QueryUpgradedConsensusStateResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponse)
       QueryUpgradedConsensusStateResponseOrBuilder {
@@ -4896,34 +4896,34 @@ public final class QueryOuterClass {
       "anResponse\022*\n\004plan\030\001 \001(\0132\034.cosmos.upgrad" +
       "e.v1beta1.Plan\"\'\n\027QueryAppliedPlanReques" +
       "t\022\014\n\004name\030\001 \001(\t\"*\n\030QueryAppliedPlanRespo" +
-      "nse\022\016\n\006height\030\001 \001(\003\"9\n\"QueryUpgradedCons" +
-      "ensusStateRequest\022\023\n\013last_height\030\001 \001(\003\"M" +
-      "\n#QueryUpgradedConsensusStateResponse\022 \n" +
-      "\030upgraded_consensus_state\030\002 \001(\014J\004\010\001\020\002\"1\n" +
-      "\032QueryModuleVersionsRequest\022\023\n\013module_na" +
-      "me\030\001 \001(\t\"]\n\033QueryModuleVersionsResponse\022" +
-      ">\n\017module_versions\030\001 \003(\0132%.cosmos.upgrad" +
-      "e.v1beta1.ModuleVersion2\331\005\n\005Query\022\236\001\n\013Cu" +
-      "rrentPlan\022/.cosmos.upgrade.v1beta1.Query" +
-      "CurrentPlanRequest\0320.cosmos.upgrade.v1be" +
-      "ta1.QueryCurrentPlanResponse\",\202\323\344\223\002&\022$/c" +
-      "osmos/upgrade/v1beta1/current_plan\022\245\001\n\013A" +
-      "ppliedPlan\022/.cosmos.upgrade.v1beta1.Quer" +
-      "yAppliedPlanRequest\0320.cosmos.upgrade.v1b" +
-      "eta1.QueryAppliedPlanResponse\"3\202\323\344\223\002-\022+/" +
-      "cosmos/upgrade/v1beta1/applied_plan/{nam" +
-      "e}\022\331\001\n\026UpgradedConsensusState\022:.cosmos.u" +
-      "pgrade.v1beta1.QueryUpgradedConsensusSta" +
-      "teRequest\032;.cosmos.upgrade.v1beta1.Query" +
-      "UpgradedConsensusStateResponse\"F\202\323\344\223\002@\022>" +
-      "/cosmos/upgrade/v1beta1/upgraded_consens" +
-      "us_state/{last_height}\022\252\001\n\016ModuleVersion" +
-      "s\0222.cosmos.upgrade.v1beta1.QueryModuleVe" +
-      "rsionsRequest\0323.cosmos.upgrade.v1beta1.Q" +
-      "ueryModuleVersionsResponse\"/\202\323\344\223\002)\022\'/cos" +
-      "mos/upgrade/v1beta1/module_versionsB.Z,g" +
-      "ithub.com/cosmos/cosmos-sdk/x/upgrade/ty" +
-      "pesb\006proto3"
+      "nse\022\016\n\006height\030\001 \001(\003\"=\n\"QueryUpgradedCons" +
+      "ensusStateRequest\022\023\n\013last_height\030\001 \001(\003:\002" +
+      "\030\001\"Q\n#QueryUpgradedConsensusStateRespons" +
+      "e\022 \n\030upgraded_consensus_state\030\002 \001(\014:\002\030\001J" +
+      "\004\010\001\020\002\"1\n\032QueryModuleVersionsRequest\022\023\n\013m" +
+      "odule_name\030\001 \001(\t\"]\n\033QueryModuleVersionsR" +
+      "esponse\022>\n\017module_versions\030\001 \003(\0132%.cosmo" +
+      "s.upgrade.v1beta1.ModuleVersion2\334\005\n\005Quer" +
+      "y\022\236\001\n\013CurrentPlan\022/.cosmos.upgrade.v1bet" +
+      "a1.QueryCurrentPlanRequest\0320.cosmos.upgr" +
+      "ade.v1beta1.QueryCurrentPlanResponse\",\202\323" +
+      "\344\223\002&\022$/cosmos/upgrade/v1beta1/current_pl" +
+      "an\022\245\001\n\013AppliedPlan\022/.cosmos.upgrade.v1be" +
+      "ta1.QueryAppliedPlanRequest\0320.cosmos.upg" +
+      "rade.v1beta1.QueryAppliedPlanResponse\"3\202" +
+      "\323\344\223\002-\022+/cosmos/upgrade/v1beta1/applied_p" +
+      "lan/{name}\022\334\001\n\026UpgradedConsensusState\022:." +
+      "cosmos.upgrade.v1beta1.QueryUpgradedCons" +
+      "ensusStateRequest\032;.cosmos.upgrade.v1bet" +
+      "a1.QueryUpgradedConsensusStateResponse\"I" +
+      "\210\002\001\202\323\344\223\002@\022>/cosmos/upgrade/v1beta1/upgra" +
+      "ded_consensus_state/{last_height}\022\252\001\n\016Mo" +
+      "duleVersions\0222.cosmos.upgrade.v1beta1.Qu" +
+      "eryModuleVersionsRequest\0323.cosmos.upgrad" +
+      "e.v1beta1.QueryModuleVersionsResponse\"/\202" +
+      "\323\344\223\002)\022\'/cosmos/upgrade/v1beta1/module_ve" +
+      "rsionsB.Z,github.com/cosmos/cosmos-sdk/x" +
+      "/upgrade/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
