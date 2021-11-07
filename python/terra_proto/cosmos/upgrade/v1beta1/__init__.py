@@ -140,6 +140,12 @@ class QueryUpgradedConsensusStateRequest(betterproto.Message):
     # height under which next consensus state is stored
     last_height: int = betterproto.int64_field(1)
 
+    def __post_init__(self) -> None:
+        warnings.warn(
+            "QueryUpgradedConsensusStateRequest is deprecated", DeprecationWarning
+        )
+        super().__post_init__()
+
 
 @dataclass(eq=False, repr=False)
 class QueryUpgradedConsensusStateResponse(betterproto.Message):
@@ -149,6 +155,12 @@ class QueryUpgradedConsensusStateResponse(betterproto.Message):
     """
 
     upgraded_consensus_state: bytes = betterproto.bytes_field(2)
+
+    def __post_init__(self) -> None:
+        warnings.warn(
+            "QueryUpgradedConsensusStateResponse is deprecated", DeprecationWarning
+        )
+        super().__post_init__()
 
 
 @dataclass(eq=False, repr=False)

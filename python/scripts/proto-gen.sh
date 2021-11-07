@@ -2,8 +2,9 @@
 set -o errexit -o nounset -o pipefail
 command -v shellcheck >/dev/null && shellcheck "$0"
 
-echo "install avast-fork of betterproto..."
-pip install --upgrade avast.betterproto
+echo "install betterproto... pre-release for now. stable one has some issues"
+#pip install --upgrade "avast.betterproto[compiler]"
+pip install --upgrade "betterproto[compiler]" --pre
 
 OUT_DIR="./terra_proto"
 
