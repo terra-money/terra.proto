@@ -1,6 +1,6 @@
 [package]
 name = "terra-proto"
-version = "0.5.12-beta.2"
+version = "0.5.12-beta.3"
 authors = ["TerraformLabs"]
 edition = "2018"
 description = "Terra Core Protobuf Builds"
@@ -13,6 +13,6 @@ documentation = "https://docs.terra.money"
 prost = "0.9"
 prost-types = "0.9"
 
-[build-dependencies]
+[dev-dependencies]
 prost-build = "0.9"
 walkdir = { version = "2.3.2"}

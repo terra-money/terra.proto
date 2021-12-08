@@ -76,22 +76,23 @@ fn get_protos(dir: &str) -> Vec<String> {
 
 fn main() -> io::Result<()> {
     let project_root = PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap());
-    // if project_root.file_name().unwrap().to_str().unwrap() != "rust" {
-    //     project_root = project_root.parent().unwrap().parent().unwrap().parent().unwrap().to_path_buf();
-    // }
 
-    let output_path = project_root.join("src/generated");
+    let temp_dir = project_root.join("./proto-temp");
+    fs::create_dir(&temp_dir)?;
+
+    let output_path = project_root.join("./src/generated");
     if output_path.exists() {
         fs::remove_dir_all(&output_path)?;
     }
     fs::create_dir(&output_path)?;
     fs::File::create(output_path.join("mod.rs"))?;
 
-    let terra_proto_path = project_root.join("src/proto/proto").canonicalize().unwrap();
-    let third_party_proto_path = project_root.join("src/proto/third_party").canonicalize().unwrap();
+    let terra_proto_path = project_root.join("../terrad/proto").canonicalize().unwrap();
+    let third_party_proto_path = project_root.join("../terrad/third_party/proto").canonicalize().unwrap();
 
     let mut config = prost_build::Config::new();
 
+    config.out_dir(&temp_dir);
     config.retain_enum_prefix();
 
     let mut proto_files = get_protos(third_party_proto_path.to_str().unwrap());
@@ -105,7 +106,9 @@ fn main() -> io::Result<()> {
         &[third_party_path, terra_path],
     )?;
 
-    package::packaging(env::var_os("OUT_DIR").unwrap().to_str().unwrap(), output_path.to_str().unwrap())?;
+    package::packaging(temp_dir.to_str().unwrap(), output_path.to_str().unwrap())?;
+
+    fs::remove_dir_all(&temp_dir)?;
 
     Ok(())
 }

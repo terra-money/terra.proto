@@ -3,8 +3,6 @@
 ## Note
 * Ignore third_party/proto/cosmos/staking/v1beta1/authz.proto
   * Conflict StakeAuthorization.Validators (message) with StakeAuthorization.validators (oneof)
-* Use copied proto file
-  * If use proto file in submodule, Can't build project at dependent project
 
 ## How to use
 ### Cargo

@@ -12,7 +12,7 @@ init:
 
 proto-gen:
 	@echo "Generating Protobuf files"
-	cargo build
+	cargo run --example proto_gen
 
 publish:
 	cargo publish
