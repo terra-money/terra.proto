@@ -329,10 +329,11 @@ dependencies = [
 
 [[package]]
 name = "terra-proto"
-version = "0.5.12-beta.3"
+version = "0.5.12-beta.4"
 dependencies = [
  "prost",
  "prost-build",
+ "prost-derive",
  "prost-types",
  "walkdir",
 ]

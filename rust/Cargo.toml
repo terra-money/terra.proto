@@ -1,6 +1,6 @@
 [package]
 name = "terra-proto"
-version = "0.5.12-beta.3"
+version = "0.5.12-beta.4"
 authors = ["TerraformLabs"]
 edition = "2018"
 description = "Terra Core Protobuf Builds"
@@ -9,8 +9,12 @@ repository = "https://github.com/terra-money/terra.proto.git"
 homepage = "https://terra.money"
 documentation = "https://docs.terra.money"
 
+[lib]
+proc-macro = true
+
 [dependencies]
 prost = "0.9"
+prost-derive = "0.9"
 prost-types = "0.9"
 
 [dev-dependencies]
