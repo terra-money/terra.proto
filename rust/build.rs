@@ -1,5 +1,5 @@
 use std::{env, fs, io};
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 
 use walkdir::WalkDir;
 
@@ -75,30 +75,37 @@ fn get_protos(dir: &str) -> Vec<String> {
 }
 
 fn main() -> io::Result<()> {
-    let output_dir = "./src/generated";
-
-    if Path::new(&output_dir).exists() {
-        fs::remove_dir_all(&output_dir)?;
+    let mut project_root = PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap());
+    if project_root.file_name().unwrap().to_str().unwrap() != "rust" {
+        project_root = project_root.parent().unwrap().parent().unwrap().parent().unwrap().to_path_buf();
     }
-    fs::create_dir(output_dir)?;
-    fs::File::create(format!("{}/mod.rs", output_dir))?;
+
+    let output_path = project_root.join("src/generated");
+    if output_path.exists() {
+        fs::remove_dir_all(&output_path)?;
+    }
+    fs::create_dir(&output_path)?;
+    fs::File::create(output_path.join("mod.rs"))?;
+
+    let terra_proto_path = project_root.join("../terrad/proto").canonicalize().unwrap();
+    let third_party_proto_path = project_root.join("../terrad/third_party/proto").canonicalize().unwrap();
 
     let mut config = prost_build::Config::new();
 
     config.retain_enum_prefix();
 
-    let mut proto_files = get_protos("../terrad/third_party/proto");
-    proto_files.extend(get_protos("../terrad/proto/terra"));
+    let mut proto_files = get_protos(third_party_proto_path.to_str().unwrap());
+    proto_files.extend(get_protos(terra_proto_path.to_str().unwrap()));
 
-    let terra_path = format!("{}/", PathBuf::from(String::from("../terrad/proto")).canonicalize().unwrap().to_str().unwrap().to_string());
-    let third_party_path = format!("{}/", PathBuf::from(String::from("../terrad/third_party/proto")).canonicalize().unwrap().to_str().unwrap().to_string());
+    let terra_path = format!("{}/", terra_proto_path.to_str().unwrap().to_string());
+    let third_party_path = format!("{}/", third_party_proto_path.to_str().unwrap().to_string());
 
     config.compile_protos(
         proto_files.as_slice(),
         &[third_party_path, terra_path],
     )?;
 
-    package::packaging(env::var_os("OUT_DIR").unwrap().to_str().unwrap(), "./src/generated")?;
+    package::packaging(env::var_os("OUT_DIR").unwrap().to_str().unwrap(), output_path.to_str().unwrap())?;
 
     Ok(())
 }
