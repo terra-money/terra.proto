@@ -1,9 +1,13 @@
 [package]
-name = "rust"
-version = "0.1.0"
-edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+name = "terra-proto"
+version = "0.5.12-beta.0"
+authors = ["TerraformLabs"]
+edition = "2018"
+description = "Terra Core Protobuf Builds"
+license = "Apache-2.0"
+repository = "https://github.com/terra-money/terra.proto.git"
+homepage = "https://terra.money"
+documentation = "https://docs.terra.money"
 
 [dependencies]
 prost = "0.9"

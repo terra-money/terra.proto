@@ -294,16 +294,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "rust"
-version = "0.1.0"
-dependencies = [
- "prost",
- "prost-build",
- "prost-types",
- "walkdir",
-]
-
-[[package]]
 name = "same-file"
 version = "1.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -335,6 +325,16 @@ dependencies = [
  "redox_syscall",
  "remove_dir_all",
  "winapi",
+]
+
+[[package]]
+name = "terra-proto"
+version = "0.5.12-beta.0"
+dependencies = [
+ "prost",
+ "prost-build",
+ "prost-types",
+ "walkdir",
 ]
 
 [[package]]
