@@ -75,10 +75,10 @@ fn get_protos(dir: &str) -> Vec<String> {
 }
 
 fn main() -> io::Result<()> {
-    let mut project_root = PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap());
-    if project_root.file_name().unwrap().to_str().unwrap() != "rust" {
-        project_root = project_root.parent().unwrap().parent().unwrap().parent().unwrap().to_path_buf();
-    }
+    let project_root = PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap());
+    // if project_root.file_name().unwrap().to_str().unwrap() != "rust" {
+    //     project_root = project_root.parent().unwrap().parent().unwrap().parent().unwrap().to_path_buf();
+    // }
 
     let output_path = project_root.join("src/generated");
     if output_path.exists() {
@@ -87,8 +87,8 @@ fn main() -> io::Result<()> {
     fs::create_dir(&output_path)?;
     fs::File::create(output_path.join("mod.rs"))?;
 
-    let terra_proto_path = project_root.join("../terrad/proto").canonicalize().unwrap();
-    let third_party_proto_path = project_root.join("../terrad/third_party/proto").canonicalize().unwrap();
+    let terra_proto_path = project_root.join("src/proto/proto").canonicalize().unwrap();
+    let third_party_proto_path = project_root.join("src/proto/third_party").canonicalize().unwrap();
 
     let mut config = prost_build::Config::new();
 

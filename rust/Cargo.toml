@@ -1,6 +1,6 @@
 [package]
 name = "terra-proto"
-version = "0.5.12-beta.0"
+version = "0.5.12-beta.2"
 authors = ["TerraformLabs"]
 edition = "2018"
 description = "Terra Core Protobuf Builds"
