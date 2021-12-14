@@ -9,9 +9,6 @@ repository = "https://github.com/terra-money/terra.proto.git"
 homepage = "https://terra.money"
 documentation = "https://docs.terra.money"
 
-[lib]
-proc-macro = true
-
 [dependencies]
 prost = "0.9"
 prost-derive = "0.9"
@@ -19,4 +16,5 @@ prost-types = "0.9"
 
 [dev-dependencies]
 prost-build = "0.9"
-walkdir = { version = "2.3.2"}
+walkdir = "2.3.2"
+base64 = "0.13.0"
