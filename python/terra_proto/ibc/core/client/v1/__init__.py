@@ -477,7 +477,7 @@ class MsgStub(betterproto.ServiceStub):
         *,
         client_state: "betterproto_lib_google_protobuf.Any" = None,
         consensus_state: "betterproto_lib_google_protobuf.Any" = None,
-        signer: str = "",
+        signer: str = ""
     ) -> "MsgCreateClientResponse":
 
         request = MsgCreateClient()
@@ -496,7 +496,7 @@ class MsgStub(betterproto.ServiceStub):
         *,
         client_id: str = "",
         header: "betterproto_lib_google_protobuf.Any" = None,
-        signer: str = "",
+        signer: str = ""
     ) -> "MsgUpdateClientResponse":
 
         request = MsgUpdateClient()
@@ -517,7 +517,7 @@ class MsgStub(betterproto.ServiceStub):
         consensus_state: "betterproto_lib_google_protobuf.Any" = None,
         proof_upgrade_client: bytes = b"",
         proof_upgrade_consensus_state: bytes = b"",
-        signer: str = "",
+        signer: str = ""
     ) -> "MsgUpgradeClientResponse":
 
         request = MsgUpgradeClient()
@@ -539,7 +539,7 @@ class MsgStub(betterproto.ServiceStub):
         *,
         client_id: str = "",
         misbehaviour: "betterproto_lib_google_protobuf.Any" = None,
-        signer: str = "",
+        signer: str = ""
     ) -> "MsgSubmitMisbehaviourResponse":
 
         request = MsgSubmitMisbehaviour()
@@ -583,7 +583,7 @@ class QueryStub(betterproto.ServiceStub):
         client_id: str = "",
         revision_number: int = 0,
         revision_height: int = 0,
-        latest_height: bool = False,
+        latest_height: bool = False
     ) -> "QueryConsensusStateResponse":
 
         request = QueryConsensusStateRequest()
@@ -602,7 +602,7 @@ class QueryStub(betterproto.ServiceStub):
         self,
         *,
         client_id: str = "",
-        pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = None,
+        pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryConsensusStatesResponse":
 
         request = QueryConsensusStatesRequest()

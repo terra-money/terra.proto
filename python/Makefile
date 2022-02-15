@@ -1,4 +1,4 @@
-all: init proto-gen format
+all: init proto-gen build
 
 init:
 	@echo "Pull External Protofiles"
@@ -8,7 +8,8 @@ init:
 #@echo "Install dependencies"
 #npm i
 
-#format:
+# do not format. we uses just auto-generated ones.
+#format: 
 #	npm run format
 
 proto-gen: 
@@ -16,9 +17,9 @@ proto-gen:
 	./scripts/proto-gen.sh
 
 build: 
-	npm run build
+	poetry build
 
 publish:
-	npm publish
+	poetry publish
 
 .PHONY: all proto-gen format init build publish

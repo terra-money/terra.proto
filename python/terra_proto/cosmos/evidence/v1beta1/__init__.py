@@ -102,7 +102,7 @@ class MsgStub(betterproto.ServiceStub):
         self,
         *,
         submitter: str = "",
-        evidence: "betterproto_lib_google_protobuf.Any" = None,
+        evidence: "betterproto_lib_google_protobuf.Any" = None
     ) -> "MsgSubmitEvidenceResponse":
 
         request = MsgSubmitEvidence()

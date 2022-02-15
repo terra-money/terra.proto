@@ -409,7 +409,7 @@ class MsgStub(betterproto.ServiceStub):
         admin: str = "",
         code_id: int = 0,
         init_msg: bytes = b"",
-        init_coins: Optional[List["___cosmos_base_v1_beta1__.Coin"]] = None,
+        init_coins: Optional[List["___cosmos_base_v1_beta1__.Coin"]] = None
     ) -> "MsgInstantiateContractResponse":
         init_coins = init_coins or []
 
@@ -433,7 +433,7 @@ class MsgStub(betterproto.ServiceStub):
         sender: str = "",
         contract: str = "",
         execute_msg: bytes = b"",
-        coins: Optional[List["___cosmos_base_v1_beta1__.Coin"]] = None,
+        coins: Optional[List["___cosmos_base_v1_beta1__.Coin"]] = None
     ) -> "MsgExecuteContractResponse":
         coins = coins or []
 
@@ -456,7 +456,7 @@ class MsgStub(betterproto.ServiceStub):
         admin: str = "",
         contract: str = "",
         new_code_id: int = 0,
-        migrate_msg: bytes = b"",
+        migrate_msg: bytes = b""
     ) -> "MsgMigrateContractResponse":
 
         request = MsgMigrateContract()

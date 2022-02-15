@@ -627,7 +627,7 @@ class MsgStub(betterproto.ServiceStub):
         self,
         *,
         amount: Optional[List["__base_v1_beta1__.Coin"]] = None,
-        depositor: str = "",
+        depositor: str = ""
     ) -> "MsgFundCommunityPoolResponse":
         amount = amount or []
 
@@ -684,7 +684,7 @@ class QueryStub(betterproto.ServiceStub):
         validator_address: str = "",
         starting_height: int = 0,
         ending_height: int = 0,
-        pagination: "__base_query_v1_beta1__.PageRequest" = None,
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryValidatorSlashesResponse":
 
         request = QueryValidatorSlashesRequest()

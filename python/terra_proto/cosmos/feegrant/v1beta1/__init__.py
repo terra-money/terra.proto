@@ -188,7 +188,7 @@ class MsgStub(betterproto.ServiceStub):
         *,
         granter: str = "",
         grantee: str = "",
-        allowance: "betterproto_lib_google_protobuf.Any" = None,
+        allowance: "betterproto_lib_google_protobuf.Any" = None
     ) -> "MsgGrantAllowanceResponse":
 
         request = MsgGrantAllowance()
@@ -235,7 +235,7 @@ class QueryStub(betterproto.ServiceStub):
         self,
         *,
         grantee: str = "",
-        pagination: "__base_query_v1_beta1__.PageRequest" = None,
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryAllowancesResponse":
 
         request = QueryAllowancesRequest()

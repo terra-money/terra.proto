@@ -43,7 +43,7 @@ class MsgStub(betterproto.ServiceStub):
         *,
         sender: str = "",
         invariant_module_name: str = "",
-        invariant_route: str = "",
+        invariant_route: str = ""
     ) -> "MsgVerifyInvariantResponse":
 
         request = MsgVerifyInvariant()

@@ -411,7 +411,7 @@ class MsgStub(betterproto.ServiceStub):
         counterparty: "Counterparty" = None,
         version: "Version" = None,
         delay_period: int = 0,
-        signer: str = "",
+        signer: str = ""
     ) -> "MsgConnectionOpenInitResponse":
 
         request = MsgConnectionOpenInit()
@@ -443,7 +443,7 @@ class MsgStub(betterproto.ServiceStub):
         proof_client: bytes = b"",
         proof_consensus: bytes = b"",
         consensus_height: "__client_v1__.Height" = None,
-        signer: str = "",
+        signer: str = ""
     ) -> "MsgConnectionOpenTryResponse":
         counterparty_versions = counterparty_versions or []
 
@@ -484,7 +484,7 @@ class MsgStub(betterproto.ServiceStub):
         proof_client: bytes = b"",
         proof_consensus: bytes = b"",
         consensus_height: "__client_v1__.Height" = None,
-        signer: str = "",
+        signer: str = ""
     ) -> "MsgConnectionOpenAckResponse":
 
         request = MsgConnectionOpenAck()
@@ -515,7 +515,7 @@ class MsgStub(betterproto.ServiceStub):
         connection_id: str = "",
         proof_ack: bytes = b"",
         proof_height: "__client_v1__.Height" = None,
-        signer: str = "",
+        signer: str = ""
     ) -> "MsgConnectionOpenConfirmResponse":
 
         request = MsgConnectionOpenConfirm()
@@ -587,7 +587,7 @@ class QueryStub(betterproto.ServiceStub):
         *,
         connection_id: str = "",
         revision_number: int = 0,
-        revision_height: int = 0,
+        revision_height: int = 0
     ) -> "QueryConnectionConsensusStateResponse":
 
         request = QueryConnectionConsensusStateRequest()

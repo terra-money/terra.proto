@@ -847,7 +847,7 @@ class MsgStub(betterproto.ServiceStub):
         delegator_address: str = "",
         validator_address: str = "",
         pubkey: "betterproto_lib_google_protobuf.Any" = None,
-        value: "__base_v1_beta1__.Coin" = None,
+        value: "__base_v1_beta1__.Coin" = None
     ) -> "MsgCreateValidatorResponse":
 
         request = MsgCreateValidator()
@@ -875,7 +875,7 @@ class MsgStub(betterproto.ServiceStub):
         description: "Description" = None,
         validator_address: str = "",
         commission_rate: str = "",
-        min_self_delegation: str = "",
+        min_self_delegation: str = ""
     ) -> "MsgEditValidatorResponse":
 
         request = MsgEditValidator()
@@ -896,7 +896,7 @@ class MsgStub(betterproto.ServiceStub):
         *,
         delegator_address: str = "",
         validator_address: str = "",
-        amount: "__base_v1_beta1__.Coin" = None,
+        amount: "__base_v1_beta1__.Coin" = None
     ) -> "MsgDelegateResponse":
 
         request = MsgDelegate()
@@ -915,7 +915,7 @@ class MsgStub(betterproto.ServiceStub):
         delegator_address: str = "",
         validator_src_address: str = "",
         validator_dst_address: str = "",
-        amount: "__base_v1_beta1__.Coin" = None,
+        amount: "__base_v1_beta1__.Coin" = None
     ) -> "MsgBeginRedelegateResponse":
 
         request = MsgBeginRedelegate()
@@ -936,7 +936,7 @@ class MsgStub(betterproto.ServiceStub):
         *,
         delegator_address: str = "",
         validator_address: str = "",
-        amount: "__base_v1_beta1__.Coin" = None,
+        amount: "__base_v1_beta1__.Coin" = None
     ) -> "MsgUndelegateResponse":
 
         request = MsgUndelegate()
@@ -955,7 +955,7 @@ class QueryStub(betterproto.ServiceStub):
         self,
         *,
         status: str = "",
-        pagination: "__base_query_v1_beta1__.PageRequest" = None,
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryValidatorsResponse":
 
         request = QueryValidatorsRequest()
@@ -980,7 +980,7 @@ class QueryStub(betterproto.ServiceStub):
         self,
         *,
         validator_addr: str = "",
-        pagination: "__base_query_v1_beta1__.PageRequest" = None,
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryValidatorDelegationsResponse":
 
         request = QueryValidatorDelegationsRequest()
@@ -998,7 +998,7 @@ class QueryStub(betterproto.ServiceStub):
         self,
         *,
         validator_addr: str = "",
-        pagination: "__base_query_v1_beta1__.PageRequest" = None,
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryValidatorUnbondingDelegationsResponse":
 
         request = QueryValidatorUnbondingDelegationsRequest()
@@ -1042,7 +1042,7 @@ class QueryStub(betterproto.ServiceStub):
         self,
         *,
         delegator_addr: str = "",
-        pagination: "__base_query_v1_beta1__.PageRequest" = None,
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryDelegatorDelegationsResponse":
 
         request = QueryDelegatorDelegationsRequest()
@@ -1060,7 +1060,7 @@ class QueryStub(betterproto.ServiceStub):
         self,
         *,
         delegator_addr: str = "",
-        pagination: "__base_query_v1_beta1__.PageRequest" = None,
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryDelegatorUnbondingDelegationsResponse":
 
         request = QueryDelegatorUnbondingDelegationsRequest()
@@ -1080,7 +1080,7 @@ class QueryStub(betterproto.ServiceStub):
         delegator_addr: str = "",
         src_validator_addr: str = "",
         dst_validator_addr: str = "",
-        pagination: "__base_query_v1_beta1__.PageRequest" = None,
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryRedelegationsResponse":
 
         request = QueryRedelegationsRequest()
@@ -1100,7 +1100,7 @@ class QueryStub(betterproto.ServiceStub):
         self,
         *,
         delegator_addr: str = "",
-        pagination: "__base_query_v1_beta1__.PageRequest" = None,
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryDelegatorValidatorsResponse":
 
         request = QueryDelegatorValidatorsRequest()

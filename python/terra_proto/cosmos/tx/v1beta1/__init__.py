@@ -357,7 +357,7 @@ class ServiceStub(betterproto.ServiceStub):
         )
 
     async def broadcast_tx(
-        self, *, tx_bytes: bytes = b"", mode: "BroadcastMode" = None
+        self, *, tx_bytes: bytes = b"", mode: "BroadcastMode" = 0
     ) -> "BroadcastTxResponse":
 
         request = BroadcastTxRequest()
@@ -373,7 +373,7 @@ class ServiceStub(betterproto.ServiceStub):
         *,
         events: Optional[List[str]] = None,
         pagination: "__base_query_v1_beta1__.PageRequest" = None,
-        order_by: "OrderBy" = None,
+        order_by: "OrderBy" = 0
     ) -> "GetTxsEventResponse":
         events = events or []
 

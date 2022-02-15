@@ -486,7 +486,7 @@ class AbciApplicationStub(betterproto.ServiceStub):
         )
 
     async def check_tx(
-        self, *, tx: bytes = b"", type: "CheckTxType" = None
+        self, *, tx: bytes = b"", type: "CheckTxType" = 0
     ) -> "ResponseCheckTx":
 
         request = RequestCheckTx()
@@ -527,7 +527,7 @@ class AbciApplicationStub(betterproto.ServiceStub):
         consensus_params: "ConsensusParams" = None,
         validators: Optional[List["ValidatorUpdate"]] = None,
         app_state_bytes: bytes = b"",
-        initial_height: int = 0,
+        initial_height: int = 0
     ) -> "ResponseInitChain":
         validators = validators or []
 
@@ -552,7 +552,7 @@ class AbciApplicationStub(betterproto.ServiceStub):
         hash: bytes = b"",
         header: "_types__.Header" = None,
         last_commit_info: "LastCommitInfo" = None,
-        byzantine_validators: Optional[List["Evidence"]] = None,
+        byzantine_validators: Optional[List["Evidence"]] = None
     ) -> "ResponseBeginBlock":
         byzantine_validators = byzantine_validators or []
 

@@ -133,7 +133,7 @@ class MsgStub(betterproto.ServiceStub):
         *,
         trader: str = "",
         offer_coin: "___cosmos_base_v1_beta1__.Coin" = None,
-        ask_denom: str = "",
+        ask_denom: str = ""
     ) -> "MsgSwapResponse":
 
         request = MsgSwap()
@@ -152,7 +152,7 @@ class MsgStub(betterproto.ServiceStub):
         from_address: str = "",
         to_address: str = "",
         offer_coin: "___cosmos_base_v1_beta1__.Coin" = None,
-        ask_denom: str = "",
+        ask_denom: str = ""
     ) -> "MsgSwapSendResponse":
 
         request = MsgSwapSend()

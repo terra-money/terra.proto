@@ -447,7 +447,7 @@ class MsgStub(betterproto.ServiceStub):
         *,
         content: "betterproto_lib_google_protobuf.Any" = None,
         initial_deposit: Optional[List["__base_v1_beta1__.Coin"]] = None,
-        proposer: str = "",
+        proposer: str = ""
     ) -> "MsgSubmitProposalResponse":
         initial_deposit = initial_deposit or []
 
@@ -463,7 +463,7 @@ class MsgStub(betterproto.ServiceStub):
         )
 
     async def vote(
-        self, *, proposal_id: int = 0, voter: str = "", option: "VoteOption" = None
+        self, *, proposal_id: int = 0, voter: str = "", option: "VoteOption" = 0
     ) -> "MsgVoteResponse":
 
         request = MsgVote()
@@ -480,7 +480,7 @@ class MsgStub(betterproto.ServiceStub):
         *,
         proposal_id: int = 0,
         voter: str = "",
-        options: Optional[List["WeightedVoteOption"]] = None,
+        options: Optional[List["WeightedVoteOption"]] = None
     ) -> "MsgVoteWeightedResponse":
         options = options or []
 
@@ -499,7 +499,7 @@ class MsgStub(betterproto.ServiceStub):
         *,
         proposal_id: int = 0,
         depositor: str = "",
-        amount: Optional[List["__base_v1_beta1__.Coin"]] = None,
+        amount: Optional[List["__base_v1_beta1__.Coin"]] = None
     ) -> "MsgDepositResponse":
         amount = amount or []
 
@@ -527,10 +527,10 @@ class QueryStub(betterproto.ServiceStub):
     async def proposals(
         self,
         *,
-        proposal_status: "ProposalStatus" = None,
+        proposal_status: "ProposalStatus" = 0,
         voter: str = "",
         depositor: str = "",
-        pagination: "__base_query_v1_beta1__.PageRequest" = None,
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryProposalsResponse":
 
         request = QueryProposalsRequest()
@@ -560,7 +560,7 @@ class QueryStub(betterproto.ServiceStub):
         self,
         *,
         proposal_id: int = 0,
-        pagination: "__base_query_v1_beta1__.PageRequest" = None,
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryVotesResponse":
 
         request = QueryVotesRequest()
@@ -597,7 +597,7 @@ class QueryStub(betterproto.ServiceStub):
         self,
         *,
         proposal_id: int = 0,
-        pagination: "__base_query_v1_beta1__.PageRequest" = None,
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryDepositsResponse":
 
         request = QueryDepositsRequest()

@@ -181,7 +181,7 @@ class MsgStub(betterproto.ServiceStub):
         sender: str = "",
         receiver: str = "",
         timeout_height: "___core_client_v1__.Height" = None,
-        timeout_timestamp: int = 0,
+        timeout_timestamp: int = 0
     ) -> "MsgTransferResponse":
 
         request = MsgTransfer()

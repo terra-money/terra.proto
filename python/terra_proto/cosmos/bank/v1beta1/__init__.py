@@ -334,7 +334,7 @@ class MsgStub(betterproto.ServiceStub):
         *,
         from_address: str = "",
         to_address: str = "",
-        amount: Optional[List["__base_v1_beta1__.Coin"]] = None,
+        amount: Optional[List["__base_v1_beta1__.Coin"]] = None
     ) -> "MsgSendResponse":
         amount = amount or []
 
@@ -352,7 +352,7 @@ class MsgStub(betterproto.ServiceStub):
         self,
         *,
         inputs: Optional[List["Input"]] = None,
-        outputs: Optional[List["Output"]] = None,
+        outputs: Optional[List["Output"]] = None
     ) -> "MsgMultiSendResponse":
         inputs = inputs or []
         outputs = outputs or []
@@ -385,7 +385,7 @@ class QueryStub(betterproto.ServiceStub):
         self,
         *,
         address: str = "",
-        pagination: "__base_query_v1_beta1__.PageRequest" = None,
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryAllBalancesResponse":
 
         request = QueryAllBalancesRequest()

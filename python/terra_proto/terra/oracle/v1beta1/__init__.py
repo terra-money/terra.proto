@@ -491,7 +491,7 @@ class MsgStub(betterproto.ServiceStub):
         salt: str = "",
         exchange_rates: str = "",
         feeder: str = "",
-        validator: str = "",
+        validator: str = ""
     ) -> "MsgAggregateExchangeRateVoteResponse":
 
         request = MsgAggregateExchangeRateVote()

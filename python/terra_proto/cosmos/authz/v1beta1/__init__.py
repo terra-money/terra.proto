@@ -180,7 +180,7 @@ class MsgStub(betterproto.ServiceStub):
         self,
         *,
         grantee: str = "",
-        msgs: Optional[List["betterproto_lib_google_protobuf.Any"]] = None,
+        msgs: Optional[List["betterproto_lib_google_protobuf.Any"]] = None
     ) -> "MsgExecResponse":
         msgs = msgs or []
 
@@ -214,7 +214,7 @@ class QueryStub(betterproto.ServiceStub):
         granter: str = "",
         grantee: str = "",
         msg_type_url: str = "",
-        pagination: "__base_query_v1_beta1__.PageRequest" = None,
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryGrantsResponse":
 
         request = QueryGrantsRequest()

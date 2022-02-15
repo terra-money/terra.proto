@@ -829,7 +829,7 @@ class MsgStub(betterproto.ServiceStub):
         counterparty_version: str = "",
         proof_init: bytes = b"",
         proof_height: "__client_v1__.Height" = None,
-        signer: str = "",
+        signer: str = ""
     ) -> "MsgChannelOpenTryResponse":
 
         request = MsgChannelOpenTry()
@@ -858,7 +858,7 @@ class MsgStub(betterproto.ServiceStub):
         counterparty_version: str = "",
         proof_try: bytes = b"",
         proof_height: "__client_v1__.Height" = None,
-        signer: str = "",
+        signer: str = ""
     ) -> "MsgChannelOpenAckResponse":
 
         request = MsgChannelOpenAck()
@@ -884,7 +884,7 @@ class MsgStub(betterproto.ServiceStub):
         channel_id: str = "",
         proof_ack: bytes = b"",
         proof_height: "__client_v1__.Height" = None,
-        signer: str = "",
+        signer: str = ""
     ) -> "MsgChannelOpenConfirmResponse":
 
         request = MsgChannelOpenConfirm()
@@ -923,7 +923,7 @@ class MsgStub(betterproto.ServiceStub):
         channel_id: str = "",
         proof_init: bytes = b"",
         proof_height: "__client_v1__.Height" = None,
-        signer: str = "",
+        signer: str = ""
     ) -> "MsgChannelCloseConfirmResponse":
 
         request = MsgChannelCloseConfirm()
@@ -946,7 +946,7 @@ class MsgStub(betterproto.ServiceStub):
         packet: "Packet" = None,
         proof_commitment: bytes = b"",
         proof_height: "__client_v1__.Height" = None,
-        signer: str = "",
+        signer: str = ""
     ) -> "MsgRecvPacketResponse":
 
         request = MsgRecvPacket()
@@ -968,7 +968,7 @@ class MsgStub(betterproto.ServiceStub):
         proof_unreceived: bytes = b"",
         proof_height: "__client_v1__.Height" = None,
         next_sequence_recv: int = 0,
-        signer: str = "",
+        signer: str = ""
     ) -> "MsgTimeoutResponse":
 
         request = MsgTimeout()
@@ -992,7 +992,7 @@ class MsgStub(betterproto.ServiceStub):
         proof_close: bytes = b"",
         proof_height: "__client_v1__.Height" = None,
         next_sequence_recv: int = 0,
-        signer: str = "",
+        signer: str = ""
     ) -> "MsgTimeoutOnCloseResponse":
 
         request = MsgTimeoutOnClose()
@@ -1018,7 +1018,7 @@ class MsgStub(betterproto.ServiceStub):
         acknowledgement: bytes = b"",
         proof_acked: bytes = b"",
         proof_height: "__client_v1__.Height" = None,
-        signer: str = "",
+        signer: str = ""
     ) -> "MsgAcknowledgementResponse":
 
         request = MsgAcknowledgement()
@@ -1066,7 +1066,7 @@ class QueryStub(betterproto.ServiceStub):
         self,
         *,
         connection: str = "",
-        pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = None,
+        pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryConnectionChannelsResponse":
 
         request = QueryConnectionChannelsRequest()
@@ -1100,7 +1100,7 @@ class QueryStub(betterproto.ServiceStub):
         port_id: str = "",
         channel_id: str = "",
         revision_number: int = 0,
-        revision_height: int = 0,
+        revision_height: int = 0
     ) -> "QueryChannelConsensusStateResponse":
 
         request = QueryChannelConsensusStateRequest()
@@ -1135,7 +1135,7 @@ class QueryStub(betterproto.ServiceStub):
         *,
         port_id: str = "",
         channel_id: str = "",
-        pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = None,
+        pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryPacketCommitmentsResponse":
 
         request = QueryPacketCommitmentsRequest()
@@ -1185,7 +1185,7 @@ class QueryStub(betterproto.ServiceStub):
         *,
         port_id: str = "",
         channel_id: str = "",
-        pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = None,
+        pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = None
     ) -> "QueryPacketAcknowledgementsResponse":
 
         request = QueryPacketAcknowledgementsRequest()
@@ -1205,7 +1205,7 @@ class QueryStub(betterproto.ServiceStub):
         *,
         port_id: str = "",
         channel_id: str = "",
-        packet_commitment_sequences: Optional[List[int]] = None,
+        packet_commitment_sequences: Optional[List[int]] = None
     ) -> "QueryUnreceivedPacketsResponse":
         packet_commitment_sequences = packet_commitment_sequences or []
 
@@ -1225,7 +1225,7 @@ class QueryStub(betterproto.ServiceStub):
         *,
         port_id: str = "",
         channel_id: str = "",
-        packet_ack_sequences: Optional[List[int]] = None,
+        packet_ack_sequences: Optional[List[int]] = None
     ) -> "QueryUnreceivedAcksResponse":
         packet_ack_sequences = packet_ack_sequences or []
 
