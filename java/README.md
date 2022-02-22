@@ -1,4 +1,5 @@
 # terra.proto (Java and Kotlin)
+[![Maven Central](https://img.shields.io/maven-central/v/money.terra/proto-java)](https://mvnrepository.com/artifact/money.terra/proto-java)
 
 ## How to use
 ### Gradle

@@ -17,7 +17,7 @@ allprojects {
     }
 
     group = "money.terra"
-    version = "0.5.5"
+    version = "0.5.16"
 
     repositories {
         mavenCentral()
