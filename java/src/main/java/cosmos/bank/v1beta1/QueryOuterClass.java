@@ -3561,6 +3561,7 @@ public final class QueryOuterClass {
     /**
      * <pre>
      * pagination defines an optional pagination for the request.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -3570,6 +3571,7 @@ public final class QueryOuterClass {
     /**
      * <pre>
      * pagination defines an optional pagination for the request.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -3579,6 +3581,7 @@ public final class QueryOuterClass {
     /**
      * <pre>
      * pagination defines an optional pagination for the request.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -3685,6 +3688,7 @@ public final class QueryOuterClass {
     /**
      * <pre>
      * pagination defines an optional pagination for the request.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -3697,6 +3701,7 @@ public final class QueryOuterClass {
     /**
      * <pre>
      * pagination defines an optional pagination for the request.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -3709,6 +3714,7 @@ public final class QueryOuterClass {
     /**
      * <pre>
      * pagination defines an optional pagination for the request.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -4044,6 +4050,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines an optional pagination for the request.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -4055,6 +4062,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines an optional pagination for the request.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -4070,6 +4078,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines an optional pagination for the request.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -4090,6 +4099,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines an optional pagination for the request.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -4108,6 +4118,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines an optional pagination for the request.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -4130,6 +4141,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines an optional pagination for the request.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -4148,6 +4160,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines an optional pagination for the request.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -4160,6 +4173,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines an optional pagination for the request.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -4175,6 +4189,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines an optional pagination for the request.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -4296,6 +4311,7 @@ public final class QueryOuterClass {
     /**
      * <pre>
      * pagination defines the pagination in the response.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -4305,6 +4321,7 @@ public final class QueryOuterClass {
     /**
      * <pre>
      * pagination defines the pagination in the response.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -4314,6 +4331,7 @@ public final class QueryOuterClass {
     /**
      * <pre>
      * pagination defines the pagination in the response.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -4494,6 +4512,7 @@ public final class QueryOuterClass {
     /**
      * <pre>
      * pagination defines the pagination in the response.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -4506,6 +4525,7 @@ public final class QueryOuterClass {
     /**
      * <pre>
      * pagination defines the pagination in the response.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -4518,6 +4538,7 @@ public final class QueryOuterClass {
     /**
      * <pre>
      * pagination defines the pagination in the response.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -5222,6 +5243,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines the pagination in the response.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -5233,6 +5255,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines the pagination in the response.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -5248,6 +5271,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines the pagination in the response.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -5268,6 +5292,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines the pagination in the response.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -5286,6 +5311,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines the pagination in the response.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -5308,6 +5334,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines the pagination in the response.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -5326,6 +5353,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines the pagination in the response.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -5338,6 +5366,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines the pagination in the response.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -5353,6 +5382,7 @@ public final class QueryOuterClass {
       /**
        * <pre>
        * pagination defines the pagination in the response.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -11065,35 +11095,35 @@ public final class QueryOuterClass {
       "1.PageResponse\"*\n\031QueryDenomMetadataRequ" +
       "est\022\r\n\005denom\030\001 \001(\t\"S\n\032QueryDenomMetadata" +
       "Response\0225\n\010metadata\030\001 \001(\0132\035.cosmos.bank" +
-      ".v1beta1.MetadataB\004\310\336\037\0002\262\010\n\005Query\022\227\001\n\007Ba" +
+      ".v1beta1.MetadataB\004\310\336\037\0002\263\010\n\005Query\022\230\001\n\007Ba" +
       "lance\022(.cosmos.bank.v1beta1.QueryBalance" +
       "Request\032).cosmos.bank.v1beta1.QueryBalan" +
-      "ceResponse\"7\202\323\344\223\0021\022//cosmos/bank/v1beta1" +
-      "/balances/{address}/{denom}\022\233\001\n\013AllBalan" +
-      "ces\022,.cosmos.bank.v1beta1.QueryAllBalanc" +
-      "esRequest\032-.cosmos.bank.v1beta1.QueryAll" +
-      "BalancesResponse\"/\202\323\344\223\002)\022\'/cosmos/bank/v" +
-      "1beta1/balances/{address}\022\217\001\n\013TotalSuppl" +
-      "y\022,.cosmos.bank.v1beta1.QueryTotalSupply" +
-      "Request\032-.cosmos.bank.v1beta1.QueryTotal" +
-      "SupplyResponse\"#\202\323\344\223\002\035\022\033/cosmos/bank/v1b" +
-      "eta1/supply\022\216\001\n\010SupplyOf\022).cosmos.bank.v" +
-      "1beta1.QuerySupplyOfRequest\032*.cosmos.ban" +
-      "k.v1beta1.QuerySupplyOfResponse\"+\202\323\344\223\002%\022" +
-      "#/cosmos/bank/v1beta1/supply/{denom}\022\200\001\n" +
-      "\006Params\022\'.cosmos.bank.v1beta1.QueryParam" +
-      "sRequest\032(.cosmos.bank.v1beta1.QueryPara" +
-      "msResponse\"#\202\323\344\223\002\035\022\033/cosmos/bank/v1beta1" +
-      "/params\022\246\001\n\rDenomMetadata\022..cosmos.bank." +
-      "v1beta1.QueryDenomMetadataRequest\032/.cosm" +
-      "os.bank.v1beta1.QueryDenomMetadataRespon" +
-      "se\"4\202\323\344\223\002.\022,/cosmos/bank/v1beta1/denoms_" +
-      "metadata/{denom}\022\241\001\n\016DenomsMetadata\022/.co" +
-      "smos.bank.v1beta1.QueryDenomsMetadataReq" +
-      "uest\0320.cosmos.bank.v1beta1.QueryDenomsMe" +
-      "tadataResponse\",\202\323\344\223\002&\022$/cosmos/bank/v1b" +
-      "eta1/denoms_metadataB+Z)github.com/cosmo" +
-      "s/cosmos-sdk/x/bank/typesb\006proto3"
+      "ceResponse\"8\202\323\344\223\0022\0220/cosmos/bank/v1beta1" +
+      "/balances/{address}/by_denom\022\233\001\n\013AllBala" +
+      "nces\022,.cosmos.bank.v1beta1.QueryAllBalan" +
+      "cesRequest\032-.cosmos.bank.v1beta1.QueryAl" +
+      "lBalancesResponse\"/\202\323\344\223\002)\022\'/cosmos/bank/" +
+      "v1beta1/balances/{address}\022\217\001\n\013TotalSupp" +
+      "ly\022,.cosmos.bank.v1beta1.QueryTotalSuppl" +
+      "yRequest\032-.cosmos.bank.v1beta1.QueryTota" +
+      "lSupplyResponse\"#\202\323\344\223\002\035\022\033/cosmos/bank/v1" +
+      "beta1/supply\022\216\001\n\010SupplyOf\022).cosmos.bank." +
+      "v1beta1.QuerySupplyOfRequest\032*.cosmos.ba" +
+      "nk.v1beta1.QuerySupplyOfResponse\"+\202\323\344\223\002%" +
+      "\022#/cosmos/bank/v1beta1/supply/{denom}\022\200\001" +
+      "\n\006Params\022\'.cosmos.bank.v1beta1.QueryPara" +
+      "msRequest\032(.cosmos.bank.v1beta1.QueryPar" +
+      "amsResponse\"#\202\323\344\223\002\035\022\033/cosmos/bank/v1beta" +
+      "1/params\022\246\001\n\rDenomMetadata\022..cosmos.bank" +
+      ".v1beta1.QueryDenomMetadataRequest\032/.cos" +
+      "mos.bank.v1beta1.QueryDenomMetadataRespo" +
+      "nse\"4\202\323\344\223\002.\022,/cosmos/bank/v1beta1/denoms" +
+      "_metadata/{denom}\022\241\001\n\016DenomsMetadata\022/.c" +
+      "osmos.bank.v1beta1.QueryDenomsMetadataRe" +
+      "quest\0320.cosmos.bank.v1beta1.QueryDenomsM" +
+      "etadataResponse\",\202\323\344\223\002&\022$/cosmos/bank/v1" +
+      "beta1/denoms_metadataB+Z)github.com/cosm" +
+      "os/cosmos-sdk/x/bank/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

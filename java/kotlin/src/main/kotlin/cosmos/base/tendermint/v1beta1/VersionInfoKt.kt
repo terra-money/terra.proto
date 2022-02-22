@@ -188,6 +188,10 @@ object VersionInfoKt {
       _builder.clearBuildDeps()
     }
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>string cosmos_sdk_version = 8;</code>
      */
     var cosmosSdkVersion: kotlin.String
@@ -198,6 +202,10 @@ object VersionInfoKt {
         _builder.setCosmosSdkVersion(value)
       }
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>string cosmos_sdk_version = 8;</code>
      */
     fun clearCosmosSdkVersion() {

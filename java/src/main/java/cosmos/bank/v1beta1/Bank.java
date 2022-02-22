@@ -5359,6 +5359,7 @@ public final class Bank {
     /**
      * <pre>
      * name defines the name of the token (eg: Cosmos Atom)
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>string name = 5;</code>
@@ -5368,6 +5369,7 @@ public final class Bank {
     /**
      * <pre>
      * name defines the name of the token (eg: Cosmos Atom)
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>string name = 5;</code>
@@ -5380,6 +5382,7 @@ public final class Bank {
      * <pre>
      * symbol is the token symbol usually shown on exchanges (eg: ATOM). This can
      * be the same as the display.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>string symbol = 6;</code>
@@ -5390,6 +5393,7 @@ public final class Bank {
      * <pre>
      * symbol is the token symbol usually shown on exchanges (eg: ATOM). This can
      * be the same as the display.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>string symbol = 6;</code>
@@ -5726,6 +5730,7 @@ public final class Bank {
     /**
      * <pre>
      * name defines the name of the token (eg: Cosmos Atom)
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>string name = 5;</code>
@@ -5747,6 +5752,7 @@ public final class Bank {
     /**
      * <pre>
      * name defines the name of the token (eg: Cosmos Atom)
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>string name = 5;</code>
@@ -5773,6 +5779,7 @@ public final class Bank {
      * <pre>
      * symbol is the token symbol usually shown on exchanges (eg: ATOM). This can
      * be the same as the display.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>string symbol = 6;</code>
@@ -5795,6 +5802,7 @@ public final class Bank {
      * <pre>
      * symbol is the token symbol usually shown on exchanges (eg: ATOM). This can
      * be the same as the display.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>string symbol = 6;</code>
@@ -6836,6 +6844,7 @@ public final class Bank {
       /**
        * <pre>
        * name defines the name of the token (eg: Cosmos Atom)
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>string name = 5;</code>
@@ -6856,6 +6865,7 @@ public final class Bank {
       /**
        * <pre>
        * name defines the name of the token (eg: Cosmos Atom)
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>string name = 5;</code>
@@ -6877,6 +6887,7 @@ public final class Bank {
       /**
        * <pre>
        * name defines the name of the token (eg: Cosmos Atom)
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>string name = 5;</code>
@@ -6896,6 +6907,7 @@ public final class Bank {
       /**
        * <pre>
        * name defines the name of the token (eg: Cosmos Atom)
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>string name = 5;</code>
@@ -6910,6 +6922,7 @@ public final class Bank {
       /**
        * <pre>
        * name defines the name of the token (eg: Cosmos Atom)
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>string name = 5;</code>
@@ -6933,6 +6946,7 @@ public final class Bank {
        * <pre>
        * symbol is the token symbol usually shown on exchanges (eg: ATOM). This can
        * be the same as the display.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>string symbol = 6;</code>
@@ -6954,6 +6968,7 @@ public final class Bank {
        * <pre>
        * symbol is the token symbol usually shown on exchanges (eg: ATOM). This can
        * be the same as the display.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>string symbol = 6;</code>
@@ -6976,6 +6991,7 @@ public final class Bank {
        * <pre>
        * symbol is the token symbol usually shown on exchanges (eg: ATOM). This can
        * be the same as the display.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>string symbol = 6;</code>
@@ -6996,6 +7012,7 @@ public final class Bank {
        * <pre>
        * symbol is the token symbol usually shown on exchanges (eg: ATOM). This can
        * be the same as the display.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>string symbol = 6;</code>
@@ -7011,6 +7028,7 @@ public final class Bank {
        * <pre>
        * symbol is the token symbol usually shown on exchanges (eg: ATOM). This can
        * be the same as the display.
+       * Since: cosmos-sdk 0.43
        * </pre>
        *
        * <code>string symbol = 6;</code>

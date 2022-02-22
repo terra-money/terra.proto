@@ -185,6 +185,7 @@ object MetadataKt {
     /**
      * <pre>
      * name defines the name of the token (eg: Cosmos Atom)
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>string name = 5;</code>
@@ -199,6 +200,7 @@ object MetadataKt {
     /**
      * <pre>
      * name defines the name of the token (eg: Cosmos Atom)
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>string name = 5;</code>
@@ -211,6 +213,7 @@ object MetadataKt {
      * <pre>
      * symbol is the token symbol usually shown on exchanges (eg: ATOM). This can
      * be the same as the display.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>string symbol = 6;</code>
@@ -226,6 +229,7 @@ object MetadataKt {
      * <pre>
      * symbol is the token symbol usually shown on exchanges (eg: ATOM). This can
      * be the same as the display.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>string symbol = 6;</code>

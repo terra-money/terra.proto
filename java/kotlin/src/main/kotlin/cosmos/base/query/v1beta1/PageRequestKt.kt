@@ -141,6 +141,7 @@ object PageRequestKt {
     /**
      * <pre>
      * reverse is set to true if results are to be returned in the descending order.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>bool reverse = 5;</code>
@@ -155,6 +156,7 @@ object PageRequestKt {
     /**
      * <pre>
      * reverse is set to true if results are to be returned in the descending order.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>bool reverse = 5;</code>

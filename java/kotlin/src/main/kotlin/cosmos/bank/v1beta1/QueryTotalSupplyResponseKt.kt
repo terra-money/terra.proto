@@ -116,6 +116,7 @@ object QueryTotalSupplyResponseKt {
     /**
      * <pre>
      * pagination defines the pagination in the response.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -130,6 +131,7 @@ object QueryTotalSupplyResponseKt {
     /**
      * <pre>
      * pagination defines the pagination in the response.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -140,6 +142,7 @@ object QueryTotalSupplyResponseKt {
     /**
      * <pre>
      * pagination defines the pagination in the response.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>

@@ -46,6 +46,7 @@ public final class Authz {
    * <pre>
    * SendAuthorization allows the grantee to spend up to spend_limit coins from
    * the granter's account.
+   * Since: cosmos-sdk 0.43
    * </pre>
    *
    * Protobuf type {@code cosmos.bank.v1beta1.SendAuthorization}
@@ -339,6 +340,7 @@ public final class Authz {
      * <pre>
      * SendAuthorization allows the grantee to spend up to spend_limit coins from
      * the granter's account.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * Protobuf type {@code cosmos.bank.v1beta1.SendAuthorization}

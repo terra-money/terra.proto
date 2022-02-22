@@ -2795,6 +2795,10 @@ public final class QueryOuterClass {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>bytes upgraded_consensus_state = 2;</code>
      * @return The upgradedConsensusState.
      */
@@ -2891,6 +2895,10 @@ public final class QueryOuterClass {
     public static final int UPGRADED_CONSENSUS_STATE_FIELD_NUMBER = 2;
     private com.google.protobuf.ByteString upgradedConsensusState_;
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>bytes upgraded_consensus_state = 2;</code>
      * @return The upgradedConsensusState.
      */
@@ -3208,6 +3216,10 @@ public final class QueryOuterClass {
 
       private com.google.protobuf.ByteString upgradedConsensusState_ = com.google.protobuf.ByteString.EMPTY;
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>bytes upgraded_consensus_state = 2;</code>
        * @return The upgradedConsensusState.
        */
@@ -3216,6 +3228,10 @@ public final class QueryOuterClass {
         return upgradedConsensusState_;
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>bytes upgraded_consensus_state = 2;</code>
        * @param value The upgradedConsensusState to set.
        * @return This builder for chaining.
@@ -3230,6 +3246,10 @@ public final class QueryOuterClass {
         return this;
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>bytes upgraded_consensus_state = 2;</code>
        * @return This builder for chaining.
        */
@@ -3324,6 +3344,7 @@ public final class QueryOuterClass {
    * <pre>
    * QueryModuleVersionsRequest is the request type for the Query/ModuleVersions
    * RPC method.
+   * Since: cosmos-sdk 0.43
    * </pre>
    *
    * Protobuf type {@code cosmos.upgrade.v1beta1.QueryModuleVersionsRequest}
@@ -3617,6 +3638,7 @@ public final class QueryOuterClass {
      * <pre>
      * QueryModuleVersionsRequest is the request type for the Query/ModuleVersions
      * RPC method.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * Protobuf type {@code cosmos.upgrade.v1beta1.QueryModuleVersionsRequest}
@@ -3976,6 +3998,7 @@ public final class QueryOuterClass {
    * <pre>
    * QueryModuleVersionsResponse is the response type for the Query/ModuleVersions
    * RPC method.
+   * Since: cosmos-sdk 0.43
    * </pre>
    *
    * Protobuf type {@code cosmos.upgrade.v1beta1.QueryModuleVersionsResponse}
@@ -4289,6 +4312,7 @@ public final class QueryOuterClass {
      * <pre>
      * QueryModuleVersionsResponse is the response type for the Query/ModuleVersions
      * RPC method.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * Protobuf type {@code cosmos.upgrade.v1beta1.QueryModuleVersionsResponse}

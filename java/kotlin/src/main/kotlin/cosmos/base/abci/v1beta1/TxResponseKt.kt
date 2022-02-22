@@ -404,7 +404,126 @@ object TxResponseKt {
     fun clearTimestamp() {
       _builder.clearTimestamp()
     }
-  }
+
+    /**
+     * An uninstantiable, behaviorless type to represent the field in
+     * generics.
+     */
+    @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
+    class EventsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    /**
+     * <pre>
+     * Events defines all the events emitted by processing a transaction. Note,
+     * these events include those emitted by processing all the messages and those
+     * emitted from the ante handler. Whereas Logs contains the events, with
+     * additional metadata, emitted only by processing the messages.
+     * Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
+     * </pre>
+     *
+     * <code>repeated .tendermint.abci.Event events = 13 [(.gogoproto.nullable) = false];</code>
+     */
+     val events: com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>
+      @kotlin.jvm.JvmSynthetic
+      get() = com.google.protobuf.kotlin.DslList(
+        _builder.getEventsList()
+      )
+    /**
+     * <pre>
+     * Events defines all the events emitted by processing a transaction. Note,
+     * these events include those emitted by processing all the messages and those
+     * emitted from the ante handler. Whereas Logs contains the events, with
+     * additional metadata, emitted only by processing the messages.
+     * Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
+     * </pre>
+     *
+     * <code>repeated .tendermint.abci.Event events = 13 [(.gogoproto.nullable) = false];</code>
+     * @param value The events to add.
+     */
+    @kotlin.jvm.JvmSynthetic
+    @kotlin.jvm.JvmName("addEvents")
+    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.add(value: tendermint.abci.Types.Event) {
+      _builder.addEvents(value)
+    }/**
+     * <pre>
+     * Events defines all the events emitted by processing a transaction. Note,
+     * these events include those emitted by processing all the messages and those
+     * emitted from the ante handler. Whereas Logs contains the events, with
+     * additional metadata, emitted only by processing the messages.
+     * Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
+     * </pre>
+     *
+     * <code>repeated .tendermint.abci.Event events = 13 [(.gogoproto.nullable) = false];</code>
+     * @param value The events to add.
+     */
+    @kotlin.jvm.JvmSynthetic
+    @kotlin.jvm.JvmName("plusAssignEvents")
+    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(value: tendermint.abci.Types.Event) {
+      add(value)
+    }/**
+     * <pre>
+     * Events defines all the events emitted by processing a transaction. Note,
+     * these events include those emitted by processing all the messages and those
+     * emitted from the ante handler. Whereas Logs contains the events, with
+     * additional metadata, emitted only by processing the messages.
+     * Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
+     * </pre>
+     *
+     * <code>repeated .tendermint.abci.Event events = 13 [(.gogoproto.nullable) = false];</code>
+     * @param values The events to add.
+     */
+    @kotlin.jvm.JvmSynthetic
+    @kotlin.jvm.JvmName("addAllEvents")
+    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.addAll(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
+      _builder.addAllEvents(values)
+    }/**
+     * <pre>
+     * Events defines all the events emitted by processing a transaction. Note,
+     * these events include those emitted by processing all the messages and those
+     * emitted from the ante handler. Whereas Logs contains the events, with
+     * additional metadata, emitted only by processing the messages.
+     * Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
+     * </pre>
+     *
+     * <code>repeated .tendermint.abci.Event events = 13 [(.gogoproto.nullable) = false];</code>
+     * @param values The events to add.
+     */
+    @kotlin.jvm.JvmSynthetic
+    @kotlin.jvm.JvmName("plusAssignAllEvents")
+    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
+      addAll(values)
+    }/**
+     * <pre>
+     * Events defines all the events emitted by processing a transaction. Note,
+     * these events include those emitted by processing all the messages and those
+     * emitted from the ante handler. Whereas Logs contains the events, with
+     * additional metadata, emitted only by processing the messages.
+     * Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
+     * </pre>
+     *
+     * <code>repeated .tendermint.abci.Event events = 13 [(.gogoproto.nullable) = false];</code>
+     * @param index The index to set the value at.
+     * @param value The events to set.
+     */
+    @kotlin.jvm.JvmSynthetic
+    @kotlin.jvm.JvmName("setEvents")
+    operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.set(index: kotlin.Int, value: tendermint.abci.Types.Event) {
+      _builder.setEvents(index, value)
+    }/**
+     * <pre>
+     * Events defines all the events emitted by processing a transaction. Note,
+     * these events include those emitted by processing all the messages and those
+     * emitted from the ante handler. Whereas Logs contains the events, with
+     * additional metadata, emitted only by processing the messages.
+     * Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
+     * </pre>
+     *
+     * <code>repeated .tendermint.abci.Event events = 13 [(.gogoproto.nullable) = false];</code>
+     */
+    @kotlin.jvm.JvmSynthetic
+    @kotlin.jvm.JvmName("clearEvents")
+    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.clear() {
+      _builder.clearEvents()
+    }}
 }
 @kotlin.jvm.JvmSynthetic
 inline fun cosmos.base.abci.v1beta1.Abci.TxResponse.copy(block: cosmos.base.abci.v1beta1.TxResponseKt.Dsl.() -> Unit): cosmos.base.abci.v1beta1.Abci.TxResponse =

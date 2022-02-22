@@ -64,6 +64,7 @@ object SimulateRequestKt {
     /**
      * <pre>
      * tx_bytes is the raw transaction.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>bytes tx_bytes = 2;</code>
@@ -78,6 +79,7 @@ object SimulateRequestKt {
     /**
      * <pre>
      * tx_bytes is the raw transaction.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>bytes tx_bytes = 2;</code>

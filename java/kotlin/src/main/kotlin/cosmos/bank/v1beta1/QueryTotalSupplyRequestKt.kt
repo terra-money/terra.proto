@@ -25,6 +25,7 @@ object QueryTotalSupplyRequestKt {
     /**
      * <pre>
      * pagination defines an optional pagination for the request.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -39,6 +40,7 @@ object QueryTotalSupplyRequestKt {
     /**
      * <pre>
      * pagination defines an optional pagination for the request.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -49,6 +51,7 @@ object QueryTotalSupplyRequestKt {
     /**
      * <pre>
      * pagination defines an optional pagination for the request.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>

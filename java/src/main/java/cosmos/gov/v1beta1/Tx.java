@@ -2896,6 +2896,7 @@ public final class Tx {
   /**
    * <pre>
    * MsgVoteWeighted defines a message to cast a vote.
+   * Since: cosmos-sdk 0.43
    * </pre>
    *
    * Protobuf type {@code cosmos.gov.v1beta1.MsgVoteWeighted}
@@ -3271,6 +3272,7 @@ public final class Tx {
     /**
      * <pre>
      * MsgVoteWeighted defines a message to cast a vote.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * Protobuf type {@code cosmos.gov.v1beta1.MsgVoteWeighted}
@@ -3876,6 +3878,7 @@ public final class Tx {
   /**
    * <pre>
    * MsgVoteWeightedResponse defines the Msg/VoteWeighted response type.
+   * Since: cosmos-sdk 0.43
    * </pre>
    *
    * Protobuf type {@code cosmos.gov.v1beta1.MsgVoteWeightedResponse}
@@ -4101,6 +4104,7 @@ public final class Tx {
     /**
      * <pre>
      * MsgVoteWeightedResponse defines the Msg/VoteWeighted response type.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * Protobuf type {@code cosmos.gov.v1beta1.MsgVoteWeightedResponse}

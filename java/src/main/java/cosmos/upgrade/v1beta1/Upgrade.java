@@ -3253,6 +3253,7 @@ public final class Upgrade {
   /**
    * <pre>
    * ModuleVersion specifies a module and its consensus version.
+   * Since: cosmos-sdk 0.43
    * </pre>
    *
    * Protobuf type {@code cosmos.upgrade.v1beta1.ModuleVersion}
@@ -3573,6 +3574,7 @@ public final class Upgrade {
     /**
      * <pre>
      * ModuleVersion specifies a module and its consensus version.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * Protobuf type {@code cosmos.upgrade.v1beta1.ModuleVersion}

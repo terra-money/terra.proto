@@ -23,6 +23,10 @@ object QueryUpgradedConsensusStateResponseKt {
     internal fun _build(): cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateResponse = _builder.build()
 
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>bytes upgraded_consensus_state = 2;</code>
      */
     var upgradedConsensusState: com.google.protobuf.ByteString
@@ -33,6 +37,10 @@ object QueryUpgradedConsensusStateResponseKt {
         _builder.setUpgradedConsensusState(value)
       }
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>bytes upgraded_consensus_state = 2;</code>
      */
     fun clearUpgradedConsensusState() {

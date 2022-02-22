@@ -429,6 +429,7 @@ public final class Gov {
   /**
    * <pre>
    * WeightedVoteOption defines a unit of vote for vote split.
+   * Since: cosmos-sdk 0.43
    * </pre>
    *
    * Protobuf type {@code cosmos.gov.v1beta1.WeightedVoteOption}
@@ -745,6 +746,7 @@ public final class Gov {
     /**
      * <pre>
      * WeightedVoteOption defines a unit of vote for vote split.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * Protobuf type {@code cosmos.gov.v1beta1.WeightedVoteOption}
@@ -6103,24 +6105,44 @@ public final class Gov {
     @java.lang.Deprecated cosmos.gov.v1beta1.Gov.VoteOption getOption();
 
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
      */
     java.util.List<cosmos.gov.v1beta1.Gov.WeightedVoteOption> 
         getOptionsList();
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
      */
     cosmos.gov.v1beta1.Gov.WeightedVoteOption getOptions(int index);
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
      */
     int getOptionsCount();
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
      */
     java.util.List<? extends cosmos.gov.v1beta1.Gov.WeightedVoteOptionOrBuilder> 
         getOptionsOrBuilderList();
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
      */
     cosmos.gov.v1beta1.Gov.WeightedVoteOptionOrBuilder getOptionsOrBuilder(
@@ -6324,6 +6346,10 @@ public final class Gov {
     public static final int OPTIONS_FIELD_NUMBER = 4;
     private java.util.List<cosmos.gov.v1beta1.Gov.WeightedVoteOption> options_;
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
      */
     @java.lang.Override
@@ -6331,6 +6357,10 @@ public final class Gov {
       return options_;
     }
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
      */
     @java.lang.Override
@@ -6339,6 +6369,10 @@ public final class Gov {
       return options_;
     }
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
      */
     @java.lang.Override
@@ -6346,6 +6380,10 @@ public final class Gov {
       return options_.size();
     }
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
      */
     @java.lang.Override
@@ -6353,6 +6391,10 @@ public final class Gov {
       return options_.get(index);
     }
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
      */
     @java.lang.Override
@@ -6963,6 +7005,10 @@ public final class Gov {
           cosmos.gov.v1beta1.Gov.WeightedVoteOption, cosmos.gov.v1beta1.Gov.WeightedVoteOption.Builder, cosmos.gov.v1beta1.Gov.WeightedVoteOptionOrBuilder> optionsBuilder_;
 
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public java.util.List<cosmos.gov.v1beta1.Gov.WeightedVoteOption> getOptionsList() {
@@ -6973,6 +7019,10 @@ public final class Gov {
         }
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public int getOptionsCount() {
@@ -6983,6 +7033,10 @@ public final class Gov {
         }
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.gov.v1beta1.Gov.WeightedVoteOption getOptions(int index) {
@@ -6993,6 +7047,10 @@ public final class Gov {
         }
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public Builder setOptions(
@@ -7010,6 +7068,10 @@ public final class Gov {
         return this;
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public Builder setOptions(
@@ -7024,6 +7086,10 @@ public final class Gov {
         return this;
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public Builder addOptions(cosmos.gov.v1beta1.Gov.WeightedVoteOption value) {
@@ -7040,6 +7106,10 @@ public final class Gov {
         return this;
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public Builder addOptions(
@@ -7057,6 +7127,10 @@ public final class Gov {
         return this;
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public Builder addOptions(
@@ -7071,6 +7145,10 @@ public final class Gov {
         return this;
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public Builder addOptions(
@@ -7085,6 +7163,10 @@ public final class Gov {
         return this;
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public Builder addAllOptions(
@@ -7100,6 +7182,10 @@ public final class Gov {
         return this;
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearOptions() {
@@ -7113,6 +7199,10 @@ public final class Gov {
         return this;
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public Builder removeOptions(int index) {
@@ -7126,6 +7216,10 @@ public final class Gov {
         return this;
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.gov.v1beta1.Gov.WeightedVoteOption.Builder getOptionsBuilder(
@@ -7133,6 +7227,10 @@ public final class Gov {
         return getOptionsFieldBuilder().getBuilder(index);
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.gov.v1beta1.Gov.WeightedVoteOptionOrBuilder getOptionsOrBuilder(
@@ -7143,6 +7241,10 @@ public final class Gov {
         }
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public java.util.List<? extends cosmos.gov.v1beta1.Gov.WeightedVoteOptionOrBuilder> 
@@ -7154,6 +7256,10 @@ public final class Gov {
         }
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.gov.v1beta1.Gov.WeightedVoteOption.Builder addOptionsBuilder() {
@@ -7161,6 +7267,10 @@ public final class Gov {
             cosmos.gov.v1beta1.Gov.WeightedVoteOption.getDefaultInstance());
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.gov.v1beta1.Gov.WeightedVoteOption.Builder addOptionsBuilder(
@@ -7169,6 +7279,10 @@ public final class Gov {
             index, cosmos.gov.v1beta1.Gov.WeightedVoteOption.getDefaultInstance());
       }
       /**
+       * <pre>
+       * Since: cosmos-sdk 0.43
+       * </pre>
+       *
        * <code>repeated .cosmos.gov.v1beta1.WeightedVoteOption options = 4 [(.gogoproto.nullable) = false];</code>
        */
       public java.util.List<cosmos.gov.v1beta1.Gov.WeightedVoteOption.Builder> 

@@ -48,6 +48,7 @@ public final class QueryOuterClass {
   /**
    * <pre>
    * QueryAccountsRequest is the request type for the Query/Accounts RPC method.
+   * Since: cosmos-sdk 0.43
    * </pre>
    *
    * Protobuf type {@code cosmos.auth.v1beta1.QueryAccountsRequest}
@@ -340,6 +341,7 @@ public final class QueryOuterClass {
     /**
      * <pre>
      * QueryAccountsRequest is the request type for the Query/Accounts RPC method.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * Protobuf type {@code cosmos.auth.v1beta1.QueryAccountsRequest}
@@ -781,6 +783,7 @@ public final class QueryOuterClass {
   /**
    * <pre>
    * QueryAccountsResponse is the response type for the Query/Accounts RPC method.
+   * Since: cosmos-sdk 0.43
    * </pre>
    *
    * Protobuf type {@code cosmos.auth.v1beta1.QueryAccountsResponse}
@@ -1160,6 +1163,7 @@ public final class QueryOuterClass {
     /**
      * <pre>
      * QueryAccountsResponse is the response type for the Query/Accounts RPC method.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * Protobuf type {@code cosmos.auth.v1beta1.QueryAccountsResponse}
