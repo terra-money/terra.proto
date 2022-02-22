@@ -335,7 +335,7 @@ dependencies = [
 
 [[package]]
 name = "terra-proto"
-version = "0.5.12-beta.4"
+version = "0.5.16-beta.1"
 dependencies = [
  "base64",
  "prost",
