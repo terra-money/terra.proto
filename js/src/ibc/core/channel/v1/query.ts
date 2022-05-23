@@ -243,6 +243,8 @@ export interface QueryPacketAcknowledgementsRequest {
   channelId: string;
   /** pagination request */
   pagination?: PageRequest;
+  /** list of packet sequences */
+  packetCommitmentSequences: Long[];
 }
 
 /**
@@ -1937,7 +1939,11 @@ export const QueryPacketAcknowledgementResponse = {
   },
 };
 
-const baseQueryPacketAcknowledgementsRequest: object = { portId: "", channelId: "" };
+const baseQueryPacketAcknowledgementsRequest: object = {
+  portId: "",
+  channelId: "",
+  packetCommitmentSequences: Long.UZERO,
+};
 
 export const QueryPacketAcknowledgementsRequest = {
   encode(message: QueryPacketAcknowledgementsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -1950,6 +1956,11 @@ export const QueryPacketAcknowledgementsRequest = {
     if (message.pagination !== undefined) {
       PageRequest.encode(message.pagination, writer.uint32(26).fork()).ldelim();
     }
+    writer.uint32(34).fork();
+    for (const v of message.packetCommitmentSequences) {
+      writer.uint64(v);
+    }
+    writer.ldelim();
     return writer;
   },
 
@@ -1957,6 +1968,7 @@ export const QueryPacketAcknowledgementsRequest = {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseQueryPacketAcknowledgementsRequest } as QueryPacketAcknowledgementsRequest;
+    message.packetCommitmentSequences = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1969,6 +1981,16 @@ export const QueryPacketAcknowledgementsRequest = {
         case 3:
           message.pagination = PageRequest.decode(reader, reader.uint32());
           break;
+        case 4:
+          if ((tag & 7) === 2) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.packetCommitmentSequences.push(reader.uint64() as Long);
+            }
+          } else {
+            message.packetCommitmentSequences.push(reader.uint64() as Long);
+          }
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1979,6 +2001,7 @@ export const QueryPacketAcknowledgementsRequest = {
 
   fromJSON(object: any): QueryPacketAcknowledgementsRequest {
     const message = { ...baseQueryPacketAcknowledgementsRequest } as QueryPacketAcknowledgementsRequest;
+    message.packetCommitmentSequences = [];
     if (object.portId !== undefined && object.portId !== null) {
       message.portId = String(object.portId);
     } else {
@@ -1994,6 +2017,11 @@ export const QueryPacketAcknowledgementsRequest = {
     } else {
       message.pagination = undefined;
     }
+    if (object.packetCommitmentSequences !== undefined && object.packetCommitmentSequences !== null) {
+      for (const e of object.packetCommitmentSequences) {
+        message.packetCommitmentSequences.push(Long.fromString(e));
+      }
+    }
     return message;
   },
 
@@ -2003,11 +2031,19 @@ export const QueryPacketAcknowledgementsRequest = {
     message.channelId !== undefined && (obj.channelId = message.channelId);
     message.pagination !== undefined &&
       (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    if (message.packetCommitmentSequences) {
+      obj.packetCommitmentSequences = message.packetCommitmentSequences.map((e) =>
+        (e || Long.UZERO).toString(),
+      );
+    } else {
+      obj.packetCommitmentSequences = [];
+    }
     return obj;
   },
 
   fromPartial(object: DeepPartial<QueryPacketAcknowledgementsRequest>): QueryPacketAcknowledgementsRequest {
     const message = { ...baseQueryPacketAcknowledgementsRequest } as QueryPacketAcknowledgementsRequest;
+    message.packetCommitmentSequences = [];
     if (object.portId !== undefined && object.portId !== null) {
       message.portId = object.portId;
     } else {
@@ -2022,6 +2058,11 @@ export const QueryPacketAcknowledgementsRequest = {
       message.pagination = PageRequest.fromPartial(object.pagination);
     } else {
       message.pagination = undefined;
+    }
+    if (object.packetCommitmentSequences !== undefined && object.packetCommitmentSequences !== null) {
+      for (const e of object.packetCommitmentSequences) {
+        message.packetCommitmentSequences.push(e);
+      }
     }
     return message;
   },

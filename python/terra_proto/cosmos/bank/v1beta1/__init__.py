@@ -88,10 +88,10 @@ class Metadata(betterproto.Message):
     base: str = betterproto.string_field(3)
     # display indicates the suggested denom that should be displayed in clients.
     display: str = betterproto.string_field(4)
-    # name defines the name of the token (eg: Cosmos Atom)
+    # name defines the name of the token (eg: Cosmos Atom) Since: cosmos-sdk 0.43
     name: str = betterproto.string_field(5)
     # symbol is the token symbol usually shown on exchanges (eg: ATOM). This can
-    # be the same as the display.
+    # be the same as the display. Since: cosmos-sdk 0.43
     symbol: str = betterproto.string_field(6)
 
 
@@ -179,13 +179,40 @@ class QueryAllBalancesResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class QuerySpendableBalancesRequest(betterproto.Message):
+    """
+    QuerySpendableBalancesRequest defines the gRPC request structure for
+    querying an account's spendable balances.
+    """
+
+    # address is the address to query spendable balances for.
+    address: str = betterproto.string_field(1)
+    # pagination defines an optional pagination for the request.
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class QuerySpendableBalancesResponse(betterproto.Message):
+    """
+    QuerySpendableBalancesResponse defines the gRPC response structure for
+    querying an account's spendable balances.
+    """
+
+    # balances is the spendable balances of all the coins.
+    balances: List["__base_v1_beta1__.Coin"] = betterproto.message_field(1)
+    # pagination defines the pagination in the response.
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
 class QueryTotalSupplyRequest(betterproto.Message):
     """
     QueryTotalSupplyRequest is the request type for the Query/TotalSupply RPC
     method.
     """
 
-    # pagination defines an optional pagination for the request.
+    # pagination defines an optional pagination for the request. Since: cosmos-
+    # sdk 0.43
     pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(1)
 
 
@@ -198,7 +225,7 @@ class QueryTotalSupplyResponse(betterproto.Message):
 
     # supply is the supply of the coins
     supply: List["__base_v1_beta1__.Coin"] = betterproto.message_field(1)
-    # pagination defines the pagination in the response.
+    # pagination defines the pagination in the response. Since: cosmos-sdk 0.43
     pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
 
 
@@ -293,7 +320,7 @@ class QueryDenomMetadataResponse(betterproto.Message):
 class SendAuthorization(betterproto.Message):
     """
     SendAuthorization allows the grantee to spend up to spend_limit coins from
-    the granter's account.
+    the granter's account. Since: cosmos-sdk 0.43
     """
 
     spend_limit: List["__base_v1_beta1__.Coin"] = betterproto.message_field(1)
@@ -395,6 +422,24 @@ class QueryStub(betterproto.ServiceStub):
 
         return await self._unary_unary(
             "/cosmos.bank.v1beta1.Query/AllBalances", request, QueryAllBalancesResponse
+        )
+
+    async def spendable_balances(
+        self,
+        *,
+        address: str = "",
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
+    ) -> "QuerySpendableBalancesResponse":
+
+        request = QuerySpendableBalancesRequest()
+        request.address = address
+        if pagination is not None:
+            request.pagination = pagination
+
+        return await self._unary_unary(
+            "/cosmos.bank.v1beta1.Query/SpendableBalances",
+            request,
+            QuerySpendableBalancesResponse,
         )
 
     async def total_supply(
@@ -515,6 +560,11 @@ class QueryBase(ServiceBase):
     ) -> "QueryAllBalancesResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def spendable_balances(
+        self, address: str, pagination: "__base_query_v1_beta1__.PageRequest"
+    ) -> "QuerySpendableBalancesResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
     async def total_supply(
         self, pagination: "__base_query_v1_beta1__.PageRequest"
     ) -> "QueryTotalSupplyResponse":
@@ -554,6 +604,17 @@ class QueryBase(ServiceBase):
         }
 
         response = await self.all_balances(**request_kwargs)
+        await stream.send_message(response)
+
+    async def __rpc_spendable_balances(self, stream: grpclib.server.Stream) -> None:
+        request = await stream.recv_message()
+
+        request_kwargs = {
+            "address": request.address,
+            "pagination": request.pagination,
+        }
+
+        response = await self.spendable_balances(**request_kwargs)
         await stream.send_message(response)
 
     async def __rpc_total_supply(self, stream: grpclib.server.Stream) -> None:
@@ -617,6 +678,12 @@ class QueryBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryAllBalancesRequest,
                 QueryAllBalancesResponse,
+            ),
+            "/cosmos.bank.v1beta1.Query/SpendableBalances": grpclib.const.Handler(
+                self.__rpc_spendable_balances,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                QuerySpendableBalancesRequest,
+                QuerySpendableBalancesResponse,
             ),
             "/cosmos.bank.v1beta1.Query/TotalSupply": grpclib.const.Handler(
                 self.__rpc_total_supply,

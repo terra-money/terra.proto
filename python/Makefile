@@ -3,7 +3,7 @@ all: init proto-gen build
 init:
 	@echo "Pull External Protofiles"
 	git submodule init
-	git submodule update
+	git submodule update --remote
 
 #@echo "Install dependencies"
 #npm i

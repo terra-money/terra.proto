@@ -55,6 +55,24 @@ export interface QueryParamsResponse {
   params?: Params;
 }
 
+/**
+ * QueryDenomHashRequest is the request type for the Query/DenomHash RPC
+ * method
+ */
+export interface QueryDenomHashRequest {
+  /** The denomination trace ([port_id]/[channel_id])+/[denom] */
+  trace: string;
+}
+
+/**
+ * QueryDenomHashResponse is the response type for the Query/DenomHash RPC
+ * method.
+ */
+export interface QueryDenomHashResponse {
+  /** hash (in hex format) of the denomination trace information. */
+  hash: string;
+}
+
 const baseQueryDenomTraceRequest: object = { hash: "" };
 
 export const QueryDenomTraceRequest = {
@@ -395,6 +413,116 @@ export const QueryParamsResponse = {
   },
 };
 
+const baseQueryDenomHashRequest: object = { trace: "" };
+
+export const QueryDenomHashRequest = {
+  encode(message: QueryDenomHashRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.trace !== "") {
+      writer.uint32(10).string(message.trace);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryDenomHashRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryDenomHashRequest } as QueryDenomHashRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.trace = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryDenomHashRequest {
+    const message = { ...baseQueryDenomHashRequest } as QueryDenomHashRequest;
+    if (object.trace !== undefined && object.trace !== null) {
+      message.trace = String(object.trace);
+    } else {
+      message.trace = "";
+    }
+    return message;
+  },
+
+  toJSON(message: QueryDenomHashRequest): unknown {
+    const obj: any = {};
+    message.trace !== undefined && (obj.trace = message.trace);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryDenomHashRequest>): QueryDenomHashRequest {
+    const message = { ...baseQueryDenomHashRequest } as QueryDenomHashRequest;
+    if (object.trace !== undefined && object.trace !== null) {
+      message.trace = object.trace;
+    } else {
+      message.trace = "";
+    }
+    return message;
+  },
+};
+
+const baseQueryDenomHashResponse: object = { hash: "" };
+
+export const QueryDenomHashResponse = {
+  encode(message: QueryDenomHashResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.hash !== "") {
+      writer.uint32(10).string(message.hash);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryDenomHashResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryDenomHashResponse } as QueryDenomHashResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.hash = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryDenomHashResponse {
+    const message = { ...baseQueryDenomHashResponse } as QueryDenomHashResponse;
+    if (object.hash !== undefined && object.hash !== null) {
+      message.hash = String(object.hash);
+    } else {
+      message.hash = "";
+    }
+    return message;
+  },
+
+  toJSON(message: QueryDenomHashResponse): unknown {
+    const obj: any = {};
+    message.hash !== undefined && (obj.hash = message.hash);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryDenomHashResponse>): QueryDenomHashResponse {
+    const message = { ...baseQueryDenomHashResponse } as QueryDenomHashResponse;
+    if (object.hash !== undefined && object.hash !== null) {
+      message.hash = object.hash;
+    } else {
+      message.hash = "";
+    }
+    return message;
+  },
+};
+
 /** Query provides defines the gRPC querier service. */
 export interface Query {
   /** DenomTrace queries a denomination trace information. */
@@ -409,6 +537,11 @@ export interface Query {
   ): Promise<QueryDenomTracesResponse>;
   /** Params queries all parameters of the ibc-transfer module. */
   Params(request: DeepPartial<QueryParamsRequest>, metadata?: grpc.Metadata): Promise<QueryParamsResponse>;
+  /** DenomHash queries a denomination hash information. */
+  DenomHash(
+    request: DeepPartial<QueryDenomHashRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryDenomHashResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -419,6 +552,7 @@ export class QueryClientImpl implements Query {
     this.DenomTrace = this.DenomTrace.bind(this);
     this.DenomTraces = this.DenomTraces.bind(this);
     this.Params = this.Params.bind(this);
+    this.DenomHash = this.DenomHash.bind(this);
   }
 
   DenomTrace(
@@ -437,6 +571,13 @@ export class QueryClientImpl implements Query {
 
   Params(request: DeepPartial<QueryParamsRequest>, metadata?: grpc.Metadata): Promise<QueryParamsResponse> {
     return this.rpc.unary(QueryParamsDesc, QueryParamsRequest.fromPartial(request), metadata);
+  }
+
+  DenomHash(
+    request: DeepPartial<QueryDenomHashRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryDenomHashResponse> {
+    return this.rpc.unary(QueryDenomHashDesc, QueryDenomHashRequest.fromPartial(request), metadata);
   }
 }
 
@@ -502,6 +643,28 @@ export const QueryParamsDesc: UnaryMethodDefinitionish = {
     deserializeBinary(data: Uint8Array) {
       return {
         ...QueryParamsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryDenomHashDesc: UnaryMethodDefinitionish = {
+  methodName: "DenomHash",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryDenomHashRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryDenomHashResponse.decode(data),
         toObject() {
           return this;
         },

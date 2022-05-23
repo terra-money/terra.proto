@@ -33,6 +33,20 @@ class Grant(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class GrantAuthorization(betterproto.Message):
+    """
+    GrantAuthorization extends a grant with both the addresses of the grantee
+    and granter. It is used in genesis.proto and query.proto Since: cosmos-sdk
+    0.45.2
+    """
+
+    granter: str = betterproto.string_field(1)
+    grantee: str = betterproto.string_field(2)
+    authorization: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(3)
+    expiration: datetime = betterproto.message_field(4)
+
+
+@dataclass(eq=False, repr=False)
 class MsgGrant(betterproto.Message):
     """
     MsgGrant is a request type for Grant method. It declares authorization to
@@ -121,6 +135,56 @@ class QueryGrantsResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class QueryGranterGrantsRequest(betterproto.Message):
+    """
+    QueryGranterGrantsRequest is the request type for the Query/GranterGrants
+    RPC method.
+    """
+
+    granter: str = betterproto.string_field(1)
+    # pagination defines an pagination for the request.
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class QueryGranterGrantsResponse(betterproto.Message):
+    """
+    QueryGranterGrantsResponse is the response type for the Query/GranterGrants
+    RPC method.
+    """
+
+    # grants is a list of grants granted by the granter.
+    grants: List["GrantAuthorization"] = betterproto.message_field(1)
+    # pagination defines an pagination for the response.
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class QueryGranteeGrantsRequest(betterproto.Message):
+    """
+    QueryGranteeGrantsRequest is the request type for the Query/IssuedGrants
+    RPC method.
+    """
+
+    grantee: str = betterproto.string_field(1)
+    # pagination defines an pagination for the request.
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class QueryGranteeGrantsResponse(betterproto.Message):
+    """
+    QueryGranteeGrantsResponse is the response type for the Query/GranteeGrants
+    RPC method.
+    """
+
+    # grants is a list of grants granted to the grantee.
+    grants: List["GrantAuthorization"] = betterproto.message_field(1)
+    # pagination defines an pagination for the response.
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
 class EventGrant(betterproto.Message):
     """EventGrant is emitted on Msg/Grant"""
 
@@ -149,16 +213,6 @@ class GenesisState(betterproto.Message):
     """GenesisState defines the authz module's genesis state."""
 
     authorization: List["GrantAuthorization"] = betterproto.message_field(1)
-
-
-@dataclass(eq=False, repr=False)
-class GrantAuthorization(betterproto.Message):
-    """GrantAuthorization defines the GenesisState/GrantAuthorization type."""
-
-    granter: str = betterproto.string_field(1)
-    grantee: str = betterproto.string_field(2)
-    authorization: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(3)
-    expiration: datetime = betterproto.message_field(4)
 
 
 class MsgStub(betterproto.ServiceStub):
@@ -226,6 +280,42 @@ class QueryStub(betterproto.ServiceStub):
 
         return await self._unary_unary(
             "/cosmos.authz.v1beta1.Query/Grants", request, QueryGrantsResponse
+        )
+
+    async def granter_grants(
+        self,
+        *,
+        granter: str = "",
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
+    ) -> "QueryGranterGrantsResponse":
+
+        request = QueryGranterGrantsRequest()
+        request.granter = granter
+        if pagination is not None:
+            request.pagination = pagination
+
+        return await self._unary_unary(
+            "/cosmos.authz.v1beta1.Query/GranterGrants",
+            request,
+            QueryGranterGrantsResponse,
+        )
+
+    async def grantee_grants(
+        self,
+        *,
+        grantee: str = "",
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
+    ) -> "QueryGranteeGrantsResponse":
+
+        request = QueryGranteeGrantsRequest()
+        request.grantee = grantee
+        if pagination is not None:
+            request.pagination = pagination
+
+        return await self._unary_unary(
+            "/cosmos.authz.v1beta1.Query/GranteeGrants",
+            request,
+            QueryGranteeGrantsResponse,
         )
 
 
@@ -313,6 +403,16 @@ class QueryBase(ServiceBase):
     ) -> "QueryGrantsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def granter_grants(
+        self, granter: str, pagination: "__base_query_v1_beta1__.PageRequest"
+    ) -> "QueryGranterGrantsResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def grantee_grants(
+        self, grantee: str, pagination: "__base_query_v1_beta1__.PageRequest"
+    ) -> "QueryGranteeGrantsResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
     async def __rpc_grants(self, stream: grpclib.server.Stream) -> None:
         request = await stream.recv_message()
 
@@ -326,6 +426,28 @@ class QueryBase(ServiceBase):
         response = await self.grants(**request_kwargs)
         await stream.send_message(response)
 
+    async def __rpc_granter_grants(self, stream: grpclib.server.Stream) -> None:
+        request = await stream.recv_message()
+
+        request_kwargs = {
+            "granter": request.granter,
+            "pagination": request.pagination,
+        }
+
+        response = await self.granter_grants(**request_kwargs)
+        await stream.send_message(response)
+
+    async def __rpc_grantee_grants(self, stream: grpclib.server.Stream) -> None:
+        request = await stream.recv_message()
+
+        request_kwargs = {
+            "grantee": request.grantee,
+            "pagination": request.pagination,
+        }
+
+        response = await self.grantee_grants(**request_kwargs)
+        await stream.send_message(response)
+
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
             "/cosmos.authz.v1beta1.Query/Grants": grpclib.const.Handler(
@@ -333,6 +455,18 @@ class QueryBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryGrantsRequest,
                 QueryGrantsResponse,
+            ),
+            "/cosmos.authz.v1beta1.Query/GranterGrants": grpclib.const.Handler(
+                self.__rpc_granter_grants,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                QueryGranterGrantsRequest,
+                QueryGranterGrantsResponse,
+            ),
+            "/cosmos.authz.v1beta1.Query/GranteeGrants": grpclib.const.Handler(
+                self.__rpc_grantee_grants,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                QueryGranteeGrantsRequest,
+                QueryGranteeGrantsResponse,
             ),
         }
 

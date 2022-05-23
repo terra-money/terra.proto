@@ -1,6 +1,6 @@
 {
   "name": "@terra-money/terra.proto",
-  "version": "0.1.6",
+  "version": "0.2.0-beta.0",
   "description": "JS and TS types relating to Protocol Buffers used by Terra project",
   "contributors": [
     "Yun Yeo <YunSuk-Yeo@users.noreply.github.com>"
@@ -17,7 +17,7 @@
     "confio/",
     "cosmos/",
     "cosmos_proto/",
-    "terra/",
+    "wasm/",
     "gogoproto/",
     "google/",
     "ibc/",
