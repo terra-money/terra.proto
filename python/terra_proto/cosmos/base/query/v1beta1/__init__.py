@@ -30,7 +30,7 @@ class PageRequest(betterproto.Message):
     # is set.
     count_total: bool = betterproto.bool_field(4)
     # reverse is set to true if results are to be returned in the descending
-    # order.
+    # order. Since: cosmos-sdk 0.43
     reverse: bool = betterproto.bool_field(5)
 
 

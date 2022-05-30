@@ -41,6 +41,21 @@ class Order(betterproto.Enum):
     ORDER_ORDERED = 2
 
 
+class ResponseResultType(betterproto.Enum):
+    """
+    ResponseResultType defines the possible outcomes of the execution of a
+    message
+    """
+
+    # Default zero value enumeration
+    RESPONSE_RESULT_TYPE_UNSPECIFIED = 0
+    # The message did not call the IBC application callbacks (because, for
+    # example, the packet had already been relayed)
+    RESPONSE_RESULT_TYPE_NOOP = 1
+    # The message was executed successfully
+    RESPONSE_RESULT_TYPE_SUCCESS = 2
+
+
 @dataclass(eq=False, repr=False)
 class Channel(betterproto.Message):
     """
@@ -142,6 +157,22 @@ class PacketState(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class PacketId(betterproto.Message):
+    """
+    PacketId is an identifer for a unique Packet Source chains refer to packets
+    by source port/channel Destination chains refer to packets by destination
+    port/channel
+    """
+
+    # channel port identifier
+    port_id: str = betterproto.string_field(1)
+    # channel unique identifier
+    channel_id: str = betterproto.string_field(2)
+    # packet sequence
+    sequence: int = betterproto.uint64_field(3)
+
+
+@dataclass(eq=False, repr=False)
 class Acknowledgement(betterproto.Message):
     """
     Acknowledgement is the recommended acknowledgement format to be used by
@@ -150,8 +181,8 @@ class Acknowledgement(betterproto.Message):
     used for acknowledgements. The first byte of any message with this format
     will be the non-ASCII values `0xaa` (result) or `0xb2` (error). Implemented
     as defined by ICS:
-    https://github.com/cosmos/ics/tree/master/spec/ics-004-channel-and-packet-
-    semantics#acknowledgement-envelope
+    https://github.com/cosmos/ibc/tree/master/spec/core/ics-004-channel-and-
+    packet-semantics#acknowledgement-envelope
     """
 
     result: bytes = betterproto.bytes_field(21, group="response")
@@ -203,20 +234,23 @@ class MsgChannelOpenInitResponse(betterproto.Message):
     MsgChannelOpenInitResponse defines the Msg/ChannelOpenInit response type.
     """
 
-    pass
+    channel_id: str = betterproto.string_field(1)
 
 
 @dataclass(eq=False, repr=False)
 class MsgChannelOpenTry(betterproto.Message):
     """
     MsgChannelOpenInit defines a msg sent by a Relayer to try to open a channel
-    on Chain B.
+    on Chain B. The version field within the Channel field has been deprecated.
+    Its value will be ignored by core IBC.
     """
 
     port_id: str = betterproto.string_field(1)
     # in the case of crossing hello's, when both chains call OpenInit, we need
     # the channel identifier of the previous channel in state INIT
     previous_channel_id: str = betterproto.string_field(2)
+    # NOTE: the version field within the channel has been deprecated. Its value
+    # will be ignored by core IBC.
     channel: "Channel" = betterproto.message_field(3)
     counterparty_version: str = betterproto.string_field(4)
     proof_init: bytes = betterproto.bytes_field(5)
@@ -341,7 +375,7 @@ class MsgRecvPacket(betterproto.Message):
 class MsgRecvPacketResponse(betterproto.Message):
     """MsgRecvPacketResponse defines the Msg/RecvPacket response type."""
 
-    pass
+    result: "ResponseResultType" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -359,7 +393,7 @@ class MsgTimeout(betterproto.Message):
 class MsgTimeoutResponse(betterproto.Message):
     """MsgTimeoutResponse defines the Msg/Timeout response type."""
 
-    pass
+    result: "ResponseResultType" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -382,7 +416,7 @@ class MsgTimeoutOnCloseResponse(betterproto.Message):
     MsgTimeoutOnCloseResponse defines the Msg/TimeoutOnClose response type.
     """
 
-    pass
+    result: "ResponseResultType" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -402,7 +436,7 @@ class MsgAcknowledgementResponse(betterproto.Message):
     MsgAcknowledgementResponse defines the Msg/Acknowledgement response type.
     """
 
-    pass
+    result: "ResponseResultType" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -701,6 +735,8 @@ class QueryPacketAcknowledgementsRequest(betterproto.Message):
     pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = (
         betterproto.message_field(3)
     )
+    # list of packet sequences
+    packet_commitment_sequences: List[int] = betterproto.uint64_field(4)
 
 
 @dataclass(eq=False, repr=False)
@@ -1185,14 +1221,17 @@ class QueryStub(betterproto.ServiceStub):
         *,
         port_id: str = "",
         channel_id: str = "",
-        pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = None
+        pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = None,
+        packet_commitment_sequences: Optional[List[int]] = None
     ) -> "QueryPacketAcknowledgementsResponse":
+        packet_commitment_sequences = packet_commitment_sequences or []
 
         request = QueryPacketAcknowledgementsRequest()
         request.port_id = port_id
         request.channel_id = channel_id
         if pagination is not None:
             request.pagination = pagination
+        request.packet_commitment_sequences = packet_commitment_sequences
 
         return await self._unary_unary(
             "/ibc.core.channel.v1.Query/PacketAcknowledgements",
@@ -1609,6 +1648,7 @@ class QueryBase(ServiceBase):
         port_id: str,
         channel_id: str,
         pagination: "____cosmos_base_query_v1_beta1__.PageRequest",
+        packet_commitment_sequences: Optional[List[int]],
     ) -> "QueryPacketAcknowledgementsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
@@ -1745,6 +1785,7 @@ class QueryBase(ServiceBase):
             "port_id": request.port_id,
             "channel_id": request.channel_id,
             "pagination": request.pagination,
+            "packet_commitment_sequences": request.packet_commitment_sequences,
         }
 
         response = await self.packet_acknowledgements(**request_kwargs)

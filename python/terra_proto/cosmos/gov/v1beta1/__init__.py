@@ -53,7 +53,10 @@ class ProposalStatus(betterproto.Enum):
 
 @dataclass(eq=False, repr=False)
 class WeightedVoteOption(betterproto.Message):
-    """WeightedVoteOption defines a unit of vote for vote split."""
+    """
+    WeightedVoteOption defines a unit of vote for vote split. Since: cosmos-sdk
+    0.43
+    """
 
     option: "VoteOption" = betterproto.enum_field(1)
     weight: str = betterproto.string_field(2)
@@ -120,6 +123,7 @@ class Vote(betterproto.Message):
     # if and only if `len(options) == 1` and that option has weight 1. In all
     # other cases, this field will default to VOTE_OPTION_UNSPECIFIED.
     option: "VoteOption" = betterproto.enum_field(3)
+    # Since: cosmos-sdk 0.43
     options: List["WeightedVoteOption"] = betterproto.message_field(4)
 
     def __post_init__(self) -> None:
@@ -204,7 +208,9 @@ class MsgVoteResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgVoteWeighted(betterproto.Message):
-    """MsgVoteWeighted defines a message to cast a vote."""
+    """
+    MsgVoteWeighted defines a message to cast a vote. Since: cosmos-sdk 0.43
+    """
 
     proposal_id: int = betterproto.uint64_field(1)
     voter: str = betterproto.string_field(2)
@@ -213,7 +219,10 @@ class MsgVoteWeighted(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgVoteWeightedResponse(betterproto.Message):
-    """MsgVoteWeightedResponse defines the Msg/VoteWeighted response type."""
+    """
+    MsgVoteWeightedResponse defines the Msg/VoteWeighted response type. Since:
+    cosmos-sdk 0.43
+    """
 
     pass
 

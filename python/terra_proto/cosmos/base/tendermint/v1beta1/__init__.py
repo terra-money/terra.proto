@@ -163,6 +163,7 @@ class VersionInfo(betterproto.Message):
     build_tags: str = betterproto.string_field(5)
     go_version: str = betterproto.string_field(6)
     build_deps: List["Module"] = betterproto.message_field(7)
+    # Since: cosmos-sdk 0.43
     cosmos_sdk_version: str = betterproto.string_field(8)
 
 

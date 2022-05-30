@@ -14,7 +14,7 @@ class MsgTransfer(betterproto.Message):
     """
     MsgTransfer defines a msg to transfer fungible tokens (i.e Coins) between
     ICS20 enabled chains. See ICS Spec here:
-    https://github.com/cosmos/ics/tree/master/spec/ics-020-fungible-token-
+    https://github.com/cosmos/ibc/tree/master/spec/app/ics-020-fungible-token-
     transfer#data-structures
     """
 
@@ -31,8 +31,8 @@ class MsgTransfer(betterproto.Message):
     # Timeout height relative to the current block height. The timeout is
     # disabled when set to 0.
     timeout_height: "___core_client_v1__.Height" = betterproto.message_field(6)
-    # Timeout timestamp (in nanoseconds) relative to the current block timestamp.
-    # The timeout is disabled when set to 0.
+    # Timeout timestamp in absolute nanoseconds since unix epoch. The timeout is
+    # disabled when set to 0.
     timeout_timestamp: int = betterproto.uint64_field(7)
 
 
@@ -41,25 +41,6 @@ class MsgTransferResponse(betterproto.Message):
     """MsgTransferResponse defines the Msg/Transfer response type."""
 
     pass
-
-
-@dataclass(eq=False, repr=False)
-class FungibleTokenPacketData(betterproto.Message):
-    """
-    FungibleTokenPacketData defines a struct for the packet payload See
-    FungibleTokenPacketData spec:
-    https://github.com/cosmos/ics/tree/master/spec/ics-020-fungible-token-
-    transfer#data-structures
-    """
-
-    # the token denomination to be transferred
-    denom: str = betterproto.string_field(1)
-    # the token amount to be transferred
-    amount: int = betterproto.uint64_field(2)
-    # the sender address
-    sender: str = betterproto.string_field(3)
-    # the recipient address on the destination chain
-    receiver: str = betterproto.string_field(4)
 
 
 @dataclass(eq=False, repr=False)
@@ -163,6 +144,28 @@ class QueryParamsResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class QueryDenomHashRequest(betterproto.Message):
+    """
+    QueryDenomHashRequest is the request type for the Query/DenomHash RPC
+    method
+    """
+
+    # The denomination trace ([port_id]/[channel_id])+/[denom]
+    trace: str = betterproto.string_field(1)
+
+
+@dataclass(eq=False, repr=False)
+class QueryDenomHashResponse(betterproto.Message):
+    """
+    QueryDenomHashResponse is the response type for the Query/DenomHash RPC
+    method.
+    """
+
+    # hash (in hex format) of the denomination trace information.
+    hash: str = betterproto.string_field(1)
+
+
+@dataclass(eq=False, repr=False)
 class GenesisState(betterproto.Message):
     """GenesisState defines the ibc-transfer genesis state"""
 
@@ -234,6 +237,17 @@ class QueryStub(betterproto.ServiceStub):
             "/ibc.applications.transfer.v1.Query/Params", request, QueryParamsResponse
         )
 
+    async def denom_hash(self, *, trace: str = "") -> "QueryDenomHashResponse":
+
+        request = QueryDenomHashRequest()
+        request.trace = trace
+
+        return await self._unary_unary(
+            "/ibc.applications.transfer.v1.Query/DenomHash",
+            request,
+            QueryDenomHashResponse,
+        )
+
 
 class MsgBase(ServiceBase):
     async def transfer(
@@ -287,6 +301,9 @@ class QueryBase(ServiceBase):
     async def params(self) -> "QueryParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def denom_hash(self, trace: str) -> "QueryDenomHashResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
     async def __rpc_denom_trace(self, stream: grpclib.server.Stream) -> None:
         request = await stream.recv_message()
 
@@ -315,6 +332,16 @@ class QueryBase(ServiceBase):
         response = await self.params(**request_kwargs)
         await stream.send_message(response)
 
+    async def __rpc_denom_hash(self, stream: grpclib.server.Stream) -> None:
+        request = await stream.recv_message()
+
+        request_kwargs = {
+            "trace": request.trace,
+        }
+
+        response = await self.denom_hash(**request_kwargs)
+        await stream.send_message(response)
+
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
             "/ibc.applications.transfer.v1.Query/DenomTrace": grpclib.const.Handler(
@@ -334,6 +361,12 @@ class QueryBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryParamsRequest,
                 QueryParamsResponse,
+            ),
+            "/ibc.applications.transfer.v1.Query/DenomHash": grpclib.const.Handler(
+                self.__rpc_denom_hash,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                QueryDenomHashRequest,
+                QueryDenomHashResponse,
             ),
         }
 

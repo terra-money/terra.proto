@@ -24,3 +24,53 @@ class Metadata(betterproto.Message):
     """Metadata contains SDK-specific snapshot metadata."""
 
     chunk_hashes: List[bytes] = betterproto.bytes_field(1)
+
+
+@dataclass(eq=False, repr=False)
+class SnapshotItem(betterproto.Message):
+    """SnapshotItem is an item contained in a rootmulti.Store snapshot."""
+
+    store: "SnapshotStoreItem" = betterproto.message_field(1, group="item")
+    iavl: "SnapshotIavlItem" = betterproto.message_field(2, group="item")
+    extension: "SnapshotExtensionMeta" = betterproto.message_field(3, group="item")
+    extension_payload: "SnapshotExtensionPayload" = betterproto.message_field(
+        4, group="item"
+    )
+
+
+@dataclass(eq=False, repr=False)
+class SnapshotStoreItem(betterproto.Message):
+    """SnapshotStoreItem contains metadata about a snapshotted store."""
+
+    name: str = betterproto.string_field(1)
+
+
+@dataclass(eq=False, repr=False)
+class SnapshotIavlItem(betterproto.Message):
+    """SnapshotIAVLItem is an exported IAVL node."""
+
+    key: bytes = betterproto.bytes_field(1)
+    value: bytes = betterproto.bytes_field(2)
+    # version is block height
+    version: int = betterproto.int64_field(3)
+    # height is depth of the tree.
+    height: int = betterproto.int32_field(4)
+
+
+@dataclass(eq=False, repr=False)
+class SnapshotExtensionMeta(betterproto.Message):
+    """
+    SnapshotExtensionMeta contains metadata about an external snapshotter.
+    """
+
+    name: str = betterproto.string_field(1)
+    format: int = betterproto.uint32_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class SnapshotExtensionPayload(betterproto.Message):
+    """
+    SnapshotExtensionPayload contains payloads of an external snapshotter.
+    """
+
+    payload: bytes = betterproto.bytes_field(1)

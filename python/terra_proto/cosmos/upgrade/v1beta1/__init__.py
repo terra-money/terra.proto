@@ -78,7 +78,10 @@ class CancelSoftwareUpgradeProposal(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class ModuleVersion(betterproto.Message):
-    """ModuleVersion specifies a module and its consensus version."""
+    """
+    ModuleVersion specifies a module and its consensus version. Since: cosmos-
+    sdk 0.43
+    """
 
     # name of the app module
     name: str = betterproto.string_field(1)
@@ -154,6 +157,7 @@ class QueryUpgradedConsensusStateResponse(betterproto.Message):
     Query/UpgradedConsensusState RPC method.
     """
 
+    # Since: cosmos-sdk 0.43
     upgraded_consensus_state: bytes = betterproto.bytes_field(2)
 
     def __post_init__(self) -> None:
@@ -167,7 +171,7 @@ class QueryUpgradedConsensusStateResponse(betterproto.Message):
 class QueryModuleVersionsRequest(betterproto.Message):
     """
     QueryModuleVersionsRequest is the request type for the Query/ModuleVersions
-    RPC method.
+    RPC method. Since: cosmos-sdk 0.43
     """
 
     # module_name is a field to query a specific module consensus version from
@@ -180,7 +184,7 @@ class QueryModuleVersionsRequest(betterproto.Message):
 class QueryModuleVersionsResponse(betterproto.Message):
     """
     QueryModuleVersionsResponse is the response type for the
-    Query/ModuleVersions RPC method.
+    Query/ModuleVersions RPC method. Since: cosmos-sdk 0.43
     """
 
     # module_versions is a list of module names with their consensus versions.

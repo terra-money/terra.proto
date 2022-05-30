@@ -241,7 +241,7 @@ class GetTxsEventRequest(betterproto.Message):
 
     # events is the list of transaction event type.
     events: List[str] = betterproto.string_field(1)
-    # pagination defines an pagination for the request.
+    # pagination defines a pagination for the request.
     pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
     order_by: "OrderBy" = betterproto.enum_field(3)
 
@@ -259,7 +259,7 @@ class GetTxsEventResponse(betterproto.Message):
     tx_responses: List["__base_abci_v1_beta1__.TxResponse"] = betterproto.message_field(
         2
     )
-    # pagination defines an pagination for the response.
+    # pagination defines a pagination for the response.
     pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(3)
 
 
@@ -294,7 +294,7 @@ class SimulateRequest(betterproto.Message):
 
     # tx is the transaction to simulate. Deprecated. Send raw tx bytes instead.
     tx: "Tx" = betterproto.message_field(1)
-    # tx_bytes is the raw transaction.
+    # tx_bytes is the raw transaction. Since: cosmos-sdk 0.43
     tx_bytes: bytes = betterproto.bytes_field(2)
 
     def __post_init__(self) -> None:
@@ -331,6 +331,34 @@ class GetTxResponse(betterproto.Message):
     tx: "Tx" = betterproto.message_field(1)
     # tx_response is the queried TxResponses.
     tx_response: "__base_abci_v1_beta1__.TxResponse" = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class GetBlockWithTxsRequest(betterproto.Message):
+    """
+    GetBlockWithTxsRequest is the request type for the Service.GetBlockWithTxs
+    RPC method. Since: cosmos-sdk 0.45.2
+    """
+
+    # height is the height of the block to query.
+    height: int = betterproto.int64_field(1)
+    # pagination defines a pagination for the request.
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class GetBlockWithTxsResponse(betterproto.Message):
+    """
+    GetBlockWithTxsResponse is the response type for the
+    Service.GetBlockWithTxs method. Since: cosmos-sdk 0.45.2
+    """
+
+    # txs are the transactions in the block.
+    txs: List["Tx"] = betterproto.message_field(1)
+    block_id: "___tendermint_types__.BlockId" = betterproto.message_field(2)
+    block: "___tendermint_types__.Block" = betterproto.message_field(3)
+    # pagination defines a pagination for the response.
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(4)
 
 
 class ServiceStub(betterproto.ServiceStub):
@@ -387,6 +415,24 @@ class ServiceStub(betterproto.ServiceStub):
             "/cosmos.tx.v1beta1.Service/GetTxsEvent", request, GetTxsEventResponse
         )
 
+    async def get_block_with_txs(
+        self,
+        *,
+        height: int = 0,
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
+    ) -> "GetBlockWithTxsResponse":
+
+        request = GetBlockWithTxsRequest()
+        request.height = height
+        if pagination is not None:
+            request.pagination = pagination
+
+        return await self._unary_unary(
+            "/cosmos.tx.v1beta1.Service/GetBlockWithTxs",
+            request,
+            GetBlockWithTxsResponse,
+        )
+
 
 class ServiceBase(ServiceBase):
     async def simulate(self, tx: "Tx", tx_bytes: bytes) -> "SimulateResponse":
@@ -406,6 +452,11 @@ class ServiceBase(ServiceBase):
         pagination: "__base_query_v1_beta1__.PageRequest",
         order_by: "OrderBy",
     ) -> "GetTxsEventResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def get_block_with_txs(
+        self, height: int, pagination: "__base_query_v1_beta1__.PageRequest"
+    ) -> "GetBlockWithTxsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_simulate(self, stream: grpclib.server.Stream) -> None:
@@ -452,6 +503,17 @@ class ServiceBase(ServiceBase):
         response = await self.get_txs_event(**request_kwargs)
         await stream.send_message(response)
 
+    async def __rpc_get_block_with_txs(self, stream: grpclib.server.Stream) -> None:
+        request = await stream.recv_message()
+
+        request_kwargs = {
+            "height": request.height,
+            "pagination": request.pagination,
+        }
+
+        response = await self.get_block_with_txs(**request_kwargs)
+        await stream.send_message(response)
+
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
             "/cosmos.tx.v1beta1.Service/Simulate": grpclib.const.Handler(
@@ -478,9 +540,16 @@ class ServiceBase(ServiceBase):
                 GetTxsEventRequest,
                 GetTxsEventResponse,
             ),
+            "/cosmos.tx.v1beta1.Service/GetBlockWithTxs": grpclib.const.Handler(
+                self.__rpc_get_block_with_txs,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                GetBlockWithTxsRequest,
+                GetBlockWithTxsResponse,
+            ),
         }
 
 
+from ....tendermint import types as ___tendermint_types__
 from ...base import v1beta1 as __base_v1_beta1__
 from ...base.abci import v1beta1 as __base_abci_v1_beta1__
 from ...base.query import v1beta1 as __base_query_v1_beta1__

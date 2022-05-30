@@ -26,6 +26,7 @@ class BondStatus(betterproto.Enum):
 class AuthorizationType(betterproto.Enum):
     """
     AuthorizationType defines the type of staking module authorization type
+    Since: cosmos-sdk 0.43
     """
 
     # AUTHORIZATION_TYPE_UNSPECIFIED specifies an unknown authorization type
@@ -776,7 +777,7 @@ class QueryParamsResponse(betterproto.Message):
 class StakeAuthorization(betterproto.Message):
     """
     StakeAuthorization defines authorization for
-    delegate/undelegate/redelegate.
+    delegate/undelegate/redelegate. Since: cosmos-sdk 0.43
     """
 
     # max_tokens specifies the maximum amount of tokens can be delegate to a
