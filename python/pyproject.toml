@@ -9,6 +9,7 @@ classifiers = [
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
 ]
 description = "The Python Protobuf implementation for Terra"
 homepage = "https://github.com/terra-money/terra.proto"
@@ -17,7 +18,7 @@ license = "MIT"
 packages = [{ include = "terra_proto" }]
 readme = "README.md"
 repository = "https://github.com/terra-money/terra.proto"
-version = "1.1.0b2"
+version = "2.0.0"
 
 [tool.poetry.dependencies]
 python = "^3.7"
