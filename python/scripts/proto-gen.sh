@@ -5,6 +5,8 @@ command -v shellcheck >/dev/null && shellcheck "$0"
 echo "install betterproto... pre-release for now. stable one has some issues"
 #pip install --upgrade "avast.betterproto[compiler]"
 pip install --upgrade "betterproto[compiler]" --pre
+echo "install MarkupSafe==2.0.1 due to dependency"
+pip install MarkupSafe==2.0.1
 
 OUT_DIR="./terra_proto"
 
