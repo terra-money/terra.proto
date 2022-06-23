@@ -4,15 +4,15 @@
 package cosmos.gov.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryProposalsRequest(block: cosmos.gov.v1beta1.QueryProposalsRequestKt.Dsl.() -> Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest =
+public inline fun queryProposalsRequest(block: cosmos.gov.v1beta1.QueryProposalsRequestKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest =
   cosmos.gov.v1beta1.QueryProposalsRequestKt.Dsl._create(cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest.newBuilder()).apply { block() }._build()
-object QueryProposalsRequestKt {
+public object QueryProposalsRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryProposalsRequestKt {
      *
      * <code>.cosmos.gov.v1beta1.ProposalStatus proposal_status = 1;</code>
      */
-    var proposalStatus: cosmos.gov.v1beta1.Gov.ProposalStatus
+    public var proposalStatus: cosmos.gov.v1beta1.Gov.ProposalStatus
       @JvmName("getProposalStatus")
       get() = _builder.getProposalStatus()
       @JvmName("setProposalStatus")
@@ -43,7 +43,7 @@ object QueryProposalsRequestKt {
      *
      * <code>.cosmos.gov.v1beta1.ProposalStatus proposal_status = 1;</code>
      */
-    fun clearProposalStatus() {
+    public fun clearProposalStatus() {
       _builder.clearProposalStatus()
     }
 
@@ -54,7 +54,7 @@ object QueryProposalsRequestKt {
      *
      * <code>string voter = 2;</code>
      */
-    var voter: kotlin.String
+    public var voter: kotlin.String
       @JvmName("getVoter")
       get() = _builder.getVoter()
       @JvmName("setVoter")
@@ -68,7 +68,7 @@ object QueryProposalsRequestKt {
      *
      * <code>string voter = 2;</code>
      */
-    fun clearVoter() {
+    public fun clearVoter() {
       _builder.clearVoter()
     }
 
@@ -79,7 +79,7 @@ object QueryProposalsRequestKt {
      *
      * <code>string depositor = 3;</code>
      */
-    var depositor: kotlin.String
+    public var depositor: kotlin.String
       @JvmName("getDepositor")
       get() = _builder.getDepositor()
       @JvmName("setDepositor")
@@ -93,7 +93,7 @@ object QueryProposalsRequestKt {
      *
      * <code>string depositor = 3;</code>
      */
-    fun clearDepositor() {
+    public fun clearDepositor() {
       _builder.clearDepositor()
     }
 
@@ -104,7 +104,7 @@ object QueryProposalsRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 4;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -118,7 +118,7 @@ object QueryProposalsRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 4;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
@@ -129,11 +129,11 @@ object QueryProposalsRequestKt {
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 4;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest.copy(block: cosmos.gov.v1beta1.QueryProposalsRequestKt.Dsl.() -> Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest =
+public inline fun cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest.copy(block: cosmos.gov.v1beta1.QueryProposalsRequestKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest =
   cosmos.gov.v1beta1.QueryProposalsRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

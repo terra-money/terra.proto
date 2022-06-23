@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun requestApplySnapshotChunk(block: tendermint.abci.RequestApplySnapshotChunkKt.Dsl.() -> Unit): tendermint.abci.Types.RequestApplySnapshotChunk =
+public inline fun requestApplySnapshotChunk(block: tendermint.abci.RequestApplySnapshotChunkKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestApplySnapshotChunk =
   tendermint.abci.RequestApplySnapshotChunkKt.Dsl._create(tendermint.abci.Types.RequestApplySnapshotChunk.newBuilder()).apply { block() }._build()
-object RequestApplySnapshotChunkKt {
+public object RequestApplySnapshotChunkKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.RequestApplySnapshotChunk.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.RequestApplySnapshotChunk.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.RequestApplySnapshotChunk.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object RequestApplySnapshotChunkKt {
     /**
      * <code>uint32 index = 1;</code>
      */
-    var index: kotlin.Int
+    public var index: kotlin.Int
       @JvmName("getIndex")
       get() = _builder.getIndex()
       @JvmName("setIndex")
@@ -35,14 +35,14 @@ object RequestApplySnapshotChunkKt {
     /**
      * <code>uint32 index = 1;</code>
      */
-    fun clearIndex() {
+    public fun clearIndex() {
       _builder.clearIndex()
     }
 
     /**
      * <code>bytes chunk = 2;</code>
      */
-    var chunk: com.google.protobuf.ByteString
+    public var chunk: com.google.protobuf.ByteString
       @JvmName("getChunk")
       get() = _builder.getChunk()
       @JvmName("setChunk")
@@ -52,14 +52,14 @@ object RequestApplySnapshotChunkKt {
     /**
      * <code>bytes chunk = 2;</code>
      */
-    fun clearChunk() {
+    public fun clearChunk() {
       _builder.clearChunk()
     }
 
     /**
      * <code>string sender = 3;</code>
      */
-    var sender: kotlin.String
+    public var sender: kotlin.String
       @JvmName("getSender")
       get() = _builder.getSender()
       @JvmName("setSender")
@@ -69,11 +69,11 @@ object RequestApplySnapshotChunkKt {
     /**
      * <code>string sender = 3;</code>
      */
-    fun clearSender() {
+    public fun clearSender() {
       _builder.clearSender()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.RequestApplySnapshotChunk.copy(block: tendermint.abci.RequestApplySnapshotChunkKt.Dsl.() -> Unit): tendermint.abci.Types.RequestApplySnapshotChunk =
+public inline fun tendermint.abci.Types.RequestApplySnapshotChunk.copy(block: tendermint.abci.RequestApplySnapshotChunkKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestApplySnapshotChunk =
   tendermint.abci.RequestApplySnapshotChunkKt.Dsl._create(this.toBuilder()).apply { block() }._build()

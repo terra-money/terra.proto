@@ -13,7 +13,7 @@ protobuf {
         val grpcKotlinVersion: String by project
 
         id("grpcKotlin") {
-            artifact = "io.grpc:protoc-gen-grpc-kotlin:$grpcKotlinVersion:jdk7@jar"
+            artifact = "io.grpc:protoc-gen-grpc-kotlin:$grpcKotlinVersion:jdk8@jar"
         }
     }
 

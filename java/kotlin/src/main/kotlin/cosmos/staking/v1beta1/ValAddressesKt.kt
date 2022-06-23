@@ -4,15 +4,15 @@
 package cosmos.staking.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun valAddresses(block: cosmos.staking.v1beta1.ValAddressesKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Staking.ValAddresses =
+public inline fun valAddresses(block: cosmos.staking.v1beta1.ValAddressesKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Staking.ValAddresses =
   cosmos.staking.v1beta1.ValAddressesKt.Dsl._create(cosmos.staking.v1beta1.Staking.ValAddresses.newBuilder()).apply { block() }._build()
-object ValAddressesKt {
+public object ValAddressesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.staking.v1beta1.Staking.ValAddresses.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.staking.v1beta1.Staking.ValAddresses.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.staking.v1beta1.Staking.ValAddresses.Builder): Dsl = Dsl(builder)
@@ -27,13 +27,13 @@ object ValAddressesKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class AddressesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class AddressesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated string addresses = 1;</code>
      * @return A list containing the addresses.
      */
-    val addresses: com.google.protobuf.kotlin.DslList<kotlin.String, AddressesProxy>
-      @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
+    public val addresses: com.google.protobuf.kotlin.DslList<kotlin.String, AddressesProxy>
+      @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getAddressesList()
       )
@@ -43,7 +43,7 @@ object ValAddressesKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAddresses")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, AddressesProxy>.add(value: kotlin.String) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, AddressesProxy>.add(value: kotlin.String) {
       _builder.addAddresses(value)
     }
     /**
@@ -52,8 +52,9 @@ object ValAddressesKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAddresses")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, AddressesProxy>.plusAssign(value: kotlin.String) {
-      _builder.addAddresses(value)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, AddressesProxy>.plusAssign(value: kotlin.String) {
+      add(value)
     }
     /**
      * <code>repeated string addresses = 1;</code>
@@ -61,7 +62,7 @@ object ValAddressesKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllAddresses")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, AddressesProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, AddressesProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
       _builder.addAllAddresses(values)
     }
     /**
@@ -70,8 +71,9 @@ object ValAddressesKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllAddresses")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, AddressesProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
-      _builder.addAllAddresses(values)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, AddressesProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
+      addAll(values)
     }
     /**
      * <code>repeated string addresses = 1;</code>
@@ -80,17 +82,17 @@ object ValAddressesKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setAddresses")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, AddressesProxy>.set(index: kotlin.Int, value: kotlin.String) {
+    public operator fun com.google.protobuf.kotlin.DslList<kotlin.String, AddressesProxy>.set(index: kotlin.Int, value: kotlin.String) {
       _builder.setAddresses(index, value)
     }/**
      * <code>repeated string addresses = 1;</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearAddresses")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, AddressesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, AddressesProxy>.clear() {
       _builder.clearAddresses()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.staking.v1beta1.Staking.ValAddresses.copy(block: cosmos.staking.v1beta1.ValAddressesKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Staking.ValAddresses =
+public inline fun cosmos.staking.v1beta1.Staking.ValAddresses.copy(block: cosmos.staking.v1beta1.ValAddressesKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Staking.ValAddresses =
   cosmos.staking.v1beta1.ValAddressesKt.Dsl._create(this.toBuilder()).apply { block() }._build()

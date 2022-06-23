@@ -4,15 +4,15 @@
 package cosmos.bank.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun sendEnabled(block: cosmos.bank.v1beta1.SendEnabledKt.Dsl.() -> Unit): cosmos.bank.v1beta1.Bank.SendEnabled =
+public inline fun sendEnabled(block: cosmos.bank.v1beta1.SendEnabledKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.Bank.SendEnabled =
   cosmos.bank.v1beta1.SendEnabledKt.Dsl._create(cosmos.bank.v1beta1.Bank.SendEnabled.newBuilder()).apply { block() }._build()
-object SendEnabledKt {
+public object SendEnabledKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.bank.v1beta1.Bank.SendEnabled.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.bank.v1beta1.Bank.SendEnabled.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.bank.v1beta1.Bank.SendEnabled.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object SendEnabledKt {
     /**
      * <code>string denom = 1;</code>
      */
-    var denom: kotlin.String
+    public var denom: kotlin.String
       @JvmName("getDenom")
       get() = _builder.getDenom()
       @JvmName("setDenom")
@@ -35,14 +35,14 @@ object SendEnabledKt {
     /**
      * <code>string denom = 1;</code>
      */
-    fun clearDenom() {
+    public fun clearDenom() {
       _builder.clearDenom()
     }
 
     /**
      * <code>bool enabled = 2;</code>
      */
-    var enabled: kotlin.Boolean
+    public var enabled: kotlin.Boolean
       @JvmName("getEnabled")
       get() = _builder.getEnabled()
       @JvmName("setEnabled")
@@ -52,11 +52,11 @@ object SendEnabledKt {
     /**
      * <code>bool enabled = 2;</code>
      */
-    fun clearEnabled() {
+    public fun clearEnabled() {
       _builder.clearEnabled()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.bank.v1beta1.Bank.SendEnabled.copy(block: cosmos.bank.v1beta1.SendEnabledKt.Dsl.() -> Unit): cosmos.bank.v1beta1.Bank.SendEnabled =
+public inline fun cosmos.bank.v1beta1.Bank.SendEnabled.copy(block: cosmos.bank.v1beta1.SendEnabledKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.Bank.SendEnabled =
   cosmos.bank.v1beta1.SendEnabledKt.Dsl._create(this.toBuilder()).apply { block() }._build()

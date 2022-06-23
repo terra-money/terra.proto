@@ -4,15 +4,15 @@
 package ibc.core.connection.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryConnectionClientStateResponse(block: ibc.core.connection.v1.QueryConnectionClientStateResponseKt.Dsl.() -> Unit): ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateResponse =
+public inline fun queryConnectionClientStateResponse(block: ibc.core.connection.v1.QueryConnectionClientStateResponseKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateResponse =
   ibc.core.connection.v1.QueryConnectionClientStateResponseKt.Dsl._create(ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateResponse.newBuilder()).apply { block() }._build()
-object QueryConnectionClientStateResponseKt {
+public object QueryConnectionClientStateResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryConnectionClientStateResponseKt {
      *
      * <code>.ibc.core.client.v1.IdentifiedClientState identified_client_state = 1;</code>
      */
-    var identifiedClientState: ibc.core.client.v1.Client.IdentifiedClientState
+    public var identifiedClientState: ibc.core.client.v1.Client.IdentifiedClientState
       @JvmName("getIdentifiedClientState")
       get() = _builder.getIdentifiedClientState()
       @JvmName("setIdentifiedClientState")
@@ -43,7 +43,7 @@ object QueryConnectionClientStateResponseKt {
      *
      * <code>.ibc.core.client.v1.IdentifiedClientState identified_client_state = 1;</code>
      */
-    fun clearIdentifiedClientState() {
+    public fun clearIdentifiedClientState() {
       _builder.clearIdentifiedClientState()
     }
     /**
@@ -54,7 +54,7 @@ object QueryConnectionClientStateResponseKt {
      * <code>.ibc.core.client.v1.IdentifiedClientState identified_client_state = 1;</code>
      * @return Whether the identifiedClientState field is set.
      */
-    fun hasIdentifiedClientState(): kotlin.Boolean {
+    public fun hasIdentifiedClientState(): kotlin.Boolean {
       return _builder.hasIdentifiedClientState()
     }
 
@@ -65,7 +65,7 @@ object QueryConnectionClientStateResponseKt {
      *
      * <code>bytes proof = 2;</code>
      */
-    var proof: com.google.protobuf.ByteString
+    public var proof: com.google.protobuf.ByteString
       @JvmName("getProof")
       get() = _builder.getProof()
       @JvmName("setProof")
@@ -79,7 +79,7 @@ object QueryConnectionClientStateResponseKt {
      *
      * <code>bytes proof = 2;</code>
      */
-    fun clearProof() {
+    public fun clearProof() {
       _builder.clearProof()
     }
 
@@ -90,7 +90,7 @@ object QueryConnectionClientStateResponseKt {
      *
      * <code>.ibc.core.client.v1.Height proof_height = 3 [(.gogoproto.nullable) = false];</code>
      */
-    var proofHeight: ibc.core.client.v1.Client.Height
+    public var proofHeight: ibc.core.client.v1.Client.Height
       @JvmName("getProofHeight")
       get() = _builder.getProofHeight()
       @JvmName("setProofHeight")
@@ -104,7 +104,7 @@ object QueryConnectionClientStateResponseKt {
      *
      * <code>.ibc.core.client.v1.Height proof_height = 3 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearProofHeight() {
+    public fun clearProofHeight() {
       _builder.clearProofHeight()
     }
     /**
@@ -115,11 +115,11 @@ object QueryConnectionClientStateResponseKt {
      * <code>.ibc.core.client.v1.Height proof_height = 3 [(.gogoproto.nullable) = false];</code>
      * @return Whether the proofHeight field is set.
      */
-    fun hasProofHeight(): kotlin.Boolean {
+    public fun hasProofHeight(): kotlin.Boolean {
       return _builder.hasProofHeight()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateResponse.copy(block: ibc.core.connection.v1.QueryConnectionClientStateResponseKt.Dsl.() -> Unit): ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateResponse =
+public inline fun ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateResponse.copy(block: ibc.core.connection.v1.QueryConnectionClientStateResponseKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateResponse =
   ibc.core.connection.v1.QueryConnectionClientStateResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.auth.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryAccountResponse(block: cosmos.auth.v1beta1.QueryAccountResponseKt.Dsl.() -> Unit): cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse =
+public inline fun queryAccountResponse(block: cosmos.auth.v1beta1.QueryAccountResponseKt.Dsl.() -> kotlin.Unit): cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse =
   cosmos.auth.v1beta1.QueryAccountResponseKt.Dsl._create(cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse.newBuilder()).apply { block() }._build()
-object QueryAccountResponseKt {
+public object QueryAccountResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryAccountResponseKt {
      *
      * <code>.google.protobuf.Any account = 1 [(.cosmos_proto.accepts_interface) = "AccountI"];</code>
      */
-    var account: com.google.protobuf.Any
+    public var account: com.google.protobuf.Any
       @JvmName("getAccount")
       get() = _builder.getAccount()
       @JvmName("setAccount")
@@ -43,7 +43,7 @@ object QueryAccountResponseKt {
      *
      * <code>.google.protobuf.Any account = 1 [(.cosmos_proto.accepts_interface) = "AccountI"];</code>
      */
-    fun clearAccount() {
+    public fun clearAccount() {
       _builder.clearAccount()
     }
     /**
@@ -54,11 +54,11 @@ object QueryAccountResponseKt {
      * <code>.google.protobuf.Any account = 1 [(.cosmos_proto.accepts_interface) = "AccountI"];</code>
      * @return Whether the account field is set.
      */
-    fun hasAccount(): kotlin.Boolean {
+    public fun hasAccount(): kotlin.Boolean {
       return _builder.hasAccount()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse.copy(block: cosmos.auth.v1beta1.QueryAccountResponseKt.Dsl.() -> Unit): cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse =
+public inline fun cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse.copy(block: cosmos.auth.v1beta1.QueryAccountResponseKt.Dsl.() -> kotlin.Unit): cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse =
   cosmos.auth.v1beta1.QueryAccountResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.base.reflection.v2alpha1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryServiceDescriptor(block: cosmos.base.reflection.v2alpha1.QueryServiceDescriptorKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor =
+public inline fun queryServiceDescriptor(block: cosmos.base.reflection.v2alpha1.QueryServiceDescriptorKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor =
   cosmos.base.reflection.v2alpha1.QueryServiceDescriptorKt.Dsl._create(cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor.newBuilder()).apply { block() }._build()
-object QueryServiceDescriptorKt {
+public object QueryServiceDescriptorKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryServiceDescriptorKt {
      *
      * <code>string fullname = 1;</code>
      */
-    var fullname: kotlin.String
+    public var fullname: kotlin.String
       @JvmName("getFullname")
       get() = _builder.getFullname()
       @JvmName("setFullname")
@@ -43,7 +43,7 @@ object QueryServiceDescriptorKt {
      *
      * <code>string fullname = 1;</code>
      */
-    fun clearFullname() {
+    public fun clearFullname() {
       _builder.clearFullname()
     }
 
@@ -54,7 +54,7 @@ object QueryServiceDescriptorKt {
      *
      * <code>bool is_module = 2;</code>
      */
-    var isModule: kotlin.Boolean
+    public var isModule: kotlin.Boolean
       @JvmName("getIsModule")
       get() = _builder.getIsModule()
       @JvmName("setIsModule")
@@ -68,7 +68,7 @@ object QueryServiceDescriptorKt {
      *
      * <code>bool is_module = 2;</code>
      */
-    fun clearIsModule() {
+    public fun clearIsModule() {
       _builder.clearIsModule()
     }
 
@@ -77,7 +77,7 @@ object QueryServiceDescriptorKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class MethodsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class MethodsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * methods provides a list of query service methods
@@ -85,7 +85,7 @@ object QueryServiceDescriptorKt {
      *
      * <code>repeated .cosmos.base.reflection.v2alpha1.QueryMethodDescriptor methods = 3;</code>
      */
-     val methods: com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor, MethodsProxy>
+     public val methods: com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor, MethodsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getMethodsList()
@@ -100,7 +100,7 @@ object QueryServiceDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addMethods")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor, MethodsProxy>.add(value: cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor, MethodsProxy>.add(value: cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor) {
       _builder.addMethods(value)
     }/**
      * <pre>
@@ -112,7 +112,8 @@ object QueryServiceDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignMethods")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor, MethodsProxy>.plusAssign(value: cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor, MethodsProxy>.plusAssign(value: cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor) {
       add(value)
     }/**
      * <pre>
@@ -124,7 +125,7 @@ object QueryServiceDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllMethods")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor, MethodsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor, MethodsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor>) {
       _builder.addAllMethods(values)
     }/**
      * <pre>
@@ -136,7 +137,8 @@ object QueryServiceDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllMethods")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor, MethodsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor, MethodsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor>) {
       addAll(values)
     }/**
      * <pre>
@@ -149,7 +151,7 @@ object QueryServiceDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setMethods")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor, MethodsProxy>.set(index: kotlin.Int, value: cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor, MethodsProxy>.set(index: kotlin.Int, value: cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor) {
       _builder.setMethods(index, value)
     }/**
      * <pre>
@@ -160,10 +162,10 @@ object QueryServiceDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearMethods")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor, MethodsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor, MethodsProxy>.clear() {
       _builder.clearMethods()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor.copy(block: cosmos.base.reflection.v2alpha1.QueryServiceDescriptorKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor =
+public inline fun cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor.copy(block: cosmos.base.reflection.v2alpha1.QueryServiceDescriptorKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor =
   cosmos.base.reflection.v2alpha1.QueryServiceDescriptorKt.Dsl._create(this.toBuilder()).apply { block() }._build()

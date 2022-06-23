@@ -157,7 +157,7 @@ public final class Tx {
 
     /**
      * <pre>
-     * Timeout timestamp (in nanoseconds) relative to the current block timestamp.
+     * Timeout timestamp in absolute nanoseconds since unix epoch.
      * The timeout is disabled when set to 0.
      * </pre>
      *
@@ -170,7 +170,7 @@ public final class Tx {
    * <pre>
    * MsgTransfer defines a msg to transfer fungible tokens (i.e Coins) between
    * ICS20 enabled chains. See ICS Spec here:
-   * https://github.com/cosmos/ics/tree/master/spec/ics-020-fungible-token-transfer#data-structures
+   * https://github.com/cosmos/ibc/tree/master/spec/app/ics-020-fungible-token-transfer#data-structures
    * </pre>
    *
    * Protobuf type {@code ibc.applications.transfer.v1.MsgTransfer}
@@ -575,7 +575,7 @@ public final class Tx {
     private long timeoutTimestamp_;
     /**
      * <pre>
-     * Timeout timestamp (in nanoseconds) relative to the current block timestamp.
+     * Timeout timestamp in absolute nanoseconds since unix epoch.
      * The timeout is disabled when set to 0.
      * </pre>
      *
@@ -601,19 +601,19 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getSourcePortBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sourcePort_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, sourcePort_);
       }
-      if (!getSourceChannelBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sourceChannel_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sourceChannel_);
       }
       if (token_ != null) {
         output.writeMessage(3, getToken());
       }
-      if (!getSenderBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sender_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, sender_);
       }
-      if (!getReceiverBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiver_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, receiver_);
       }
       if (timeoutHeight_ != null) {
@@ -631,20 +631,20 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
-      if (!getSourcePortBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sourcePort_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, sourcePort_);
       }
-      if (!getSourceChannelBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sourceChannel_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sourceChannel_);
       }
       if (token_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getToken());
       }
-      if (!getSenderBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sender_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, sender_);
       }
-      if (!getReceiverBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiver_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, receiver_);
       }
       if (timeoutHeight_ != null) {
@@ -819,7 +819,7 @@ public final class Tx {
      * <pre>
      * MsgTransfer defines a msg to transfer fungible tokens (i.e Coins) between
      * ICS20 enabled chains. See ICS Spec here:
-     * https://github.com/cosmos/ics/tree/master/spec/ics-020-fungible-token-transfer#data-structures
+     * https://github.com/cosmos/ibc/tree/master/spec/app/ics-020-fungible-token-transfer#data-structures
      * </pre>
      *
      * Protobuf type {@code ibc.applications.transfer.v1.MsgTransfer}
@@ -1730,7 +1730,7 @@ public final class Tx {
       private long timeoutTimestamp_ ;
       /**
        * <pre>
-       * Timeout timestamp (in nanoseconds) relative to the current block timestamp.
+       * Timeout timestamp in absolute nanoseconds since unix epoch.
        * The timeout is disabled when set to 0.
        * </pre>
        *
@@ -1743,7 +1743,7 @@ public final class Tx {
       }
       /**
        * <pre>
-       * Timeout timestamp (in nanoseconds) relative to the current block timestamp.
+       * Timeout timestamp in absolute nanoseconds since unix epoch.
        * The timeout is disabled when set to 0.
        * </pre>
        *
@@ -1759,7 +1759,7 @@ public final class Tx {
       }
       /**
        * <pre>
-       * Timeout timestamp (in nanoseconds) relative to the current block timestamp.
+       * Timeout timestamp in absolute nanoseconds since unix epoch.
        * The timeout is disabled when set to 0.
        * </pre>
        *
@@ -2285,9 +2285,9 @@ public final class Tx {
       "timestamp\":\010\350\240\037\000\210\240\037\000\"\025\n\023MsgTransferRespo" +
       "nse2o\n\003Msg\022h\n\010Transfer\022).ibc.application" +
       "s.transfer.v1.MsgTransfer\0321.ibc.applicat" +
-      "ions.transfer.v1.MsgTransferResponseB6Z4" +
-      "github.com/cosmos/ibc-go/modules/apps/tr" +
-      "ansfer/typesb\006proto3"
+      "ions.transfer.v1.MsgTransferResponseB9Z7" +
+      "github.com/cosmos/ibc-go/v3/modules/apps" +
+      "/transfer/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

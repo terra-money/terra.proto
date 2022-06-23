@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryPacketAcknowledgementsRequest(block: ibc.core.channel.v1.QueryPacketAcknowledgementsRequestKt.Dsl.() -> Unit): ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementsRequest =
+public inline fun queryPacketAcknowledgementsRequest(block: ibc.core.channel.v1.QueryPacketAcknowledgementsRequestKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementsRequest =
   ibc.core.channel.v1.QueryPacketAcknowledgementsRequestKt.Dsl._create(ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementsRequest.newBuilder()).apply { block() }._build()
-object QueryPacketAcknowledgementsRequestKt {
+public object QueryPacketAcknowledgementsRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementsRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementsRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementsRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryPacketAcknowledgementsRequestKt {
      *
      * <code>string port_id = 1;</code>
      */
-    var portId: kotlin.String
+    public var portId: kotlin.String
       @JvmName("getPortId")
       get() = _builder.getPortId()
       @JvmName("setPortId")
@@ -43,7 +43,7 @@ object QueryPacketAcknowledgementsRequestKt {
      *
      * <code>string port_id = 1;</code>
      */
-    fun clearPortId() {
+    public fun clearPortId() {
       _builder.clearPortId()
     }
 
@@ -54,7 +54,7 @@ object QueryPacketAcknowledgementsRequestKt {
      *
      * <code>string channel_id = 2;</code>
      */
-    var channelId: kotlin.String
+    public var channelId: kotlin.String
       @JvmName("getChannelId")
       get() = _builder.getChannelId()
       @JvmName("setChannelId")
@@ -68,7 +68,7 @@ object QueryPacketAcknowledgementsRequestKt {
      *
      * <code>string channel_id = 2;</code>
      */
-    fun clearChannelId() {
+    public fun clearChannelId() {
       _builder.clearChannelId()
     }
 
@@ -79,7 +79,7 @@ object QueryPacketAcknowledgementsRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 3;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -93,7 +93,7 @@ object QueryPacketAcknowledgementsRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 3;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
@@ -104,11 +104,104 @@ object QueryPacketAcknowledgementsRequestKt {
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 3;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
-  }
+
+    /**
+     * An uninstantiable, behaviorless type to represent the field in
+     * generics.
+     */
+    @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
+    public class PacketCommitmentSequencesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    /**
+     * <pre>
+     * list of packet sequences
+     * </pre>
+     *
+     * <code>repeated uint64 packet_commitment_sequences = 4;</code>
+     */
+     public val packetCommitmentSequences: com.google.protobuf.kotlin.DslList<kotlin.Long, PacketCommitmentSequencesProxy>
+      @kotlin.jvm.JvmSynthetic
+      get() = com.google.protobuf.kotlin.DslList(
+        _builder.getPacketCommitmentSequencesList()
+      )
+    /**
+     * <pre>
+     * list of packet sequences
+     * </pre>
+     *
+     * <code>repeated uint64 packet_commitment_sequences = 4;</code>
+     * @param value The packetCommitmentSequences to add.
+     */
+    @kotlin.jvm.JvmSynthetic
+    @kotlin.jvm.JvmName("addPacketCommitmentSequences")
+    public fun com.google.protobuf.kotlin.DslList<kotlin.Long, PacketCommitmentSequencesProxy>.add(value: kotlin.Long) {
+      _builder.addPacketCommitmentSequences(value)
+    }/**
+     * <pre>
+     * list of packet sequences
+     * </pre>
+     *
+     * <code>repeated uint64 packet_commitment_sequences = 4;</code>
+     * @param value The packetCommitmentSequences to add.
+     */
+    @kotlin.jvm.JvmSynthetic
+    @kotlin.jvm.JvmName("plusAssignPacketCommitmentSequences")
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.Long, PacketCommitmentSequencesProxy>.plusAssign(value: kotlin.Long) {
+      add(value)
+    }/**
+     * <pre>
+     * list of packet sequences
+     * </pre>
+     *
+     * <code>repeated uint64 packet_commitment_sequences = 4;</code>
+     * @param values The packetCommitmentSequences to add.
+     */
+    @kotlin.jvm.JvmSynthetic
+    @kotlin.jvm.JvmName("addAllPacketCommitmentSequences")
+    public fun com.google.protobuf.kotlin.DslList<kotlin.Long, PacketCommitmentSequencesProxy>.addAll(values: kotlin.collections.Iterable<kotlin.Long>) {
+      _builder.addAllPacketCommitmentSequences(values)
+    }/**
+     * <pre>
+     * list of packet sequences
+     * </pre>
+     *
+     * <code>repeated uint64 packet_commitment_sequences = 4;</code>
+     * @param values The packetCommitmentSequences to add.
+     */
+    @kotlin.jvm.JvmSynthetic
+    @kotlin.jvm.JvmName("plusAssignAllPacketCommitmentSequences")
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.Long, PacketCommitmentSequencesProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.Long>) {
+      addAll(values)
+    }/**
+     * <pre>
+     * list of packet sequences
+     * </pre>
+     *
+     * <code>repeated uint64 packet_commitment_sequences = 4;</code>
+     * @param index The index to set the value at.
+     * @param value The packetCommitmentSequences to set.
+     */
+    @kotlin.jvm.JvmSynthetic
+    @kotlin.jvm.JvmName("setPacketCommitmentSequences")
+    public operator fun com.google.protobuf.kotlin.DslList<kotlin.Long, PacketCommitmentSequencesProxy>.set(index: kotlin.Int, value: kotlin.Long) {
+      _builder.setPacketCommitmentSequences(index, value)
+    }/**
+     * <pre>
+     * list of packet sequences
+     * </pre>
+     *
+     * <code>repeated uint64 packet_commitment_sequences = 4;</code>
+     */
+    @kotlin.jvm.JvmSynthetic
+    @kotlin.jvm.JvmName("clearPacketCommitmentSequences")
+    public fun com.google.protobuf.kotlin.DslList<kotlin.Long, PacketCommitmentSequencesProxy>.clear() {
+      _builder.clearPacketCommitmentSequences()
+    }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementsRequest.copy(block: ibc.core.channel.v1.QueryPacketAcknowledgementsRequestKt.Dsl.() -> Unit): ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementsRequest =
+public inline fun ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementsRequest.copy(block: ibc.core.channel.v1.QueryPacketAcknowledgementsRequestKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementsRequest =
   ibc.core.channel.v1.QueryPacketAcknowledgementsRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.tx.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun signerInfo(block: cosmos.tx.v1beta1.SignerInfoKt.Dsl.() -> Unit): cosmos.tx.v1beta1.TxOuterClass.SignerInfo =
+public inline fun signerInfo(block: cosmos.tx.v1beta1.SignerInfoKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.TxOuterClass.SignerInfo =
   cosmos.tx.v1beta1.SignerInfoKt.Dsl._create(cosmos.tx.v1beta1.TxOuterClass.SignerInfo.newBuilder()).apply { block() }._build()
-object SignerInfoKt {
+public object SignerInfoKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.tx.v1beta1.TxOuterClass.SignerInfo.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.tx.v1beta1.TxOuterClass.SignerInfo.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.tx.v1beta1.TxOuterClass.SignerInfo.Builder): Dsl = Dsl(builder)
@@ -31,7 +31,7 @@ object SignerInfoKt {
      *
      * <code>.google.protobuf.Any public_key = 1;</code>
      */
-    var publicKey: com.google.protobuf.Any
+    public var publicKey: com.google.protobuf.Any
       @JvmName("getPublicKey")
       get() = _builder.getPublicKey()
       @JvmName("setPublicKey")
@@ -47,7 +47,7 @@ object SignerInfoKt {
      *
      * <code>.google.protobuf.Any public_key = 1;</code>
      */
-    fun clearPublicKey() {
+    public fun clearPublicKey() {
       _builder.clearPublicKey()
     }
     /**
@@ -60,7 +60,7 @@ object SignerInfoKt {
      * <code>.google.protobuf.Any public_key = 1;</code>
      * @return Whether the publicKey field is set.
      */
-    fun hasPublicKey(): kotlin.Boolean {
+    public fun hasPublicKey(): kotlin.Boolean {
       return _builder.hasPublicKey()
     }
 
@@ -72,7 +72,7 @@ object SignerInfoKt {
      *
      * <code>.cosmos.tx.v1beta1.ModeInfo mode_info = 2;</code>
      */
-    var modeInfo: cosmos.tx.v1beta1.TxOuterClass.ModeInfo
+    public var modeInfo: cosmos.tx.v1beta1.TxOuterClass.ModeInfo
       @JvmName("getModeInfo")
       get() = _builder.getModeInfo()
       @JvmName("setModeInfo")
@@ -87,7 +87,7 @@ object SignerInfoKt {
      *
      * <code>.cosmos.tx.v1beta1.ModeInfo mode_info = 2;</code>
      */
-    fun clearModeInfo() {
+    public fun clearModeInfo() {
       _builder.clearModeInfo()
     }
     /**
@@ -99,7 +99,7 @@ object SignerInfoKt {
      * <code>.cosmos.tx.v1beta1.ModeInfo mode_info = 2;</code>
      * @return Whether the modeInfo field is set.
      */
-    fun hasModeInfo(): kotlin.Boolean {
+    public fun hasModeInfo(): kotlin.Boolean {
       return _builder.hasModeInfo()
     }
 
@@ -112,7 +112,7 @@ object SignerInfoKt {
      *
      * <code>uint64 sequence = 3;</code>
      */
-    var sequence: kotlin.Long
+    public var sequence: kotlin.Long
       @JvmName("getSequence")
       get() = _builder.getSequence()
       @JvmName("setSequence")
@@ -128,11 +128,11 @@ object SignerInfoKt {
      *
      * <code>uint64 sequence = 3;</code>
      */
-    fun clearSequence() {
+    public fun clearSequence() {
       _builder.clearSequence()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.tx.v1beta1.TxOuterClass.SignerInfo.copy(block: cosmos.tx.v1beta1.SignerInfoKt.Dsl.() -> Unit): cosmos.tx.v1beta1.TxOuterClass.SignerInfo =
+public inline fun cosmos.tx.v1beta1.TxOuterClass.SignerInfo.copy(block: cosmos.tx.v1beta1.SignerInfoKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.TxOuterClass.SignerInfo =
   cosmos.tx.v1beta1.SignerInfoKt.Dsl._create(this.toBuilder()).apply { block() }._build()

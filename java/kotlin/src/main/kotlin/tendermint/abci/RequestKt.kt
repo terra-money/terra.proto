@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun request(block: tendermint.abci.RequestKt.Dsl.() -> Unit): tendermint.abci.Types.Request =
+public inline fun request(block: tendermint.abci.RequestKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.Request =
   tendermint.abci.RequestKt.Dsl._create(tendermint.abci.Types.Request.newBuilder()).apply { block() }._build()
-object RequestKt {
+public object RequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.Request.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.Request.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.Request.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object RequestKt {
     /**
      * <code>.tendermint.abci.RequestEcho echo = 1;</code>
      */
-    var echo: tendermint.abci.Types.RequestEcho
+    public var echo: tendermint.abci.Types.RequestEcho
       @JvmName("getEcho")
       get() = _builder.getEcho()
       @JvmName("setEcho")
@@ -35,21 +35,21 @@ object RequestKt {
     /**
      * <code>.tendermint.abci.RequestEcho echo = 1;</code>
      */
-    fun clearEcho() {
+    public fun clearEcho() {
       _builder.clearEcho()
     }
     /**
      * <code>.tendermint.abci.RequestEcho echo = 1;</code>
      * @return Whether the echo field is set.
      */
-    fun hasEcho(): kotlin.Boolean {
+    public fun hasEcho(): kotlin.Boolean {
       return _builder.hasEcho()
     }
 
     /**
      * <code>.tendermint.abci.RequestFlush flush = 2;</code>
      */
-    var flush: tendermint.abci.Types.RequestFlush
+    public var flush: tendermint.abci.Types.RequestFlush
       @JvmName("getFlush")
       get() = _builder.getFlush()
       @JvmName("setFlush")
@@ -59,21 +59,21 @@ object RequestKt {
     /**
      * <code>.tendermint.abci.RequestFlush flush = 2;</code>
      */
-    fun clearFlush() {
+    public fun clearFlush() {
       _builder.clearFlush()
     }
     /**
      * <code>.tendermint.abci.RequestFlush flush = 2;</code>
      * @return Whether the flush field is set.
      */
-    fun hasFlush(): kotlin.Boolean {
+    public fun hasFlush(): kotlin.Boolean {
       return _builder.hasFlush()
     }
 
     /**
      * <code>.tendermint.abci.RequestInfo info = 3;</code>
      */
-    var info: tendermint.abci.Types.RequestInfo
+    public var info: tendermint.abci.Types.RequestInfo
       @JvmName("getInfo")
       get() = _builder.getInfo()
       @JvmName("setInfo")
@@ -83,21 +83,21 @@ object RequestKt {
     /**
      * <code>.tendermint.abci.RequestInfo info = 3;</code>
      */
-    fun clearInfo() {
+    public fun clearInfo() {
       _builder.clearInfo()
     }
     /**
      * <code>.tendermint.abci.RequestInfo info = 3;</code>
      * @return Whether the info field is set.
      */
-    fun hasInfo(): kotlin.Boolean {
+    public fun hasInfo(): kotlin.Boolean {
       return _builder.hasInfo()
     }
 
     /**
      * <code>.tendermint.abci.RequestSetOption set_option = 4;</code>
      */
-    var setOption: tendermint.abci.Types.RequestSetOption
+    public var setOption: tendermint.abci.Types.RequestSetOption
       @JvmName("getSetOption")
       get() = _builder.getSetOption()
       @JvmName("setSetOption")
@@ -107,21 +107,21 @@ object RequestKt {
     /**
      * <code>.tendermint.abci.RequestSetOption set_option = 4;</code>
      */
-    fun clearSetOption() {
+    public fun clearSetOption() {
       _builder.clearSetOption()
     }
     /**
      * <code>.tendermint.abci.RequestSetOption set_option = 4;</code>
      * @return Whether the setOption field is set.
      */
-    fun hasSetOption(): kotlin.Boolean {
+    public fun hasSetOption(): kotlin.Boolean {
       return _builder.hasSetOption()
     }
 
     /**
      * <code>.tendermint.abci.RequestInitChain init_chain = 5;</code>
      */
-    var initChain: tendermint.abci.Types.RequestInitChain
+    public var initChain: tendermint.abci.Types.RequestInitChain
       @JvmName("getInitChain")
       get() = _builder.getInitChain()
       @JvmName("setInitChain")
@@ -131,21 +131,21 @@ object RequestKt {
     /**
      * <code>.tendermint.abci.RequestInitChain init_chain = 5;</code>
      */
-    fun clearInitChain() {
+    public fun clearInitChain() {
       _builder.clearInitChain()
     }
     /**
      * <code>.tendermint.abci.RequestInitChain init_chain = 5;</code>
      * @return Whether the initChain field is set.
      */
-    fun hasInitChain(): kotlin.Boolean {
+    public fun hasInitChain(): kotlin.Boolean {
       return _builder.hasInitChain()
     }
 
     /**
      * <code>.tendermint.abci.RequestQuery query = 6;</code>
      */
-    var query: tendermint.abci.Types.RequestQuery
+    public var query: tendermint.abci.Types.RequestQuery
       @JvmName("getQuery")
       get() = _builder.getQuery()
       @JvmName("setQuery")
@@ -155,21 +155,21 @@ object RequestKt {
     /**
      * <code>.tendermint.abci.RequestQuery query = 6;</code>
      */
-    fun clearQuery() {
+    public fun clearQuery() {
       _builder.clearQuery()
     }
     /**
      * <code>.tendermint.abci.RequestQuery query = 6;</code>
      * @return Whether the query field is set.
      */
-    fun hasQuery(): kotlin.Boolean {
+    public fun hasQuery(): kotlin.Boolean {
       return _builder.hasQuery()
     }
 
     /**
      * <code>.tendermint.abci.RequestBeginBlock begin_block = 7;</code>
      */
-    var beginBlock: tendermint.abci.Types.RequestBeginBlock
+    public var beginBlock: tendermint.abci.Types.RequestBeginBlock
       @JvmName("getBeginBlock")
       get() = _builder.getBeginBlock()
       @JvmName("setBeginBlock")
@@ -179,21 +179,21 @@ object RequestKt {
     /**
      * <code>.tendermint.abci.RequestBeginBlock begin_block = 7;</code>
      */
-    fun clearBeginBlock() {
+    public fun clearBeginBlock() {
       _builder.clearBeginBlock()
     }
     /**
      * <code>.tendermint.abci.RequestBeginBlock begin_block = 7;</code>
      * @return Whether the beginBlock field is set.
      */
-    fun hasBeginBlock(): kotlin.Boolean {
+    public fun hasBeginBlock(): kotlin.Boolean {
       return _builder.hasBeginBlock()
     }
 
     /**
      * <code>.tendermint.abci.RequestCheckTx check_tx = 8;</code>
      */
-    var checkTx: tendermint.abci.Types.RequestCheckTx
+    public var checkTx: tendermint.abci.Types.RequestCheckTx
       @JvmName("getCheckTx")
       get() = _builder.getCheckTx()
       @JvmName("setCheckTx")
@@ -203,21 +203,21 @@ object RequestKt {
     /**
      * <code>.tendermint.abci.RequestCheckTx check_tx = 8;</code>
      */
-    fun clearCheckTx() {
+    public fun clearCheckTx() {
       _builder.clearCheckTx()
     }
     /**
      * <code>.tendermint.abci.RequestCheckTx check_tx = 8;</code>
      * @return Whether the checkTx field is set.
      */
-    fun hasCheckTx(): kotlin.Boolean {
+    public fun hasCheckTx(): kotlin.Boolean {
       return _builder.hasCheckTx()
     }
 
     /**
      * <code>.tendermint.abci.RequestDeliverTx deliver_tx = 9;</code>
      */
-    var deliverTx: tendermint.abci.Types.RequestDeliverTx
+    public var deliverTx: tendermint.abci.Types.RequestDeliverTx
       @JvmName("getDeliverTx")
       get() = _builder.getDeliverTx()
       @JvmName("setDeliverTx")
@@ -227,21 +227,21 @@ object RequestKt {
     /**
      * <code>.tendermint.abci.RequestDeliverTx deliver_tx = 9;</code>
      */
-    fun clearDeliverTx() {
+    public fun clearDeliverTx() {
       _builder.clearDeliverTx()
     }
     /**
      * <code>.tendermint.abci.RequestDeliverTx deliver_tx = 9;</code>
      * @return Whether the deliverTx field is set.
      */
-    fun hasDeliverTx(): kotlin.Boolean {
+    public fun hasDeliverTx(): kotlin.Boolean {
       return _builder.hasDeliverTx()
     }
 
     /**
      * <code>.tendermint.abci.RequestEndBlock end_block = 10;</code>
      */
-    var endBlock: tendermint.abci.Types.RequestEndBlock
+    public var endBlock: tendermint.abci.Types.RequestEndBlock
       @JvmName("getEndBlock")
       get() = _builder.getEndBlock()
       @JvmName("setEndBlock")
@@ -251,21 +251,21 @@ object RequestKt {
     /**
      * <code>.tendermint.abci.RequestEndBlock end_block = 10;</code>
      */
-    fun clearEndBlock() {
+    public fun clearEndBlock() {
       _builder.clearEndBlock()
     }
     /**
      * <code>.tendermint.abci.RequestEndBlock end_block = 10;</code>
      * @return Whether the endBlock field is set.
      */
-    fun hasEndBlock(): kotlin.Boolean {
+    public fun hasEndBlock(): kotlin.Boolean {
       return _builder.hasEndBlock()
     }
 
     /**
      * <code>.tendermint.abci.RequestCommit commit = 11;</code>
      */
-    var commit: tendermint.abci.Types.RequestCommit
+    public var commit: tendermint.abci.Types.RequestCommit
       @JvmName("getCommit")
       get() = _builder.getCommit()
       @JvmName("setCommit")
@@ -275,21 +275,21 @@ object RequestKt {
     /**
      * <code>.tendermint.abci.RequestCommit commit = 11;</code>
      */
-    fun clearCommit() {
+    public fun clearCommit() {
       _builder.clearCommit()
     }
     /**
      * <code>.tendermint.abci.RequestCommit commit = 11;</code>
      * @return Whether the commit field is set.
      */
-    fun hasCommit(): kotlin.Boolean {
+    public fun hasCommit(): kotlin.Boolean {
       return _builder.hasCommit()
     }
 
     /**
      * <code>.tendermint.abci.RequestListSnapshots list_snapshots = 12;</code>
      */
-    var listSnapshots: tendermint.abci.Types.RequestListSnapshots
+    public var listSnapshots: tendermint.abci.Types.RequestListSnapshots
       @JvmName("getListSnapshots")
       get() = _builder.getListSnapshots()
       @JvmName("setListSnapshots")
@@ -299,21 +299,21 @@ object RequestKt {
     /**
      * <code>.tendermint.abci.RequestListSnapshots list_snapshots = 12;</code>
      */
-    fun clearListSnapshots() {
+    public fun clearListSnapshots() {
       _builder.clearListSnapshots()
     }
     /**
      * <code>.tendermint.abci.RequestListSnapshots list_snapshots = 12;</code>
      * @return Whether the listSnapshots field is set.
      */
-    fun hasListSnapshots(): kotlin.Boolean {
+    public fun hasListSnapshots(): kotlin.Boolean {
       return _builder.hasListSnapshots()
     }
 
     /**
      * <code>.tendermint.abci.RequestOfferSnapshot offer_snapshot = 13;</code>
      */
-    var offerSnapshot: tendermint.abci.Types.RequestOfferSnapshot
+    public var offerSnapshot: tendermint.abci.Types.RequestOfferSnapshot
       @JvmName("getOfferSnapshot")
       get() = _builder.getOfferSnapshot()
       @JvmName("setOfferSnapshot")
@@ -323,21 +323,21 @@ object RequestKt {
     /**
      * <code>.tendermint.abci.RequestOfferSnapshot offer_snapshot = 13;</code>
      */
-    fun clearOfferSnapshot() {
+    public fun clearOfferSnapshot() {
       _builder.clearOfferSnapshot()
     }
     /**
      * <code>.tendermint.abci.RequestOfferSnapshot offer_snapshot = 13;</code>
      * @return Whether the offerSnapshot field is set.
      */
-    fun hasOfferSnapshot(): kotlin.Boolean {
+    public fun hasOfferSnapshot(): kotlin.Boolean {
       return _builder.hasOfferSnapshot()
     }
 
     /**
      * <code>.tendermint.abci.RequestLoadSnapshotChunk load_snapshot_chunk = 14;</code>
      */
-    var loadSnapshotChunk: tendermint.abci.Types.RequestLoadSnapshotChunk
+    public var loadSnapshotChunk: tendermint.abci.Types.RequestLoadSnapshotChunk
       @JvmName("getLoadSnapshotChunk")
       get() = _builder.getLoadSnapshotChunk()
       @JvmName("setLoadSnapshotChunk")
@@ -347,21 +347,21 @@ object RequestKt {
     /**
      * <code>.tendermint.abci.RequestLoadSnapshotChunk load_snapshot_chunk = 14;</code>
      */
-    fun clearLoadSnapshotChunk() {
+    public fun clearLoadSnapshotChunk() {
       _builder.clearLoadSnapshotChunk()
     }
     /**
      * <code>.tendermint.abci.RequestLoadSnapshotChunk load_snapshot_chunk = 14;</code>
      * @return Whether the loadSnapshotChunk field is set.
      */
-    fun hasLoadSnapshotChunk(): kotlin.Boolean {
+    public fun hasLoadSnapshotChunk(): kotlin.Boolean {
       return _builder.hasLoadSnapshotChunk()
     }
 
     /**
      * <code>.tendermint.abci.RequestApplySnapshotChunk apply_snapshot_chunk = 15;</code>
      */
-    var applySnapshotChunk: tendermint.abci.Types.RequestApplySnapshotChunk
+    public var applySnapshotChunk: tendermint.abci.Types.RequestApplySnapshotChunk
       @JvmName("getApplySnapshotChunk")
       get() = _builder.getApplySnapshotChunk()
       @JvmName("setApplySnapshotChunk")
@@ -371,25 +371,25 @@ object RequestKt {
     /**
      * <code>.tendermint.abci.RequestApplySnapshotChunk apply_snapshot_chunk = 15;</code>
      */
-    fun clearApplySnapshotChunk() {
+    public fun clearApplySnapshotChunk() {
       _builder.clearApplySnapshotChunk()
     }
     /**
      * <code>.tendermint.abci.RequestApplySnapshotChunk apply_snapshot_chunk = 15;</code>
      * @return Whether the applySnapshotChunk field is set.
      */
-    fun hasApplySnapshotChunk(): kotlin.Boolean {
+    public fun hasApplySnapshotChunk(): kotlin.Boolean {
       return _builder.hasApplySnapshotChunk()
     }
-    val valueCase: tendermint.abci.Types.Request.ValueCase
+    public val valueCase: tendermint.abci.Types.Request.ValueCase
       @JvmName("getValueCase")
       get() = _builder.getValueCase()
 
-    fun clearValue() {
+    public fun clearValue() {
       _builder.clearValue()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.Request.copy(block: tendermint.abci.RequestKt.Dsl.() -> Unit): tendermint.abci.Types.Request =
+public inline fun tendermint.abci.Types.Request.copy(block: tendermint.abci.RequestKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.Request =
   tendermint.abci.RequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.bank.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun params(block: cosmos.bank.v1beta1.ParamsKt.Dsl.() -> Unit): cosmos.bank.v1beta1.Bank.Params =
+public inline fun params(block: cosmos.bank.v1beta1.ParamsKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.Bank.Params =
   cosmos.bank.v1beta1.ParamsKt.Dsl._create(cosmos.bank.v1beta1.Bank.Params.newBuilder()).apply { block() }._build()
-object ParamsKt {
+public object ParamsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.bank.v1beta1.Bank.Params.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.bank.v1beta1.Bank.Params.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.bank.v1beta1.Bank.Params.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object ParamsKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class SendEnabledProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class SendEnabledProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.bank.v1beta1.SendEnabled send_enabled = 1 [(.gogoproto.moretags) = "yaml:&#92;"send_enabled,omitempty&#92;""];</code>
      */
-     val sendEnabled: com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.SendEnabled, SendEnabledProxy>
+     public val sendEnabled: com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.SendEnabled, SendEnabledProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getSendEnabledList()
@@ -42,7 +42,7 @@ object ParamsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addSendEnabled")
-    fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.SendEnabled, SendEnabledProxy>.add(value: cosmos.bank.v1beta1.Bank.SendEnabled) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.SendEnabled, SendEnabledProxy>.add(value: cosmos.bank.v1beta1.Bank.SendEnabled) {
       _builder.addSendEnabled(value)
     }/**
      * <code>repeated .cosmos.bank.v1beta1.SendEnabled send_enabled = 1 [(.gogoproto.moretags) = "yaml:&#92;"send_enabled,omitempty&#92;""];</code>
@@ -50,7 +50,8 @@ object ParamsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignSendEnabled")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.SendEnabled, SendEnabledProxy>.plusAssign(value: cosmos.bank.v1beta1.Bank.SendEnabled) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.SendEnabled, SendEnabledProxy>.plusAssign(value: cosmos.bank.v1beta1.Bank.SendEnabled) {
       add(value)
     }/**
      * <code>repeated .cosmos.bank.v1beta1.SendEnabled send_enabled = 1 [(.gogoproto.moretags) = "yaml:&#92;"send_enabled,omitempty&#92;""];</code>
@@ -58,7 +59,7 @@ object ParamsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllSendEnabled")
-    fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.SendEnabled, SendEnabledProxy>.addAll(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Bank.SendEnabled>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.SendEnabled, SendEnabledProxy>.addAll(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Bank.SendEnabled>) {
       _builder.addAllSendEnabled(values)
     }/**
      * <code>repeated .cosmos.bank.v1beta1.SendEnabled send_enabled = 1 [(.gogoproto.moretags) = "yaml:&#92;"send_enabled,omitempty&#92;""];</code>
@@ -66,7 +67,8 @@ object ParamsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllSendEnabled")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.SendEnabled, SendEnabledProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Bank.SendEnabled>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.SendEnabled, SendEnabledProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Bank.SendEnabled>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.bank.v1beta1.SendEnabled send_enabled = 1 [(.gogoproto.moretags) = "yaml:&#92;"send_enabled,omitempty&#92;""];</code>
@@ -75,20 +77,20 @@ object ParamsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setSendEnabled")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.SendEnabled, SendEnabledProxy>.set(index: kotlin.Int, value: cosmos.bank.v1beta1.Bank.SendEnabled) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.SendEnabled, SendEnabledProxy>.set(index: kotlin.Int, value: cosmos.bank.v1beta1.Bank.SendEnabled) {
       _builder.setSendEnabled(index, value)
     }/**
      * <code>repeated .cosmos.bank.v1beta1.SendEnabled send_enabled = 1 [(.gogoproto.moretags) = "yaml:&#92;"send_enabled,omitempty&#92;""];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearSendEnabled")
-    fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.SendEnabled, SendEnabledProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.SendEnabled, SendEnabledProxy>.clear() {
       _builder.clearSendEnabled()
     }
     /**
      * <code>bool default_send_enabled = 2 [(.gogoproto.moretags) = "yaml:&#92;"default_send_enabled,omitempty&#92;""];</code>
      */
-    var defaultSendEnabled: kotlin.Boolean
+    public var defaultSendEnabled: kotlin.Boolean
       @JvmName("getDefaultSendEnabled")
       get() = _builder.getDefaultSendEnabled()
       @JvmName("setDefaultSendEnabled")
@@ -98,11 +100,11 @@ object ParamsKt {
     /**
      * <code>bool default_send_enabled = 2 [(.gogoproto.moretags) = "yaml:&#92;"default_send_enabled,omitempty&#92;""];</code>
      */
-    fun clearDefaultSendEnabled() {
+    public fun clearDefaultSendEnabled() {
       _builder.clearDefaultSendEnabled()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.bank.v1beta1.Bank.Params.copy(block: cosmos.bank.v1beta1.ParamsKt.Dsl.() -> Unit): cosmos.bank.v1beta1.Bank.Params =
+public inline fun cosmos.bank.v1beta1.Bank.Params.copy(block: cosmos.bank.v1beta1.ParamsKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.Bank.Params =
   cosmos.bank.v1beta1.ParamsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

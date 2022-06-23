@@ -2515,9 +2515,9 @@ public final class Commitment {
       "\n\nkey_prefix\030\001 \001(\014B\025\362\336\037\021yaml:\"key_prefix" +
       "\"\"9\n\nMerklePath\022%\n\010key_path\030\001 \003(\tB\023\362\336\037\017y" +
       "aml:\"key_path\":\004\230\240\037\000\"5\n\013MerkleProof\022&\n\006p" +
-      "roofs\030\001 \003(\0132\026.ics23.CommitmentProofB;Z9g" +
-      "ithub.com/cosmos/ibc-go/modules/core/23-" +
-      "commitment/typesb\006proto3"
+      "roofs\030\001 \003(\0132\026.ics23.CommitmentProofB>Z<g" +
+      "ithub.com/cosmos/ibc-go/v3/modules/core/" +
+      "23-commitment/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

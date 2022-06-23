@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgChannelOpenAck(block: ibc.core.channel.v1.MsgChannelOpenAckKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgChannelOpenAck =
+public inline fun msgChannelOpenAck(block: ibc.core.channel.v1.MsgChannelOpenAckKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgChannelOpenAck =
   ibc.core.channel.v1.MsgChannelOpenAckKt.Dsl._create(ibc.core.channel.v1.Tx.MsgChannelOpenAck.newBuilder()).apply { block() }._build()
-object MsgChannelOpenAckKt {
+public object MsgChannelOpenAckKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.Tx.MsgChannelOpenAck.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.Tx.MsgChannelOpenAck.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.Tx.MsgChannelOpenAck.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object MsgChannelOpenAckKt {
     /**
      * <code>string port_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"port_id&#92;""];</code>
      */
-    var portId: kotlin.String
+    public var portId: kotlin.String
       @JvmName("getPortId")
       get() = _builder.getPortId()
       @JvmName("setPortId")
@@ -35,14 +35,14 @@ object MsgChannelOpenAckKt {
     /**
      * <code>string port_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"port_id&#92;""];</code>
      */
-    fun clearPortId() {
+    public fun clearPortId() {
       _builder.clearPortId()
     }
 
     /**
      * <code>string channel_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
      */
-    var channelId: kotlin.String
+    public var channelId: kotlin.String
       @JvmName("getChannelId")
       get() = _builder.getChannelId()
       @JvmName("setChannelId")
@@ -52,14 +52,14 @@ object MsgChannelOpenAckKt {
     /**
      * <code>string channel_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
      */
-    fun clearChannelId() {
+    public fun clearChannelId() {
       _builder.clearChannelId()
     }
 
     /**
      * <code>string counterparty_channel_id = 3 [(.gogoproto.moretags) = "yaml:&#92;"counterparty_channel_id&#92;""];</code>
      */
-    var counterpartyChannelId: kotlin.String
+    public var counterpartyChannelId: kotlin.String
       @JvmName("getCounterpartyChannelId")
       get() = _builder.getCounterpartyChannelId()
       @JvmName("setCounterpartyChannelId")
@@ -69,14 +69,14 @@ object MsgChannelOpenAckKt {
     /**
      * <code>string counterparty_channel_id = 3 [(.gogoproto.moretags) = "yaml:&#92;"counterparty_channel_id&#92;""];</code>
      */
-    fun clearCounterpartyChannelId() {
+    public fun clearCounterpartyChannelId() {
       _builder.clearCounterpartyChannelId()
     }
 
     /**
      * <code>string counterparty_version = 4 [(.gogoproto.moretags) = "yaml:&#92;"counterparty_version&#92;""];</code>
      */
-    var counterpartyVersion: kotlin.String
+    public var counterpartyVersion: kotlin.String
       @JvmName("getCounterpartyVersion")
       get() = _builder.getCounterpartyVersion()
       @JvmName("setCounterpartyVersion")
@@ -86,14 +86,14 @@ object MsgChannelOpenAckKt {
     /**
      * <code>string counterparty_version = 4 [(.gogoproto.moretags) = "yaml:&#92;"counterparty_version&#92;""];</code>
      */
-    fun clearCounterpartyVersion() {
+    public fun clearCounterpartyVersion() {
       _builder.clearCounterpartyVersion()
     }
 
     /**
      * <code>bytes proof_try = 5 [(.gogoproto.moretags) = "yaml:&#92;"proof_try&#92;""];</code>
      */
-    var proofTry: com.google.protobuf.ByteString
+    public var proofTry: com.google.protobuf.ByteString
       @JvmName("getProofTry")
       get() = _builder.getProofTry()
       @JvmName("setProofTry")
@@ -103,14 +103,14 @@ object MsgChannelOpenAckKt {
     /**
      * <code>bytes proof_try = 5 [(.gogoproto.moretags) = "yaml:&#92;"proof_try&#92;""];</code>
      */
-    fun clearProofTry() {
+    public fun clearProofTry() {
       _builder.clearProofTry()
     }
 
     /**
      * <code>.ibc.core.client.v1.Height proof_height = 6 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"proof_height&#92;""];</code>
      */
-    var proofHeight: ibc.core.client.v1.Client.Height
+    public var proofHeight: ibc.core.client.v1.Client.Height
       @JvmName("getProofHeight")
       get() = _builder.getProofHeight()
       @JvmName("setProofHeight")
@@ -120,21 +120,21 @@ object MsgChannelOpenAckKt {
     /**
      * <code>.ibc.core.client.v1.Height proof_height = 6 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"proof_height&#92;""];</code>
      */
-    fun clearProofHeight() {
+    public fun clearProofHeight() {
       _builder.clearProofHeight()
     }
     /**
      * <code>.ibc.core.client.v1.Height proof_height = 6 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"proof_height&#92;""];</code>
      * @return Whether the proofHeight field is set.
      */
-    fun hasProofHeight(): kotlin.Boolean {
+    public fun hasProofHeight(): kotlin.Boolean {
       return _builder.hasProofHeight()
     }
 
     /**
      * <code>string signer = 7;</code>
      */
-    var signer: kotlin.String
+    public var signer: kotlin.String
       @JvmName("getSigner")
       get() = _builder.getSigner()
       @JvmName("setSigner")
@@ -144,11 +144,11 @@ object MsgChannelOpenAckKt {
     /**
      * <code>string signer = 7;</code>
      */
-    fun clearSigner() {
+    public fun clearSigner() {
       _builder.clearSigner()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.Tx.MsgChannelOpenAck.copy(block: ibc.core.channel.v1.MsgChannelOpenAckKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgChannelOpenAck =
+public inline fun ibc.core.channel.v1.Tx.MsgChannelOpenAck.copy(block: ibc.core.channel.v1.MsgChannelOpenAckKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgChannelOpenAck =
   ibc.core.channel.v1.MsgChannelOpenAckKt.Dsl._create(this.toBuilder()).apply { block() }._build()

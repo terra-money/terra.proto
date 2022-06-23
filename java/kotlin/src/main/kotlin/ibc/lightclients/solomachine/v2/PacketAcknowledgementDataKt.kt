@@ -4,15 +4,15 @@
 package ibc.lightclients.solomachine.v2;
 
 @kotlin.jvm.JvmSynthetic
-inline fun packetAcknowledgementData(block: ibc.lightclients.solomachine.v2.PacketAcknowledgementDataKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v2.Solomachine.PacketAcknowledgementData =
+public inline fun packetAcknowledgementData(block: ibc.lightclients.solomachine.v2.PacketAcknowledgementDataKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v2.Solomachine.PacketAcknowledgementData =
   ibc.lightclients.solomachine.v2.PacketAcknowledgementDataKt.Dsl._create(ibc.lightclients.solomachine.v2.Solomachine.PacketAcknowledgementData.newBuilder()).apply { block() }._build()
-object PacketAcknowledgementDataKt {
+public object PacketAcknowledgementDataKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.lightclients.solomachine.v2.Solomachine.PacketAcknowledgementData.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.lightclients.solomachine.v2.Solomachine.PacketAcknowledgementData.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.lightclients.solomachine.v2.Solomachine.PacketAcknowledgementData.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object PacketAcknowledgementDataKt {
     /**
      * <code>bytes path = 1;</code>
      */
-    var path: com.google.protobuf.ByteString
+    public var path: com.google.protobuf.ByteString
       @JvmName("getPath")
       get() = _builder.getPath()
       @JvmName("setPath")
@@ -35,14 +35,14 @@ object PacketAcknowledgementDataKt {
     /**
      * <code>bytes path = 1;</code>
      */
-    fun clearPath() {
+    public fun clearPath() {
       _builder.clearPath()
     }
 
     /**
      * <code>bytes acknowledgement = 2;</code>
      */
-    var acknowledgement: com.google.protobuf.ByteString
+    public var acknowledgement: com.google.protobuf.ByteString
       @JvmName("getAcknowledgement")
       get() = _builder.getAcknowledgement()
       @JvmName("setAcknowledgement")
@@ -52,11 +52,11 @@ object PacketAcknowledgementDataKt {
     /**
      * <code>bytes acknowledgement = 2;</code>
      */
-    fun clearAcknowledgement() {
+    public fun clearAcknowledgement() {
       _builder.clearAcknowledgement()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.lightclients.solomachine.v2.Solomachine.PacketAcknowledgementData.copy(block: ibc.lightclients.solomachine.v2.PacketAcknowledgementDataKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v2.Solomachine.PacketAcknowledgementData =
+public inline fun ibc.lightclients.solomachine.v2.Solomachine.PacketAcknowledgementData.copy(block: ibc.lightclients.solomachine.v2.PacketAcknowledgementDataKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v2.Solomachine.PacketAcknowledgementData =
   ibc.lightclients.solomachine.v2.PacketAcknowledgementDataKt.Dsl._create(this.toBuilder()).apply { block() }._build()

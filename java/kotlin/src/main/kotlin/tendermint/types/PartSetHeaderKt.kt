@@ -4,15 +4,15 @@
 package tendermint.types;
 
 @kotlin.jvm.JvmSynthetic
-inline fun partSetHeader(block: tendermint.types.PartSetHeaderKt.Dsl.() -> Unit): tendermint.types.Types.PartSetHeader =
+public inline fun partSetHeader(block: tendermint.types.PartSetHeaderKt.Dsl.() -> kotlin.Unit): tendermint.types.Types.PartSetHeader =
   tendermint.types.PartSetHeaderKt.Dsl._create(tendermint.types.Types.PartSetHeader.newBuilder()).apply { block() }._build()
-object PartSetHeaderKt {
+public object PartSetHeaderKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.types.Types.PartSetHeader.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.types.Types.PartSetHeader.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.types.Types.PartSetHeader.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object PartSetHeaderKt {
     /**
      * <code>uint32 total = 1;</code>
      */
-    var total: kotlin.Int
+    public var total: kotlin.Int
       @JvmName("getTotal")
       get() = _builder.getTotal()
       @JvmName("setTotal")
@@ -35,14 +35,14 @@ object PartSetHeaderKt {
     /**
      * <code>uint32 total = 1;</code>
      */
-    fun clearTotal() {
+    public fun clearTotal() {
       _builder.clearTotal()
     }
 
     /**
      * <code>bytes hash = 2;</code>
      */
-    var hash: com.google.protobuf.ByteString
+    public var hash: com.google.protobuf.ByteString
       @JvmName("getHash")
       get() = _builder.getHash()
       @JvmName("setHash")
@@ -52,11 +52,11 @@ object PartSetHeaderKt {
     /**
      * <code>bytes hash = 2;</code>
      */
-    fun clearHash() {
+    public fun clearHash() {
       _builder.clearHash()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.types.Types.PartSetHeader.copy(block: tendermint.types.PartSetHeaderKt.Dsl.() -> Unit): tendermint.types.Types.PartSetHeader =
+public inline fun tendermint.types.Types.PartSetHeader.copy(block: tendermint.types.PartSetHeaderKt.Dsl.() -> kotlin.Unit): tendermint.types.Types.PartSetHeader =
   tendermint.types.PartSetHeaderKt.Dsl._create(this.toBuilder()).apply { block() }._build()

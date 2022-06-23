@@ -4,15 +4,15 @@
 package ibc.lightclients.solomachine.v2;
 
 @kotlin.jvm.JvmSynthetic
-inline fun header(block: ibc.lightclients.solomachine.v2.HeaderKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v2.Solomachine.Header =
+public inline fun header(block: ibc.lightclients.solomachine.v2.HeaderKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v2.Solomachine.Header =
   ibc.lightclients.solomachine.v2.HeaderKt.Dsl._create(ibc.lightclients.solomachine.v2.Solomachine.Header.newBuilder()).apply { block() }._build()
-object HeaderKt {
+public object HeaderKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.lightclients.solomachine.v2.Solomachine.Header.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.lightclients.solomachine.v2.Solomachine.Header.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.lightclients.solomachine.v2.Solomachine.Header.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object HeaderKt {
      *
      * <code>uint64 sequence = 1;</code>
      */
-    var sequence: kotlin.Long
+    public var sequence: kotlin.Long
       @JvmName("getSequence")
       get() = _builder.getSequence()
       @JvmName("setSequence")
@@ -43,14 +43,14 @@ object HeaderKt {
      *
      * <code>uint64 sequence = 1;</code>
      */
-    fun clearSequence() {
+    public fun clearSequence() {
       _builder.clearSequence()
     }
 
     /**
      * <code>uint64 timestamp = 2;</code>
      */
-    var timestamp: kotlin.Long
+    public var timestamp: kotlin.Long
       @JvmName("getTimestamp")
       get() = _builder.getTimestamp()
       @JvmName("setTimestamp")
@@ -60,14 +60,14 @@ object HeaderKt {
     /**
      * <code>uint64 timestamp = 2;</code>
      */
-    fun clearTimestamp() {
+    public fun clearTimestamp() {
       _builder.clearTimestamp()
     }
 
     /**
      * <code>bytes signature = 3;</code>
      */
-    var signature: com.google.protobuf.ByteString
+    public var signature: com.google.protobuf.ByteString
       @JvmName("getSignature")
       get() = _builder.getSignature()
       @JvmName("setSignature")
@@ -77,14 +77,14 @@ object HeaderKt {
     /**
      * <code>bytes signature = 3;</code>
      */
-    fun clearSignature() {
+    public fun clearSignature() {
       _builder.clearSignature()
     }
 
     /**
      * <code>.google.protobuf.Any new_public_key = 4 [(.gogoproto.moretags) = "yaml:&#92;"new_public_key&#92;""];</code>
      */
-    var newPublicKey: com.google.protobuf.Any
+    public var newPublicKey: com.google.protobuf.Any
       @JvmName("getNewPublicKey")
       get() = _builder.getNewPublicKey()
       @JvmName("setNewPublicKey")
@@ -94,21 +94,21 @@ object HeaderKt {
     /**
      * <code>.google.protobuf.Any new_public_key = 4 [(.gogoproto.moretags) = "yaml:&#92;"new_public_key&#92;""];</code>
      */
-    fun clearNewPublicKey() {
+    public fun clearNewPublicKey() {
       _builder.clearNewPublicKey()
     }
     /**
      * <code>.google.protobuf.Any new_public_key = 4 [(.gogoproto.moretags) = "yaml:&#92;"new_public_key&#92;""];</code>
      * @return Whether the newPublicKey field is set.
      */
-    fun hasNewPublicKey(): kotlin.Boolean {
+    public fun hasNewPublicKey(): kotlin.Boolean {
       return _builder.hasNewPublicKey()
     }
 
     /**
      * <code>string new_diversifier = 5 [(.gogoproto.moretags) = "yaml:&#92;"new_diversifier&#92;""];</code>
      */
-    var newDiversifier: kotlin.String
+    public var newDiversifier: kotlin.String
       @JvmName("getNewDiversifier")
       get() = _builder.getNewDiversifier()
       @JvmName("setNewDiversifier")
@@ -118,11 +118,11 @@ object HeaderKt {
     /**
      * <code>string new_diversifier = 5 [(.gogoproto.moretags) = "yaml:&#92;"new_diversifier&#92;""];</code>
      */
-    fun clearNewDiversifier() {
+    public fun clearNewDiversifier() {
       _builder.clearNewDiversifier()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.lightclients.solomachine.v2.Solomachine.Header.copy(block: ibc.lightclients.solomachine.v2.HeaderKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v2.Solomachine.Header =
+public inline fun ibc.lightclients.solomachine.v2.Solomachine.Header.copy(block: ibc.lightclients.solomachine.v2.HeaderKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v2.Solomachine.Header =
   ibc.lightclients.solomachine.v2.HeaderKt.Dsl._create(this.toBuilder()).apply { block() }._build()

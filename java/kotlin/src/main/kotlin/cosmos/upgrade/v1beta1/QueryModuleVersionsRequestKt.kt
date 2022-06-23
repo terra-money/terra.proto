@@ -4,15 +4,15 @@
 package cosmos.upgrade.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryModuleVersionsRequest(block: cosmos.upgrade.v1beta1.QueryModuleVersionsRequestKt.Dsl.() -> Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryModuleVersionsRequest =
+public inline fun queryModuleVersionsRequest(block: cosmos.upgrade.v1beta1.QueryModuleVersionsRequestKt.Dsl.() -> kotlin.Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryModuleVersionsRequest =
   cosmos.upgrade.v1beta1.QueryModuleVersionsRequestKt.Dsl._create(cosmos.upgrade.v1beta1.QueryOuterClass.QueryModuleVersionsRequest.newBuilder()).apply { block() }._build()
-object QueryModuleVersionsRequestKt {
+public object QueryModuleVersionsRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryModuleVersionsRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryModuleVersionsRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryModuleVersionsRequest.Builder): Dsl = Dsl(builder)
@@ -31,7 +31,7 @@ object QueryModuleVersionsRequestKt {
      *
      * <code>string module_name = 1;</code>
      */
-    var moduleName: kotlin.String
+    public var moduleName: kotlin.String
       @JvmName("getModuleName")
       get() = _builder.getModuleName()
       @JvmName("setModuleName")
@@ -47,11 +47,11 @@ object QueryModuleVersionsRequestKt {
      *
      * <code>string module_name = 1;</code>
      */
-    fun clearModuleName() {
+    public fun clearModuleName() {
       _builder.clearModuleName()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.upgrade.v1beta1.QueryOuterClass.QueryModuleVersionsRequest.copy(block: cosmos.upgrade.v1beta1.QueryModuleVersionsRequestKt.Dsl.() -> Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryModuleVersionsRequest =
+public inline fun cosmos.upgrade.v1beta1.QueryOuterClass.QueryModuleVersionsRequest.copy(block: cosmos.upgrade.v1beta1.QueryModuleVersionsRequestKt.Dsl.() -> kotlin.Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryModuleVersionsRequest =
   cosmos.upgrade.v1beta1.QueryModuleVersionsRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

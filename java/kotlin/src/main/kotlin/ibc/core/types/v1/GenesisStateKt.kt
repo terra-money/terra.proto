@@ -4,15 +4,15 @@
 package ibc.core.types.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun genesisState(block: ibc.core.types.v1.GenesisStateKt.Dsl.() -> Unit): ibc.core.types.v1.Genesis.GenesisState =
+public inline fun genesisState(block: ibc.core.types.v1.GenesisStateKt.Dsl.() -> kotlin.Unit): ibc.core.types.v1.Genesis.GenesisState =
   ibc.core.types.v1.GenesisStateKt.Dsl._create(ibc.core.types.v1.Genesis.GenesisState.newBuilder()).apply { block() }._build()
-object GenesisStateKt {
+public object GenesisStateKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.types.v1.Genesis.GenesisState.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.types.v1.Genesis.GenesisState.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.types.v1.Genesis.GenesisState.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object GenesisStateKt {
      *
      * <code>.ibc.core.client.v1.GenesisState client_genesis = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"client_genesis&#92;""];</code>
      */
-    var clientGenesis: ibc.core.client.v1.Genesis.GenesisState
+    public var clientGenesis: ibc.core.client.v1.Genesis.GenesisState
       @JvmName("getClientGenesis")
       get() = _builder.getClientGenesis()
       @JvmName("setClientGenesis")
@@ -43,7 +43,7 @@ object GenesisStateKt {
      *
      * <code>.ibc.core.client.v1.GenesisState client_genesis = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"client_genesis&#92;""];</code>
      */
-    fun clearClientGenesis() {
+    public fun clearClientGenesis() {
       _builder.clearClientGenesis()
     }
     /**
@@ -54,7 +54,7 @@ object GenesisStateKt {
      * <code>.ibc.core.client.v1.GenesisState client_genesis = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"client_genesis&#92;""];</code>
      * @return Whether the clientGenesis field is set.
      */
-    fun hasClientGenesis(): kotlin.Boolean {
+    public fun hasClientGenesis(): kotlin.Boolean {
       return _builder.hasClientGenesis()
     }
 
@@ -65,7 +65,7 @@ object GenesisStateKt {
      *
      * <code>.ibc.core.connection.v1.GenesisState connection_genesis = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"connection_genesis&#92;""];</code>
      */
-    var connectionGenesis: ibc.core.connection.v1.Genesis.GenesisState
+    public var connectionGenesis: ibc.core.connection.v1.Genesis.GenesisState
       @JvmName("getConnectionGenesis")
       get() = _builder.getConnectionGenesis()
       @JvmName("setConnectionGenesis")
@@ -79,7 +79,7 @@ object GenesisStateKt {
      *
      * <code>.ibc.core.connection.v1.GenesisState connection_genesis = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"connection_genesis&#92;""];</code>
      */
-    fun clearConnectionGenesis() {
+    public fun clearConnectionGenesis() {
       _builder.clearConnectionGenesis()
     }
     /**
@@ -90,7 +90,7 @@ object GenesisStateKt {
      * <code>.ibc.core.connection.v1.GenesisState connection_genesis = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"connection_genesis&#92;""];</code>
      * @return Whether the connectionGenesis field is set.
      */
-    fun hasConnectionGenesis(): kotlin.Boolean {
+    public fun hasConnectionGenesis(): kotlin.Boolean {
       return _builder.hasConnectionGenesis()
     }
 
@@ -101,7 +101,7 @@ object GenesisStateKt {
      *
      * <code>.ibc.core.channel.v1.GenesisState channel_genesis = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"channel_genesis&#92;""];</code>
      */
-    var channelGenesis: ibc.core.channel.v1.Genesis.GenesisState
+    public var channelGenesis: ibc.core.channel.v1.Genesis.GenesisState
       @JvmName("getChannelGenesis")
       get() = _builder.getChannelGenesis()
       @JvmName("setChannelGenesis")
@@ -115,7 +115,7 @@ object GenesisStateKt {
      *
      * <code>.ibc.core.channel.v1.GenesisState channel_genesis = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"channel_genesis&#92;""];</code>
      */
-    fun clearChannelGenesis() {
+    public fun clearChannelGenesis() {
       _builder.clearChannelGenesis()
     }
     /**
@@ -126,11 +126,11 @@ object GenesisStateKt {
      * <code>.ibc.core.channel.v1.GenesisState channel_genesis = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"channel_genesis&#92;""];</code>
      * @return Whether the channelGenesis field is set.
      */
-    fun hasChannelGenesis(): kotlin.Boolean {
+    public fun hasChannelGenesis(): kotlin.Boolean {
       return _builder.hasChannelGenesis()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.types.v1.Genesis.GenesisState.copy(block: ibc.core.types.v1.GenesisStateKt.Dsl.() -> Unit): ibc.core.types.v1.Genesis.GenesisState =
+public inline fun ibc.core.types.v1.Genesis.GenesisState.copy(block: ibc.core.types.v1.GenesisStateKt.Dsl.() -> kotlin.Unit): ibc.core.types.v1.Genesis.GenesisState =
   ibc.core.types.v1.GenesisStateKt.Dsl._create(this.toBuilder()).apply { block() }._build()

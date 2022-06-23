@@ -4,15 +4,15 @@
 package ibc.applications.transfer.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryDenomTracesResponse(block: ibc.applications.transfer.v1.QueryDenomTracesResponseKt.Dsl.() -> Unit): ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesResponse =
+public inline fun queryDenomTracesResponse(block: ibc.applications.transfer.v1.QueryDenomTracesResponseKt.Dsl.() -> kotlin.Unit): ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesResponse =
   ibc.applications.transfer.v1.QueryDenomTracesResponseKt.Dsl._create(ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesResponse.newBuilder()).apply { block() }._build()
-object QueryDenomTracesResponseKt {
+public object QueryDenomTracesResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesResponse.Builder): Dsl = Dsl(builder)
@@ -27,7 +27,7 @@ object QueryDenomTracesResponseKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class DenomTracesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class DenomTracesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * denom_traces returns all denominations trace information.
@@ -35,7 +35,7 @@ object QueryDenomTracesResponseKt {
      *
      * <code>repeated .ibc.applications.transfer.v1.DenomTrace denom_traces = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "Traces"];</code>
      */
-     val denomTraces: com.google.protobuf.kotlin.DslList<ibc.applications.transfer.v1.Transfer.DenomTrace, DenomTracesProxy>
+     public val denomTraces: com.google.protobuf.kotlin.DslList<ibc.applications.transfer.v1.Transfer.DenomTrace, DenomTracesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getDenomTracesList()
@@ -50,7 +50,7 @@ object QueryDenomTracesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addDenomTraces")
-    fun com.google.protobuf.kotlin.DslList<ibc.applications.transfer.v1.Transfer.DenomTrace, DenomTracesProxy>.add(value: ibc.applications.transfer.v1.Transfer.DenomTrace) {
+    public fun com.google.protobuf.kotlin.DslList<ibc.applications.transfer.v1.Transfer.DenomTrace, DenomTracesProxy>.add(value: ibc.applications.transfer.v1.Transfer.DenomTrace) {
       _builder.addDenomTraces(value)
     }/**
      * <pre>
@@ -62,7 +62,8 @@ object QueryDenomTracesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignDenomTraces")
-    inline operator fun com.google.protobuf.kotlin.DslList<ibc.applications.transfer.v1.Transfer.DenomTrace, DenomTracesProxy>.plusAssign(value: ibc.applications.transfer.v1.Transfer.DenomTrace) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<ibc.applications.transfer.v1.Transfer.DenomTrace, DenomTracesProxy>.plusAssign(value: ibc.applications.transfer.v1.Transfer.DenomTrace) {
       add(value)
     }/**
      * <pre>
@@ -74,7 +75,7 @@ object QueryDenomTracesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllDenomTraces")
-    fun com.google.protobuf.kotlin.DslList<ibc.applications.transfer.v1.Transfer.DenomTrace, DenomTracesProxy>.addAll(values: kotlin.collections.Iterable<ibc.applications.transfer.v1.Transfer.DenomTrace>) {
+    public fun com.google.protobuf.kotlin.DslList<ibc.applications.transfer.v1.Transfer.DenomTrace, DenomTracesProxy>.addAll(values: kotlin.collections.Iterable<ibc.applications.transfer.v1.Transfer.DenomTrace>) {
       _builder.addAllDenomTraces(values)
     }/**
      * <pre>
@@ -86,7 +87,8 @@ object QueryDenomTracesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllDenomTraces")
-    inline operator fun com.google.protobuf.kotlin.DslList<ibc.applications.transfer.v1.Transfer.DenomTrace, DenomTracesProxy>.plusAssign(values: kotlin.collections.Iterable<ibc.applications.transfer.v1.Transfer.DenomTrace>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<ibc.applications.transfer.v1.Transfer.DenomTrace, DenomTracesProxy>.plusAssign(values: kotlin.collections.Iterable<ibc.applications.transfer.v1.Transfer.DenomTrace>) {
       addAll(values)
     }/**
      * <pre>
@@ -99,7 +101,7 @@ object QueryDenomTracesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setDenomTraces")
-    operator fun com.google.protobuf.kotlin.DslList<ibc.applications.transfer.v1.Transfer.DenomTrace, DenomTracesProxy>.set(index: kotlin.Int, value: ibc.applications.transfer.v1.Transfer.DenomTrace) {
+    public operator fun com.google.protobuf.kotlin.DslList<ibc.applications.transfer.v1.Transfer.DenomTrace, DenomTracesProxy>.set(index: kotlin.Int, value: ibc.applications.transfer.v1.Transfer.DenomTrace) {
       _builder.setDenomTraces(index, value)
     }/**
      * <pre>
@@ -110,7 +112,7 @@ object QueryDenomTracesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearDenomTraces")
-    fun com.google.protobuf.kotlin.DslList<ibc.applications.transfer.v1.Transfer.DenomTrace, DenomTracesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<ibc.applications.transfer.v1.Transfer.DenomTrace, DenomTracesProxy>.clear() {
       _builder.clearDenomTraces()
     }
     /**
@@ -120,7 +122,7 @@ object QueryDenomTracesResponseKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageResponse
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageResponse
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -134,7 +136,7 @@ object QueryDenomTracesResponseKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
@@ -145,11 +147,11 @@ object QueryDenomTracesResponseKt {
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesResponse.copy(block: ibc.applications.transfer.v1.QueryDenomTracesResponseKt.Dsl.() -> Unit): ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesResponse =
+public inline fun ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesResponse.copy(block: ibc.applications.transfer.v1.QueryDenomTracesResponseKt.Dsl.() -> kotlin.Unit): ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesResponse =
   ibc.applications.transfer.v1.QueryDenomTracesResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

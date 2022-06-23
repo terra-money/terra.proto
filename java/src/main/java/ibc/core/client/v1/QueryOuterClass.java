@@ -187,7 +187,7 @@ public final class QueryOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, clientId_);
       }
       unknownFields.writeTo(output);
@@ -199,7 +199,7 @@ public final class QueryOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, clientId_);
       }
       size += unknownFields.getSerializedSize();
@@ -3813,7 +3813,7 @@ public final class QueryOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, clientId_);
       }
       if (revisionNumber_ != 0L) {
@@ -3834,7 +3834,7 @@ public final class QueryOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, clientId_);
       }
       if (revisionNumber_ != 0L) {
@@ -5740,7 +5740,7 @@ public final class QueryOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, clientId_);
       }
       if (pagination_ != null) {
@@ -5755,7 +5755,7 @@ public final class QueryOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, clientId_);
       }
       if (pagination_ != null) {
@@ -7717,7 +7717,7 @@ public final class QueryOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, clientId_);
       }
       unknownFields.writeTo(output);
@@ -7729,7 +7729,7 @@ public final class QueryOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, clientId_);
       }
       size += unknownFields.getSerializedSize();
@@ -8315,7 +8315,7 @@ public final class QueryOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getStatusBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, status_);
       }
       unknownFields.writeTo(output);
@@ -8327,7 +8327,7 @@ public final class QueryOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getStatusBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, status_);
       }
       size += unknownFields.getSerializedSize();
@@ -12259,8 +12259,8 @@ public final class QueryOuterClass {
       "nsensusStateRequest\0327.ibc.core.client.v1" +
       ".QueryUpgradedConsensusStateResponse\"5\202\323" +
       "\344\223\002/\022-/ibc/core/client/v1/upgraded_conse" +
-      "nsus_statesB7Z5github.com/cosmos/ibc-go/" +
-      "modules/core/02-client/typesb\006proto3"
+      "nsus_statesB:Z8github.com/cosmos/ibc-go/" +
+      "v3/modules/core/02-client/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -306,13 +306,13 @@ public final class Distribution {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getCommunityTaxBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(communityTax_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, communityTax_);
       }
-      if (!getBaseProposerRewardBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(baseProposerReward_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, baseProposerReward_);
       }
-      if (!getBonusProposerRewardBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bonusProposerReward_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, bonusProposerReward_);
       }
       if (withdrawAddrEnabled_ != false) {
@@ -327,13 +327,13 @@ public final class Distribution {
       if (size != -1) return size;
 
       size = 0;
-      if (!getCommunityTaxBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(communityTax_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, communityTax_);
       }
-      if (!getBaseProposerRewardBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(baseProposerReward_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, baseProposerReward_);
       }
-      if (!getBonusProposerRewardBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bonusProposerReward_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, bonusProposerReward_);
       }
       if (withdrawAddrEnabled_ != false) {
@@ -4520,7 +4520,7 @@ public final class Distribution {
       if (validatorPeriod_ != 0L) {
         output.writeUInt64(1, validatorPeriod_);
       }
-      if (!getFractionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fraction_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, fraction_);
       }
       unknownFields.writeTo(output);
@@ -4536,7 +4536,7 @@ public final class Distribution {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(1, validatorPeriod_);
       }
-      if (!getFractionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fraction_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, fraction_);
       }
       size += unknownFields.getSerializedSize();
@@ -6941,13 +6941,13 @@ public final class Distribution {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTitleBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(title_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, title_);
       }
-      if (!getDescriptionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, description_);
       }
-      if (!getRecipientBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(recipient_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, recipient_);
       }
       for (int i = 0; i < amount_.size(); i++) {
@@ -6962,13 +6962,13 @@ public final class Distribution {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTitleBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(title_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, title_);
       }
-      if (!getDescriptionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, description_);
       }
-      if (!getRecipientBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(recipient_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, recipient_);
       }
       for (int i = 0; i < amount_.size(); i++) {
@@ -8054,7 +8054,7 @@ public final class Distribution {
       if (previousPeriod_ != 0L) {
         output.writeUInt64(1, previousPeriod_);
       }
-      if (!getStakeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(stake_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, stake_);
       }
       if (height_ != 0L) {
@@ -8073,7 +8073,7 @@ public final class Distribution {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(1, previousPeriod_);
       }
-      if (!getStakeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(stake_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, stake_);
       }
       if (height_ != 0L) {
@@ -8809,7 +8809,7 @@ public final class Distribution {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, validatorAddress_);
       }
       for (int i = 0; i < reward_.size(); i++) {
@@ -8824,7 +8824,7 @@ public final class Distribution {
       if (size != -1) return size;
 
       size = 0;
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, validatorAddress_);
       }
       for (int i = 0; i < reward_.size(); i++) {
@@ -9912,19 +9912,19 @@ public final class Distribution {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTitleBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(title_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, title_);
       }
-      if (!getDescriptionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, description_);
       }
-      if (!getRecipientBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(recipient_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, recipient_);
       }
-      if (!getAmountBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(amount_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, amount_);
       }
-      if (!getDepositBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(deposit_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, deposit_);
       }
       unknownFields.writeTo(output);
@@ -9936,19 +9936,19 @@ public final class Distribution {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTitleBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(title_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, title_);
       }
-      if (!getDescriptionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, description_);
       }
-      if (!getRecipientBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(recipient_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, recipient_);
       }
-      if (!getAmountBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(amount_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, amount_);
       }
-      if (!getDepositBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(deposit_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, deposit_);
       }
       size += unknownFields.getSerializedSize();

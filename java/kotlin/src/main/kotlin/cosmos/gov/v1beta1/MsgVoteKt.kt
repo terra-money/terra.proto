@@ -4,15 +4,15 @@
 package cosmos.gov.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgVote(block: cosmos.gov.v1beta1.MsgVoteKt.Dsl.() -> Unit): cosmos.gov.v1beta1.Tx.MsgVote =
+public inline fun msgVote(block: cosmos.gov.v1beta1.MsgVoteKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.Tx.MsgVote =
   cosmos.gov.v1beta1.MsgVoteKt.Dsl._create(cosmos.gov.v1beta1.Tx.MsgVote.newBuilder()).apply { block() }._build()
-object MsgVoteKt {
+public object MsgVoteKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.gov.v1beta1.Tx.MsgVote.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.gov.v1beta1.Tx.MsgVote.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.gov.v1beta1.Tx.MsgVote.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object MsgVoteKt {
     /**
      * <code>uint64 proposal_id = 1 [(.gogoproto.jsontag) = "proposal_id", (.gogoproto.moretags) = "yaml:&#92;"proposal_id&#92;""];</code>
      */
-    var proposalId: kotlin.Long
+    public var proposalId: kotlin.Long
       @JvmName("getProposalId")
       get() = _builder.getProposalId()
       @JvmName("setProposalId")
@@ -35,14 +35,14 @@ object MsgVoteKt {
     /**
      * <code>uint64 proposal_id = 1 [(.gogoproto.jsontag) = "proposal_id", (.gogoproto.moretags) = "yaml:&#92;"proposal_id&#92;""];</code>
      */
-    fun clearProposalId() {
+    public fun clearProposalId() {
       _builder.clearProposalId()
     }
 
     /**
      * <code>string voter = 2;</code>
      */
-    var voter: kotlin.String
+    public var voter: kotlin.String
       @JvmName("getVoter")
       get() = _builder.getVoter()
       @JvmName("setVoter")
@@ -52,14 +52,14 @@ object MsgVoteKt {
     /**
      * <code>string voter = 2;</code>
      */
-    fun clearVoter() {
+    public fun clearVoter() {
       _builder.clearVoter()
     }
 
     /**
      * <code>.cosmos.gov.v1beta1.VoteOption option = 3;</code>
      */
-    var option: cosmos.gov.v1beta1.Gov.VoteOption
+    public var option: cosmos.gov.v1beta1.Gov.VoteOption
       @JvmName("getOption")
       get() = _builder.getOption()
       @JvmName("setOption")
@@ -69,11 +69,11 @@ object MsgVoteKt {
     /**
      * <code>.cosmos.gov.v1beta1.VoteOption option = 3;</code>
      */
-    fun clearOption() {
+    public fun clearOption() {
       _builder.clearOption()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.gov.v1beta1.Tx.MsgVote.copy(block: cosmos.gov.v1beta1.MsgVoteKt.Dsl.() -> Unit): cosmos.gov.v1beta1.Tx.MsgVote =
+public inline fun cosmos.gov.v1beta1.Tx.MsgVote.copy(block: cosmos.gov.v1beta1.MsgVoteKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.Tx.MsgVote =
   cosmos.gov.v1beta1.MsgVoteKt.Dsl._create(this.toBuilder()).apply { block() }._build()

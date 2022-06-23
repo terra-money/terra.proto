@@ -4,15 +4,15 @@
 package cosmos.staking.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryPoolResponse(block: cosmos.staking.v1beta1.QueryPoolResponseKt.Dsl.() -> Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryPoolResponse =
+public inline fun queryPoolResponse(block: cosmos.staking.v1beta1.QueryPoolResponseKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryPoolResponse =
   cosmos.staking.v1beta1.QueryPoolResponseKt.Dsl._create(cosmos.staking.v1beta1.QueryOuterClass.QueryPoolResponse.newBuilder()).apply { block() }._build()
-object QueryPoolResponseKt {
+public object QueryPoolResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.staking.v1beta1.QueryOuterClass.QueryPoolResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.staking.v1beta1.QueryOuterClass.QueryPoolResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.staking.v1beta1.QueryOuterClass.QueryPoolResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryPoolResponseKt {
      *
      * <code>.cosmos.staking.v1beta1.Pool pool = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var pool: cosmos.staking.v1beta1.Staking.Pool
+    public var pool: cosmos.staking.v1beta1.Staking.Pool
       @JvmName("getPool")
       get() = _builder.getPool()
       @JvmName("setPool")
@@ -43,7 +43,7 @@ object QueryPoolResponseKt {
      *
      * <code>.cosmos.staking.v1beta1.Pool pool = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearPool() {
+    public fun clearPool() {
       _builder.clearPool()
     }
     /**
@@ -54,11 +54,11 @@ object QueryPoolResponseKt {
      * <code>.cosmos.staking.v1beta1.Pool pool = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the pool field is set.
      */
-    fun hasPool(): kotlin.Boolean {
+    public fun hasPool(): kotlin.Boolean {
       return _builder.hasPool()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.staking.v1beta1.QueryOuterClass.QueryPoolResponse.copy(block: cosmos.staking.v1beta1.QueryPoolResponseKt.Dsl.() -> Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryPoolResponse =
+public inline fun cosmos.staking.v1beta1.QueryOuterClass.QueryPoolResponse.copy(block: cosmos.staking.v1beta1.QueryPoolResponseKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryPoolResponse =
   cosmos.staking.v1beta1.QueryPoolResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package tendermint.types;
 
 @kotlin.jvm.JvmSynthetic
-inline fun versionParams(block: tendermint.types.VersionParamsKt.Dsl.() -> Unit): tendermint.types.Params.VersionParams =
+public inline fun versionParams(block: tendermint.types.VersionParamsKt.Dsl.() -> kotlin.Unit): tendermint.types.Params.VersionParams =
   tendermint.types.VersionParamsKt.Dsl._create(tendermint.types.Params.VersionParams.newBuilder()).apply { block() }._build()
-object VersionParamsKt {
+public object VersionParamsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.types.Params.VersionParams.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.types.Params.VersionParams.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.types.Params.VersionParams.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object VersionParamsKt {
     /**
      * <code>uint64 app_version = 1;</code>
      */
-    var appVersion: kotlin.Long
+    public var appVersion: kotlin.Long
       @JvmName("getAppVersion")
       get() = _builder.getAppVersion()
       @JvmName("setAppVersion")
@@ -35,11 +35,11 @@ object VersionParamsKt {
     /**
      * <code>uint64 app_version = 1;</code>
      */
-    fun clearAppVersion() {
+    public fun clearAppVersion() {
       _builder.clearAppVersion()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.types.Params.VersionParams.copy(block: tendermint.types.VersionParamsKt.Dsl.() -> Unit): tendermint.types.Params.VersionParams =
+public inline fun tendermint.types.Params.VersionParams.copy(block: tendermint.types.VersionParamsKt.Dsl.() -> kotlin.Unit): tendermint.types.Params.VersionParams =
   tendermint.types.VersionParamsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

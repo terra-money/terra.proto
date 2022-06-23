@@ -4,15 +4,15 @@
 package cosmos.base.tendermint.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun getNodeInfoRequest(block: cosmos.base.tendermint.v1beta1.GetNodeInfoRequestKt.Dsl.() -> Unit): cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest =
+public inline fun getNodeInfoRequest(block: cosmos.base.tendermint.v1beta1.GetNodeInfoRequestKt.Dsl.() -> kotlin.Unit): cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest =
   cosmos.base.tendermint.v1beta1.GetNodeInfoRequestKt.Dsl._create(cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest.newBuilder()).apply { block() }._build()
-object GetNodeInfoRequestKt {
+public object GetNodeInfoRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object GetNodeInfoRequestKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest.copy(block: cosmos.base.tendermint.v1beta1.GetNodeInfoRequestKt.Dsl.() -> Unit): cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest =
+public inline fun cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest.copy(block: cosmos.base.tendermint.v1beta1.GetNodeInfoRequestKt.Dsl.() -> kotlin.Unit): cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest =
   cosmos.base.tendermint.v1beta1.GetNodeInfoRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

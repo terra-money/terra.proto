@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryUnreceivedPacketsResponse(block: ibc.core.channel.v1.QueryUnreceivedPacketsResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.QueryOuterClass.QueryUnreceivedPacketsResponse =
+public inline fun queryUnreceivedPacketsResponse(block: ibc.core.channel.v1.QueryUnreceivedPacketsResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.QueryOuterClass.QueryUnreceivedPacketsResponse =
   ibc.core.channel.v1.QueryUnreceivedPacketsResponseKt.Dsl._create(ibc.core.channel.v1.QueryOuterClass.QueryUnreceivedPacketsResponse.newBuilder()).apply { block() }._build()
-object QueryUnreceivedPacketsResponseKt {
+public object QueryUnreceivedPacketsResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.QueryOuterClass.QueryUnreceivedPacketsResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.QueryOuterClass.QueryUnreceivedPacketsResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.QueryOuterClass.QueryUnreceivedPacketsResponse.Builder): Dsl = Dsl(builder)
@@ -27,7 +27,7 @@ object QueryUnreceivedPacketsResponseKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class SequencesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class SequencesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * list of unreceived packet sequences
@@ -35,7 +35,7 @@ object QueryUnreceivedPacketsResponseKt {
      *
      * <code>repeated uint64 sequences = 1;</code>
      */
-     val sequences: com.google.protobuf.kotlin.DslList<kotlin.Long, SequencesProxy>
+     public val sequences: com.google.protobuf.kotlin.DslList<kotlin.Long, SequencesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getSequencesList()
@@ -50,7 +50,7 @@ object QueryUnreceivedPacketsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addSequences")
-    fun com.google.protobuf.kotlin.DslList<kotlin.Long, SequencesProxy>.add(value: kotlin.Long) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.Long, SequencesProxy>.add(value: kotlin.Long) {
       _builder.addSequences(value)
     }/**
      * <pre>
@@ -62,7 +62,8 @@ object QueryUnreceivedPacketsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignSequences")
-    inline operator fun com.google.protobuf.kotlin.DslList<kotlin.Long, SequencesProxy>.plusAssign(value: kotlin.Long) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.Long, SequencesProxy>.plusAssign(value: kotlin.Long) {
       add(value)
     }/**
      * <pre>
@@ -74,7 +75,7 @@ object QueryUnreceivedPacketsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllSequences")
-    fun com.google.protobuf.kotlin.DslList<kotlin.Long, SequencesProxy>.addAll(values: kotlin.collections.Iterable<kotlin.Long>) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.Long, SequencesProxy>.addAll(values: kotlin.collections.Iterable<kotlin.Long>) {
       _builder.addAllSequences(values)
     }/**
      * <pre>
@@ -86,7 +87,8 @@ object QueryUnreceivedPacketsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllSequences")
-    inline operator fun com.google.protobuf.kotlin.DslList<kotlin.Long, SequencesProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.Long>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.Long, SequencesProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.Long>) {
       addAll(values)
     }/**
      * <pre>
@@ -99,7 +101,7 @@ object QueryUnreceivedPacketsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setSequences")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.Long, SequencesProxy>.set(index: kotlin.Int, value: kotlin.Long) {
+    public operator fun com.google.protobuf.kotlin.DslList<kotlin.Long, SequencesProxy>.set(index: kotlin.Int, value: kotlin.Long) {
       _builder.setSequences(index, value)
     }/**
      * <pre>
@@ -110,7 +112,7 @@ object QueryUnreceivedPacketsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearSequences")
-    fun com.google.protobuf.kotlin.DslList<kotlin.Long, SequencesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.Long, SequencesProxy>.clear() {
       _builder.clearSequences()
     }
     /**
@@ -120,7 +122,7 @@ object QueryUnreceivedPacketsResponseKt {
      *
      * <code>.ibc.core.client.v1.Height height = 2 [(.gogoproto.nullable) = false];</code>
      */
-    var height: ibc.core.client.v1.Client.Height
+    public var height: ibc.core.client.v1.Client.Height
       @JvmName("getHeight")
       get() = _builder.getHeight()
       @JvmName("setHeight")
@@ -134,7 +136,7 @@ object QueryUnreceivedPacketsResponseKt {
      *
      * <code>.ibc.core.client.v1.Height height = 2 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearHeight() {
+    public fun clearHeight() {
       _builder.clearHeight()
     }
     /**
@@ -145,11 +147,11 @@ object QueryUnreceivedPacketsResponseKt {
      * <code>.ibc.core.client.v1.Height height = 2 [(.gogoproto.nullable) = false];</code>
      * @return Whether the height field is set.
      */
-    fun hasHeight(): kotlin.Boolean {
+    public fun hasHeight(): kotlin.Boolean {
       return _builder.hasHeight()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.QueryOuterClass.QueryUnreceivedPacketsResponse.copy(block: ibc.core.channel.v1.QueryUnreceivedPacketsResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.QueryOuterClass.QueryUnreceivedPacketsResponse =
+public inline fun ibc.core.channel.v1.QueryOuterClass.QueryUnreceivedPacketsResponse.copy(block: ibc.core.channel.v1.QueryUnreceivedPacketsResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.QueryOuterClass.QueryUnreceivedPacketsResponse =
   ibc.core.channel.v1.QueryUnreceivedPacketsResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

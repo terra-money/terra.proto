@@ -4,15 +4,15 @@
 package cosmos.base.abci.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun attribute(block: cosmos.base.abci.v1beta1.AttributeKt.Dsl.() -> Unit): cosmos.base.abci.v1beta1.Abci.Attribute =
+public inline fun attribute(block: cosmos.base.abci.v1beta1.AttributeKt.Dsl.() -> kotlin.Unit): cosmos.base.abci.v1beta1.Abci.Attribute =
   cosmos.base.abci.v1beta1.AttributeKt.Dsl._create(cosmos.base.abci.v1beta1.Abci.Attribute.newBuilder()).apply { block() }._build()
-object AttributeKt {
+public object AttributeKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.abci.v1beta1.Abci.Attribute.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.abci.v1beta1.Abci.Attribute.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.abci.v1beta1.Abci.Attribute.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object AttributeKt {
     /**
      * <code>string key = 1;</code>
      */
-    var key: kotlin.String
+    public var key: kotlin.String
       @JvmName("getKey")
       get() = _builder.getKey()
       @JvmName("setKey")
@@ -35,14 +35,14 @@ object AttributeKt {
     /**
      * <code>string key = 1;</code>
      */
-    fun clearKey() {
+    public fun clearKey() {
       _builder.clearKey()
     }
 
     /**
      * <code>string value = 2;</code>
      */
-    var value: kotlin.String
+    public var value: kotlin.String
       @JvmName("getValue")
       get() = _builder.getValue()
       @JvmName("setValue")
@@ -52,11 +52,11 @@ object AttributeKt {
     /**
      * <code>string value = 2;</code>
      */
-    fun clearValue() {
+    public fun clearValue() {
       _builder.clearValue()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.abci.v1beta1.Abci.Attribute.copy(block: cosmos.base.abci.v1beta1.AttributeKt.Dsl.() -> Unit): cosmos.base.abci.v1beta1.Abci.Attribute =
+public inline fun cosmos.base.abci.v1beta1.Abci.Attribute.copy(block: cosmos.base.abci.v1beta1.AttributeKt.Dsl.() -> kotlin.Unit): cosmos.base.abci.v1beta1.Abci.Attribute =
   cosmos.base.abci.v1beta1.AttributeKt.Dsl._create(this.toBuilder()).apply { block() }._build()

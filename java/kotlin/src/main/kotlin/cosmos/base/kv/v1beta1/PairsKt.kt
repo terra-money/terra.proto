@@ -4,15 +4,15 @@
 package cosmos.base.kv.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun pairs(block: cosmos.base.kv.v1beta1.PairsKt.Dsl.() -> Unit): cosmos.base.kv.v1beta1.Kv.Pairs =
+public inline fun pairs(block: cosmos.base.kv.v1beta1.PairsKt.Dsl.() -> kotlin.Unit): cosmos.base.kv.v1beta1.Kv.Pairs =
   cosmos.base.kv.v1beta1.PairsKt.Dsl._create(cosmos.base.kv.v1beta1.Kv.Pairs.newBuilder()).apply { block() }._build()
-object PairsKt {
+public object PairsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.kv.v1beta1.Kv.Pairs.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.kv.v1beta1.Kv.Pairs.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.kv.v1beta1.Kv.Pairs.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object PairsKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class PairsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class PairsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.base.kv.v1beta1.Pair pairs = 1 [(.gogoproto.nullable) = false];</code>
      */
-     val pairs: com.google.protobuf.kotlin.DslList<cosmos.base.kv.v1beta1.Kv.Pair, PairsProxy>
+     public val pairs: com.google.protobuf.kotlin.DslList<cosmos.base.kv.v1beta1.Kv.Pair, PairsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getPairsList()
@@ -42,7 +42,7 @@ object PairsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addPairs")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.kv.v1beta1.Kv.Pair, PairsProxy>.add(value: cosmos.base.kv.v1beta1.Kv.Pair) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.kv.v1beta1.Kv.Pair, PairsProxy>.add(value: cosmos.base.kv.v1beta1.Kv.Pair) {
       _builder.addPairs(value)
     }/**
      * <code>repeated .cosmos.base.kv.v1beta1.Pair pairs = 1 [(.gogoproto.nullable) = false];</code>
@@ -50,7 +50,8 @@ object PairsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignPairs")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.kv.v1beta1.Kv.Pair, PairsProxy>.plusAssign(value: cosmos.base.kv.v1beta1.Kv.Pair) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.kv.v1beta1.Kv.Pair, PairsProxy>.plusAssign(value: cosmos.base.kv.v1beta1.Kv.Pair) {
       add(value)
     }/**
      * <code>repeated .cosmos.base.kv.v1beta1.Pair pairs = 1 [(.gogoproto.nullable) = false];</code>
@@ -58,7 +59,7 @@ object PairsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllPairs")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.kv.v1beta1.Kv.Pair, PairsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.kv.v1beta1.Kv.Pair>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.kv.v1beta1.Kv.Pair, PairsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.kv.v1beta1.Kv.Pair>) {
       _builder.addAllPairs(values)
     }/**
      * <code>repeated .cosmos.base.kv.v1beta1.Pair pairs = 1 [(.gogoproto.nullable) = false];</code>
@@ -66,7 +67,8 @@ object PairsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllPairs")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.kv.v1beta1.Kv.Pair, PairsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.kv.v1beta1.Kv.Pair>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.kv.v1beta1.Kv.Pair, PairsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.kv.v1beta1.Kv.Pair>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.base.kv.v1beta1.Pair pairs = 1 [(.gogoproto.nullable) = false];</code>
@@ -75,17 +77,17 @@ object PairsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setPairs")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.kv.v1beta1.Kv.Pair, PairsProxy>.set(index: kotlin.Int, value: cosmos.base.kv.v1beta1.Kv.Pair) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.kv.v1beta1.Kv.Pair, PairsProxy>.set(index: kotlin.Int, value: cosmos.base.kv.v1beta1.Kv.Pair) {
       _builder.setPairs(index, value)
     }/**
      * <code>repeated .cosmos.base.kv.v1beta1.Pair pairs = 1 [(.gogoproto.nullable) = false];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearPairs")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.kv.v1beta1.Kv.Pair, PairsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.kv.v1beta1.Kv.Pair, PairsProxy>.clear() {
       _builder.clearPairs()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.kv.v1beta1.Kv.Pairs.copy(block: cosmos.base.kv.v1beta1.PairsKt.Dsl.() -> Unit): cosmos.base.kv.v1beta1.Kv.Pairs =
+public inline fun cosmos.base.kv.v1beta1.Kv.Pairs.copy(block: cosmos.base.kv.v1beta1.PairsKt.Dsl.() -> kotlin.Unit): cosmos.base.kv.v1beta1.Kv.Pairs =
   cosmos.base.kv.v1beta1.PairsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

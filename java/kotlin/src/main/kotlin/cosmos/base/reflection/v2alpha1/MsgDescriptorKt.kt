@@ -4,15 +4,15 @@
 package cosmos.base.reflection.v2alpha1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgDescriptor(block: cosmos.base.reflection.v2alpha1.MsgDescriptorKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.MsgDescriptor =
+public inline fun msgDescriptor(block: cosmos.base.reflection.v2alpha1.MsgDescriptorKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.MsgDescriptor =
   cosmos.base.reflection.v2alpha1.MsgDescriptorKt.Dsl._create(cosmos.base.reflection.v2alpha1.Reflection.MsgDescriptor.newBuilder()).apply { block() }._build()
-object MsgDescriptorKt {
+public object MsgDescriptorKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.reflection.v2alpha1.Reflection.MsgDescriptor.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.reflection.v2alpha1.Reflection.MsgDescriptor.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.reflection.v2alpha1.Reflection.MsgDescriptor.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object MsgDescriptorKt {
      *
      * <code>string msg_type_url = 1;</code>
      */
-    var msgTypeUrl: kotlin.String
+    public var msgTypeUrl: kotlin.String
       @JvmName("getMsgTypeUrl")
       get() = _builder.getMsgTypeUrl()
       @JvmName("setMsgTypeUrl")
@@ -43,11 +43,11 @@ object MsgDescriptorKt {
      *
      * <code>string msg_type_url = 1;</code>
      */
-    fun clearMsgTypeUrl() {
+    public fun clearMsgTypeUrl() {
       _builder.clearMsgTypeUrl()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.reflection.v2alpha1.Reflection.MsgDescriptor.copy(block: cosmos.base.reflection.v2alpha1.MsgDescriptorKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.MsgDescriptor =
+public inline fun cosmos.base.reflection.v2alpha1.Reflection.MsgDescriptor.copy(block: cosmos.base.reflection.v2alpha1.MsgDescriptorKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.MsgDescriptor =
   cosmos.base.reflection.v2alpha1.MsgDescriptorKt.Dsl._create(this.toBuilder()).apply { block() }._build()

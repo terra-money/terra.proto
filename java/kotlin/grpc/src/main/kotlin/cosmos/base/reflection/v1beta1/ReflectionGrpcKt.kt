@@ -29,20 +29,20 @@ import kotlin.jvm.JvmStatic
  * Holder for Kotlin coroutine-based client and server APIs for
  * cosmos.base.reflection.v1beta1.ReflectionService.
  */
-object ReflectionServiceGrpcKt {
-  const val SERVICE_NAME: String = ReflectionServiceGrpc.SERVICE_NAME
+public object ReflectionServiceGrpcKt {
+  public const val SERVICE_NAME: String = ReflectionServiceGrpc.SERVICE_NAME
 
   @JvmStatic
-  val serviceDescriptor: ServiceDescriptor
+  public val serviceDescriptor: ServiceDescriptor
     get() = ReflectionServiceGrpc.getServiceDescriptor()
 
-  val listAllInterfacesMethod: MethodDescriptor<Reflection.ListAllInterfacesRequest,
-      Reflection.ListAllInterfacesResponse>
+  public val listAllInterfacesMethod:
+      MethodDescriptor<Reflection.ListAllInterfacesRequest, Reflection.ListAllInterfacesResponse>
     @JvmStatic
     get() = ReflectionServiceGrpc.getListAllInterfacesMethod()
 
-  val listImplementationsMethod: MethodDescriptor<Reflection.ListImplementationsRequest,
-      Reflection.ListImplementationsResponse>
+  public val listImplementationsMethod:
+      MethodDescriptor<Reflection.ListImplementationsRequest, Reflection.ListImplementationsResponse>
     @JvmStatic
     get() = ReflectionServiceGrpc.getListImplementationsMethod()
 
@@ -51,12 +51,12 @@ object ReflectionServiceGrpcKt {
    * suspending coroutines.
    */
   @StubFor(ReflectionServiceGrpc::class)
-  class ReflectionServiceCoroutineStub @JvmOverloads constructor(
+  public class ReflectionServiceCoroutineStub @JvmOverloads constructor(
     channel: Channel,
-    callOptions: CallOptions = DEFAULT
+    callOptions: CallOptions = DEFAULT,
   ) : AbstractCoroutineStub<ReflectionServiceCoroutineStub>(channel, callOptions) {
-    override fun build(channel: Channel, callOptions: CallOptions): ReflectionServiceCoroutineStub =
-        ReflectionServiceCoroutineStub(channel, callOptions)
+    public override fun build(channel: Channel, callOptions: CallOptions):
+        ReflectionServiceCoroutineStub = ReflectionServiceCoroutineStub(channel, callOptions)
 
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
@@ -66,16 +66,19 @@ object ReflectionServiceGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun listAllInterfaces(request: Reflection.ListAllInterfacesRequest):
-        Reflection.ListAllInterfacesResponse = unaryRpc(
+    public suspend fun listAllInterfaces(request: Reflection.ListAllInterfacesRequest,
+        headers: Metadata = Metadata()): Reflection.ListAllInterfacesResponse = unaryRpc(
       channel,
       ReflectionServiceGrpc.getListAllInterfacesMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -84,23 +87,26 @@ object ReflectionServiceGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun listImplementations(request: Reflection.ListImplementationsRequest):
-        Reflection.ListImplementationsResponse = unaryRpc(
+    public suspend fun listImplementations(request: Reflection.ListImplementationsRequest,
+        headers: Metadata = Metadata()): Reflection.ListImplementationsResponse = unaryRpc(
       channel,
       ReflectionServiceGrpc.getListImplementationsMethod(),
       request,
       callOptions,
-      Metadata()
-    )}
+      headers
+    )
+  }
 
   /**
    * Skeletal implementation of the cosmos.base.reflection.v1beta1.ReflectionService service based
    * on Kotlin coroutines.
    */
-  abstract class ReflectionServiceCoroutineImplBase(
-    coroutineContext: CoroutineContext = EmptyCoroutineContext
+  public abstract class ReflectionServiceCoroutineImplBase(
+    coroutineContext: CoroutineContext = EmptyCoroutineContext,
   ) : AbstractCoroutineServerImpl(coroutineContext) {
     /**
      * Returns the response to an RPC for
@@ -114,7 +120,7 @@ object ReflectionServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun listAllInterfaces(request: Reflection.ListAllInterfacesRequest):
+    public open suspend fun listAllInterfaces(request: Reflection.ListAllInterfacesRequest):
         Reflection.ListAllInterfacesResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.base.reflection.v1beta1.ReflectionService.ListAllInterfaces is unimplemented"))
 
@@ -130,11 +136,12 @@ object ReflectionServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun listImplementations(request: Reflection.ListImplementationsRequest):
+    public open suspend fun listImplementations(request: Reflection.ListImplementationsRequest):
         Reflection.ListImplementationsResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.base.reflection.v1beta1.ReflectionService.ListImplementations is unimplemented"))
 
-    final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())
+    public final override fun bindService(): ServerServiceDefinition =
+        builder(getServiceDescriptor())
       .addMethod(unaryServerMethodDefinition(
       context = this.context,
       descriptor = ReflectionServiceGrpc.getListAllInterfacesMethod(),

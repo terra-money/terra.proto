@@ -4,15 +4,15 @@
 package ibc.core.connection.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun params(block: ibc.core.connection.v1.ParamsKt.Dsl.() -> Unit): ibc.core.connection.v1.Connection.Params =
+public inline fun params(block: ibc.core.connection.v1.ParamsKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.Connection.Params =
   ibc.core.connection.v1.ParamsKt.Dsl._create(ibc.core.connection.v1.Connection.Params.newBuilder()).apply { block() }._build()
-object ParamsKt {
+public object ParamsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.connection.v1.Connection.Params.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.connection.v1.Connection.Params.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.connection.v1.Connection.Params.Builder): Dsl = Dsl(builder)
@@ -31,7 +31,7 @@ object ParamsKt {
      *
      * <code>uint64 max_expected_time_per_block = 1 [(.gogoproto.moretags) = "yaml:&#92;"max_expected_time_per_block&#92;""];</code>
      */
-    var maxExpectedTimePerBlock: kotlin.Long
+    public var maxExpectedTimePerBlock: kotlin.Long
       @JvmName("getMaxExpectedTimePerBlock")
       get() = _builder.getMaxExpectedTimePerBlock()
       @JvmName("setMaxExpectedTimePerBlock")
@@ -47,11 +47,11 @@ object ParamsKt {
      *
      * <code>uint64 max_expected_time_per_block = 1 [(.gogoproto.moretags) = "yaml:&#92;"max_expected_time_per_block&#92;""];</code>
      */
-    fun clearMaxExpectedTimePerBlock() {
+    public fun clearMaxExpectedTimePerBlock() {
       _builder.clearMaxExpectedTimePerBlock()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.connection.v1.Connection.Params.copy(block: ibc.core.connection.v1.ParamsKt.Dsl.() -> Unit): ibc.core.connection.v1.Connection.Params =
+public inline fun ibc.core.connection.v1.Connection.Params.copy(block: ibc.core.connection.v1.ParamsKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.Connection.Params =
   ibc.core.connection.v1.ParamsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

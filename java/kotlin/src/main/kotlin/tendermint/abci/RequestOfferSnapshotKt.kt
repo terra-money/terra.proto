@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun requestOfferSnapshot(block: tendermint.abci.RequestOfferSnapshotKt.Dsl.() -> Unit): tendermint.abci.Types.RequestOfferSnapshot =
+public inline fun requestOfferSnapshot(block: tendermint.abci.RequestOfferSnapshotKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestOfferSnapshot =
   tendermint.abci.RequestOfferSnapshotKt.Dsl._create(tendermint.abci.Types.RequestOfferSnapshot.newBuilder()).apply { block() }._build()
-object RequestOfferSnapshotKt {
+public object RequestOfferSnapshotKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.RequestOfferSnapshot.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.RequestOfferSnapshot.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.RequestOfferSnapshot.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object RequestOfferSnapshotKt {
      *
      * <code>.tendermint.abci.Snapshot snapshot = 1;</code>
      */
-    var snapshot: tendermint.abci.Types.Snapshot
+    public var snapshot: tendermint.abci.Types.Snapshot
       @JvmName("getSnapshot")
       get() = _builder.getSnapshot()
       @JvmName("setSnapshot")
@@ -43,7 +43,7 @@ object RequestOfferSnapshotKt {
      *
      * <code>.tendermint.abci.Snapshot snapshot = 1;</code>
      */
-    fun clearSnapshot() {
+    public fun clearSnapshot() {
       _builder.clearSnapshot()
     }
     /**
@@ -54,7 +54,7 @@ object RequestOfferSnapshotKt {
      * <code>.tendermint.abci.Snapshot snapshot = 1;</code>
      * @return Whether the snapshot field is set.
      */
-    fun hasSnapshot(): kotlin.Boolean {
+    public fun hasSnapshot(): kotlin.Boolean {
       return _builder.hasSnapshot()
     }
 
@@ -65,7 +65,7 @@ object RequestOfferSnapshotKt {
      *
      * <code>bytes app_hash = 2;</code>
      */
-    var appHash: com.google.protobuf.ByteString
+    public var appHash: com.google.protobuf.ByteString
       @JvmName("getAppHash")
       get() = _builder.getAppHash()
       @JvmName("setAppHash")
@@ -79,11 +79,11 @@ object RequestOfferSnapshotKt {
      *
      * <code>bytes app_hash = 2;</code>
      */
-    fun clearAppHash() {
+    public fun clearAppHash() {
       _builder.clearAppHash()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.RequestOfferSnapshot.copy(block: tendermint.abci.RequestOfferSnapshotKt.Dsl.() -> Unit): tendermint.abci.Types.RequestOfferSnapshot =
+public inline fun tendermint.abci.Types.RequestOfferSnapshot.copy(block: tendermint.abci.RequestOfferSnapshotKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestOfferSnapshot =
   tendermint.abci.RequestOfferSnapshotKt.Dsl._create(this.toBuilder()).apply { block() }._build()

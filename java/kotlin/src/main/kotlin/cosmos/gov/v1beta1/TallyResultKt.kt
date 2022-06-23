@@ -4,15 +4,15 @@
 package cosmos.gov.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun tallyResult(block: cosmos.gov.v1beta1.TallyResultKt.Dsl.() -> Unit): cosmos.gov.v1beta1.Gov.TallyResult =
+public inline fun tallyResult(block: cosmos.gov.v1beta1.TallyResultKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.Gov.TallyResult =
   cosmos.gov.v1beta1.TallyResultKt.Dsl._create(cosmos.gov.v1beta1.Gov.TallyResult.newBuilder()).apply { block() }._build()
-object TallyResultKt {
+public object TallyResultKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.gov.v1beta1.Gov.TallyResult.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.gov.v1beta1.Gov.TallyResult.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.gov.v1beta1.Gov.TallyResult.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object TallyResultKt {
     /**
      * <code>string yes = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      */
-    var yes: kotlin.String
+    public var yes: kotlin.String
       @JvmName("getYes")
       get() = _builder.getYes()
       @JvmName("setYes")
@@ -35,14 +35,14 @@ object TallyResultKt {
     /**
      * <code>string yes = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      */
-    fun clearYes() {
+    public fun clearYes() {
       _builder.clearYes()
     }
 
     /**
      * <code>string abstain = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      */
-    var abstain: kotlin.String
+    public var abstain: kotlin.String
       @JvmName("getAbstain")
       get() = _builder.getAbstain()
       @JvmName("setAbstain")
@@ -52,14 +52,14 @@ object TallyResultKt {
     /**
      * <code>string abstain = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      */
-    fun clearAbstain() {
+    public fun clearAbstain() {
       _builder.clearAbstain()
     }
 
     /**
      * <code>string no = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      */
-    var no: kotlin.String
+    public var no: kotlin.String
       @JvmName("getNo")
       get() = _builder.getNo()
       @JvmName("setNo")
@@ -69,14 +69,14 @@ object TallyResultKt {
     /**
      * <code>string no = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      */
-    fun clearNo() {
+    public fun clearNo() {
       _builder.clearNo()
     }
 
     /**
      * <code>string no_with_veto = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"no_with_veto&#92;""];</code>
      */
-    var noWithVeto: kotlin.String
+    public var noWithVeto: kotlin.String
       @JvmName("getNoWithVeto")
       get() = _builder.getNoWithVeto()
       @JvmName("setNoWithVeto")
@@ -86,11 +86,11 @@ object TallyResultKt {
     /**
      * <code>string no_with_veto = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"no_with_veto&#92;""];</code>
      */
-    fun clearNoWithVeto() {
+    public fun clearNoWithVeto() {
       _builder.clearNoWithVeto()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.gov.v1beta1.Gov.TallyResult.copy(block: cosmos.gov.v1beta1.TallyResultKt.Dsl.() -> Unit): cosmos.gov.v1beta1.Gov.TallyResult =
+public inline fun cosmos.gov.v1beta1.Gov.TallyResult.copy(block: cosmos.gov.v1beta1.TallyResultKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.Gov.TallyResult =
   cosmos.gov.v1beta1.TallyResultKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -245,10 +245,10 @@ public final class Types {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(id_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
       }
-      if (!getIpBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(ip_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, ip_);
       }
       if (port_ != 0) {
@@ -263,10 +263,10 @@ public final class Types {
       if (size != -1) return size;
 
       size = 0;
-      if (!getIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(id_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
       }
-      if (!getIpBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(ip_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, ip_);
       }
       if (port_ != 0) {
@@ -1947,22 +1947,22 @@ public final class Types {
       if (protocolVersion_ != null) {
         output.writeMessage(1, getProtocolVersion());
       }
-      if (!getDefaultNodeIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(defaultNodeId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, defaultNodeId_);
       }
-      if (!getListenAddrBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(listenAddr_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, listenAddr_);
       }
-      if (!getNetworkBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(network_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, network_);
       }
-      if (!getVersionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(version_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, version_);
       }
       if (!channels_.isEmpty()) {
         output.writeBytes(6, channels_);
       }
-      if (!getMonikerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(moniker_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 7, moniker_);
       }
       if (other_ != null) {
@@ -1981,23 +1981,23 @@ public final class Types {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getProtocolVersion());
       }
-      if (!getDefaultNodeIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(defaultNodeId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, defaultNodeId_);
       }
-      if (!getListenAddrBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(listenAddr_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, listenAddr_);
       }
-      if (!getNetworkBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(network_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, network_);
       }
-      if (!getVersionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(version_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, version_);
       }
       if (!channels_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(6, channels_);
       }
-      if (!getMonikerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(moniker_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, moniker_);
       }
       if (other_ != null) {
@@ -3290,10 +3290,10 @@ public final class Types {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTxIndexBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(txIndex_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, txIndex_);
       }
-      if (!getRpcAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(rpcAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, rpcAddress_);
       }
       unknownFields.writeTo(output);
@@ -3305,10 +3305,10 @@ public final class Types {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTxIndexBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(txIndex_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, txIndex_);
       }
-      if (!getRpcAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(rpcAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, rpcAddress_);
       }
       size += unknownFields.getSerializedSize();

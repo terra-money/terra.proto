@@ -4,15 +4,15 @@
 package cosmos.evidence.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryAllEvidenceRequest(block: cosmos.evidence.v1beta1.QueryAllEvidenceRequestKt.Dsl.() -> Unit): cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest =
+public inline fun queryAllEvidenceRequest(block: cosmos.evidence.v1beta1.QueryAllEvidenceRequestKt.Dsl.() -> kotlin.Unit): cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest =
   cosmos.evidence.v1beta1.QueryAllEvidenceRequestKt.Dsl._create(cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest.newBuilder()).apply { block() }._build()
-object QueryAllEvidenceRequestKt {
+public object QueryAllEvidenceRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryAllEvidenceRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -43,7 +43,7 @@ object QueryAllEvidenceRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
@@ -54,11 +54,11 @@ object QueryAllEvidenceRequestKt {
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest.copy(block: cosmos.evidence.v1beta1.QueryAllEvidenceRequestKt.Dsl.() -> Unit): cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest =
+public inline fun cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest.copy(block: cosmos.evidence.v1beta1.QueryAllEvidenceRequestKt.Dsl.() -> kotlin.Unit): cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest =
   cosmos.evidence.v1beta1.QueryAllEvidenceRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

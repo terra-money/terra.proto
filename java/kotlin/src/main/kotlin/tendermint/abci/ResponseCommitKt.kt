@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun responseCommit(block: tendermint.abci.ResponseCommitKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseCommit =
+public inline fun responseCommit(block: tendermint.abci.ResponseCommitKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseCommit =
   tendermint.abci.ResponseCommitKt.Dsl._create(tendermint.abci.Types.ResponseCommit.newBuilder()).apply { block() }._build()
-object ResponseCommitKt {
+public object ResponseCommitKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.ResponseCommit.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.ResponseCommit.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.ResponseCommit.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object ResponseCommitKt {
      *
      * <code>bytes data = 2;</code>
      */
-    var data: com.google.protobuf.ByteString
+    public var data: com.google.protobuf.ByteString
       @JvmName("getData")
       get() = _builder.getData()
       @JvmName("setData")
@@ -43,14 +43,14 @@ object ResponseCommitKt {
      *
      * <code>bytes data = 2;</code>
      */
-    fun clearData() {
+    public fun clearData() {
       _builder.clearData()
     }
 
     /**
      * <code>int64 retain_height = 3;</code>
      */
-    var retainHeight: kotlin.Long
+    public var retainHeight: kotlin.Long
       @JvmName("getRetainHeight")
       get() = _builder.getRetainHeight()
       @JvmName("setRetainHeight")
@@ -60,11 +60,11 @@ object ResponseCommitKt {
     /**
      * <code>int64 retain_height = 3;</code>
      */
-    fun clearRetainHeight() {
+    public fun clearRetainHeight() {
       _builder.clearRetainHeight()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.ResponseCommit.copy(block: tendermint.abci.ResponseCommitKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseCommit =
+public inline fun tendermint.abci.Types.ResponseCommit.copy(block: tendermint.abci.ResponseCommitKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseCommit =
   tendermint.abci.ResponseCommitKt.Dsl._create(this.toBuilder()).apply { block() }._build()

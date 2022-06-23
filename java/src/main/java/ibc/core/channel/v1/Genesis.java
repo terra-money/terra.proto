@@ -3374,10 +3374,10 @@ public final class Genesis {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, portId_);
       }
-      if (!getChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, channelId_);
       }
       if (sequence_ != 0L) {
@@ -3392,10 +3392,10 @@ public final class Genesis {
       if (size != -1) return size;
 
       size = 0;
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, portId_);
       }
-      if (!getChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, channelId_);
       }
       if (sequence_ != 0L) {
@@ -3977,9 +3977,9 @@ public final class Genesis {
       "t_channel_sequence\"\"r\n\016PacketSequence\022#\n" +
       "\007port_id\030\001 \001(\tB\022\362\336\037\016yaml:\"port_id\"\022)\n\nch" +
       "annel_id\030\002 \001(\tB\025\362\336\037\021yaml:\"channel_id\"\022\020\n" +
-      "\010sequence\030\003 \001(\004B8Z6github.com/cosmos/ibc" +
-      "-go/modules/core/04-channel/typesb\006proto" +
-      "3"
+      "\010sequence\030\003 \001(\004B;Z9github.com/cosmos/ibc" +
+      "-go/v3/modules/core/04-channel/typesb\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

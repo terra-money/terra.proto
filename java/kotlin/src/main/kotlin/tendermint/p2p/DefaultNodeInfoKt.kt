@@ -4,15 +4,15 @@
 package tendermint.p2p;
 
 @kotlin.jvm.JvmSynthetic
-inline fun defaultNodeInfo(block: tendermint.p2p.DefaultNodeInfoKt.Dsl.() -> Unit): tendermint.p2p.Types.DefaultNodeInfo =
+public inline fun defaultNodeInfo(block: tendermint.p2p.DefaultNodeInfoKt.Dsl.() -> kotlin.Unit): tendermint.p2p.Types.DefaultNodeInfo =
   tendermint.p2p.DefaultNodeInfoKt.Dsl._create(tendermint.p2p.Types.DefaultNodeInfo.newBuilder()).apply { block() }._build()
-object DefaultNodeInfoKt {
+public object DefaultNodeInfoKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.p2p.Types.DefaultNodeInfo.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.p2p.Types.DefaultNodeInfo.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.p2p.Types.DefaultNodeInfo.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object DefaultNodeInfoKt {
     /**
      * <code>.tendermint.p2p.ProtocolVersion protocol_version = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var protocolVersion: tendermint.p2p.Types.ProtocolVersion
+    public var protocolVersion: tendermint.p2p.Types.ProtocolVersion
       @JvmName("getProtocolVersion")
       get() = _builder.getProtocolVersion()
       @JvmName("setProtocolVersion")
@@ -35,21 +35,21 @@ object DefaultNodeInfoKt {
     /**
      * <code>.tendermint.p2p.ProtocolVersion protocol_version = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearProtocolVersion() {
+    public fun clearProtocolVersion() {
       _builder.clearProtocolVersion()
     }
     /**
      * <code>.tendermint.p2p.ProtocolVersion protocol_version = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the protocolVersion field is set.
      */
-    fun hasProtocolVersion(): kotlin.Boolean {
+    public fun hasProtocolVersion(): kotlin.Boolean {
       return _builder.hasProtocolVersion()
     }
 
     /**
      * <code>string default_node_id = 2 [(.gogoproto.customname) = "DefaultNodeID"];</code>
      */
-    var defaultNodeId: kotlin.String
+    public var defaultNodeId: kotlin.String
       @JvmName("getDefaultNodeId")
       get() = _builder.getDefaultNodeId()
       @JvmName("setDefaultNodeId")
@@ -59,14 +59,14 @@ object DefaultNodeInfoKt {
     /**
      * <code>string default_node_id = 2 [(.gogoproto.customname) = "DefaultNodeID"];</code>
      */
-    fun clearDefaultNodeId() {
+    public fun clearDefaultNodeId() {
       _builder.clearDefaultNodeId()
     }
 
     /**
      * <code>string listen_addr = 3;</code>
      */
-    var listenAddr: kotlin.String
+    public var listenAddr: kotlin.String
       @JvmName("getListenAddr")
       get() = _builder.getListenAddr()
       @JvmName("setListenAddr")
@@ -76,14 +76,14 @@ object DefaultNodeInfoKt {
     /**
      * <code>string listen_addr = 3;</code>
      */
-    fun clearListenAddr() {
+    public fun clearListenAddr() {
       _builder.clearListenAddr()
     }
 
     /**
      * <code>string network = 4;</code>
      */
-    var network: kotlin.String
+    public var network: kotlin.String
       @JvmName("getNetwork")
       get() = _builder.getNetwork()
       @JvmName("setNetwork")
@@ -93,14 +93,14 @@ object DefaultNodeInfoKt {
     /**
      * <code>string network = 4;</code>
      */
-    fun clearNetwork() {
+    public fun clearNetwork() {
       _builder.clearNetwork()
     }
 
     /**
      * <code>string version = 5;</code>
      */
-    var version: kotlin.String
+    public var version: kotlin.String
       @JvmName("getVersion")
       get() = _builder.getVersion()
       @JvmName("setVersion")
@@ -110,14 +110,14 @@ object DefaultNodeInfoKt {
     /**
      * <code>string version = 5;</code>
      */
-    fun clearVersion() {
+    public fun clearVersion() {
       _builder.clearVersion()
     }
 
     /**
      * <code>bytes channels = 6;</code>
      */
-    var channels: com.google.protobuf.ByteString
+    public var channels: com.google.protobuf.ByteString
       @JvmName("getChannels")
       get() = _builder.getChannels()
       @JvmName("setChannels")
@@ -127,14 +127,14 @@ object DefaultNodeInfoKt {
     /**
      * <code>bytes channels = 6;</code>
      */
-    fun clearChannels() {
+    public fun clearChannels() {
       _builder.clearChannels()
     }
 
     /**
      * <code>string moniker = 7;</code>
      */
-    var moniker: kotlin.String
+    public var moniker: kotlin.String
       @JvmName("getMoniker")
       get() = _builder.getMoniker()
       @JvmName("setMoniker")
@@ -144,14 +144,14 @@ object DefaultNodeInfoKt {
     /**
      * <code>string moniker = 7;</code>
      */
-    fun clearMoniker() {
+    public fun clearMoniker() {
       _builder.clearMoniker()
     }
 
     /**
      * <code>.tendermint.p2p.DefaultNodeInfoOther other = 8 [(.gogoproto.nullable) = false];</code>
      */
-    var other: tendermint.p2p.Types.DefaultNodeInfoOther
+    public var other: tendermint.p2p.Types.DefaultNodeInfoOther
       @JvmName("getOther")
       get() = _builder.getOther()
       @JvmName("setOther")
@@ -161,18 +161,18 @@ object DefaultNodeInfoKt {
     /**
      * <code>.tendermint.p2p.DefaultNodeInfoOther other = 8 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearOther() {
+    public fun clearOther() {
       _builder.clearOther()
     }
     /**
      * <code>.tendermint.p2p.DefaultNodeInfoOther other = 8 [(.gogoproto.nullable) = false];</code>
      * @return Whether the other field is set.
      */
-    fun hasOther(): kotlin.Boolean {
+    public fun hasOther(): kotlin.Boolean {
       return _builder.hasOther()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.p2p.Types.DefaultNodeInfo.copy(block: tendermint.p2p.DefaultNodeInfoKt.Dsl.() -> Unit): tendermint.p2p.Types.DefaultNodeInfo =
+public inline fun tendermint.p2p.Types.DefaultNodeInfo.copy(block: tendermint.p2p.DefaultNodeInfoKt.Dsl.() -> kotlin.Unit): tendermint.p2p.Types.DefaultNodeInfo =
   tendermint.p2p.DefaultNodeInfoKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package ibc.core.connection.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryConnectionRequest(block: ibc.core.connection.v1.QueryConnectionRequestKt.Dsl.() -> Unit): ibc.core.connection.v1.QueryOuterClass.QueryConnectionRequest =
+public inline fun queryConnectionRequest(block: ibc.core.connection.v1.QueryConnectionRequestKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.QueryOuterClass.QueryConnectionRequest =
   ibc.core.connection.v1.QueryConnectionRequestKt.Dsl._create(ibc.core.connection.v1.QueryOuterClass.QueryConnectionRequest.newBuilder()).apply { block() }._build()
-object QueryConnectionRequestKt {
+public object QueryConnectionRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.connection.v1.QueryOuterClass.QueryConnectionRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.connection.v1.QueryOuterClass.QueryConnectionRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.connection.v1.QueryOuterClass.QueryConnectionRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryConnectionRequestKt {
      *
      * <code>string connection_id = 1;</code>
      */
-    var connectionId: kotlin.String
+    public var connectionId: kotlin.String
       @JvmName("getConnectionId")
       get() = _builder.getConnectionId()
       @JvmName("setConnectionId")
@@ -43,11 +43,11 @@ object QueryConnectionRequestKt {
      *
      * <code>string connection_id = 1;</code>
      */
-    fun clearConnectionId() {
+    public fun clearConnectionId() {
       _builder.clearConnectionId()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.connection.v1.QueryOuterClass.QueryConnectionRequest.copy(block: ibc.core.connection.v1.QueryConnectionRequestKt.Dsl.() -> Unit): ibc.core.connection.v1.QueryOuterClass.QueryConnectionRequest =
+public inline fun ibc.core.connection.v1.QueryOuterClass.QueryConnectionRequest.copy(block: ibc.core.connection.v1.QueryConnectionRequestKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.QueryOuterClass.QueryConnectionRequest =
   ibc.core.connection.v1.QueryConnectionRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

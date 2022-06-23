@@ -4,15 +4,15 @@
 package cosmos.feegrant.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryAllowancesRequest(block: cosmos.feegrant.v1beta1.QueryAllowancesRequestKt.Dsl.() -> Unit): cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesRequest =
+public inline fun queryAllowancesRequest(block: cosmos.feegrant.v1beta1.QueryAllowancesRequestKt.Dsl.() -> kotlin.Unit): cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesRequest =
   cosmos.feegrant.v1beta1.QueryAllowancesRequestKt.Dsl._create(cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesRequest.newBuilder()).apply { block() }._build()
-object QueryAllowancesRequestKt {
+public object QueryAllowancesRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesRequest.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object QueryAllowancesRequestKt {
     /**
      * <code>string grantee = 1;</code>
      */
-    var grantee: kotlin.String
+    public var grantee: kotlin.String
       @JvmName("getGrantee")
       get() = _builder.getGrantee()
       @JvmName("setGrantee")
@@ -35,7 +35,7 @@ object QueryAllowancesRequestKt {
     /**
      * <code>string grantee = 1;</code>
      */
-    fun clearGrantee() {
+    public fun clearGrantee() {
       _builder.clearGrantee()
     }
 
@@ -46,7 +46,7 @@ object QueryAllowancesRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 2;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -60,7 +60,7 @@ object QueryAllowancesRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 2;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
@@ -71,11 +71,11 @@ object QueryAllowancesRequestKt {
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 2;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesRequest.copy(block: cosmos.feegrant.v1beta1.QueryAllowancesRequestKt.Dsl.() -> Unit): cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesRequest =
+public inline fun cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesRequest.copy(block: cosmos.feegrant.v1beta1.QueryAllowancesRequestKt.Dsl.() -> kotlin.Unit): cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesRequest =
   cosmos.feegrant.v1beta1.QueryAllowancesRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

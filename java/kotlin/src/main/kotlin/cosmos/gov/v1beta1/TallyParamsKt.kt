@@ -4,15 +4,15 @@
 package cosmos.gov.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun tallyParams(block: cosmos.gov.v1beta1.TallyParamsKt.Dsl.() -> Unit): cosmos.gov.v1beta1.Gov.TallyParams =
+public inline fun tallyParams(block: cosmos.gov.v1beta1.TallyParamsKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.Gov.TallyParams =
   cosmos.gov.v1beta1.TallyParamsKt.Dsl._create(cosmos.gov.v1beta1.Gov.TallyParams.newBuilder()).apply { block() }._build()
-object TallyParamsKt {
+public object TallyParamsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.gov.v1beta1.Gov.TallyParams.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.gov.v1beta1.Gov.TallyParams.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.gov.v1beta1.Gov.TallyParams.Builder): Dsl = Dsl(builder)
@@ -30,7 +30,7 @@ object TallyParamsKt {
      *
      * <code>bytes quorum = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.jsontag) = "quorum,omitempty"];</code>
      */
-    var quorum: com.google.protobuf.ByteString
+    public var quorum: com.google.protobuf.ByteString
       @JvmName("getQuorum")
       get() = _builder.getQuorum()
       @JvmName("setQuorum")
@@ -45,7 +45,7 @@ object TallyParamsKt {
      *
      * <code>bytes quorum = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.jsontag) = "quorum,omitempty"];</code>
      */
-    fun clearQuorum() {
+    public fun clearQuorum() {
       _builder.clearQuorum()
     }
 
@@ -56,7 +56,7 @@ object TallyParamsKt {
      *
      * <code>bytes threshold = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.jsontag) = "threshold,omitempty"];</code>
      */
-    var threshold: com.google.protobuf.ByteString
+    public var threshold: com.google.protobuf.ByteString
       @JvmName("getThreshold")
       get() = _builder.getThreshold()
       @JvmName("setThreshold")
@@ -70,7 +70,7 @@ object TallyParamsKt {
      *
      * <code>bytes threshold = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.jsontag) = "threshold,omitempty"];</code>
      */
-    fun clearThreshold() {
+    public fun clearThreshold() {
       _builder.clearThreshold()
     }
 
@@ -82,7 +82,7 @@ object TallyParamsKt {
      *
      * <code>bytes veto_threshold = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.jsontag) = "veto_threshold,omitempty", (.gogoproto.moretags) = "yaml:&#92;"veto_threshold&#92;""];</code>
      */
-    var vetoThreshold: com.google.protobuf.ByteString
+    public var vetoThreshold: com.google.protobuf.ByteString
       @JvmName("getVetoThreshold")
       get() = _builder.getVetoThreshold()
       @JvmName("setVetoThreshold")
@@ -97,11 +97,11 @@ object TallyParamsKt {
      *
      * <code>bytes veto_threshold = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.jsontag) = "veto_threshold,omitempty", (.gogoproto.moretags) = "yaml:&#92;"veto_threshold&#92;""];</code>
      */
-    fun clearVetoThreshold() {
+    public fun clearVetoThreshold() {
       _builder.clearVetoThreshold()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.gov.v1beta1.Gov.TallyParams.copy(block: cosmos.gov.v1beta1.TallyParamsKt.Dsl.() -> Unit): cosmos.gov.v1beta1.Gov.TallyParams =
+public inline fun cosmos.gov.v1beta1.Gov.TallyParams.copy(block: cosmos.gov.v1beta1.TallyParamsKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.Gov.TallyParams =
   cosmos.gov.v1beta1.TallyParamsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

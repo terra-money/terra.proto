@@ -332,13 +332,13 @@ public final class Event {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getMsgTypeUrlBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(msgTypeUrl_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, msgTypeUrl_);
       }
-      if (!getGranterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(granter_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, granter_);
       }
-      if (!getGranteeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(grantee_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, grantee_);
       }
       unknownFields.writeTo(output);
@@ -350,13 +350,13 @@ public final class Event {
       if (size != -1) return size;
 
       size = 0;
-      if (!getMsgTypeUrlBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(msgTypeUrl_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, msgTypeUrl_);
       }
-      if (!getGranterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(granter_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, granter_);
       }
-      if (!getGranteeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(grantee_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, grantee_);
       }
       size += unknownFields.getSerializedSize();
@@ -1316,13 +1316,13 @@ public final class Event {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getMsgTypeUrlBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(msgTypeUrl_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, msgTypeUrl_);
       }
-      if (!getGranterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(granter_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, granter_);
       }
-      if (!getGranteeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(grantee_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, grantee_);
       }
       unknownFields.writeTo(output);
@@ -1334,13 +1334,13 @@ public final class Event {
       if (size != -1) return size;
 
       size = 0;
-      if (!getMsgTypeUrlBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(msgTypeUrl_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, msgTypeUrl_);
       }
-      if (!getGranterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(granter_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, granter_);
       }
-      if (!getGranteeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(grantee_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, grantee_);
       }
       size += unknownFields.getSerializedSize();

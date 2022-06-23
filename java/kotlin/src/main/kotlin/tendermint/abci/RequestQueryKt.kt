@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun requestQuery(block: tendermint.abci.RequestQueryKt.Dsl.() -> Unit): tendermint.abci.Types.RequestQuery =
+public inline fun requestQuery(block: tendermint.abci.RequestQueryKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestQuery =
   tendermint.abci.RequestQueryKt.Dsl._create(tendermint.abci.Types.RequestQuery.newBuilder()).apply { block() }._build()
-object RequestQueryKt {
+public object RequestQueryKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.RequestQuery.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.RequestQuery.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.RequestQuery.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object RequestQueryKt {
     /**
      * <code>bytes data = 1;</code>
      */
-    var data: com.google.protobuf.ByteString
+    public var data: com.google.protobuf.ByteString
       @JvmName("getData")
       get() = _builder.getData()
       @JvmName("setData")
@@ -35,14 +35,14 @@ object RequestQueryKt {
     /**
      * <code>bytes data = 1;</code>
      */
-    fun clearData() {
+    public fun clearData() {
       _builder.clearData()
     }
 
     /**
      * <code>string path = 2;</code>
      */
-    var path: kotlin.String
+    public var path: kotlin.String
       @JvmName("getPath")
       get() = _builder.getPath()
       @JvmName("setPath")
@@ -52,14 +52,14 @@ object RequestQueryKt {
     /**
      * <code>string path = 2;</code>
      */
-    fun clearPath() {
+    public fun clearPath() {
       _builder.clearPath()
     }
 
     /**
      * <code>int64 height = 3;</code>
      */
-    var height: kotlin.Long
+    public var height: kotlin.Long
       @JvmName("getHeight")
       get() = _builder.getHeight()
       @JvmName("setHeight")
@@ -69,14 +69,14 @@ object RequestQueryKt {
     /**
      * <code>int64 height = 3;</code>
      */
-    fun clearHeight() {
+    public fun clearHeight() {
       _builder.clearHeight()
     }
 
     /**
      * <code>bool prove = 4;</code>
      */
-    var prove: kotlin.Boolean
+    public var prove: kotlin.Boolean
       @JvmName("getProve")
       get() = _builder.getProve()
       @JvmName("setProve")
@@ -86,11 +86,11 @@ object RequestQueryKt {
     /**
      * <code>bool prove = 4;</code>
      */
-    fun clearProve() {
+    public fun clearProve() {
       _builder.clearProve()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.RequestQuery.copy(block: tendermint.abci.RequestQueryKt.Dsl.() -> Unit): tendermint.abci.Types.RequestQuery =
+public inline fun tendermint.abci.Types.RequestQuery.copy(block: tendermint.abci.RequestQueryKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestQuery =
   tendermint.abci.RequestQueryKt.Dsl._create(this.toBuilder()).apply { block() }._build()

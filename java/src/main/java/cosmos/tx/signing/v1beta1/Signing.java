@@ -60,6 +60,22 @@ public final class Signing {
      * <code>SIGN_MODE_LEGACY_AMINO_JSON = 127;</code>
      */
     SIGN_MODE_LEGACY_AMINO_JSON(127),
+    /**
+     * <pre>
+     * SIGN_MODE_EIP_191 specifies the sign mode for EIP 191 signing on the Cosmos
+     * SDK. Ref: https://eips.ethereum.org/EIPS/eip-191
+     * 
+     * Currently, SIGN_MODE_EIP_191 is registered as a SignMode enum variant,
+     * but is not implemented on the SDK by default. To enable EIP-191, you need
+     * to pass a custom `TxConfig` that has an implementation of
+     * `SignModeHandler` for EIP-191. The SDK may decide to fully support
+     * EIP-191 in the future.
+     * Since: cosmos-sdk 0.45.2
+     * </pre>
+     *
+     * <code>SIGN_MODE_EIP_191 = 191;</code>
+     */
+    SIGN_MODE_EIP_191(191),
     UNRECOGNIZED(-1),
     ;
 
@@ -100,6 +116,22 @@ public final class Signing {
      * <code>SIGN_MODE_LEGACY_AMINO_JSON = 127;</code>
      */
     public static final int SIGN_MODE_LEGACY_AMINO_JSON_VALUE = 127;
+    /**
+     * <pre>
+     * SIGN_MODE_EIP_191 specifies the sign mode for EIP 191 signing on the Cosmos
+     * SDK. Ref: https://eips.ethereum.org/EIPS/eip-191
+     * 
+     * Currently, SIGN_MODE_EIP_191 is registered as a SignMode enum variant,
+     * but is not implemented on the SDK by default. To enable EIP-191, you need
+     * to pass a custom `TxConfig` that has an implementation of
+     * `SignModeHandler` for EIP-191. The SDK may decide to fully support
+     * EIP-191 in the future.
+     * Since: cosmos-sdk 0.45.2
+     * </pre>
+     *
+     * <code>SIGN_MODE_EIP_191 = 191;</code>
+     */
+    public static final int SIGN_MODE_EIP_191_VALUE = 191;
 
 
     public final int getNumber() {
@@ -130,6 +162,7 @@ public final class Signing {
         case 1: return SIGN_MODE_DIRECT;
         case 2: return SIGN_MODE_TEXTUAL;
         case 127: return SIGN_MODE_LEGACY_AMINO_JSON;
+        case 191: return SIGN_MODE_EIP_191;
         default: return null;
       }
     }
@@ -5065,11 +5098,12 @@ public final class Signing {
       "\n\010bitarray\030\001 \001(\0132/.cosmos.crypto.multisi" +
       "g.v1beta1.CompactBitArray\022G\n\nsignatures\030" +
       "\002 \003(\01323.cosmos.tx.signing.v1beta1.Signat" +
-      "ureDescriptor.DataB\005\n\003sum*s\n\010SignMode\022\031\n" +
-      "\025SIGN_MODE_UNSPECIFIED\020\000\022\024\n\020SIGN_MODE_DI" +
-      "RECT\020\001\022\025\n\021SIGN_MODE_TEXTUAL\020\002\022\037\n\033SIGN_MO" +
-      "DE_LEGACY_AMINO_JSON\020\177B/Z-github.com/cos" +
-      "mos/cosmos-sdk/types/tx/signingb\006proto3"
+      "ureDescriptor.DataB\005\n\003sum*\213\001\n\010SignMode\022\031" +
+      "\n\025SIGN_MODE_UNSPECIFIED\020\000\022\024\n\020SIGN_MODE_D" +
+      "IRECT\020\001\022\025\n\021SIGN_MODE_TEXTUAL\020\002\022\037\n\033SIGN_M" +
+      "ODE_LEGACY_AMINO_JSON\020\177\022\026\n\021SIGN_MODE_EIP" +
+      "_191\020\277\001B/Z-github.com/cosmos/cosmos-sdk/" +
+      "types/tx/signingb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

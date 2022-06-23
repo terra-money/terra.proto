@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun acknowledgement(block: ibc.core.channel.v1.AcknowledgementKt.Dsl.() -> Unit): ibc.core.channel.v1.ChannelOuterClass.Acknowledgement =
+public inline fun acknowledgement(block: ibc.core.channel.v1.AcknowledgementKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.ChannelOuterClass.Acknowledgement =
   ibc.core.channel.v1.AcknowledgementKt.Dsl._create(ibc.core.channel.v1.ChannelOuterClass.Acknowledgement.newBuilder()).apply { block() }._build()
-object AcknowledgementKt {
+public object AcknowledgementKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.ChannelOuterClass.Acknowledgement.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.ChannelOuterClass.Acknowledgement.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.ChannelOuterClass.Acknowledgement.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object AcknowledgementKt {
     /**
      * <code>bytes result = 21;</code>
      */
-    var result: com.google.protobuf.ByteString
+    public var result: com.google.protobuf.ByteString
       @JvmName("getResult")
       get() = _builder.getResult()
       @JvmName("setResult")
@@ -35,21 +35,21 @@ object AcknowledgementKt {
     /**
      * <code>bytes result = 21;</code>
      */
-    fun clearResult() {
+    public fun clearResult() {
       _builder.clearResult()
     }
     /**
      * <code>bytes result = 21;</code>
      * @return Whether the result field is set.
      */
-    fun hasResult(): kotlin.Boolean {
+    public fun hasResult(): kotlin.Boolean {
       return _builder.hasResult()
     }
 
     /**
      * <code>string error = 22;</code>
      */
-    var error: kotlin.String
+    public var error: kotlin.String
       @JvmName("getError")
       get() = _builder.getError()
       @JvmName("setError")
@@ -59,25 +59,25 @@ object AcknowledgementKt {
     /**
      * <code>string error = 22;</code>
      */
-    fun clearError() {
+    public fun clearError() {
       _builder.clearError()
     }
     /**
      * <code>string error = 22;</code>
      * @return Whether the error field is set.
      */
-    fun hasError(): kotlin.Boolean {
+    public fun hasError(): kotlin.Boolean {
       return _builder.hasError()
     }
-    val responseCase: ibc.core.channel.v1.ChannelOuterClass.Acknowledgement.ResponseCase
+    public val responseCase: ibc.core.channel.v1.ChannelOuterClass.Acknowledgement.ResponseCase
       @JvmName("getResponseCase")
       get() = _builder.getResponseCase()
 
-    fun clearResponse() {
+    public fun clearResponse() {
       _builder.clearResponse()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.ChannelOuterClass.Acknowledgement.copy(block: ibc.core.channel.v1.AcknowledgementKt.Dsl.() -> Unit): ibc.core.channel.v1.ChannelOuterClass.Acknowledgement =
+public inline fun ibc.core.channel.v1.ChannelOuterClass.Acknowledgement.copy(block: ibc.core.channel.v1.AcknowledgementKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.ChannelOuterClass.Acknowledgement =
   ibc.core.channel.v1.AcknowledgementKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.staking.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryHistoricalInfoResponse(block: cosmos.staking.v1beta1.QueryHistoricalInfoResponseKt.Dsl.() -> Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoResponse =
+public inline fun queryHistoricalInfoResponse(block: cosmos.staking.v1beta1.QueryHistoricalInfoResponseKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoResponse =
   cosmos.staking.v1beta1.QueryHistoricalInfoResponseKt.Dsl._create(cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoResponse.newBuilder()).apply { block() }._build()
-object QueryHistoricalInfoResponseKt {
+public object QueryHistoricalInfoResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryHistoricalInfoResponseKt {
      *
      * <code>.cosmos.staking.v1beta1.HistoricalInfo hist = 1;</code>
      */
-    var hist: cosmos.staking.v1beta1.Staking.HistoricalInfo
+    public var hist: cosmos.staking.v1beta1.Staking.HistoricalInfo
       @JvmName("getHist")
       get() = _builder.getHist()
       @JvmName("setHist")
@@ -43,7 +43,7 @@ object QueryHistoricalInfoResponseKt {
      *
      * <code>.cosmos.staking.v1beta1.HistoricalInfo hist = 1;</code>
      */
-    fun clearHist() {
+    public fun clearHist() {
       _builder.clearHist()
     }
     /**
@@ -54,11 +54,11 @@ object QueryHistoricalInfoResponseKt {
      * <code>.cosmos.staking.v1beta1.HistoricalInfo hist = 1;</code>
      * @return Whether the hist field is set.
      */
-    fun hasHist(): kotlin.Boolean {
+    public fun hasHist(): kotlin.Boolean {
       return _builder.hasHist()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoResponse.copy(block: cosmos.staking.v1beta1.QueryHistoricalInfoResponseKt.Dsl.() -> Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoResponse =
+public inline fun cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoResponse.copy(block: cosmos.staking.v1beta1.QueryHistoricalInfoResponseKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoResponse =
   cosmos.staking.v1beta1.QueryHistoricalInfoResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

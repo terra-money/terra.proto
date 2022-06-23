@@ -4,15 +4,15 @@
 package cosmos.auth.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryAccountsRequest(block: cosmos.auth.v1beta1.QueryAccountsRequestKt.Dsl.() -> Unit): cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest =
+public inline fun queryAccountsRequest(block: cosmos.auth.v1beta1.QueryAccountsRequestKt.Dsl.() -> kotlin.Unit): cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest =
   cosmos.auth.v1beta1.QueryAccountsRequestKt.Dsl._create(cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest.newBuilder()).apply { block() }._build()
-object QueryAccountsRequestKt {
+public object QueryAccountsRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryAccountsRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -43,7 +43,7 @@ object QueryAccountsRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
@@ -54,11 +54,11 @@ object QueryAccountsRequestKt {
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest.copy(block: cosmos.auth.v1beta1.QueryAccountsRequestKt.Dsl.() -> Unit): cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest =
+public inline fun cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest.copy(block: cosmos.auth.v1beta1.QueryAccountsRequestKt.Dsl.() -> kotlin.Unit): cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest =
   cosmos.auth.v1beta1.QueryAccountsRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

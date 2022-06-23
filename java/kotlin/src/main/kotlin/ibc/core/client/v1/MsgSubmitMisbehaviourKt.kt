@@ -4,15 +4,15 @@
 package ibc.core.client.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgSubmitMisbehaviour(block: ibc.core.client.v1.MsgSubmitMisbehaviourKt.Dsl.() -> Unit): ibc.core.client.v1.Tx.MsgSubmitMisbehaviour =
+public inline fun msgSubmitMisbehaviour(block: ibc.core.client.v1.MsgSubmitMisbehaviourKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.Tx.MsgSubmitMisbehaviour =
   ibc.core.client.v1.MsgSubmitMisbehaviourKt.Dsl._create(ibc.core.client.v1.Tx.MsgSubmitMisbehaviour.newBuilder()).apply { block() }._build()
-object MsgSubmitMisbehaviourKt {
+public object MsgSubmitMisbehaviourKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.client.v1.Tx.MsgSubmitMisbehaviour.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.client.v1.Tx.MsgSubmitMisbehaviour.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.client.v1.Tx.MsgSubmitMisbehaviour.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object MsgSubmitMisbehaviourKt {
      *
      * <code>string client_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"client_id&#92;""];</code>
      */
-    var clientId: kotlin.String
+    public var clientId: kotlin.String
       @JvmName("getClientId")
       get() = _builder.getClientId()
       @JvmName("setClientId")
@@ -43,7 +43,7 @@ object MsgSubmitMisbehaviourKt {
      *
      * <code>string client_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"client_id&#92;""];</code>
      */
-    fun clearClientId() {
+    public fun clearClientId() {
       _builder.clearClientId()
     }
 
@@ -54,7 +54,7 @@ object MsgSubmitMisbehaviourKt {
      *
      * <code>.google.protobuf.Any misbehaviour = 2;</code>
      */
-    var misbehaviour: com.google.protobuf.Any
+    public var misbehaviour: com.google.protobuf.Any
       @JvmName("getMisbehaviour")
       get() = _builder.getMisbehaviour()
       @JvmName("setMisbehaviour")
@@ -68,7 +68,7 @@ object MsgSubmitMisbehaviourKt {
      *
      * <code>.google.protobuf.Any misbehaviour = 2;</code>
      */
-    fun clearMisbehaviour() {
+    public fun clearMisbehaviour() {
       _builder.clearMisbehaviour()
     }
     /**
@@ -79,7 +79,7 @@ object MsgSubmitMisbehaviourKt {
      * <code>.google.protobuf.Any misbehaviour = 2;</code>
      * @return Whether the misbehaviour field is set.
      */
-    fun hasMisbehaviour(): kotlin.Boolean {
+    public fun hasMisbehaviour(): kotlin.Boolean {
       return _builder.hasMisbehaviour()
     }
 
@@ -90,7 +90,7 @@ object MsgSubmitMisbehaviourKt {
      *
      * <code>string signer = 3;</code>
      */
-    var signer: kotlin.String
+    public var signer: kotlin.String
       @JvmName("getSigner")
       get() = _builder.getSigner()
       @JvmName("setSigner")
@@ -104,11 +104,11 @@ object MsgSubmitMisbehaviourKt {
      *
      * <code>string signer = 3;</code>
      */
-    fun clearSigner() {
+    public fun clearSigner() {
       _builder.clearSigner()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.client.v1.Tx.MsgSubmitMisbehaviour.copy(block: ibc.core.client.v1.MsgSubmitMisbehaviourKt.Dsl.() -> Unit): ibc.core.client.v1.Tx.MsgSubmitMisbehaviour =
+public inline fun ibc.core.client.v1.Tx.MsgSubmitMisbehaviour.copy(block: ibc.core.client.v1.MsgSubmitMisbehaviourKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.Tx.MsgSubmitMisbehaviour =
   ibc.core.client.v1.MsgSubmitMisbehaviourKt.Dsl._create(this.toBuilder()).apply { block() }._build()

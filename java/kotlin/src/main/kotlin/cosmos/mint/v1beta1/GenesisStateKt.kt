@@ -4,15 +4,15 @@
 package cosmos.mint.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun genesisState(block: cosmos.mint.v1beta1.GenesisStateKt.Dsl.() -> Unit): cosmos.mint.v1beta1.Genesis.GenesisState =
+public inline fun genesisState(block: cosmos.mint.v1beta1.GenesisStateKt.Dsl.() -> kotlin.Unit): cosmos.mint.v1beta1.Genesis.GenesisState =
   cosmos.mint.v1beta1.GenesisStateKt.Dsl._create(cosmos.mint.v1beta1.Genesis.GenesisState.newBuilder()).apply { block() }._build()
-object GenesisStateKt {
+public object GenesisStateKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.mint.v1beta1.Genesis.GenesisState.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.mint.v1beta1.Genesis.GenesisState.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.mint.v1beta1.Genesis.GenesisState.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object GenesisStateKt {
      *
      * <code>.cosmos.mint.v1beta1.Minter minter = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var minter: cosmos.mint.v1beta1.Mint.Minter
+    public var minter: cosmos.mint.v1beta1.Mint.Minter
       @JvmName("getMinter")
       get() = _builder.getMinter()
       @JvmName("setMinter")
@@ -43,7 +43,7 @@ object GenesisStateKt {
      *
      * <code>.cosmos.mint.v1beta1.Minter minter = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearMinter() {
+    public fun clearMinter() {
       _builder.clearMinter()
     }
     /**
@@ -54,7 +54,7 @@ object GenesisStateKt {
      * <code>.cosmos.mint.v1beta1.Minter minter = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the minter field is set.
      */
-    fun hasMinter(): kotlin.Boolean {
+    public fun hasMinter(): kotlin.Boolean {
       return _builder.hasMinter()
     }
 
@@ -65,7 +65,7 @@ object GenesisStateKt {
      *
      * <code>.cosmos.mint.v1beta1.Params params = 2 [(.gogoproto.nullable) = false];</code>
      */
-    var params: cosmos.mint.v1beta1.Mint.Params
+    public var params: cosmos.mint.v1beta1.Mint.Params
       @JvmName("getParams")
       get() = _builder.getParams()
       @JvmName("setParams")
@@ -79,7 +79,7 @@ object GenesisStateKt {
      *
      * <code>.cosmos.mint.v1beta1.Params params = 2 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearParams() {
+    public fun clearParams() {
       _builder.clearParams()
     }
     /**
@@ -90,11 +90,11 @@ object GenesisStateKt {
      * <code>.cosmos.mint.v1beta1.Params params = 2 [(.gogoproto.nullable) = false];</code>
      * @return Whether the params field is set.
      */
-    fun hasParams(): kotlin.Boolean {
+    public fun hasParams(): kotlin.Boolean {
       return _builder.hasParams()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.mint.v1beta1.Genesis.GenesisState.copy(block: cosmos.mint.v1beta1.GenesisStateKt.Dsl.() -> Unit): cosmos.mint.v1beta1.Genesis.GenesisState =
+public inline fun cosmos.mint.v1beta1.Genesis.GenesisState.copy(block: cosmos.mint.v1beta1.GenesisStateKt.Dsl.() -> kotlin.Unit): cosmos.mint.v1beta1.Genesis.GenesisState =
   cosmos.mint.v1beta1.GenesisStateKt.Dsl._create(this.toBuilder()).apply { block() }._build()

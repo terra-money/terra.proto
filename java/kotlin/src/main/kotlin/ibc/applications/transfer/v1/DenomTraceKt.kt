@@ -4,15 +4,15 @@
 package ibc.applications.transfer.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun denomTrace(block: ibc.applications.transfer.v1.DenomTraceKt.Dsl.() -> Unit): ibc.applications.transfer.v1.Transfer.DenomTrace =
+public inline fun denomTrace(block: ibc.applications.transfer.v1.DenomTraceKt.Dsl.() -> kotlin.Unit): ibc.applications.transfer.v1.Transfer.DenomTrace =
   ibc.applications.transfer.v1.DenomTraceKt.Dsl._create(ibc.applications.transfer.v1.Transfer.DenomTrace.newBuilder()).apply { block() }._build()
-object DenomTraceKt {
+public object DenomTraceKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.applications.transfer.v1.Transfer.DenomTrace.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.applications.transfer.v1.Transfer.DenomTrace.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.applications.transfer.v1.Transfer.DenomTrace.Builder): Dsl = Dsl(builder)
@@ -30,7 +30,7 @@ object DenomTraceKt {
      *
      * <code>string path = 1;</code>
      */
-    var path: kotlin.String
+    public var path: kotlin.String
       @JvmName("getPath")
       get() = _builder.getPath()
       @JvmName("setPath")
@@ -45,7 +45,7 @@ object DenomTraceKt {
      *
      * <code>string path = 1;</code>
      */
-    fun clearPath() {
+    public fun clearPath() {
       _builder.clearPath()
     }
 
@@ -56,7 +56,7 @@ object DenomTraceKt {
      *
      * <code>string base_denom = 2;</code>
      */
-    var baseDenom: kotlin.String
+    public var baseDenom: kotlin.String
       @JvmName("getBaseDenom")
       get() = _builder.getBaseDenom()
       @JvmName("setBaseDenom")
@@ -70,11 +70,11 @@ object DenomTraceKt {
      *
      * <code>string base_denom = 2;</code>
      */
-    fun clearBaseDenom() {
+    public fun clearBaseDenom() {
       _builder.clearBaseDenom()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.applications.transfer.v1.Transfer.DenomTrace.copy(block: ibc.applications.transfer.v1.DenomTraceKt.Dsl.() -> Unit): ibc.applications.transfer.v1.Transfer.DenomTrace =
+public inline fun ibc.applications.transfer.v1.Transfer.DenomTrace.copy(block: ibc.applications.transfer.v1.DenomTraceKt.Dsl.() -> kotlin.Unit): ibc.applications.transfer.v1.Transfer.DenomTrace =
   ibc.applications.transfer.v1.DenomTraceKt.Dsl._create(this.toBuilder()).apply { block() }._build()

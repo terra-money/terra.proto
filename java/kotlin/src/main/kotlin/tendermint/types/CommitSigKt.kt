@@ -4,15 +4,15 @@
 package tendermint.types;
 
 @kotlin.jvm.JvmSynthetic
-inline fun commitSig(block: tendermint.types.CommitSigKt.Dsl.() -> Unit): tendermint.types.Types.CommitSig =
+public inline fun commitSig(block: tendermint.types.CommitSigKt.Dsl.() -> kotlin.Unit): tendermint.types.Types.CommitSig =
   tendermint.types.CommitSigKt.Dsl._create(tendermint.types.Types.CommitSig.newBuilder()).apply { block() }._build()
-object CommitSigKt {
+public object CommitSigKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.types.Types.CommitSig.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.types.Types.CommitSig.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.types.Types.CommitSig.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object CommitSigKt {
     /**
      * <code>.tendermint.types.BlockIDFlag block_id_flag = 1;</code>
      */
-    var blockIdFlag: tendermint.types.Types.BlockIDFlag
+    public var blockIdFlag: tendermint.types.Types.BlockIDFlag
       @JvmName("getBlockIdFlag")
       get() = _builder.getBlockIdFlag()
       @JvmName("setBlockIdFlag")
@@ -35,14 +35,14 @@ object CommitSigKt {
     /**
      * <code>.tendermint.types.BlockIDFlag block_id_flag = 1;</code>
      */
-    fun clearBlockIdFlag() {
+    public fun clearBlockIdFlag() {
       _builder.clearBlockIdFlag()
     }
 
     /**
      * <code>bytes validator_address = 2;</code>
      */
-    var validatorAddress: com.google.protobuf.ByteString
+    public var validatorAddress: com.google.protobuf.ByteString
       @JvmName("getValidatorAddress")
       get() = _builder.getValidatorAddress()
       @JvmName("setValidatorAddress")
@@ -52,14 +52,14 @@ object CommitSigKt {
     /**
      * <code>bytes validator_address = 2;</code>
      */
-    fun clearValidatorAddress() {
+    public fun clearValidatorAddress() {
       _builder.clearValidatorAddress()
     }
 
     /**
      * <code>.google.protobuf.Timestamp timestamp = 3 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
      */
-    var timestamp: com.google.protobuf.Timestamp
+    public var timestamp: com.google.protobuf.Timestamp
       @JvmName("getTimestamp")
       get() = _builder.getTimestamp()
       @JvmName("setTimestamp")
@@ -69,21 +69,21 @@ object CommitSigKt {
     /**
      * <code>.google.protobuf.Timestamp timestamp = 3 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
      */
-    fun clearTimestamp() {
+    public fun clearTimestamp() {
       _builder.clearTimestamp()
     }
     /**
      * <code>.google.protobuf.Timestamp timestamp = 3 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
      * @return Whether the timestamp field is set.
      */
-    fun hasTimestamp(): kotlin.Boolean {
+    public fun hasTimestamp(): kotlin.Boolean {
       return _builder.hasTimestamp()
     }
 
     /**
      * <code>bytes signature = 4;</code>
      */
-    var signature: com.google.protobuf.ByteString
+    public var signature: com.google.protobuf.ByteString
       @JvmName("getSignature")
       get() = _builder.getSignature()
       @JvmName("setSignature")
@@ -93,11 +93,11 @@ object CommitSigKt {
     /**
      * <code>bytes signature = 4;</code>
      */
-    fun clearSignature() {
+    public fun clearSignature() {
       _builder.clearSignature()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.types.Types.CommitSig.copy(block: tendermint.types.CommitSigKt.Dsl.() -> Unit): tendermint.types.Types.CommitSig =
+public inline fun tendermint.types.Types.CommitSig.copy(block: tendermint.types.CommitSigKt.Dsl.() -> kotlin.Unit): tendermint.types.Types.CommitSig =
   tendermint.types.CommitSigKt.Dsl._create(this.toBuilder()).apply { block() }._build()

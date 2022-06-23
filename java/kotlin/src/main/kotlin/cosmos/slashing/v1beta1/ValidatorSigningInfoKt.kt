@@ -4,15 +4,15 @@
 package cosmos.slashing.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun validatorSigningInfo(block: cosmos.slashing.v1beta1.ValidatorSigningInfoKt.Dsl.() -> Unit): cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo =
+public inline fun validatorSigningInfo(block: cosmos.slashing.v1beta1.ValidatorSigningInfoKt.Dsl.() -> kotlin.Unit): cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo =
   cosmos.slashing.v1beta1.ValidatorSigningInfoKt.Dsl._create(cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo.newBuilder()).apply { block() }._build()
-object ValidatorSigningInfoKt {
+public object ValidatorSigningInfoKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ValidatorSigningInfoKt {
     /**
      * <code>string address = 1;</code>
      */
-    var address: kotlin.String
+    public var address: kotlin.String
       @JvmName("getAddress")
       get() = _builder.getAddress()
       @JvmName("setAddress")
@@ -35,7 +35,7 @@ object ValidatorSigningInfoKt {
     /**
      * <code>string address = 1;</code>
      */
-    fun clearAddress() {
+    public fun clearAddress() {
       _builder.clearAddress()
     }
 
@@ -46,7 +46,7 @@ object ValidatorSigningInfoKt {
      *
      * <code>int64 start_height = 2 [(.gogoproto.moretags) = "yaml:&#92;"start_height&#92;""];</code>
      */
-    var startHeight: kotlin.Long
+    public var startHeight: kotlin.Long
       @JvmName("getStartHeight")
       get() = _builder.getStartHeight()
       @JvmName("setStartHeight")
@@ -60,7 +60,7 @@ object ValidatorSigningInfoKt {
      *
      * <code>int64 start_height = 2 [(.gogoproto.moretags) = "yaml:&#92;"start_height&#92;""];</code>
      */
-    fun clearStartHeight() {
+    public fun clearStartHeight() {
       _builder.clearStartHeight()
     }
 
@@ -73,7 +73,7 @@ object ValidatorSigningInfoKt {
      *
      * <code>int64 index_offset = 3 [(.gogoproto.moretags) = "yaml:&#92;"index_offset&#92;""];</code>
      */
-    var indexOffset: kotlin.Long
+    public var indexOffset: kotlin.Long
       @JvmName("getIndexOffset")
       get() = _builder.getIndexOffset()
       @JvmName("setIndexOffset")
@@ -89,7 +89,7 @@ object ValidatorSigningInfoKt {
      *
      * <code>int64 index_offset = 3 [(.gogoproto.moretags) = "yaml:&#92;"index_offset&#92;""];</code>
      */
-    fun clearIndexOffset() {
+    public fun clearIndexOffset() {
       _builder.clearIndexOffset()
     }
 
@@ -100,7 +100,7 @@ object ValidatorSigningInfoKt {
      *
      * <code>.google.protobuf.Timestamp jailed_until = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"jailed_until&#92;"", (.gogoproto.stdtime) = true];</code>
      */
-    var jailedUntil: com.google.protobuf.Timestamp
+    public var jailedUntil: com.google.protobuf.Timestamp
       @JvmName("getJailedUntil")
       get() = _builder.getJailedUntil()
       @JvmName("setJailedUntil")
@@ -114,7 +114,7 @@ object ValidatorSigningInfoKt {
      *
      * <code>.google.protobuf.Timestamp jailed_until = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"jailed_until&#92;"", (.gogoproto.stdtime) = true];</code>
      */
-    fun clearJailedUntil() {
+    public fun clearJailedUntil() {
       _builder.clearJailedUntil()
     }
     /**
@@ -125,7 +125,7 @@ object ValidatorSigningInfoKt {
      * <code>.google.protobuf.Timestamp jailed_until = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"jailed_until&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return Whether the jailedUntil field is set.
      */
-    fun hasJailedUntil(): kotlin.Boolean {
+    public fun hasJailedUntil(): kotlin.Boolean {
       return _builder.hasJailedUntil()
     }
 
@@ -137,7 +137,7 @@ object ValidatorSigningInfoKt {
      *
      * <code>bool tombstoned = 5;</code>
      */
-    var tombstoned: kotlin.Boolean
+    public var tombstoned: kotlin.Boolean
       @JvmName("getTombstoned")
       get() = _builder.getTombstoned()
       @JvmName("setTombstoned")
@@ -152,7 +152,7 @@ object ValidatorSigningInfoKt {
      *
      * <code>bool tombstoned = 5;</code>
      */
-    fun clearTombstoned() {
+    public fun clearTombstoned() {
       _builder.clearTombstoned()
     }
 
@@ -164,7 +164,7 @@ object ValidatorSigningInfoKt {
      *
      * <code>int64 missed_blocks_counter = 6 [(.gogoproto.moretags) = "yaml:&#92;"missed_blocks_counter&#92;""];</code>
      */
-    var missedBlocksCounter: kotlin.Long
+    public var missedBlocksCounter: kotlin.Long
       @JvmName("getMissedBlocksCounter")
       get() = _builder.getMissedBlocksCounter()
       @JvmName("setMissedBlocksCounter")
@@ -179,11 +179,11 @@ object ValidatorSigningInfoKt {
      *
      * <code>int64 missed_blocks_counter = 6 [(.gogoproto.moretags) = "yaml:&#92;"missed_blocks_counter&#92;""];</code>
      */
-    fun clearMissedBlocksCounter() {
+    public fun clearMissedBlocksCounter() {
       _builder.clearMissedBlocksCounter()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo.copy(block: cosmos.slashing.v1beta1.ValidatorSigningInfoKt.Dsl.() -> Unit): cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo =
+public inline fun cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo.copy(block: cosmos.slashing.v1beta1.ValidatorSigningInfoKt.Dsl.() -> kotlin.Unit): cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo =
   cosmos.slashing.v1beta1.ValidatorSigningInfoKt.Dsl._create(this.toBuilder()).apply { block() }._build()

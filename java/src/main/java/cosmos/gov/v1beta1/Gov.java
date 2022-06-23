@@ -596,7 +596,7 @@ public final class Gov {
       if (option_ != cosmos.gov.v1beta1.Gov.VoteOption.VOTE_OPTION_UNSPECIFIED.getNumber()) {
         output.writeEnum(1, option_);
       }
-      if (!getWeightBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(weight_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, weight_);
       }
       unknownFields.writeTo(output);
@@ -612,7 +612,7 @@ public final class Gov {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, option_);
       }
-      if (!getWeightBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(weight_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, weight_);
       }
       size += unknownFields.getSerializedSize();
@@ -1298,10 +1298,10 @@ public final class Gov {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTitleBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(title_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, title_);
       }
-      if (!getDescriptionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, description_);
       }
       unknownFields.writeTo(output);
@@ -1313,10 +1313,10 @@ public final class Gov {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTitleBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(title_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, title_);
       }
-      if (!getDescriptionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, description_);
       }
       size += unknownFields.getSerializedSize();
@@ -2072,7 +2072,7 @@ public final class Gov {
       if (proposalId_ != 0L) {
         output.writeUInt64(1, proposalId_);
       }
-      if (!getDepositorBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(depositor_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, depositor_);
       }
       for (int i = 0; i < amount_.size(); i++) {
@@ -2091,7 +2091,7 @@ public final class Gov {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(1, proposalId_);
       }
-      if (!getDepositorBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(depositor_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, depositor_);
       }
       for (int i = 0; i < amount_.size(); i++) {
@@ -5360,16 +5360,16 @@ public final class Gov {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getYesBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(yes_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, yes_);
       }
-      if (!getAbstainBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(abstain_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, abstain_);
       }
-      if (!getNoBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(no_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, no_);
       }
-      if (!getNoWithVetoBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(noWithVeto_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, noWithVeto_);
       }
       unknownFields.writeTo(output);
@@ -5381,16 +5381,16 @@ public final class Gov {
       if (size != -1) return size;
 
       size = 0;
-      if (!getYesBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(yes_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, yes_);
       }
-      if (!getAbstainBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(abstain_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, abstain_);
       }
-      if (!getNoBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(no_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, no_);
       }
-      if (!getNoWithVetoBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(noWithVeto_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, noWithVeto_);
       }
       size += unknownFields.getSerializedSize();
@@ -6089,6 +6089,7 @@ public final class Gov {
      * </pre>
      *
      * <code>.cosmos.gov.v1beta1.VoteOption option = 3 [deprecated = true];</code>
+     * @deprecated
      * @return The enum numeric value on the wire for option.
      */
     @java.lang.Deprecated int getOptionValue();
@@ -6100,6 +6101,7 @@ public final class Gov {
      * </pre>
      *
      * <code>.cosmos.gov.v1beta1.VoteOption option = 3 [deprecated = true];</code>
+     * @deprecated
      * @return The option.
      */
     @java.lang.Deprecated cosmos.gov.v1beta1.Gov.VoteOption getOption();
@@ -6322,6 +6324,7 @@ public final class Gov {
      * </pre>
      *
      * <code>.cosmos.gov.v1beta1.VoteOption option = 3 [deprecated = true];</code>
+     * @deprecated
      * @return The enum numeric value on the wire for option.
      */
     @java.lang.Override @java.lang.Deprecated public int getOptionValue() {
@@ -6335,6 +6338,7 @@ public final class Gov {
      * </pre>
      *
      * <code>.cosmos.gov.v1beta1.VoteOption option = 3 [deprecated = true];</code>
+     * @deprecated
      * @return The option.
      */
     @java.lang.Override @java.lang.Deprecated public cosmos.gov.v1beta1.Gov.VoteOption getOption() {
@@ -6420,7 +6424,7 @@ public final class Gov {
       if (proposalId_ != 0L) {
         output.writeUInt64(1, proposalId_);
       }
-      if (!getVoterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(voter_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, voter_);
       }
       if (option_ != cosmos.gov.v1beta1.Gov.VoteOption.VOTE_OPTION_UNSPECIFIED.getNumber()) {
@@ -6442,7 +6446,7 @@ public final class Gov {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(1, proposalId_);
       }
-      if (!getVoterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(voter_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, voter_);
       }
       if (option_ != cosmos.gov.v1beta1.Gov.VoteOption.VOTE_OPTION_UNSPECIFIED.getNumber()) {
@@ -6917,6 +6921,7 @@ public final class Gov {
        * </pre>
        *
        * <code>.cosmos.gov.v1beta1.VoteOption option = 3 [deprecated = true];</code>
+       * @deprecated
        * @return The enum numeric value on the wire for option.
        */
       @java.lang.Override @java.lang.Deprecated public int getOptionValue() {
@@ -6930,6 +6935,7 @@ public final class Gov {
        * </pre>
        *
        * <code>.cosmos.gov.v1beta1.VoteOption option = 3 [deprecated = true];</code>
+       * @deprecated
        * @param value The enum numeric value on the wire for option to set.
        * @return This builder for chaining.
        */
@@ -6947,6 +6953,7 @@ public final class Gov {
        * </pre>
        *
        * <code>.cosmos.gov.v1beta1.VoteOption option = 3 [deprecated = true];</code>
+       * @deprecated
        * @return The option.
        */
       @java.lang.Override
@@ -6963,6 +6970,7 @@ public final class Gov {
        * </pre>
        *
        * <code>.cosmos.gov.v1beta1.VoteOption option = 3 [deprecated = true];</code>
+       * @deprecated
        * @param value The option to set.
        * @return This builder for chaining.
        */
@@ -6983,6 +6991,7 @@ public final class Gov {
        * </pre>
        *
        * <code>.cosmos.gov.v1beta1.VoteOption option = 3 [deprecated = true];</code>
+       * @deprecated
        * @return This builder for chaining.
        */
       @java.lang.Deprecated public Builder clearOption() {

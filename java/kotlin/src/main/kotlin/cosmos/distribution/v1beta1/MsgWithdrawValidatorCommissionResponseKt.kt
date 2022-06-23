@@ -4,15 +4,15 @@
 package cosmos.distribution.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgWithdrawValidatorCommissionResponse(block: cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponseKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommissionResponse =
+public inline fun msgWithdrawValidatorCommissionResponse(block: cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponseKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommissionResponse =
   cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponseKt.Dsl._create(cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommissionResponse.newBuilder()).apply { block() }._build()
-object MsgWithdrawValidatorCommissionResponseKt {
+public object MsgWithdrawValidatorCommissionResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommissionResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommissionResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommissionResponse.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object MsgWithdrawValidatorCommissionResponseKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommissionResponse.copy(block: cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponseKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommissionResponse =
+public inline fun cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommissionResponse.copy(block: cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponseKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommissionResponse =
   cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

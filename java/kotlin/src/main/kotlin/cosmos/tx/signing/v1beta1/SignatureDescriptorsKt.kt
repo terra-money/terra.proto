@@ -4,15 +4,15 @@
 package cosmos.tx.signing.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun signatureDescriptors(block: cosmos.tx.signing.v1beta1.SignatureDescriptorsKt.Dsl.() -> Unit): cosmos.tx.signing.v1beta1.Signing.SignatureDescriptors =
+public inline fun signatureDescriptors(block: cosmos.tx.signing.v1beta1.SignatureDescriptorsKt.Dsl.() -> kotlin.Unit): cosmos.tx.signing.v1beta1.Signing.SignatureDescriptors =
   cosmos.tx.signing.v1beta1.SignatureDescriptorsKt.Dsl._create(cosmos.tx.signing.v1beta1.Signing.SignatureDescriptors.newBuilder()).apply { block() }._build()
-object SignatureDescriptorsKt {
+public object SignatureDescriptorsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.tx.signing.v1beta1.Signing.SignatureDescriptors.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.tx.signing.v1beta1.Signing.SignatureDescriptors.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.tx.signing.v1beta1.Signing.SignatureDescriptors.Builder): Dsl = Dsl(builder)
@@ -27,7 +27,7 @@ object SignatureDescriptorsKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class SignaturesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class SignaturesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * signatures are the signature descriptors
@@ -35,7 +35,7 @@ object SignatureDescriptorsKt {
      *
      * <code>repeated .cosmos.tx.signing.v1beta1.SignatureDescriptor signatures = 1;</code>
      */
-     val signatures: com.google.protobuf.kotlin.DslList<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor, SignaturesProxy>
+     public val signatures: com.google.protobuf.kotlin.DslList<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor, SignaturesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getSignaturesList()
@@ -50,7 +50,7 @@ object SignatureDescriptorsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addSignatures")
-    fun com.google.protobuf.kotlin.DslList<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor, SignaturesProxy>.add(value: cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor, SignaturesProxy>.add(value: cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor) {
       _builder.addSignatures(value)
     }/**
      * <pre>
@@ -62,7 +62,8 @@ object SignatureDescriptorsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignSignatures")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor, SignaturesProxy>.plusAssign(value: cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor, SignaturesProxy>.plusAssign(value: cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor) {
       add(value)
     }/**
      * <pre>
@@ -74,7 +75,7 @@ object SignatureDescriptorsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllSignatures")
-    fun com.google.protobuf.kotlin.DslList<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor, SignaturesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor, SignaturesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor>) {
       _builder.addAllSignatures(values)
     }/**
      * <pre>
@@ -86,7 +87,8 @@ object SignatureDescriptorsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllSignatures")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor, SignaturesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor, SignaturesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor>) {
       addAll(values)
     }/**
      * <pre>
@@ -99,7 +101,7 @@ object SignatureDescriptorsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setSignatures")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor, SignaturesProxy>.set(index: kotlin.Int, value: cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor, SignaturesProxy>.set(index: kotlin.Int, value: cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor) {
       _builder.setSignatures(index, value)
     }/**
      * <pre>
@@ -110,10 +112,10 @@ object SignatureDescriptorsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearSignatures")
-    fun com.google.protobuf.kotlin.DslList<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor, SignaturesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.tx.signing.v1beta1.Signing.SignatureDescriptor, SignaturesProxy>.clear() {
       _builder.clearSignatures()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.tx.signing.v1beta1.Signing.SignatureDescriptors.copy(block: cosmos.tx.signing.v1beta1.SignatureDescriptorsKt.Dsl.() -> Unit): cosmos.tx.signing.v1beta1.Signing.SignatureDescriptors =
+public inline fun cosmos.tx.signing.v1beta1.Signing.SignatureDescriptors.copy(block: cosmos.tx.signing.v1beta1.SignatureDescriptorsKt.Dsl.() -> kotlin.Unit): cosmos.tx.signing.v1beta1.Signing.SignatureDescriptors =
   cosmos.tx.signing.v1beta1.SignatureDescriptorsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

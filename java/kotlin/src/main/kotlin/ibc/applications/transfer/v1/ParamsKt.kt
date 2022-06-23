@@ -4,15 +4,15 @@
 package ibc.applications.transfer.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun params(block: ibc.applications.transfer.v1.ParamsKt.Dsl.() -> Unit): ibc.applications.transfer.v1.Transfer.Params =
+public inline fun params(block: ibc.applications.transfer.v1.ParamsKt.Dsl.() -> kotlin.Unit): ibc.applications.transfer.v1.Transfer.Params =
   ibc.applications.transfer.v1.ParamsKt.Dsl._create(ibc.applications.transfer.v1.Transfer.Params.newBuilder()).apply { block() }._build()
-object ParamsKt {
+public object ParamsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.applications.transfer.v1.Transfer.Params.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.applications.transfer.v1.Transfer.Params.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.applications.transfer.v1.Transfer.Params.Builder): Dsl = Dsl(builder)
@@ -30,7 +30,7 @@ object ParamsKt {
      *
      * <code>bool send_enabled = 1 [(.gogoproto.moretags) = "yaml:&#92;"send_enabled&#92;""];</code>
      */
-    var sendEnabled: kotlin.Boolean
+    public var sendEnabled: kotlin.Boolean
       @JvmName("getSendEnabled")
       get() = _builder.getSendEnabled()
       @JvmName("setSendEnabled")
@@ -45,7 +45,7 @@ object ParamsKt {
      *
      * <code>bool send_enabled = 1 [(.gogoproto.moretags) = "yaml:&#92;"send_enabled&#92;""];</code>
      */
-    fun clearSendEnabled() {
+    public fun clearSendEnabled() {
       _builder.clearSendEnabled()
     }
 
@@ -57,7 +57,7 @@ object ParamsKt {
      *
      * <code>bool receive_enabled = 2 [(.gogoproto.moretags) = "yaml:&#92;"receive_enabled&#92;""];</code>
      */
-    var receiveEnabled: kotlin.Boolean
+    public var receiveEnabled: kotlin.Boolean
       @JvmName("getReceiveEnabled")
       get() = _builder.getReceiveEnabled()
       @JvmName("setReceiveEnabled")
@@ -72,11 +72,11 @@ object ParamsKt {
      *
      * <code>bool receive_enabled = 2 [(.gogoproto.moretags) = "yaml:&#92;"receive_enabled&#92;""];</code>
      */
-    fun clearReceiveEnabled() {
+    public fun clearReceiveEnabled() {
       _builder.clearReceiveEnabled()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.applications.transfer.v1.Transfer.Params.copy(block: ibc.applications.transfer.v1.ParamsKt.Dsl.() -> Unit): ibc.applications.transfer.v1.Transfer.Params =
+public inline fun ibc.applications.transfer.v1.Transfer.Params.copy(block: ibc.applications.transfer.v1.ParamsKt.Dsl.() -> kotlin.Unit): ibc.applications.transfer.v1.Transfer.Params =
   ibc.applications.transfer.v1.ParamsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

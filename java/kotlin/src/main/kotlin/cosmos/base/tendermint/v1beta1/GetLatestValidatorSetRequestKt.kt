@@ -4,15 +4,15 @@
 package cosmos.base.tendermint.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun getLatestValidatorSetRequest(block: cosmos.base.tendermint.v1beta1.GetLatestValidatorSetRequestKt.Dsl.() -> Unit): cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest =
+public inline fun getLatestValidatorSetRequest(block: cosmos.base.tendermint.v1beta1.GetLatestValidatorSetRequestKt.Dsl.() -> kotlin.Unit): cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest =
   cosmos.base.tendermint.v1beta1.GetLatestValidatorSetRequestKt.Dsl._create(cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest.newBuilder()).apply { block() }._build()
-object GetLatestValidatorSetRequestKt {
+public object GetLatestValidatorSetRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object GetLatestValidatorSetRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -43,7 +43,7 @@ object GetLatestValidatorSetRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
@@ -54,11 +54,11 @@ object GetLatestValidatorSetRequestKt {
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest.copy(block: cosmos.base.tendermint.v1beta1.GetLatestValidatorSetRequestKt.Dsl.() -> Unit): cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest =
+public inline fun cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest.copy(block: cosmos.base.tendermint.v1beta1.GetLatestValidatorSetRequestKt.Dsl.() -> kotlin.Unit): cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest =
   cosmos.base.tendermint.v1beta1.GetLatestValidatorSetRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

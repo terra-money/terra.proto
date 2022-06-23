@@ -4,15 +4,15 @@
 package cosmos.distribution.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryValidatorOutstandingRewardsRequest(block: cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsRequestKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorOutstandingRewardsRequest =
+public inline fun queryValidatorOutstandingRewardsRequest(block: cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsRequestKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorOutstandingRewardsRequest =
   cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsRequestKt.Dsl._create(cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorOutstandingRewardsRequest.newBuilder()).apply { block() }._build()
-object QueryValidatorOutstandingRewardsRequestKt {
+public object QueryValidatorOutstandingRewardsRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorOutstandingRewardsRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorOutstandingRewardsRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorOutstandingRewardsRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryValidatorOutstandingRewardsRequestKt {
      *
      * <code>string validator_address = 1;</code>
      */
-    var validatorAddress: kotlin.String
+    public var validatorAddress: kotlin.String
       @JvmName("getValidatorAddress")
       get() = _builder.getValidatorAddress()
       @JvmName("setValidatorAddress")
@@ -43,11 +43,11 @@ object QueryValidatorOutstandingRewardsRequestKt {
      *
      * <code>string validator_address = 1;</code>
      */
-    fun clearValidatorAddress() {
+    public fun clearValidatorAddress() {
       _builder.clearValidatorAddress()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorOutstandingRewardsRequest.copy(block: cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsRequestKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorOutstandingRewardsRequest =
+public inline fun cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorOutstandingRewardsRequest.copy(block: cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsRequestKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorOutstandingRewardsRequest =
   cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

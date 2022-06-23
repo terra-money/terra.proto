@@ -28,27 +28,27 @@ import kotlin.jvm.JvmStatic
 /**
  * Holder for Kotlin coroutine-based client and server APIs for ibc.core.client.v1.Msg.
  */
-object MsgGrpcKt {
-  const val SERVICE_NAME: String = MsgGrpc.SERVICE_NAME
+public object MsgGrpcKt {
+  public const val SERVICE_NAME: String = MsgGrpc.SERVICE_NAME
 
   @JvmStatic
-  val serviceDescriptor: ServiceDescriptor
+  public val serviceDescriptor: ServiceDescriptor
     get() = MsgGrpc.getServiceDescriptor()
 
-  val createClientMethod: MethodDescriptor<Tx.MsgCreateClient, Tx.MsgCreateClientResponse>
+  public val createClientMethod: MethodDescriptor<Tx.MsgCreateClient, Tx.MsgCreateClientResponse>
     @JvmStatic
     get() = MsgGrpc.getCreateClientMethod()
 
-  val updateClientMethod: MethodDescriptor<Tx.MsgUpdateClient, Tx.MsgUpdateClientResponse>
+  public val updateClientMethod: MethodDescriptor<Tx.MsgUpdateClient, Tx.MsgUpdateClientResponse>
     @JvmStatic
     get() = MsgGrpc.getUpdateClientMethod()
 
-  val upgradeClientMethod: MethodDescriptor<Tx.MsgUpgradeClient, Tx.MsgUpgradeClientResponse>
+  public val upgradeClientMethod: MethodDescriptor<Tx.MsgUpgradeClient, Tx.MsgUpgradeClientResponse>
     @JvmStatic
     get() = MsgGrpc.getUpgradeClientMethod()
 
-  val submitMisbehaviourMethod: MethodDescriptor<Tx.MsgSubmitMisbehaviour,
-      Tx.MsgSubmitMisbehaviourResponse>
+  public val submitMisbehaviourMethod:
+      MethodDescriptor<Tx.MsgSubmitMisbehaviour, Tx.MsgSubmitMisbehaviourResponse>
     @JvmStatic
     get() = MsgGrpc.getSubmitMisbehaviourMethod()
 
@@ -56,11 +56,11 @@ object MsgGrpcKt {
    * A stub for issuing RPCs to a(n) ibc.core.client.v1.Msg service as suspending coroutines.
    */
   @StubFor(MsgGrpc::class)
-  class MsgCoroutineStub @JvmOverloads constructor(
+  public class MsgCoroutineStub @JvmOverloads constructor(
     channel: Channel,
-    callOptions: CallOptions = DEFAULT
+    callOptions: CallOptions = DEFAULT,
   ) : AbstractCoroutineStub<MsgCoroutineStub>(channel, callOptions) {
-    override fun build(channel: Channel, callOptions: CallOptions): MsgCoroutineStub =
+    public override fun build(channel: Channel, callOptions: CallOptions): MsgCoroutineStub =
         MsgCoroutineStub(channel, callOptions)
 
     /**
@@ -71,15 +71,19 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun createClient(request: Tx.MsgCreateClient): Tx.MsgCreateClientResponse = unaryRpc(
+    public suspend fun createClient(request: Tx.MsgCreateClient, headers: Metadata = Metadata()):
+        Tx.MsgCreateClientResponse = unaryRpc(
       channel,
       MsgGrpc.getCreateClientMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -88,15 +92,19 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun updateClient(request: Tx.MsgUpdateClient): Tx.MsgUpdateClientResponse = unaryRpc(
+    public suspend fun updateClient(request: Tx.MsgUpdateClient, headers: Metadata = Metadata()):
+        Tx.MsgUpdateClientResponse = unaryRpc(
       channel,
       MsgGrpc.getUpdateClientMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -105,15 +113,19 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun upgradeClient(request: Tx.MsgUpgradeClient): Tx.MsgUpgradeClientResponse = unaryRpc(
+    public suspend fun upgradeClient(request: Tx.MsgUpgradeClient, headers: Metadata = Metadata()):
+        Tx.MsgUpgradeClientResponse = unaryRpc(
       channel,
       MsgGrpc.getUpgradeClientMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -122,22 +134,25 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun submitMisbehaviour(request: Tx.MsgSubmitMisbehaviour):
-        Tx.MsgSubmitMisbehaviourResponse = unaryRpc(
+    public suspend fun submitMisbehaviour(request: Tx.MsgSubmitMisbehaviour, headers: Metadata =
+        Metadata()): Tx.MsgSubmitMisbehaviourResponse = unaryRpc(
       channel,
       MsgGrpc.getSubmitMisbehaviourMethod(),
       request,
       callOptions,
-      Metadata()
-    )}
+      headers
+    )
+  }
 
   /**
    * Skeletal implementation of the ibc.core.client.v1.Msg service based on Kotlin coroutines.
    */
-  abstract class MsgCoroutineImplBase(
-    coroutineContext: CoroutineContext = EmptyCoroutineContext
+  public abstract class MsgCoroutineImplBase(
+    coroutineContext: CoroutineContext = EmptyCoroutineContext,
   ) : AbstractCoroutineServerImpl(coroutineContext) {
     /**
      * Returns the response to an RPC for ibc.core.client.v1.Msg.CreateClient.
@@ -150,7 +165,8 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun createClient(request: Tx.MsgCreateClient): Tx.MsgCreateClientResponse = throw
+    public open suspend fun createClient(request: Tx.MsgCreateClient): Tx.MsgCreateClientResponse =
+        throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.client.v1.Msg.CreateClient is unimplemented"))
 
     /**
@@ -164,7 +180,8 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun updateClient(request: Tx.MsgUpdateClient): Tx.MsgUpdateClientResponse = throw
+    public open suspend fun updateClient(request: Tx.MsgUpdateClient): Tx.MsgUpdateClientResponse =
+        throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.client.v1.Msg.UpdateClient is unimplemented"))
 
     /**
@@ -178,8 +195,8 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun upgradeClient(request: Tx.MsgUpgradeClient): Tx.MsgUpgradeClientResponse =
-        throw
+    public open suspend fun upgradeClient(request: Tx.MsgUpgradeClient): Tx.MsgUpgradeClientResponse
+        = throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.client.v1.Msg.UpgradeClient is unimplemented"))
 
     /**
@@ -193,11 +210,12 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun submitMisbehaviour(request: Tx.MsgSubmitMisbehaviour):
+    public open suspend fun submitMisbehaviour(request: Tx.MsgSubmitMisbehaviour):
         Tx.MsgSubmitMisbehaviourResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.client.v1.Msg.SubmitMisbehaviour is unimplemented"))
 
-    final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())
+    public final override fun bindService(): ServerServiceDefinition =
+        builder(getServiceDescriptor())
       .addMethod(unaryServerMethodDefinition(
       context = this.context,
       descriptor = MsgGrpc.getCreateClientMethod(),

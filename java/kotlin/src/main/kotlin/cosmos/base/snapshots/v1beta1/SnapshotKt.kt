@@ -4,15 +4,15 @@
 package cosmos.base.snapshots.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun snapshot(block: cosmos.base.snapshots.v1beta1.SnapshotKt.Dsl.() -> Unit): cosmos.base.snapshots.v1beta1.SnapshotOuterClass.Snapshot =
+public inline fun snapshot(block: cosmos.base.snapshots.v1beta1.SnapshotKt.Dsl.() -> kotlin.Unit): cosmos.base.snapshots.v1beta1.SnapshotOuterClass.Snapshot =
   cosmos.base.snapshots.v1beta1.SnapshotKt.Dsl._create(cosmos.base.snapshots.v1beta1.SnapshotOuterClass.Snapshot.newBuilder()).apply { block() }._build()
-object SnapshotKt {
+public object SnapshotKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.snapshots.v1beta1.SnapshotOuterClass.Snapshot.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.snapshots.v1beta1.SnapshotOuterClass.Snapshot.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.snapshots.v1beta1.SnapshotOuterClass.Snapshot.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object SnapshotKt {
     /**
      * <code>uint64 height = 1;</code>
      */
-    var height: kotlin.Long
+    public var height: kotlin.Long
       @JvmName("getHeight")
       get() = _builder.getHeight()
       @JvmName("setHeight")
@@ -35,14 +35,14 @@ object SnapshotKt {
     /**
      * <code>uint64 height = 1;</code>
      */
-    fun clearHeight() {
+    public fun clearHeight() {
       _builder.clearHeight()
     }
 
     /**
      * <code>uint32 format = 2;</code>
      */
-    var format: kotlin.Int
+    public var format: kotlin.Int
       @JvmName("getFormat")
       get() = _builder.getFormat()
       @JvmName("setFormat")
@@ -52,14 +52,14 @@ object SnapshotKt {
     /**
      * <code>uint32 format = 2;</code>
      */
-    fun clearFormat() {
+    public fun clearFormat() {
       _builder.clearFormat()
     }
 
     /**
      * <code>uint32 chunks = 3;</code>
      */
-    var chunks: kotlin.Int
+    public var chunks: kotlin.Int
       @JvmName("getChunks")
       get() = _builder.getChunks()
       @JvmName("setChunks")
@@ -69,14 +69,14 @@ object SnapshotKt {
     /**
      * <code>uint32 chunks = 3;</code>
      */
-    fun clearChunks() {
+    public fun clearChunks() {
       _builder.clearChunks()
     }
 
     /**
      * <code>bytes hash = 4;</code>
      */
-    var hash: com.google.protobuf.ByteString
+    public var hash: com.google.protobuf.ByteString
       @JvmName("getHash")
       get() = _builder.getHash()
       @JvmName("setHash")
@@ -86,14 +86,14 @@ object SnapshotKt {
     /**
      * <code>bytes hash = 4;</code>
      */
-    fun clearHash() {
+    public fun clearHash() {
       _builder.clearHash()
     }
 
     /**
      * <code>.cosmos.base.snapshots.v1beta1.Metadata metadata = 5 [(.gogoproto.nullable) = false];</code>
      */
-    var metadata: cosmos.base.snapshots.v1beta1.SnapshotOuterClass.Metadata
+    public var metadata: cosmos.base.snapshots.v1beta1.SnapshotOuterClass.Metadata
       @JvmName("getMetadata")
       get() = _builder.getMetadata()
       @JvmName("setMetadata")
@@ -103,18 +103,18 @@ object SnapshotKt {
     /**
      * <code>.cosmos.base.snapshots.v1beta1.Metadata metadata = 5 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearMetadata() {
+    public fun clearMetadata() {
       _builder.clearMetadata()
     }
     /**
      * <code>.cosmos.base.snapshots.v1beta1.Metadata metadata = 5 [(.gogoproto.nullable) = false];</code>
      * @return Whether the metadata field is set.
      */
-    fun hasMetadata(): kotlin.Boolean {
+    public fun hasMetadata(): kotlin.Boolean {
       return _builder.hasMetadata()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.snapshots.v1beta1.SnapshotOuterClass.Snapshot.copy(block: cosmos.base.snapshots.v1beta1.SnapshotKt.Dsl.() -> Unit): cosmos.base.snapshots.v1beta1.SnapshotOuterClass.Snapshot =
+public inline fun cosmos.base.snapshots.v1beta1.SnapshotOuterClass.Snapshot.copy(block: cosmos.base.snapshots.v1beta1.SnapshotKt.Dsl.() -> kotlin.Unit): cosmos.base.snapshots.v1beta1.SnapshotOuterClass.Snapshot =
   cosmos.base.snapshots.v1beta1.SnapshotKt.Dsl._create(this.toBuilder()).apply { block() }._build()

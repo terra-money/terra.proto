@@ -4,15 +4,15 @@
 package cosmos.bank.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun supply(block: cosmos.bank.v1beta1.SupplyKt.Dsl.() -> Unit): cosmos.bank.v1beta1.Bank.Supply =
+public inline fun supply(block: cosmos.bank.v1beta1.SupplyKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.Bank.Supply =
   cosmos.bank.v1beta1.SupplyKt.Dsl._create(cosmos.bank.v1beta1.Bank.Supply.newBuilder()).apply { block() }._build()
-object SupplyKt {
+public object SupplyKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.bank.v1beta1.Bank.Supply.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.bank.v1beta1.Bank.Supply.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.bank.v1beta1.Bank.Supply.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object SupplyKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class TotalProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class TotalProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.base.v1beta1.Coin total = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-     val total: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, TotalProxy>
+     public val total: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, TotalProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getTotalList()
@@ -42,7 +42,7 @@ object SupplyKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addTotal")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, TotalProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, TotalProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.addTotal(value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin total = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -50,7 +50,8 @@ object SupplyKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignTotal")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, TotalProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, TotalProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       add(value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin total = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -58,7 +59,7 @@ object SupplyKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllTotal")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, TotalProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, TotalProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       _builder.addAllTotal(values)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin total = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -66,7 +67,8 @@ object SupplyKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllTotal")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, TotalProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, TotalProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin total = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -75,17 +77,17 @@ object SupplyKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setTotal")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, TotalProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, TotalProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.setTotal(index, value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin total = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearTotal")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, TotalProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, TotalProxy>.clear() {
       _builder.clearTotal()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.bank.v1beta1.Bank.Supply.copy(block: cosmos.bank.v1beta1.SupplyKt.Dsl.() -> Unit): cosmos.bank.v1beta1.Bank.Supply =
+public inline fun cosmos.bank.v1beta1.Bank.Supply.copy(block: cosmos.bank.v1beta1.SupplyKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.Bank.Supply =
   cosmos.bank.v1beta1.SupplyKt.Dsl._create(this.toBuilder()).apply { block() }._build()

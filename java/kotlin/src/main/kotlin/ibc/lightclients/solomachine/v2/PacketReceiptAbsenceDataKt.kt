@@ -4,15 +4,15 @@
 package ibc.lightclients.solomachine.v2;
 
 @kotlin.jvm.JvmSynthetic
-inline fun packetReceiptAbsenceData(block: ibc.lightclients.solomachine.v2.PacketReceiptAbsenceDataKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v2.Solomachine.PacketReceiptAbsenceData =
+public inline fun packetReceiptAbsenceData(block: ibc.lightclients.solomachine.v2.PacketReceiptAbsenceDataKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v2.Solomachine.PacketReceiptAbsenceData =
   ibc.lightclients.solomachine.v2.PacketReceiptAbsenceDataKt.Dsl._create(ibc.lightclients.solomachine.v2.Solomachine.PacketReceiptAbsenceData.newBuilder()).apply { block() }._build()
-object PacketReceiptAbsenceDataKt {
+public object PacketReceiptAbsenceDataKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.lightclients.solomachine.v2.Solomachine.PacketReceiptAbsenceData.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.lightclients.solomachine.v2.Solomachine.PacketReceiptAbsenceData.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.lightclients.solomachine.v2.Solomachine.PacketReceiptAbsenceData.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object PacketReceiptAbsenceDataKt {
     /**
      * <code>bytes path = 1;</code>
      */
-    var path: com.google.protobuf.ByteString
+    public var path: com.google.protobuf.ByteString
       @JvmName("getPath")
       get() = _builder.getPath()
       @JvmName("setPath")
@@ -35,11 +35,11 @@ object PacketReceiptAbsenceDataKt {
     /**
      * <code>bytes path = 1;</code>
      */
-    fun clearPath() {
+    public fun clearPath() {
       _builder.clearPath()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.lightclients.solomachine.v2.Solomachine.PacketReceiptAbsenceData.copy(block: ibc.lightclients.solomachine.v2.PacketReceiptAbsenceDataKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v2.Solomachine.PacketReceiptAbsenceData =
+public inline fun ibc.lightclients.solomachine.v2.Solomachine.PacketReceiptAbsenceData.copy(block: ibc.lightclients.solomachine.v2.PacketReceiptAbsenceDataKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v2.Solomachine.PacketReceiptAbsenceData =
   ibc.lightclients.solomachine.v2.PacketReceiptAbsenceDataKt.Dsl._create(this.toBuilder()).apply { block() }._build()

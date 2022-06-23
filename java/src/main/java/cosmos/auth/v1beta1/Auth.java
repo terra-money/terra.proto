@@ -270,7 +270,7 @@ public final class Auth {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
       if (pubKey_ != null) {
@@ -291,7 +291,7 @@ public final class Auth {
       if (size != -1) return size;
 
       size = 0;
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
       if (pubKey_ != null) {
@@ -1226,7 +1226,7 @@ public final class Auth {
       if (baseAccount_ != null) {
         output.writeMessage(1, getBaseAccount());
       }
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
       }
       for (int i = 0; i < permissions_.size(); i++) {
@@ -1245,7 +1245,7 @@ public final class Auth {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getBaseAccount());
       }
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
       }
       {

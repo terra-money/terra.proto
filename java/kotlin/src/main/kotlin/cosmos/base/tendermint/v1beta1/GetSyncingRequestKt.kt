@@ -4,15 +4,15 @@
 package cosmos.base.tendermint.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun getSyncingRequest(block: cosmos.base.tendermint.v1beta1.GetSyncingRequestKt.Dsl.() -> Unit): cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest =
+public inline fun getSyncingRequest(block: cosmos.base.tendermint.v1beta1.GetSyncingRequestKt.Dsl.() -> kotlin.Unit): cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest =
   cosmos.base.tendermint.v1beta1.GetSyncingRequestKt.Dsl._create(cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest.newBuilder()).apply { block() }._build()
-object GetSyncingRequestKt {
+public object GetSyncingRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object GetSyncingRequestKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest.copy(block: cosmos.base.tendermint.v1beta1.GetSyncingRequestKt.Dsl.() -> Unit): cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest =
+public inline fun cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest.copy(block: cosmos.base.tendermint.v1beta1.GetSyncingRequestKt.Dsl.() -> kotlin.Unit): cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest =
   cosmos.base.tendermint.v1beta1.GetSyncingRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

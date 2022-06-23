@@ -4,15 +4,15 @@
 package ibc.core.connection.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryConnectionClientStateRequest(block: ibc.core.connection.v1.QueryConnectionClientStateRequestKt.Dsl.() -> Unit): ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateRequest =
+public inline fun queryConnectionClientStateRequest(block: ibc.core.connection.v1.QueryConnectionClientStateRequestKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateRequest =
   ibc.core.connection.v1.QueryConnectionClientStateRequestKt.Dsl._create(ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateRequest.newBuilder()).apply { block() }._build()
-object QueryConnectionClientStateRequestKt {
+public object QueryConnectionClientStateRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryConnectionClientStateRequestKt {
      *
      * <code>string connection_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"connection_id&#92;""];</code>
      */
-    var connectionId: kotlin.String
+    public var connectionId: kotlin.String
       @JvmName("getConnectionId")
       get() = _builder.getConnectionId()
       @JvmName("setConnectionId")
@@ -43,11 +43,11 @@ object QueryConnectionClientStateRequestKt {
      *
      * <code>string connection_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"connection_id&#92;""];</code>
      */
-    fun clearConnectionId() {
+    public fun clearConnectionId() {
       _builder.clearConnectionId()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateRequest.copy(block: ibc.core.connection.v1.QueryConnectionClientStateRequestKt.Dsl.() -> Unit): ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateRequest =
+public inline fun ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateRequest.copy(block: ibc.core.connection.v1.QueryConnectionClientStateRequestKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.QueryOuterClass.QueryConnectionClientStateRequest =
   ibc.core.connection.v1.QueryConnectionClientStateRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

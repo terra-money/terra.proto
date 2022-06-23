@@ -4,15 +4,15 @@
 package ics23;
 
 @kotlin.jvm.JvmSynthetic
-inline fun compressedBatchProof(block: ics23.CompressedBatchProofKt.Dsl.() -> Unit): ics23.Proofs.CompressedBatchProof =
+public inline fun compressedBatchProof(block: ics23.CompressedBatchProofKt.Dsl.() -> kotlin.Unit): ics23.Proofs.CompressedBatchProof =
   ics23.CompressedBatchProofKt.Dsl._create(ics23.Proofs.CompressedBatchProof.newBuilder()).apply { block() }._build()
-object CompressedBatchProofKt {
+public object CompressedBatchProofKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ics23.Proofs.CompressedBatchProof.Builder
+  public class Dsl private constructor(
+    private val _builder: ics23.Proofs.CompressedBatchProof.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ics23.Proofs.CompressedBatchProof.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object CompressedBatchProofKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class EntriesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class EntriesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .ics23.CompressedBatchEntry entries = 1;</code>
      */
-     val entries: com.google.protobuf.kotlin.DslList<ics23.Proofs.CompressedBatchEntry, EntriesProxy>
+     public val entries: com.google.protobuf.kotlin.DslList<ics23.Proofs.CompressedBatchEntry, EntriesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getEntriesList()
@@ -42,7 +42,7 @@ object CompressedBatchProofKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addEntries")
-    fun com.google.protobuf.kotlin.DslList<ics23.Proofs.CompressedBatchEntry, EntriesProxy>.add(value: ics23.Proofs.CompressedBatchEntry) {
+    public fun com.google.protobuf.kotlin.DslList<ics23.Proofs.CompressedBatchEntry, EntriesProxy>.add(value: ics23.Proofs.CompressedBatchEntry) {
       _builder.addEntries(value)
     }/**
      * <code>repeated .ics23.CompressedBatchEntry entries = 1;</code>
@@ -50,7 +50,8 @@ object CompressedBatchProofKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignEntries")
-    inline operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.CompressedBatchEntry, EntriesProxy>.plusAssign(value: ics23.Proofs.CompressedBatchEntry) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.CompressedBatchEntry, EntriesProxy>.plusAssign(value: ics23.Proofs.CompressedBatchEntry) {
       add(value)
     }/**
      * <code>repeated .ics23.CompressedBatchEntry entries = 1;</code>
@@ -58,7 +59,7 @@ object CompressedBatchProofKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllEntries")
-    fun com.google.protobuf.kotlin.DslList<ics23.Proofs.CompressedBatchEntry, EntriesProxy>.addAll(values: kotlin.collections.Iterable<ics23.Proofs.CompressedBatchEntry>) {
+    public fun com.google.protobuf.kotlin.DslList<ics23.Proofs.CompressedBatchEntry, EntriesProxy>.addAll(values: kotlin.collections.Iterable<ics23.Proofs.CompressedBatchEntry>) {
       _builder.addAllEntries(values)
     }/**
      * <code>repeated .ics23.CompressedBatchEntry entries = 1;</code>
@@ -66,7 +67,8 @@ object CompressedBatchProofKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllEntries")
-    inline operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.CompressedBatchEntry, EntriesProxy>.plusAssign(values: kotlin.collections.Iterable<ics23.Proofs.CompressedBatchEntry>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.CompressedBatchEntry, EntriesProxy>.plusAssign(values: kotlin.collections.Iterable<ics23.Proofs.CompressedBatchEntry>) {
       addAll(values)
     }/**
      * <code>repeated .ics23.CompressedBatchEntry entries = 1;</code>
@@ -75,14 +77,14 @@ object CompressedBatchProofKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setEntries")
-    operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.CompressedBatchEntry, EntriesProxy>.set(index: kotlin.Int, value: ics23.Proofs.CompressedBatchEntry) {
+    public operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.CompressedBatchEntry, EntriesProxy>.set(index: kotlin.Int, value: ics23.Proofs.CompressedBatchEntry) {
       _builder.setEntries(index, value)
     }/**
      * <code>repeated .ics23.CompressedBatchEntry entries = 1;</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearEntries")
-    fun com.google.protobuf.kotlin.DslList<ics23.Proofs.CompressedBatchEntry, EntriesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<ics23.Proofs.CompressedBatchEntry, EntriesProxy>.clear() {
       _builder.clearEntries()
     }
     /**
@@ -90,11 +92,11 @@ object CompressedBatchProofKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class LookupInnersProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class LookupInnersProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .ics23.InnerOp lookup_inners = 2;</code>
      */
-     val lookupInners: com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, LookupInnersProxy>
+     public val lookupInners: com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, LookupInnersProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getLookupInnersList()
@@ -105,7 +107,7 @@ object CompressedBatchProofKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addLookupInners")
-    fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, LookupInnersProxy>.add(value: ics23.Proofs.InnerOp) {
+    public fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, LookupInnersProxy>.add(value: ics23.Proofs.InnerOp) {
       _builder.addLookupInners(value)
     }/**
      * <code>repeated .ics23.InnerOp lookup_inners = 2;</code>
@@ -113,7 +115,8 @@ object CompressedBatchProofKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignLookupInners")
-    inline operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, LookupInnersProxy>.plusAssign(value: ics23.Proofs.InnerOp) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, LookupInnersProxy>.plusAssign(value: ics23.Proofs.InnerOp) {
       add(value)
     }/**
      * <code>repeated .ics23.InnerOp lookup_inners = 2;</code>
@@ -121,7 +124,7 @@ object CompressedBatchProofKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllLookupInners")
-    fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, LookupInnersProxy>.addAll(values: kotlin.collections.Iterable<ics23.Proofs.InnerOp>) {
+    public fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, LookupInnersProxy>.addAll(values: kotlin.collections.Iterable<ics23.Proofs.InnerOp>) {
       _builder.addAllLookupInners(values)
     }/**
      * <code>repeated .ics23.InnerOp lookup_inners = 2;</code>
@@ -129,7 +132,8 @@ object CompressedBatchProofKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllLookupInners")
-    inline operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, LookupInnersProxy>.plusAssign(values: kotlin.collections.Iterable<ics23.Proofs.InnerOp>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, LookupInnersProxy>.plusAssign(values: kotlin.collections.Iterable<ics23.Proofs.InnerOp>) {
       addAll(values)
     }/**
      * <code>repeated .ics23.InnerOp lookup_inners = 2;</code>
@@ -138,17 +142,17 @@ object CompressedBatchProofKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setLookupInners")
-    operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, LookupInnersProxy>.set(index: kotlin.Int, value: ics23.Proofs.InnerOp) {
+    public operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, LookupInnersProxy>.set(index: kotlin.Int, value: ics23.Proofs.InnerOp) {
       _builder.setLookupInners(index, value)
     }/**
      * <code>repeated .ics23.InnerOp lookup_inners = 2;</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearLookupInners")
-    fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, LookupInnersProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, LookupInnersProxy>.clear() {
       _builder.clearLookupInners()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ics23.Proofs.CompressedBatchProof.copy(block: ics23.CompressedBatchProofKt.Dsl.() -> Unit): ics23.Proofs.CompressedBatchProof =
+public inline fun ics23.Proofs.CompressedBatchProof.copy(block: ics23.CompressedBatchProofKt.Dsl.() -> kotlin.Unit): ics23.Proofs.CompressedBatchProof =
   ics23.CompressedBatchProofKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.slashing.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgUnjail(block: cosmos.slashing.v1beta1.MsgUnjailKt.Dsl.() -> Unit): cosmos.slashing.v1beta1.Tx.MsgUnjail =
+public inline fun msgUnjail(block: cosmos.slashing.v1beta1.MsgUnjailKt.Dsl.() -> kotlin.Unit): cosmos.slashing.v1beta1.Tx.MsgUnjail =
   cosmos.slashing.v1beta1.MsgUnjailKt.Dsl._create(cosmos.slashing.v1beta1.Tx.MsgUnjail.newBuilder()).apply { block() }._build()
-object MsgUnjailKt {
+public object MsgUnjailKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.slashing.v1beta1.Tx.MsgUnjail.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.slashing.v1beta1.Tx.MsgUnjail.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.slashing.v1beta1.Tx.MsgUnjail.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object MsgUnjailKt {
     /**
      * <code>string validator_addr = 1 [(.gogoproto.jsontag) = "address", (.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
      */
-    var validatorAddr: kotlin.String
+    public var validatorAddr: kotlin.String
       @JvmName("getValidatorAddr")
       get() = _builder.getValidatorAddr()
       @JvmName("setValidatorAddr")
@@ -35,11 +35,11 @@ object MsgUnjailKt {
     /**
      * <code>string validator_addr = 1 [(.gogoproto.jsontag) = "address", (.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
      */
-    fun clearValidatorAddr() {
+    public fun clearValidatorAddr() {
       _builder.clearValidatorAddr()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.slashing.v1beta1.Tx.MsgUnjail.copy(block: cosmos.slashing.v1beta1.MsgUnjailKt.Dsl.() -> Unit): cosmos.slashing.v1beta1.Tx.MsgUnjail =
+public inline fun cosmos.slashing.v1beta1.Tx.MsgUnjail.copy(block: cosmos.slashing.v1beta1.MsgUnjailKt.Dsl.() -> kotlin.Unit): cosmos.slashing.v1beta1.Tx.MsgUnjail =
   cosmos.slashing.v1beta1.MsgUnjailKt.Dsl._create(this.toBuilder()).apply { block() }._build()

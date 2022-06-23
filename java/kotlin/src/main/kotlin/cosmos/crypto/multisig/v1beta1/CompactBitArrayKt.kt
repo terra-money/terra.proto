@@ -4,15 +4,15 @@
 package cosmos.crypto.multisig.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun compactBitArray(block: cosmos.crypto.multisig.v1beta1.CompactBitArrayKt.Dsl.() -> Unit): cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray =
+public inline fun compactBitArray(block: cosmos.crypto.multisig.v1beta1.CompactBitArrayKt.Dsl.() -> kotlin.Unit): cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray =
   cosmos.crypto.multisig.v1beta1.CompactBitArrayKt.Dsl._create(cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.newBuilder()).apply { block() }._build()
-object CompactBitArrayKt {
+public object CompactBitArrayKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object CompactBitArrayKt {
     /**
      * <code>uint32 extra_bits_stored = 1;</code>
      */
-    var extraBitsStored: kotlin.Int
+    public var extraBitsStored: kotlin.Int
       @JvmName("getExtraBitsStored")
       get() = _builder.getExtraBitsStored()
       @JvmName("setExtraBitsStored")
@@ -35,14 +35,14 @@ object CompactBitArrayKt {
     /**
      * <code>uint32 extra_bits_stored = 1;</code>
      */
-    fun clearExtraBitsStored() {
+    public fun clearExtraBitsStored() {
       _builder.clearExtraBitsStored()
     }
 
     /**
      * <code>bytes elems = 2;</code>
      */
-    var elems: com.google.protobuf.ByteString
+    public var elems: com.google.protobuf.ByteString
       @JvmName("getElems")
       get() = _builder.getElems()
       @JvmName("setElems")
@@ -52,11 +52,11 @@ object CompactBitArrayKt {
     /**
      * <code>bytes elems = 2;</code>
      */
-    fun clearElems() {
+    public fun clearElems() {
       _builder.clearElems()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.copy(block: cosmos.crypto.multisig.v1beta1.CompactBitArrayKt.Dsl.() -> Unit): cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray =
+public inline fun cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.copy(block: cosmos.crypto.multisig.v1beta1.CompactBitArrayKt.Dsl.() -> kotlin.Unit): cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray =
   cosmos.crypto.multisig.v1beta1.CompactBitArrayKt.Dsl._create(this.toBuilder()).apply { block() }._build()

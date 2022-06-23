@@ -4,15 +4,15 @@
 package cosmos.capability.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun capability(block: cosmos.capability.v1beta1.CapabilityKt.Dsl.() -> Unit): cosmos.capability.v1beta1.CapabilityOuterClass.Capability =
+public inline fun capability(block: cosmos.capability.v1beta1.CapabilityKt.Dsl.() -> kotlin.Unit): cosmos.capability.v1beta1.CapabilityOuterClass.Capability =
   cosmos.capability.v1beta1.CapabilityKt.Dsl._create(cosmos.capability.v1beta1.CapabilityOuterClass.Capability.newBuilder()).apply { block() }._build()
-object CapabilityKt {
+public object CapabilityKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.capability.v1beta1.CapabilityOuterClass.Capability.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.capability.v1beta1.CapabilityOuterClass.Capability.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.capability.v1beta1.CapabilityOuterClass.Capability.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object CapabilityKt {
     /**
      * <code>uint64 index = 1 [(.gogoproto.moretags) = "yaml:&#92;"index&#92;""];</code>
      */
-    var index: kotlin.Long
+    public var index: kotlin.Long
       @JvmName("getIndex")
       get() = _builder.getIndex()
       @JvmName("setIndex")
@@ -35,11 +35,11 @@ object CapabilityKt {
     /**
      * <code>uint64 index = 1 [(.gogoproto.moretags) = "yaml:&#92;"index&#92;""];</code>
      */
-    fun clearIndex() {
+    public fun clearIndex() {
       _builder.clearIndex()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.capability.v1beta1.CapabilityOuterClass.Capability.copy(block: cosmos.capability.v1beta1.CapabilityKt.Dsl.() -> Unit): cosmos.capability.v1beta1.CapabilityOuterClass.Capability =
+public inline fun cosmos.capability.v1beta1.CapabilityOuterClass.Capability.copy(block: cosmos.capability.v1beta1.CapabilityKt.Dsl.() -> kotlin.Unit): cosmos.capability.v1beta1.CapabilityOuterClass.Capability =
   cosmos.capability.v1beta1.CapabilityKt.Dsl._create(this.toBuilder()).apply { block() }._build()

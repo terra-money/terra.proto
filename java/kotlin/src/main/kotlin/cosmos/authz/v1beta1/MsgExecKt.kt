@@ -4,15 +4,15 @@
 package cosmos.authz.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgExec(block: cosmos.authz.v1beta1.MsgExecKt.Dsl.() -> Unit): cosmos.authz.v1beta1.Tx.MsgExec =
+public inline fun msgExec(block: cosmos.authz.v1beta1.MsgExecKt.Dsl.() -> kotlin.Unit): cosmos.authz.v1beta1.Tx.MsgExec =
   cosmos.authz.v1beta1.MsgExecKt.Dsl._create(cosmos.authz.v1beta1.Tx.MsgExec.newBuilder()).apply { block() }._build()
-object MsgExecKt {
+public object MsgExecKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.authz.v1beta1.Tx.MsgExec.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.authz.v1beta1.Tx.MsgExec.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.authz.v1beta1.Tx.MsgExec.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object MsgExecKt {
     /**
      * <code>string grantee = 1;</code>
      */
-    var grantee: kotlin.String
+    public var grantee: kotlin.String
       @JvmName("getGrantee")
       get() = _builder.getGrantee()
       @JvmName("setGrantee")
@@ -35,7 +35,7 @@ object MsgExecKt {
     /**
      * <code>string grantee = 1;</code>
      */
-    fun clearGrantee() {
+    public fun clearGrantee() {
       _builder.clearGrantee()
     }
 
@@ -44,7 +44,7 @@ object MsgExecKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class MsgsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class MsgsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * Authorization Msg requests to execute. Each msg must implement Authorization interface
@@ -54,7 +54,7 @@ object MsgExecKt {
      *
      * <code>repeated .google.protobuf.Any msgs = 2 [(.cosmos_proto.accepts_interface) = "sdk.Msg, authz.Authorization"];</code>
      */
-     val msgs: com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, MsgsProxy>
+     public val msgs: com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, MsgsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getMsgsList()
@@ -71,7 +71,7 @@ object MsgExecKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addMsgs")
-    fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, MsgsProxy>.add(value: com.google.protobuf.Any) {
+    public fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, MsgsProxy>.add(value: com.google.protobuf.Any) {
       _builder.addMsgs(value)
     }/**
      * <pre>
@@ -85,7 +85,8 @@ object MsgExecKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignMsgs")
-    inline operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, MsgsProxy>.plusAssign(value: com.google.protobuf.Any) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, MsgsProxy>.plusAssign(value: com.google.protobuf.Any) {
       add(value)
     }/**
      * <pre>
@@ -99,7 +100,7 @@ object MsgExecKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllMsgs")
-    fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, MsgsProxy>.addAll(values: kotlin.collections.Iterable<com.google.protobuf.Any>) {
+    public fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, MsgsProxy>.addAll(values: kotlin.collections.Iterable<com.google.protobuf.Any>) {
       _builder.addAllMsgs(values)
     }/**
      * <pre>
@@ -113,7 +114,8 @@ object MsgExecKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllMsgs")
-    inline operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, MsgsProxy>.plusAssign(values: kotlin.collections.Iterable<com.google.protobuf.Any>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, MsgsProxy>.plusAssign(values: kotlin.collections.Iterable<com.google.protobuf.Any>) {
       addAll(values)
     }/**
      * <pre>
@@ -128,7 +130,7 @@ object MsgExecKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setMsgs")
-    operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, MsgsProxy>.set(index: kotlin.Int, value: com.google.protobuf.Any) {
+    public operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, MsgsProxy>.set(index: kotlin.Int, value: com.google.protobuf.Any) {
       _builder.setMsgs(index, value)
     }/**
      * <pre>
@@ -141,10 +143,10 @@ object MsgExecKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearMsgs")
-    fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, MsgsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, MsgsProxy>.clear() {
       _builder.clearMsgs()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.authz.v1beta1.Tx.MsgExec.copy(block: cosmos.authz.v1beta1.MsgExecKt.Dsl.() -> Unit): cosmos.authz.v1beta1.Tx.MsgExec =
+public inline fun cosmos.authz.v1beta1.Tx.MsgExec.copy(block: cosmos.authz.v1beta1.MsgExecKt.Dsl.() -> kotlin.Unit): cosmos.authz.v1beta1.Tx.MsgExec =
   cosmos.authz.v1beta1.MsgExecKt.Dsl._create(this.toBuilder()).apply { block() }._build()

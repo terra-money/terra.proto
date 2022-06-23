@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun responseCheckTx(block: tendermint.abci.ResponseCheckTxKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseCheckTx =
+public inline fun responseCheckTx(block: tendermint.abci.ResponseCheckTxKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseCheckTx =
   tendermint.abci.ResponseCheckTxKt.Dsl._create(tendermint.abci.Types.ResponseCheckTx.newBuilder()).apply { block() }._build()
-object ResponseCheckTxKt {
+public object ResponseCheckTxKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.ResponseCheckTx.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.ResponseCheckTx.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.ResponseCheckTx.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ResponseCheckTxKt {
     /**
      * <code>uint32 code = 1;</code>
      */
-    var code: kotlin.Int
+    public var code: kotlin.Int
       @JvmName("getCode")
       get() = _builder.getCode()
       @JvmName("setCode")
@@ -35,14 +35,14 @@ object ResponseCheckTxKt {
     /**
      * <code>uint32 code = 1;</code>
      */
-    fun clearCode() {
+    public fun clearCode() {
       _builder.clearCode()
     }
 
     /**
      * <code>bytes data = 2;</code>
      */
-    var data: com.google.protobuf.ByteString
+    public var data: com.google.protobuf.ByteString
       @JvmName("getData")
       get() = _builder.getData()
       @JvmName("setData")
@@ -52,7 +52,7 @@ object ResponseCheckTxKt {
     /**
      * <code>bytes data = 2;</code>
      */
-    fun clearData() {
+    public fun clearData() {
       _builder.clearData()
     }
 
@@ -63,7 +63,7 @@ object ResponseCheckTxKt {
      *
      * <code>string log = 3;</code>
      */
-    var log: kotlin.String
+    public var log: kotlin.String
       @JvmName("getLog")
       get() = _builder.getLog()
       @JvmName("setLog")
@@ -77,7 +77,7 @@ object ResponseCheckTxKt {
      *
      * <code>string log = 3;</code>
      */
-    fun clearLog() {
+    public fun clearLog() {
       _builder.clearLog()
     }
 
@@ -88,7 +88,7 @@ object ResponseCheckTxKt {
      *
      * <code>string info = 4;</code>
      */
-    var info: kotlin.String
+    public var info: kotlin.String
       @JvmName("getInfo")
       get() = _builder.getInfo()
       @JvmName("setInfo")
@@ -102,14 +102,14 @@ object ResponseCheckTxKt {
      *
      * <code>string info = 4;</code>
      */
-    fun clearInfo() {
+    public fun clearInfo() {
       _builder.clearInfo()
     }
 
     /**
      * <code>int64 gas_wanted = 5 [json_name = "gas_wanted"];</code>
      */
-    var gasWanted: kotlin.Long
+    public var gasWanted: kotlin.Long
       @JvmName("getGasWanted")
       get() = _builder.getGasWanted()
       @JvmName("setGasWanted")
@@ -119,14 +119,14 @@ object ResponseCheckTxKt {
     /**
      * <code>int64 gas_wanted = 5 [json_name = "gas_wanted"];</code>
      */
-    fun clearGasWanted() {
+    public fun clearGasWanted() {
       _builder.clearGasWanted()
     }
 
     /**
      * <code>int64 gas_used = 6 [json_name = "gas_used"];</code>
      */
-    var gasUsed: kotlin.Long
+    public var gasUsed: kotlin.Long
       @JvmName("getGasUsed")
       get() = _builder.getGasUsed()
       @JvmName("setGasUsed")
@@ -136,7 +136,7 @@ object ResponseCheckTxKt {
     /**
      * <code>int64 gas_used = 6 [json_name = "gas_used"];</code>
      */
-    fun clearGasUsed() {
+    public fun clearGasUsed() {
       _builder.clearGasUsed()
     }
 
@@ -145,11 +145,11 @@ object ResponseCheckTxKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class EventsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class EventsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .tendermint.abci.Event events = 7 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
      */
-     val events: com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>
+     public val events: com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getEventsList()
@@ -160,7 +160,7 @@ object ResponseCheckTxKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addEvents")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.add(value: tendermint.abci.Types.Event) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.add(value: tendermint.abci.Types.Event) {
       _builder.addEvents(value)
     }/**
      * <code>repeated .tendermint.abci.Event events = 7 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
@@ -168,7 +168,8 @@ object ResponseCheckTxKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignEvents")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(value: tendermint.abci.Types.Event) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(value: tendermint.abci.Types.Event) {
       add(value)
     }/**
      * <code>repeated .tendermint.abci.Event events = 7 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
@@ -176,7 +177,7 @@ object ResponseCheckTxKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllEvents")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.addAll(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.addAll(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
       _builder.addAllEvents(values)
     }/**
      * <code>repeated .tendermint.abci.Event events = 7 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
@@ -184,7 +185,8 @@ object ResponseCheckTxKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllEvents")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
       addAll(values)
     }/**
      * <code>repeated .tendermint.abci.Event events = 7 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
@@ -193,20 +195,20 @@ object ResponseCheckTxKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setEvents")
-    operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.set(index: kotlin.Int, value: tendermint.abci.Types.Event) {
+    public operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.set(index: kotlin.Int, value: tendermint.abci.Types.Event) {
       _builder.setEvents(index, value)
     }/**
      * <code>repeated .tendermint.abci.Event events = 7 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearEvents")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.clear() {
       _builder.clearEvents()
     }
     /**
      * <code>string codespace = 8;</code>
      */
-    var codespace: kotlin.String
+    public var codespace: kotlin.String
       @JvmName("getCodespace")
       get() = _builder.getCodespace()
       @JvmName("setCodespace")
@@ -216,11 +218,11 @@ object ResponseCheckTxKt {
     /**
      * <code>string codespace = 8;</code>
      */
-    fun clearCodespace() {
+    public fun clearCodespace() {
       _builder.clearCodespace()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.ResponseCheckTx.copy(block: tendermint.abci.ResponseCheckTxKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseCheckTx =
+public inline fun tendermint.abci.Types.ResponseCheckTx.copy(block: tendermint.abci.ResponseCheckTxKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseCheckTx =
   tendermint.abci.ResponseCheckTxKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.distribution.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryValidatorCommissionResponse(block: cosmos.distribution.v1beta1.QueryValidatorCommissionResponseKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionResponse =
+public inline fun queryValidatorCommissionResponse(block: cosmos.distribution.v1beta1.QueryValidatorCommissionResponseKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionResponse =
   cosmos.distribution.v1beta1.QueryValidatorCommissionResponseKt.Dsl._create(cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionResponse.newBuilder()).apply { block() }._build()
-object QueryValidatorCommissionResponseKt {
+public object QueryValidatorCommissionResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryValidatorCommissionResponseKt {
      *
      * <code>.cosmos.distribution.v1beta1.ValidatorAccumulatedCommission commission = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var commission: cosmos.distribution.v1beta1.Distribution.ValidatorAccumulatedCommission
+    public var commission: cosmos.distribution.v1beta1.Distribution.ValidatorAccumulatedCommission
       @JvmName("getCommission")
       get() = _builder.getCommission()
       @JvmName("setCommission")
@@ -43,7 +43,7 @@ object QueryValidatorCommissionResponseKt {
      *
      * <code>.cosmos.distribution.v1beta1.ValidatorAccumulatedCommission commission = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearCommission() {
+    public fun clearCommission() {
       _builder.clearCommission()
     }
     /**
@@ -54,11 +54,11 @@ object QueryValidatorCommissionResponseKt {
      * <code>.cosmos.distribution.v1beta1.ValidatorAccumulatedCommission commission = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the commission field is set.
      */
-    fun hasCommission(): kotlin.Boolean {
+    public fun hasCommission(): kotlin.Boolean {
       return _builder.hasCommission()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionResponse.copy(block: cosmos.distribution.v1beta1.QueryValidatorCommissionResponseKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionResponse =
+public inline fun cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionResponse.copy(block: cosmos.distribution.v1beta1.QueryValidatorCommissionResponseKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionResponse =
   cosmos.distribution.v1beta1.QueryValidatorCommissionResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

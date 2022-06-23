@@ -4,15 +4,15 @@
 package cosmos.gov.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgDepositResponse(block: cosmos.gov.v1beta1.MsgDepositResponseKt.Dsl.() -> Unit): cosmos.gov.v1beta1.Tx.MsgDepositResponse =
+public inline fun msgDepositResponse(block: cosmos.gov.v1beta1.MsgDepositResponseKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.Tx.MsgDepositResponse =
   cosmos.gov.v1beta1.MsgDepositResponseKt.Dsl._create(cosmos.gov.v1beta1.Tx.MsgDepositResponse.newBuilder()).apply { block() }._build()
-object MsgDepositResponseKt {
+public object MsgDepositResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.gov.v1beta1.Tx.MsgDepositResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.gov.v1beta1.Tx.MsgDepositResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.gov.v1beta1.Tx.MsgDepositResponse.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object MsgDepositResponseKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.gov.v1beta1.Tx.MsgDepositResponse.copy(block: cosmos.gov.v1beta1.MsgDepositResponseKt.Dsl.() -> Unit): cosmos.gov.v1beta1.Tx.MsgDepositResponse =
+public inline fun cosmos.gov.v1beta1.Tx.MsgDepositResponse.copy(block: cosmos.gov.v1beta1.MsgDepositResponseKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.Tx.MsgDepositResponse =
   cosmos.gov.v1beta1.MsgDepositResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

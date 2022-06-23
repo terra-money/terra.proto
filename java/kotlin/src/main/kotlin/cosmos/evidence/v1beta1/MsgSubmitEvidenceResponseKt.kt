@@ -4,15 +4,15 @@
 package cosmos.evidence.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgSubmitEvidenceResponse(block: cosmos.evidence.v1beta1.MsgSubmitEvidenceResponseKt.Dsl.() -> Unit): cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse =
+public inline fun msgSubmitEvidenceResponse(block: cosmos.evidence.v1beta1.MsgSubmitEvidenceResponseKt.Dsl.() -> kotlin.Unit): cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse =
   cosmos.evidence.v1beta1.MsgSubmitEvidenceResponseKt.Dsl._create(cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse.newBuilder()).apply { block() }._build()
-object MsgSubmitEvidenceResponseKt {
+public object MsgSubmitEvidenceResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object MsgSubmitEvidenceResponseKt {
      *
      * <code>bytes hash = 4;</code>
      */
-    var hash: com.google.protobuf.ByteString
+    public var hash: com.google.protobuf.ByteString
       @JvmName("getHash")
       get() = _builder.getHash()
       @JvmName("setHash")
@@ -43,11 +43,11 @@ object MsgSubmitEvidenceResponseKt {
      *
      * <code>bytes hash = 4;</code>
      */
-    fun clearHash() {
+    public fun clearHash() {
       _builder.clearHash()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse.copy(block: cosmos.evidence.v1beta1.MsgSubmitEvidenceResponseKt.Dsl.() -> Unit): cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse =
+public inline fun cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse.copy(block: cosmos.evidence.v1beta1.MsgSubmitEvidenceResponseKt.Dsl.() -> kotlin.Unit): cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse =
   cosmos.evidence.v1beta1.MsgSubmitEvidenceResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

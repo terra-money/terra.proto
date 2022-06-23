@@ -4,15 +4,15 @@
 package cosmos.gov.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryTallyResultResponse(block: cosmos.gov.v1beta1.QueryTallyResultResponseKt.Dsl.() -> Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse =
+public inline fun queryTallyResultResponse(block: cosmos.gov.v1beta1.QueryTallyResultResponseKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse =
   cosmos.gov.v1beta1.QueryTallyResultResponseKt.Dsl._create(cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse.newBuilder()).apply { block() }._build()
-object QueryTallyResultResponseKt {
+public object QueryTallyResultResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryTallyResultResponseKt {
      *
      * <code>.cosmos.gov.v1beta1.TallyResult tally = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var tally: cosmos.gov.v1beta1.Gov.TallyResult
+    public var tally: cosmos.gov.v1beta1.Gov.TallyResult
       @JvmName("getTally")
       get() = _builder.getTally()
       @JvmName("setTally")
@@ -43,7 +43,7 @@ object QueryTallyResultResponseKt {
      *
      * <code>.cosmos.gov.v1beta1.TallyResult tally = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearTally() {
+    public fun clearTally() {
       _builder.clearTally()
     }
     /**
@@ -54,11 +54,11 @@ object QueryTallyResultResponseKt {
      * <code>.cosmos.gov.v1beta1.TallyResult tally = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the tally field is set.
      */
-    fun hasTally(): kotlin.Boolean {
+    public fun hasTally(): kotlin.Boolean {
       return _builder.hasTally()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse.copy(block: cosmos.gov.v1beta1.QueryTallyResultResponseKt.Dsl.() -> Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse =
+public inline fun cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse.copy(block: cosmos.gov.v1beta1.QueryTallyResultResponseKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse =
   cosmos.gov.v1beta1.QueryTallyResultResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

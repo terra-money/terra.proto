@@ -4,15 +4,15 @@
 package cosmos.base.reflection.v2alpha1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun getCodecDescriptorResponse(block: cosmos.base.reflection.v2alpha1.GetCodecDescriptorResponseKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.GetCodecDescriptorResponse =
+public inline fun getCodecDescriptorResponse(block: cosmos.base.reflection.v2alpha1.GetCodecDescriptorResponseKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.GetCodecDescriptorResponse =
   cosmos.base.reflection.v2alpha1.GetCodecDescriptorResponseKt.Dsl._create(cosmos.base.reflection.v2alpha1.Reflection.GetCodecDescriptorResponse.newBuilder()).apply { block() }._build()
-object GetCodecDescriptorResponseKt {
+public object GetCodecDescriptorResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.reflection.v2alpha1.Reflection.GetCodecDescriptorResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.reflection.v2alpha1.Reflection.GetCodecDescriptorResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.reflection.v2alpha1.Reflection.GetCodecDescriptorResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object GetCodecDescriptorResponseKt {
      *
      * <code>.cosmos.base.reflection.v2alpha1.CodecDescriptor codec = 1;</code>
      */
-    var codec: cosmos.base.reflection.v2alpha1.Reflection.CodecDescriptor
+    public var codec: cosmos.base.reflection.v2alpha1.Reflection.CodecDescriptor
       @JvmName("getCodec")
       get() = _builder.getCodec()
       @JvmName("setCodec")
@@ -43,7 +43,7 @@ object GetCodecDescriptorResponseKt {
      *
      * <code>.cosmos.base.reflection.v2alpha1.CodecDescriptor codec = 1;</code>
      */
-    fun clearCodec() {
+    public fun clearCodec() {
       _builder.clearCodec()
     }
     /**
@@ -54,11 +54,11 @@ object GetCodecDescriptorResponseKt {
      * <code>.cosmos.base.reflection.v2alpha1.CodecDescriptor codec = 1;</code>
      * @return Whether the codec field is set.
      */
-    fun hasCodec(): kotlin.Boolean {
+    public fun hasCodec(): kotlin.Boolean {
       return _builder.hasCodec()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.reflection.v2alpha1.Reflection.GetCodecDescriptorResponse.copy(block: cosmos.base.reflection.v2alpha1.GetCodecDescriptorResponseKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.GetCodecDescriptorResponse =
+public inline fun cosmos.base.reflection.v2alpha1.Reflection.GetCodecDescriptorResponse.copy(block: cosmos.base.reflection.v2alpha1.GetCodecDescriptorResponseKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.GetCodecDescriptorResponse =
   cosmos.base.reflection.v2alpha1.GetCodecDescriptorResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

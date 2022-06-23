@@ -4,15 +4,15 @@
 package cosmos.base.store.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun commitInfo(block: cosmos.base.store.v1beta1.CommitInfoKt.Dsl.() -> Unit): cosmos.base.store.v1beta1.CommitInfoOuterClass.CommitInfo =
+public inline fun commitInfo(block: cosmos.base.store.v1beta1.CommitInfoKt.Dsl.() -> kotlin.Unit): cosmos.base.store.v1beta1.CommitInfoOuterClass.CommitInfo =
   cosmos.base.store.v1beta1.CommitInfoKt.Dsl._create(cosmos.base.store.v1beta1.CommitInfoOuterClass.CommitInfo.newBuilder()).apply { block() }._build()
-object CommitInfoKt {
+public object CommitInfoKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.store.v1beta1.CommitInfoOuterClass.CommitInfo.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.store.v1beta1.CommitInfoOuterClass.CommitInfo.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.store.v1beta1.CommitInfoOuterClass.CommitInfo.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object CommitInfoKt {
     /**
      * <code>int64 version = 1;</code>
      */
-    var version: kotlin.Long
+    public var version: kotlin.Long
       @JvmName("getVersion")
       get() = _builder.getVersion()
       @JvmName("setVersion")
@@ -35,7 +35,7 @@ object CommitInfoKt {
     /**
      * <code>int64 version = 1;</code>
      */
-    fun clearVersion() {
+    public fun clearVersion() {
       _builder.clearVersion()
     }
 
@@ -44,11 +44,11 @@ object CommitInfoKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class StoreInfosProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class StoreInfosProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.base.store.v1beta1.StoreInfo store_infos = 2 [(.gogoproto.nullable) = false];</code>
      */
-     val storeInfos: com.google.protobuf.kotlin.DslList<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo, StoreInfosProxy>
+     public val storeInfos: com.google.protobuf.kotlin.DslList<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo, StoreInfosProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getStoreInfosList()
@@ -59,7 +59,7 @@ object CommitInfoKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addStoreInfos")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo, StoreInfosProxy>.add(value: cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo, StoreInfosProxy>.add(value: cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo) {
       _builder.addStoreInfos(value)
     }/**
      * <code>repeated .cosmos.base.store.v1beta1.StoreInfo store_infos = 2 [(.gogoproto.nullable) = false];</code>
@@ -67,7 +67,8 @@ object CommitInfoKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignStoreInfos")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo, StoreInfosProxy>.plusAssign(value: cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo, StoreInfosProxy>.plusAssign(value: cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo) {
       add(value)
     }/**
      * <code>repeated .cosmos.base.store.v1beta1.StoreInfo store_infos = 2 [(.gogoproto.nullable) = false];</code>
@@ -75,7 +76,7 @@ object CommitInfoKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllStoreInfos")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo, StoreInfosProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo, StoreInfosProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo>) {
       _builder.addAllStoreInfos(values)
     }/**
      * <code>repeated .cosmos.base.store.v1beta1.StoreInfo store_infos = 2 [(.gogoproto.nullable) = false];</code>
@@ -83,7 +84,8 @@ object CommitInfoKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllStoreInfos")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo, StoreInfosProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo, StoreInfosProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.base.store.v1beta1.StoreInfo store_infos = 2 [(.gogoproto.nullable) = false];</code>
@@ -92,17 +94,17 @@ object CommitInfoKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setStoreInfos")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo, StoreInfosProxy>.set(index: kotlin.Int, value: cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo, StoreInfosProxy>.set(index: kotlin.Int, value: cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo) {
       _builder.setStoreInfos(index, value)
     }/**
      * <code>repeated .cosmos.base.store.v1beta1.StoreInfo store_infos = 2 [(.gogoproto.nullable) = false];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearStoreInfos")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo, StoreInfosProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.store.v1beta1.CommitInfoOuterClass.StoreInfo, StoreInfosProxy>.clear() {
       _builder.clearStoreInfos()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.store.v1beta1.CommitInfoOuterClass.CommitInfo.copy(block: cosmos.base.store.v1beta1.CommitInfoKt.Dsl.() -> Unit): cosmos.base.store.v1beta1.CommitInfoOuterClass.CommitInfo =
+public inline fun cosmos.base.store.v1beta1.CommitInfoOuterClass.CommitInfo.copy(block: cosmos.base.store.v1beta1.CommitInfoKt.Dsl.() -> kotlin.Unit): cosmos.base.store.v1beta1.CommitInfoOuterClass.CommitInfo =
   cosmos.base.store.v1beta1.CommitInfoKt.Dsl._create(this.toBuilder()).apply { block() }._build()

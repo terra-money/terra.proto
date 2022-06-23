@@ -4,15 +4,15 @@
 package tendermint.types;
 
 @kotlin.jvm.JvmSynthetic
-inline fun hashedParams(block: tendermint.types.HashedParamsKt.Dsl.() -> Unit): tendermint.types.Params.HashedParams =
+public inline fun hashedParams(block: tendermint.types.HashedParamsKt.Dsl.() -> kotlin.Unit): tendermint.types.Params.HashedParams =
   tendermint.types.HashedParamsKt.Dsl._create(tendermint.types.Params.HashedParams.newBuilder()).apply { block() }._build()
-object HashedParamsKt {
+public object HashedParamsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.types.Params.HashedParams.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.types.Params.HashedParams.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.types.Params.HashedParams.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object HashedParamsKt {
     /**
      * <code>int64 block_max_bytes = 1;</code>
      */
-    var blockMaxBytes: kotlin.Long
+    public var blockMaxBytes: kotlin.Long
       @JvmName("getBlockMaxBytes")
       get() = _builder.getBlockMaxBytes()
       @JvmName("setBlockMaxBytes")
@@ -35,14 +35,14 @@ object HashedParamsKt {
     /**
      * <code>int64 block_max_bytes = 1;</code>
      */
-    fun clearBlockMaxBytes() {
+    public fun clearBlockMaxBytes() {
       _builder.clearBlockMaxBytes()
     }
 
     /**
      * <code>int64 block_max_gas = 2;</code>
      */
-    var blockMaxGas: kotlin.Long
+    public var blockMaxGas: kotlin.Long
       @JvmName("getBlockMaxGas")
       get() = _builder.getBlockMaxGas()
       @JvmName("setBlockMaxGas")
@@ -52,11 +52,11 @@ object HashedParamsKt {
     /**
      * <code>int64 block_max_gas = 2;</code>
      */
-    fun clearBlockMaxGas() {
+    public fun clearBlockMaxGas() {
       _builder.clearBlockMaxGas()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.types.Params.HashedParams.copy(block: tendermint.types.HashedParamsKt.Dsl.() -> Unit): tendermint.types.Params.HashedParams =
+public inline fun tendermint.types.Params.HashedParams.copy(block: tendermint.types.HashedParamsKt.Dsl.() -> kotlin.Unit): tendermint.types.Params.HashedParams =
   tendermint.types.HashedParamsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

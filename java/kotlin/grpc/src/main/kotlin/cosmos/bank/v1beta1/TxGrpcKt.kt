@@ -28,18 +28,18 @@ import kotlin.jvm.JvmStatic
 /**
  * Holder for Kotlin coroutine-based client and server APIs for cosmos.bank.v1beta1.Msg.
  */
-object MsgGrpcKt {
-  const val SERVICE_NAME: String = MsgGrpc.SERVICE_NAME
+public object MsgGrpcKt {
+  public const val SERVICE_NAME: String = MsgGrpc.SERVICE_NAME
 
   @JvmStatic
-  val serviceDescriptor: ServiceDescriptor
+  public val serviceDescriptor: ServiceDescriptor
     get() = MsgGrpc.getServiceDescriptor()
 
-  val sendMethod: MethodDescriptor<Tx.MsgSend, Tx.MsgSendResponse>
+  public val sendMethod: MethodDescriptor<Tx.MsgSend, Tx.MsgSendResponse>
     @JvmStatic
     get() = MsgGrpc.getSendMethod()
 
-  val multiSendMethod: MethodDescriptor<Tx.MsgMultiSend, Tx.MsgMultiSendResponse>
+  public val multiSendMethod: MethodDescriptor<Tx.MsgMultiSend, Tx.MsgMultiSendResponse>
     @JvmStatic
     get() = MsgGrpc.getMultiSendMethod()
 
@@ -47,11 +47,11 @@ object MsgGrpcKt {
    * A stub for issuing RPCs to a(n) cosmos.bank.v1beta1.Msg service as suspending coroutines.
    */
   @StubFor(MsgGrpc::class)
-  class MsgCoroutineStub @JvmOverloads constructor(
+  public class MsgCoroutineStub @JvmOverloads constructor(
     channel: Channel,
-    callOptions: CallOptions = DEFAULT
+    callOptions: CallOptions = DEFAULT,
   ) : AbstractCoroutineStub<MsgCoroutineStub>(channel, callOptions) {
-    override fun build(channel: Channel, callOptions: CallOptions): MsgCoroutineStub =
+    public override fun build(channel: Channel, callOptions: CallOptions): MsgCoroutineStub =
         MsgCoroutineStub(channel, callOptions)
 
     /**
@@ -62,15 +62,19 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun send(request: Tx.MsgSend): Tx.MsgSendResponse = unaryRpc(
+    public suspend fun send(request: Tx.MsgSend, headers: Metadata = Metadata()): Tx.MsgSendResponse
+        = unaryRpc(
       channel,
       MsgGrpc.getSendMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -79,21 +83,25 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun multiSend(request: Tx.MsgMultiSend): Tx.MsgMultiSendResponse = unaryRpc(
+    public suspend fun multiSend(request: Tx.MsgMultiSend, headers: Metadata = Metadata()):
+        Tx.MsgMultiSendResponse = unaryRpc(
       channel,
       MsgGrpc.getMultiSendMethod(),
       request,
       callOptions,
-      Metadata()
-    )}
+      headers
+    )
+  }
 
   /**
    * Skeletal implementation of the cosmos.bank.v1beta1.Msg service based on Kotlin coroutines.
    */
-  abstract class MsgCoroutineImplBase(
-    coroutineContext: CoroutineContext = EmptyCoroutineContext
+  public abstract class MsgCoroutineImplBase(
+    coroutineContext: CoroutineContext = EmptyCoroutineContext,
   ) : AbstractCoroutineServerImpl(coroutineContext) {
     /**
      * Returns the response to an RPC for cosmos.bank.v1beta1.Msg.Send.
@@ -106,7 +114,7 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun send(request: Tx.MsgSend): Tx.MsgSendResponse = throw
+    public open suspend fun send(request: Tx.MsgSend): Tx.MsgSendResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.bank.v1beta1.Msg.Send is unimplemented"))
 
     /**
@@ -120,10 +128,11 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun multiSend(request: Tx.MsgMultiSend): Tx.MsgMultiSendResponse = throw
+    public open suspend fun multiSend(request: Tx.MsgMultiSend): Tx.MsgMultiSendResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.bank.v1beta1.Msg.MultiSend is unimplemented"))
 
-    final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())
+    public final override fun bindService(): ServerServiceDefinition =
+        builder(getServiceDescriptor())
       .addMethod(unaryServerMethodDefinition(
       context = this.context,
       descriptor = MsgGrpc.getSendMethod(),

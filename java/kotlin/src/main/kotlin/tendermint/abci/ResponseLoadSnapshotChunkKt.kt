@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun responseLoadSnapshotChunk(block: tendermint.abci.ResponseLoadSnapshotChunkKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseLoadSnapshotChunk =
+public inline fun responseLoadSnapshotChunk(block: tendermint.abci.ResponseLoadSnapshotChunkKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseLoadSnapshotChunk =
   tendermint.abci.ResponseLoadSnapshotChunkKt.Dsl._create(tendermint.abci.Types.ResponseLoadSnapshotChunk.newBuilder()).apply { block() }._build()
-object ResponseLoadSnapshotChunkKt {
+public object ResponseLoadSnapshotChunkKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.ResponseLoadSnapshotChunk.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.ResponseLoadSnapshotChunk.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.ResponseLoadSnapshotChunk.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ResponseLoadSnapshotChunkKt {
     /**
      * <code>bytes chunk = 1;</code>
      */
-    var chunk: com.google.protobuf.ByteString
+    public var chunk: com.google.protobuf.ByteString
       @JvmName("getChunk")
       get() = _builder.getChunk()
       @JvmName("setChunk")
@@ -35,11 +35,11 @@ object ResponseLoadSnapshotChunkKt {
     /**
      * <code>bytes chunk = 1;</code>
      */
-    fun clearChunk() {
+    public fun clearChunk() {
       _builder.clearChunk()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.ResponseLoadSnapshotChunk.copy(block: tendermint.abci.ResponseLoadSnapshotChunkKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseLoadSnapshotChunk =
+public inline fun tendermint.abci.Types.ResponseLoadSnapshotChunk.copy(block: tendermint.abci.ResponseLoadSnapshotChunkKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseLoadSnapshotChunk =
   tendermint.abci.ResponseLoadSnapshotChunkKt.Dsl._create(this.toBuilder()).apply { block() }._build()

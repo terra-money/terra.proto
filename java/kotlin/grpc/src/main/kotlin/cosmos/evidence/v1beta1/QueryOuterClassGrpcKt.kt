@@ -28,20 +28,20 @@ import kotlin.jvm.JvmStatic
 /**
  * Holder for Kotlin coroutine-based client and server APIs for cosmos.evidence.v1beta1.Query.
  */
-object QueryGrpcKt {
-  const val SERVICE_NAME: String = QueryGrpc.SERVICE_NAME
+public object QueryGrpcKt {
+  public const val SERVICE_NAME: String = QueryGrpc.SERVICE_NAME
 
   @JvmStatic
-  val serviceDescriptor: ServiceDescriptor
+  public val serviceDescriptor: ServiceDescriptor
     get() = QueryGrpc.getServiceDescriptor()
 
-  val evidenceMethod: MethodDescriptor<QueryOuterClass.QueryEvidenceRequest,
-      QueryOuterClass.QueryEvidenceResponse>
+  public val evidenceMethod:
+      MethodDescriptor<QueryOuterClass.QueryEvidenceRequest, QueryOuterClass.QueryEvidenceResponse>
     @JvmStatic
     get() = QueryGrpc.getEvidenceMethod()
 
-  val allEvidenceMethod: MethodDescriptor<QueryOuterClass.QueryAllEvidenceRequest,
-      QueryOuterClass.QueryAllEvidenceResponse>
+  public val allEvidenceMethod:
+      MethodDescriptor<QueryOuterClass.QueryAllEvidenceRequest, QueryOuterClass.QueryAllEvidenceResponse>
     @JvmStatic
     get() = QueryGrpc.getAllEvidenceMethod()
 
@@ -49,11 +49,11 @@ object QueryGrpcKt {
    * A stub for issuing RPCs to a(n) cosmos.evidence.v1beta1.Query service as suspending coroutines.
    */
   @StubFor(QueryGrpc::class)
-  class QueryCoroutineStub @JvmOverloads constructor(
+  public class QueryCoroutineStub @JvmOverloads constructor(
     channel: Channel,
-    callOptions: CallOptions = DEFAULT
+    callOptions: CallOptions = DEFAULT,
   ) : AbstractCoroutineStub<QueryCoroutineStub>(channel, callOptions) {
-    override fun build(channel: Channel, callOptions: CallOptions): QueryCoroutineStub =
+    public override fun build(channel: Channel, callOptions: CallOptions): QueryCoroutineStub =
         QueryCoroutineStub(channel, callOptions)
 
     /**
@@ -64,16 +64,19 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun evidence(request: QueryOuterClass.QueryEvidenceRequest):
-        QueryOuterClass.QueryEvidenceResponse = unaryRpc(
+    public suspend fun evidence(request: QueryOuterClass.QueryEvidenceRequest, headers: Metadata =
+        Metadata()): QueryOuterClass.QueryEvidenceResponse = unaryRpc(
       channel,
       QueryGrpc.getEvidenceMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -82,23 +85,26 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun allEvidence(request: QueryOuterClass.QueryAllEvidenceRequest):
-        QueryOuterClass.QueryAllEvidenceResponse = unaryRpc(
+    public suspend fun allEvidence(request: QueryOuterClass.QueryAllEvidenceRequest,
+        headers: Metadata = Metadata()): QueryOuterClass.QueryAllEvidenceResponse = unaryRpc(
       channel,
       QueryGrpc.getAllEvidenceMethod(),
       request,
       callOptions,
-      Metadata()
-    )}
+      headers
+    )
+  }
 
   /**
    * Skeletal implementation of the cosmos.evidence.v1beta1.Query service based on Kotlin
    * coroutines.
    */
-  abstract class QueryCoroutineImplBase(
-    coroutineContext: CoroutineContext = EmptyCoroutineContext
+  public abstract class QueryCoroutineImplBase(
+    coroutineContext: CoroutineContext = EmptyCoroutineContext,
   ) : AbstractCoroutineServerImpl(coroutineContext) {
     /**
      * Returns the response to an RPC for cosmos.evidence.v1beta1.Query.Evidence.
@@ -111,7 +117,7 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun evidence(request: QueryOuterClass.QueryEvidenceRequest):
+    public open suspend fun evidence(request: QueryOuterClass.QueryEvidenceRequest):
         QueryOuterClass.QueryEvidenceResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.evidence.v1beta1.Query.Evidence is unimplemented"))
 
@@ -126,11 +132,12 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun allEvidence(request: QueryOuterClass.QueryAllEvidenceRequest):
+    public open suspend fun allEvidence(request: QueryOuterClass.QueryAllEvidenceRequest):
         QueryOuterClass.QueryAllEvidenceResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.evidence.v1beta1.Query.AllEvidence is unimplemented"))
 
-    final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())
+    public final override fun bindService(): ServerServiceDefinition =
+        builder(getServiceDescriptor())
       .addMethod(unaryServerMethodDefinition(
       context = this.context,
       descriptor = QueryGrpc.getEvidenceMethod(),

@@ -4,15 +4,15 @@
 package tendermint.p2p;
 
 @kotlin.jvm.JvmSynthetic
-inline fun netAddress(block: tendermint.p2p.NetAddressKt.Dsl.() -> Unit): tendermint.p2p.Types.NetAddress =
+public inline fun netAddress(block: tendermint.p2p.NetAddressKt.Dsl.() -> kotlin.Unit): tendermint.p2p.Types.NetAddress =
   tendermint.p2p.NetAddressKt.Dsl._create(tendermint.p2p.Types.NetAddress.newBuilder()).apply { block() }._build()
-object NetAddressKt {
+public object NetAddressKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.p2p.Types.NetAddress.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.p2p.Types.NetAddress.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.p2p.Types.NetAddress.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object NetAddressKt {
     /**
      * <code>string id = 1 [(.gogoproto.customname) = "ID"];</code>
      */
-    var id: kotlin.String
+    public var id: kotlin.String
       @JvmName("getId")
       get() = _builder.getId()
       @JvmName("setId")
@@ -35,14 +35,14 @@ object NetAddressKt {
     /**
      * <code>string id = 1 [(.gogoproto.customname) = "ID"];</code>
      */
-    fun clearId() {
+    public fun clearId() {
       _builder.clearId()
     }
 
     /**
      * <code>string ip = 2 [(.gogoproto.customname) = "IP"];</code>
      */
-    var ip: kotlin.String
+    public var ip: kotlin.String
       @JvmName("getIp")
       get() = _builder.getIp()
       @JvmName("setIp")
@@ -52,14 +52,14 @@ object NetAddressKt {
     /**
      * <code>string ip = 2 [(.gogoproto.customname) = "IP"];</code>
      */
-    fun clearIp() {
+    public fun clearIp() {
       _builder.clearIp()
     }
 
     /**
      * <code>uint32 port = 3;</code>
      */
-    var port: kotlin.Int
+    public var port: kotlin.Int
       @JvmName("getPort")
       get() = _builder.getPort()
       @JvmName("setPort")
@@ -69,11 +69,11 @@ object NetAddressKt {
     /**
      * <code>uint32 port = 3;</code>
      */
-    fun clearPort() {
+    public fun clearPort() {
       _builder.clearPort()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.p2p.Types.NetAddress.copy(block: tendermint.p2p.NetAddressKt.Dsl.() -> Unit): tendermint.p2p.Types.NetAddress =
+public inline fun tendermint.p2p.Types.NetAddress.copy(block: tendermint.p2p.NetAddressKt.Dsl.() -> kotlin.Unit): tendermint.p2p.Types.NetAddress =
   tendermint.p2p.NetAddressKt.Dsl._create(this.toBuilder()).apply { block() }._build()

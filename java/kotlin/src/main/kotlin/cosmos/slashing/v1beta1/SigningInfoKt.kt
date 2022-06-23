@@ -4,15 +4,15 @@
 package cosmos.slashing.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun signingInfo(block: cosmos.slashing.v1beta1.SigningInfoKt.Dsl.() -> Unit): cosmos.slashing.v1beta1.Genesis.SigningInfo =
+public inline fun signingInfo(block: cosmos.slashing.v1beta1.SigningInfoKt.Dsl.() -> kotlin.Unit): cosmos.slashing.v1beta1.Genesis.SigningInfo =
   cosmos.slashing.v1beta1.SigningInfoKt.Dsl._create(cosmos.slashing.v1beta1.Genesis.SigningInfo.newBuilder()).apply { block() }._build()
-object SigningInfoKt {
+public object SigningInfoKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.slashing.v1beta1.Genesis.SigningInfo.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.slashing.v1beta1.Genesis.SigningInfo.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.slashing.v1beta1.Genesis.SigningInfo.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object SigningInfoKt {
      *
      * <code>string address = 1;</code>
      */
-    var address: kotlin.String
+    public var address: kotlin.String
       @JvmName("getAddress")
       get() = _builder.getAddress()
       @JvmName("setAddress")
@@ -43,7 +43,7 @@ object SigningInfoKt {
      *
      * <code>string address = 1;</code>
      */
-    fun clearAddress() {
+    public fun clearAddress() {
       _builder.clearAddress()
     }
 
@@ -54,7 +54,7 @@ object SigningInfoKt {
      *
      * <code>.cosmos.slashing.v1beta1.ValidatorSigningInfo validator_signing_info = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"validator_signing_info&#92;""];</code>
      */
-    var validatorSigningInfo: cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo
+    public var validatorSigningInfo: cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo
       @JvmName("getValidatorSigningInfo")
       get() = _builder.getValidatorSigningInfo()
       @JvmName("setValidatorSigningInfo")
@@ -68,7 +68,7 @@ object SigningInfoKt {
      *
      * <code>.cosmos.slashing.v1beta1.ValidatorSigningInfo validator_signing_info = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"validator_signing_info&#92;""];</code>
      */
-    fun clearValidatorSigningInfo() {
+    public fun clearValidatorSigningInfo() {
       _builder.clearValidatorSigningInfo()
     }
     /**
@@ -79,11 +79,11 @@ object SigningInfoKt {
      * <code>.cosmos.slashing.v1beta1.ValidatorSigningInfo validator_signing_info = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"validator_signing_info&#92;""];</code>
      * @return Whether the validatorSigningInfo field is set.
      */
-    fun hasValidatorSigningInfo(): kotlin.Boolean {
+    public fun hasValidatorSigningInfo(): kotlin.Boolean {
       return _builder.hasValidatorSigningInfo()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.slashing.v1beta1.Genesis.SigningInfo.copy(block: cosmos.slashing.v1beta1.SigningInfoKt.Dsl.() -> Unit): cosmos.slashing.v1beta1.Genesis.SigningInfo =
+public inline fun cosmos.slashing.v1beta1.Genesis.SigningInfo.copy(block: cosmos.slashing.v1beta1.SigningInfoKt.Dsl.() -> kotlin.Unit): cosmos.slashing.v1beta1.Genesis.SigningInfo =
   cosmos.slashing.v1beta1.SigningInfoKt.Dsl._create(this.toBuilder()).apply { block() }._build()

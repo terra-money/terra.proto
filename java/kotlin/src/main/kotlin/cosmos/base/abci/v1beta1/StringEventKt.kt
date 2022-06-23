@@ -4,15 +4,15 @@
 package cosmos.base.abci.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun stringEvent(block: cosmos.base.abci.v1beta1.StringEventKt.Dsl.() -> Unit): cosmos.base.abci.v1beta1.Abci.StringEvent =
+public inline fun stringEvent(block: cosmos.base.abci.v1beta1.StringEventKt.Dsl.() -> kotlin.Unit): cosmos.base.abci.v1beta1.Abci.StringEvent =
   cosmos.base.abci.v1beta1.StringEventKt.Dsl._create(cosmos.base.abci.v1beta1.Abci.StringEvent.newBuilder()).apply { block() }._build()
-object StringEventKt {
+public object StringEventKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.abci.v1beta1.Abci.StringEvent.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.abci.v1beta1.Abci.StringEvent.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.abci.v1beta1.Abci.StringEvent.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object StringEventKt {
     /**
      * <code>string type = 1;</code>
      */
-    var type: kotlin.String
+    public var type: kotlin.String
       @JvmName("getType")
       get() = _builder.getType()
       @JvmName("setType")
@@ -35,7 +35,7 @@ object StringEventKt {
     /**
      * <code>string type = 1;</code>
      */
-    fun clearType() {
+    public fun clearType() {
       _builder.clearType()
     }
 
@@ -44,11 +44,11 @@ object StringEventKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class AttributesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class AttributesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.base.abci.v1beta1.Attribute attributes = 2 [(.gogoproto.nullable) = false];</code>
      */
-     val attributes: com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.Attribute, AttributesProxy>
+     public val attributes: com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.Attribute, AttributesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getAttributesList()
@@ -59,7 +59,7 @@ object StringEventKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAttributes")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.Attribute, AttributesProxy>.add(value: cosmos.base.abci.v1beta1.Abci.Attribute) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.Attribute, AttributesProxy>.add(value: cosmos.base.abci.v1beta1.Abci.Attribute) {
       _builder.addAttributes(value)
     }/**
      * <code>repeated .cosmos.base.abci.v1beta1.Attribute attributes = 2 [(.gogoproto.nullable) = false];</code>
@@ -67,7 +67,8 @@ object StringEventKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAttributes")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.Attribute, AttributesProxy>.plusAssign(value: cosmos.base.abci.v1beta1.Abci.Attribute) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.Attribute, AttributesProxy>.plusAssign(value: cosmos.base.abci.v1beta1.Abci.Attribute) {
       add(value)
     }/**
      * <code>repeated .cosmos.base.abci.v1beta1.Attribute attributes = 2 [(.gogoproto.nullable) = false];</code>
@@ -75,7 +76,7 @@ object StringEventKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllAttributes")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.Attribute, AttributesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.abci.v1beta1.Abci.Attribute>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.Attribute, AttributesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.abci.v1beta1.Abci.Attribute>) {
       _builder.addAllAttributes(values)
     }/**
      * <code>repeated .cosmos.base.abci.v1beta1.Attribute attributes = 2 [(.gogoproto.nullable) = false];</code>
@@ -83,7 +84,8 @@ object StringEventKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllAttributes")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.Attribute, AttributesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.abci.v1beta1.Abci.Attribute>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.Attribute, AttributesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.abci.v1beta1.Abci.Attribute>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.base.abci.v1beta1.Attribute attributes = 2 [(.gogoproto.nullable) = false];</code>
@@ -92,17 +94,17 @@ object StringEventKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setAttributes")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.Attribute, AttributesProxy>.set(index: kotlin.Int, value: cosmos.base.abci.v1beta1.Abci.Attribute) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.Attribute, AttributesProxy>.set(index: kotlin.Int, value: cosmos.base.abci.v1beta1.Abci.Attribute) {
       _builder.setAttributes(index, value)
     }/**
      * <code>repeated .cosmos.base.abci.v1beta1.Attribute attributes = 2 [(.gogoproto.nullable) = false];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearAttributes")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.Attribute, AttributesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.Attribute, AttributesProxy>.clear() {
       _builder.clearAttributes()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.abci.v1beta1.Abci.StringEvent.copy(block: cosmos.base.abci.v1beta1.StringEventKt.Dsl.() -> Unit): cosmos.base.abci.v1beta1.Abci.StringEvent =
+public inline fun cosmos.base.abci.v1beta1.Abci.StringEvent.copy(block: cosmos.base.abci.v1beta1.StringEventKt.Dsl.() -> kotlin.Unit): cosmos.base.abci.v1beta1.Abci.StringEvent =
   cosmos.base.abci.v1beta1.StringEventKt.Dsl._create(this.toBuilder()).apply { block() }._build()

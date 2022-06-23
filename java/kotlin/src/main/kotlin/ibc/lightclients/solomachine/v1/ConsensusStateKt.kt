@@ -4,15 +4,15 @@
 package ibc.lightclients.solomachine.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun consensusState(block: ibc.lightclients.solomachine.v1.ConsensusStateKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v1.Solomachine.ConsensusState =
+public inline fun consensusState(block: ibc.lightclients.solomachine.v1.ConsensusStateKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v1.Solomachine.ConsensusState =
   ibc.lightclients.solomachine.v1.ConsensusStateKt.Dsl._create(ibc.lightclients.solomachine.v1.Solomachine.ConsensusState.newBuilder()).apply { block() }._build()
-object ConsensusStateKt {
+public object ConsensusStateKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.lightclients.solomachine.v1.Solomachine.ConsensusState.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.lightclients.solomachine.v1.Solomachine.ConsensusState.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.lightclients.solomachine.v1.Solomachine.ConsensusState.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object ConsensusStateKt {
      *
      * <code>.google.protobuf.Any public_key = 1 [(.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
      */
-    var publicKey: com.google.protobuf.Any
+    public var publicKey: com.google.protobuf.Any
       @JvmName("getPublicKey")
       get() = _builder.getPublicKey()
       @JvmName("setPublicKey")
@@ -43,7 +43,7 @@ object ConsensusStateKt {
      *
      * <code>.google.protobuf.Any public_key = 1 [(.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
      */
-    fun clearPublicKey() {
+    public fun clearPublicKey() {
       _builder.clearPublicKey()
     }
     /**
@@ -54,7 +54,7 @@ object ConsensusStateKt {
      * <code>.google.protobuf.Any public_key = 1 [(.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
      * @return Whether the publicKey field is set.
      */
-    fun hasPublicKey(): kotlin.Boolean {
+    public fun hasPublicKey(): kotlin.Boolean {
       return _builder.hasPublicKey()
     }
 
@@ -67,7 +67,7 @@ object ConsensusStateKt {
      *
      * <code>string diversifier = 2;</code>
      */
-    var diversifier: kotlin.String
+    public var diversifier: kotlin.String
       @JvmName("getDiversifier")
       get() = _builder.getDiversifier()
       @JvmName("setDiversifier")
@@ -83,14 +83,14 @@ object ConsensusStateKt {
      *
      * <code>string diversifier = 2;</code>
      */
-    fun clearDiversifier() {
+    public fun clearDiversifier() {
       _builder.clearDiversifier()
     }
 
     /**
      * <code>uint64 timestamp = 3;</code>
      */
-    var timestamp: kotlin.Long
+    public var timestamp: kotlin.Long
       @JvmName("getTimestamp")
       get() = _builder.getTimestamp()
       @JvmName("setTimestamp")
@@ -100,11 +100,11 @@ object ConsensusStateKt {
     /**
      * <code>uint64 timestamp = 3;</code>
      */
-    fun clearTimestamp() {
+    public fun clearTimestamp() {
       _builder.clearTimestamp()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.lightclients.solomachine.v1.Solomachine.ConsensusState.copy(block: ibc.lightclients.solomachine.v1.ConsensusStateKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v1.Solomachine.ConsensusState =
+public inline fun ibc.lightclients.solomachine.v1.Solomachine.ConsensusState.copy(block: ibc.lightclients.solomachine.v1.ConsensusStateKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v1.Solomachine.ConsensusState =
   ibc.lightclients.solomachine.v1.ConsensusStateKt.Dsl._create(this.toBuilder()).apply { block() }._build()

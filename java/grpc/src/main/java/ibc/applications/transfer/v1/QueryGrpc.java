@@ -8,7 +8,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.40.1)",
+    value = "by gRPC proto compiler (version 1.47.0)",
     comments = "Source: ibc/applications/transfer/v1/query.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class QueryGrpc {
@@ -111,6 +111,37 @@ public final class QueryGrpc {
     return getParamsMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashRequest,
+      ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashResponse> getDenomHashMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "DenomHash",
+      requestType = ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashRequest.class,
+      responseType = ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashRequest,
+      ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashResponse> getDenomHashMethod() {
+    io.grpc.MethodDescriptor<ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashRequest, ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashResponse> getDenomHashMethod;
+    if ((getDenomHashMethod = QueryGrpc.getDenomHashMethod) == null) {
+      synchronized (QueryGrpc.class) {
+        if ((getDenomHashMethod = QueryGrpc.getDenomHashMethod) == null) {
+          QueryGrpc.getDenomHashMethod = getDenomHashMethod =
+              io.grpc.MethodDescriptor.<ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashRequest, ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "DenomHash"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new QueryMethodDescriptorSupplier("DenomHash"))
+              .build();
+        }
+      }
+    }
+    return getDenomHashMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -192,6 +223,16 @@ public final class QueryGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getParamsMethod(), responseObserver);
     }
 
+    /**
+     * <pre>
+     * DenomHash queries a denomination hash information.
+     * </pre>
+     */
+    public void denomHash(ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashRequest request,
+        io.grpc.stub.StreamObserver<ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDenomHashMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -215,6 +256,13 @@ public final class QueryGrpc {
                 ibc.applications.transfer.v1.QueryOuterClass.QueryParamsRequest,
                 ibc.applications.transfer.v1.QueryOuterClass.QueryParamsResponse>(
                   this, METHODID_PARAMS)))
+          .addMethod(
+            getDenomHashMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashRequest,
+                ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashResponse>(
+                  this, METHODID_DENOM_HASH)))
           .build();
     }
   }
@@ -268,6 +316,17 @@ public final class QueryGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getParamsMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     * DenomHash queries a denomination hash information.
+     * </pre>
+     */
+    public void denomHash(ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashRequest request,
+        io.grpc.stub.StreamObserver<ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getDenomHashMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -315,6 +374,16 @@ public final class QueryGrpc {
     public ibc.applications.transfer.v1.QueryOuterClass.QueryParamsResponse params(ibc.applications.transfer.v1.QueryOuterClass.QueryParamsRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getParamsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * DenomHash queries a denomination hash information.
+     * </pre>
+     */
+    public ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashResponse denomHash(ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getDenomHashMethod(), getCallOptions(), request);
     }
   }
 
@@ -367,11 +436,23 @@ public final class QueryGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getParamsMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     * DenomHash queries a denomination hash information.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashResponse> denomHash(
+        ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getDenomHashMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_DENOM_TRACE = 0;
   private static final int METHODID_DENOM_TRACES = 1;
   private static final int METHODID_PARAMS = 2;
+  private static final int METHODID_DENOM_HASH = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -401,6 +482,10 @@ public final class QueryGrpc {
         case METHODID_PARAMS:
           serviceImpl.params((ibc.applications.transfer.v1.QueryOuterClass.QueryParamsRequest) request,
               (io.grpc.stub.StreamObserver<ibc.applications.transfer.v1.QueryOuterClass.QueryParamsResponse>) responseObserver);
+          break;
+        case METHODID_DENOM_HASH:
+          serviceImpl.denomHash((ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashRequest) request,
+              (io.grpc.stub.StreamObserver<ibc.applications.transfer.v1.QueryOuterClass.QueryDenomHashResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -466,6 +551,7 @@ public final class QueryGrpc {
               .addMethod(getDenomTraceMethod())
               .addMethod(getDenomTracesMethod())
               .addMethod(getParamsMethod())
+              .addMethod(getDenomHashMethod())
               .build();
         }
       }

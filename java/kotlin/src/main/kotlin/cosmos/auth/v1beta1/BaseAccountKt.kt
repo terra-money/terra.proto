@@ -4,15 +4,15 @@
 package cosmos.auth.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun baseAccount(block: cosmos.auth.v1beta1.BaseAccountKt.Dsl.() -> Unit): cosmos.auth.v1beta1.Auth.BaseAccount =
+public inline fun baseAccount(block: cosmos.auth.v1beta1.BaseAccountKt.Dsl.() -> kotlin.Unit): cosmos.auth.v1beta1.Auth.BaseAccount =
   cosmos.auth.v1beta1.BaseAccountKt.Dsl._create(cosmos.auth.v1beta1.Auth.BaseAccount.newBuilder()).apply { block() }._build()
-object BaseAccountKt {
+public object BaseAccountKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.auth.v1beta1.Auth.BaseAccount.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.auth.v1beta1.Auth.BaseAccount.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.auth.v1beta1.Auth.BaseAccount.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object BaseAccountKt {
     /**
      * <code>string address = 1;</code>
      */
-    var address: kotlin.String
+    public var address: kotlin.String
       @JvmName("getAddress")
       get() = _builder.getAddress()
       @JvmName("setAddress")
@@ -35,14 +35,14 @@ object BaseAccountKt {
     /**
      * <code>string address = 1;</code>
      */
-    fun clearAddress() {
+    public fun clearAddress() {
       _builder.clearAddress()
     }
 
     /**
      * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
      */
-    var pubKey: com.google.protobuf.Any
+    public var pubKey: com.google.protobuf.Any
       @JvmName("getPubKey")
       get() = _builder.getPubKey()
       @JvmName("setPubKey")
@@ -52,21 +52,21 @@ object BaseAccountKt {
     /**
      * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
      */
-    fun clearPubKey() {
+    public fun clearPubKey() {
       _builder.clearPubKey()
     }
     /**
      * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
      * @return Whether the pubKey field is set.
      */
-    fun hasPubKey(): kotlin.Boolean {
+    public fun hasPubKey(): kotlin.Boolean {
       return _builder.hasPubKey()
     }
 
     /**
      * <code>uint64 account_number = 3 [(.gogoproto.moretags) = "yaml:&#92;"account_number&#92;""];</code>
      */
-    var accountNumber: kotlin.Long
+    public var accountNumber: kotlin.Long
       @JvmName("getAccountNumber")
       get() = _builder.getAccountNumber()
       @JvmName("setAccountNumber")
@@ -76,14 +76,14 @@ object BaseAccountKt {
     /**
      * <code>uint64 account_number = 3 [(.gogoproto.moretags) = "yaml:&#92;"account_number&#92;""];</code>
      */
-    fun clearAccountNumber() {
+    public fun clearAccountNumber() {
       _builder.clearAccountNumber()
     }
 
     /**
      * <code>uint64 sequence = 4;</code>
      */
-    var sequence: kotlin.Long
+    public var sequence: kotlin.Long
       @JvmName("getSequence")
       get() = _builder.getSequence()
       @JvmName("setSequence")
@@ -93,11 +93,11 @@ object BaseAccountKt {
     /**
      * <code>uint64 sequence = 4;</code>
      */
-    fun clearSequence() {
+    public fun clearSequence() {
       _builder.clearSequence()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.auth.v1beta1.Auth.BaseAccount.copy(block: cosmos.auth.v1beta1.BaseAccountKt.Dsl.() -> Unit): cosmos.auth.v1beta1.Auth.BaseAccount =
+public inline fun cosmos.auth.v1beta1.Auth.BaseAccount.copy(block: cosmos.auth.v1beta1.BaseAccountKt.Dsl.() -> kotlin.Unit): cosmos.auth.v1beta1.Auth.BaseAccount =
   cosmos.auth.v1beta1.BaseAccountKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.upgrade.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun moduleVersion(block: cosmos.upgrade.v1beta1.ModuleVersionKt.Dsl.() -> Unit): cosmos.upgrade.v1beta1.Upgrade.ModuleVersion =
+public inline fun moduleVersion(block: cosmos.upgrade.v1beta1.ModuleVersionKt.Dsl.() -> kotlin.Unit): cosmos.upgrade.v1beta1.Upgrade.ModuleVersion =
   cosmos.upgrade.v1beta1.ModuleVersionKt.Dsl._create(cosmos.upgrade.v1beta1.Upgrade.ModuleVersion.newBuilder()).apply { block() }._build()
-object ModuleVersionKt {
+public object ModuleVersionKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.upgrade.v1beta1.Upgrade.ModuleVersion.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.upgrade.v1beta1.Upgrade.ModuleVersion.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.upgrade.v1beta1.Upgrade.ModuleVersion.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object ModuleVersionKt {
      *
      * <code>string name = 1;</code>
      */
-    var name: kotlin.String
+    public var name: kotlin.String
       @JvmName("getName")
       get() = _builder.getName()
       @JvmName("setName")
@@ -43,7 +43,7 @@ object ModuleVersionKt {
      *
      * <code>string name = 1;</code>
      */
-    fun clearName() {
+    public fun clearName() {
       _builder.clearName()
     }
 
@@ -54,7 +54,7 @@ object ModuleVersionKt {
      *
      * <code>uint64 version = 2;</code>
      */
-    var version: kotlin.Long
+    public var version: kotlin.Long
       @JvmName("getVersion")
       get() = _builder.getVersion()
       @JvmName("setVersion")
@@ -68,11 +68,11 @@ object ModuleVersionKt {
      *
      * <code>uint64 version = 2;</code>
      */
-    fun clearVersion() {
+    public fun clearVersion() {
       _builder.clearVersion()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.upgrade.v1beta1.Upgrade.ModuleVersion.copy(block: cosmos.upgrade.v1beta1.ModuleVersionKt.Dsl.() -> Unit): cosmos.upgrade.v1beta1.Upgrade.ModuleVersion =
+public inline fun cosmos.upgrade.v1beta1.Upgrade.ModuleVersion.copy(block: cosmos.upgrade.v1beta1.ModuleVersionKt.Dsl.() -> kotlin.Unit): cosmos.upgrade.v1beta1.Upgrade.ModuleVersion =
   cosmos.upgrade.v1beta1.ModuleVersionKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.params.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryParamsResponse(block: cosmos.params.v1beta1.QueryParamsResponseKt.Dsl.() -> Unit): cosmos.params.v1beta1.QueryOuterClass.QueryParamsResponse =
+public inline fun queryParamsResponse(block: cosmos.params.v1beta1.QueryParamsResponseKt.Dsl.() -> kotlin.Unit): cosmos.params.v1beta1.QueryOuterClass.QueryParamsResponse =
   cosmos.params.v1beta1.QueryParamsResponseKt.Dsl._create(cosmos.params.v1beta1.QueryOuterClass.QueryParamsResponse.newBuilder()).apply { block() }._build()
-object QueryParamsResponseKt {
+public object QueryParamsResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.params.v1beta1.QueryOuterClass.QueryParamsResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.params.v1beta1.QueryOuterClass.QueryParamsResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.params.v1beta1.QueryOuterClass.QueryParamsResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryParamsResponseKt {
      *
      * <code>.cosmos.params.v1beta1.ParamChange param = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var param: cosmos.params.v1beta1.Params.ParamChange
+    public var param: cosmos.params.v1beta1.Params.ParamChange
       @JvmName("getParam")
       get() = _builder.getParam()
       @JvmName("setParam")
@@ -43,7 +43,7 @@ object QueryParamsResponseKt {
      *
      * <code>.cosmos.params.v1beta1.ParamChange param = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearParam() {
+    public fun clearParam() {
       _builder.clearParam()
     }
     /**
@@ -54,11 +54,11 @@ object QueryParamsResponseKt {
      * <code>.cosmos.params.v1beta1.ParamChange param = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the param field is set.
      */
-    fun hasParam(): kotlin.Boolean {
+    public fun hasParam(): kotlin.Boolean {
       return _builder.hasParam()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.params.v1beta1.QueryOuterClass.QueryParamsResponse.copy(block: cosmos.params.v1beta1.QueryParamsResponseKt.Dsl.() -> Unit): cosmos.params.v1beta1.QueryOuterClass.QueryParamsResponse =
+public inline fun cosmos.params.v1beta1.QueryOuterClass.QueryParamsResponse.copy(block: cosmos.params.v1beta1.QueryParamsResponseKt.Dsl.() -> kotlin.Unit): cosmos.params.v1beta1.QueryOuterClass.QueryParamsResponse =
   cosmos.params.v1beta1.QueryParamsResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

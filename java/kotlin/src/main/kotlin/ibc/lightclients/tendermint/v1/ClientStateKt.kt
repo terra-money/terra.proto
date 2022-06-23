@@ -4,15 +4,15 @@
 package ibc.lightclients.tendermint.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun clientState(block: ibc.lightclients.tendermint.v1.ClientStateKt.Dsl.() -> Unit): ibc.lightclients.tendermint.v1.Tendermint.ClientState =
+public inline fun clientState(block: ibc.lightclients.tendermint.v1.ClientStateKt.Dsl.() -> kotlin.Unit): ibc.lightclients.tendermint.v1.Tendermint.ClientState =
   ibc.lightclients.tendermint.v1.ClientStateKt.Dsl._create(ibc.lightclients.tendermint.v1.Tendermint.ClientState.newBuilder()).apply { block() }._build()
-object ClientStateKt {
+public object ClientStateKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.lightclients.tendermint.v1.Tendermint.ClientState.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.lightclients.tendermint.v1.Tendermint.ClientState.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.lightclients.tendermint.v1.Tendermint.ClientState.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ClientStateKt {
     /**
      * <code>string chain_id = 1;</code>
      */
-    var chainId: kotlin.String
+    public var chainId: kotlin.String
       @JvmName("getChainId")
       get() = _builder.getChainId()
       @JvmName("setChainId")
@@ -35,14 +35,14 @@ object ClientStateKt {
     /**
      * <code>string chain_id = 1;</code>
      */
-    fun clearChainId() {
+    public fun clearChainId() {
       _builder.clearChainId()
     }
 
     /**
      * <code>.ibc.lightclients.tendermint.v1.Fraction trust_level = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"trust_level&#92;""];</code>
      */
-    var trustLevel: ibc.lightclients.tendermint.v1.Tendermint.Fraction
+    public var trustLevel: ibc.lightclients.tendermint.v1.Tendermint.Fraction
       @JvmName("getTrustLevel")
       get() = _builder.getTrustLevel()
       @JvmName("setTrustLevel")
@@ -52,14 +52,14 @@ object ClientStateKt {
     /**
      * <code>.ibc.lightclients.tendermint.v1.Fraction trust_level = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"trust_level&#92;""];</code>
      */
-    fun clearTrustLevel() {
+    public fun clearTrustLevel() {
       _builder.clearTrustLevel()
     }
     /**
      * <code>.ibc.lightclients.tendermint.v1.Fraction trust_level = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"trust_level&#92;""];</code>
      * @return Whether the trustLevel field is set.
      */
-    fun hasTrustLevel(): kotlin.Boolean {
+    public fun hasTrustLevel(): kotlin.Boolean {
       return _builder.hasTrustLevel()
     }
 
@@ -71,7 +71,7 @@ object ClientStateKt {
      *
      * <code>.google.protobuf.Duration trusting_period = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"trusting_period&#92;"", (.gogoproto.stdduration) = true];</code>
      */
-    var trustingPeriod: com.google.protobuf.Duration
+    public var trustingPeriod: com.google.protobuf.Duration
       @JvmName("getTrustingPeriod")
       get() = _builder.getTrustingPeriod()
       @JvmName("setTrustingPeriod")
@@ -86,7 +86,7 @@ object ClientStateKt {
      *
      * <code>.google.protobuf.Duration trusting_period = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"trusting_period&#92;"", (.gogoproto.stdduration) = true];</code>
      */
-    fun clearTrustingPeriod() {
+    public fun clearTrustingPeriod() {
       _builder.clearTrustingPeriod()
     }
     /**
@@ -98,7 +98,7 @@ object ClientStateKt {
      * <code>.google.protobuf.Duration trusting_period = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"trusting_period&#92;"", (.gogoproto.stdduration) = true];</code>
      * @return Whether the trustingPeriod field is set.
      */
-    fun hasTrustingPeriod(): kotlin.Boolean {
+    public fun hasTrustingPeriod(): kotlin.Boolean {
       return _builder.hasTrustingPeriod()
     }
 
@@ -109,7 +109,7 @@ object ClientStateKt {
      *
      * <code>.google.protobuf.Duration unbonding_period = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_period&#92;"", (.gogoproto.stdduration) = true];</code>
      */
-    var unbondingPeriod: com.google.protobuf.Duration
+    public var unbondingPeriod: com.google.protobuf.Duration
       @JvmName("getUnbondingPeriod")
       get() = _builder.getUnbondingPeriod()
       @JvmName("setUnbondingPeriod")
@@ -123,7 +123,7 @@ object ClientStateKt {
      *
      * <code>.google.protobuf.Duration unbonding_period = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_period&#92;"", (.gogoproto.stdduration) = true];</code>
      */
-    fun clearUnbondingPeriod() {
+    public fun clearUnbondingPeriod() {
       _builder.clearUnbondingPeriod()
     }
     /**
@@ -134,7 +134,7 @@ object ClientStateKt {
      * <code>.google.protobuf.Duration unbonding_period = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_period&#92;"", (.gogoproto.stdduration) = true];</code>
      * @return Whether the unbondingPeriod field is set.
      */
-    fun hasUnbondingPeriod(): kotlin.Boolean {
+    public fun hasUnbondingPeriod(): kotlin.Boolean {
       return _builder.hasUnbondingPeriod()
     }
 
@@ -145,7 +145,7 @@ object ClientStateKt {
      *
      * <code>.google.protobuf.Duration max_clock_drift = 5 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"max_clock_drift&#92;"", (.gogoproto.stdduration) = true];</code>
      */
-    var maxClockDrift: com.google.protobuf.Duration
+    public var maxClockDrift: com.google.protobuf.Duration
       @JvmName("getMaxClockDrift")
       get() = _builder.getMaxClockDrift()
       @JvmName("setMaxClockDrift")
@@ -159,7 +159,7 @@ object ClientStateKt {
      *
      * <code>.google.protobuf.Duration max_clock_drift = 5 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"max_clock_drift&#92;"", (.gogoproto.stdduration) = true];</code>
      */
-    fun clearMaxClockDrift() {
+    public fun clearMaxClockDrift() {
       _builder.clearMaxClockDrift()
     }
     /**
@@ -170,7 +170,7 @@ object ClientStateKt {
      * <code>.google.protobuf.Duration max_clock_drift = 5 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"max_clock_drift&#92;"", (.gogoproto.stdduration) = true];</code>
      * @return Whether the maxClockDrift field is set.
      */
-    fun hasMaxClockDrift(): kotlin.Boolean {
+    public fun hasMaxClockDrift(): kotlin.Boolean {
       return _builder.hasMaxClockDrift()
     }
 
@@ -181,7 +181,7 @@ object ClientStateKt {
      *
      * <code>.ibc.core.client.v1.Height frozen_height = 6 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"frozen_height&#92;""];</code>
      */
-    var frozenHeight: ibc.core.client.v1.Client.Height
+    public var frozenHeight: ibc.core.client.v1.Client.Height
       @JvmName("getFrozenHeight")
       get() = _builder.getFrozenHeight()
       @JvmName("setFrozenHeight")
@@ -195,7 +195,7 @@ object ClientStateKt {
      *
      * <code>.ibc.core.client.v1.Height frozen_height = 6 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"frozen_height&#92;""];</code>
      */
-    fun clearFrozenHeight() {
+    public fun clearFrozenHeight() {
       _builder.clearFrozenHeight()
     }
     /**
@@ -206,7 +206,7 @@ object ClientStateKt {
      * <code>.ibc.core.client.v1.Height frozen_height = 6 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"frozen_height&#92;""];</code>
      * @return Whether the frozenHeight field is set.
      */
-    fun hasFrozenHeight(): kotlin.Boolean {
+    public fun hasFrozenHeight(): kotlin.Boolean {
       return _builder.hasFrozenHeight()
     }
 
@@ -217,7 +217,7 @@ object ClientStateKt {
      *
      * <code>.ibc.core.client.v1.Height latest_height = 7 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"latest_height&#92;""];</code>
      */
-    var latestHeight: ibc.core.client.v1.Client.Height
+    public var latestHeight: ibc.core.client.v1.Client.Height
       @JvmName("getLatestHeight")
       get() = _builder.getLatestHeight()
       @JvmName("setLatestHeight")
@@ -231,7 +231,7 @@ object ClientStateKt {
      *
      * <code>.ibc.core.client.v1.Height latest_height = 7 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"latest_height&#92;""];</code>
      */
-    fun clearLatestHeight() {
+    public fun clearLatestHeight() {
       _builder.clearLatestHeight()
     }
     /**
@@ -242,7 +242,7 @@ object ClientStateKt {
      * <code>.ibc.core.client.v1.Height latest_height = 7 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"latest_height&#92;""];</code>
      * @return Whether the latestHeight field is set.
      */
-    fun hasLatestHeight(): kotlin.Boolean {
+    public fun hasLatestHeight(): kotlin.Boolean {
       return _builder.hasLatestHeight()
     }
 
@@ -251,7 +251,7 @@ object ClientStateKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class ProofSpecsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class ProofSpecsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * Proof specifications used in verifying counterparty state
@@ -259,7 +259,7 @@ object ClientStateKt {
      *
      * <code>repeated .ics23.ProofSpec proof_specs = 8 [(.gogoproto.moretags) = "yaml:&#92;"proof_specs&#92;""];</code>
      */
-     val proofSpecs: com.google.protobuf.kotlin.DslList<ics23.Proofs.ProofSpec, ProofSpecsProxy>
+     public val proofSpecs: com.google.protobuf.kotlin.DslList<ics23.Proofs.ProofSpec, ProofSpecsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getProofSpecsList()
@@ -274,7 +274,7 @@ object ClientStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addProofSpecs")
-    fun com.google.protobuf.kotlin.DslList<ics23.Proofs.ProofSpec, ProofSpecsProxy>.add(value: ics23.Proofs.ProofSpec) {
+    public fun com.google.protobuf.kotlin.DslList<ics23.Proofs.ProofSpec, ProofSpecsProxy>.add(value: ics23.Proofs.ProofSpec) {
       _builder.addProofSpecs(value)
     }/**
      * <pre>
@@ -286,7 +286,8 @@ object ClientStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignProofSpecs")
-    inline operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.ProofSpec, ProofSpecsProxy>.plusAssign(value: ics23.Proofs.ProofSpec) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.ProofSpec, ProofSpecsProxy>.plusAssign(value: ics23.Proofs.ProofSpec) {
       add(value)
     }/**
      * <pre>
@@ -298,7 +299,7 @@ object ClientStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllProofSpecs")
-    fun com.google.protobuf.kotlin.DslList<ics23.Proofs.ProofSpec, ProofSpecsProxy>.addAll(values: kotlin.collections.Iterable<ics23.Proofs.ProofSpec>) {
+    public fun com.google.protobuf.kotlin.DslList<ics23.Proofs.ProofSpec, ProofSpecsProxy>.addAll(values: kotlin.collections.Iterable<ics23.Proofs.ProofSpec>) {
       _builder.addAllProofSpecs(values)
     }/**
      * <pre>
@@ -310,7 +311,8 @@ object ClientStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllProofSpecs")
-    inline operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.ProofSpec, ProofSpecsProxy>.plusAssign(values: kotlin.collections.Iterable<ics23.Proofs.ProofSpec>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.ProofSpec, ProofSpecsProxy>.plusAssign(values: kotlin.collections.Iterable<ics23.Proofs.ProofSpec>) {
       addAll(values)
     }/**
      * <pre>
@@ -323,7 +325,7 @@ object ClientStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setProofSpecs")
-    operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.ProofSpec, ProofSpecsProxy>.set(index: kotlin.Int, value: ics23.Proofs.ProofSpec) {
+    public operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.ProofSpec, ProofSpecsProxy>.set(index: kotlin.Int, value: ics23.Proofs.ProofSpec) {
       _builder.setProofSpecs(index, value)
     }/**
      * <pre>
@@ -334,7 +336,7 @@ object ClientStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearProofSpecs")
-    fun com.google.protobuf.kotlin.DslList<ics23.Proofs.ProofSpec, ProofSpecsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<ics23.Proofs.ProofSpec, ProofSpecsProxy>.clear() {
       _builder.clearProofSpecs()
     }
     /**
@@ -342,7 +344,7 @@ object ClientStateKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class UpgradePathProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class UpgradePathProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * Path at which next upgraded client will be committed.
@@ -357,8 +359,8 @@ object ClientStateKt {
      * <code>repeated string upgrade_path = 9 [(.gogoproto.moretags) = "yaml:&#92;"upgrade_path&#92;""];</code>
      * @return A list containing the upgradePath.
      */
-    val upgradePath: com.google.protobuf.kotlin.DslList<kotlin.String, UpgradePathProxy>
-      @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
+    public val upgradePath: com.google.protobuf.kotlin.DslList<kotlin.String, UpgradePathProxy>
+      @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getUpgradePathList()
       )
@@ -378,7 +380,7 @@ object ClientStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addUpgradePath")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, UpgradePathProxy>.add(value: kotlin.String) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, UpgradePathProxy>.add(value: kotlin.String) {
       _builder.addUpgradePath(value)
     }
     /**
@@ -397,8 +399,9 @@ object ClientStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignUpgradePath")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, UpgradePathProxy>.plusAssign(value: kotlin.String) {
-      _builder.addUpgradePath(value)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, UpgradePathProxy>.plusAssign(value: kotlin.String) {
+      add(value)
     }
     /**
      * <pre>
@@ -416,7 +419,7 @@ object ClientStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllUpgradePath")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, UpgradePathProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, UpgradePathProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
       _builder.addAllUpgradePath(values)
     }
     /**
@@ -435,8 +438,9 @@ object ClientStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllUpgradePath")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, UpgradePathProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
-      _builder.addAllUpgradePath(values)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, UpgradePathProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
+      addAll(values)
     }
     /**
      * <pre>
@@ -455,7 +459,7 @@ object ClientStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setUpgradePath")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, UpgradePathProxy>.set(index: kotlin.Int, value: kotlin.String) {
+    public operator fun com.google.protobuf.kotlin.DslList<kotlin.String, UpgradePathProxy>.set(index: kotlin.Int, value: kotlin.String) {
       _builder.setUpgradePath(index, value)
     }/**
      * <pre>
@@ -472,7 +476,7 @@ object ClientStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearUpgradePath")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, UpgradePathProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, UpgradePathProxy>.clear() {
       _builder.clearUpgradePath()
     }
     /**
@@ -483,7 +487,7 @@ object ClientStateKt {
      *
      * <code>bool allow_update_after_expiry = 10 [(.gogoproto.moretags) = "yaml:&#92;"allow_update_after_expiry&#92;""];</code>
      */
-    var allowUpdateAfterExpiry: kotlin.Boolean
+    public var allowUpdateAfterExpiry: kotlin.Boolean
       @JvmName("getAllowUpdateAfterExpiry")
       get() = _builder.getAllowUpdateAfterExpiry()
       @JvmName("setAllowUpdateAfterExpiry")
@@ -498,7 +502,7 @@ object ClientStateKt {
      *
      * <code>bool allow_update_after_expiry = 10 [(.gogoproto.moretags) = "yaml:&#92;"allow_update_after_expiry&#92;""];</code>
      */
-    fun clearAllowUpdateAfterExpiry() {
+    public fun clearAllowUpdateAfterExpiry() {
       _builder.clearAllowUpdateAfterExpiry()
     }
 
@@ -510,7 +514,7 @@ object ClientStateKt {
      *
      * <code>bool allow_update_after_misbehaviour = 11 [(.gogoproto.moretags) = "yaml:&#92;"allow_update_after_misbehaviour&#92;""];</code>
      */
-    var allowUpdateAfterMisbehaviour: kotlin.Boolean
+    public var allowUpdateAfterMisbehaviour: kotlin.Boolean
       @JvmName("getAllowUpdateAfterMisbehaviour")
       get() = _builder.getAllowUpdateAfterMisbehaviour()
       @JvmName("setAllowUpdateAfterMisbehaviour")
@@ -525,11 +529,11 @@ object ClientStateKt {
      *
      * <code>bool allow_update_after_misbehaviour = 11 [(.gogoproto.moretags) = "yaml:&#92;"allow_update_after_misbehaviour&#92;""];</code>
      */
-    fun clearAllowUpdateAfterMisbehaviour() {
+    public fun clearAllowUpdateAfterMisbehaviour() {
       _builder.clearAllowUpdateAfterMisbehaviour()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.lightclients.tendermint.v1.Tendermint.ClientState.copy(block: ibc.lightclients.tendermint.v1.ClientStateKt.Dsl.() -> Unit): ibc.lightclients.tendermint.v1.Tendermint.ClientState =
+public inline fun ibc.lightclients.tendermint.v1.Tendermint.ClientState.copy(block: ibc.lightclients.tendermint.v1.ClientStateKt.Dsl.() -> kotlin.Unit): ibc.lightclients.tendermint.v1.Tendermint.ClientState =
   ibc.lightclients.tendermint.v1.ClientStateKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.base.abci.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun gasInfo(block: cosmos.base.abci.v1beta1.GasInfoKt.Dsl.() -> Unit): cosmos.base.abci.v1beta1.Abci.GasInfo =
+public inline fun gasInfo(block: cosmos.base.abci.v1beta1.GasInfoKt.Dsl.() -> kotlin.Unit): cosmos.base.abci.v1beta1.Abci.GasInfo =
   cosmos.base.abci.v1beta1.GasInfoKt.Dsl._create(cosmos.base.abci.v1beta1.Abci.GasInfo.newBuilder()).apply { block() }._build()
-object GasInfoKt {
+public object GasInfoKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.abci.v1beta1.Abci.GasInfo.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.abci.v1beta1.Abci.GasInfo.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.abci.v1beta1.Abci.GasInfo.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object GasInfoKt {
      *
      * <code>uint64 gas_wanted = 1 [(.gogoproto.moretags) = "yaml:&#92;"gas_wanted&#92;""];</code>
      */
-    var gasWanted: kotlin.Long
+    public var gasWanted: kotlin.Long
       @JvmName("getGasWanted")
       get() = _builder.getGasWanted()
       @JvmName("setGasWanted")
@@ -43,7 +43,7 @@ object GasInfoKt {
      *
      * <code>uint64 gas_wanted = 1 [(.gogoproto.moretags) = "yaml:&#92;"gas_wanted&#92;""];</code>
      */
-    fun clearGasWanted() {
+    public fun clearGasWanted() {
       _builder.clearGasWanted()
     }
 
@@ -54,7 +54,7 @@ object GasInfoKt {
      *
      * <code>uint64 gas_used = 2 [(.gogoproto.moretags) = "yaml:&#92;"gas_used&#92;""];</code>
      */
-    var gasUsed: kotlin.Long
+    public var gasUsed: kotlin.Long
       @JvmName("getGasUsed")
       get() = _builder.getGasUsed()
       @JvmName("setGasUsed")
@@ -68,11 +68,11 @@ object GasInfoKt {
      *
      * <code>uint64 gas_used = 2 [(.gogoproto.moretags) = "yaml:&#92;"gas_used&#92;""];</code>
      */
-    fun clearGasUsed() {
+    public fun clearGasUsed() {
       _builder.clearGasUsed()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.abci.v1beta1.Abci.GasInfo.copy(block: cosmos.base.abci.v1beta1.GasInfoKt.Dsl.() -> Unit): cosmos.base.abci.v1beta1.Abci.GasInfo =
+public inline fun cosmos.base.abci.v1beta1.Abci.GasInfo.copy(block: cosmos.base.abci.v1beta1.GasInfoKt.Dsl.() -> kotlin.Unit): cosmos.base.abci.v1beta1.Abci.GasInfo =
   cosmos.base.abci.v1beta1.GasInfoKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.base.reflection.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun listImplementationsRequest(block: cosmos.base.reflection.v1beta1.ListImplementationsRequestKt.Dsl.() -> Unit): cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest =
+public inline fun listImplementationsRequest(block: cosmos.base.reflection.v1beta1.ListImplementationsRequestKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest =
   cosmos.base.reflection.v1beta1.ListImplementationsRequestKt.Dsl._create(cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest.newBuilder()).apply { block() }._build()
-object ListImplementationsRequestKt {
+public object ListImplementationsRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object ListImplementationsRequestKt {
      *
      * <code>string interface_name = 1;</code>
      */
-    var interfaceName: kotlin.String
+    public var interfaceName: kotlin.String
       @JvmName("getInterfaceName")
       get() = _builder.getInterfaceName()
       @JvmName("setInterfaceName")
@@ -43,11 +43,11 @@ object ListImplementationsRequestKt {
      *
      * <code>string interface_name = 1;</code>
      */
-    fun clearInterfaceName() {
+    public fun clearInterfaceName() {
       _builder.clearInterfaceName()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest.copy(block: cosmos.base.reflection.v1beta1.ListImplementationsRequestKt.Dsl.() -> Unit): cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest =
+public inline fun cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest.copy(block: cosmos.base.reflection.v1beta1.ListImplementationsRequestKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest =
   cosmos.base.reflection.v1beta1.ListImplementationsRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

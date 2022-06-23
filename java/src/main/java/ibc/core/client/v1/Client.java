@@ -265,7 +265,7 @@ public final class Client {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, clientId_);
       }
       if (clientState_ != null) {
@@ -280,7 +280,7 @@ public final class Client {
       if (size != -1) return size;
 
       size = 0;
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, clientId_);
       }
       if (clientState_ != null) {
@@ -927,7 +927,7 @@ public final class Client {
      * consensus state
      * </pre>
      *
-     * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml&#92;"consensus_state&#92;""];</code>
+     * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
      * @return Whether the consensusState field is set.
      */
     boolean hasConsensusState();
@@ -936,7 +936,7 @@ public final class Client {
      * consensus state
      * </pre>
      *
-     * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml&#92;"consensus_state&#92;""];</code>
+     * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
      * @return The consensusState.
      */
     com.google.protobuf.Any getConsensusState();
@@ -945,7 +945,7 @@ public final class Client {
      * consensus state
      * </pre>
      *
-     * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml&#92;"consensus_state&#92;""];</code>
+     * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
      */
     com.google.protobuf.AnyOrBuilder getConsensusStateOrBuilder();
   }
@@ -1102,7 +1102,7 @@ public final class Client {
      * consensus state
      * </pre>
      *
-     * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml&#92;"consensus_state&#92;""];</code>
+     * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
      * @return Whether the consensusState field is set.
      */
     @java.lang.Override
@@ -1114,7 +1114,7 @@ public final class Client {
      * consensus state
      * </pre>
      *
-     * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml&#92;"consensus_state&#92;""];</code>
+     * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
      * @return The consensusState.
      */
     @java.lang.Override
@@ -1126,7 +1126,7 @@ public final class Client {
      * consensus state
      * </pre>
      *
-     * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml&#92;"consensus_state&#92;""];</code>
+     * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
      */
     @java.lang.Override
     public com.google.protobuf.AnyOrBuilder getConsensusStateOrBuilder() {
@@ -1646,7 +1646,7 @@ public final class Client {
        * consensus state
        * </pre>
        *
-       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml&#92;"consensus_state&#92;""];</code>
+       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
        * @return Whether the consensusState field is set.
        */
       public boolean hasConsensusState() {
@@ -1657,7 +1657,7 @@ public final class Client {
        * consensus state
        * </pre>
        *
-       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml&#92;"consensus_state&#92;""];</code>
+       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
        * @return The consensusState.
        */
       public com.google.protobuf.Any getConsensusState() {
@@ -1672,7 +1672,7 @@ public final class Client {
        * consensus state
        * </pre>
        *
-       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml&#92;"consensus_state&#92;""];</code>
+       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
        */
       public Builder setConsensusState(com.google.protobuf.Any value) {
         if (consensusStateBuilder_ == null) {
@@ -1692,7 +1692,7 @@ public final class Client {
        * consensus state
        * </pre>
        *
-       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml&#92;"consensus_state&#92;""];</code>
+       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
        */
       public Builder setConsensusState(
           com.google.protobuf.Any.Builder builderForValue) {
@@ -1710,7 +1710,7 @@ public final class Client {
        * consensus state
        * </pre>
        *
-       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml&#92;"consensus_state&#92;""];</code>
+       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
        */
       public Builder mergeConsensusState(com.google.protobuf.Any value) {
         if (consensusStateBuilder_ == null) {
@@ -1732,7 +1732,7 @@ public final class Client {
        * consensus state
        * </pre>
        *
-       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml&#92;"consensus_state&#92;""];</code>
+       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
        */
       public Builder clearConsensusState() {
         if (consensusStateBuilder_ == null) {
@@ -1750,7 +1750,7 @@ public final class Client {
        * consensus state
        * </pre>
        *
-       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml&#92;"consensus_state&#92;""];</code>
+       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
        */
       public com.google.protobuf.Any.Builder getConsensusStateBuilder() {
         
@@ -1762,7 +1762,7 @@ public final class Client {
        * consensus state
        * </pre>
        *
-       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml&#92;"consensus_state&#92;""];</code>
+       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
        */
       public com.google.protobuf.AnyOrBuilder getConsensusStateOrBuilder() {
         if (consensusStateBuilder_ != null) {
@@ -1777,7 +1777,7 @@ public final class Client {
        * consensus state
        * </pre>
        *
-       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml&#92;"consensus_state&#92;""];</code>
+       * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
@@ -2136,7 +2136,7 @@ public final class Client {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, clientId_);
       }
       for (int i = 0; i < consensusStates_.size(); i++) {
@@ -2151,7 +2151,7 @@ public final class Client {
       if (size != -1) return size;
 
       size = 0;
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, clientId_);
       }
       for (int i = 0; i < consensusStates_.size(); i++) {
@@ -3344,16 +3344,16 @@ public final class Client {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTitleBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(title_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, title_);
       }
-      if (!getDescriptionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, description_);
       }
-      if (!getSubjectClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(subjectClientId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, subjectClientId_);
       }
-      if (!getSubstituteClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(substituteClientId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, substituteClientId_);
       }
       unknownFields.writeTo(output);
@@ -3365,16 +3365,16 @@ public final class Client {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTitleBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(title_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, title_);
       }
-      if (!getDescriptionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, description_);
       }
-      if (!getSubjectClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(subjectClientId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, subjectClientId_);
       }
-      if (!getSubstituteClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(substituteClientId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, substituteClientId_);
       }
       size += unknownFields.getSerializedSize();
@@ -4507,10 +4507,10 @@ public final class Client {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTitleBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(title_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, title_);
       }
-      if (!getDescriptionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, description_);
       }
       if (plan_ != null) {
@@ -4528,10 +4528,10 @@ public final class Client {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTitleBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(title_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, title_);
       }
-      if (!getDescriptionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, description_);
       }
       if (plan_ != null) {
@@ -6788,32 +6788,32 @@ public final class Client {
       "1beta1/upgrade.proto\"\205\001\n\025IdentifiedClien" +
       "tState\022\'\n\tclient_id\030\001 \001(\tB\024\362\336\037\020yaml:\"cli" +
       "ent_id\"\022C\n\014client_state\030\002 \001(\0132\024.google.p" +
-      "rotobuf.AnyB\027\362\336\037\023yaml:\"client_state\"\"\226\001\n" +
+      "rotobuf.AnyB\027\362\336\037\023yaml:\"client_state\"\"\227\001\n" +
       "\030ConsensusStateWithHeight\0220\n\006height\030\001 \001(" +
-      "\0132\032.ibc.core.client.v1.HeightB\004\310\336\037\000\022H\n\017c" +
+      "\0132\032.ibc.core.client.v1.HeightB\004\310\336\037\000\022I\n\017c" +
       "onsensus_state\030\002 \001(\0132\024.google.protobuf.A" +
-      "nyB\031\362\336\037\025yaml\"consensus_state\"\"\251\001\n\025Client" +
-      "ConsensusStates\022\'\n\tclient_id\030\001 \001(\tB\024\362\336\037\020" +
-      "yaml:\"client_id\"\022g\n\020consensus_states\030\002 \003" +
-      "(\0132,.ibc.core.client.v1.ConsensusStateWi" +
-      "thHeightB\037\362\336\037\027yaml:\"consensus_states\"\310\336\037" +
-      "\000\"\270\001\n\024ClientUpdateProposal\022\r\n\005title\030\001 \001(" +
-      "\t\022\023\n\013description\030\002 \001(\t\0227\n\021subject_client" +
-      "_id\030\003 \001(\tB\034\362\336\037\030yaml:\"subject_client_id\"\022" +
-      "=\n\024substitute_client_id\030\004 \001(\tB\037\362\336\037\033yaml:" +
-      "\"substitute_client_id\":\004\210\240\037\000\"\314\001\n\017Upgrade" +
-      "Proposal\022\r\n\005title\030\001 \001(\t\022\023\n\013description\030\002" +
-      " \001(\t\0220\n\004plan\030\003 \001(\0132\034.cosmos.upgrade.v1be" +
-      "ta1.PlanB\004\310\336\037\000\022U\n\025upgraded_client_state\030" +
-      "\004 \001(\0132\024.google.protobuf.AnyB \362\336\037\034yaml:\"u" +
-      "pgraded_client_state\":\014\210\240\037\000\230\240\037\000\350\240\037\001\"|\n\006H" +
-      "eight\0223\n\017revision_number\030\001 \001(\004B\032\362\336\037\026yaml" +
-      ":\"revision_number\"\0223\n\017revision_height\030\002 " +
-      "\001(\004B\032\362\336\037\026yaml:\"revision_height\":\010\210\240\037\000\230\240\037" +
-      "\000\"=\n\006Params\0223\n\017allowed_clients\030\001 \003(\tB\032\362\336" +
-      "\037\026yaml:\"allowed_clients\"B7Z5github.com/c" +
-      "osmos/ibc-go/modules/core/02-client/type" +
-      "sb\006proto3"
+      "nyB\032\362\336\037\026yaml:\"consensus_state\"\"\251\001\n\025Clien" +
+      "tConsensusStates\022\'\n\tclient_id\030\001 \001(\tB\024\362\336\037" +
+      "\020yaml:\"client_id\"\022g\n\020consensus_states\030\002 " +
+      "\003(\0132,.ibc.core.client.v1.ConsensusStateW" +
+      "ithHeightB\037\362\336\037\027yaml:\"consensus_states\"\310\336" +
+      "\037\000\"\270\001\n\024ClientUpdateProposal\022\r\n\005title\030\001 \001" +
+      "(\t\022\023\n\013description\030\002 \001(\t\0227\n\021subject_clien" +
+      "t_id\030\003 \001(\tB\034\362\336\037\030yaml:\"subject_client_id\"" +
+      "\022=\n\024substitute_client_id\030\004 \001(\tB\037\362\336\037\033yaml" +
+      ":\"substitute_client_id\":\004\210\240\037\000\"\314\001\n\017Upgrad" +
+      "eProposal\022\r\n\005title\030\001 \001(\t\022\023\n\013description\030" +
+      "\002 \001(\t\0220\n\004plan\030\003 \001(\0132\034.cosmos.upgrade.v1b" +
+      "eta1.PlanB\004\310\336\037\000\022U\n\025upgraded_client_state" +
+      "\030\004 \001(\0132\024.google.protobuf.AnyB \362\336\037\034yaml:\"" +
+      "upgraded_client_state\":\014\210\240\037\000\230\240\037\000\350\240\037\001\"|\n\006" +
+      "Height\0223\n\017revision_number\030\001 \001(\004B\032\362\336\037\026yam" +
+      "l:\"revision_number\"\0223\n\017revision_height\030\002" +
+      " \001(\004B\032\362\336\037\026yaml:\"revision_height\":\010\210\240\037\000\230\240" +
+      "\037\000\"=\n\006Params\0223\n\017allowed_clients\030\001 \003(\tB\032\362" +
+      "\336\037\026yaml:\"allowed_clients\"B:Z8github.com/" +
+      "cosmos/ibc-go/v3/modules/core/02-client/" +
+      "typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -4,15 +4,15 @@
 package cosmos.bank.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryBalanceRequest(block: cosmos.bank.v1beta1.QueryBalanceRequestKt.Dsl.() -> Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest =
+public inline fun queryBalanceRequest(block: cosmos.bank.v1beta1.QueryBalanceRequestKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest =
   cosmos.bank.v1beta1.QueryBalanceRequestKt.Dsl._create(cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest.newBuilder()).apply { block() }._build()
-object QueryBalanceRequestKt {
+public object QueryBalanceRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryBalanceRequestKt {
      *
      * <code>string address = 1;</code>
      */
-    var address: kotlin.String
+    public var address: kotlin.String
       @JvmName("getAddress")
       get() = _builder.getAddress()
       @JvmName("setAddress")
@@ -43,7 +43,7 @@ object QueryBalanceRequestKt {
      *
      * <code>string address = 1;</code>
      */
-    fun clearAddress() {
+    public fun clearAddress() {
       _builder.clearAddress()
     }
 
@@ -54,7 +54,7 @@ object QueryBalanceRequestKt {
      *
      * <code>string denom = 2;</code>
      */
-    var denom: kotlin.String
+    public var denom: kotlin.String
       @JvmName("getDenom")
       get() = _builder.getDenom()
       @JvmName("setDenom")
@@ -68,11 +68,11 @@ object QueryBalanceRequestKt {
      *
      * <code>string denom = 2;</code>
      */
-    fun clearDenom() {
+    public fun clearDenom() {
       _builder.clearDenom()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest.copy(block: cosmos.bank.v1beta1.QueryBalanceRequestKt.Dsl.() -> Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest =
+public inline fun cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest.copy(block: cosmos.bank.v1beta1.QueryBalanceRequestKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest =
   cosmos.bank.v1beta1.QueryBalanceRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

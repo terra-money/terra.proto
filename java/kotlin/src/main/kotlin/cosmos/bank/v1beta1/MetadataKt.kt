@@ -4,15 +4,15 @@
 package cosmos.bank.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun metadata(block: cosmos.bank.v1beta1.MetadataKt.Dsl.() -> Unit): cosmos.bank.v1beta1.Bank.Metadata =
+public inline fun metadata(block: cosmos.bank.v1beta1.MetadataKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.Bank.Metadata =
   cosmos.bank.v1beta1.MetadataKt.Dsl._create(cosmos.bank.v1beta1.Bank.Metadata.newBuilder()).apply { block() }._build()
-object MetadataKt {
+public object MetadataKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.bank.v1beta1.Bank.Metadata.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.bank.v1beta1.Bank.Metadata.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.bank.v1beta1.Bank.Metadata.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object MetadataKt {
     /**
      * <code>string description = 1;</code>
      */
-    var description: kotlin.String
+    public var description: kotlin.String
       @JvmName("getDescription")
       get() = _builder.getDescription()
       @JvmName("setDescription")
@@ -35,7 +35,7 @@ object MetadataKt {
     /**
      * <code>string description = 1;</code>
      */
-    fun clearDescription() {
+    public fun clearDescription() {
       _builder.clearDescription()
     }
 
@@ -44,7 +44,7 @@ object MetadataKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class DenomUnitsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class DenomUnitsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * denom_units represents the list of DenomUnit's for a given coin
@@ -52,7 +52,7 @@ object MetadataKt {
      *
      * <code>repeated .cosmos.bank.v1beta1.DenomUnit denom_units = 2;</code>
      */
-     val denomUnits: com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.DenomUnit, DenomUnitsProxy>
+     public val denomUnits: com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.DenomUnit, DenomUnitsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getDenomUnitsList()
@@ -67,7 +67,7 @@ object MetadataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addDenomUnits")
-    fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.DenomUnit, DenomUnitsProxy>.add(value: cosmos.bank.v1beta1.Bank.DenomUnit) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.DenomUnit, DenomUnitsProxy>.add(value: cosmos.bank.v1beta1.Bank.DenomUnit) {
       _builder.addDenomUnits(value)
     }/**
      * <pre>
@@ -79,7 +79,8 @@ object MetadataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignDenomUnits")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.DenomUnit, DenomUnitsProxy>.plusAssign(value: cosmos.bank.v1beta1.Bank.DenomUnit) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.DenomUnit, DenomUnitsProxy>.plusAssign(value: cosmos.bank.v1beta1.Bank.DenomUnit) {
       add(value)
     }/**
      * <pre>
@@ -91,7 +92,7 @@ object MetadataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllDenomUnits")
-    fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.DenomUnit, DenomUnitsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Bank.DenomUnit>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.DenomUnit, DenomUnitsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Bank.DenomUnit>) {
       _builder.addAllDenomUnits(values)
     }/**
      * <pre>
@@ -103,7 +104,8 @@ object MetadataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllDenomUnits")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.DenomUnit, DenomUnitsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Bank.DenomUnit>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.DenomUnit, DenomUnitsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Bank.DenomUnit>) {
       addAll(values)
     }/**
      * <pre>
@@ -116,7 +118,7 @@ object MetadataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setDenomUnits")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.DenomUnit, DenomUnitsProxy>.set(index: kotlin.Int, value: cosmos.bank.v1beta1.Bank.DenomUnit) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.DenomUnit, DenomUnitsProxy>.set(index: kotlin.Int, value: cosmos.bank.v1beta1.Bank.DenomUnit) {
       _builder.setDenomUnits(index, value)
     }/**
      * <pre>
@@ -127,7 +129,7 @@ object MetadataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearDenomUnits")
-    fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.DenomUnit, DenomUnitsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.DenomUnit, DenomUnitsProxy>.clear() {
       _builder.clearDenomUnits()
     }
     /**
@@ -137,7 +139,7 @@ object MetadataKt {
      *
      * <code>string base = 3;</code>
      */
-    var base: kotlin.String
+    public var base: kotlin.String
       @JvmName("getBase")
       get() = _builder.getBase()
       @JvmName("setBase")
@@ -151,7 +153,7 @@ object MetadataKt {
      *
      * <code>string base = 3;</code>
      */
-    fun clearBase() {
+    public fun clearBase() {
       _builder.clearBase()
     }
 
@@ -163,7 +165,7 @@ object MetadataKt {
      *
      * <code>string display = 4;</code>
      */
-    var display: kotlin.String
+    public var display: kotlin.String
       @JvmName("getDisplay")
       get() = _builder.getDisplay()
       @JvmName("setDisplay")
@@ -178,7 +180,7 @@ object MetadataKt {
      *
      * <code>string display = 4;</code>
      */
-    fun clearDisplay() {
+    public fun clearDisplay() {
       _builder.clearDisplay()
     }
 
@@ -190,7 +192,7 @@ object MetadataKt {
      *
      * <code>string name = 5;</code>
      */
-    var name: kotlin.String
+    public var name: kotlin.String
       @JvmName("getName")
       get() = _builder.getName()
       @JvmName("setName")
@@ -205,7 +207,7 @@ object MetadataKt {
      *
      * <code>string name = 5;</code>
      */
-    fun clearName() {
+    public fun clearName() {
       _builder.clearName()
     }
 
@@ -218,7 +220,7 @@ object MetadataKt {
      *
      * <code>string symbol = 6;</code>
      */
-    var symbol: kotlin.String
+    public var symbol: kotlin.String
       @JvmName("getSymbol")
       get() = _builder.getSymbol()
       @JvmName("setSymbol")
@@ -234,11 +236,11 @@ object MetadataKt {
      *
      * <code>string symbol = 6;</code>
      */
-    fun clearSymbol() {
+    public fun clearSymbol() {
       _builder.clearSymbol()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.bank.v1beta1.Bank.Metadata.copy(block: cosmos.bank.v1beta1.MetadataKt.Dsl.() -> Unit): cosmos.bank.v1beta1.Bank.Metadata =
+public inline fun cosmos.bank.v1beta1.Bank.Metadata.copy(block: cosmos.bank.v1beta1.MetadataKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.Bank.Metadata =
   cosmos.bank.v1beta1.MetadataKt.Dsl._create(this.toBuilder()).apply { block() }._build()

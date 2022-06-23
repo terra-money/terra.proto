@@ -4,15 +4,15 @@
 package ibc.lightclients.localhost.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun clientState(block: ibc.lightclients.localhost.v1.ClientStateKt.Dsl.() -> Unit): ibc.lightclients.localhost.v1.Localhost.ClientState =
+public inline fun clientState(block: ibc.lightclients.localhost.v1.ClientStateKt.Dsl.() -> kotlin.Unit): ibc.lightclients.localhost.v1.Localhost.ClientState =
   ibc.lightclients.localhost.v1.ClientStateKt.Dsl._create(ibc.lightclients.localhost.v1.Localhost.ClientState.newBuilder()).apply { block() }._build()
-object ClientStateKt {
+public object ClientStateKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.lightclients.localhost.v1.Localhost.ClientState.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.lightclients.localhost.v1.Localhost.ClientState.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.lightclients.localhost.v1.Localhost.ClientState.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object ClientStateKt {
      *
      * <code>string chain_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"chain_id&#92;""];</code>
      */
-    var chainId: kotlin.String
+    public var chainId: kotlin.String
       @JvmName("getChainId")
       get() = _builder.getChainId()
       @JvmName("setChainId")
@@ -43,7 +43,7 @@ object ClientStateKt {
      *
      * <code>string chain_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"chain_id&#92;""];</code>
      */
-    fun clearChainId() {
+    public fun clearChainId() {
       _builder.clearChainId()
     }
 
@@ -54,7 +54,7 @@ object ClientStateKt {
      *
      * <code>.ibc.core.client.v1.Height height = 2 [(.gogoproto.nullable) = false];</code>
      */
-    var height: ibc.core.client.v1.Client.Height
+    public var height: ibc.core.client.v1.Client.Height
       @JvmName("getHeight")
       get() = _builder.getHeight()
       @JvmName("setHeight")
@@ -68,7 +68,7 @@ object ClientStateKt {
      *
      * <code>.ibc.core.client.v1.Height height = 2 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearHeight() {
+    public fun clearHeight() {
       _builder.clearHeight()
     }
     /**
@@ -79,11 +79,11 @@ object ClientStateKt {
      * <code>.ibc.core.client.v1.Height height = 2 [(.gogoproto.nullable) = false];</code>
      * @return Whether the height field is set.
      */
-    fun hasHeight(): kotlin.Boolean {
+    public fun hasHeight(): kotlin.Boolean {
       return _builder.hasHeight()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.lightclients.localhost.v1.Localhost.ClientState.copy(block: ibc.lightclients.localhost.v1.ClientStateKt.Dsl.() -> Unit): ibc.lightclients.localhost.v1.Localhost.ClientState =
+public inline fun ibc.lightclients.localhost.v1.Localhost.ClientState.copy(block: ibc.lightclients.localhost.v1.ClientStateKt.Dsl.() -> kotlin.Unit): ibc.lightclients.localhost.v1.Localhost.ClientState =
   ibc.lightclients.localhost.v1.ClientStateKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun responseInfo(block: tendermint.abci.ResponseInfoKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseInfo =
+public inline fun responseInfo(block: tendermint.abci.ResponseInfoKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseInfo =
   tendermint.abci.ResponseInfoKt.Dsl._create(tendermint.abci.Types.ResponseInfo.newBuilder()).apply { block() }._build()
-object ResponseInfoKt {
+public object ResponseInfoKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.ResponseInfo.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.ResponseInfo.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.ResponseInfo.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ResponseInfoKt {
     /**
      * <code>string data = 1;</code>
      */
-    var data: kotlin.String
+    public var data: kotlin.String
       @JvmName("getData")
       get() = _builder.getData()
       @JvmName("setData")
@@ -35,14 +35,14 @@ object ResponseInfoKt {
     /**
      * <code>string data = 1;</code>
      */
-    fun clearData() {
+    public fun clearData() {
       _builder.clearData()
     }
 
     /**
      * <code>string version = 2;</code>
      */
-    var version: kotlin.String
+    public var version: kotlin.String
       @JvmName("getVersion")
       get() = _builder.getVersion()
       @JvmName("setVersion")
@@ -52,14 +52,14 @@ object ResponseInfoKt {
     /**
      * <code>string version = 2;</code>
      */
-    fun clearVersion() {
+    public fun clearVersion() {
       _builder.clearVersion()
     }
 
     /**
      * <code>uint64 app_version = 3;</code>
      */
-    var appVersion: kotlin.Long
+    public var appVersion: kotlin.Long
       @JvmName("getAppVersion")
       get() = _builder.getAppVersion()
       @JvmName("setAppVersion")
@@ -69,14 +69,14 @@ object ResponseInfoKt {
     /**
      * <code>uint64 app_version = 3;</code>
      */
-    fun clearAppVersion() {
+    public fun clearAppVersion() {
       _builder.clearAppVersion()
     }
 
     /**
      * <code>int64 last_block_height = 4;</code>
      */
-    var lastBlockHeight: kotlin.Long
+    public var lastBlockHeight: kotlin.Long
       @JvmName("getLastBlockHeight")
       get() = _builder.getLastBlockHeight()
       @JvmName("setLastBlockHeight")
@@ -86,14 +86,14 @@ object ResponseInfoKt {
     /**
      * <code>int64 last_block_height = 4;</code>
      */
-    fun clearLastBlockHeight() {
+    public fun clearLastBlockHeight() {
       _builder.clearLastBlockHeight()
     }
 
     /**
      * <code>bytes last_block_app_hash = 5;</code>
      */
-    var lastBlockAppHash: com.google.protobuf.ByteString
+    public var lastBlockAppHash: com.google.protobuf.ByteString
       @JvmName("getLastBlockAppHash")
       get() = _builder.getLastBlockAppHash()
       @JvmName("setLastBlockAppHash")
@@ -103,11 +103,11 @@ object ResponseInfoKt {
     /**
      * <code>bytes last_block_app_hash = 5;</code>
      */
-    fun clearLastBlockAppHash() {
+    public fun clearLastBlockAppHash() {
       _builder.clearLastBlockAppHash()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.ResponseInfo.copy(block: tendermint.abci.ResponseInfoKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseInfo =
+public inline fun tendermint.abci.Types.ResponseInfo.copy(block: tendermint.abci.ResponseInfoKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseInfo =
   tendermint.abci.ResponseInfoKt.Dsl._create(this.toBuilder()).apply { block() }._build()

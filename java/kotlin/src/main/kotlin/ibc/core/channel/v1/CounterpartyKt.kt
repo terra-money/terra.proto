@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun counterparty(block: ibc.core.channel.v1.CounterpartyKt.Dsl.() -> Unit): ibc.core.channel.v1.ChannelOuterClass.Counterparty =
+public inline fun counterparty(block: ibc.core.channel.v1.CounterpartyKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.ChannelOuterClass.Counterparty =
   ibc.core.channel.v1.CounterpartyKt.Dsl._create(ibc.core.channel.v1.ChannelOuterClass.Counterparty.newBuilder()).apply { block() }._build()
-object CounterpartyKt {
+public object CounterpartyKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.ChannelOuterClass.Counterparty.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.ChannelOuterClass.Counterparty.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.ChannelOuterClass.Counterparty.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object CounterpartyKt {
      *
      * <code>string port_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"port_id&#92;""];</code>
      */
-    var portId: kotlin.String
+    public var portId: kotlin.String
       @JvmName("getPortId")
       get() = _builder.getPortId()
       @JvmName("setPortId")
@@ -43,7 +43,7 @@ object CounterpartyKt {
      *
      * <code>string port_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"port_id&#92;""];</code>
      */
-    fun clearPortId() {
+    public fun clearPortId() {
       _builder.clearPortId()
     }
 
@@ -54,7 +54,7 @@ object CounterpartyKt {
      *
      * <code>string channel_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
      */
-    var channelId: kotlin.String
+    public var channelId: kotlin.String
       @JvmName("getChannelId")
       get() = _builder.getChannelId()
       @JvmName("setChannelId")
@@ -68,11 +68,11 @@ object CounterpartyKt {
      *
      * <code>string channel_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
      */
-    fun clearChannelId() {
+    public fun clearChannelId() {
       _builder.clearChannelId()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.ChannelOuterClass.Counterparty.copy(block: ibc.core.channel.v1.CounterpartyKt.Dsl.() -> Unit): ibc.core.channel.v1.ChannelOuterClass.Counterparty =
+public inline fun ibc.core.channel.v1.ChannelOuterClass.Counterparty.copy(block: ibc.core.channel.v1.CounterpartyKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.ChannelOuterClass.Counterparty =
   ibc.core.channel.v1.CounterpartyKt.Dsl._create(this.toBuilder()).apply { block() }._build()

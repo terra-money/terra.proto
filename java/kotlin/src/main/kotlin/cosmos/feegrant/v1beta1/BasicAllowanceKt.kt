@@ -4,15 +4,15 @@
 package cosmos.feegrant.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun basicAllowance(block: cosmos.feegrant.v1beta1.BasicAllowanceKt.Dsl.() -> Unit): cosmos.feegrant.v1beta1.Feegrant.BasicAllowance =
+public inline fun basicAllowance(block: cosmos.feegrant.v1beta1.BasicAllowanceKt.Dsl.() -> kotlin.Unit): cosmos.feegrant.v1beta1.Feegrant.BasicAllowance =
   cosmos.feegrant.v1beta1.BasicAllowanceKt.Dsl._create(cosmos.feegrant.v1beta1.Feegrant.BasicAllowance.newBuilder()).apply { block() }._build()
-object BasicAllowanceKt {
+public object BasicAllowanceKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.feegrant.v1beta1.Feegrant.BasicAllowance.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.feegrant.v1beta1.Feegrant.BasicAllowance.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.feegrant.v1beta1.Feegrant.BasicAllowance.Builder): Dsl = Dsl(builder)
@@ -27,7 +27,7 @@ object BasicAllowanceKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class SpendLimitProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class SpendLimitProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * spend_limit specifies the maximum amount of tokens that can be spent
@@ -37,7 +37,7 @@ object BasicAllowanceKt {
      *
      * <code>repeated .cosmos.base.v1beta1.Coin spend_limit = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-     val spendLimit: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SpendLimitProxy>
+     public val spendLimit: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SpendLimitProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getSpendLimitList()
@@ -54,7 +54,7 @@ object BasicAllowanceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addSpendLimit")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SpendLimitProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SpendLimitProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.addSpendLimit(value)
     }/**
      * <pre>
@@ -68,7 +68,8 @@ object BasicAllowanceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignSpendLimit")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SpendLimitProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SpendLimitProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       add(value)
     }/**
      * <pre>
@@ -82,7 +83,7 @@ object BasicAllowanceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllSpendLimit")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SpendLimitProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SpendLimitProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       _builder.addAllSpendLimit(values)
     }/**
      * <pre>
@@ -96,7 +97,8 @@ object BasicAllowanceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllSpendLimit")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SpendLimitProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SpendLimitProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       addAll(values)
     }/**
      * <pre>
@@ -111,7 +113,7 @@ object BasicAllowanceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setSpendLimit")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SpendLimitProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SpendLimitProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.setSpendLimit(index, value)
     }/**
      * <pre>
@@ -124,7 +126,7 @@ object BasicAllowanceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearSpendLimit")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SpendLimitProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SpendLimitProxy>.clear() {
       _builder.clearSpendLimit()
     }
     /**
@@ -134,7 +136,7 @@ object BasicAllowanceKt {
      *
      * <code>.google.protobuf.Timestamp expiration = 2 [(.gogoproto.stdtime) = true];</code>
      */
-    var expiration: com.google.protobuf.Timestamp
+    public var expiration: com.google.protobuf.Timestamp
       @JvmName("getExpiration")
       get() = _builder.getExpiration()
       @JvmName("setExpiration")
@@ -148,7 +150,7 @@ object BasicAllowanceKt {
      *
      * <code>.google.protobuf.Timestamp expiration = 2 [(.gogoproto.stdtime) = true];</code>
      */
-    fun clearExpiration() {
+    public fun clearExpiration() {
       _builder.clearExpiration()
     }
     /**
@@ -159,11 +161,11 @@ object BasicAllowanceKt {
      * <code>.google.protobuf.Timestamp expiration = 2 [(.gogoproto.stdtime) = true];</code>
      * @return Whether the expiration field is set.
      */
-    fun hasExpiration(): kotlin.Boolean {
+    public fun hasExpiration(): kotlin.Boolean {
       return _builder.hasExpiration()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.feegrant.v1beta1.Feegrant.BasicAllowance.copy(block: cosmos.feegrant.v1beta1.BasicAllowanceKt.Dsl.() -> Unit): cosmos.feegrant.v1beta1.Feegrant.BasicAllowance =
+public inline fun cosmos.feegrant.v1beta1.Feegrant.BasicAllowance.copy(block: cosmos.feegrant.v1beta1.BasicAllowanceKt.Dsl.() -> kotlin.Unit): cosmos.feegrant.v1beta1.Feegrant.BasicAllowance =
   cosmos.feegrant.v1beta1.BasicAllowanceKt.Dsl._create(this.toBuilder()).apply { block() }._build()

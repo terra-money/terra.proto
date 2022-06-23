@@ -4,15 +4,15 @@
 package tendermint.crypto;
 
 @kotlin.jvm.JvmSynthetic
-inline fun dominoOp(block: tendermint.crypto.DominoOpKt.Dsl.() -> Unit): tendermint.crypto.ProofOuterClass.DominoOp =
+public inline fun dominoOp(block: tendermint.crypto.DominoOpKt.Dsl.() -> kotlin.Unit): tendermint.crypto.ProofOuterClass.DominoOp =
   tendermint.crypto.DominoOpKt.Dsl._create(tendermint.crypto.ProofOuterClass.DominoOp.newBuilder()).apply { block() }._build()
-object DominoOpKt {
+public object DominoOpKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.crypto.ProofOuterClass.DominoOp.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.crypto.ProofOuterClass.DominoOp.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.crypto.ProofOuterClass.DominoOp.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object DominoOpKt {
     /**
      * <code>string key = 1;</code>
      */
-    var key: kotlin.String
+    public var key: kotlin.String
       @JvmName("getKey")
       get() = _builder.getKey()
       @JvmName("setKey")
@@ -35,14 +35,14 @@ object DominoOpKt {
     /**
      * <code>string key = 1;</code>
      */
-    fun clearKey() {
+    public fun clearKey() {
       _builder.clearKey()
     }
 
     /**
      * <code>string input = 2;</code>
      */
-    var input: kotlin.String
+    public var input: kotlin.String
       @JvmName("getInput")
       get() = _builder.getInput()
       @JvmName("setInput")
@@ -52,14 +52,14 @@ object DominoOpKt {
     /**
      * <code>string input = 2;</code>
      */
-    fun clearInput() {
+    public fun clearInput() {
       _builder.clearInput()
     }
 
     /**
      * <code>string output = 3;</code>
      */
-    var output: kotlin.String
+    public var output: kotlin.String
       @JvmName("getOutput")
       get() = _builder.getOutput()
       @JvmName("setOutput")
@@ -69,11 +69,11 @@ object DominoOpKt {
     /**
      * <code>string output = 3;</code>
      */
-    fun clearOutput() {
+    public fun clearOutput() {
       _builder.clearOutput()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.crypto.ProofOuterClass.DominoOp.copy(block: tendermint.crypto.DominoOpKt.Dsl.() -> Unit): tendermint.crypto.ProofOuterClass.DominoOp =
+public inline fun tendermint.crypto.ProofOuterClass.DominoOp.copy(block: tendermint.crypto.DominoOpKt.Dsl.() -> kotlin.Unit): tendermint.crypto.ProofOuterClass.DominoOp =
   tendermint.crypto.DominoOpKt.Dsl._create(this.toBuilder()).apply { block() }._build()

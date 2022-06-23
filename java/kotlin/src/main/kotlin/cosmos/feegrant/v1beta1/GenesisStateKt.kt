@@ -4,15 +4,15 @@
 package cosmos.feegrant.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun genesisState(block: cosmos.feegrant.v1beta1.GenesisStateKt.Dsl.() -> Unit): cosmos.feegrant.v1beta1.Genesis.GenesisState =
+public inline fun genesisState(block: cosmos.feegrant.v1beta1.GenesisStateKt.Dsl.() -> kotlin.Unit): cosmos.feegrant.v1beta1.Genesis.GenesisState =
   cosmos.feegrant.v1beta1.GenesisStateKt.Dsl._create(cosmos.feegrant.v1beta1.Genesis.GenesisState.newBuilder()).apply { block() }._build()
-object GenesisStateKt {
+public object GenesisStateKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.feegrant.v1beta1.Genesis.GenesisState.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.feegrant.v1beta1.Genesis.GenesisState.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.feegrant.v1beta1.Genesis.GenesisState.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object GenesisStateKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class AllowancesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class AllowancesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.feegrant.v1beta1.Grant allowances = 1 [(.gogoproto.nullable) = false];</code>
      */
-     val allowances: com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>
+     public val allowances: com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getAllowancesList()
@@ -42,7 +42,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllowances")
-    fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.add(value: cosmos.feegrant.v1beta1.Feegrant.Grant) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.add(value: cosmos.feegrant.v1beta1.Feegrant.Grant) {
       _builder.addAllowances(value)
     }/**
      * <code>repeated .cosmos.feegrant.v1beta1.Grant allowances = 1 [(.gogoproto.nullable) = false];</code>
@@ -50,7 +50,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllowances")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.plusAssign(value: cosmos.feegrant.v1beta1.Feegrant.Grant) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.plusAssign(value: cosmos.feegrant.v1beta1.Feegrant.Grant) {
       add(value)
     }/**
      * <code>repeated .cosmos.feegrant.v1beta1.Grant allowances = 1 [(.gogoproto.nullable) = false];</code>
@@ -58,7 +59,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllAllowances")
-    fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.feegrant.v1beta1.Feegrant.Grant>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.feegrant.v1beta1.Feegrant.Grant>) {
       _builder.addAllAllowances(values)
     }/**
      * <code>repeated .cosmos.feegrant.v1beta1.Grant allowances = 1 [(.gogoproto.nullable) = false];</code>
@@ -66,7 +67,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllAllowances")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.feegrant.v1beta1.Feegrant.Grant>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.feegrant.v1beta1.Feegrant.Grant>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.feegrant.v1beta1.Grant allowances = 1 [(.gogoproto.nullable) = false];</code>
@@ -75,17 +77,17 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setAllowances")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.set(index: kotlin.Int, value: cosmos.feegrant.v1beta1.Feegrant.Grant) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.set(index: kotlin.Int, value: cosmos.feegrant.v1beta1.Feegrant.Grant) {
       _builder.setAllowances(index, value)
     }/**
      * <code>repeated .cosmos.feegrant.v1beta1.Grant allowances = 1 [(.gogoproto.nullable) = false];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearAllowances")
-    fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.clear() {
       _builder.clearAllowances()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.feegrant.v1beta1.Genesis.GenesisState.copy(block: cosmos.feegrant.v1beta1.GenesisStateKt.Dsl.() -> Unit): cosmos.feegrant.v1beta1.Genesis.GenesisState =
+public inline fun cosmos.feegrant.v1beta1.Genesis.GenesisState.copy(block: cosmos.feegrant.v1beta1.GenesisStateKt.Dsl.() -> kotlin.Unit): cosmos.feegrant.v1beta1.Genesis.GenesisState =
   cosmos.feegrant.v1beta1.GenesisStateKt.Dsl._create(this.toBuilder()).apply { block() }._build()

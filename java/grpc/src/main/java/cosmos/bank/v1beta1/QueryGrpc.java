@@ -8,7 +8,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.40.1)",
+    value = "by gRPC proto compiler (version 1.47.0)",
     comments = "Source: cosmos/bank/v1beta1/query.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class QueryGrpc {
@@ -78,6 +78,37 @@ public final class QueryGrpc {
       }
     }
     return getAllBalancesMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest,
+      cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse> getSpendableBalancesMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "SpendableBalances",
+      requestType = cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest.class,
+      responseType = cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest,
+      cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse> getSpendableBalancesMethod() {
+    io.grpc.MethodDescriptor<cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest, cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse> getSpendableBalancesMethod;
+    if ((getSpendableBalancesMethod = QueryGrpc.getSpendableBalancesMethod) == null) {
+      synchronized (QueryGrpc.class) {
+        if ((getSpendableBalancesMethod = QueryGrpc.getSpendableBalancesMethod) == null) {
+          QueryGrpc.getSpendableBalancesMethod = getSpendableBalancesMethod =
+              io.grpc.MethodDescriptor.<cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest, cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SpendableBalances"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new QueryMethodDescriptorSupplier("SpendableBalances"))
+              .build();
+        }
+      }
+    }
+    return getSpendableBalancesMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest,
@@ -308,6 +339,17 @@ public final class QueryGrpc {
 
     /**
      * <pre>
+     * SpendableBalances queries the spenable balance of all coins for a single
+     * account.
+     * </pre>
+     */
+    public void spendableBalances(cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest request,
+        io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSpendableBalancesMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
      * TotalSupply queries the total supply of all coins.
      * </pre>
      */
@@ -372,6 +414,13 @@ public final class QueryGrpc {
                 cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesRequest,
                 cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesResponse>(
                   this, METHODID_ALL_BALANCES)))
+          .addMethod(
+            getSpendableBalancesMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest,
+                cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse>(
+                  this, METHODID_SPENDABLE_BALANCES)))
           .addMethod(
             getTotalSupplyMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -448,6 +497,18 @@ public final class QueryGrpc {
         io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAllBalancesMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * SpendableBalances queries the spenable balance of all coins for a single
+     * account.
+     * </pre>
+     */
+    public void spendableBalances(cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest request,
+        io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getSpendableBalancesMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -545,6 +606,17 @@ public final class QueryGrpc {
 
     /**
      * <pre>
+     * SpendableBalances queries the spenable balance of all coins for a single
+     * account.
+     * </pre>
+     */
+    public cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse spendableBalances(cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getSpendableBalancesMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      * TotalSupply queries the total supply of all coins.
      * </pre>
      */
@@ -635,6 +707,18 @@ public final class QueryGrpc {
 
     /**
      * <pre>
+     * SpendableBalances queries the spenable balance of all coins for a single
+     * account.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse> spendableBalances(
+        cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getSpendableBalancesMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
      * TotalSupply queries the total supply of all coins.
      * </pre>
      */
@@ -691,11 +775,12 @@ public final class QueryGrpc {
 
   private static final int METHODID_BALANCE = 0;
   private static final int METHODID_ALL_BALANCES = 1;
-  private static final int METHODID_TOTAL_SUPPLY = 2;
-  private static final int METHODID_SUPPLY_OF = 3;
-  private static final int METHODID_PARAMS = 4;
-  private static final int METHODID_DENOM_METADATA = 5;
-  private static final int METHODID_DENOMS_METADATA = 6;
+  private static final int METHODID_SPENDABLE_BALANCES = 2;
+  private static final int METHODID_TOTAL_SUPPLY = 3;
+  private static final int METHODID_SUPPLY_OF = 4;
+  private static final int METHODID_PARAMS = 5;
+  private static final int METHODID_DENOM_METADATA = 6;
+  private static final int METHODID_DENOMS_METADATA = 7;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -721,6 +806,10 @@ public final class QueryGrpc {
         case METHODID_ALL_BALANCES:
           serviceImpl.allBalances((cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesRequest) request,
               (io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesResponse>) responseObserver);
+          break;
+        case METHODID_SPENDABLE_BALANCES:
+          serviceImpl.spendableBalances((cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest) request,
+              (io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse>) responseObserver);
           break;
         case METHODID_TOTAL_SUPPLY:
           serviceImpl.totalSupply((cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest) request,
@@ -805,6 +894,7 @@ public final class QueryGrpc {
               .setSchemaDescriptor(new QueryFileDescriptorSupplier())
               .addMethod(getBalanceMethod())
               .addMethod(getAllBalancesMethod())
+              .addMethod(getSpendableBalancesMethod())
               .addMethod(getTotalSupplyMethod())
               .addMethod(getSupplyOfMethod())
               .addMethod(getParamsMethod())

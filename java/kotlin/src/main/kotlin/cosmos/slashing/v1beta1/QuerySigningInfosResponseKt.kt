@@ -4,15 +4,15 @@
 package cosmos.slashing.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun querySigningInfosResponse(block: cosmos.slashing.v1beta1.QuerySigningInfosResponseKt.Dsl.() -> Unit): cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfosResponse =
+public inline fun querySigningInfosResponse(block: cosmos.slashing.v1beta1.QuerySigningInfosResponseKt.Dsl.() -> kotlin.Unit): cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfosResponse =
   cosmos.slashing.v1beta1.QuerySigningInfosResponseKt.Dsl._create(cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfosResponse.newBuilder()).apply { block() }._build()
-object QuerySigningInfosResponseKt {
+public object QuerySigningInfosResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfosResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfosResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfosResponse.Builder): Dsl = Dsl(builder)
@@ -27,7 +27,7 @@ object QuerySigningInfosResponseKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class InfoProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class InfoProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * info is the signing info of all validators
@@ -35,7 +35,7 @@ object QuerySigningInfosResponseKt {
      *
      * <code>repeated .cosmos.slashing.v1beta1.ValidatorSigningInfo info = 1 [(.gogoproto.nullable) = false];</code>
      */
-     val info: com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo, InfoProxy>
+     public val info: com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo, InfoProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getInfoList()
@@ -50,7 +50,7 @@ object QuerySigningInfosResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addInfo")
-    fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo, InfoProxy>.add(value: cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo, InfoProxy>.add(value: cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo) {
       _builder.addInfo(value)
     }/**
      * <pre>
@@ -62,7 +62,8 @@ object QuerySigningInfosResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignInfo")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo, InfoProxy>.plusAssign(value: cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo, InfoProxy>.plusAssign(value: cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo) {
       add(value)
     }/**
      * <pre>
@@ -74,7 +75,7 @@ object QuerySigningInfosResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllInfo")
-    fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo, InfoProxy>.addAll(values: kotlin.collections.Iterable<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo, InfoProxy>.addAll(values: kotlin.collections.Iterable<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo>) {
       _builder.addAllInfo(values)
     }/**
      * <pre>
@@ -86,7 +87,8 @@ object QuerySigningInfosResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllInfo")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo, InfoProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo, InfoProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo>) {
       addAll(values)
     }/**
      * <pre>
@@ -99,7 +101,7 @@ object QuerySigningInfosResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setInfo")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo, InfoProxy>.set(index: kotlin.Int, value: cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo, InfoProxy>.set(index: kotlin.Int, value: cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo) {
       _builder.setInfo(index, value)
     }/**
      * <pre>
@@ -110,13 +112,13 @@ object QuerySigningInfosResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearInfo")
-    fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo, InfoProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo, InfoProxy>.clear() {
       _builder.clearInfo()
     }
     /**
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageResponse
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageResponse
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -126,18 +128,18 @@ object QuerySigningInfosResponseKt {
     /**
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfosResponse.copy(block: cosmos.slashing.v1beta1.QuerySigningInfosResponseKt.Dsl.() -> Unit): cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfosResponse =
+public inline fun cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfosResponse.copy(block: cosmos.slashing.v1beta1.QuerySigningInfosResponseKt.Dsl.() -> kotlin.Unit): cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfosResponse =
   cosmos.slashing.v1beta1.QuerySigningInfosResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

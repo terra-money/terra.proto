@@ -4,15 +4,15 @@
 package cosmos.staking.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgCreateValidator(block: cosmos.staking.v1beta1.MsgCreateValidatorKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Tx.MsgCreateValidator =
+public inline fun msgCreateValidator(block: cosmos.staking.v1beta1.MsgCreateValidatorKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Tx.MsgCreateValidator =
   cosmos.staking.v1beta1.MsgCreateValidatorKt.Dsl._create(cosmos.staking.v1beta1.Tx.MsgCreateValidator.newBuilder()).apply { block() }._build()
-object MsgCreateValidatorKt {
+public object MsgCreateValidatorKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.staking.v1beta1.Tx.MsgCreateValidator.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.staking.v1beta1.Tx.MsgCreateValidator.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.staking.v1beta1.Tx.MsgCreateValidator.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object MsgCreateValidatorKt {
     /**
      * <code>.cosmos.staking.v1beta1.Description description = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var description: cosmos.staking.v1beta1.Staking.Description
+    public var description: cosmos.staking.v1beta1.Staking.Description
       @JvmName("getDescription")
       get() = _builder.getDescription()
       @JvmName("setDescription")
@@ -35,21 +35,21 @@ object MsgCreateValidatorKt {
     /**
      * <code>.cosmos.staking.v1beta1.Description description = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearDescription() {
+    public fun clearDescription() {
       _builder.clearDescription()
     }
     /**
      * <code>.cosmos.staking.v1beta1.Description description = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the description field is set.
      */
-    fun hasDescription(): kotlin.Boolean {
+    public fun hasDescription(): kotlin.Boolean {
       return _builder.hasDescription()
     }
 
     /**
      * <code>.cosmos.staking.v1beta1.CommissionRates commission = 2 [(.gogoproto.nullable) = false];</code>
      */
-    var commission: cosmos.staking.v1beta1.Staking.CommissionRates
+    public var commission: cosmos.staking.v1beta1.Staking.CommissionRates
       @JvmName("getCommission")
       get() = _builder.getCommission()
       @JvmName("setCommission")
@@ -59,21 +59,21 @@ object MsgCreateValidatorKt {
     /**
      * <code>.cosmos.staking.v1beta1.CommissionRates commission = 2 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearCommission() {
+    public fun clearCommission() {
       _builder.clearCommission()
     }
     /**
      * <code>.cosmos.staking.v1beta1.CommissionRates commission = 2 [(.gogoproto.nullable) = false];</code>
      * @return Whether the commission field is set.
      */
-    fun hasCommission(): kotlin.Boolean {
+    public fun hasCommission(): kotlin.Boolean {
       return _builder.hasCommission()
     }
 
     /**
      * <code>string min_self_delegation = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"min_self_delegation&#92;""];</code>
      */
-    var minSelfDelegation: kotlin.String
+    public var minSelfDelegation: kotlin.String
       @JvmName("getMinSelfDelegation")
       get() = _builder.getMinSelfDelegation()
       @JvmName("setMinSelfDelegation")
@@ -83,14 +83,14 @@ object MsgCreateValidatorKt {
     /**
      * <code>string min_self_delegation = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"min_self_delegation&#92;""];</code>
      */
-    fun clearMinSelfDelegation() {
+    public fun clearMinSelfDelegation() {
       _builder.clearMinSelfDelegation()
     }
 
     /**
      * <code>string delegator_address = 4 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      */
-    var delegatorAddress: kotlin.String
+    public var delegatorAddress: kotlin.String
       @JvmName("getDelegatorAddress")
       get() = _builder.getDelegatorAddress()
       @JvmName("setDelegatorAddress")
@@ -100,14 +100,14 @@ object MsgCreateValidatorKt {
     /**
      * <code>string delegator_address = 4 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      */
-    fun clearDelegatorAddress() {
+    public fun clearDelegatorAddress() {
       _builder.clearDelegatorAddress()
     }
 
     /**
      * <code>string validator_address = 5 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
      */
-    var validatorAddress: kotlin.String
+    public var validatorAddress: kotlin.String
       @JvmName("getValidatorAddress")
       get() = _builder.getValidatorAddress()
       @JvmName("setValidatorAddress")
@@ -117,14 +117,14 @@ object MsgCreateValidatorKt {
     /**
      * <code>string validator_address = 5 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
      */
-    fun clearValidatorAddress() {
+    public fun clearValidatorAddress() {
       _builder.clearValidatorAddress()
     }
 
     /**
      * <code>.google.protobuf.Any pubkey = 6 [(.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
      */
-    var pubkey: com.google.protobuf.Any
+    public var pubkey: com.google.protobuf.Any
       @JvmName("getPubkey")
       get() = _builder.getPubkey()
       @JvmName("setPubkey")
@@ -134,21 +134,21 @@ object MsgCreateValidatorKt {
     /**
      * <code>.google.protobuf.Any pubkey = 6 [(.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
      */
-    fun clearPubkey() {
+    public fun clearPubkey() {
       _builder.clearPubkey()
     }
     /**
      * <code>.google.protobuf.Any pubkey = 6 [(.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
      * @return Whether the pubkey field is set.
      */
-    fun hasPubkey(): kotlin.Boolean {
+    public fun hasPubkey(): kotlin.Boolean {
       return _builder.hasPubkey()
     }
 
     /**
      * <code>.cosmos.base.v1beta1.Coin value = 7 [(.gogoproto.nullable) = false];</code>
      */
-    var value: cosmos.base.v1beta1.CoinOuterClass.Coin
+    public var value: cosmos.base.v1beta1.CoinOuterClass.Coin
       @JvmName("getValue")
       get() = _builder.getValue()
       @JvmName("setValue")
@@ -158,18 +158,18 @@ object MsgCreateValidatorKt {
     /**
      * <code>.cosmos.base.v1beta1.Coin value = 7 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearValue() {
+    public fun clearValue() {
       _builder.clearValue()
     }
     /**
      * <code>.cosmos.base.v1beta1.Coin value = 7 [(.gogoproto.nullable) = false];</code>
      * @return Whether the value field is set.
      */
-    fun hasValue(): kotlin.Boolean {
+    public fun hasValue(): kotlin.Boolean {
       return _builder.hasValue()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.staking.v1beta1.Tx.MsgCreateValidator.copy(block: cosmos.staking.v1beta1.MsgCreateValidatorKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Tx.MsgCreateValidator =
+public inline fun cosmos.staking.v1beta1.Tx.MsgCreateValidator.copy(block: cosmos.staking.v1beta1.MsgCreateValidatorKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Tx.MsgCreateValidator =
   cosmos.staking.v1beta1.MsgCreateValidatorKt.Dsl._create(this.toBuilder()).apply { block() }._build()

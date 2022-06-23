@@ -4,15 +4,15 @@
 package cosmos.base.abci.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgData(block: cosmos.base.abci.v1beta1.MsgDataKt.Dsl.() -> Unit): cosmos.base.abci.v1beta1.Abci.MsgData =
+public inline fun msgData(block: cosmos.base.abci.v1beta1.MsgDataKt.Dsl.() -> kotlin.Unit): cosmos.base.abci.v1beta1.Abci.MsgData =
   cosmos.base.abci.v1beta1.MsgDataKt.Dsl._create(cosmos.base.abci.v1beta1.Abci.MsgData.newBuilder()).apply { block() }._build()
-object MsgDataKt {
+public object MsgDataKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.abci.v1beta1.Abci.MsgData.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.abci.v1beta1.Abci.MsgData.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.abci.v1beta1.Abci.MsgData.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object MsgDataKt {
     /**
      * <code>string msg_type = 1;</code>
      */
-    var msgType: kotlin.String
+    public var msgType: kotlin.String
       @JvmName("getMsgType")
       get() = _builder.getMsgType()
       @JvmName("setMsgType")
@@ -35,14 +35,14 @@ object MsgDataKt {
     /**
      * <code>string msg_type = 1;</code>
      */
-    fun clearMsgType() {
+    public fun clearMsgType() {
       _builder.clearMsgType()
     }
 
     /**
      * <code>bytes data = 2;</code>
      */
-    var data: com.google.protobuf.ByteString
+    public var data: com.google.protobuf.ByteString
       @JvmName("getData")
       get() = _builder.getData()
       @JvmName("setData")
@@ -52,11 +52,11 @@ object MsgDataKt {
     /**
      * <code>bytes data = 2;</code>
      */
-    fun clearData() {
+    public fun clearData() {
       _builder.clearData()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.abci.v1beta1.Abci.MsgData.copy(block: cosmos.base.abci.v1beta1.MsgDataKt.Dsl.() -> Unit): cosmos.base.abci.v1beta1.Abci.MsgData =
+public inline fun cosmos.base.abci.v1beta1.Abci.MsgData.copy(block: cosmos.base.abci.v1beta1.MsgDataKt.Dsl.() -> kotlin.Unit): cosmos.base.abci.v1beta1.Abci.MsgData =
   cosmos.base.abci.v1beta1.MsgDataKt.Dsl._create(this.toBuilder()).apply { block() }._build()

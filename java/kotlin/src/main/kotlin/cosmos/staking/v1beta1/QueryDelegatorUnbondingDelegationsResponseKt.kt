@@ -4,15 +4,15 @@
 package cosmos.staking.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryDelegatorUnbondingDelegationsResponse(block: cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsResponseKt.Dsl.() -> Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsResponse =
+public inline fun queryDelegatorUnbondingDelegationsResponse(block: cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsResponseKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsResponse =
   cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsResponseKt.Dsl._create(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsResponse.newBuilder()).apply { block() }._build()
-object QueryDelegatorUnbondingDelegationsResponseKt {
+public object QueryDelegatorUnbondingDelegationsResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsResponse.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object QueryDelegatorUnbondingDelegationsResponseKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class UnbondingResponsesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class UnbondingResponsesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegation unbonding_responses = 1 [(.gogoproto.nullable) = false];</code>
      */
-     val unbondingResponses: com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.UnbondingDelegation, UnbondingResponsesProxy>
+     public val unbondingResponses: com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.UnbondingDelegation, UnbondingResponsesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getUnbondingResponsesList()
@@ -42,7 +42,7 @@ object QueryDelegatorUnbondingDelegationsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addUnbondingResponses")
-    fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.UnbondingDelegation, UnbondingResponsesProxy>.add(value: cosmos.staking.v1beta1.Staking.UnbondingDelegation) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.UnbondingDelegation, UnbondingResponsesProxy>.add(value: cosmos.staking.v1beta1.Staking.UnbondingDelegation) {
       _builder.addUnbondingResponses(value)
     }/**
      * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegation unbonding_responses = 1 [(.gogoproto.nullable) = false];</code>
@@ -50,7 +50,8 @@ object QueryDelegatorUnbondingDelegationsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignUnbondingResponses")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.UnbondingDelegation, UnbondingResponsesProxy>.plusAssign(value: cosmos.staking.v1beta1.Staking.UnbondingDelegation) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.UnbondingDelegation, UnbondingResponsesProxy>.plusAssign(value: cosmos.staking.v1beta1.Staking.UnbondingDelegation) {
       add(value)
     }/**
      * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegation unbonding_responses = 1 [(.gogoproto.nullable) = false];</code>
@@ -58,7 +59,7 @@ object QueryDelegatorUnbondingDelegationsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllUnbondingResponses")
-    fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.UnbondingDelegation, UnbondingResponsesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.staking.v1beta1.Staking.UnbondingDelegation>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.UnbondingDelegation, UnbondingResponsesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.staking.v1beta1.Staking.UnbondingDelegation>) {
       _builder.addAllUnbondingResponses(values)
     }/**
      * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegation unbonding_responses = 1 [(.gogoproto.nullable) = false];</code>
@@ -66,7 +67,8 @@ object QueryDelegatorUnbondingDelegationsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllUnbondingResponses")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.UnbondingDelegation, UnbondingResponsesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.staking.v1beta1.Staking.UnbondingDelegation>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.UnbondingDelegation, UnbondingResponsesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.staking.v1beta1.Staking.UnbondingDelegation>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegation unbonding_responses = 1 [(.gogoproto.nullable) = false];</code>
@@ -75,14 +77,14 @@ object QueryDelegatorUnbondingDelegationsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setUnbondingResponses")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.UnbondingDelegation, UnbondingResponsesProxy>.set(index: kotlin.Int, value: cosmos.staking.v1beta1.Staking.UnbondingDelegation) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.UnbondingDelegation, UnbondingResponsesProxy>.set(index: kotlin.Int, value: cosmos.staking.v1beta1.Staking.UnbondingDelegation) {
       _builder.setUnbondingResponses(index, value)
     }/**
      * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegation unbonding_responses = 1 [(.gogoproto.nullable) = false];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearUnbondingResponses")
-    fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.UnbondingDelegation, UnbondingResponsesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.UnbondingDelegation, UnbondingResponsesProxy>.clear() {
       _builder.clearUnbondingResponses()
     }
     /**
@@ -92,7 +94,7 @@ object QueryDelegatorUnbondingDelegationsResponseKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageResponse
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageResponse
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -106,7 +108,7 @@ object QueryDelegatorUnbondingDelegationsResponseKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
@@ -117,11 +119,11 @@ object QueryDelegatorUnbondingDelegationsResponseKt {
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsResponse.copy(block: cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsResponseKt.Dsl.() -> Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsResponse =
+public inline fun cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsResponse.copy(block: cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsResponseKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsResponse =
   cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

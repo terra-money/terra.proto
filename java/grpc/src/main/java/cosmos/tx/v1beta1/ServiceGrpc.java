@@ -8,7 +8,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.40.1)",
+    value = "by gRPC proto compiler (version 1.47.0)",
     comments = "Source: cosmos/tx/v1beta1/service.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class ServiceGrpc {
@@ -142,6 +142,37 @@ public final class ServiceGrpc {
     return getGetTxsEventMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsRequest,
+      cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsResponse> getGetBlockWithTxsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetBlockWithTxs",
+      requestType = cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsRequest.class,
+      responseType = cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsRequest,
+      cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsResponse> getGetBlockWithTxsMethod() {
+    io.grpc.MethodDescriptor<cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsRequest, cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsResponse> getGetBlockWithTxsMethod;
+    if ((getGetBlockWithTxsMethod = ServiceGrpc.getGetBlockWithTxsMethod) == null) {
+      synchronized (ServiceGrpc.class) {
+        if ((getGetBlockWithTxsMethod = ServiceGrpc.getGetBlockWithTxsMethod) == null) {
+          ServiceGrpc.getGetBlockWithTxsMethod = getGetBlockWithTxsMethod =
+              io.grpc.MethodDescriptor.<cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsRequest, cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetBlockWithTxs"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new ServiceMethodDescriptorSupplier("GetBlockWithTxs"))
+              .build();
+        }
+      }
+    }
+    return getGetBlockWithTxsMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -233,6 +264,17 @@ public final class ServiceGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetTxsEventMethod(), responseObserver);
     }
 
+    /**
+     * <pre>
+     * GetBlockWithTxs fetches a block with decoded txs.
+     * Since: cosmos-sdk 0.45.2
+     * </pre>
+     */
+    public void getBlockWithTxs(cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsRequest request,
+        io.grpc.stub.StreamObserver<cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetBlockWithTxsMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -263,6 +305,13 @@ public final class ServiceGrpc {
                 cosmos.tx.v1beta1.ServiceOuterClass.GetTxsEventRequest,
                 cosmos.tx.v1beta1.ServiceOuterClass.GetTxsEventResponse>(
                   this, METHODID_GET_TXS_EVENT)))
+          .addMethod(
+            getGetBlockWithTxsMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsRequest,
+                cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsResponse>(
+                  this, METHODID_GET_BLOCK_WITH_TXS)))
           .build();
     }
   }
@@ -327,6 +376,18 @@ public final class ServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetTxsEventMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     * GetBlockWithTxs fetches a block with decoded txs.
+     * Since: cosmos-sdk 0.45.2
+     * </pre>
+     */
+    public void getBlockWithTxs(cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsRequest request,
+        io.grpc.stub.StreamObserver<cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getGetBlockWithTxsMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -384,6 +445,17 @@ public final class ServiceGrpc {
     public cosmos.tx.v1beta1.ServiceOuterClass.GetTxsEventResponse getTxsEvent(cosmos.tx.v1beta1.ServiceOuterClass.GetTxsEventRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetTxsEventMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * GetBlockWithTxs fetches a block with decoded txs.
+     * Since: cosmos-sdk 0.45.2
+     * </pre>
+     */
+    public cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsResponse getBlockWithTxs(cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGetBlockWithTxsMethod(), getCallOptions(), request);
     }
   }
 
@@ -447,12 +519,25 @@ public final class ServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetTxsEventMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     * GetBlockWithTxs fetches a block with decoded txs.
+     * Since: cosmos-sdk 0.45.2
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsResponse> getBlockWithTxs(
+        cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getGetBlockWithTxsMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SIMULATE = 0;
   private static final int METHODID_GET_TX = 1;
   private static final int METHODID_BROADCAST_TX = 2;
   private static final int METHODID_GET_TXS_EVENT = 3;
+  private static final int METHODID_GET_BLOCK_WITH_TXS = 4;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -486,6 +571,10 @@ public final class ServiceGrpc {
         case METHODID_GET_TXS_EVENT:
           serviceImpl.getTxsEvent((cosmos.tx.v1beta1.ServiceOuterClass.GetTxsEventRequest) request,
               (io.grpc.stub.StreamObserver<cosmos.tx.v1beta1.ServiceOuterClass.GetTxsEventResponse>) responseObserver);
+          break;
+        case METHODID_GET_BLOCK_WITH_TXS:
+          serviceImpl.getBlockWithTxs((cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsRequest) request,
+              (io.grpc.stub.StreamObserver<cosmos.tx.v1beta1.ServiceOuterClass.GetBlockWithTxsResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -552,6 +641,7 @@ public final class ServiceGrpc {
               .addMethod(getGetTxMethod())
               .addMethod(getBroadcastTxMethod())
               .addMethod(getGetTxsEventMethod())
+              .addMethod(getGetBlockWithTxsMethod())
               .build();
         }
       }

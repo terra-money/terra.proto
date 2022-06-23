@@ -229,10 +229,10 @@ public final class CoinOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDenomBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(denom_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, denom_);
       }
-      if (!getAmountBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(amount_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, amount_);
       }
       unknownFields.writeTo(output);
@@ -244,10 +244,10 @@ public final class CoinOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDenomBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(denom_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, denom_);
       }
-      if (!getAmountBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(amount_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, amount_);
       }
       size += unknownFields.getSerializedSize();
@@ -959,10 +959,10 @@ public final class CoinOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDenomBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(denom_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, denom_);
       }
-      if (!getAmountBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(amount_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, amount_);
       }
       unknownFields.writeTo(output);
@@ -974,10 +974,10 @@ public final class CoinOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDenomBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(denom_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, denom_);
       }
-      if (!getAmountBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(amount_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, amount_);
       }
       size += unknownFields.getSerializedSize();
@@ -1630,7 +1630,7 @@ public final class CoinOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getIntBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(int_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, int_);
       }
       unknownFields.writeTo(output);
@@ -1642,7 +1642,7 @@ public final class CoinOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getIntBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(int_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, int_);
       }
       size += unknownFields.getSerializedSize();
@@ -2206,7 +2206,7 @@ public final class CoinOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDecBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(dec_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, dec_);
       }
       unknownFields.writeTo(output);
@@ -2218,7 +2218,7 @@ public final class CoinOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDecBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(dec_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, dec_);
       }
       size += unknownFields.getSerializedSize();

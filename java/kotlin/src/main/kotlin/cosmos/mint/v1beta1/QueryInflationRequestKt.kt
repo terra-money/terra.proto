@@ -4,15 +4,15 @@
 package cosmos.mint.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryInflationRequest(block: cosmos.mint.v1beta1.QueryInflationRequestKt.Dsl.() -> Unit): cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest =
+public inline fun queryInflationRequest(block: cosmos.mint.v1beta1.QueryInflationRequestKt.Dsl.() -> kotlin.Unit): cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest =
   cosmos.mint.v1beta1.QueryInflationRequestKt.Dsl._create(cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest.newBuilder()).apply { block() }._build()
-object QueryInflationRequestKt {
+public object QueryInflationRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object QueryInflationRequestKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest.copy(block: cosmos.mint.v1beta1.QueryInflationRequestKt.Dsl.() -> Unit): cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest =
+public inline fun cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest.copy(block: cosmos.mint.v1beta1.QueryInflationRequestKt.Dsl.() -> kotlin.Unit): cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest =
   cosmos.mint.v1beta1.QueryInflationRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -28,25 +28,25 @@ import kotlin.jvm.JvmStatic
 /**
  * Holder for Kotlin coroutine-based client and server APIs for cosmos.auth.v1beta1.Query.
  */
-object QueryGrpcKt {
-  const val SERVICE_NAME: String = QueryGrpc.SERVICE_NAME
+public object QueryGrpcKt {
+  public const val SERVICE_NAME: String = QueryGrpc.SERVICE_NAME
 
   @JvmStatic
-  val serviceDescriptor: ServiceDescriptor
+  public val serviceDescriptor: ServiceDescriptor
     get() = QueryGrpc.getServiceDescriptor()
 
-  val accountsMethod: MethodDescriptor<QueryOuterClass.QueryAccountsRequest,
-      QueryOuterClass.QueryAccountsResponse>
+  public val accountsMethod:
+      MethodDescriptor<QueryOuterClass.QueryAccountsRequest, QueryOuterClass.QueryAccountsResponse>
     @JvmStatic
     get() = QueryGrpc.getAccountsMethod()
 
-  val accountMethod: MethodDescriptor<QueryOuterClass.QueryAccountRequest,
-      QueryOuterClass.QueryAccountResponse>
+  public val accountMethod:
+      MethodDescriptor<QueryOuterClass.QueryAccountRequest, QueryOuterClass.QueryAccountResponse>
     @JvmStatic
     get() = QueryGrpc.getAccountMethod()
 
-  val paramsMethod: MethodDescriptor<QueryOuterClass.QueryParamsRequest,
-      QueryOuterClass.QueryParamsResponse>
+  public val paramsMethod:
+      MethodDescriptor<QueryOuterClass.QueryParamsRequest, QueryOuterClass.QueryParamsResponse>
     @JvmStatic
     get() = QueryGrpc.getParamsMethod()
 
@@ -54,11 +54,11 @@ object QueryGrpcKt {
    * A stub for issuing RPCs to a(n) cosmos.auth.v1beta1.Query service as suspending coroutines.
    */
   @StubFor(QueryGrpc::class)
-  class QueryCoroutineStub @JvmOverloads constructor(
+  public class QueryCoroutineStub @JvmOverloads constructor(
     channel: Channel,
-    callOptions: CallOptions = DEFAULT
+    callOptions: CallOptions = DEFAULT,
   ) : AbstractCoroutineStub<QueryCoroutineStub>(channel, callOptions) {
-    override fun build(channel: Channel, callOptions: CallOptions): QueryCoroutineStub =
+    public override fun build(channel: Channel, callOptions: CallOptions): QueryCoroutineStub =
         QueryCoroutineStub(channel, callOptions)
 
     /**
@@ -69,16 +69,19 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun accounts(request: QueryOuterClass.QueryAccountsRequest):
-        QueryOuterClass.QueryAccountsResponse = unaryRpc(
+    public suspend fun accounts(request: QueryOuterClass.QueryAccountsRequest, headers: Metadata =
+        Metadata()): QueryOuterClass.QueryAccountsResponse = unaryRpc(
       channel,
       QueryGrpc.getAccountsMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -87,16 +90,19 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun account(request: QueryOuterClass.QueryAccountRequest):
-        QueryOuterClass.QueryAccountResponse = unaryRpc(
+    public suspend fun account(request: QueryOuterClass.QueryAccountRequest, headers: Metadata =
+        Metadata()): QueryOuterClass.QueryAccountResponse = unaryRpc(
       channel,
       QueryGrpc.getAccountMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -105,22 +111,25 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun params(request: QueryOuterClass.QueryParamsRequest):
-        QueryOuterClass.QueryParamsResponse = unaryRpc(
+    public suspend fun params(request: QueryOuterClass.QueryParamsRequest, headers: Metadata =
+        Metadata()): QueryOuterClass.QueryParamsResponse = unaryRpc(
       channel,
       QueryGrpc.getParamsMethod(),
       request,
       callOptions,
-      Metadata()
-    )}
+      headers
+    )
+  }
 
   /**
    * Skeletal implementation of the cosmos.auth.v1beta1.Query service based on Kotlin coroutines.
    */
-  abstract class QueryCoroutineImplBase(
-    coroutineContext: CoroutineContext = EmptyCoroutineContext
+  public abstract class QueryCoroutineImplBase(
+    coroutineContext: CoroutineContext = EmptyCoroutineContext,
   ) : AbstractCoroutineServerImpl(coroutineContext) {
     /**
      * Returns the response to an RPC for cosmos.auth.v1beta1.Query.Accounts.
@@ -133,7 +142,7 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun accounts(request: QueryOuterClass.QueryAccountsRequest):
+    public open suspend fun accounts(request: QueryOuterClass.QueryAccountsRequest):
         QueryOuterClass.QueryAccountsResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.auth.v1beta1.Query.Accounts is unimplemented"))
 
@@ -148,7 +157,7 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun account(request: QueryOuterClass.QueryAccountRequest):
+    public open suspend fun account(request: QueryOuterClass.QueryAccountRequest):
         QueryOuterClass.QueryAccountResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.auth.v1beta1.Query.Account is unimplemented"))
 
@@ -163,11 +172,12 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun params(request: QueryOuterClass.QueryParamsRequest):
+    public open suspend fun params(request: QueryOuterClass.QueryParamsRequest):
         QueryOuterClass.QueryParamsResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.auth.v1beta1.Query.Params is unimplemented"))
 
-    final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())
+    public final override fun bindService(): ServerServiceDefinition =
+        builder(getServiceDescriptor())
       .addMethod(unaryServerMethodDefinition(
       context = this.context,
       descriptor = QueryGrpc.getAccountsMethod(),

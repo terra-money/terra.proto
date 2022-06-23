@@ -4,15 +4,15 @@
 package cosmos.staking.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun dVVTriplets(block: cosmos.staking.v1beta1.DVVTripletsKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Staking.DVVTriplets =
+public inline fun dVVTriplets(block: cosmos.staking.v1beta1.DVVTripletsKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Staking.DVVTriplets =
   cosmos.staking.v1beta1.DVVTripletsKt.Dsl._create(cosmos.staking.v1beta1.Staking.DVVTriplets.newBuilder()).apply { block() }._build()
-object DVVTripletsKt {
+public object DVVTripletsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.staking.v1beta1.Staking.DVVTriplets.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.staking.v1beta1.Staking.DVVTriplets.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.staking.v1beta1.Staking.DVVTriplets.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object DVVTripletsKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class TripletsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class TripletsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.staking.v1beta1.DVVTriplet triplets = 1 [(.gogoproto.nullable) = false];</code>
      */
-     val triplets: com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVVTriplet, TripletsProxy>
+     public val triplets: com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVVTriplet, TripletsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getTripletsList()
@@ -42,7 +42,7 @@ object DVVTripletsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addTriplets")
-    fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVVTriplet, TripletsProxy>.add(value: cosmos.staking.v1beta1.Staking.DVVTriplet) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVVTriplet, TripletsProxy>.add(value: cosmos.staking.v1beta1.Staking.DVVTriplet) {
       _builder.addTriplets(value)
     }/**
      * <code>repeated .cosmos.staking.v1beta1.DVVTriplet triplets = 1 [(.gogoproto.nullable) = false];</code>
@@ -50,7 +50,8 @@ object DVVTripletsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignTriplets")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVVTriplet, TripletsProxy>.plusAssign(value: cosmos.staking.v1beta1.Staking.DVVTriplet) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVVTriplet, TripletsProxy>.plusAssign(value: cosmos.staking.v1beta1.Staking.DVVTriplet) {
       add(value)
     }/**
      * <code>repeated .cosmos.staking.v1beta1.DVVTriplet triplets = 1 [(.gogoproto.nullable) = false];</code>
@@ -58,7 +59,7 @@ object DVVTripletsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllTriplets")
-    fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVVTriplet, TripletsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.staking.v1beta1.Staking.DVVTriplet>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVVTriplet, TripletsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.staking.v1beta1.Staking.DVVTriplet>) {
       _builder.addAllTriplets(values)
     }/**
      * <code>repeated .cosmos.staking.v1beta1.DVVTriplet triplets = 1 [(.gogoproto.nullable) = false];</code>
@@ -66,7 +67,8 @@ object DVVTripletsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllTriplets")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVVTriplet, TripletsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.staking.v1beta1.Staking.DVVTriplet>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVVTriplet, TripletsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.staking.v1beta1.Staking.DVVTriplet>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.staking.v1beta1.DVVTriplet triplets = 1 [(.gogoproto.nullable) = false];</code>
@@ -75,17 +77,17 @@ object DVVTripletsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setTriplets")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVVTriplet, TripletsProxy>.set(index: kotlin.Int, value: cosmos.staking.v1beta1.Staking.DVVTriplet) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVVTriplet, TripletsProxy>.set(index: kotlin.Int, value: cosmos.staking.v1beta1.Staking.DVVTriplet) {
       _builder.setTriplets(index, value)
     }/**
      * <code>repeated .cosmos.staking.v1beta1.DVVTriplet triplets = 1 [(.gogoproto.nullable) = false];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearTriplets")
-    fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVVTriplet, TripletsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVVTriplet, TripletsProxy>.clear() {
       _builder.clearTriplets()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.staking.v1beta1.Staking.DVVTriplets.copy(block: cosmos.staking.v1beta1.DVVTripletsKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Staking.DVVTriplets =
+public inline fun cosmos.staking.v1beta1.Staking.DVVTriplets.copy(block: cosmos.staking.v1beta1.DVVTripletsKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Staking.DVVTriplets =
   cosmos.staking.v1beta1.DVVTripletsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

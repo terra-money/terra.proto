@@ -4,15 +4,15 @@
 package cosmos.staking.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryUnbondingDelegationRequest(block: cosmos.staking.v1beta1.QueryUnbondingDelegationRequestKt.Dsl.() -> Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest =
+public inline fun queryUnbondingDelegationRequest(block: cosmos.staking.v1beta1.QueryUnbondingDelegationRequestKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest =
   cosmos.staking.v1beta1.QueryUnbondingDelegationRequestKt.Dsl._create(cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest.newBuilder()).apply { block() }._build()
-object QueryUnbondingDelegationRequestKt {
+public object QueryUnbondingDelegationRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryUnbondingDelegationRequestKt {
      *
      * <code>string delegator_addr = 1;</code>
      */
-    var delegatorAddr: kotlin.String
+    public var delegatorAddr: kotlin.String
       @JvmName("getDelegatorAddr")
       get() = _builder.getDelegatorAddr()
       @JvmName("setDelegatorAddr")
@@ -43,7 +43,7 @@ object QueryUnbondingDelegationRequestKt {
      *
      * <code>string delegator_addr = 1;</code>
      */
-    fun clearDelegatorAddr() {
+    public fun clearDelegatorAddr() {
       _builder.clearDelegatorAddr()
     }
 
@@ -54,7 +54,7 @@ object QueryUnbondingDelegationRequestKt {
      *
      * <code>string validator_addr = 2;</code>
      */
-    var validatorAddr: kotlin.String
+    public var validatorAddr: kotlin.String
       @JvmName("getValidatorAddr")
       get() = _builder.getValidatorAddr()
       @JvmName("setValidatorAddr")
@@ -68,11 +68,11 @@ object QueryUnbondingDelegationRequestKt {
      *
      * <code>string validator_addr = 2;</code>
      */
-    fun clearValidatorAddr() {
+    public fun clearValidatorAddr() {
       _builder.clearValidatorAddr()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest.copy(block: cosmos.staking.v1beta1.QueryUnbondingDelegationRequestKt.Dsl.() -> Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest =
+public inline fun cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest.copy(block: cosmos.staking.v1beta1.QueryUnbondingDelegationRequestKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest =
   cosmos.staking.v1beta1.QueryUnbondingDelegationRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

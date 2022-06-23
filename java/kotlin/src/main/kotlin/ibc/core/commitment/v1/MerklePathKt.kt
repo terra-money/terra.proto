@@ -4,15 +4,15 @@
 package ibc.core.commitment.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun merklePath(block: ibc.core.commitment.v1.MerklePathKt.Dsl.() -> Unit): ibc.core.commitment.v1.Commitment.MerklePath =
+public inline fun merklePath(block: ibc.core.commitment.v1.MerklePathKt.Dsl.() -> kotlin.Unit): ibc.core.commitment.v1.Commitment.MerklePath =
   ibc.core.commitment.v1.MerklePathKt.Dsl._create(ibc.core.commitment.v1.Commitment.MerklePath.newBuilder()).apply { block() }._build()
-object MerklePathKt {
+public object MerklePathKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.commitment.v1.Commitment.MerklePath.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.commitment.v1.Commitment.MerklePath.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.commitment.v1.Commitment.MerklePath.Builder): Dsl = Dsl(builder)
@@ -27,13 +27,13 @@ object MerklePathKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class KeyPathProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class KeyPathProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated string key_path = 1 [(.gogoproto.moretags) = "yaml:&#92;"key_path&#92;""];</code>
      * @return A list containing the keyPath.
      */
-    val keyPath: com.google.protobuf.kotlin.DslList<kotlin.String, KeyPathProxy>
-      @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
+    public val keyPath: com.google.protobuf.kotlin.DslList<kotlin.String, KeyPathProxy>
+      @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getKeyPathList()
       )
@@ -43,7 +43,7 @@ object MerklePathKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addKeyPath")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, KeyPathProxy>.add(value: kotlin.String) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, KeyPathProxy>.add(value: kotlin.String) {
       _builder.addKeyPath(value)
     }
     /**
@@ -52,8 +52,9 @@ object MerklePathKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignKeyPath")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, KeyPathProxy>.plusAssign(value: kotlin.String) {
-      _builder.addKeyPath(value)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, KeyPathProxy>.plusAssign(value: kotlin.String) {
+      add(value)
     }
     /**
      * <code>repeated string key_path = 1 [(.gogoproto.moretags) = "yaml:&#92;"key_path&#92;""];</code>
@@ -61,7 +62,7 @@ object MerklePathKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllKeyPath")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, KeyPathProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, KeyPathProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
       _builder.addAllKeyPath(values)
     }
     /**
@@ -70,8 +71,9 @@ object MerklePathKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllKeyPath")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, KeyPathProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
-      _builder.addAllKeyPath(values)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, KeyPathProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
+      addAll(values)
     }
     /**
      * <code>repeated string key_path = 1 [(.gogoproto.moretags) = "yaml:&#92;"key_path&#92;""];</code>
@@ -80,17 +82,17 @@ object MerklePathKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setKeyPath")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, KeyPathProxy>.set(index: kotlin.Int, value: kotlin.String) {
+    public operator fun com.google.protobuf.kotlin.DslList<kotlin.String, KeyPathProxy>.set(index: kotlin.Int, value: kotlin.String) {
       _builder.setKeyPath(index, value)
     }/**
      * <code>repeated string key_path = 1 [(.gogoproto.moretags) = "yaml:&#92;"key_path&#92;""];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearKeyPath")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, KeyPathProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, KeyPathProxy>.clear() {
       _builder.clearKeyPath()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.commitment.v1.Commitment.MerklePath.copy(block: ibc.core.commitment.v1.MerklePathKt.Dsl.() -> Unit): ibc.core.commitment.v1.Commitment.MerklePath =
+public inline fun ibc.core.commitment.v1.Commitment.MerklePath.copy(block: ibc.core.commitment.v1.MerklePathKt.Dsl.() -> kotlin.Unit): ibc.core.commitment.v1.Commitment.MerklePath =
   ibc.core.commitment.v1.MerklePathKt.Dsl._create(this.toBuilder()).apply { block() }._build()

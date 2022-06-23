@@ -4,15 +4,15 @@
 package cosmos.distribution.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgSetWithdrawAddressResponse(block: cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponseKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddressResponse =
+public inline fun msgSetWithdrawAddressResponse(block: cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponseKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddressResponse =
   cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponseKt.Dsl._create(cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddressResponse.newBuilder()).apply { block() }._build()
-object MsgSetWithdrawAddressResponseKt {
+public object MsgSetWithdrawAddressResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddressResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddressResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddressResponse.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object MsgSetWithdrawAddressResponseKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddressResponse.copy(block: cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponseKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddressResponse =
+public inline fun cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddressResponse.copy(block: cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponseKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddressResponse =
   cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package tendermint.types;
 
 @kotlin.jvm.JvmSynthetic
-inline fun blockMeta(block: tendermint.types.BlockMetaKt.Dsl.() -> Unit): tendermint.types.Types.BlockMeta =
+public inline fun blockMeta(block: tendermint.types.BlockMetaKt.Dsl.() -> kotlin.Unit): tendermint.types.Types.BlockMeta =
   tendermint.types.BlockMetaKt.Dsl._create(tendermint.types.Types.BlockMeta.newBuilder()).apply { block() }._build()
-object BlockMetaKt {
+public object BlockMetaKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.types.Types.BlockMeta.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.types.Types.BlockMeta.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.types.Types.BlockMeta.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object BlockMetaKt {
     /**
      * <code>.tendermint.types.BlockID block_id = 1 [(.gogoproto.nullable) = false, (.gogoproto.customname) = "BlockID"];</code>
      */
-    var blockId: tendermint.types.Types.BlockID
+    public var blockId: tendermint.types.Types.BlockID
       @JvmName("getBlockId")
       get() = _builder.getBlockId()
       @JvmName("setBlockId")
@@ -35,21 +35,21 @@ object BlockMetaKt {
     /**
      * <code>.tendermint.types.BlockID block_id = 1 [(.gogoproto.nullable) = false, (.gogoproto.customname) = "BlockID"];</code>
      */
-    fun clearBlockId() {
+    public fun clearBlockId() {
       _builder.clearBlockId()
     }
     /**
      * <code>.tendermint.types.BlockID block_id = 1 [(.gogoproto.nullable) = false, (.gogoproto.customname) = "BlockID"];</code>
      * @return Whether the blockId field is set.
      */
-    fun hasBlockId(): kotlin.Boolean {
+    public fun hasBlockId(): kotlin.Boolean {
       return _builder.hasBlockId()
     }
 
     /**
      * <code>int64 block_size = 2;</code>
      */
-    var blockSize: kotlin.Long
+    public var blockSize: kotlin.Long
       @JvmName("getBlockSize")
       get() = _builder.getBlockSize()
       @JvmName("setBlockSize")
@@ -59,14 +59,14 @@ object BlockMetaKt {
     /**
      * <code>int64 block_size = 2;</code>
      */
-    fun clearBlockSize() {
+    public fun clearBlockSize() {
       _builder.clearBlockSize()
     }
 
     /**
      * <code>.tendermint.types.Header header = 3 [(.gogoproto.nullable) = false];</code>
      */
-    var header: tendermint.types.Types.Header
+    public var header: tendermint.types.Types.Header
       @JvmName("getHeader")
       get() = _builder.getHeader()
       @JvmName("setHeader")
@@ -76,21 +76,21 @@ object BlockMetaKt {
     /**
      * <code>.tendermint.types.Header header = 3 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearHeader() {
+    public fun clearHeader() {
       _builder.clearHeader()
     }
     /**
      * <code>.tendermint.types.Header header = 3 [(.gogoproto.nullable) = false];</code>
      * @return Whether the header field is set.
      */
-    fun hasHeader(): kotlin.Boolean {
+    public fun hasHeader(): kotlin.Boolean {
       return _builder.hasHeader()
     }
 
     /**
      * <code>int64 num_txs = 4;</code>
      */
-    var numTxs: kotlin.Long
+    public var numTxs: kotlin.Long
       @JvmName("getNumTxs")
       get() = _builder.getNumTxs()
       @JvmName("setNumTxs")
@@ -100,11 +100,11 @@ object BlockMetaKt {
     /**
      * <code>int64 num_txs = 4;</code>
      */
-    fun clearNumTxs() {
+    public fun clearNumTxs() {
       _builder.clearNumTxs()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.types.Types.BlockMeta.copy(block: tendermint.types.BlockMetaKt.Dsl.() -> Unit): tendermint.types.Types.BlockMeta =
+public inline fun tendermint.types.Types.BlockMeta.copy(block: tendermint.types.BlockMetaKt.Dsl.() -> kotlin.Unit): tendermint.types.Types.BlockMeta =
   tendermint.types.BlockMetaKt.Dsl._create(this.toBuilder()).apply { block() }._build()

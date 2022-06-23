@@ -265,7 +265,7 @@ public final class Listening {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getStoreKeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(storeKey_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, storeKey_);
       }
       if (delete_ != false) {
@@ -286,7 +286,7 @@ public final class Listening {
       if (size != -1) return size;
 
       size = 0;
-      if (!getStoreKeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(storeKey_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, storeKey_);
       }
       if (delete_ != false) {

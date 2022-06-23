@@ -4,15 +4,15 @@
 package cosmos.base.tendermint.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun getLatestBlockResponse(block: cosmos.base.tendermint.v1beta1.GetLatestBlockResponseKt.Dsl.() -> Unit): cosmos.base.tendermint.v1beta1.Query.GetLatestBlockResponse =
+public inline fun getLatestBlockResponse(block: cosmos.base.tendermint.v1beta1.GetLatestBlockResponseKt.Dsl.() -> kotlin.Unit): cosmos.base.tendermint.v1beta1.Query.GetLatestBlockResponse =
   cosmos.base.tendermint.v1beta1.GetLatestBlockResponseKt.Dsl._create(cosmos.base.tendermint.v1beta1.Query.GetLatestBlockResponse.newBuilder()).apply { block() }._build()
-object GetLatestBlockResponseKt {
+public object GetLatestBlockResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.tendermint.v1beta1.Query.GetLatestBlockResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.tendermint.v1beta1.Query.GetLatestBlockResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.tendermint.v1beta1.Query.GetLatestBlockResponse.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object GetLatestBlockResponseKt {
     /**
      * <code>.tendermint.types.BlockID block_id = 1;</code>
      */
-    var blockId: tendermint.types.Types.BlockID
+    public var blockId: tendermint.types.Types.BlockID
       @JvmName("getBlockId")
       get() = _builder.getBlockId()
       @JvmName("setBlockId")
@@ -35,21 +35,21 @@ object GetLatestBlockResponseKt {
     /**
      * <code>.tendermint.types.BlockID block_id = 1;</code>
      */
-    fun clearBlockId() {
+    public fun clearBlockId() {
       _builder.clearBlockId()
     }
     /**
      * <code>.tendermint.types.BlockID block_id = 1;</code>
      * @return Whether the blockId field is set.
      */
-    fun hasBlockId(): kotlin.Boolean {
+    public fun hasBlockId(): kotlin.Boolean {
       return _builder.hasBlockId()
     }
 
     /**
      * <code>.tendermint.types.Block block = 2;</code>
      */
-    var block: tendermint.types.BlockOuterClass.Block
+    public var block: tendermint.types.BlockOuterClass.Block
       @JvmName("getBlock")
       get() = _builder.getBlock()
       @JvmName("setBlock")
@@ -59,18 +59,18 @@ object GetLatestBlockResponseKt {
     /**
      * <code>.tendermint.types.Block block = 2;</code>
      */
-    fun clearBlock() {
+    public fun clearBlock() {
       _builder.clearBlock()
     }
     /**
      * <code>.tendermint.types.Block block = 2;</code>
      * @return Whether the block field is set.
      */
-    fun hasBlock(): kotlin.Boolean {
+    public fun hasBlock(): kotlin.Boolean {
       return _builder.hasBlock()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.tendermint.v1beta1.Query.GetLatestBlockResponse.copy(block: cosmos.base.tendermint.v1beta1.GetLatestBlockResponseKt.Dsl.() -> Unit): cosmos.base.tendermint.v1beta1.Query.GetLatestBlockResponse =
+public inline fun cosmos.base.tendermint.v1beta1.Query.GetLatestBlockResponse.copy(block: cosmos.base.tendermint.v1beta1.GetLatestBlockResponseKt.Dsl.() -> kotlin.Unit): cosmos.base.tendermint.v1beta1.Query.GetLatestBlockResponse =
   cosmos.base.tendermint.v1beta1.GetLatestBlockResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

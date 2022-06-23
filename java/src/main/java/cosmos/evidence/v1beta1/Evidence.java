@@ -278,7 +278,7 @@ public final class Evidence {
       if (power_ != 0L) {
         output.writeInt64(3, power_);
       }
-      if (!getConsensusAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(consensusAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, consensusAddress_);
       }
       unknownFields.writeTo(output);
@@ -302,7 +302,7 @@ public final class Evidence {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(3, power_);
       }
-      if (!getConsensusAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(consensusAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, consensusAddress_);
       }
       size += unknownFields.getSerializedSize();

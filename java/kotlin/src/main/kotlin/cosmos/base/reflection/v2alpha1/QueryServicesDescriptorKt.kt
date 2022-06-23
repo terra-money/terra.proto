@@ -4,15 +4,15 @@
 package cosmos.base.reflection.v2alpha1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryServicesDescriptor(block: cosmos.base.reflection.v2alpha1.QueryServicesDescriptorKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.QueryServicesDescriptor =
+public inline fun queryServicesDescriptor(block: cosmos.base.reflection.v2alpha1.QueryServicesDescriptorKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.QueryServicesDescriptor =
   cosmos.base.reflection.v2alpha1.QueryServicesDescriptorKt.Dsl._create(cosmos.base.reflection.v2alpha1.Reflection.QueryServicesDescriptor.newBuilder()).apply { block() }._build()
-object QueryServicesDescriptorKt {
+public object QueryServicesDescriptorKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.reflection.v2alpha1.Reflection.QueryServicesDescriptor.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.reflection.v2alpha1.Reflection.QueryServicesDescriptor.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.reflection.v2alpha1.Reflection.QueryServicesDescriptor.Builder): Dsl = Dsl(builder)
@@ -27,7 +27,7 @@ object QueryServicesDescriptorKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class QueryServicesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class QueryServicesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * query_services is a list of cosmos-sdk QueryServiceDescriptor
@@ -35,7 +35,7 @@ object QueryServicesDescriptorKt {
      *
      * <code>repeated .cosmos.base.reflection.v2alpha1.QueryServiceDescriptor query_services = 1;</code>
      */
-     val queryServices: com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor, QueryServicesProxy>
+     public val queryServices: com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor, QueryServicesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getQueryServicesList()
@@ -50,7 +50,7 @@ object QueryServicesDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addQueryServices")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor, QueryServicesProxy>.add(value: cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor, QueryServicesProxy>.add(value: cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor) {
       _builder.addQueryServices(value)
     }/**
      * <pre>
@@ -62,7 +62,8 @@ object QueryServicesDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignQueryServices")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor, QueryServicesProxy>.plusAssign(value: cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor, QueryServicesProxy>.plusAssign(value: cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor) {
       add(value)
     }/**
      * <pre>
@@ -74,7 +75,7 @@ object QueryServicesDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllQueryServices")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor, QueryServicesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor, QueryServicesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor>) {
       _builder.addAllQueryServices(values)
     }/**
      * <pre>
@@ -86,7 +87,8 @@ object QueryServicesDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllQueryServices")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor, QueryServicesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor, QueryServicesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor>) {
       addAll(values)
     }/**
      * <pre>
@@ -99,7 +101,7 @@ object QueryServicesDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setQueryServices")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor, QueryServicesProxy>.set(index: kotlin.Int, value: cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor, QueryServicesProxy>.set(index: kotlin.Int, value: cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor) {
       _builder.setQueryServices(index, value)
     }/**
      * <pre>
@@ -110,10 +112,10 @@ object QueryServicesDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearQueryServices")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor, QueryServicesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.reflection.v2alpha1.Reflection.QueryServiceDescriptor, QueryServicesProxy>.clear() {
       _builder.clearQueryServices()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.reflection.v2alpha1.Reflection.QueryServicesDescriptor.copy(block: cosmos.base.reflection.v2alpha1.QueryServicesDescriptorKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.QueryServicesDescriptor =
+public inline fun cosmos.base.reflection.v2alpha1.Reflection.QueryServicesDescriptor.copy(block: cosmos.base.reflection.v2alpha1.QueryServicesDescriptorKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.QueryServicesDescriptor =
   cosmos.base.reflection.v2alpha1.QueryServicesDescriptorKt.Dsl._create(this.toBuilder()).apply { block() }._build()

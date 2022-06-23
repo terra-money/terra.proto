@@ -4,15 +4,15 @@
 package ics23;
 
 @kotlin.jvm.JvmSynthetic
-inline fun compressedNonExistenceProof(block: ics23.CompressedNonExistenceProofKt.Dsl.() -> Unit): ics23.Proofs.CompressedNonExistenceProof =
+public inline fun compressedNonExistenceProof(block: ics23.CompressedNonExistenceProofKt.Dsl.() -> kotlin.Unit): ics23.Proofs.CompressedNonExistenceProof =
   ics23.CompressedNonExistenceProofKt.Dsl._create(ics23.Proofs.CompressedNonExistenceProof.newBuilder()).apply { block() }._build()
-object CompressedNonExistenceProofKt {
+public object CompressedNonExistenceProofKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ics23.Proofs.CompressedNonExistenceProof.Builder
+  public class Dsl private constructor(
+    private val _builder: ics23.Proofs.CompressedNonExistenceProof.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ics23.Proofs.CompressedNonExistenceProof.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object CompressedNonExistenceProofKt {
      *
      * <code>bytes key = 1;</code>
      */
-    var key: com.google.protobuf.ByteString
+    public var key: com.google.protobuf.ByteString
       @JvmName("getKey")
       get() = _builder.getKey()
       @JvmName("setKey")
@@ -43,14 +43,14 @@ object CompressedNonExistenceProofKt {
      *
      * <code>bytes key = 1;</code>
      */
-    fun clearKey() {
+    public fun clearKey() {
       _builder.clearKey()
     }
 
     /**
      * <code>.ics23.CompressedExistenceProof left = 2;</code>
      */
-    var left: ics23.Proofs.CompressedExistenceProof
+    public var left: ics23.Proofs.CompressedExistenceProof
       @JvmName("getLeft")
       get() = _builder.getLeft()
       @JvmName("setLeft")
@@ -60,21 +60,21 @@ object CompressedNonExistenceProofKt {
     /**
      * <code>.ics23.CompressedExistenceProof left = 2;</code>
      */
-    fun clearLeft() {
+    public fun clearLeft() {
       _builder.clearLeft()
     }
     /**
      * <code>.ics23.CompressedExistenceProof left = 2;</code>
      * @return Whether the left field is set.
      */
-    fun hasLeft(): kotlin.Boolean {
+    public fun hasLeft(): kotlin.Boolean {
       return _builder.hasLeft()
     }
 
     /**
      * <code>.ics23.CompressedExistenceProof right = 3;</code>
      */
-    var right: ics23.Proofs.CompressedExistenceProof
+    public var right: ics23.Proofs.CompressedExistenceProof
       @JvmName("getRight")
       get() = _builder.getRight()
       @JvmName("setRight")
@@ -84,18 +84,18 @@ object CompressedNonExistenceProofKt {
     /**
      * <code>.ics23.CompressedExistenceProof right = 3;</code>
      */
-    fun clearRight() {
+    public fun clearRight() {
       _builder.clearRight()
     }
     /**
      * <code>.ics23.CompressedExistenceProof right = 3;</code>
      * @return Whether the right field is set.
      */
-    fun hasRight(): kotlin.Boolean {
+    public fun hasRight(): kotlin.Boolean {
       return _builder.hasRight()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ics23.Proofs.CompressedNonExistenceProof.copy(block: ics23.CompressedNonExistenceProofKt.Dsl.() -> Unit): ics23.Proofs.CompressedNonExistenceProof =
+public inline fun ics23.Proofs.CompressedNonExistenceProof.copy(block: ics23.CompressedNonExistenceProofKt.Dsl.() -> kotlin.Unit): ics23.Proofs.CompressedNonExistenceProof =
   ics23.CompressedNonExistenceProofKt.Dsl._create(this.toBuilder()).apply { block() }._build()

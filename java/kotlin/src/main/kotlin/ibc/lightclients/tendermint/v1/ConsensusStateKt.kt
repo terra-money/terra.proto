@@ -4,15 +4,15 @@
 package ibc.lightclients.tendermint.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun consensusState(block: ibc.lightclients.tendermint.v1.ConsensusStateKt.Dsl.() -> Unit): ibc.lightclients.tendermint.v1.Tendermint.ConsensusState =
+public inline fun consensusState(block: ibc.lightclients.tendermint.v1.ConsensusStateKt.Dsl.() -> kotlin.Unit): ibc.lightclients.tendermint.v1.Tendermint.ConsensusState =
   ibc.lightclients.tendermint.v1.ConsensusStateKt.Dsl._create(ibc.lightclients.tendermint.v1.Tendermint.ConsensusState.newBuilder()).apply { block() }._build()
-object ConsensusStateKt {
+public object ConsensusStateKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.lightclients.tendermint.v1.Tendermint.ConsensusState.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.lightclients.tendermint.v1.Tendermint.ConsensusState.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.lightclients.tendermint.v1.Tendermint.ConsensusState.Builder): Dsl = Dsl(builder)
@@ -30,7 +30,7 @@ object ConsensusStateKt {
      *
      * <code>.google.protobuf.Timestamp timestamp = 1 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
      */
-    var timestamp: com.google.protobuf.Timestamp
+    public var timestamp: com.google.protobuf.Timestamp
       @JvmName("getTimestamp")
       get() = _builder.getTimestamp()
       @JvmName("setTimestamp")
@@ -45,7 +45,7 @@ object ConsensusStateKt {
      *
      * <code>.google.protobuf.Timestamp timestamp = 1 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
      */
-    fun clearTimestamp() {
+    public fun clearTimestamp() {
       _builder.clearTimestamp()
     }
     /**
@@ -57,7 +57,7 @@ object ConsensusStateKt {
      * <code>.google.protobuf.Timestamp timestamp = 1 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
      * @return Whether the timestamp field is set.
      */
-    fun hasTimestamp(): kotlin.Boolean {
+    public fun hasTimestamp(): kotlin.Boolean {
       return _builder.hasTimestamp()
     }
 
@@ -68,7 +68,7 @@ object ConsensusStateKt {
      *
      * <code>.ibc.core.commitment.v1.MerkleRoot root = 2 [(.gogoproto.nullable) = false];</code>
      */
-    var root: ibc.core.commitment.v1.Commitment.MerkleRoot
+    public var root: ibc.core.commitment.v1.Commitment.MerkleRoot
       @JvmName("getRoot")
       get() = _builder.getRoot()
       @JvmName("setRoot")
@@ -82,7 +82,7 @@ object ConsensusStateKt {
      *
      * <code>.ibc.core.commitment.v1.MerkleRoot root = 2 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearRoot() {
+    public fun clearRoot() {
       _builder.clearRoot()
     }
     /**
@@ -93,14 +93,14 @@ object ConsensusStateKt {
      * <code>.ibc.core.commitment.v1.MerkleRoot root = 2 [(.gogoproto.nullable) = false];</code>
      * @return Whether the root field is set.
      */
-    fun hasRoot(): kotlin.Boolean {
+    public fun hasRoot(): kotlin.Boolean {
       return _builder.hasRoot()
     }
 
     /**
      * <code>bytes next_validators_hash = 3 [(.gogoproto.moretags) = "yaml:&#92;"next_validators_hash&#92;"", (.gogoproto.casttype) = "github.com/tendermint/tendermint/libs/bytes.HexBytes"];</code>
      */
-    var nextValidatorsHash: com.google.protobuf.ByteString
+    public var nextValidatorsHash: com.google.protobuf.ByteString
       @JvmName("getNextValidatorsHash")
       get() = _builder.getNextValidatorsHash()
       @JvmName("setNextValidatorsHash")
@@ -110,11 +110,11 @@ object ConsensusStateKt {
     /**
      * <code>bytes next_validators_hash = 3 [(.gogoproto.moretags) = "yaml:&#92;"next_validators_hash&#92;"", (.gogoproto.casttype) = "github.com/tendermint/tendermint/libs/bytes.HexBytes"];</code>
      */
-    fun clearNextValidatorsHash() {
+    public fun clearNextValidatorsHash() {
       _builder.clearNextValidatorsHash()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.lightclients.tendermint.v1.Tendermint.ConsensusState.copy(block: ibc.lightclients.tendermint.v1.ConsensusStateKt.Dsl.() -> Unit): ibc.lightclients.tendermint.v1.Tendermint.ConsensusState =
+public inline fun ibc.lightclients.tendermint.v1.Tendermint.ConsensusState.copy(block: ibc.lightclients.tendermint.v1.ConsensusStateKt.Dsl.() -> kotlin.Unit): ibc.lightclients.tendermint.v1.Tendermint.ConsensusState =
   ibc.lightclients.tendermint.v1.ConsensusStateKt.Dsl._create(this.toBuilder()).apply { block() }._build()

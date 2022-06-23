@@ -4,15 +4,15 @@
 package cosmos.staking.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgEditValidatorResponse(block: cosmos.staking.v1beta1.MsgEditValidatorResponseKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Tx.MsgEditValidatorResponse =
+public inline fun msgEditValidatorResponse(block: cosmos.staking.v1beta1.MsgEditValidatorResponseKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Tx.MsgEditValidatorResponse =
   cosmos.staking.v1beta1.MsgEditValidatorResponseKt.Dsl._create(cosmos.staking.v1beta1.Tx.MsgEditValidatorResponse.newBuilder()).apply { block() }._build()
-object MsgEditValidatorResponseKt {
+public object MsgEditValidatorResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.staking.v1beta1.Tx.MsgEditValidatorResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.staking.v1beta1.Tx.MsgEditValidatorResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.staking.v1beta1.Tx.MsgEditValidatorResponse.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object MsgEditValidatorResponseKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.staking.v1beta1.Tx.MsgEditValidatorResponse.copy(block: cosmos.staking.v1beta1.MsgEditValidatorResponseKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Tx.MsgEditValidatorResponse =
+public inline fun cosmos.staking.v1beta1.Tx.MsgEditValidatorResponse.copy(block: cosmos.staking.v1beta1.MsgEditValidatorResponseKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Tx.MsgEditValidatorResponse =
   cosmos.staking.v1beta1.MsgEditValidatorResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

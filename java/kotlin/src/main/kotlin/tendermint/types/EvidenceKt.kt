@@ -4,15 +4,15 @@
 package tendermint.types;
 
 @kotlin.jvm.JvmSynthetic
-inline fun evidence(block: tendermint.types.EvidenceKt.Dsl.() -> Unit): tendermint.types.EvidenceOuterClass.Evidence =
+public inline fun evidence(block: tendermint.types.EvidenceKt.Dsl.() -> kotlin.Unit): tendermint.types.EvidenceOuterClass.Evidence =
   tendermint.types.EvidenceKt.Dsl._create(tendermint.types.EvidenceOuterClass.Evidence.newBuilder()).apply { block() }._build()
-object EvidenceKt {
+public object EvidenceKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.types.EvidenceOuterClass.Evidence.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.types.EvidenceOuterClass.Evidence.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.types.EvidenceOuterClass.Evidence.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object EvidenceKt {
     /**
      * <code>.tendermint.types.DuplicateVoteEvidence duplicate_vote_evidence = 1;</code>
      */
-    var duplicateVoteEvidence: tendermint.types.EvidenceOuterClass.DuplicateVoteEvidence
+    public var duplicateVoteEvidence: tendermint.types.EvidenceOuterClass.DuplicateVoteEvidence
       @JvmName("getDuplicateVoteEvidence")
       get() = _builder.getDuplicateVoteEvidence()
       @JvmName("setDuplicateVoteEvidence")
@@ -35,21 +35,21 @@ object EvidenceKt {
     /**
      * <code>.tendermint.types.DuplicateVoteEvidence duplicate_vote_evidence = 1;</code>
      */
-    fun clearDuplicateVoteEvidence() {
+    public fun clearDuplicateVoteEvidence() {
       _builder.clearDuplicateVoteEvidence()
     }
     /**
      * <code>.tendermint.types.DuplicateVoteEvidence duplicate_vote_evidence = 1;</code>
      * @return Whether the duplicateVoteEvidence field is set.
      */
-    fun hasDuplicateVoteEvidence(): kotlin.Boolean {
+    public fun hasDuplicateVoteEvidence(): kotlin.Boolean {
       return _builder.hasDuplicateVoteEvidence()
     }
 
     /**
      * <code>.tendermint.types.LightClientAttackEvidence light_client_attack_evidence = 2;</code>
      */
-    var lightClientAttackEvidence: tendermint.types.EvidenceOuterClass.LightClientAttackEvidence
+    public var lightClientAttackEvidence: tendermint.types.EvidenceOuterClass.LightClientAttackEvidence
       @JvmName("getLightClientAttackEvidence")
       get() = _builder.getLightClientAttackEvidence()
       @JvmName("setLightClientAttackEvidence")
@@ -59,25 +59,25 @@ object EvidenceKt {
     /**
      * <code>.tendermint.types.LightClientAttackEvidence light_client_attack_evidence = 2;</code>
      */
-    fun clearLightClientAttackEvidence() {
+    public fun clearLightClientAttackEvidence() {
       _builder.clearLightClientAttackEvidence()
     }
     /**
      * <code>.tendermint.types.LightClientAttackEvidence light_client_attack_evidence = 2;</code>
      * @return Whether the lightClientAttackEvidence field is set.
      */
-    fun hasLightClientAttackEvidence(): kotlin.Boolean {
+    public fun hasLightClientAttackEvidence(): kotlin.Boolean {
       return _builder.hasLightClientAttackEvidence()
     }
-    val sumCase: tendermint.types.EvidenceOuterClass.Evidence.SumCase
+    public val sumCase: tendermint.types.EvidenceOuterClass.Evidence.SumCase
       @JvmName("getSumCase")
       get() = _builder.getSumCase()
 
-    fun clearSum() {
+    public fun clearSum() {
       _builder.clearSum()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.types.EvidenceOuterClass.Evidence.copy(block: tendermint.types.EvidenceKt.Dsl.() -> Unit): tendermint.types.EvidenceOuterClass.Evidence =
+public inline fun tendermint.types.EvidenceOuterClass.Evidence.copy(block: tendermint.types.EvidenceKt.Dsl.() -> kotlin.Unit): tendermint.types.EvidenceOuterClass.Evidence =
   tendermint.types.EvidenceKt.Dsl._create(this.toBuilder()).apply { block() }._build()

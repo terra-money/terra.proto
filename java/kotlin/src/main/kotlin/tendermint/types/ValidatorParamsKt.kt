@@ -4,15 +4,15 @@
 package tendermint.types;
 
 @kotlin.jvm.JvmSynthetic
-inline fun validatorParams(block: tendermint.types.ValidatorParamsKt.Dsl.() -> Unit): tendermint.types.Params.ValidatorParams =
+public inline fun validatorParams(block: tendermint.types.ValidatorParamsKt.Dsl.() -> kotlin.Unit): tendermint.types.Params.ValidatorParams =
   tendermint.types.ValidatorParamsKt.Dsl._create(tendermint.types.Params.ValidatorParams.newBuilder()).apply { block() }._build()
-object ValidatorParamsKt {
+public object ValidatorParamsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.types.Params.ValidatorParams.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.types.Params.ValidatorParams.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.types.Params.ValidatorParams.Builder): Dsl = Dsl(builder)
@@ -27,13 +27,13 @@ object ValidatorParamsKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class PubKeyTypesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class PubKeyTypesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated string pub_key_types = 1;</code>
      * @return A list containing the pubKeyTypes.
      */
-    val pubKeyTypes: com.google.protobuf.kotlin.DslList<kotlin.String, PubKeyTypesProxy>
-      @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
+    public val pubKeyTypes: com.google.protobuf.kotlin.DslList<kotlin.String, PubKeyTypesProxy>
+      @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getPubKeyTypesList()
       )
@@ -43,7 +43,7 @@ object ValidatorParamsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addPubKeyTypes")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, PubKeyTypesProxy>.add(value: kotlin.String) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, PubKeyTypesProxy>.add(value: kotlin.String) {
       _builder.addPubKeyTypes(value)
     }
     /**
@@ -52,8 +52,9 @@ object ValidatorParamsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignPubKeyTypes")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, PubKeyTypesProxy>.plusAssign(value: kotlin.String) {
-      _builder.addPubKeyTypes(value)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, PubKeyTypesProxy>.plusAssign(value: kotlin.String) {
+      add(value)
     }
     /**
      * <code>repeated string pub_key_types = 1;</code>
@@ -61,7 +62,7 @@ object ValidatorParamsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllPubKeyTypes")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, PubKeyTypesProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, PubKeyTypesProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
       _builder.addAllPubKeyTypes(values)
     }
     /**
@@ -70,8 +71,9 @@ object ValidatorParamsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllPubKeyTypes")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, PubKeyTypesProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
-      _builder.addAllPubKeyTypes(values)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, PubKeyTypesProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
+      addAll(values)
     }
     /**
      * <code>repeated string pub_key_types = 1;</code>
@@ -80,17 +82,17 @@ object ValidatorParamsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setPubKeyTypes")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, PubKeyTypesProxy>.set(index: kotlin.Int, value: kotlin.String) {
+    public operator fun com.google.protobuf.kotlin.DslList<kotlin.String, PubKeyTypesProxy>.set(index: kotlin.Int, value: kotlin.String) {
       _builder.setPubKeyTypes(index, value)
     }/**
      * <code>repeated string pub_key_types = 1;</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearPubKeyTypes")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, PubKeyTypesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, PubKeyTypesProxy>.clear() {
       _builder.clearPubKeyTypes()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.types.Params.ValidatorParams.copy(block: tendermint.types.ValidatorParamsKt.Dsl.() -> Unit): tendermint.types.Params.ValidatorParams =
+public inline fun tendermint.types.Params.ValidatorParams.copy(block: tendermint.types.ValidatorParamsKt.Dsl.() -> kotlin.Unit): tendermint.types.Params.ValidatorParams =
   tendermint.types.ValidatorParamsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

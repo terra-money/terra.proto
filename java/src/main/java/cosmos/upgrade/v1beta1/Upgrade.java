@@ -58,6 +58,7 @@ public final class Upgrade {
      * </pre>
      *
      * <code>.google.protobuf.Timestamp time = 2 [deprecated = true, (.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+     * @deprecated
      * @return Whether the time field is set.
      */
     @java.lang.Deprecated boolean hasTime();
@@ -69,6 +70,7 @@ public final class Upgrade {
      * </pre>
      *
      * <code>.google.protobuf.Timestamp time = 2 [deprecated = true, (.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+     * @deprecated
      * @return The time.
      */
     @java.lang.Deprecated com.google.protobuf.Timestamp getTime();
@@ -124,6 +126,7 @@ public final class Upgrade {
      * </pre>
      *
      * <code>.google.protobuf.Any upgraded_client_state = 5 [deprecated = true, (.gogoproto.moretags) = "yaml:&#92;"upgraded_client_state&#92;""];</code>
+     * @deprecated
      * @return Whether the upgradedClientState field is set.
      */
     @java.lang.Deprecated boolean hasUpgradedClientState();
@@ -135,6 +138,7 @@ public final class Upgrade {
      * </pre>
      *
      * <code>.google.protobuf.Any upgraded_client_state = 5 [deprecated = true, (.gogoproto.moretags) = "yaml:&#92;"upgraded_client_state&#92;""];</code>
+     * @deprecated
      * @return The upgradedClientState.
      */
     @java.lang.Deprecated com.google.protobuf.Any getUpgradedClientState();
@@ -343,6 +347,7 @@ public final class Upgrade {
      * </pre>
      *
      * <code>.google.protobuf.Timestamp time = 2 [deprecated = true, (.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+     * @deprecated
      * @return Whether the time field is set.
      */
     @java.lang.Override
@@ -357,6 +362,7 @@ public final class Upgrade {
      * </pre>
      *
      * <code>.google.protobuf.Timestamp time = 2 [deprecated = true, (.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+     * @deprecated
      * @return The time.
      */
     @java.lang.Override
@@ -451,6 +457,7 @@ public final class Upgrade {
      * </pre>
      *
      * <code>.google.protobuf.Any upgraded_client_state = 5 [deprecated = true, (.gogoproto.moretags) = "yaml:&#92;"upgraded_client_state&#92;""];</code>
+     * @deprecated
      * @return Whether the upgradedClientState field is set.
      */
     @java.lang.Override
@@ -465,6 +472,7 @@ public final class Upgrade {
      * </pre>
      *
      * <code>.google.protobuf.Any upgraded_client_state = 5 [deprecated = true, (.gogoproto.moretags) = "yaml:&#92;"upgraded_client_state&#92;""];</code>
+     * @deprecated
      * @return The upgradedClientState.
      */
     @java.lang.Override
@@ -499,7 +507,7 @@ public final class Upgrade {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
       }
       if (time_ != null) {
@@ -508,7 +516,7 @@ public final class Upgrade {
       if (height_ != 0L) {
         output.writeInt64(3, height_);
       }
-      if (!getInfoBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(info_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, info_);
       }
       if (upgradedClientState_ != null) {
@@ -523,7 +531,7 @@ public final class Upgrade {
       if (size != -1) return size;
 
       size = 0;
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
       }
       if (time_ != null) {
@@ -534,7 +542,7 @@ public final class Upgrade {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(3, height_);
       }
-      if (!getInfoBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(info_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, info_);
       }
       if (upgradedClientState_ != null) {
@@ -1023,6 +1031,7 @@ public final class Upgrade {
        * </pre>
        *
        * <code>.google.protobuf.Timestamp time = 2 [deprecated = true, (.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+       * @deprecated
        * @return Whether the time field is set.
        */
       @java.lang.Deprecated public boolean hasTime() {
@@ -1036,6 +1045,7 @@ public final class Upgrade {
        * </pre>
        *
        * <code>.google.protobuf.Timestamp time = 2 [deprecated = true, (.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+       * @deprecated
        * @return The time.
        */
       @java.lang.Deprecated public com.google.protobuf.Timestamp getTime() {
@@ -1343,6 +1353,7 @@ public final class Upgrade {
        * </pre>
        *
        * <code>.google.protobuf.Any upgraded_client_state = 5 [deprecated = true, (.gogoproto.moretags) = "yaml:&#92;"upgraded_client_state&#92;""];</code>
+       * @deprecated
        * @return Whether the upgradedClientState field is set.
        */
       @java.lang.Deprecated public boolean hasUpgradedClientState() {
@@ -1356,6 +1367,7 @@ public final class Upgrade {
        * </pre>
        *
        * <code>.google.protobuf.Any upgraded_client_state = 5 [deprecated = true, (.gogoproto.moretags) = "yaml:&#92;"upgraded_client_state&#92;""];</code>
+       * @deprecated
        * @return The upgradedClientState.
        */
       @java.lang.Deprecated public com.google.protobuf.Any getUpgradedClientState() {
@@ -1825,10 +1837,10 @@ public final class Upgrade {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTitleBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(title_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, title_);
       }
-      if (!getDescriptionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, description_);
       }
       if (plan_ != null) {
@@ -1843,10 +1855,10 @@ public final class Upgrade {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTitleBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(title_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, title_);
       }
-      if (!getDescriptionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, description_);
       }
       if (plan_ != null) {
@@ -2702,10 +2714,10 @@ public final class Upgrade {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTitleBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(title_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, title_);
       }
-      if (!getDescriptionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, description_);
       }
       unknownFields.writeTo(output);
@@ -2717,10 +2729,10 @@ public final class Upgrade {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTitleBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(title_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, title_);
       }
-      if (!getDescriptionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, description_);
       }
       size += unknownFields.getSerializedSize();
@@ -3419,7 +3431,7 @@ public final class Upgrade {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
       }
       if (version_ != 0L) {
@@ -3434,7 +3446,7 @@ public final class Upgrade {
       if (size != -1) return size;
 
       size = 0;
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
       }
       if (version_ != 0L) {

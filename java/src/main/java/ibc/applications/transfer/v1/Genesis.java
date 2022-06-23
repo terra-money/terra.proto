@@ -302,7 +302,7 @@ public final class Genesis {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, portId_);
       }
       for (int i = 0; i < denomTraces_.size(); i++) {
@@ -320,7 +320,7 @@ public final class Genesis {
       if (size != -1) return size;
 
       size = 0;
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, portId_);
       }
       for (int i = 0; i < denomTraces_.size(); i++) {
@@ -1190,9 +1190,9 @@ public final class Genesis {
       "enom_traces\030\002 \003(\0132(.ibc.applications.tra" +
       "nsfer.v1.DenomTraceB%\252\337\037\006Traces\310\336\037\000\362\336\037\023y" +
       "aml:\"denom_traces\"\022:\n\006params\030\003 \001(\0132$.ibc" +
-      ".applications.transfer.v1.ParamsB\004\310\336\037\000B6" +
-      "Z4github.com/cosmos/ibc-go/modules/apps/" +
-      "transfer/typesb\006proto3"
+      ".applications.transfer.v1.ParamsB\004\310\336\037\000B9" +
+      "Z7github.com/cosmos/ibc-go/v3/modules/ap" +
+      "ps/transfer/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

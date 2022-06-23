@@ -4,15 +4,15 @@
 package cosmos.staking.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgBeginRedelegate(block: cosmos.staking.v1beta1.MsgBeginRedelegateKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Tx.MsgBeginRedelegate =
+public inline fun msgBeginRedelegate(block: cosmos.staking.v1beta1.MsgBeginRedelegateKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Tx.MsgBeginRedelegate =
   cosmos.staking.v1beta1.MsgBeginRedelegateKt.Dsl._create(cosmos.staking.v1beta1.Tx.MsgBeginRedelegate.newBuilder()).apply { block() }._build()
-object MsgBeginRedelegateKt {
+public object MsgBeginRedelegateKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.staking.v1beta1.Tx.MsgBeginRedelegate.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.staking.v1beta1.Tx.MsgBeginRedelegate.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.staking.v1beta1.Tx.MsgBeginRedelegate.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object MsgBeginRedelegateKt {
     /**
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      */
-    var delegatorAddress: kotlin.String
+    public var delegatorAddress: kotlin.String
       @JvmName("getDelegatorAddress")
       get() = _builder.getDelegatorAddress()
       @JvmName("setDelegatorAddress")
@@ -35,14 +35,14 @@ object MsgBeginRedelegateKt {
     /**
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      */
-    fun clearDelegatorAddress() {
+    public fun clearDelegatorAddress() {
       _builder.clearDelegatorAddress()
     }
 
     /**
      * <code>string validator_src_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_src_address&#92;""];</code>
      */
-    var validatorSrcAddress: kotlin.String
+    public var validatorSrcAddress: kotlin.String
       @JvmName("getValidatorSrcAddress")
       get() = _builder.getValidatorSrcAddress()
       @JvmName("setValidatorSrcAddress")
@@ -52,14 +52,14 @@ object MsgBeginRedelegateKt {
     /**
      * <code>string validator_src_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_src_address&#92;""];</code>
      */
-    fun clearValidatorSrcAddress() {
+    public fun clearValidatorSrcAddress() {
       _builder.clearValidatorSrcAddress()
     }
 
     /**
      * <code>string validator_dst_address = 3 [(.gogoproto.moretags) = "yaml:&#92;"validator_dst_address&#92;""];</code>
      */
-    var validatorDstAddress: kotlin.String
+    public var validatorDstAddress: kotlin.String
       @JvmName("getValidatorDstAddress")
       get() = _builder.getValidatorDstAddress()
       @JvmName("setValidatorDstAddress")
@@ -69,14 +69,14 @@ object MsgBeginRedelegateKt {
     /**
      * <code>string validator_dst_address = 3 [(.gogoproto.moretags) = "yaml:&#92;"validator_dst_address&#92;""];</code>
      */
-    fun clearValidatorDstAddress() {
+    public fun clearValidatorDstAddress() {
       _builder.clearValidatorDstAddress()
     }
 
     /**
      * <code>.cosmos.base.v1beta1.Coin amount = 4 [(.gogoproto.nullable) = false];</code>
      */
-    var amount: cosmos.base.v1beta1.CoinOuterClass.Coin
+    public var amount: cosmos.base.v1beta1.CoinOuterClass.Coin
       @JvmName("getAmount")
       get() = _builder.getAmount()
       @JvmName("setAmount")
@@ -86,18 +86,18 @@ object MsgBeginRedelegateKt {
     /**
      * <code>.cosmos.base.v1beta1.Coin amount = 4 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearAmount() {
+    public fun clearAmount() {
       _builder.clearAmount()
     }
     /**
      * <code>.cosmos.base.v1beta1.Coin amount = 4 [(.gogoproto.nullable) = false];</code>
      * @return Whether the amount field is set.
      */
-    fun hasAmount(): kotlin.Boolean {
+    public fun hasAmount(): kotlin.Boolean {
       return _builder.hasAmount()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.staking.v1beta1.Tx.MsgBeginRedelegate.copy(block: cosmos.staking.v1beta1.MsgBeginRedelegateKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Tx.MsgBeginRedelegate =
+public inline fun cosmos.staking.v1beta1.Tx.MsgBeginRedelegate.copy(block: cosmos.staking.v1beta1.MsgBeginRedelegateKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Tx.MsgBeginRedelegate =
   cosmos.staking.v1beta1.MsgBeginRedelegateKt.Dsl._create(this.toBuilder()).apply { block() }._build()

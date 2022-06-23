@@ -4,15 +4,15 @@
 package cosmos.gov.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryParamsResponse(block: cosmos.gov.v1beta1.QueryParamsResponseKt.Dsl.() -> Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse =
+public inline fun queryParamsResponse(block: cosmos.gov.v1beta1.QueryParamsResponseKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse =
   cosmos.gov.v1beta1.QueryParamsResponseKt.Dsl._create(cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse.newBuilder()).apply { block() }._build()
-object QueryParamsResponseKt {
+public object QueryParamsResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryParamsResponseKt {
      *
      * <code>.cosmos.gov.v1beta1.VotingParams voting_params = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var votingParams: cosmos.gov.v1beta1.Gov.VotingParams
+    public var votingParams: cosmos.gov.v1beta1.Gov.VotingParams
       @JvmName("getVotingParams")
       get() = _builder.getVotingParams()
       @JvmName("setVotingParams")
@@ -43,7 +43,7 @@ object QueryParamsResponseKt {
      *
      * <code>.cosmos.gov.v1beta1.VotingParams voting_params = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearVotingParams() {
+    public fun clearVotingParams() {
       _builder.clearVotingParams()
     }
     /**
@@ -54,7 +54,7 @@ object QueryParamsResponseKt {
      * <code>.cosmos.gov.v1beta1.VotingParams voting_params = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the votingParams field is set.
      */
-    fun hasVotingParams(): kotlin.Boolean {
+    public fun hasVotingParams(): kotlin.Boolean {
       return _builder.hasVotingParams()
     }
 
@@ -65,7 +65,7 @@ object QueryParamsResponseKt {
      *
      * <code>.cosmos.gov.v1beta1.DepositParams deposit_params = 2 [(.gogoproto.nullable) = false];</code>
      */
-    var depositParams: cosmos.gov.v1beta1.Gov.DepositParams
+    public var depositParams: cosmos.gov.v1beta1.Gov.DepositParams
       @JvmName("getDepositParams")
       get() = _builder.getDepositParams()
       @JvmName("setDepositParams")
@@ -79,7 +79,7 @@ object QueryParamsResponseKt {
      *
      * <code>.cosmos.gov.v1beta1.DepositParams deposit_params = 2 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearDepositParams() {
+    public fun clearDepositParams() {
       _builder.clearDepositParams()
     }
     /**
@@ -90,7 +90,7 @@ object QueryParamsResponseKt {
      * <code>.cosmos.gov.v1beta1.DepositParams deposit_params = 2 [(.gogoproto.nullable) = false];</code>
      * @return Whether the depositParams field is set.
      */
-    fun hasDepositParams(): kotlin.Boolean {
+    public fun hasDepositParams(): kotlin.Boolean {
       return _builder.hasDepositParams()
     }
 
@@ -101,7 +101,7 @@ object QueryParamsResponseKt {
      *
      * <code>.cosmos.gov.v1beta1.TallyParams tally_params = 3 [(.gogoproto.nullable) = false];</code>
      */
-    var tallyParams: cosmos.gov.v1beta1.Gov.TallyParams
+    public var tallyParams: cosmos.gov.v1beta1.Gov.TallyParams
       @JvmName("getTallyParams")
       get() = _builder.getTallyParams()
       @JvmName("setTallyParams")
@@ -115,7 +115,7 @@ object QueryParamsResponseKt {
      *
      * <code>.cosmos.gov.v1beta1.TallyParams tally_params = 3 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearTallyParams() {
+    public fun clearTallyParams() {
       _builder.clearTallyParams()
     }
     /**
@@ -126,11 +126,11 @@ object QueryParamsResponseKt {
      * <code>.cosmos.gov.v1beta1.TallyParams tally_params = 3 [(.gogoproto.nullable) = false];</code>
      * @return Whether the tallyParams field is set.
      */
-    fun hasTallyParams(): kotlin.Boolean {
+    public fun hasTallyParams(): kotlin.Boolean {
       return _builder.hasTallyParams()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse.copy(block: cosmos.gov.v1beta1.QueryParamsResponseKt.Dsl.() -> Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse =
+public inline fun cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse.copy(block: cosmos.gov.v1beta1.QueryParamsResponseKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse =
   cosmos.gov.v1beta1.QueryParamsResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

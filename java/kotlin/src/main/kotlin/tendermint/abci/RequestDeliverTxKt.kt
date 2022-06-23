@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun requestDeliverTx(block: tendermint.abci.RequestDeliverTxKt.Dsl.() -> Unit): tendermint.abci.Types.RequestDeliverTx =
+public inline fun requestDeliverTx(block: tendermint.abci.RequestDeliverTxKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestDeliverTx =
   tendermint.abci.RequestDeliverTxKt.Dsl._create(tendermint.abci.Types.RequestDeliverTx.newBuilder()).apply { block() }._build()
-object RequestDeliverTxKt {
+public object RequestDeliverTxKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.RequestDeliverTx.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.RequestDeliverTx.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.RequestDeliverTx.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object RequestDeliverTxKt {
     /**
      * <code>bytes tx = 1;</code>
      */
-    var tx: com.google.protobuf.ByteString
+    public var tx: com.google.protobuf.ByteString
       @JvmName("getTx")
       get() = _builder.getTx()
       @JvmName("setTx")
@@ -35,11 +35,11 @@ object RequestDeliverTxKt {
     /**
      * <code>bytes tx = 1;</code>
      */
-    fun clearTx() {
+    public fun clearTx() {
       _builder.clearTx()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.RequestDeliverTx.copy(block: tendermint.abci.RequestDeliverTxKt.Dsl.() -> Unit): tendermint.abci.Types.RequestDeliverTx =
+public inline fun tendermint.abci.Types.RequestDeliverTx.copy(block: tendermint.abci.RequestDeliverTxKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestDeliverTx =
   tendermint.abci.RequestDeliverTxKt.Dsl._create(this.toBuilder()).apply { block() }._build()

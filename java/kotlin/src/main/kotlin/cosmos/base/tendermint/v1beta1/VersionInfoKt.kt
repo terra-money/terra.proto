@@ -4,15 +4,15 @@
 package cosmos.base.tendermint.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun versionInfo(block: cosmos.base.tendermint.v1beta1.VersionInfoKt.Dsl.() -> Unit): cosmos.base.tendermint.v1beta1.Query.VersionInfo =
+public inline fun versionInfo(block: cosmos.base.tendermint.v1beta1.VersionInfoKt.Dsl.() -> kotlin.Unit): cosmos.base.tendermint.v1beta1.Query.VersionInfo =
   cosmos.base.tendermint.v1beta1.VersionInfoKt.Dsl._create(cosmos.base.tendermint.v1beta1.Query.VersionInfo.newBuilder()).apply { block() }._build()
-object VersionInfoKt {
+public object VersionInfoKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.tendermint.v1beta1.Query.VersionInfo.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.tendermint.v1beta1.Query.VersionInfo.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.tendermint.v1beta1.Query.VersionInfo.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object VersionInfoKt {
     /**
      * <code>string name = 1;</code>
      */
-    var name: kotlin.String
+    public var name: kotlin.String
       @JvmName("getName")
       get() = _builder.getName()
       @JvmName("setName")
@@ -35,14 +35,14 @@ object VersionInfoKt {
     /**
      * <code>string name = 1;</code>
      */
-    fun clearName() {
+    public fun clearName() {
       _builder.clearName()
     }
 
     /**
      * <code>string app_name = 2;</code>
      */
-    var appName: kotlin.String
+    public var appName: kotlin.String
       @JvmName("getAppName")
       get() = _builder.getAppName()
       @JvmName("setAppName")
@@ -52,14 +52,14 @@ object VersionInfoKt {
     /**
      * <code>string app_name = 2;</code>
      */
-    fun clearAppName() {
+    public fun clearAppName() {
       _builder.clearAppName()
     }
 
     /**
      * <code>string version = 3;</code>
      */
-    var version: kotlin.String
+    public var version: kotlin.String
       @JvmName("getVersion")
       get() = _builder.getVersion()
       @JvmName("setVersion")
@@ -69,14 +69,14 @@ object VersionInfoKt {
     /**
      * <code>string version = 3;</code>
      */
-    fun clearVersion() {
+    public fun clearVersion() {
       _builder.clearVersion()
     }
 
     /**
      * <code>string git_commit = 4;</code>
      */
-    var gitCommit: kotlin.String
+    public var gitCommit: kotlin.String
       @JvmName("getGitCommit")
       get() = _builder.getGitCommit()
       @JvmName("setGitCommit")
@@ -86,14 +86,14 @@ object VersionInfoKt {
     /**
      * <code>string git_commit = 4;</code>
      */
-    fun clearGitCommit() {
+    public fun clearGitCommit() {
       _builder.clearGitCommit()
     }
 
     /**
      * <code>string build_tags = 5;</code>
      */
-    var buildTags: kotlin.String
+    public var buildTags: kotlin.String
       @JvmName("getBuildTags")
       get() = _builder.getBuildTags()
       @JvmName("setBuildTags")
@@ -103,14 +103,14 @@ object VersionInfoKt {
     /**
      * <code>string build_tags = 5;</code>
      */
-    fun clearBuildTags() {
+    public fun clearBuildTags() {
       _builder.clearBuildTags()
     }
 
     /**
      * <code>string go_version = 6;</code>
      */
-    var goVersion: kotlin.String
+    public var goVersion: kotlin.String
       @JvmName("getGoVersion")
       get() = _builder.getGoVersion()
       @JvmName("setGoVersion")
@@ -120,7 +120,7 @@ object VersionInfoKt {
     /**
      * <code>string go_version = 6;</code>
      */
-    fun clearGoVersion() {
+    public fun clearGoVersion() {
       _builder.clearGoVersion()
     }
 
@@ -129,11 +129,11 @@ object VersionInfoKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class BuildDepsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class BuildDepsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.base.tendermint.v1beta1.Module build_deps = 7;</code>
      */
-     val buildDeps: com.google.protobuf.kotlin.DslList<cosmos.base.tendermint.v1beta1.Query.Module, BuildDepsProxy>
+     public val buildDeps: com.google.protobuf.kotlin.DslList<cosmos.base.tendermint.v1beta1.Query.Module, BuildDepsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getBuildDepsList()
@@ -144,7 +144,7 @@ object VersionInfoKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addBuildDeps")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.tendermint.v1beta1.Query.Module, BuildDepsProxy>.add(value: cosmos.base.tendermint.v1beta1.Query.Module) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.tendermint.v1beta1.Query.Module, BuildDepsProxy>.add(value: cosmos.base.tendermint.v1beta1.Query.Module) {
       _builder.addBuildDeps(value)
     }/**
      * <code>repeated .cosmos.base.tendermint.v1beta1.Module build_deps = 7;</code>
@@ -152,7 +152,8 @@ object VersionInfoKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignBuildDeps")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.tendermint.v1beta1.Query.Module, BuildDepsProxy>.plusAssign(value: cosmos.base.tendermint.v1beta1.Query.Module) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.tendermint.v1beta1.Query.Module, BuildDepsProxy>.plusAssign(value: cosmos.base.tendermint.v1beta1.Query.Module) {
       add(value)
     }/**
      * <code>repeated .cosmos.base.tendermint.v1beta1.Module build_deps = 7;</code>
@@ -160,7 +161,7 @@ object VersionInfoKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllBuildDeps")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.tendermint.v1beta1.Query.Module, BuildDepsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.tendermint.v1beta1.Query.Module>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.tendermint.v1beta1.Query.Module, BuildDepsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.tendermint.v1beta1.Query.Module>) {
       _builder.addAllBuildDeps(values)
     }/**
      * <code>repeated .cosmos.base.tendermint.v1beta1.Module build_deps = 7;</code>
@@ -168,7 +169,8 @@ object VersionInfoKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllBuildDeps")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.tendermint.v1beta1.Query.Module, BuildDepsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.tendermint.v1beta1.Query.Module>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.tendermint.v1beta1.Query.Module, BuildDepsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.tendermint.v1beta1.Query.Module>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.base.tendermint.v1beta1.Module build_deps = 7;</code>
@@ -177,14 +179,14 @@ object VersionInfoKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setBuildDeps")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.tendermint.v1beta1.Query.Module, BuildDepsProxy>.set(index: kotlin.Int, value: cosmos.base.tendermint.v1beta1.Query.Module) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.tendermint.v1beta1.Query.Module, BuildDepsProxy>.set(index: kotlin.Int, value: cosmos.base.tendermint.v1beta1.Query.Module) {
       _builder.setBuildDeps(index, value)
     }/**
      * <code>repeated .cosmos.base.tendermint.v1beta1.Module build_deps = 7;</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearBuildDeps")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.tendermint.v1beta1.Query.Module, BuildDepsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.tendermint.v1beta1.Query.Module, BuildDepsProxy>.clear() {
       _builder.clearBuildDeps()
     }
     /**
@@ -194,7 +196,7 @@ object VersionInfoKt {
      *
      * <code>string cosmos_sdk_version = 8;</code>
      */
-    var cosmosSdkVersion: kotlin.String
+    public var cosmosSdkVersion: kotlin.String
       @JvmName("getCosmosSdkVersion")
       get() = _builder.getCosmosSdkVersion()
       @JvmName("setCosmosSdkVersion")
@@ -208,11 +210,11 @@ object VersionInfoKt {
      *
      * <code>string cosmos_sdk_version = 8;</code>
      */
-    fun clearCosmosSdkVersion() {
+    public fun clearCosmosSdkVersion() {
       _builder.clearCosmosSdkVersion()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.tendermint.v1beta1.Query.VersionInfo.copy(block: cosmos.base.tendermint.v1beta1.VersionInfoKt.Dsl.() -> Unit): cosmos.base.tendermint.v1beta1.Query.VersionInfo =
+public inline fun cosmos.base.tendermint.v1beta1.Query.VersionInfo.copy(block: cosmos.base.tendermint.v1beta1.VersionInfoKt.Dsl.() -> kotlin.Unit): cosmos.base.tendermint.v1beta1.Query.VersionInfo =
   cosmos.base.tendermint.v1beta1.VersionInfoKt.Dsl._create(this.toBuilder()).apply { block() }._build()

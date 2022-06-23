@@ -4,15 +4,15 @@
 package ibc.applications.transfer.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryDenomTracesRequest(block: ibc.applications.transfer.v1.QueryDenomTracesRequestKt.Dsl.() -> Unit): ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesRequest =
+public inline fun queryDenomTracesRequest(block: ibc.applications.transfer.v1.QueryDenomTracesRequestKt.Dsl.() -> kotlin.Unit): ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesRequest =
   ibc.applications.transfer.v1.QueryDenomTracesRequestKt.Dsl._create(ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesRequest.newBuilder()).apply { block() }._build()
-object QueryDenomTracesRequestKt {
+public object QueryDenomTracesRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryDenomTracesRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -43,7 +43,7 @@ object QueryDenomTracesRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
@@ -54,11 +54,11 @@ object QueryDenomTracesRequestKt {
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesRequest.copy(block: ibc.applications.transfer.v1.QueryDenomTracesRequestKt.Dsl.() -> Unit): ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesRequest =
+public inline fun ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesRequest.copy(block: ibc.applications.transfer.v1.QueryDenomTracesRequestKt.Dsl.() -> kotlin.Unit): ibc.applications.transfer.v1.QueryOuterClass.QueryDenomTracesRequest =
   ibc.applications.transfer.v1.QueryDenomTracesRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

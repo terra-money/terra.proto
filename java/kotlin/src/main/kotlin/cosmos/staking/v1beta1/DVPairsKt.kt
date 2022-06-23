@@ -4,15 +4,15 @@
 package cosmos.staking.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun dVPairs(block: cosmos.staking.v1beta1.DVPairsKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Staking.DVPairs =
+public inline fun dVPairs(block: cosmos.staking.v1beta1.DVPairsKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Staking.DVPairs =
   cosmos.staking.v1beta1.DVPairsKt.Dsl._create(cosmos.staking.v1beta1.Staking.DVPairs.newBuilder()).apply { block() }._build()
-object DVPairsKt {
+public object DVPairsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.staking.v1beta1.Staking.DVPairs.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.staking.v1beta1.Staking.DVPairs.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.staking.v1beta1.Staking.DVPairs.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object DVPairsKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class PairsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class PairsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.staking.v1beta1.DVPair pairs = 1 [(.gogoproto.nullable) = false];</code>
      */
-     val pairs: com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVPair, PairsProxy>
+     public val pairs: com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVPair, PairsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getPairsList()
@@ -42,7 +42,7 @@ object DVPairsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addPairs")
-    fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVPair, PairsProxy>.add(value: cosmos.staking.v1beta1.Staking.DVPair) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVPair, PairsProxy>.add(value: cosmos.staking.v1beta1.Staking.DVPair) {
       _builder.addPairs(value)
     }/**
      * <code>repeated .cosmos.staking.v1beta1.DVPair pairs = 1 [(.gogoproto.nullable) = false];</code>
@@ -50,7 +50,8 @@ object DVPairsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignPairs")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVPair, PairsProxy>.plusAssign(value: cosmos.staking.v1beta1.Staking.DVPair) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVPair, PairsProxy>.plusAssign(value: cosmos.staking.v1beta1.Staking.DVPair) {
       add(value)
     }/**
      * <code>repeated .cosmos.staking.v1beta1.DVPair pairs = 1 [(.gogoproto.nullable) = false];</code>
@@ -58,7 +59,7 @@ object DVPairsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllPairs")
-    fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVPair, PairsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.staking.v1beta1.Staking.DVPair>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVPair, PairsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.staking.v1beta1.Staking.DVPair>) {
       _builder.addAllPairs(values)
     }/**
      * <code>repeated .cosmos.staking.v1beta1.DVPair pairs = 1 [(.gogoproto.nullable) = false];</code>
@@ -66,7 +67,8 @@ object DVPairsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllPairs")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVPair, PairsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.staking.v1beta1.Staking.DVPair>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVPair, PairsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.staking.v1beta1.Staking.DVPair>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.staking.v1beta1.DVPair pairs = 1 [(.gogoproto.nullable) = false];</code>
@@ -75,17 +77,17 @@ object DVPairsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setPairs")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVPair, PairsProxy>.set(index: kotlin.Int, value: cosmos.staking.v1beta1.Staking.DVPair) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVPair, PairsProxy>.set(index: kotlin.Int, value: cosmos.staking.v1beta1.Staking.DVPair) {
       _builder.setPairs(index, value)
     }/**
      * <code>repeated .cosmos.staking.v1beta1.DVPair pairs = 1 [(.gogoproto.nullable) = false];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearPairs")
-    fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVPair, PairsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.staking.v1beta1.Staking.DVPair, PairsProxy>.clear() {
       _builder.clearPairs()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.staking.v1beta1.Staking.DVPairs.copy(block: cosmos.staking.v1beta1.DVPairsKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Staking.DVPairs =
+public inline fun cosmos.staking.v1beta1.Staking.DVPairs.copy(block: cosmos.staking.v1beta1.DVPairsKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Staking.DVPairs =
   cosmos.staking.v1beta1.DVPairsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

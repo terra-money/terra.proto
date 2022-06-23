@@ -4,15 +4,15 @@
 package cosmos.distribution.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun validatorCurrentRewardsRecord(block: cosmos.distribution.v1beta1.ValidatorCurrentRewardsRecordKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.Genesis.ValidatorCurrentRewardsRecord =
+public inline fun validatorCurrentRewardsRecord(block: cosmos.distribution.v1beta1.ValidatorCurrentRewardsRecordKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.Genesis.ValidatorCurrentRewardsRecord =
   cosmos.distribution.v1beta1.ValidatorCurrentRewardsRecordKt.Dsl._create(cosmos.distribution.v1beta1.Genesis.ValidatorCurrentRewardsRecord.newBuilder()).apply { block() }._build()
-object ValidatorCurrentRewardsRecordKt {
+public object ValidatorCurrentRewardsRecordKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.distribution.v1beta1.Genesis.ValidatorCurrentRewardsRecord.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.distribution.v1beta1.Genesis.ValidatorCurrentRewardsRecord.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.distribution.v1beta1.Genesis.ValidatorCurrentRewardsRecord.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object ValidatorCurrentRewardsRecordKt {
      *
      * <code>string validator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
      */
-    var validatorAddress: kotlin.String
+    public var validatorAddress: kotlin.String
       @JvmName("getValidatorAddress")
       get() = _builder.getValidatorAddress()
       @JvmName("setValidatorAddress")
@@ -43,7 +43,7 @@ object ValidatorCurrentRewardsRecordKt {
      *
      * <code>string validator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
      */
-    fun clearValidatorAddress() {
+    public fun clearValidatorAddress() {
       _builder.clearValidatorAddress()
     }
 
@@ -54,7 +54,7 @@ object ValidatorCurrentRewardsRecordKt {
      *
      * <code>.cosmos.distribution.v1beta1.ValidatorCurrentRewards rewards = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"rewards&#92;""];</code>
      */
-    var rewards: cosmos.distribution.v1beta1.Distribution.ValidatorCurrentRewards
+    public var rewards: cosmos.distribution.v1beta1.Distribution.ValidatorCurrentRewards
       @JvmName("getRewards")
       get() = _builder.getRewards()
       @JvmName("setRewards")
@@ -68,7 +68,7 @@ object ValidatorCurrentRewardsRecordKt {
      *
      * <code>.cosmos.distribution.v1beta1.ValidatorCurrentRewards rewards = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"rewards&#92;""];</code>
      */
-    fun clearRewards() {
+    public fun clearRewards() {
       _builder.clearRewards()
     }
     /**
@@ -79,11 +79,11 @@ object ValidatorCurrentRewardsRecordKt {
      * <code>.cosmos.distribution.v1beta1.ValidatorCurrentRewards rewards = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"rewards&#92;""];</code>
      * @return Whether the rewards field is set.
      */
-    fun hasRewards(): kotlin.Boolean {
+    public fun hasRewards(): kotlin.Boolean {
       return _builder.hasRewards()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.distribution.v1beta1.Genesis.ValidatorCurrentRewardsRecord.copy(block: cosmos.distribution.v1beta1.ValidatorCurrentRewardsRecordKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.Genesis.ValidatorCurrentRewardsRecord =
+public inline fun cosmos.distribution.v1beta1.Genesis.ValidatorCurrentRewardsRecord.copy(block: cosmos.distribution.v1beta1.ValidatorCurrentRewardsRecordKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.Genesis.ValidatorCurrentRewardsRecord =
   cosmos.distribution.v1beta1.ValidatorCurrentRewardsRecordKt.Dsl._create(this.toBuilder()).apply { block() }._build()

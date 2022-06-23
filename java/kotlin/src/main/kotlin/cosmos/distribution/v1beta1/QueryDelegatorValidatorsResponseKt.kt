@@ -4,15 +4,15 @@
 package cosmos.distribution.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryDelegatorValidatorsResponse(block: cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponseKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorValidatorsResponse =
+public inline fun queryDelegatorValidatorsResponse(block: cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponseKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorValidatorsResponse =
   cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponseKt.Dsl._create(cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorValidatorsResponse.newBuilder()).apply { block() }._build()
-object QueryDelegatorValidatorsResponseKt {
+public object QueryDelegatorValidatorsResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorValidatorsResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorValidatorsResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorValidatorsResponse.Builder): Dsl = Dsl(builder)
@@ -27,7 +27,7 @@ object QueryDelegatorValidatorsResponseKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class ValidatorsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class ValidatorsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * validators defines the validators a delegator is delegating for.
@@ -36,8 +36,8 @@ object QueryDelegatorValidatorsResponseKt {
      * <code>repeated string validators = 1;</code>
      * @return A list containing the validators.
      */
-    val validators: com.google.protobuf.kotlin.DslList<kotlin.String, ValidatorsProxy>
-      @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
+    public val validators: com.google.protobuf.kotlin.DslList<kotlin.String, ValidatorsProxy>
+      @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getValidatorsList()
       )
@@ -51,7 +51,7 @@ object QueryDelegatorValidatorsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addValidators")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, ValidatorsProxy>.add(value: kotlin.String) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, ValidatorsProxy>.add(value: kotlin.String) {
       _builder.addValidators(value)
     }
     /**
@@ -64,8 +64,9 @@ object QueryDelegatorValidatorsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignValidators")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ValidatorsProxy>.plusAssign(value: kotlin.String) {
-      _builder.addValidators(value)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ValidatorsProxy>.plusAssign(value: kotlin.String) {
+      add(value)
     }
     /**
      * <pre>
@@ -77,7 +78,7 @@ object QueryDelegatorValidatorsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllValidators")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, ValidatorsProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, ValidatorsProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
       _builder.addAllValidators(values)
     }
     /**
@@ -90,8 +91,9 @@ object QueryDelegatorValidatorsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllValidators")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ValidatorsProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
-      _builder.addAllValidators(values)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ValidatorsProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
+      addAll(values)
     }
     /**
      * <pre>
@@ -104,7 +106,7 @@ object QueryDelegatorValidatorsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setValidators")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ValidatorsProxy>.set(index: kotlin.Int, value: kotlin.String) {
+    public operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ValidatorsProxy>.set(index: kotlin.Int, value: kotlin.String) {
       _builder.setValidators(index, value)
     }/**
      * <pre>
@@ -115,10 +117,10 @@ object QueryDelegatorValidatorsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearValidators")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, ValidatorsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, ValidatorsProxy>.clear() {
       _builder.clearValidators()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorValidatorsResponse.copy(block: cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponseKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorValidatorsResponse =
+public inline fun cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorValidatorsResponse.copy(block: cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponseKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorValidatorsResponse =
   cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

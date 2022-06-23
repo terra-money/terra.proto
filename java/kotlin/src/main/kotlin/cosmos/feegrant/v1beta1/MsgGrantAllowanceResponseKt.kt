@@ -4,15 +4,15 @@
 package cosmos.feegrant.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgGrantAllowanceResponse(block: cosmos.feegrant.v1beta1.MsgGrantAllowanceResponseKt.Dsl.() -> Unit): cosmos.feegrant.v1beta1.Tx.MsgGrantAllowanceResponse =
+public inline fun msgGrantAllowanceResponse(block: cosmos.feegrant.v1beta1.MsgGrantAllowanceResponseKt.Dsl.() -> kotlin.Unit): cosmos.feegrant.v1beta1.Tx.MsgGrantAllowanceResponse =
   cosmos.feegrant.v1beta1.MsgGrantAllowanceResponseKt.Dsl._create(cosmos.feegrant.v1beta1.Tx.MsgGrantAllowanceResponse.newBuilder()).apply { block() }._build()
-object MsgGrantAllowanceResponseKt {
+public object MsgGrantAllowanceResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.feegrant.v1beta1.Tx.MsgGrantAllowanceResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.feegrant.v1beta1.Tx.MsgGrantAllowanceResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.feegrant.v1beta1.Tx.MsgGrantAllowanceResponse.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object MsgGrantAllowanceResponseKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.feegrant.v1beta1.Tx.MsgGrantAllowanceResponse.copy(block: cosmos.feegrant.v1beta1.MsgGrantAllowanceResponseKt.Dsl.() -> Unit): cosmos.feegrant.v1beta1.Tx.MsgGrantAllowanceResponse =
+public inline fun cosmos.feegrant.v1beta1.Tx.MsgGrantAllowanceResponse.copy(block: cosmos.feegrant.v1beta1.MsgGrantAllowanceResponseKt.Dsl.() -> kotlin.Unit): cosmos.feegrant.v1beta1.Tx.MsgGrantAllowanceResponse =
   cosmos.feegrant.v1beta1.MsgGrantAllowanceResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

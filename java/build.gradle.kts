@@ -4,8 +4,8 @@ plugins {
     id("java-library")
     id("signing")
     id("maven-publish")
-    kotlin("jvm") version "1.5.30" apply false
-    id("com.google.protobuf") version "0.8.17"
+    kotlin("jvm") version "1.6.21" apply false
+    id("com.google.protobuf") version "0.8.18"
 }
 
 allprojects {
@@ -17,7 +17,7 @@ allprojects {
     }
 
     group = "money.terra"
-    version = "0.5.16"
+    version = "2.0.1-beta1"
 
     repositories {
         mavenCentral()

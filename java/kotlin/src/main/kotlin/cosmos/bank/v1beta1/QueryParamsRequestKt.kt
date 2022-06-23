@@ -4,15 +4,15 @@
 package cosmos.bank.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryParamsRequest(block: cosmos.bank.v1beta1.QueryParamsRequestKt.Dsl.() -> Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest =
+public inline fun queryParamsRequest(block: cosmos.bank.v1beta1.QueryParamsRequestKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest =
   cosmos.bank.v1beta1.QueryParamsRequestKt.Dsl._create(cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest.newBuilder()).apply { block() }._build()
-object QueryParamsRequestKt {
+public object QueryParamsRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object QueryParamsRequestKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest.copy(block: cosmos.bank.v1beta1.QueryParamsRequestKt.Dsl.() -> Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest =
+public inline fun cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest.copy(block: cosmos.bank.v1beta1.QueryParamsRequestKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest =
   cosmos.bank.v1beta1.QueryParamsRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

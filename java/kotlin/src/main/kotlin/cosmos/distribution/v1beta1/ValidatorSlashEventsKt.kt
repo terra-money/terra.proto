@@ -4,15 +4,15 @@
 package cosmos.distribution.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun validatorSlashEvents(block: cosmos.distribution.v1beta1.ValidatorSlashEventsKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvents =
+public inline fun validatorSlashEvents(block: cosmos.distribution.v1beta1.ValidatorSlashEventsKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvents =
   cosmos.distribution.v1beta1.ValidatorSlashEventsKt.Dsl._create(cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvents.newBuilder()).apply { block() }._build()
-object ValidatorSlashEventsKt {
+public object ValidatorSlashEventsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvents.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvents.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvents.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object ValidatorSlashEventsKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class ValidatorSlashEventsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class ValidatorSlashEventsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.distribution.v1beta1.ValidatorSlashEvent validator_slash_events = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"validator_slash_events&#92;""];</code>
      */
-     val validatorSlashEvents: com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, ValidatorSlashEventsProxy>
+     public val validatorSlashEvents: com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, ValidatorSlashEventsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getValidatorSlashEventsList()
@@ -42,7 +42,7 @@ object ValidatorSlashEventsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addValidatorSlashEvents")
-    fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, ValidatorSlashEventsProxy>.add(value: cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, ValidatorSlashEventsProxy>.add(value: cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent) {
       _builder.addValidatorSlashEvents(value)
     }/**
      * <code>repeated .cosmos.distribution.v1beta1.ValidatorSlashEvent validator_slash_events = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"validator_slash_events&#92;""];</code>
@@ -50,7 +50,8 @@ object ValidatorSlashEventsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignValidatorSlashEvents")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, ValidatorSlashEventsProxy>.plusAssign(value: cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, ValidatorSlashEventsProxy>.plusAssign(value: cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent) {
       add(value)
     }/**
      * <code>repeated .cosmos.distribution.v1beta1.ValidatorSlashEvent validator_slash_events = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"validator_slash_events&#92;""];</code>
@@ -58,7 +59,7 @@ object ValidatorSlashEventsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllValidatorSlashEvents")
-    fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, ValidatorSlashEventsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, ValidatorSlashEventsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent>) {
       _builder.addAllValidatorSlashEvents(values)
     }/**
      * <code>repeated .cosmos.distribution.v1beta1.ValidatorSlashEvent validator_slash_events = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"validator_slash_events&#92;""];</code>
@@ -66,7 +67,8 @@ object ValidatorSlashEventsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllValidatorSlashEvents")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, ValidatorSlashEventsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, ValidatorSlashEventsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.distribution.v1beta1.ValidatorSlashEvent validator_slash_events = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"validator_slash_events&#92;""];</code>
@@ -75,17 +77,17 @@ object ValidatorSlashEventsKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setValidatorSlashEvents")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, ValidatorSlashEventsProxy>.set(index: kotlin.Int, value: cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, ValidatorSlashEventsProxy>.set(index: kotlin.Int, value: cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent) {
       _builder.setValidatorSlashEvents(index, value)
     }/**
      * <code>repeated .cosmos.distribution.v1beta1.ValidatorSlashEvent validator_slash_events = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"validator_slash_events&#92;""];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearValidatorSlashEvents")
-    fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, ValidatorSlashEventsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, ValidatorSlashEventsProxy>.clear() {
       _builder.clearValidatorSlashEvents()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvents.copy(block: cosmos.distribution.v1beta1.ValidatorSlashEventsKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvents =
+public inline fun cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvents.copy(block: cosmos.distribution.v1beta1.ValidatorSlashEventsKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvents =
   cosmos.distribution.v1beta1.ValidatorSlashEventsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

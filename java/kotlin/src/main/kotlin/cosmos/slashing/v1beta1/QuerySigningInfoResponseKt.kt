@@ -4,15 +4,15 @@
 package cosmos.slashing.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun querySigningInfoResponse(block: cosmos.slashing.v1beta1.QuerySigningInfoResponseKt.Dsl.() -> Unit): cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfoResponse =
+public inline fun querySigningInfoResponse(block: cosmos.slashing.v1beta1.QuerySigningInfoResponseKt.Dsl.() -> kotlin.Unit): cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfoResponse =
   cosmos.slashing.v1beta1.QuerySigningInfoResponseKt.Dsl._create(cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfoResponse.newBuilder()).apply { block() }._build()
-object QuerySigningInfoResponseKt {
+public object QuerySigningInfoResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfoResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfoResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfoResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QuerySigningInfoResponseKt {
      *
      * <code>.cosmos.slashing.v1beta1.ValidatorSigningInfo val_signing_info = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var valSigningInfo: cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo
+    public var valSigningInfo: cosmos.slashing.v1beta1.Slashing.ValidatorSigningInfo
       @JvmName("getValSigningInfo")
       get() = _builder.getValSigningInfo()
       @JvmName("setValSigningInfo")
@@ -43,7 +43,7 @@ object QuerySigningInfoResponseKt {
      *
      * <code>.cosmos.slashing.v1beta1.ValidatorSigningInfo val_signing_info = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearValSigningInfo() {
+    public fun clearValSigningInfo() {
       _builder.clearValSigningInfo()
     }
     /**
@@ -54,11 +54,11 @@ object QuerySigningInfoResponseKt {
      * <code>.cosmos.slashing.v1beta1.ValidatorSigningInfo val_signing_info = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the valSigningInfo field is set.
      */
-    fun hasValSigningInfo(): kotlin.Boolean {
+    public fun hasValSigningInfo(): kotlin.Boolean {
       return _builder.hasValSigningInfo()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfoResponse.copy(block: cosmos.slashing.v1beta1.QuerySigningInfoResponseKt.Dsl.() -> Unit): cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfoResponse =
+public inline fun cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfoResponse.copy(block: cosmos.slashing.v1beta1.QuerySigningInfoResponseKt.Dsl.() -> kotlin.Unit): cosmos.slashing.v1beta1.QueryOuterClass.QuerySigningInfoResponse =
   cosmos.slashing.v1beta1.QuerySigningInfoResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

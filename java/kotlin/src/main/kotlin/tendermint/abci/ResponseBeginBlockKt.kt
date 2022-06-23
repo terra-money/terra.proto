@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun responseBeginBlock(block: tendermint.abci.ResponseBeginBlockKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseBeginBlock =
+public inline fun responseBeginBlock(block: tendermint.abci.ResponseBeginBlockKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseBeginBlock =
   tendermint.abci.ResponseBeginBlockKt.Dsl._create(tendermint.abci.Types.ResponseBeginBlock.newBuilder()).apply { block() }._build()
-object ResponseBeginBlockKt {
+public object ResponseBeginBlockKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.ResponseBeginBlock.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.ResponseBeginBlock.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.ResponseBeginBlock.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object ResponseBeginBlockKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class EventsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class EventsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .tendermint.abci.Event events = 1 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
      */
-     val events: com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>
+     public val events: com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getEventsList()
@@ -42,7 +42,7 @@ object ResponseBeginBlockKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addEvents")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.add(value: tendermint.abci.Types.Event) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.add(value: tendermint.abci.Types.Event) {
       _builder.addEvents(value)
     }/**
      * <code>repeated .tendermint.abci.Event events = 1 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
@@ -50,7 +50,8 @@ object ResponseBeginBlockKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignEvents")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(value: tendermint.abci.Types.Event) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(value: tendermint.abci.Types.Event) {
       add(value)
     }/**
      * <code>repeated .tendermint.abci.Event events = 1 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
@@ -58,7 +59,7 @@ object ResponseBeginBlockKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllEvents")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.addAll(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.addAll(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
       _builder.addAllEvents(values)
     }/**
      * <code>repeated .tendermint.abci.Event events = 1 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
@@ -66,7 +67,8 @@ object ResponseBeginBlockKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllEvents")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
       addAll(values)
     }/**
      * <code>repeated .tendermint.abci.Event events = 1 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
@@ -75,17 +77,17 @@ object ResponseBeginBlockKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setEvents")
-    operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.set(index: kotlin.Int, value: tendermint.abci.Types.Event) {
+    public operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.set(index: kotlin.Int, value: tendermint.abci.Types.Event) {
       _builder.setEvents(index, value)
     }/**
      * <code>repeated .tendermint.abci.Event events = 1 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearEvents")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.clear() {
       _builder.clearEvents()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.ResponseBeginBlock.copy(block: tendermint.abci.ResponseBeginBlockKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseBeginBlock =
+public inline fun tendermint.abci.Types.ResponseBeginBlock.copy(block: tendermint.abci.ResponseBeginBlockKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseBeginBlock =
   tendermint.abci.ResponseBeginBlockKt.Dsl._create(this.toBuilder()).apply { block() }._build()

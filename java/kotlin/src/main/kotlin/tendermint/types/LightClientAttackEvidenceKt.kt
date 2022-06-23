@@ -4,15 +4,15 @@
 package tendermint.types;
 
 @kotlin.jvm.JvmSynthetic
-inline fun lightClientAttackEvidence(block: tendermint.types.LightClientAttackEvidenceKt.Dsl.() -> Unit): tendermint.types.EvidenceOuterClass.LightClientAttackEvidence =
+public inline fun lightClientAttackEvidence(block: tendermint.types.LightClientAttackEvidenceKt.Dsl.() -> kotlin.Unit): tendermint.types.EvidenceOuterClass.LightClientAttackEvidence =
   tendermint.types.LightClientAttackEvidenceKt.Dsl._create(tendermint.types.EvidenceOuterClass.LightClientAttackEvidence.newBuilder()).apply { block() }._build()
-object LightClientAttackEvidenceKt {
+public object LightClientAttackEvidenceKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.types.EvidenceOuterClass.LightClientAttackEvidence.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.types.EvidenceOuterClass.LightClientAttackEvidence.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.types.EvidenceOuterClass.LightClientAttackEvidence.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object LightClientAttackEvidenceKt {
     /**
      * <code>.tendermint.types.LightBlock conflicting_block = 1;</code>
      */
-    var conflictingBlock: tendermint.types.Types.LightBlock
+    public var conflictingBlock: tendermint.types.Types.LightBlock
       @JvmName("getConflictingBlock")
       get() = _builder.getConflictingBlock()
       @JvmName("setConflictingBlock")
@@ -35,21 +35,21 @@ object LightClientAttackEvidenceKt {
     /**
      * <code>.tendermint.types.LightBlock conflicting_block = 1;</code>
      */
-    fun clearConflictingBlock() {
+    public fun clearConflictingBlock() {
       _builder.clearConflictingBlock()
     }
     /**
      * <code>.tendermint.types.LightBlock conflicting_block = 1;</code>
      * @return Whether the conflictingBlock field is set.
      */
-    fun hasConflictingBlock(): kotlin.Boolean {
+    public fun hasConflictingBlock(): kotlin.Boolean {
       return _builder.hasConflictingBlock()
     }
 
     /**
      * <code>int64 common_height = 2;</code>
      */
-    var commonHeight: kotlin.Long
+    public var commonHeight: kotlin.Long
       @JvmName("getCommonHeight")
       get() = _builder.getCommonHeight()
       @JvmName("setCommonHeight")
@@ -59,7 +59,7 @@ object LightClientAttackEvidenceKt {
     /**
      * <code>int64 common_height = 2;</code>
      */
-    fun clearCommonHeight() {
+    public fun clearCommonHeight() {
       _builder.clearCommonHeight()
     }
 
@@ -68,11 +68,11 @@ object LightClientAttackEvidenceKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class ByzantineValidatorsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class ByzantineValidatorsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .tendermint.types.Validator byzantine_validators = 3;</code>
      */
-     val byzantineValidators: com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ByzantineValidatorsProxy>
+     public val byzantineValidators: com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ByzantineValidatorsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getByzantineValidatorsList()
@@ -83,7 +83,7 @@ object LightClientAttackEvidenceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addByzantineValidators")
-    fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ByzantineValidatorsProxy>.add(value: tendermint.types.ValidatorOuterClass.Validator) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ByzantineValidatorsProxy>.add(value: tendermint.types.ValidatorOuterClass.Validator) {
       _builder.addByzantineValidators(value)
     }/**
      * <code>repeated .tendermint.types.Validator byzantine_validators = 3;</code>
@@ -91,7 +91,8 @@ object LightClientAttackEvidenceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignByzantineValidators")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ByzantineValidatorsProxy>.plusAssign(value: tendermint.types.ValidatorOuterClass.Validator) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ByzantineValidatorsProxy>.plusAssign(value: tendermint.types.ValidatorOuterClass.Validator) {
       add(value)
     }/**
      * <code>repeated .tendermint.types.Validator byzantine_validators = 3;</code>
@@ -99,7 +100,7 @@ object LightClientAttackEvidenceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllByzantineValidators")
-    fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ByzantineValidatorsProxy>.addAll(values: kotlin.collections.Iterable<tendermint.types.ValidatorOuterClass.Validator>) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ByzantineValidatorsProxy>.addAll(values: kotlin.collections.Iterable<tendermint.types.ValidatorOuterClass.Validator>) {
       _builder.addAllByzantineValidators(values)
     }/**
      * <code>repeated .tendermint.types.Validator byzantine_validators = 3;</code>
@@ -107,7 +108,8 @@ object LightClientAttackEvidenceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllByzantineValidators")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ByzantineValidatorsProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.types.ValidatorOuterClass.Validator>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ByzantineValidatorsProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.types.ValidatorOuterClass.Validator>) {
       addAll(values)
     }/**
      * <code>repeated .tendermint.types.Validator byzantine_validators = 3;</code>
@@ -116,20 +118,20 @@ object LightClientAttackEvidenceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setByzantineValidators")
-    operator fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ByzantineValidatorsProxy>.set(index: kotlin.Int, value: tendermint.types.ValidatorOuterClass.Validator) {
+    public operator fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ByzantineValidatorsProxy>.set(index: kotlin.Int, value: tendermint.types.ValidatorOuterClass.Validator) {
       _builder.setByzantineValidators(index, value)
     }/**
      * <code>repeated .tendermint.types.Validator byzantine_validators = 3;</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearByzantineValidators")
-    fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ByzantineValidatorsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ByzantineValidatorsProxy>.clear() {
       _builder.clearByzantineValidators()
     }
     /**
      * <code>int64 total_voting_power = 4;</code>
      */
-    var totalVotingPower: kotlin.Long
+    public var totalVotingPower: kotlin.Long
       @JvmName("getTotalVotingPower")
       get() = _builder.getTotalVotingPower()
       @JvmName("setTotalVotingPower")
@@ -139,14 +141,14 @@ object LightClientAttackEvidenceKt {
     /**
      * <code>int64 total_voting_power = 4;</code>
      */
-    fun clearTotalVotingPower() {
+    public fun clearTotalVotingPower() {
       _builder.clearTotalVotingPower()
     }
 
     /**
      * <code>.google.protobuf.Timestamp timestamp = 5 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
      */
-    var timestamp: com.google.protobuf.Timestamp
+    public var timestamp: com.google.protobuf.Timestamp
       @JvmName("getTimestamp")
       get() = _builder.getTimestamp()
       @JvmName("setTimestamp")
@@ -156,18 +158,18 @@ object LightClientAttackEvidenceKt {
     /**
      * <code>.google.protobuf.Timestamp timestamp = 5 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
      */
-    fun clearTimestamp() {
+    public fun clearTimestamp() {
       _builder.clearTimestamp()
     }
     /**
      * <code>.google.protobuf.Timestamp timestamp = 5 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
      * @return Whether the timestamp field is set.
      */
-    fun hasTimestamp(): kotlin.Boolean {
+    public fun hasTimestamp(): kotlin.Boolean {
       return _builder.hasTimestamp()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.types.EvidenceOuterClass.LightClientAttackEvidence.copy(block: tendermint.types.LightClientAttackEvidenceKt.Dsl.() -> Unit): tendermint.types.EvidenceOuterClass.LightClientAttackEvidence =
+public inline fun tendermint.types.EvidenceOuterClass.LightClientAttackEvidence.copy(block: tendermint.types.LightClientAttackEvidenceKt.Dsl.() -> kotlin.Unit): tendermint.types.EvidenceOuterClass.LightClientAttackEvidence =
   tendermint.types.LightClientAttackEvidenceKt.Dsl._create(this.toBuilder()).apply { block() }._build()

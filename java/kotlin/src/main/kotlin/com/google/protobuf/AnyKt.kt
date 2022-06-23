@@ -4,15 +4,15 @@
 package com.google.protobuf;
 
 @kotlin.jvm.JvmSynthetic
-inline fun any(block: com.google.protobuf.AnyKt.Dsl.() -> Unit): com.google.protobuf.Any =
+public inline fun any(block: com.google.protobuf.AnyKt.Dsl.() -> kotlin.Unit): com.google.protobuf.Any =
   com.google.protobuf.AnyKt.Dsl._create(com.google.protobuf.Any.newBuilder()).apply { block() }._build()
-object AnyKt {
+public object AnyKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: com.google.protobuf.Any.Builder
+  public class Dsl private constructor(
+    private val _builder: com.google.protobuf.Any.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: com.google.protobuf.Any.Builder): Dsl = Dsl(builder)
@@ -51,7 +51,7 @@ object AnyKt {
      *
      * <code>string type_url = 1;</code>
      */
-    var typeUrl: kotlin.String
+    public var typeUrl: kotlin.String
       @JvmName("getTypeUrl")
       get() = _builder.getTypeUrl()
       @JvmName("setTypeUrl")
@@ -87,7 +87,7 @@ object AnyKt {
      *
      * <code>string type_url = 1;</code>
      */
-    fun clearTypeUrl() {
+    public fun clearTypeUrl() {
       _builder.clearTypeUrl()
     }
 
@@ -98,7 +98,7 @@ object AnyKt {
      *
      * <code>bytes value = 2;</code>
      */
-    var value: com.google.protobuf.ByteString
+    public var value: com.google.protobuf.ByteString
       @JvmName("getValue")
       get() = _builder.getValue()
       @JvmName("setValue")
@@ -112,11 +112,11 @@ object AnyKt {
      *
      * <code>bytes value = 2;</code>
      */
-    fun clearValue() {
+    public fun clearValue() {
       _builder.clearValue()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun com.google.protobuf.Any.copy(block: com.google.protobuf.AnyKt.Dsl.() -> Unit): com.google.protobuf.Any =
+public inline fun com.google.protobuf.Any.copy(block: com.google.protobuf.AnyKt.Dsl.() -> kotlin.Unit): com.google.protobuf.Any =
   com.google.protobuf.AnyKt.Dsl._create(this.toBuilder()).apply { block() }._build()

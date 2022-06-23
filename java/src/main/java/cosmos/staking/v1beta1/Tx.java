@@ -506,13 +506,13 @@ public final class Tx {
       if (commission_ != null) {
         output.writeMessage(2, getCommission());
       }
-      if (!getMinSelfDelegationBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(minSelfDelegation_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, minSelfDelegation_);
       }
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, validatorAddress_);
       }
       if (pubkey_ != null) {
@@ -538,13 +538,13 @@ public final class Tx {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getCommission());
       }
-      if (!getMinSelfDelegationBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(minSelfDelegation_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, minSelfDelegation_);
       }
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, validatorAddress_);
       }
       if (pubkey_ != null) {
@@ -2483,13 +2483,13 @@ public final class Tx {
       if (description_ != null) {
         output.writeMessage(1, getDescription());
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, validatorAddress_);
       }
-      if (!getCommissionRateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(commissionRate_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, commissionRate_);
       }
-      if (!getMinSelfDelegationBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(minSelfDelegation_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, minSelfDelegation_);
       }
       unknownFields.writeTo(output);
@@ -2505,13 +2505,13 @@ public final class Tx {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getDescription());
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, validatorAddress_);
       }
-      if (!getCommissionRateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(commissionRate_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, commissionRate_);
       }
-      if (!getMinSelfDelegationBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(minSelfDelegation_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, minSelfDelegation_);
       }
       size += unknownFields.getSerializedSize();
@@ -3964,10 +3964,10 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, validatorAddress_);
       }
       if (amount_ != null) {
@@ -3982,10 +3982,10 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, validatorAddress_);
       }
       if (amount_ != null) {
@@ -5378,13 +5378,13 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, delegatorAddress_);
       }
-      if (!getValidatorSrcAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorSrcAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, validatorSrcAddress_);
       }
-      if (!getValidatorDstAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorDstAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, validatorDstAddress_);
       }
       if (amount_ != null) {
@@ -5399,13 +5399,13 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, delegatorAddress_);
       }
-      if (!getValidatorSrcAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorSrcAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, validatorSrcAddress_);
       }
-      if (!getValidatorDstAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorDstAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, validatorDstAddress_);
       }
       if (amount_ != null) {
@@ -7031,10 +7031,10 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, validatorAddress_);
       }
       if (amount_ != null) {
@@ -7049,10 +7049,10 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, validatorAddress_);
       }
       if (amount_ != null) {

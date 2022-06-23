@@ -4,15 +4,15 @@
 package cosmos.feegrant.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgRevokeAllowance(block: cosmos.feegrant.v1beta1.MsgRevokeAllowanceKt.Dsl.() -> Unit): cosmos.feegrant.v1beta1.Tx.MsgRevokeAllowance =
+public inline fun msgRevokeAllowance(block: cosmos.feegrant.v1beta1.MsgRevokeAllowanceKt.Dsl.() -> kotlin.Unit): cosmos.feegrant.v1beta1.Tx.MsgRevokeAllowance =
   cosmos.feegrant.v1beta1.MsgRevokeAllowanceKt.Dsl._create(cosmos.feegrant.v1beta1.Tx.MsgRevokeAllowance.newBuilder()).apply { block() }._build()
-object MsgRevokeAllowanceKt {
+public object MsgRevokeAllowanceKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.feegrant.v1beta1.Tx.MsgRevokeAllowance.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.feegrant.v1beta1.Tx.MsgRevokeAllowance.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.feegrant.v1beta1.Tx.MsgRevokeAllowance.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object MsgRevokeAllowanceKt {
      *
      * <code>string granter = 1;</code>
      */
-    var granter: kotlin.String
+    public var granter: kotlin.String
       @JvmName("getGranter")
       get() = _builder.getGranter()
       @JvmName("setGranter")
@@ -43,7 +43,7 @@ object MsgRevokeAllowanceKt {
      *
      * <code>string granter = 1;</code>
      */
-    fun clearGranter() {
+    public fun clearGranter() {
       _builder.clearGranter()
     }
 
@@ -54,7 +54,7 @@ object MsgRevokeAllowanceKt {
      *
      * <code>string grantee = 2;</code>
      */
-    var grantee: kotlin.String
+    public var grantee: kotlin.String
       @JvmName("getGrantee")
       get() = _builder.getGrantee()
       @JvmName("setGrantee")
@@ -68,11 +68,11 @@ object MsgRevokeAllowanceKt {
      *
      * <code>string grantee = 2;</code>
      */
-    fun clearGrantee() {
+    public fun clearGrantee() {
       _builder.clearGrantee()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.feegrant.v1beta1.Tx.MsgRevokeAllowance.copy(block: cosmos.feegrant.v1beta1.MsgRevokeAllowanceKt.Dsl.() -> Unit): cosmos.feegrant.v1beta1.Tx.MsgRevokeAllowance =
+public inline fun cosmos.feegrant.v1beta1.Tx.MsgRevokeAllowance.copy(block: cosmos.feegrant.v1beta1.MsgRevokeAllowanceKt.Dsl.() -> kotlin.Unit): cosmos.feegrant.v1beta1.Tx.MsgRevokeAllowance =
   cosmos.feegrant.v1beta1.MsgRevokeAllowanceKt.Dsl._create(this.toBuilder()).apply { block() }._build()

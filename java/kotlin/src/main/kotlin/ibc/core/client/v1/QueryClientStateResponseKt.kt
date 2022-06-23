@@ -4,15 +4,15 @@
 package ibc.core.client.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryClientStateResponse(block: ibc.core.client.v1.QueryClientStateResponseKt.Dsl.() -> Unit): ibc.core.client.v1.QueryOuterClass.QueryClientStateResponse =
+public inline fun queryClientStateResponse(block: ibc.core.client.v1.QueryClientStateResponseKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.QueryOuterClass.QueryClientStateResponse =
   ibc.core.client.v1.QueryClientStateResponseKt.Dsl._create(ibc.core.client.v1.QueryOuterClass.QueryClientStateResponse.newBuilder()).apply { block() }._build()
-object QueryClientStateResponseKt {
+public object QueryClientStateResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.client.v1.QueryOuterClass.QueryClientStateResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.client.v1.QueryOuterClass.QueryClientStateResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.client.v1.QueryOuterClass.QueryClientStateResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryClientStateResponseKt {
      *
      * <code>.google.protobuf.Any client_state = 1;</code>
      */
-    var clientState: com.google.protobuf.Any
+    public var clientState: com.google.protobuf.Any
       @JvmName("getClientState")
       get() = _builder.getClientState()
       @JvmName("setClientState")
@@ -43,7 +43,7 @@ object QueryClientStateResponseKt {
      *
      * <code>.google.protobuf.Any client_state = 1;</code>
      */
-    fun clearClientState() {
+    public fun clearClientState() {
       _builder.clearClientState()
     }
     /**
@@ -54,7 +54,7 @@ object QueryClientStateResponseKt {
      * <code>.google.protobuf.Any client_state = 1;</code>
      * @return Whether the clientState field is set.
      */
-    fun hasClientState(): kotlin.Boolean {
+    public fun hasClientState(): kotlin.Boolean {
       return _builder.hasClientState()
     }
 
@@ -65,7 +65,7 @@ object QueryClientStateResponseKt {
      *
      * <code>bytes proof = 2;</code>
      */
-    var proof: com.google.protobuf.ByteString
+    public var proof: com.google.protobuf.ByteString
       @JvmName("getProof")
       get() = _builder.getProof()
       @JvmName("setProof")
@@ -79,7 +79,7 @@ object QueryClientStateResponseKt {
      *
      * <code>bytes proof = 2;</code>
      */
-    fun clearProof() {
+    public fun clearProof() {
       _builder.clearProof()
     }
 
@@ -90,7 +90,7 @@ object QueryClientStateResponseKt {
      *
      * <code>.ibc.core.client.v1.Height proof_height = 3 [(.gogoproto.nullable) = false];</code>
      */
-    var proofHeight: ibc.core.client.v1.Client.Height
+    public var proofHeight: ibc.core.client.v1.Client.Height
       @JvmName("getProofHeight")
       get() = _builder.getProofHeight()
       @JvmName("setProofHeight")
@@ -104,7 +104,7 @@ object QueryClientStateResponseKt {
      *
      * <code>.ibc.core.client.v1.Height proof_height = 3 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearProofHeight() {
+    public fun clearProofHeight() {
       _builder.clearProofHeight()
     }
     /**
@@ -115,11 +115,11 @@ object QueryClientStateResponseKt {
      * <code>.ibc.core.client.v1.Height proof_height = 3 [(.gogoproto.nullable) = false];</code>
      * @return Whether the proofHeight field is set.
      */
-    fun hasProofHeight(): kotlin.Boolean {
+    public fun hasProofHeight(): kotlin.Boolean {
       return _builder.hasProofHeight()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.client.v1.QueryOuterClass.QueryClientStateResponse.copy(block: ibc.core.client.v1.QueryClientStateResponseKt.Dsl.() -> Unit): ibc.core.client.v1.QueryOuterClass.QueryClientStateResponse =
+public inline fun ibc.core.client.v1.QueryOuterClass.QueryClientStateResponse.copy(block: ibc.core.client.v1.QueryClientStateResponseKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.QueryOuterClass.QueryClientStateResponse =
   ibc.core.client.v1.QueryClientStateResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

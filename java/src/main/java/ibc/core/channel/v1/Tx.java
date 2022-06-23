@@ -14,6 +14,151 @@ public final class Tx {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  /**
+   * <pre>
+   * ResponseResultType defines the possible outcomes of the execution of a message
+   * </pre>
+   *
+   * Protobuf enum {@code ibc.core.channel.v1.ResponseResultType}
+   */
+  public enum ResponseResultType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <pre>
+     * Default zero value enumeration
+     * </pre>
+     *
+     * <code>RESPONSE_RESULT_TYPE_UNSPECIFIED = 0 [(.gogoproto.enumvalue_customname) = "UNSPECIFIED"];</code>
+     */
+    RESPONSE_RESULT_TYPE_UNSPECIFIED(0),
+    /**
+     * <pre>
+     * The message did not call the IBC application callbacks (because, for example, the packet had already been relayed)
+     * </pre>
+     *
+     * <code>RESPONSE_RESULT_TYPE_NOOP = 1 [(.gogoproto.enumvalue_customname) = "NOOP"];</code>
+     */
+    RESPONSE_RESULT_TYPE_NOOP(1),
+    /**
+     * <pre>
+     * The message was executed successfully
+     * </pre>
+     *
+     * <code>RESPONSE_RESULT_TYPE_SUCCESS = 2 [(.gogoproto.enumvalue_customname) = "SUCCESS"];</code>
+     */
+    RESPONSE_RESULT_TYPE_SUCCESS(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <pre>
+     * Default zero value enumeration
+     * </pre>
+     *
+     * <code>RESPONSE_RESULT_TYPE_UNSPECIFIED = 0 [(.gogoproto.enumvalue_customname) = "UNSPECIFIED"];</code>
+     */
+    public static final int RESPONSE_RESULT_TYPE_UNSPECIFIED_VALUE = 0;
+    /**
+     * <pre>
+     * The message did not call the IBC application callbacks (because, for example, the packet had already been relayed)
+     * </pre>
+     *
+     * <code>RESPONSE_RESULT_TYPE_NOOP = 1 [(.gogoproto.enumvalue_customname) = "NOOP"];</code>
+     */
+    public static final int RESPONSE_RESULT_TYPE_NOOP_VALUE = 1;
+    /**
+     * <pre>
+     * The message was executed successfully
+     * </pre>
+     *
+     * <code>RESPONSE_RESULT_TYPE_SUCCESS = 2 [(.gogoproto.enumvalue_customname) = "SUCCESS"];</code>
+     */
+    public static final int RESPONSE_RESULT_TYPE_SUCCESS_VALUE = 2;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static ResponseResultType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static ResponseResultType forNumber(int value) {
+      switch (value) {
+        case 0: return RESPONSE_RESULT_TYPE_UNSPECIFIED;
+        case 1: return RESPONSE_RESULT_TYPE_NOOP;
+        case 2: return RESPONSE_RESULT_TYPE_SUCCESS;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<ResponseResultType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ResponseResultType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ResponseResultType>() {
+            public ResponseResultType findValueByNumber(int number) {
+              return ResponseResultType.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return ibc.core.channel.v1.Tx.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final ResponseResultType[] VALUES = values();
+
+    public static ResponseResultType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private ResponseResultType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:ibc.core.channel.v1.ResponseResultType)
+  }
+
   public interface MsgChannelOpenInitOrBuilder extends
       // @@protoc_insertion_point(interface_extends:ibc.core.channel.v1.MsgChannelOpenInit)
       com.google.protobuf.MessageOrBuilder {
@@ -282,13 +427,13 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, portId_);
       }
       if (channel_ != null) {
         output.writeMessage(2, getChannel());
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, signer_);
       }
       unknownFields.writeTo(output);
@@ -300,14 +445,14 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, portId_);
       }
       if (channel_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getChannel());
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, signer_);
       }
       size += unknownFields.getSerializedSize();
@@ -948,6 +1093,18 @@ public final class Tx {
   public interface MsgChannelOpenInitResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:ibc.core.channel.v1.MsgChannelOpenInitResponse)
       com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string channel_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+     * @return The channelId.
+     */
+    java.lang.String getChannelId();
+    /**
+     * <code>string channel_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+     * @return The bytes for channelId.
+     */
+    com.google.protobuf.ByteString
+        getChannelIdBytes();
   }
   /**
    * <pre>
@@ -966,6 +1123,7 @@ public final class Tx {
       super(builder);
     }
     private MsgChannelOpenInitResponse() {
+      channelId_ = "";
     }
 
     @java.lang.Override
@@ -998,6 +1156,12 @@ public final class Tx {
             case 0:
               done = true;
               break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              channelId_ = s;
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -1030,6 +1194,44 @@ public final class Tx {
               ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse.class, ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse.Builder.class);
     }
 
+    public static final int CHANNEL_ID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object channelId_;
+    /**
+     * <code>string channel_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+     * @return The channelId.
+     */
+    @java.lang.Override
+    public java.lang.String getChannelId() {
+      java.lang.Object ref = channelId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        channelId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string channel_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+     * @return The bytes for channelId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getChannelIdBytes() {
+      java.lang.Object ref = channelId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        channelId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1044,6 +1246,9 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, channelId_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -1053,6 +1258,9 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, channelId_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -1068,6 +1276,8 @@ public final class Tx {
       }
       ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse other = (ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse) obj;
 
+      if (!getChannelId()
+          .equals(other.getChannelId())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1079,6 +1289,8 @@ public final class Tx {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CHANNEL_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getChannelId().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1216,6 +1428,8 @@ public final class Tx {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        channelId_ = "";
+
         return this;
       }
 
@@ -1242,6 +1456,7 @@ public final class Tx {
       @java.lang.Override
       public ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse buildPartial() {
         ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse result = new ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse(this);
+        result.channelId_ = channelId_;
         onBuilt();
         return result;
       }
@@ -1290,6 +1505,10 @@ public final class Tx {
 
       public Builder mergeFrom(ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse other) {
         if (other == ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse.getDefaultInstance()) return this;
+        if (!other.getChannelId().isEmpty()) {
+          channelId_ = other.channelId_;
+          onChanged();
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -1316,6 +1535,82 @@ public final class Tx {
             mergeFrom(parsedMessage);
           }
         }
+        return this;
+      }
+
+      private java.lang.Object channelId_ = "";
+      /**
+       * <code>string channel_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+       * @return The channelId.
+       */
+      public java.lang.String getChannelId() {
+        java.lang.Object ref = channelId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          channelId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string channel_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+       * @return The bytes for channelId.
+       */
+      public com.google.protobuf.ByteString
+          getChannelIdBytes() {
+        java.lang.Object ref = channelId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          channelId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string channel_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+       * @param value The channelId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setChannelId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        channelId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string channel_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearChannelId() {
+        
+        channelId_ = getDefaultInstance().getChannelId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string channel_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+       * @param value The bytes for channelId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setChannelIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        channelId_ = value;
+        onChanged();
         return this;
       }
       @java.lang.Override
@@ -1410,16 +1705,28 @@ public final class Tx {
         getPreviousChannelIdBytes();
 
     /**
+     * <pre>
+     * NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC.
+     * </pre>
+     *
      * <code>.ibc.core.channel.v1.Channel channel = 3 [(.gogoproto.nullable) = false];</code>
      * @return Whether the channel field is set.
      */
     boolean hasChannel();
     /**
+     * <pre>
+     * NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC.
+     * </pre>
+     *
      * <code>.ibc.core.channel.v1.Channel channel = 3 [(.gogoproto.nullable) = false];</code>
      * @return The channel.
      */
     ibc.core.channel.v1.ChannelOuterClass.Channel getChannel();
     /**
+     * <pre>
+     * NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC.
+     * </pre>
+     *
      * <code>.ibc.core.channel.v1.Channel channel = 3 [(.gogoproto.nullable) = false];</code>
      */
     ibc.core.channel.v1.ChannelOuterClass.ChannelOrBuilder getChannelOrBuilder();
@@ -1472,7 +1779,8 @@ public final class Tx {
   /**
    * <pre>
    * MsgChannelOpenInit defines a msg sent by a Relayer to try to open a channel
-   * on Chain B.
+   * on Chain B. The version field within the Channel field has been deprecated. Its
+   * value will be ignored by core IBC.
    * </pre>
    *
    * Protobuf type {@code ibc.core.channel.v1.MsgChannelOpenTry}
@@ -1700,6 +2008,10 @@ public final class Tx {
     public static final int CHANNEL_FIELD_NUMBER = 3;
     private ibc.core.channel.v1.ChannelOuterClass.Channel channel_;
     /**
+     * <pre>
+     * NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC.
+     * </pre>
+     *
      * <code>.ibc.core.channel.v1.Channel channel = 3 [(.gogoproto.nullable) = false];</code>
      * @return Whether the channel field is set.
      */
@@ -1708,6 +2020,10 @@ public final class Tx {
       return channel_ != null;
     }
     /**
+     * <pre>
+     * NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC.
+     * </pre>
+     *
      * <code>.ibc.core.channel.v1.Channel channel = 3 [(.gogoproto.nullable) = false];</code>
      * @return The channel.
      */
@@ -1716,6 +2032,10 @@ public final class Tx {
       return channel_ == null ? ibc.core.channel.v1.ChannelOuterClass.Channel.getDefaultInstance() : channel_;
     }
     /**
+     * <pre>
+     * NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC.
+     * </pre>
+     *
      * <code>.ibc.core.channel.v1.Channel channel = 3 [(.gogoproto.nullable) = false];</code>
      */
     @java.lang.Override
@@ -1850,16 +2170,16 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, portId_);
       }
-      if (!getPreviousChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(previousChannelId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, previousChannelId_);
       }
       if (channel_ != null) {
         output.writeMessage(3, getChannel());
       }
-      if (!getCounterpartyVersionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(counterpartyVersion_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, counterpartyVersion_);
       }
       if (!proofInit_.isEmpty()) {
@@ -1868,7 +2188,7 @@ public final class Tx {
       if (proofHeight_ != null) {
         output.writeMessage(6, getProofHeight());
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 7, signer_);
       }
       unknownFields.writeTo(output);
@@ -1880,17 +2200,17 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, portId_);
       }
-      if (!getPreviousChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(previousChannelId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, previousChannelId_);
       }
       if (channel_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getChannel());
       }
-      if (!getCounterpartyVersionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(counterpartyVersion_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, counterpartyVersion_);
       }
       if (!proofInit_.isEmpty()) {
@@ -1901,7 +2221,7 @@ public final class Tx {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(6, getProofHeight());
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, signer_);
       }
       size += unknownFields.getSerializedSize();
@@ -2066,7 +2386,8 @@ public final class Tx {
     /**
      * <pre>
      * MsgChannelOpenInit defines a msg sent by a Relayer to try to open a channel
-     * on Chain B.
+     * on Chain B. The version field within the Channel field has been deprecated. Its
+     * value will be ignored by core IBC.
      * </pre>
      *
      * Protobuf type {@code ibc.core.channel.v1.MsgChannelOpenTry}
@@ -2452,6 +2773,10 @@ public final class Tx {
       private com.google.protobuf.SingleFieldBuilderV3<
           ibc.core.channel.v1.ChannelOuterClass.Channel, ibc.core.channel.v1.ChannelOuterClass.Channel.Builder, ibc.core.channel.v1.ChannelOuterClass.ChannelOrBuilder> channelBuilder_;
       /**
+       * <pre>
+       * NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC.
+       * </pre>
+       *
        * <code>.ibc.core.channel.v1.Channel channel = 3 [(.gogoproto.nullable) = false];</code>
        * @return Whether the channel field is set.
        */
@@ -2459,6 +2784,10 @@ public final class Tx {
         return channelBuilder_ != null || channel_ != null;
       }
       /**
+       * <pre>
+       * NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC.
+       * </pre>
+       *
        * <code>.ibc.core.channel.v1.Channel channel = 3 [(.gogoproto.nullable) = false];</code>
        * @return The channel.
        */
@@ -2470,6 +2799,10 @@ public final class Tx {
         }
       }
       /**
+       * <pre>
+       * NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC.
+       * </pre>
+       *
        * <code>.ibc.core.channel.v1.Channel channel = 3 [(.gogoproto.nullable) = false];</code>
        */
       public Builder setChannel(ibc.core.channel.v1.ChannelOuterClass.Channel value) {
@@ -2486,6 +2819,10 @@ public final class Tx {
         return this;
       }
       /**
+       * <pre>
+       * NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC.
+       * </pre>
+       *
        * <code>.ibc.core.channel.v1.Channel channel = 3 [(.gogoproto.nullable) = false];</code>
        */
       public Builder setChannel(
@@ -2500,6 +2837,10 @@ public final class Tx {
         return this;
       }
       /**
+       * <pre>
+       * NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC.
+       * </pre>
+       *
        * <code>.ibc.core.channel.v1.Channel channel = 3 [(.gogoproto.nullable) = false];</code>
        */
       public Builder mergeChannel(ibc.core.channel.v1.ChannelOuterClass.Channel value) {
@@ -2518,6 +2859,10 @@ public final class Tx {
         return this;
       }
       /**
+       * <pre>
+       * NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC.
+       * </pre>
+       *
        * <code>.ibc.core.channel.v1.Channel channel = 3 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearChannel() {
@@ -2532,6 +2877,10 @@ public final class Tx {
         return this;
       }
       /**
+       * <pre>
+       * NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC.
+       * </pre>
+       *
        * <code>.ibc.core.channel.v1.Channel channel = 3 [(.gogoproto.nullable) = false];</code>
        */
       public ibc.core.channel.v1.ChannelOuterClass.Channel.Builder getChannelBuilder() {
@@ -2540,6 +2889,10 @@ public final class Tx {
         return getChannelFieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC.
+       * </pre>
+       *
        * <code>.ibc.core.channel.v1.Channel channel = 3 [(.gogoproto.nullable) = false];</code>
        */
       public ibc.core.channel.v1.ChannelOuterClass.ChannelOrBuilder getChannelOrBuilder() {
@@ -2551,6 +2904,10 @@ public final class Tx {
         }
       }
       /**
+       * <pre>
+       * NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC.
+       * </pre>
+       *
        * <code>.ibc.core.channel.v1.Channel channel = 3 [(.gogoproto.nullable) = false];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -3812,16 +4169,16 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, portId_);
       }
-      if (!getChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, channelId_);
       }
-      if (!getCounterpartyChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(counterpartyChannelId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, counterpartyChannelId_);
       }
-      if (!getCounterpartyVersionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(counterpartyVersion_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, counterpartyVersion_);
       }
       if (!proofTry_.isEmpty()) {
@@ -3830,7 +4187,7 @@ public final class Tx {
       if (proofHeight_ != null) {
         output.writeMessage(6, getProofHeight());
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 7, signer_);
       }
       unknownFields.writeTo(output);
@@ -3842,16 +4199,16 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, portId_);
       }
-      if (!getChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, channelId_);
       }
-      if (!getCounterpartyChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(counterpartyChannelId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, counterpartyChannelId_);
       }
-      if (!getCounterpartyVersionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(counterpartyVersion_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, counterpartyVersion_);
       }
       if (!proofTry_.isEmpty()) {
@@ -3862,7 +4219,7 @@ public final class Tx {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(6, getProofHeight());
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, signer_);
       }
       size += unknownFields.getSerializedSize();
@@ -5579,10 +5936,10 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, portId_);
       }
-      if (!getChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, channelId_);
       }
       if (!proofAck_.isEmpty()) {
@@ -5591,7 +5948,7 @@ public final class Tx {
       if (proofHeight_ != null) {
         output.writeMessage(4, getProofHeight());
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, signer_);
       }
       unknownFields.writeTo(output);
@@ -5603,10 +5960,10 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, portId_);
       }
-      if (!getChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, channelId_);
       }
       if (!proofAck_.isEmpty()) {
@@ -5617,7 +5974,7 @@ public final class Tx {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getProofHeight());
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, signer_);
       }
       size += unknownFields.getSerializedSize();
@@ -7085,13 +7442,13 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, portId_);
       }
-      if (!getChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, channelId_);
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, signer_);
       }
       unknownFields.writeTo(output);
@@ -7103,13 +7460,13 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, portId_);
       }
-      if (!getChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, channelId_);
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, signer_);
       }
       size += unknownFields.getSerializedSize();
@@ -8466,10 +8823,10 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, portId_);
       }
-      if (!getChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, channelId_);
       }
       if (!proofInit_.isEmpty()) {
@@ -8478,7 +8835,7 @@ public final class Tx {
       if (proofHeight_ != null) {
         output.writeMessage(4, getProofHeight());
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, signer_);
       }
       unknownFields.writeTo(output);
@@ -8490,10 +8847,10 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, portId_);
       }
-      if (!getChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, channelId_);
       }
       if (!proofInit_.isEmpty()) {
@@ -8504,7 +8861,7 @@ public final class Tx {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getProofHeight());
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, signer_);
       }
       size += unknownFields.getSerializedSize();
@@ -9997,7 +10354,7 @@ public final class Tx {
       if (proofHeight_ != null) {
         output.writeMessage(3, getProofHeight());
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, signer_);
       }
       unknownFields.writeTo(output);
@@ -10021,7 +10378,7 @@ public final class Tx {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getProofHeight());
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, signer_);
       }
       size += unknownFields.getSerializedSize();
@@ -10760,6 +11117,17 @@ public final class Tx {
   public interface MsgRecvPacketResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:ibc.core.channel.v1.MsgRecvPacketResponse)
       com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     * @return The enum numeric value on the wire for result.
+     */
+    int getResultValue();
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     * @return The result.
+     */
+    ibc.core.channel.v1.Tx.ResponseResultType getResult();
   }
   /**
    * <pre>
@@ -10778,6 +11146,7 @@ public final class Tx {
       super(builder);
     }
     private MsgRecvPacketResponse() {
+      result_ = 0;
     }
 
     @java.lang.Override
@@ -10810,6 +11179,12 @@ public final class Tx {
             case 0:
               done = true;
               break;
+            case 8: {
+              int rawValue = input.readEnum();
+
+              result_ = rawValue;
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -10842,6 +11217,25 @@ public final class Tx {
               ibc.core.channel.v1.Tx.MsgRecvPacketResponse.class, ibc.core.channel.v1.Tx.MsgRecvPacketResponse.Builder.class);
     }
 
+    public static final int RESULT_FIELD_NUMBER = 1;
+    private int result_;
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     * @return The enum numeric value on the wire for result.
+     */
+    @java.lang.Override public int getResultValue() {
+      return result_;
+    }
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     * @return The result.
+     */
+    @java.lang.Override public ibc.core.channel.v1.Tx.ResponseResultType getResult() {
+      @SuppressWarnings("deprecation")
+      ibc.core.channel.v1.Tx.ResponseResultType result = ibc.core.channel.v1.Tx.ResponseResultType.valueOf(result_);
+      return result == null ? ibc.core.channel.v1.Tx.ResponseResultType.UNRECOGNIZED : result;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -10856,6 +11250,9 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (result_ != ibc.core.channel.v1.Tx.ResponseResultType.RESPONSE_RESULT_TYPE_UNSPECIFIED.getNumber()) {
+        output.writeEnum(1, result_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -10865,6 +11262,10 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
+      if (result_ != ibc.core.channel.v1.Tx.ResponseResultType.RESPONSE_RESULT_TYPE_UNSPECIFIED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, result_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -10880,6 +11281,7 @@ public final class Tx {
       }
       ibc.core.channel.v1.Tx.MsgRecvPacketResponse other = (ibc.core.channel.v1.Tx.MsgRecvPacketResponse) obj;
 
+      if (result_ != other.result_) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -10891,6 +11293,8 @@ public final class Tx {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + RESULT_FIELD_NUMBER;
+      hash = (53 * hash) + result_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -11028,6 +11432,8 @@ public final class Tx {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        result_ = 0;
+
         return this;
       }
 
@@ -11054,6 +11460,7 @@ public final class Tx {
       @java.lang.Override
       public ibc.core.channel.v1.Tx.MsgRecvPacketResponse buildPartial() {
         ibc.core.channel.v1.Tx.MsgRecvPacketResponse result = new ibc.core.channel.v1.Tx.MsgRecvPacketResponse(this);
+        result.result_ = result_;
         onBuilt();
         return result;
       }
@@ -11102,6 +11509,9 @@ public final class Tx {
 
       public Builder mergeFrom(ibc.core.channel.v1.Tx.MsgRecvPacketResponse other) {
         if (other == ibc.core.channel.v1.Tx.MsgRecvPacketResponse.getDefaultInstance()) return this;
+        if (other.result_ != 0) {
+          setResultValue(other.getResultValue());
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -11128,6 +11538,60 @@ public final class Tx {
             mergeFrom(parsedMessage);
           }
         }
+        return this;
+      }
+
+      private int result_ = 0;
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @return The enum numeric value on the wire for result.
+       */
+      @java.lang.Override public int getResultValue() {
+        return result_;
+      }
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @param value The enum numeric value on the wire for result to set.
+       * @return This builder for chaining.
+       */
+      public Builder setResultValue(int value) {
+        
+        result_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @return The result.
+       */
+      @java.lang.Override
+      public ibc.core.channel.v1.Tx.ResponseResultType getResult() {
+        @SuppressWarnings("deprecation")
+        ibc.core.channel.v1.Tx.ResponseResultType result = ibc.core.channel.v1.Tx.ResponseResultType.valueOf(result_);
+        return result == null ? ibc.core.channel.v1.Tx.ResponseResultType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @param value The result to set.
+       * @return This builder for chaining.
+       */
+      public Builder setResult(ibc.core.channel.v1.Tx.ResponseResultType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        result_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearResult() {
+        
+        result_ = 0;
+        onChanged();
         return this;
       }
       @java.lang.Override
@@ -11504,7 +11968,7 @@ public final class Tx {
       if (nextSequenceRecv_ != 0L) {
         output.writeUInt64(4, nextSequenceRecv_);
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, signer_);
       }
       unknownFields.writeTo(output);
@@ -11532,7 +11996,7 @@ public final class Tx {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(4, nextSequenceRecv_);
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, signer_);
       }
       size += unknownFields.getSerializedSize();
@@ -12313,6 +12777,17 @@ public final class Tx {
   public interface MsgTimeoutResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:ibc.core.channel.v1.MsgTimeoutResponse)
       com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     * @return The enum numeric value on the wire for result.
+     */
+    int getResultValue();
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     * @return The result.
+     */
+    ibc.core.channel.v1.Tx.ResponseResultType getResult();
   }
   /**
    * <pre>
@@ -12331,6 +12806,7 @@ public final class Tx {
       super(builder);
     }
     private MsgTimeoutResponse() {
+      result_ = 0;
     }
 
     @java.lang.Override
@@ -12363,6 +12839,12 @@ public final class Tx {
             case 0:
               done = true;
               break;
+            case 8: {
+              int rawValue = input.readEnum();
+
+              result_ = rawValue;
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -12395,6 +12877,25 @@ public final class Tx {
               ibc.core.channel.v1.Tx.MsgTimeoutResponse.class, ibc.core.channel.v1.Tx.MsgTimeoutResponse.Builder.class);
     }
 
+    public static final int RESULT_FIELD_NUMBER = 1;
+    private int result_;
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     * @return The enum numeric value on the wire for result.
+     */
+    @java.lang.Override public int getResultValue() {
+      return result_;
+    }
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     * @return The result.
+     */
+    @java.lang.Override public ibc.core.channel.v1.Tx.ResponseResultType getResult() {
+      @SuppressWarnings("deprecation")
+      ibc.core.channel.v1.Tx.ResponseResultType result = ibc.core.channel.v1.Tx.ResponseResultType.valueOf(result_);
+      return result == null ? ibc.core.channel.v1.Tx.ResponseResultType.UNRECOGNIZED : result;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -12409,6 +12910,9 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (result_ != ibc.core.channel.v1.Tx.ResponseResultType.RESPONSE_RESULT_TYPE_UNSPECIFIED.getNumber()) {
+        output.writeEnum(1, result_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -12418,6 +12922,10 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
+      if (result_ != ibc.core.channel.v1.Tx.ResponseResultType.RESPONSE_RESULT_TYPE_UNSPECIFIED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, result_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -12433,6 +12941,7 @@ public final class Tx {
       }
       ibc.core.channel.v1.Tx.MsgTimeoutResponse other = (ibc.core.channel.v1.Tx.MsgTimeoutResponse) obj;
 
+      if (result_ != other.result_) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -12444,6 +12953,8 @@ public final class Tx {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + RESULT_FIELD_NUMBER;
+      hash = (53 * hash) + result_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -12581,6 +13092,8 @@ public final class Tx {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        result_ = 0;
+
         return this;
       }
 
@@ -12607,6 +13120,7 @@ public final class Tx {
       @java.lang.Override
       public ibc.core.channel.v1.Tx.MsgTimeoutResponse buildPartial() {
         ibc.core.channel.v1.Tx.MsgTimeoutResponse result = new ibc.core.channel.v1.Tx.MsgTimeoutResponse(this);
+        result.result_ = result_;
         onBuilt();
         return result;
       }
@@ -12655,6 +13169,9 @@ public final class Tx {
 
       public Builder mergeFrom(ibc.core.channel.v1.Tx.MsgTimeoutResponse other) {
         if (other == ibc.core.channel.v1.Tx.MsgTimeoutResponse.getDefaultInstance()) return this;
+        if (other.result_ != 0) {
+          setResultValue(other.getResultValue());
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -12681,6 +13198,60 @@ public final class Tx {
             mergeFrom(parsedMessage);
           }
         }
+        return this;
+      }
+
+      private int result_ = 0;
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @return The enum numeric value on the wire for result.
+       */
+      @java.lang.Override public int getResultValue() {
+        return result_;
+      }
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @param value The enum numeric value on the wire for result to set.
+       * @return This builder for chaining.
+       */
+      public Builder setResultValue(int value) {
+        
+        result_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @return The result.
+       */
+      @java.lang.Override
+      public ibc.core.channel.v1.Tx.ResponseResultType getResult() {
+        @SuppressWarnings("deprecation")
+        ibc.core.channel.v1.Tx.ResponseResultType result = ibc.core.channel.v1.Tx.ResponseResultType.valueOf(result_);
+        return result == null ? ibc.core.channel.v1.Tx.ResponseResultType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @param value The result to set.
+       * @return This builder for chaining.
+       */
+      public Builder setResult(ibc.core.channel.v1.Tx.ResponseResultType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        result_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearResult() {
+        
+        result_ = 0;
+        onChanged();
         return this;
       }
       @java.lang.Override
@@ -13083,7 +13654,7 @@ public final class Tx {
       if (nextSequenceRecv_ != 0L) {
         output.writeUInt64(5, nextSequenceRecv_);
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 6, signer_);
       }
       unknownFields.writeTo(output);
@@ -13115,7 +13686,7 @@ public final class Tx {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(5, nextSequenceRecv_);
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, signer_);
       }
       size += unknownFields.getSerializedSize();
@@ -13940,6 +14511,17 @@ public final class Tx {
   public interface MsgTimeoutOnCloseResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:ibc.core.channel.v1.MsgTimeoutOnCloseResponse)
       com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     * @return The enum numeric value on the wire for result.
+     */
+    int getResultValue();
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     * @return The result.
+     */
+    ibc.core.channel.v1.Tx.ResponseResultType getResult();
   }
   /**
    * <pre>
@@ -13958,6 +14540,7 @@ public final class Tx {
       super(builder);
     }
     private MsgTimeoutOnCloseResponse() {
+      result_ = 0;
     }
 
     @java.lang.Override
@@ -13990,6 +14573,12 @@ public final class Tx {
             case 0:
               done = true;
               break;
+            case 8: {
+              int rawValue = input.readEnum();
+
+              result_ = rawValue;
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -14022,6 +14611,25 @@ public final class Tx {
               ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse.class, ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse.Builder.class);
     }
 
+    public static final int RESULT_FIELD_NUMBER = 1;
+    private int result_;
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     * @return The enum numeric value on the wire for result.
+     */
+    @java.lang.Override public int getResultValue() {
+      return result_;
+    }
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     * @return The result.
+     */
+    @java.lang.Override public ibc.core.channel.v1.Tx.ResponseResultType getResult() {
+      @SuppressWarnings("deprecation")
+      ibc.core.channel.v1.Tx.ResponseResultType result = ibc.core.channel.v1.Tx.ResponseResultType.valueOf(result_);
+      return result == null ? ibc.core.channel.v1.Tx.ResponseResultType.UNRECOGNIZED : result;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -14036,6 +14644,9 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (result_ != ibc.core.channel.v1.Tx.ResponseResultType.RESPONSE_RESULT_TYPE_UNSPECIFIED.getNumber()) {
+        output.writeEnum(1, result_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -14045,6 +14656,10 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
+      if (result_ != ibc.core.channel.v1.Tx.ResponseResultType.RESPONSE_RESULT_TYPE_UNSPECIFIED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, result_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -14060,6 +14675,7 @@ public final class Tx {
       }
       ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse other = (ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse) obj;
 
+      if (result_ != other.result_) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -14071,6 +14687,8 @@ public final class Tx {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + RESULT_FIELD_NUMBER;
+      hash = (53 * hash) + result_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -14208,6 +14826,8 @@ public final class Tx {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        result_ = 0;
+
         return this;
       }
 
@@ -14234,6 +14854,7 @@ public final class Tx {
       @java.lang.Override
       public ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse buildPartial() {
         ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse result = new ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse(this);
+        result.result_ = result_;
         onBuilt();
         return result;
       }
@@ -14282,6 +14903,9 @@ public final class Tx {
 
       public Builder mergeFrom(ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse other) {
         if (other == ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse.getDefaultInstance()) return this;
+        if (other.result_ != 0) {
+          setResultValue(other.getResultValue());
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -14308,6 +14932,60 @@ public final class Tx {
             mergeFrom(parsedMessage);
           }
         }
+        return this;
+      }
+
+      private int result_ = 0;
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @return The enum numeric value on the wire for result.
+       */
+      @java.lang.Override public int getResultValue() {
+        return result_;
+      }
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @param value The enum numeric value on the wire for result to set.
+       * @return This builder for chaining.
+       */
+      public Builder setResultValue(int value) {
+        
+        result_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @return The result.
+       */
+      @java.lang.Override
+      public ibc.core.channel.v1.Tx.ResponseResultType getResult() {
+        @SuppressWarnings("deprecation")
+        ibc.core.channel.v1.Tx.ResponseResultType result = ibc.core.channel.v1.Tx.ResponseResultType.valueOf(result_);
+        return result == null ? ibc.core.channel.v1.Tx.ResponseResultType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @param value The result to set.
+       * @return This builder for chaining.
+       */
+      public Builder setResult(ibc.core.channel.v1.Tx.ResponseResultType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        result_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearResult() {
+        
+        result_ = 0;
+        onChanged();
         return this;
       }
       @java.lang.Override
@@ -14685,7 +15363,7 @@ public final class Tx {
       if (proofHeight_ != null) {
         output.writeMessage(4, getProofHeight());
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, signer_);
       }
       unknownFields.writeTo(output);
@@ -14713,7 +15391,7 @@ public final class Tx {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getProofHeight());
       }
-      if (!getSignerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signer_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, signer_);
       }
       size += unknownFields.getSerializedSize();
@@ -15496,6 +16174,17 @@ public final class Tx {
   public interface MsgAcknowledgementResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:ibc.core.channel.v1.MsgAcknowledgementResponse)
       com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     * @return The enum numeric value on the wire for result.
+     */
+    int getResultValue();
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     * @return The result.
+     */
+    ibc.core.channel.v1.Tx.ResponseResultType getResult();
   }
   /**
    * <pre>
@@ -15514,6 +16203,7 @@ public final class Tx {
       super(builder);
     }
     private MsgAcknowledgementResponse() {
+      result_ = 0;
     }
 
     @java.lang.Override
@@ -15546,6 +16236,12 @@ public final class Tx {
             case 0:
               done = true;
               break;
+            case 8: {
+              int rawValue = input.readEnum();
+
+              result_ = rawValue;
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -15578,6 +16274,25 @@ public final class Tx {
               ibc.core.channel.v1.Tx.MsgAcknowledgementResponse.class, ibc.core.channel.v1.Tx.MsgAcknowledgementResponse.Builder.class);
     }
 
+    public static final int RESULT_FIELD_NUMBER = 1;
+    private int result_;
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     * @return The enum numeric value on the wire for result.
+     */
+    @java.lang.Override public int getResultValue() {
+      return result_;
+    }
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     * @return The result.
+     */
+    @java.lang.Override public ibc.core.channel.v1.Tx.ResponseResultType getResult() {
+      @SuppressWarnings("deprecation")
+      ibc.core.channel.v1.Tx.ResponseResultType result = ibc.core.channel.v1.Tx.ResponseResultType.valueOf(result_);
+      return result == null ? ibc.core.channel.v1.Tx.ResponseResultType.UNRECOGNIZED : result;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -15592,6 +16307,9 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (result_ != ibc.core.channel.v1.Tx.ResponseResultType.RESPONSE_RESULT_TYPE_UNSPECIFIED.getNumber()) {
+        output.writeEnum(1, result_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -15601,6 +16319,10 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
+      if (result_ != ibc.core.channel.v1.Tx.ResponseResultType.RESPONSE_RESULT_TYPE_UNSPECIFIED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, result_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -15616,6 +16338,7 @@ public final class Tx {
       }
       ibc.core.channel.v1.Tx.MsgAcknowledgementResponse other = (ibc.core.channel.v1.Tx.MsgAcknowledgementResponse) obj;
 
+      if (result_ != other.result_) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -15627,6 +16350,8 @@ public final class Tx {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + RESULT_FIELD_NUMBER;
+      hash = (53 * hash) + result_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -15764,6 +16489,8 @@ public final class Tx {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        result_ = 0;
+
         return this;
       }
 
@@ -15790,6 +16517,7 @@ public final class Tx {
       @java.lang.Override
       public ibc.core.channel.v1.Tx.MsgAcknowledgementResponse buildPartial() {
         ibc.core.channel.v1.Tx.MsgAcknowledgementResponse result = new ibc.core.channel.v1.Tx.MsgAcknowledgementResponse(this);
+        result.result_ = result_;
         onBuilt();
         return result;
       }
@@ -15838,6 +16566,9 @@ public final class Tx {
 
       public Builder mergeFrom(ibc.core.channel.v1.Tx.MsgAcknowledgementResponse other) {
         if (other == ibc.core.channel.v1.Tx.MsgAcknowledgementResponse.getDefaultInstance()) return this;
+        if (other.result_ != 0) {
+          setResultValue(other.getResultValue());
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -15864,6 +16595,60 @@ public final class Tx {
             mergeFrom(parsedMessage);
           }
         }
+        return this;
+      }
+
+      private int result_ = 0;
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @return The enum numeric value on the wire for result.
+       */
+      @java.lang.Override public int getResultValue() {
+        return result_;
+      }
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @param value The enum numeric value on the wire for result to set.
+       * @return This builder for chaining.
+       */
+      public Builder setResultValue(int value) {
+        
+        result_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @return The result.
+       */
+      @java.lang.Override
+      public ibc.core.channel.v1.Tx.ResponseResultType getResult() {
+        @SuppressWarnings("deprecation")
+        ibc.core.channel.v1.Tx.ResponseResultType result = ibc.core.channel.v1.Tx.ResponseResultType.valueOf(result_);
+        return result == null ? ibc.core.channel.v1.Tx.ResponseResultType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @param value The result to set.
+       * @return This builder for chaining.
+       */
+      public Builder setResult(ibc.core.channel.v1.Tx.ResponseResultType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        result_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearResult() {
+        
+        result_ = 0;
+        onChanged();
         return this;
       }
       @java.lang.Override
@@ -16035,105 +16820,117 @@ public final class Tx {
       "Init\022#\n\007port_id\030\001 \001(\tB\022\362\336\037\016yaml:\"port_id" +
       "\"\0223\n\007channel\030\002 \001(\0132\034.ibc.core.channel.v1" +
       ".ChannelB\004\310\336\037\000\022\016\n\006signer\030\003 \001(\t:\010\350\240\037\000\210\240\037\000" +
-      "\"\034\n\032MsgChannelOpenInitResponse\"\375\002\n\021MsgCh" +
-      "annelOpenTry\022#\n\007port_id\030\001 \001(\tB\022\362\336\037\016yaml:" +
-      "\"port_id\"\022;\n\023previous_channel_id\030\002 \001(\tB\036" +
-      "\362\336\037\032yaml:\"previous_channel_id\"\0223\n\007channe" +
-      "l\030\003 \001(\0132\034.ibc.core.channel.v1.ChannelB\004\310" +
-      "\336\037\000\022=\n\024counterparty_version\030\004 \001(\tB\037\362\336\037\033y" +
-      "aml:\"counterparty_version\"\022)\n\nproof_init" +
-      "\030\005 \001(\014B\025\362\336\037\021yaml:\"proof_init\"\022M\n\014proof_h" +
-      "eight\030\006 \001(\0132\032.ibc.core.client.v1.HeightB" +
-      "\033\362\336\037\023yaml:\"proof_height\"\310\336\037\000\022\016\n\006signer\030\007" +
-      " \001(\t:\010\350\240\037\000\210\240\037\000\"\033\n\031MsgChannelOpenTryRespo" +
-      "nse\"\371\002\n\021MsgChannelOpenAck\022#\n\007port_id\030\001 \001" +
-      "(\tB\022\362\336\037\016yaml:\"port_id\"\022)\n\nchannel_id\030\002 \001" +
-      "(\tB\025\362\336\037\021yaml:\"channel_id\"\022C\n\027counterpart" +
-      "y_channel_id\030\003 \001(\tB\"\362\336\037\036yaml:\"counterpar" +
-      "ty_channel_id\"\022=\n\024counterparty_version\030\004" +
-      " \001(\tB\037\362\336\037\033yaml:\"counterparty_version\"\022\'\n" +
-      "\tproof_try\030\005 \001(\014B\024\362\336\037\020yaml:\"proof_try\"\022M" +
-      "\n\014proof_height\030\006 \001(\0132\032.ibc.core.client.v" +
-      "1.HeightB\033\362\336\037\023yaml:\"proof_height\"\310\336\037\000\022\016\n" +
-      "\006signer\030\007 \001(\t:\010\350\240\037\000\210\240\037\000\"\033\n\031MsgChannelOpe" +
-      "nAckResponse\"\371\001\n\025MsgChannelOpenConfirm\022#" +
-      "\n\007port_id\030\001 \001(\tB\022\362\336\037\016yaml:\"port_id\"\022)\n\nc" +
-      "hannel_id\030\002 \001(\tB\025\362\336\037\021yaml:\"channel_id\"\022\'" +
-      "\n\tproof_ack\030\003 \001(\014B\024\362\336\037\020yaml:\"proof_ack\"\022" +
-      "M\n\014proof_height\030\004 \001(\0132\032.ibc.core.client." +
-      "v1.HeightB\033\362\336\037\023yaml:\"proof_height\"\310\336\037\000\022\016" +
-      "\n\006signer\030\005 \001(\t:\010\350\240\037\000\210\240\037\000\"\037\n\035MsgChannelOp" +
-      "enConfirmResponse\"\177\n\023MsgChannelCloseInit" +
-      "\022#\n\007port_id\030\001 \001(\tB\022\362\336\037\016yaml:\"port_id\"\022)\n" +
-      "\nchannel_id\030\002 \001(\tB\025\362\336\037\021yaml:\"channel_id\"" +
-      "\022\016\n\006signer\030\003 \001(\t:\010\350\240\037\000\210\240\037\000\"\035\n\033MsgChannel" +
-      "CloseInitResponse\"\374\001\n\026MsgChannelCloseCon" +
-      "firm\022#\n\007port_id\030\001 \001(\tB\022\362\336\037\016yaml:\"port_id" +
-      "\"\022)\n\nchannel_id\030\002 \001(\tB\025\362\336\037\021yaml:\"channel" +
-      "_id\"\022)\n\nproof_init\030\003 \001(\014B\025\362\336\037\021yaml:\"proo" +
-      "f_init\"\022M\n\014proof_height\030\004 \001(\0132\032.ibc.core" +
-      ".client.v1.HeightB\033\362\336\037\023yaml:\"proof_heigh" +
-      "t\"\310\336\037\000\022\016\n\006signer\030\005 \001(\t:\010\350\240\037\000\210\240\037\000\" \n\036MsgC" +
-      "hannelCloseConfirmResponse\"\342\001\n\rMsgRecvPa" +
-      "cket\0221\n\006packet\030\001 \001(\0132\033.ibc.core.channel." +
-      "v1.PacketB\004\310\336\037\000\0225\n\020proof_commitment\030\002 \001(" +
-      "\014B\033\362\336\037\027yaml:\"proof_commitment\"\022M\n\014proof_" +
-      "height\030\003 \001(\0132\032.ibc.core.client.v1.Height" +
-      "B\033\362\336\037\023yaml:\"proof_height\"\310\336\037\000\022\016\n\006signer\030" +
-      "\004 \001(\t:\010\350\240\037\000\210\240\037\000\"\027\n\025MsgRecvPacketResponse" +
-      "\"\232\002\n\nMsgTimeout\0221\n\006packet\030\001 \001(\0132\033.ibc.co" +
-      "re.channel.v1.PacketB\004\310\336\037\000\0225\n\020proof_unre" +
-      "ceived\030\002 \001(\014B\033\362\336\037\027yaml:\"proof_unreceived" +
-      "\"\022M\n\014proof_height\030\003 \001(\0132\032.ibc.core.clien" +
+      "\"G\n\032MsgChannelOpenInitResponse\022)\n\nchanne" +
+      "l_id\030\001 \001(\tB\025\362\336\037\021yaml:\"channel_id\"\"\375\002\n\021Ms" +
+      "gChannelOpenTry\022#\n\007port_id\030\001 \001(\tB\022\362\336\037\016ya" +
+      "ml:\"port_id\"\022;\n\023previous_channel_id\030\002 \001(" +
+      "\tB\036\362\336\037\032yaml:\"previous_channel_id\"\0223\n\007cha" +
+      "nnel\030\003 \001(\0132\034.ibc.core.channel.v1.Channel" +
+      "B\004\310\336\037\000\022=\n\024counterparty_version\030\004 \001(\tB\037\362\336" +
+      "\037\033yaml:\"counterparty_version\"\022)\n\nproof_i" +
+      "nit\030\005 \001(\014B\025\362\336\037\021yaml:\"proof_init\"\022M\n\014proo" +
+      "f_height\030\006 \001(\0132\032.ibc.core.client.v1.Heig" +
+      "htB\033\362\336\037\023yaml:\"proof_height\"\310\336\037\000\022\016\n\006signe" +
+      "r\030\007 \001(\t:\010\350\240\037\000\210\240\037\000\"\033\n\031MsgChannelOpenTryRe" +
+      "sponse\"\371\002\n\021MsgChannelOpenAck\022#\n\007port_id\030" +
+      "\001 \001(\tB\022\362\336\037\016yaml:\"port_id\"\022)\n\nchannel_id\030" +
+      "\002 \001(\tB\025\362\336\037\021yaml:\"channel_id\"\022C\n\027counterp" +
+      "arty_channel_id\030\003 \001(\tB\"\362\336\037\036yaml:\"counter" +
+      "party_channel_id\"\022=\n\024counterparty_versio" +
+      "n\030\004 \001(\tB\037\362\336\037\033yaml:\"counterparty_version\"" +
+      "\022\'\n\tproof_try\030\005 \001(\014B\024\362\336\037\020yaml:\"proof_try" +
+      "\"\022M\n\014proof_height\030\006 \001(\0132\032.ibc.core.clien" +
       "t.v1.HeightB\033\362\336\037\023yaml:\"proof_height\"\310\336\037\000" +
-      "\0229\n\022next_sequence_recv\030\004 \001(\004B\035\362\336\037\031yaml:\"" +
-      "next_sequence_recv\"\022\016\n\006signer\030\005 \001(\t:\010\350\240\037" +
-      "\000\210\240\037\000\"\024\n\022MsgTimeoutResponse\"\316\002\n\021MsgTimeo" +
-      "utOnClose\0221\n\006packet\030\001 \001(\0132\033.ibc.core.cha" +
-      "nnel.v1.PacketB\004\310\336\037\000\0225\n\020proof_unreceived" +
-      "\030\002 \001(\014B\033\362\336\037\027yaml:\"proof_unreceived\"\022+\n\013p" +
-      "roof_close\030\003 \001(\014B\026\362\336\037\022yaml:\"proof_close\"" +
-      "\022M\n\014proof_height\030\004 \001(\0132\032.ibc.core.client" +
-      ".v1.HeightB\033\362\336\037\023yaml:\"proof_height\"\310\336\037\000\022" +
-      "9\n\022next_sequence_recv\030\005 \001(\004B\035\362\336\037\031yaml:\"n" +
-      "ext_sequence_recv\"\022\016\n\006signer\030\006 \001(\t:\010\350\240\037\000" +
-      "\210\240\037\000\"\033\n\031MsgTimeoutOnCloseResponse\"\366\001\n\022Ms" +
-      "gAcknowledgement\0221\n\006packet\030\001 \001(\0132\033.ibc.c" +
-      "ore.channel.v1.PacketB\004\310\336\037\000\022\027\n\017acknowled" +
-      "gement\030\002 \001(\014\022+\n\013proof_acked\030\003 \001(\014B\026\362\336\037\022y" +
-      "aml:\"proof_acked\"\022M\n\014proof_height\030\004 \001(\0132" +
-      "\032.ibc.core.client.v1.HeightB\033\362\336\037\023yaml:\"p" +
-      "roof_height\"\310\336\037\000\022\016\n\006signer\030\005 \001(\t:\010\350\240\037\000\210\240" +
-      "\037\000\"\034\n\032MsgAcknowledgementResponse2\257\010\n\003Msg" +
-      "\022k\n\017ChannelOpenInit\022\'.ibc.core.channel.v" +
-      "1.MsgChannelOpenInit\032/.ibc.core.channel." +
-      "v1.MsgChannelOpenInitResponse\022h\n\016Channel" +
-      "OpenTry\022&.ibc.core.channel.v1.MsgChannel" +
-      "OpenTry\032..ibc.core.channel.v1.MsgChannel" +
-      "OpenTryResponse\022h\n\016ChannelOpenAck\022&.ibc." +
-      "core.channel.v1.MsgChannelOpenAck\032..ibc." +
-      "core.channel.v1.MsgChannelOpenAckRespons" +
-      "e\022t\n\022ChannelOpenConfirm\022*.ibc.core.chann" +
-      "el.v1.MsgChannelOpenConfirm\0322.ibc.core.c" +
-      "hannel.v1.MsgChannelOpenConfirmResponse\022" +
-      "n\n\020ChannelCloseInit\022(.ibc.core.channel.v" +
-      "1.MsgChannelCloseInit\0320.ibc.core.channel" +
-      ".v1.MsgChannelCloseInitResponse\022w\n\023Chann" +
-      "elCloseConfirm\022+.ibc.core.channel.v1.Msg" +
-      "ChannelCloseConfirm\0323.ibc.core.channel.v" +
-      "1.MsgChannelCloseConfirmResponse\022\\\n\nRecv" +
-      "Packet\022\".ibc.core.channel.v1.MsgRecvPack" +
-      "et\032*.ibc.core.channel.v1.MsgRecvPacketRe" +
-      "sponse\022S\n\007Timeout\022\037.ibc.core.channel.v1." +
-      "MsgTimeout\032\'.ibc.core.channel.v1.MsgTime" +
-      "outResponse\022h\n\016TimeoutOnClose\022&.ibc.core" +
-      ".channel.v1.MsgTimeoutOnClose\032..ibc.core" +
-      ".channel.v1.MsgTimeoutOnCloseResponse\022k\n" +
-      "\017Acknowledgement\022\'.ibc.core.channel.v1.M" +
-      "sgAcknowledgement\032/.ibc.core.channel.v1." +
-      "MsgAcknowledgementResponseB8Z6github.com" +
-      "/cosmos/ibc-go/modules/core/04-channel/t" +
-      "ypesb\006proto3"
+      "\022\016\n\006signer\030\007 \001(\t:\010\350\240\037\000\210\240\037\000\"\033\n\031MsgChannel" +
+      "OpenAckResponse\"\371\001\n\025MsgChannelOpenConfir" +
+      "m\022#\n\007port_id\030\001 \001(\tB\022\362\336\037\016yaml:\"port_id\"\022)" +
+      "\n\nchannel_id\030\002 \001(\tB\025\362\336\037\021yaml:\"channel_id" +
+      "\"\022\'\n\tproof_ack\030\003 \001(\014B\024\362\336\037\020yaml:\"proof_ac" +
+      "k\"\022M\n\014proof_height\030\004 \001(\0132\032.ibc.core.clie" +
+      "nt.v1.HeightB\033\362\336\037\023yaml:\"proof_height\"\310\336\037" +
+      "\000\022\016\n\006signer\030\005 \001(\t:\010\350\240\037\000\210\240\037\000\"\037\n\035MsgChanne" +
+      "lOpenConfirmResponse\"\177\n\023MsgChannelCloseI" +
+      "nit\022#\n\007port_id\030\001 \001(\tB\022\362\336\037\016yaml:\"port_id\"" +
+      "\022)\n\nchannel_id\030\002 \001(\tB\025\362\336\037\021yaml:\"channel_" +
+      "id\"\022\016\n\006signer\030\003 \001(\t:\010\350\240\037\000\210\240\037\000\"\035\n\033MsgChan" +
+      "nelCloseInitResponse\"\374\001\n\026MsgChannelClose" +
+      "Confirm\022#\n\007port_id\030\001 \001(\tB\022\362\336\037\016yaml:\"port" +
+      "_id\"\022)\n\nchannel_id\030\002 \001(\tB\025\362\336\037\021yaml:\"chan" +
+      "nel_id\"\022)\n\nproof_init\030\003 \001(\014B\025\362\336\037\021yaml:\"p" +
+      "roof_init\"\022M\n\014proof_height\030\004 \001(\0132\032.ibc.c" +
+      "ore.client.v1.HeightB\033\362\336\037\023yaml:\"proof_he" +
+      "ight\"\310\336\037\000\022\016\n\006signer\030\005 \001(\t:\010\350\240\037\000\210\240\037\000\" \n\036M" +
+      "sgChannelCloseConfirmResponse\"\342\001\n\rMsgRec" +
+      "vPacket\0221\n\006packet\030\001 \001(\0132\033.ibc.core.chann" +
+      "el.v1.PacketB\004\310\336\037\000\0225\n\020proof_commitment\030\002" +
+      " \001(\014B\033\362\336\037\027yaml:\"proof_commitment\"\022M\n\014pro" +
+      "of_height\030\003 \001(\0132\032.ibc.core.client.v1.Hei" +
+      "ghtB\033\362\336\037\023yaml:\"proof_height\"\310\336\037\000\022\016\n\006sign" +
+      "er\030\004 \001(\t:\010\350\240\037\000\210\240\037\000\"V\n\025MsgRecvPacketRespo" +
+      "nse\0227\n\006result\030\001 \001(\0162\'.ibc.core.channel.v" +
+      "1.ResponseResultType:\004\210\240\037\000\"\232\002\n\nMsgTimeou" +
+      "t\0221\n\006packet\030\001 \001(\0132\033.ibc.core.channel.v1." +
+      "PacketB\004\310\336\037\000\0225\n\020proof_unreceived\030\002 \001(\014B\033" +
+      "\362\336\037\027yaml:\"proof_unreceived\"\022M\n\014proof_hei" +
+      "ght\030\003 \001(\0132\032.ibc.core.client.v1.HeightB\033\362" +
+      "\336\037\023yaml:\"proof_height\"\310\336\037\000\0229\n\022next_seque" +
+      "nce_recv\030\004 \001(\004B\035\362\336\037\031yaml:\"next_sequence_" +
+      "recv\"\022\016\n\006signer\030\005 \001(\t:\010\350\240\037\000\210\240\037\000\"S\n\022MsgTi" +
+      "meoutResponse\0227\n\006result\030\001 \001(\0162\'.ibc.core" +
+      ".channel.v1.ResponseResultType:\004\210\240\037\000\"\316\002\n" +
+      "\021MsgTimeoutOnClose\0221\n\006packet\030\001 \001(\0132\033.ibc" +
+      ".core.channel.v1.PacketB\004\310\336\037\000\0225\n\020proof_u" +
+      "nreceived\030\002 \001(\014B\033\362\336\037\027yaml:\"proof_unrecei" +
+      "ved\"\022+\n\013proof_close\030\003 \001(\014B\026\362\336\037\022yaml:\"pro" +
+      "of_close\"\022M\n\014proof_height\030\004 \001(\0132\032.ibc.co" +
+      "re.client.v1.HeightB\033\362\336\037\023yaml:\"proof_hei" +
+      "ght\"\310\336\037\000\0229\n\022next_sequence_recv\030\005 \001(\004B\035\362\336" +
+      "\037\031yaml:\"next_sequence_recv\"\022\016\n\006signer\030\006 " +
+      "\001(\t:\010\350\240\037\000\210\240\037\000\"Z\n\031MsgTimeoutOnCloseRespon" +
+      "se\0227\n\006result\030\001 \001(\0162\'.ibc.core.channel.v1" +
+      ".ResponseResultType:\004\210\240\037\000\"\366\001\n\022MsgAcknowl" +
+      "edgement\0221\n\006packet\030\001 \001(\0132\033.ibc.core.chan" +
+      "nel.v1.PacketB\004\310\336\037\000\022\027\n\017acknowledgement\030\002" +
+      " \001(\014\022+\n\013proof_acked\030\003 \001(\014B\026\362\336\037\022yaml:\"pro" +
+      "of_acked\"\022M\n\014proof_height\030\004 \001(\0132\032.ibc.co" +
+      "re.client.v1.HeightB\033\362\336\037\023yaml:\"proof_hei" +
+      "ght\"\310\336\037\000\022\016\n\006signer\030\005 \001(\t:\010\350\240\037\000\210\240\037\000\"[\n\032Ms" +
+      "gAcknowledgementResponse\0227\n\006result\030\001 \001(\016" +
+      "2\'.ibc.core.channel.v1.ResponseResultTyp" +
+      "e:\004\210\240\037\000*\251\001\n\022ResponseResultType\0225\n RESPON" +
+      "SE_RESULT_TYPE_UNSPECIFIED\020\000\032\017\212\235 \013UNSPEC" +
+      "IFIED\022\'\n\031RESPONSE_RESULT_TYPE_NOOP\020\001\032\010\212\235" +
+      " \004NOOP\022-\n\034RESPONSE_RESULT_TYPE_SUCCESS\020\002" +
+      "\032\013\212\235 \007SUCCESS\032\004\210\243\036\0002\257\010\n\003Msg\022k\n\017ChannelOp" +
+      "enInit\022\'.ibc.core.channel.v1.MsgChannelO" +
+      "penInit\032/.ibc.core.channel.v1.MsgChannel" +
+      "OpenInitResponse\022h\n\016ChannelOpenTry\022&.ibc" +
+      ".core.channel.v1.MsgChannelOpenTry\032..ibc" +
+      ".core.channel.v1.MsgChannelOpenTryRespon" +
+      "se\022h\n\016ChannelOpenAck\022&.ibc.core.channel." +
+      "v1.MsgChannelOpenAck\032..ibc.core.channel." +
+      "v1.MsgChannelOpenAckResponse\022t\n\022ChannelO" +
+      "penConfirm\022*.ibc.core.channel.v1.MsgChan" +
+      "nelOpenConfirm\0322.ibc.core.channel.v1.Msg" +
+      "ChannelOpenConfirmResponse\022n\n\020ChannelClo" +
+      "seInit\022(.ibc.core.channel.v1.MsgChannelC" +
+      "loseInit\0320.ibc.core.channel.v1.MsgChanne" +
+      "lCloseInitResponse\022w\n\023ChannelCloseConfir" +
+      "m\022+.ibc.core.channel.v1.MsgChannelCloseC" +
+      "onfirm\0323.ibc.core.channel.v1.MsgChannelC" +
+      "loseConfirmResponse\022\\\n\nRecvPacket\022\".ibc." +
+      "core.channel.v1.MsgRecvPacket\032*.ibc.core" +
+      ".channel.v1.MsgRecvPacketResponse\022S\n\007Tim" +
+      "eout\022\037.ibc.core.channel.v1.MsgTimeout\032\'." +
+      "ibc.core.channel.v1.MsgTimeoutResponse\022h" +
+      "\n\016TimeoutOnClose\022&.ibc.core.channel.v1.M" +
+      "sgTimeoutOnClose\032..ibc.core.channel.v1.M" +
+      "sgTimeoutOnCloseResponse\022k\n\017Acknowledgem" +
+      "ent\022\'.ibc.core.channel.v1.MsgAcknowledge" +
+      "ment\032/.ibc.core.channel.v1.MsgAcknowledg" +
+      "ementResponseB;Z9github.com/cosmos/ibc-g" +
+      "o/v3/modules/core/04-channel/typesb\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -16153,7 +16950,7 @@ public final class Tx {
     internal_static_ibc_core_channel_v1_MsgChannelOpenInitResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ibc_core_channel_v1_MsgChannelOpenInitResponse_descriptor,
-        new java.lang.String[] { });
+        new java.lang.String[] { "ChannelId", });
     internal_static_ibc_core_channel_v1_MsgChannelOpenTry_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_ibc_core_channel_v1_MsgChannelOpenTry_fieldAccessorTable = new
@@ -16225,7 +17022,7 @@ public final class Tx {
     internal_static_ibc_core_channel_v1_MsgRecvPacketResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ibc_core_channel_v1_MsgRecvPacketResponse_descriptor,
-        new java.lang.String[] { });
+        new java.lang.String[] { "Result", });
     internal_static_ibc_core_channel_v1_MsgTimeout_descriptor =
       getDescriptor().getMessageTypes().get(14);
     internal_static_ibc_core_channel_v1_MsgTimeout_fieldAccessorTable = new
@@ -16237,7 +17034,7 @@ public final class Tx {
     internal_static_ibc_core_channel_v1_MsgTimeoutResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ibc_core_channel_v1_MsgTimeoutResponse_descriptor,
-        new java.lang.String[] { });
+        new java.lang.String[] { "Result", });
     internal_static_ibc_core_channel_v1_MsgTimeoutOnClose_descriptor =
       getDescriptor().getMessageTypes().get(16);
     internal_static_ibc_core_channel_v1_MsgTimeoutOnClose_fieldAccessorTable = new
@@ -16249,7 +17046,7 @@ public final class Tx {
     internal_static_ibc_core_channel_v1_MsgTimeoutOnCloseResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ibc_core_channel_v1_MsgTimeoutOnCloseResponse_descriptor,
-        new java.lang.String[] { });
+        new java.lang.String[] { "Result", });
     internal_static_ibc_core_channel_v1_MsgAcknowledgement_descriptor =
       getDescriptor().getMessageTypes().get(18);
     internal_static_ibc_core_channel_v1_MsgAcknowledgement_fieldAccessorTable = new
@@ -16261,10 +17058,12 @@ public final class Tx {
     internal_static_ibc_core_channel_v1_MsgAcknowledgementResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ibc_core_channel_v1_MsgAcknowledgementResponse_descriptor,
-        new java.lang.String[] { });
+        new java.lang.String[] { "Result", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
+    registry.add(com.google.protobuf.GoGoProtos.enumvalueCustomname);
     registry.add(com.google.protobuf.GoGoProtos.equal);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoEnumPrefix);
     registry.add(com.google.protobuf.GoGoProtos.goprotoGetters);
     registry.add(com.google.protobuf.GoGoProtos.moretags);
     registry.add(com.google.protobuf.GoGoProtos.nullable);

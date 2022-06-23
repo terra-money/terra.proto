@@ -4,15 +4,15 @@
 package cosmos.params.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun parameterChangeProposal(block: cosmos.params.v1beta1.ParameterChangeProposalKt.Dsl.() -> Unit): cosmos.params.v1beta1.Params.ParameterChangeProposal =
+public inline fun parameterChangeProposal(block: cosmos.params.v1beta1.ParameterChangeProposalKt.Dsl.() -> kotlin.Unit): cosmos.params.v1beta1.Params.ParameterChangeProposal =
   cosmos.params.v1beta1.ParameterChangeProposalKt.Dsl._create(cosmos.params.v1beta1.Params.ParameterChangeProposal.newBuilder()).apply { block() }._build()
-object ParameterChangeProposalKt {
+public object ParameterChangeProposalKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.params.v1beta1.Params.ParameterChangeProposal.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.params.v1beta1.Params.ParameterChangeProposal.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.params.v1beta1.Params.ParameterChangeProposal.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ParameterChangeProposalKt {
     /**
      * <code>string title = 1;</code>
      */
-    var title: kotlin.String
+    public var title: kotlin.String
       @JvmName("getTitle")
       get() = _builder.getTitle()
       @JvmName("setTitle")
@@ -35,14 +35,14 @@ object ParameterChangeProposalKt {
     /**
      * <code>string title = 1;</code>
      */
-    fun clearTitle() {
+    public fun clearTitle() {
       _builder.clearTitle()
     }
 
     /**
      * <code>string description = 2;</code>
      */
-    var description: kotlin.String
+    public var description: kotlin.String
       @JvmName("getDescription")
       get() = _builder.getDescription()
       @JvmName("setDescription")
@@ -52,7 +52,7 @@ object ParameterChangeProposalKt {
     /**
      * <code>string description = 2;</code>
      */
-    fun clearDescription() {
+    public fun clearDescription() {
       _builder.clearDescription()
     }
 
@@ -61,11 +61,11 @@ object ParameterChangeProposalKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class ChangesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class ChangesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.params.v1beta1.ParamChange changes = 3 [(.gogoproto.nullable) = false];</code>
      */
-     val changes: com.google.protobuf.kotlin.DslList<cosmos.params.v1beta1.Params.ParamChange, ChangesProxy>
+     public val changes: com.google.protobuf.kotlin.DslList<cosmos.params.v1beta1.Params.ParamChange, ChangesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getChangesList()
@@ -76,7 +76,7 @@ object ParameterChangeProposalKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addChanges")
-    fun com.google.protobuf.kotlin.DslList<cosmos.params.v1beta1.Params.ParamChange, ChangesProxy>.add(value: cosmos.params.v1beta1.Params.ParamChange) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.params.v1beta1.Params.ParamChange, ChangesProxy>.add(value: cosmos.params.v1beta1.Params.ParamChange) {
       _builder.addChanges(value)
     }/**
      * <code>repeated .cosmos.params.v1beta1.ParamChange changes = 3 [(.gogoproto.nullable) = false];</code>
@@ -84,7 +84,8 @@ object ParameterChangeProposalKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignChanges")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.params.v1beta1.Params.ParamChange, ChangesProxy>.plusAssign(value: cosmos.params.v1beta1.Params.ParamChange) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.params.v1beta1.Params.ParamChange, ChangesProxy>.plusAssign(value: cosmos.params.v1beta1.Params.ParamChange) {
       add(value)
     }/**
      * <code>repeated .cosmos.params.v1beta1.ParamChange changes = 3 [(.gogoproto.nullable) = false];</code>
@@ -92,7 +93,7 @@ object ParameterChangeProposalKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllChanges")
-    fun com.google.protobuf.kotlin.DslList<cosmos.params.v1beta1.Params.ParamChange, ChangesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.params.v1beta1.Params.ParamChange>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.params.v1beta1.Params.ParamChange, ChangesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.params.v1beta1.Params.ParamChange>) {
       _builder.addAllChanges(values)
     }/**
      * <code>repeated .cosmos.params.v1beta1.ParamChange changes = 3 [(.gogoproto.nullable) = false];</code>
@@ -100,7 +101,8 @@ object ParameterChangeProposalKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllChanges")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.params.v1beta1.Params.ParamChange, ChangesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.params.v1beta1.Params.ParamChange>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.params.v1beta1.Params.ParamChange, ChangesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.params.v1beta1.Params.ParamChange>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.params.v1beta1.ParamChange changes = 3 [(.gogoproto.nullable) = false];</code>
@@ -109,17 +111,17 @@ object ParameterChangeProposalKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setChanges")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.params.v1beta1.Params.ParamChange, ChangesProxy>.set(index: kotlin.Int, value: cosmos.params.v1beta1.Params.ParamChange) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.params.v1beta1.Params.ParamChange, ChangesProxy>.set(index: kotlin.Int, value: cosmos.params.v1beta1.Params.ParamChange) {
       _builder.setChanges(index, value)
     }/**
      * <code>repeated .cosmos.params.v1beta1.ParamChange changes = 3 [(.gogoproto.nullable) = false];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearChanges")
-    fun com.google.protobuf.kotlin.DslList<cosmos.params.v1beta1.Params.ParamChange, ChangesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.params.v1beta1.Params.ParamChange, ChangesProxy>.clear() {
       _builder.clearChanges()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.params.v1beta1.Params.ParameterChangeProposal.copy(block: cosmos.params.v1beta1.ParameterChangeProposalKt.Dsl.() -> Unit): cosmos.params.v1beta1.Params.ParameterChangeProposal =
+public inline fun cosmos.params.v1beta1.Params.ParameterChangeProposal.copy(block: cosmos.params.v1beta1.ParameterChangeProposalKt.Dsl.() -> kotlin.Unit): cosmos.params.v1beta1.Params.ParameterChangeProposal =
   cosmos.params.v1beta1.ParameterChangeProposalKt.Dsl._create(this.toBuilder()).apply { block() }._build()

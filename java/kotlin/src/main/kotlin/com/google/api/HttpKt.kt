@@ -4,15 +4,15 @@
 package com.google.api;
 
 @kotlin.jvm.JvmSynthetic
-inline fun http(block: com.google.api.HttpKt.Dsl.() -> Unit): com.google.api.Http =
+public inline fun http(block: com.google.api.HttpKt.Dsl.() -> kotlin.Unit): com.google.api.Http =
   com.google.api.HttpKt.Dsl._create(com.google.api.Http.newBuilder()).apply { block() }._build()
-object HttpKt {
+public object HttpKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: com.google.api.Http.Builder
+  public class Dsl private constructor(
+    private val _builder: com.google.api.Http.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: com.google.api.Http.Builder): Dsl = Dsl(builder)
@@ -27,7 +27,7 @@ object HttpKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class RulesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class RulesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * A list of HTTP configuration rules that apply to individual API methods.
@@ -36,7 +36,7 @@ object HttpKt {
      *
      * <code>repeated .google.api.HttpRule rules = 1;</code>
      */
-     val rules: com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, RulesProxy>
+     public val rules: com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, RulesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getRulesList()
@@ -52,7 +52,7 @@ object HttpKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addRules")
-    fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, RulesProxy>.add(value: com.google.api.HttpRule) {
+    public fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, RulesProxy>.add(value: com.google.api.HttpRule) {
       _builder.addRules(value)
     }/**
      * <pre>
@@ -65,7 +65,8 @@ object HttpKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignRules")
-    inline operator fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, RulesProxy>.plusAssign(value: com.google.api.HttpRule) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, RulesProxy>.plusAssign(value: com.google.api.HttpRule) {
       add(value)
     }/**
      * <pre>
@@ -78,7 +79,7 @@ object HttpKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllRules")
-    fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, RulesProxy>.addAll(values: kotlin.collections.Iterable<com.google.api.HttpRule>) {
+    public fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, RulesProxy>.addAll(values: kotlin.collections.Iterable<com.google.api.HttpRule>) {
       _builder.addAllRules(values)
     }/**
      * <pre>
@@ -91,7 +92,8 @@ object HttpKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllRules")
-    inline operator fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, RulesProxy>.plusAssign(values: kotlin.collections.Iterable<com.google.api.HttpRule>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, RulesProxy>.plusAssign(values: kotlin.collections.Iterable<com.google.api.HttpRule>) {
       addAll(values)
     }/**
      * <pre>
@@ -105,7 +107,7 @@ object HttpKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setRules")
-    operator fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, RulesProxy>.set(index: kotlin.Int, value: com.google.api.HttpRule) {
+    public operator fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, RulesProxy>.set(index: kotlin.Int, value: com.google.api.HttpRule) {
       _builder.setRules(index, value)
     }/**
      * <pre>
@@ -117,7 +119,7 @@ object HttpKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearRules")
-    fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, RulesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, RulesProxy>.clear() {
       _builder.clearRules()
     }
     /**
@@ -131,7 +133,7 @@ object HttpKt {
      *
      * <code>bool fully_decode_reserved_expansion = 2;</code>
      */
-    var fullyDecodeReservedExpansion: kotlin.Boolean
+    public var fullyDecodeReservedExpansion: kotlin.Boolean
       @JvmName("getFullyDecodeReservedExpansion")
       get() = _builder.getFullyDecodeReservedExpansion()
       @JvmName("setFullyDecodeReservedExpansion")
@@ -149,11 +151,11 @@ object HttpKt {
      *
      * <code>bool fully_decode_reserved_expansion = 2;</code>
      */
-    fun clearFullyDecodeReservedExpansion() {
+    public fun clearFullyDecodeReservedExpansion() {
       _builder.clearFullyDecodeReservedExpansion()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun com.google.api.Http.copy(block: com.google.api.HttpKt.Dsl.() -> Unit): com.google.api.Http =
+public inline fun com.google.api.Http.copy(block: com.google.api.HttpKt.Dsl.() -> kotlin.Unit): com.google.api.Http =
   com.google.api.HttpKt.Dsl._create(this.toBuilder()).apply { block() }._build()

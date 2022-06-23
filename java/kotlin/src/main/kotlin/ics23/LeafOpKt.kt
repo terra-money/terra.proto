@@ -4,15 +4,15 @@
 package ics23;
 
 @kotlin.jvm.JvmSynthetic
-inline fun leafOp(block: ics23.LeafOpKt.Dsl.() -> Unit): ics23.Proofs.LeafOp =
+public inline fun leafOp(block: ics23.LeafOpKt.Dsl.() -> kotlin.Unit): ics23.Proofs.LeafOp =
   ics23.LeafOpKt.Dsl._create(ics23.Proofs.LeafOp.newBuilder()).apply { block() }._build()
-object LeafOpKt {
+public object LeafOpKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ics23.Proofs.LeafOp.Builder
+  public class Dsl private constructor(
+    private val _builder: ics23.Proofs.LeafOp.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ics23.Proofs.LeafOp.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object LeafOpKt {
     /**
      * <code>.ics23.HashOp hash = 1;</code>
      */
-    var hash: ics23.Proofs.HashOp
+    public var hash: ics23.Proofs.HashOp
       @JvmName("getHash")
       get() = _builder.getHash()
       @JvmName("setHash")
@@ -35,14 +35,14 @@ object LeafOpKt {
     /**
      * <code>.ics23.HashOp hash = 1;</code>
      */
-    fun clearHash() {
+    public fun clearHash() {
       _builder.clearHash()
     }
 
     /**
      * <code>.ics23.HashOp prehash_key = 2;</code>
      */
-    var prehashKey: ics23.Proofs.HashOp
+    public var prehashKey: ics23.Proofs.HashOp
       @JvmName("getPrehashKey")
       get() = _builder.getPrehashKey()
       @JvmName("setPrehashKey")
@@ -52,14 +52,14 @@ object LeafOpKt {
     /**
      * <code>.ics23.HashOp prehash_key = 2;</code>
      */
-    fun clearPrehashKey() {
+    public fun clearPrehashKey() {
       _builder.clearPrehashKey()
     }
 
     /**
      * <code>.ics23.HashOp prehash_value = 3;</code>
      */
-    var prehashValue: ics23.Proofs.HashOp
+    public var prehashValue: ics23.Proofs.HashOp
       @JvmName("getPrehashValue")
       get() = _builder.getPrehashValue()
       @JvmName("setPrehashValue")
@@ -69,14 +69,14 @@ object LeafOpKt {
     /**
      * <code>.ics23.HashOp prehash_value = 3;</code>
      */
-    fun clearPrehashValue() {
+    public fun clearPrehashValue() {
       _builder.clearPrehashValue()
     }
 
     /**
      * <code>.ics23.LengthOp length = 4;</code>
      */
-    var length: ics23.Proofs.LengthOp
+    public var length: ics23.Proofs.LengthOp
       @JvmName("getLength")
       get() = _builder.getLength()
       @JvmName("setLength")
@@ -86,7 +86,7 @@ object LeafOpKt {
     /**
      * <code>.ics23.LengthOp length = 4;</code>
      */
-    fun clearLength() {
+    public fun clearLength() {
       _builder.clearLength()
     }
 
@@ -98,7 +98,7 @@ object LeafOpKt {
      *
      * <code>bytes prefix = 5;</code>
      */
-    var prefix: com.google.protobuf.ByteString
+    public var prefix: com.google.protobuf.ByteString
       @JvmName("getPrefix")
       get() = _builder.getPrefix()
       @JvmName("setPrefix")
@@ -113,11 +113,11 @@ object LeafOpKt {
      *
      * <code>bytes prefix = 5;</code>
      */
-    fun clearPrefix() {
+    public fun clearPrefix() {
       _builder.clearPrefix()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ics23.Proofs.LeafOp.copy(block: ics23.LeafOpKt.Dsl.() -> Unit): ics23.Proofs.LeafOp =
+public inline fun ics23.Proofs.LeafOp.copy(block: ics23.LeafOpKt.Dsl.() -> kotlin.Unit): ics23.Proofs.LeafOp =
   ics23.LeafOpKt.Dsl._create(this.toBuilder()).apply { block() }._build()

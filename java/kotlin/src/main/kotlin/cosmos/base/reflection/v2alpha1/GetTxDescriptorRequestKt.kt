@@ -4,15 +4,15 @@
 package cosmos.base.reflection.v2alpha1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun getTxDescriptorRequest(block: cosmos.base.reflection.v2alpha1.GetTxDescriptorRequestKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.GetTxDescriptorRequest =
+public inline fun getTxDescriptorRequest(block: cosmos.base.reflection.v2alpha1.GetTxDescriptorRequestKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.GetTxDescriptorRequest =
   cosmos.base.reflection.v2alpha1.GetTxDescriptorRequestKt.Dsl._create(cosmos.base.reflection.v2alpha1.Reflection.GetTxDescriptorRequest.newBuilder()).apply { block() }._build()
-object GetTxDescriptorRequestKt {
+public object GetTxDescriptorRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.reflection.v2alpha1.Reflection.GetTxDescriptorRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.reflection.v2alpha1.Reflection.GetTxDescriptorRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.reflection.v2alpha1.Reflection.GetTxDescriptorRequest.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object GetTxDescriptorRequestKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.reflection.v2alpha1.Reflection.GetTxDescriptorRequest.copy(block: cosmos.base.reflection.v2alpha1.GetTxDescriptorRequestKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.GetTxDescriptorRequest =
+public inline fun cosmos.base.reflection.v2alpha1.Reflection.GetTxDescriptorRequest.copy(block: cosmos.base.reflection.v2alpha1.GetTxDescriptorRequestKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.GetTxDescriptorRequest =
   cosmos.base.reflection.v2alpha1.GetTxDescriptorRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

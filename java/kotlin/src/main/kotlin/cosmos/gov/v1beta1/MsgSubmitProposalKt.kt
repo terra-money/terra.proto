@@ -4,15 +4,15 @@
 package cosmos.gov.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgSubmitProposal(block: cosmos.gov.v1beta1.MsgSubmitProposalKt.Dsl.() -> Unit): cosmos.gov.v1beta1.Tx.MsgSubmitProposal =
+public inline fun msgSubmitProposal(block: cosmos.gov.v1beta1.MsgSubmitProposalKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.Tx.MsgSubmitProposal =
   cosmos.gov.v1beta1.MsgSubmitProposalKt.Dsl._create(cosmos.gov.v1beta1.Tx.MsgSubmitProposal.newBuilder()).apply { block() }._build()
-object MsgSubmitProposalKt {
+public object MsgSubmitProposalKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.gov.v1beta1.Tx.MsgSubmitProposal.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.gov.v1beta1.Tx.MsgSubmitProposal.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.gov.v1beta1.Tx.MsgSubmitProposal.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object MsgSubmitProposalKt {
     /**
      * <code>.google.protobuf.Any content = 1 [(.cosmos_proto.accepts_interface) = "Content"];</code>
      */
-    var content: com.google.protobuf.Any
+    public var content: com.google.protobuf.Any
       @JvmName("getContent")
       get() = _builder.getContent()
       @JvmName("setContent")
@@ -35,14 +35,14 @@ object MsgSubmitProposalKt {
     /**
      * <code>.google.protobuf.Any content = 1 [(.cosmos_proto.accepts_interface) = "Content"];</code>
      */
-    fun clearContent() {
+    public fun clearContent() {
       _builder.clearContent()
     }
     /**
      * <code>.google.protobuf.Any content = 1 [(.cosmos_proto.accepts_interface) = "Content"];</code>
      * @return Whether the content field is set.
      */
-    fun hasContent(): kotlin.Boolean {
+    public fun hasContent(): kotlin.Boolean {
       return _builder.hasContent()
     }
 
@@ -51,11 +51,11 @@ object MsgSubmitProposalKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class InitialDepositProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class InitialDepositProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.base.v1beta1.Coin initial_deposit = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"initial_deposit&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-     val initialDeposit: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, InitialDepositProxy>
+     public val initialDeposit: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, InitialDepositProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getInitialDepositList()
@@ -66,7 +66,7 @@ object MsgSubmitProposalKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addInitialDeposit")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, InitialDepositProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, InitialDepositProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.addInitialDeposit(value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin initial_deposit = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"initial_deposit&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -74,7 +74,8 @@ object MsgSubmitProposalKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignInitialDeposit")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, InitialDepositProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, InitialDepositProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       add(value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin initial_deposit = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"initial_deposit&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -82,7 +83,7 @@ object MsgSubmitProposalKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllInitialDeposit")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, InitialDepositProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, InitialDepositProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       _builder.addAllInitialDeposit(values)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin initial_deposit = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"initial_deposit&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -90,7 +91,8 @@ object MsgSubmitProposalKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllInitialDeposit")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, InitialDepositProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, InitialDepositProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin initial_deposit = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"initial_deposit&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -99,20 +101,20 @@ object MsgSubmitProposalKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setInitialDeposit")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, InitialDepositProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, InitialDepositProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.setInitialDeposit(index, value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin initial_deposit = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"initial_deposit&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearInitialDeposit")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, InitialDepositProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, InitialDepositProxy>.clear() {
       _builder.clearInitialDeposit()
     }
     /**
      * <code>string proposer = 3;</code>
      */
-    var proposer: kotlin.String
+    public var proposer: kotlin.String
       @JvmName("getProposer")
       get() = _builder.getProposer()
       @JvmName("setProposer")
@@ -122,11 +124,11 @@ object MsgSubmitProposalKt {
     /**
      * <code>string proposer = 3;</code>
      */
-    fun clearProposer() {
+    public fun clearProposer() {
       _builder.clearProposer()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.gov.v1beta1.Tx.MsgSubmitProposal.copy(block: cosmos.gov.v1beta1.MsgSubmitProposalKt.Dsl.() -> Unit): cosmos.gov.v1beta1.Tx.MsgSubmitProposal =
+public inline fun cosmos.gov.v1beta1.Tx.MsgSubmitProposal.copy(block: cosmos.gov.v1beta1.MsgSubmitProposalKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.Tx.MsgSubmitProposal =
   cosmos.gov.v1beta1.MsgSubmitProposalKt.Dsl._create(this.toBuilder()).apply { block() }._build()

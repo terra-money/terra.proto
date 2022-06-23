@@ -1065,7 +1065,7 @@ public final class Bank {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDenomBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(denom_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, denom_);
       }
       if (enabled_ != false) {
@@ -1080,7 +1080,7 @@ public final class Bank {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDenomBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(denom_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, denom_);
       }
       if (enabled_ != false) {
@@ -1769,7 +1769,7 @@ public final class Bank {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
       for (int i = 0; i < coins_.size(); i++) {
@@ -1784,7 +1784,7 @@ public final class Bank {
       if (size != -1) return size;
 
       size = 0;
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
       for (int i = 0; i < coins_.size(); i++) {
@@ -2720,7 +2720,7 @@ public final class Bank {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
       for (int i = 0; i < coins_.size(); i++) {
@@ -2735,7 +2735,7 @@ public final class Bank {
       if (size != -1) return size;
 
       size = 0;
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
       for (int i = 0; i < coins_.size(); i++) {
@@ -4559,7 +4559,7 @@ public final class Bank {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDenomBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(denom_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, denom_);
       }
       if (exponent_ != 0) {
@@ -4577,7 +4577,7 @@ public final class Bank {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDenomBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(denom_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, denom_);
       }
       if (exponent_ != 0) {
@@ -5837,22 +5837,22 @@ public final class Bank {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDescriptionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, description_);
       }
       for (int i = 0; i < denomUnits_.size(); i++) {
         output.writeMessage(2, denomUnits_.get(i));
       }
-      if (!getBaseBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(base_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, base_);
       }
-      if (!getDisplayBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(display_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, display_);
       }
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, name_);
       }
-      if (!getSymbolBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(symbol_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 6, symbol_);
       }
       unknownFields.writeTo(output);
@@ -5864,23 +5864,23 @@ public final class Bank {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDescriptionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, description_);
       }
       for (int i = 0; i < denomUnits_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, denomUnits_.get(i));
       }
-      if (!getBaseBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(base_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, base_);
       }
-      if (!getDisplayBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(display_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, display_);
       }
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, name_);
       }
-      if (!getSymbolBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(symbol_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, symbol_);
       }
       size += unknownFields.getSerializedSize();

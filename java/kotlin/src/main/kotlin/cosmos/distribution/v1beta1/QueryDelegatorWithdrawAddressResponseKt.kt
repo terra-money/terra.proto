@@ -4,15 +4,15 @@
 package cosmos.distribution.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryDelegatorWithdrawAddressResponse(block: cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponseKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorWithdrawAddressResponse =
+public inline fun queryDelegatorWithdrawAddressResponse(block: cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponseKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorWithdrawAddressResponse =
   cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponseKt.Dsl._create(cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorWithdrawAddressResponse.newBuilder()).apply { block() }._build()
-object QueryDelegatorWithdrawAddressResponseKt {
+public object QueryDelegatorWithdrawAddressResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorWithdrawAddressResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorWithdrawAddressResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorWithdrawAddressResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryDelegatorWithdrawAddressResponseKt {
      *
      * <code>string withdraw_address = 1;</code>
      */
-    var withdrawAddress: kotlin.String
+    public var withdrawAddress: kotlin.String
       @JvmName("getWithdrawAddress")
       get() = _builder.getWithdrawAddress()
       @JvmName("setWithdrawAddress")
@@ -43,11 +43,11 @@ object QueryDelegatorWithdrawAddressResponseKt {
      *
      * <code>string withdraw_address = 1;</code>
      */
-    fun clearWithdrawAddress() {
+    public fun clearWithdrawAddress() {
       _builder.clearWithdrawAddress()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorWithdrawAddressResponse.copy(block: cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponseKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorWithdrawAddressResponse =
+public inline fun cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorWithdrawAddressResponse.copy(block: cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponseKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegatorWithdrawAddressResponse =
   cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

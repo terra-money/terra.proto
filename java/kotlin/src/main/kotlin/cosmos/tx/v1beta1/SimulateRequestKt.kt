@@ -4,15 +4,15 @@
 package cosmos.tx.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun simulateRequest(block: cosmos.tx.v1beta1.SimulateRequestKt.Dsl.() -> Unit): cosmos.tx.v1beta1.ServiceOuterClass.SimulateRequest =
+public inline fun simulateRequest(block: cosmos.tx.v1beta1.SimulateRequestKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.ServiceOuterClass.SimulateRequest =
   cosmos.tx.v1beta1.SimulateRequestKt.Dsl._create(cosmos.tx.v1beta1.ServiceOuterClass.SimulateRequest.newBuilder()).apply { block() }._build()
-object SimulateRequestKt {
+public object SimulateRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.tx.v1beta1.ServiceOuterClass.SimulateRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.tx.v1beta1.ServiceOuterClass.SimulateRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.tx.v1beta1.ServiceOuterClass.SimulateRequest.Builder): Dsl = Dsl(builder)
@@ -30,7 +30,7 @@ object SimulateRequestKt {
      *
      * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
      */
-    @kotlin.Deprecated(message = "Field tx is deprecated") var tx: cosmos.tx.v1beta1.TxOuterClass.Tx
+    @kotlin.Deprecated(message = "Field tx is deprecated") public var tx: cosmos.tx.v1beta1.TxOuterClass.Tx
       @JvmName("getTx")
       get() = _builder.getTx()
       @JvmName("setTx")
@@ -44,8 +44,9 @@ object SimulateRequestKt {
      * </pre>
      *
      * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
+     * @deprecated
      */
-    fun clearTx() {
+    public fun clearTx() {
       _builder.clearTx()
     }
     /**
@@ -55,9 +56,10 @@ object SimulateRequestKt {
      * </pre>
      *
      * <code>.cosmos.tx.v1beta1.Tx tx = 1 [deprecated = true];</code>
+     * @deprecated
      * @return Whether the tx field is set.
      */
-    fun hasTx(): kotlin.Boolean {
+    public fun hasTx(): kotlin.Boolean {
       return _builder.hasTx()
     }
 
@@ -69,7 +71,7 @@ object SimulateRequestKt {
      *
      * <code>bytes tx_bytes = 2;</code>
      */
-    var txBytes: com.google.protobuf.ByteString
+    public var txBytes: com.google.protobuf.ByteString
       @JvmName("getTxBytes")
       get() = _builder.getTxBytes()
       @JvmName("setTxBytes")
@@ -84,11 +86,11 @@ object SimulateRequestKt {
      *
      * <code>bytes tx_bytes = 2;</code>
      */
-    fun clearTxBytes() {
+    public fun clearTxBytes() {
       _builder.clearTxBytes()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.tx.v1beta1.ServiceOuterClass.SimulateRequest.copy(block: cosmos.tx.v1beta1.SimulateRequestKt.Dsl.() -> Unit): cosmos.tx.v1beta1.ServiceOuterClass.SimulateRequest =
+public inline fun cosmos.tx.v1beta1.ServiceOuterClass.SimulateRequest.copy(block: cosmos.tx.v1beta1.SimulateRequestKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.ServiceOuterClass.SimulateRequest =
   cosmos.tx.v1beta1.SimulateRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

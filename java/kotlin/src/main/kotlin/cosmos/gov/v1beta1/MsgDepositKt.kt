@@ -4,15 +4,15 @@
 package cosmos.gov.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgDeposit(block: cosmos.gov.v1beta1.MsgDepositKt.Dsl.() -> Unit): cosmos.gov.v1beta1.Tx.MsgDeposit =
+public inline fun msgDeposit(block: cosmos.gov.v1beta1.MsgDepositKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.Tx.MsgDeposit =
   cosmos.gov.v1beta1.MsgDepositKt.Dsl._create(cosmos.gov.v1beta1.Tx.MsgDeposit.newBuilder()).apply { block() }._build()
-object MsgDepositKt {
+public object MsgDepositKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.gov.v1beta1.Tx.MsgDeposit.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.gov.v1beta1.Tx.MsgDeposit.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.gov.v1beta1.Tx.MsgDeposit.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object MsgDepositKt {
     /**
      * <code>uint64 proposal_id = 1 [(.gogoproto.jsontag) = "proposal_id", (.gogoproto.moretags) = "yaml:&#92;"proposal_id&#92;""];</code>
      */
-    var proposalId: kotlin.Long
+    public var proposalId: kotlin.Long
       @JvmName("getProposalId")
       get() = _builder.getProposalId()
       @JvmName("setProposalId")
@@ -35,14 +35,14 @@ object MsgDepositKt {
     /**
      * <code>uint64 proposal_id = 1 [(.gogoproto.jsontag) = "proposal_id", (.gogoproto.moretags) = "yaml:&#92;"proposal_id&#92;""];</code>
      */
-    fun clearProposalId() {
+    public fun clearProposalId() {
       _builder.clearProposalId()
     }
 
     /**
      * <code>string depositor = 2;</code>
      */
-    var depositor: kotlin.String
+    public var depositor: kotlin.String
       @JvmName("getDepositor")
       get() = _builder.getDepositor()
       @JvmName("setDepositor")
@@ -52,7 +52,7 @@ object MsgDepositKt {
     /**
      * <code>string depositor = 2;</code>
      */
-    fun clearDepositor() {
+    public fun clearDepositor() {
       _builder.clearDepositor()
     }
 
@@ -61,11 +61,11 @@ object MsgDepositKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class AmountProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class AmountProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.base.v1beta1.Coin amount = 3 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-     val amount: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>
+     public val amount: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getAmountList()
@@ -76,7 +76,7 @@ object MsgDepositKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAmount")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.addAmount(value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin amount = 3 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -84,7 +84,8 @@ object MsgDepositKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAmount")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       add(value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin amount = 3 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -92,7 +93,7 @@ object MsgDepositKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllAmount")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       _builder.addAllAmount(values)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin amount = 3 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -100,7 +101,8 @@ object MsgDepositKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllAmount")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin amount = 3 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -109,17 +111,17 @@ object MsgDepositKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setAmount")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.setAmount(index, value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin amount = 3 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearAmount")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.clear() {
       _builder.clearAmount()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.gov.v1beta1.Tx.MsgDeposit.copy(block: cosmos.gov.v1beta1.MsgDepositKt.Dsl.() -> Unit): cosmos.gov.v1beta1.Tx.MsgDeposit =
+public inline fun cosmos.gov.v1beta1.Tx.MsgDeposit.copy(block: cosmos.gov.v1beta1.MsgDepositKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.Tx.MsgDeposit =
   cosmos.gov.v1beta1.MsgDepositKt.Dsl._create(this.toBuilder()).apply { block() }._build()

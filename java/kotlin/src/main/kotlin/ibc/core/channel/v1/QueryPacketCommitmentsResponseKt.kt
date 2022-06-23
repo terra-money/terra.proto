@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryPacketCommitmentsResponse(block: ibc.core.channel.v1.QueryPacketCommitmentsResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.QueryOuterClass.QueryPacketCommitmentsResponse =
+public inline fun queryPacketCommitmentsResponse(block: ibc.core.channel.v1.QueryPacketCommitmentsResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.QueryOuterClass.QueryPacketCommitmentsResponse =
   ibc.core.channel.v1.QueryPacketCommitmentsResponseKt.Dsl._create(ibc.core.channel.v1.QueryOuterClass.QueryPacketCommitmentsResponse.newBuilder()).apply { block() }._build()
-object QueryPacketCommitmentsResponseKt {
+public object QueryPacketCommitmentsResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.QueryOuterClass.QueryPacketCommitmentsResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.QueryOuterClass.QueryPacketCommitmentsResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.QueryOuterClass.QueryPacketCommitmentsResponse.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object QueryPacketCommitmentsResponseKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class CommitmentsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class CommitmentsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .ibc.core.channel.v1.PacketState commitments = 1;</code>
      */
-     val commitments: com.google.protobuf.kotlin.DslList<ibc.core.channel.v1.ChannelOuterClass.PacketState, CommitmentsProxy>
+     public val commitments: com.google.protobuf.kotlin.DslList<ibc.core.channel.v1.ChannelOuterClass.PacketState, CommitmentsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getCommitmentsList()
@@ -42,7 +42,7 @@ object QueryPacketCommitmentsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addCommitments")
-    fun com.google.protobuf.kotlin.DslList<ibc.core.channel.v1.ChannelOuterClass.PacketState, CommitmentsProxy>.add(value: ibc.core.channel.v1.ChannelOuterClass.PacketState) {
+    public fun com.google.protobuf.kotlin.DslList<ibc.core.channel.v1.ChannelOuterClass.PacketState, CommitmentsProxy>.add(value: ibc.core.channel.v1.ChannelOuterClass.PacketState) {
       _builder.addCommitments(value)
     }/**
      * <code>repeated .ibc.core.channel.v1.PacketState commitments = 1;</code>
@@ -50,7 +50,8 @@ object QueryPacketCommitmentsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignCommitments")
-    inline operator fun com.google.protobuf.kotlin.DslList<ibc.core.channel.v1.ChannelOuterClass.PacketState, CommitmentsProxy>.plusAssign(value: ibc.core.channel.v1.ChannelOuterClass.PacketState) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<ibc.core.channel.v1.ChannelOuterClass.PacketState, CommitmentsProxy>.plusAssign(value: ibc.core.channel.v1.ChannelOuterClass.PacketState) {
       add(value)
     }/**
      * <code>repeated .ibc.core.channel.v1.PacketState commitments = 1;</code>
@@ -58,7 +59,7 @@ object QueryPacketCommitmentsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllCommitments")
-    fun com.google.protobuf.kotlin.DslList<ibc.core.channel.v1.ChannelOuterClass.PacketState, CommitmentsProxy>.addAll(values: kotlin.collections.Iterable<ibc.core.channel.v1.ChannelOuterClass.PacketState>) {
+    public fun com.google.protobuf.kotlin.DslList<ibc.core.channel.v1.ChannelOuterClass.PacketState, CommitmentsProxy>.addAll(values: kotlin.collections.Iterable<ibc.core.channel.v1.ChannelOuterClass.PacketState>) {
       _builder.addAllCommitments(values)
     }/**
      * <code>repeated .ibc.core.channel.v1.PacketState commitments = 1;</code>
@@ -66,7 +67,8 @@ object QueryPacketCommitmentsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllCommitments")
-    inline operator fun com.google.protobuf.kotlin.DslList<ibc.core.channel.v1.ChannelOuterClass.PacketState, CommitmentsProxy>.plusAssign(values: kotlin.collections.Iterable<ibc.core.channel.v1.ChannelOuterClass.PacketState>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<ibc.core.channel.v1.ChannelOuterClass.PacketState, CommitmentsProxy>.plusAssign(values: kotlin.collections.Iterable<ibc.core.channel.v1.ChannelOuterClass.PacketState>) {
       addAll(values)
     }/**
      * <code>repeated .ibc.core.channel.v1.PacketState commitments = 1;</code>
@@ -75,14 +77,14 @@ object QueryPacketCommitmentsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setCommitments")
-    operator fun com.google.protobuf.kotlin.DslList<ibc.core.channel.v1.ChannelOuterClass.PacketState, CommitmentsProxy>.set(index: kotlin.Int, value: ibc.core.channel.v1.ChannelOuterClass.PacketState) {
+    public operator fun com.google.protobuf.kotlin.DslList<ibc.core.channel.v1.ChannelOuterClass.PacketState, CommitmentsProxy>.set(index: kotlin.Int, value: ibc.core.channel.v1.ChannelOuterClass.PacketState) {
       _builder.setCommitments(index, value)
     }/**
      * <code>repeated .ibc.core.channel.v1.PacketState commitments = 1;</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearCommitments")
-    fun com.google.protobuf.kotlin.DslList<ibc.core.channel.v1.ChannelOuterClass.PacketState, CommitmentsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<ibc.core.channel.v1.ChannelOuterClass.PacketState, CommitmentsProxy>.clear() {
       _builder.clearCommitments()
     }
     /**
@@ -92,7 +94,7 @@ object QueryPacketCommitmentsResponseKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageResponse
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageResponse
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -106,7 +108,7 @@ object QueryPacketCommitmentsResponseKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
@@ -117,7 +119,7 @@ object QueryPacketCommitmentsResponseKt {
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
 
@@ -128,7 +130,7 @@ object QueryPacketCommitmentsResponseKt {
      *
      * <code>.ibc.core.client.v1.Height height = 3 [(.gogoproto.nullable) = false];</code>
      */
-    var height: ibc.core.client.v1.Client.Height
+    public var height: ibc.core.client.v1.Client.Height
       @JvmName("getHeight")
       get() = _builder.getHeight()
       @JvmName("setHeight")
@@ -142,7 +144,7 @@ object QueryPacketCommitmentsResponseKt {
      *
      * <code>.ibc.core.client.v1.Height height = 3 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearHeight() {
+    public fun clearHeight() {
       _builder.clearHeight()
     }
     /**
@@ -153,11 +155,11 @@ object QueryPacketCommitmentsResponseKt {
      * <code>.ibc.core.client.v1.Height height = 3 [(.gogoproto.nullable) = false];</code>
      * @return Whether the height field is set.
      */
-    fun hasHeight(): kotlin.Boolean {
+    public fun hasHeight(): kotlin.Boolean {
       return _builder.hasHeight()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.QueryOuterClass.QueryPacketCommitmentsResponse.copy(block: ibc.core.channel.v1.QueryPacketCommitmentsResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.QueryOuterClass.QueryPacketCommitmentsResponse =
+public inline fun ibc.core.channel.v1.QueryOuterClass.QueryPacketCommitmentsResponse.copy(block: ibc.core.channel.v1.QueryPacketCommitmentsResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.QueryOuterClass.QueryPacketCommitmentsResponse =
   ibc.core.channel.v1.QueryPacketCommitmentsResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

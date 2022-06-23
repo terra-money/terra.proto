@@ -4,15 +4,15 @@
 package cosmos.crypto.secp256r1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun privKey(block: cosmos.crypto.secp256r1.PrivKeyKt.Dsl.() -> Unit): cosmos.crypto.secp256r1.Keys.PrivKey =
+public inline fun privKey(block: cosmos.crypto.secp256r1.PrivKeyKt.Dsl.() -> kotlin.Unit): cosmos.crypto.secp256r1.Keys.PrivKey =
   cosmos.crypto.secp256r1.PrivKeyKt.Dsl._create(cosmos.crypto.secp256r1.Keys.PrivKey.newBuilder()).apply { block() }._build()
-object PrivKeyKt {
+public object PrivKeyKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.crypto.secp256r1.Keys.PrivKey.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.crypto.secp256r1.Keys.PrivKey.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.crypto.secp256r1.Keys.PrivKey.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object PrivKeyKt {
      *
      * <code>bytes secret = 1 [(.gogoproto.customtype) = "ecdsaSK"];</code>
      */
-    var secret: com.google.protobuf.ByteString
+    public var secret: com.google.protobuf.ByteString
       @JvmName("getSecret")
       get() = _builder.getSecret()
       @JvmName("setSecret")
@@ -43,11 +43,11 @@ object PrivKeyKt {
      *
      * <code>bytes secret = 1 [(.gogoproto.customtype) = "ecdsaSK"];</code>
      */
-    fun clearSecret() {
+    public fun clearSecret() {
       _builder.clearSecret()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.crypto.secp256r1.Keys.PrivKey.copy(block: cosmos.crypto.secp256r1.PrivKeyKt.Dsl.() -> Unit): cosmos.crypto.secp256r1.Keys.PrivKey =
+public inline fun cosmos.crypto.secp256r1.Keys.PrivKey.copy(block: cosmos.crypto.secp256r1.PrivKeyKt.Dsl.() -> kotlin.Unit): cosmos.crypto.secp256r1.Keys.PrivKey =
   cosmos.crypto.secp256r1.PrivKeyKt.Dsl._create(this.toBuilder()).apply { block() }._build()

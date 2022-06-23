@@ -4,15 +4,15 @@
 package cosmos.base.query.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun pageRequest(block: cosmos.base.query.v1beta1.PageRequestKt.Dsl.() -> Unit): cosmos.base.query.v1beta1.Pagination.PageRequest =
+public inline fun pageRequest(block: cosmos.base.query.v1beta1.PageRequestKt.Dsl.() -> kotlin.Unit): cosmos.base.query.v1beta1.Pagination.PageRequest =
   cosmos.base.query.v1beta1.PageRequestKt.Dsl._create(cosmos.base.query.v1beta1.Pagination.PageRequest.newBuilder()).apply { block() }._build()
-object PageRequestKt {
+public object PageRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.query.v1beta1.Pagination.PageRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.query.v1beta1.Pagination.PageRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.query.v1beta1.Pagination.PageRequest.Builder): Dsl = Dsl(builder)
@@ -31,7 +31,7 @@ object PageRequestKt {
      *
      * <code>bytes key = 1;</code>
      */
-    var key: com.google.protobuf.ByteString
+    public var key: com.google.protobuf.ByteString
       @JvmName("getKey")
       get() = _builder.getKey()
       @JvmName("setKey")
@@ -47,7 +47,7 @@ object PageRequestKt {
      *
      * <code>bytes key = 1;</code>
      */
-    fun clearKey() {
+    public fun clearKey() {
       _builder.clearKey()
     }
 
@@ -60,7 +60,7 @@ object PageRequestKt {
      *
      * <code>uint64 offset = 2;</code>
      */
-    var offset: kotlin.Long
+    public var offset: kotlin.Long
       @JvmName("getOffset")
       get() = _builder.getOffset()
       @JvmName("setOffset")
@@ -76,7 +76,7 @@ object PageRequestKt {
      *
      * <code>uint64 offset = 2;</code>
      */
-    fun clearOffset() {
+    public fun clearOffset() {
       _builder.clearOffset()
     }
 
@@ -88,7 +88,7 @@ object PageRequestKt {
      *
      * <code>uint64 limit = 3;</code>
      */
-    var limit: kotlin.Long
+    public var limit: kotlin.Long
       @JvmName("getLimit")
       get() = _builder.getLimit()
       @JvmName("setLimit")
@@ -103,7 +103,7 @@ object PageRequestKt {
      *
      * <code>uint64 limit = 3;</code>
      */
-    fun clearLimit() {
+    public fun clearLimit() {
       _builder.clearLimit()
     }
 
@@ -117,7 +117,7 @@ object PageRequestKt {
      *
      * <code>bool count_total = 4;</code>
      */
-    var countTotal: kotlin.Boolean
+    public var countTotal: kotlin.Boolean
       @JvmName("getCountTotal")
       get() = _builder.getCountTotal()
       @JvmName("setCountTotal")
@@ -134,7 +134,7 @@ object PageRequestKt {
      *
      * <code>bool count_total = 4;</code>
      */
-    fun clearCountTotal() {
+    public fun clearCountTotal() {
       _builder.clearCountTotal()
     }
 
@@ -146,7 +146,7 @@ object PageRequestKt {
      *
      * <code>bool reverse = 5;</code>
      */
-    var reverse: kotlin.Boolean
+    public var reverse: kotlin.Boolean
       @JvmName("getReverse")
       get() = _builder.getReverse()
       @JvmName("setReverse")
@@ -161,11 +161,11 @@ object PageRequestKt {
      *
      * <code>bool reverse = 5;</code>
      */
-    fun clearReverse() {
+    public fun clearReverse() {
       _builder.clearReverse()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.query.v1beta1.Pagination.PageRequest.copy(block: cosmos.base.query.v1beta1.PageRequestKt.Dsl.() -> Unit): cosmos.base.query.v1beta1.Pagination.PageRequest =
+public inline fun cosmos.base.query.v1beta1.Pagination.PageRequest.copy(block: cosmos.base.query.v1beta1.PageRequestKt.Dsl.() -> kotlin.Unit): cosmos.base.query.v1beta1.Pagination.PageRequest =
   cosmos.base.query.v1beta1.PageRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()
