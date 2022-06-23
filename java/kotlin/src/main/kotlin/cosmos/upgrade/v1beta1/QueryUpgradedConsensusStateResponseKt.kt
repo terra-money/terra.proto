@@ -4,15 +4,15 @@
 package cosmos.upgrade.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryUpgradedConsensusStateResponse(block: cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponseKt.Dsl.() -> Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateResponse =
+public inline fun queryUpgradedConsensusStateResponse(block: cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponseKt.Dsl.() -> kotlin.Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateResponse =
   cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponseKt.Dsl._create(cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateResponse.newBuilder()).apply { block() }._build()
-object QueryUpgradedConsensusStateResponseKt {
+public object QueryUpgradedConsensusStateResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateResponse.Builder): Dsl = Dsl(builder)
@@ -23,9 +23,13 @@ object QueryUpgradedConsensusStateResponseKt {
     internal fun _build(): cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateResponse = _builder.build()
 
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>bytes upgraded_consensus_state = 2;</code>
      */
-    var upgradedConsensusState: com.google.protobuf.ByteString
+    public var upgradedConsensusState: com.google.protobuf.ByteString
       @JvmName("getUpgradedConsensusState")
       get() = _builder.getUpgradedConsensusState()
       @JvmName("setUpgradedConsensusState")
@@ -33,13 +37,17 @@ object QueryUpgradedConsensusStateResponseKt {
         _builder.setUpgradedConsensusState(value)
       }
     /**
+     * <pre>
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     *
      * <code>bytes upgraded_consensus_state = 2;</code>
      */
-    fun clearUpgradedConsensusState() {
+    public fun clearUpgradedConsensusState() {
       _builder.clearUpgradedConsensusState()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateResponse.copy(block: cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponseKt.Dsl.() -> Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateResponse =
+public inline fun cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateResponse.copy(block: cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponseKt.Dsl.() -> kotlin.Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateResponse =
   cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

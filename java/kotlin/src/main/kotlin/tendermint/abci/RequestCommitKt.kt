@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun requestCommit(block: tendermint.abci.RequestCommitKt.Dsl.() -> Unit): tendermint.abci.Types.RequestCommit =
+public inline fun requestCommit(block: tendermint.abci.RequestCommitKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestCommit =
   tendermint.abci.RequestCommitKt.Dsl._create(tendermint.abci.Types.RequestCommit.newBuilder()).apply { block() }._build()
-object RequestCommitKt {
+public object RequestCommitKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.RequestCommit.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.RequestCommit.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.RequestCommit.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object RequestCommitKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.RequestCommit.copy(block: tendermint.abci.RequestCommitKt.Dsl.() -> Unit): tendermint.abci.Types.RequestCommit =
+public inline fun tendermint.abci.Types.RequestCommit.copy(block: tendermint.abci.RequestCommitKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestCommit =
   tendermint.abci.RequestCommitKt.Dsl._create(this.toBuilder()).apply { block() }._build()

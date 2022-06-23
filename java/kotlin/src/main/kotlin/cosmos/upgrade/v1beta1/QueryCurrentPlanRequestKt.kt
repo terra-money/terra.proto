@@ -4,15 +4,15 @@
 package cosmos.upgrade.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryCurrentPlanRequest(block: cosmos.upgrade.v1beta1.QueryCurrentPlanRequestKt.Dsl.() -> Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanRequest =
+public inline fun queryCurrentPlanRequest(block: cosmos.upgrade.v1beta1.QueryCurrentPlanRequestKt.Dsl.() -> kotlin.Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanRequest =
   cosmos.upgrade.v1beta1.QueryCurrentPlanRequestKt.Dsl._create(cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanRequest.newBuilder()).apply { block() }._build()
-object QueryCurrentPlanRequestKt {
+public object QueryCurrentPlanRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanRequest.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object QueryCurrentPlanRequestKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanRequest.copy(block: cosmos.upgrade.v1beta1.QueryCurrentPlanRequestKt.Dsl.() -> Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanRequest =
+public inline fun cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanRequest.copy(block: cosmos.upgrade.v1beta1.QueryCurrentPlanRequestKt.Dsl.() -> kotlin.Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanRequest =
   cosmos.upgrade.v1beta1.QueryCurrentPlanRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

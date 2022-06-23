@@ -28,30 +28,30 @@ import kotlin.jvm.JvmStatic
 /**
  * Holder for Kotlin coroutine-based client and server APIs for ibc.core.connection.v1.Msg.
  */
-object MsgGrpcKt {
-  const val SERVICE_NAME: String = MsgGrpc.SERVICE_NAME
+public object MsgGrpcKt {
+  public const val SERVICE_NAME: String = MsgGrpc.SERVICE_NAME
 
   @JvmStatic
-  val serviceDescriptor: ServiceDescriptor
+  public val serviceDescriptor: ServiceDescriptor
     get() = MsgGrpc.getServiceDescriptor()
 
-  val connectionOpenInitMethod: MethodDescriptor<Tx.MsgConnectionOpenInit,
-      Tx.MsgConnectionOpenInitResponse>
+  public val connectionOpenInitMethod:
+      MethodDescriptor<Tx.MsgConnectionOpenInit, Tx.MsgConnectionOpenInitResponse>
     @JvmStatic
     get() = MsgGrpc.getConnectionOpenInitMethod()
 
-  val connectionOpenTryMethod: MethodDescriptor<Tx.MsgConnectionOpenTry,
-      Tx.MsgConnectionOpenTryResponse>
+  public val connectionOpenTryMethod:
+      MethodDescriptor<Tx.MsgConnectionOpenTry, Tx.MsgConnectionOpenTryResponse>
     @JvmStatic
     get() = MsgGrpc.getConnectionOpenTryMethod()
 
-  val connectionOpenAckMethod: MethodDescriptor<Tx.MsgConnectionOpenAck,
-      Tx.MsgConnectionOpenAckResponse>
+  public val connectionOpenAckMethod:
+      MethodDescriptor<Tx.MsgConnectionOpenAck, Tx.MsgConnectionOpenAckResponse>
     @JvmStatic
     get() = MsgGrpc.getConnectionOpenAckMethod()
 
-  val connectionOpenConfirmMethod: MethodDescriptor<Tx.MsgConnectionOpenConfirm,
-      Tx.MsgConnectionOpenConfirmResponse>
+  public val connectionOpenConfirmMethod:
+      MethodDescriptor<Tx.MsgConnectionOpenConfirm, Tx.MsgConnectionOpenConfirmResponse>
     @JvmStatic
     get() = MsgGrpc.getConnectionOpenConfirmMethod()
 
@@ -59,11 +59,11 @@ object MsgGrpcKt {
    * A stub for issuing RPCs to a(n) ibc.core.connection.v1.Msg service as suspending coroutines.
    */
   @StubFor(MsgGrpc::class)
-  class MsgCoroutineStub @JvmOverloads constructor(
+  public class MsgCoroutineStub @JvmOverloads constructor(
     channel: Channel,
-    callOptions: CallOptions = DEFAULT
+    callOptions: CallOptions = DEFAULT,
   ) : AbstractCoroutineStub<MsgCoroutineStub>(channel, callOptions) {
-    override fun build(channel: Channel, callOptions: CallOptions): MsgCoroutineStub =
+    public override fun build(channel: Channel, callOptions: CallOptions): MsgCoroutineStub =
         MsgCoroutineStub(channel, callOptions)
 
     /**
@@ -74,16 +74,19 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun connectionOpenInit(request: Tx.MsgConnectionOpenInit):
-        Tx.MsgConnectionOpenInitResponse = unaryRpc(
+    public suspend fun connectionOpenInit(request: Tx.MsgConnectionOpenInit, headers: Metadata =
+        Metadata()): Tx.MsgConnectionOpenInitResponse = unaryRpc(
       channel,
       MsgGrpc.getConnectionOpenInitMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -92,16 +95,19 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun connectionOpenTry(request: Tx.MsgConnectionOpenTry): Tx.MsgConnectionOpenTryResponse
-        = unaryRpc(
+    public suspend fun connectionOpenTry(request: Tx.MsgConnectionOpenTry, headers: Metadata =
+        Metadata()): Tx.MsgConnectionOpenTryResponse = unaryRpc(
       channel,
       MsgGrpc.getConnectionOpenTryMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -110,16 +116,19 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun connectionOpenAck(request: Tx.MsgConnectionOpenAck): Tx.MsgConnectionOpenAckResponse
-        = unaryRpc(
+    public suspend fun connectionOpenAck(request: Tx.MsgConnectionOpenAck, headers: Metadata =
+        Metadata()): Tx.MsgConnectionOpenAckResponse = unaryRpc(
       channel,
       MsgGrpc.getConnectionOpenAckMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -128,22 +137,25 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun connectionOpenConfirm(request: Tx.MsgConnectionOpenConfirm):
-        Tx.MsgConnectionOpenConfirmResponse = unaryRpc(
+    public suspend fun connectionOpenConfirm(request: Tx.MsgConnectionOpenConfirm, headers: Metadata
+        = Metadata()): Tx.MsgConnectionOpenConfirmResponse = unaryRpc(
       channel,
       MsgGrpc.getConnectionOpenConfirmMethod(),
       request,
       callOptions,
-      Metadata()
-    )}
+      headers
+    )
+  }
 
   /**
    * Skeletal implementation of the ibc.core.connection.v1.Msg service based on Kotlin coroutines.
    */
-  abstract class MsgCoroutineImplBase(
-    coroutineContext: CoroutineContext = EmptyCoroutineContext
+  public abstract class MsgCoroutineImplBase(
+    coroutineContext: CoroutineContext = EmptyCoroutineContext,
   ) : AbstractCoroutineServerImpl(coroutineContext) {
     /**
      * Returns the response to an RPC for ibc.core.connection.v1.Msg.ConnectionOpenInit.
@@ -156,7 +168,7 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun connectionOpenInit(request: Tx.MsgConnectionOpenInit):
+    public open suspend fun connectionOpenInit(request: Tx.MsgConnectionOpenInit):
         Tx.MsgConnectionOpenInitResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.connection.v1.Msg.ConnectionOpenInit is unimplemented"))
 
@@ -171,7 +183,7 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun connectionOpenTry(request: Tx.MsgConnectionOpenTry):
+    public open suspend fun connectionOpenTry(request: Tx.MsgConnectionOpenTry):
         Tx.MsgConnectionOpenTryResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.connection.v1.Msg.ConnectionOpenTry is unimplemented"))
 
@@ -186,7 +198,7 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun connectionOpenAck(request: Tx.MsgConnectionOpenAck):
+    public open suspend fun connectionOpenAck(request: Tx.MsgConnectionOpenAck):
         Tx.MsgConnectionOpenAckResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.connection.v1.Msg.ConnectionOpenAck is unimplemented"))
 
@@ -201,11 +213,12 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun connectionOpenConfirm(request: Tx.MsgConnectionOpenConfirm):
+    public open suspend fun connectionOpenConfirm(request: Tx.MsgConnectionOpenConfirm):
         Tx.MsgConnectionOpenConfirmResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.connection.v1.Msg.ConnectionOpenConfirm is unimplemented"))
 
-    final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())
+    public final override fun bindService(): ServerServiceDefinition =
+        builder(getServiceDescriptor())
       .addMethod(unaryServerMethodDefinition(
       context = this.context,
       descriptor = MsgGrpc.getConnectionOpenInitMethod(),

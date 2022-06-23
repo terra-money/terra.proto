@@ -4,15 +4,15 @@
 package cosmos.staking.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun commission(block: cosmos.staking.v1beta1.CommissionKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Staking.Commission =
+public inline fun commission(block: cosmos.staking.v1beta1.CommissionKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Staking.Commission =
   cosmos.staking.v1beta1.CommissionKt.Dsl._create(cosmos.staking.v1beta1.Staking.Commission.newBuilder()).apply { block() }._build()
-object CommissionKt {
+public object CommissionKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.staking.v1beta1.Staking.Commission.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.staking.v1beta1.Staking.Commission.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.staking.v1beta1.Staking.Commission.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object CommissionKt {
      *
      * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
      */
-    var commissionRates: cosmos.staking.v1beta1.Staking.CommissionRates
+    public var commissionRates: cosmos.staking.v1beta1.Staking.CommissionRates
       @JvmName("getCommissionRates")
       get() = _builder.getCommissionRates()
       @JvmName("setCommissionRates")
@@ -43,7 +43,7 @@ object CommissionKt {
      *
      * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
      */
-    fun clearCommissionRates() {
+    public fun clearCommissionRates() {
       _builder.clearCommissionRates()
     }
     /**
@@ -54,7 +54,7 @@ object CommissionKt {
      * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
      * @return Whether the commissionRates field is set.
      */
-    fun hasCommissionRates(): kotlin.Boolean {
+    public fun hasCommissionRates(): kotlin.Boolean {
       return _builder.hasCommissionRates()
     }
 
@@ -65,7 +65,7 @@ object CommissionKt {
      *
      * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
      */
-    var updateTime: com.google.protobuf.Timestamp
+    public var updateTime: com.google.protobuf.Timestamp
       @JvmName("getUpdateTime")
       get() = _builder.getUpdateTime()
       @JvmName("setUpdateTime")
@@ -79,7 +79,7 @@ object CommissionKt {
      *
      * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
      */
-    fun clearUpdateTime() {
+    public fun clearUpdateTime() {
       _builder.clearUpdateTime()
     }
     /**
@@ -90,11 +90,11 @@ object CommissionKt {
      * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return Whether the updateTime field is set.
      */
-    fun hasUpdateTime(): kotlin.Boolean {
+    public fun hasUpdateTime(): kotlin.Boolean {
       return _builder.hasUpdateTime()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.staking.v1beta1.Staking.Commission.copy(block: cosmos.staking.v1beta1.CommissionKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Staking.Commission =
+public inline fun cosmos.staking.v1beta1.Staking.Commission.copy(block: cosmos.staking.v1beta1.CommissionKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Staking.Commission =
   cosmos.staking.v1beta1.CommissionKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.base.reflection.v2alpha1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun interfaceAcceptingMessageDescriptor(block: cosmos.base.reflection.v2alpha1.InterfaceAcceptingMessageDescriptorKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.InterfaceAcceptingMessageDescriptor =
+public inline fun interfaceAcceptingMessageDescriptor(block: cosmos.base.reflection.v2alpha1.InterfaceAcceptingMessageDescriptorKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.InterfaceAcceptingMessageDescriptor =
   cosmos.base.reflection.v2alpha1.InterfaceAcceptingMessageDescriptorKt.Dsl._create(cosmos.base.reflection.v2alpha1.Reflection.InterfaceAcceptingMessageDescriptor.newBuilder()).apply { block() }._build()
-object InterfaceAcceptingMessageDescriptorKt {
+public object InterfaceAcceptingMessageDescriptorKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.reflection.v2alpha1.Reflection.InterfaceAcceptingMessageDescriptor.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.reflection.v2alpha1.Reflection.InterfaceAcceptingMessageDescriptor.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.reflection.v2alpha1.Reflection.InterfaceAcceptingMessageDescriptor.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object InterfaceAcceptingMessageDescriptorKt {
      *
      * <code>string fullname = 1;</code>
      */
-    var fullname: kotlin.String
+    public var fullname: kotlin.String
       @JvmName("getFullname")
       get() = _builder.getFullname()
       @JvmName("setFullname")
@@ -43,7 +43,7 @@ object InterfaceAcceptingMessageDescriptorKt {
      *
      * <code>string fullname = 1;</code>
      */
-    fun clearFullname() {
+    public fun clearFullname() {
       _builder.clearFullname()
     }
 
@@ -52,7 +52,7 @@ object InterfaceAcceptingMessageDescriptorKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class FieldDescriptorNamesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class FieldDescriptorNamesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * field_descriptor_names is a list of the protobuf name (not fullname) of the field
@@ -63,8 +63,8 @@ object InterfaceAcceptingMessageDescriptorKt {
      * <code>repeated string field_descriptor_names = 2;</code>
      * @return A list containing the fieldDescriptorNames.
      */
-    val fieldDescriptorNames: com.google.protobuf.kotlin.DslList<kotlin.String, FieldDescriptorNamesProxy>
-      @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
+    public val fieldDescriptorNames: com.google.protobuf.kotlin.DslList<kotlin.String, FieldDescriptorNamesProxy>
+      @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getFieldDescriptorNamesList()
       )
@@ -80,7 +80,7 @@ object InterfaceAcceptingMessageDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addFieldDescriptorNames")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, FieldDescriptorNamesProxy>.add(value: kotlin.String) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, FieldDescriptorNamesProxy>.add(value: kotlin.String) {
       _builder.addFieldDescriptorNames(value)
     }
     /**
@@ -95,8 +95,9 @@ object InterfaceAcceptingMessageDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignFieldDescriptorNames")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, FieldDescriptorNamesProxy>.plusAssign(value: kotlin.String) {
-      _builder.addFieldDescriptorNames(value)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, FieldDescriptorNamesProxy>.plusAssign(value: kotlin.String) {
+      add(value)
     }
     /**
      * <pre>
@@ -110,7 +111,7 @@ object InterfaceAcceptingMessageDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllFieldDescriptorNames")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, FieldDescriptorNamesProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, FieldDescriptorNamesProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
       _builder.addAllFieldDescriptorNames(values)
     }
     /**
@@ -125,8 +126,9 @@ object InterfaceAcceptingMessageDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllFieldDescriptorNames")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, FieldDescriptorNamesProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
-      _builder.addAllFieldDescriptorNames(values)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, FieldDescriptorNamesProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
+      addAll(values)
     }
     /**
      * <pre>
@@ -141,7 +143,7 @@ object InterfaceAcceptingMessageDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setFieldDescriptorNames")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, FieldDescriptorNamesProxy>.set(index: kotlin.Int, value: kotlin.String) {
+    public operator fun com.google.protobuf.kotlin.DslList<kotlin.String, FieldDescriptorNamesProxy>.set(index: kotlin.Int, value: kotlin.String) {
       _builder.setFieldDescriptorNames(index, value)
     }/**
      * <pre>
@@ -154,10 +156,10 @@ object InterfaceAcceptingMessageDescriptorKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearFieldDescriptorNames")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, FieldDescriptorNamesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, FieldDescriptorNamesProxy>.clear() {
       _builder.clearFieldDescriptorNames()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.reflection.v2alpha1.Reflection.InterfaceAcceptingMessageDescriptor.copy(block: cosmos.base.reflection.v2alpha1.InterfaceAcceptingMessageDescriptorKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.InterfaceAcceptingMessageDescriptor =
+public inline fun cosmos.base.reflection.v2alpha1.Reflection.InterfaceAcceptingMessageDescriptor.copy(block: cosmos.base.reflection.v2alpha1.InterfaceAcceptingMessageDescriptorKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.InterfaceAcceptingMessageDescriptor =
   cosmos.base.reflection.v2alpha1.InterfaceAcceptingMessageDescriptorKt.Dsl._create(this.toBuilder()).apply { block() }._build()

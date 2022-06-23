@@ -4,15 +4,15 @@
 package cosmos.upgrade.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryCurrentPlanResponse(block: cosmos.upgrade.v1beta1.QueryCurrentPlanResponseKt.Dsl.() -> Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanResponse =
+public inline fun queryCurrentPlanResponse(block: cosmos.upgrade.v1beta1.QueryCurrentPlanResponseKt.Dsl.() -> kotlin.Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanResponse =
   cosmos.upgrade.v1beta1.QueryCurrentPlanResponseKt.Dsl._create(cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanResponse.newBuilder()).apply { block() }._build()
-object QueryCurrentPlanResponseKt {
+public object QueryCurrentPlanResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryCurrentPlanResponseKt {
      *
      * <code>.cosmos.upgrade.v1beta1.Plan plan = 1;</code>
      */
-    var plan: cosmos.upgrade.v1beta1.Upgrade.Plan
+    public var plan: cosmos.upgrade.v1beta1.Upgrade.Plan
       @JvmName("getPlan")
       get() = _builder.getPlan()
       @JvmName("setPlan")
@@ -43,7 +43,7 @@ object QueryCurrentPlanResponseKt {
      *
      * <code>.cosmos.upgrade.v1beta1.Plan plan = 1;</code>
      */
-    fun clearPlan() {
+    public fun clearPlan() {
       _builder.clearPlan()
     }
     /**
@@ -54,11 +54,11 @@ object QueryCurrentPlanResponseKt {
      * <code>.cosmos.upgrade.v1beta1.Plan plan = 1;</code>
      * @return Whether the plan field is set.
      */
-    fun hasPlan(): kotlin.Boolean {
+    public fun hasPlan(): kotlin.Boolean {
       return _builder.hasPlan()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanResponse.copy(block: cosmos.upgrade.v1beta1.QueryCurrentPlanResponseKt.Dsl.() -> Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanResponse =
+public inline fun cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanResponse.copy(block: cosmos.upgrade.v1beta1.QueryCurrentPlanResponseKt.Dsl.() -> kotlin.Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryCurrentPlanResponse =
   cosmos.upgrade.v1beta1.QueryCurrentPlanResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

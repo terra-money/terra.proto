@@ -4,15 +4,15 @@
 package tendermint.types;
 
 @kotlin.jvm.JvmSynthetic
-inline fun data(block: tendermint.types.DataKt.Dsl.() -> Unit): tendermint.types.Types.Data =
+public inline fun data(block: tendermint.types.DataKt.Dsl.() -> kotlin.Unit): tendermint.types.Types.Data =
   tendermint.types.DataKt.Dsl._create(tendermint.types.Types.Data.newBuilder()).apply { block() }._build()
-object DataKt {
+public object DataKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.types.Types.Data.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.types.Types.Data.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.types.Types.Data.Builder): Dsl = Dsl(builder)
@@ -27,7 +27,7 @@ object DataKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class TxsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class TxsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * Txs that will be applied by state &#64; block.Height+1.
@@ -37,7 +37,7 @@ object DataKt {
      *
      * <code>repeated bytes txs = 1;</code>
      */
-     val txs: com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, TxsProxy>
+     public val txs: com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, TxsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getTxsList()
@@ -54,7 +54,7 @@ object DataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addTxs")
-    fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, TxsProxy>.add(value: com.google.protobuf.ByteString) {
+    public fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, TxsProxy>.add(value: com.google.protobuf.ByteString) {
       _builder.addTxs(value)
     }/**
      * <pre>
@@ -68,7 +68,8 @@ object DataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignTxs")
-    inline operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, TxsProxy>.plusAssign(value: com.google.protobuf.ByteString) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, TxsProxy>.plusAssign(value: com.google.protobuf.ByteString) {
       add(value)
     }/**
      * <pre>
@@ -82,7 +83,7 @@ object DataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllTxs")
-    fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, TxsProxy>.addAll(values: kotlin.collections.Iterable<com.google.protobuf.ByteString>) {
+    public fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, TxsProxy>.addAll(values: kotlin.collections.Iterable<com.google.protobuf.ByteString>) {
       _builder.addAllTxs(values)
     }/**
      * <pre>
@@ -96,7 +97,8 @@ object DataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllTxs")
-    inline operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, TxsProxy>.plusAssign(values: kotlin.collections.Iterable<com.google.protobuf.ByteString>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, TxsProxy>.plusAssign(values: kotlin.collections.Iterable<com.google.protobuf.ByteString>) {
       addAll(values)
     }/**
      * <pre>
@@ -111,7 +113,7 @@ object DataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setTxs")
-    operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, TxsProxy>.set(index: kotlin.Int, value: com.google.protobuf.ByteString) {
+    public operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, TxsProxy>.set(index: kotlin.Int, value: com.google.protobuf.ByteString) {
       _builder.setTxs(index, value)
     }/**
      * <pre>
@@ -124,10 +126,10 @@ object DataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearTxs")
-    fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, TxsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, TxsProxy>.clear() {
       _builder.clearTxs()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.types.Types.Data.copy(block: tendermint.types.DataKt.Dsl.() -> Unit): tendermint.types.Types.Data =
+public inline fun tendermint.types.Types.Data.copy(block: tendermint.types.DataKt.Dsl.() -> kotlin.Unit): tendermint.types.Types.Data =
   tendermint.types.DataKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.distribution.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun feePool(block: cosmos.distribution.v1beta1.FeePoolKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.Distribution.FeePool =
+public inline fun feePool(block: cosmos.distribution.v1beta1.FeePoolKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.Distribution.FeePool =
   cosmos.distribution.v1beta1.FeePoolKt.Dsl._create(cosmos.distribution.v1beta1.Distribution.FeePool.newBuilder()).apply { block() }._build()
-object FeePoolKt {
+public object FeePoolKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.distribution.v1beta1.Distribution.FeePool.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.distribution.v1beta1.Distribution.FeePool.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.distribution.v1beta1.Distribution.FeePool.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object FeePoolKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class CommunityPoolProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class CommunityPoolProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.base.v1beta1.DecCoin community_pool = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"community_pool&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.DecCoins"];</code>
      */
-     val communityPool: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.DecCoin, CommunityPoolProxy>
+     public val communityPool: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.DecCoin, CommunityPoolProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getCommunityPoolList()
@@ -42,7 +42,7 @@ object FeePoolKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addCommunityPool")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.DecCoin, CommunityPoolProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.DecCoin) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.DecCoin, CommunityPoolProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.DecCoin) {
       _builder.addCommunityPool(value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.DecCoin community_pool = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"community_pool&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.DecCoins"];</code>
@@ -50,7 +50,8 @@ object FeePoolKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignCommunityPool")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.DecCoin, CommunityPoolProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.DecCoin) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.DecCoin, CommunityPoolProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.DecCoin) {
       add(value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.DecCoin community_pool = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"community_pool&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.DecCoins"];</code>
@@ -58,7 +59,7 @@ object FeePoolKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllCommunityPool")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.DecCoin, CommunityPoolProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.DecCoin>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.DecCoin, CommunityPoolProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.DecCoin>) {
       _builder.addAllCommunityPool(values)
     }/**
      * <code>repeated .cosmos.base.v1beta1.DecCoin community_pool = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"community_pool&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.DecCoins"];</code>
@@ -66,7 +67,8 @@ object FeePoolKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllCommunityPool")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.DecCoin, CommunityPoolProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.DecCoin>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.DecCoin, CommunityPoolProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.DecCoin>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.base.v1beta1.DecCoin community_pool = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"community_pool&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.DecCoins"];</code>
@@ -75,17 +77,17 @@ object FeePoolKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setCommunityPool")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.DecCoin, CommunityPoolProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.DecCoin) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.DecCoin, CommunityPoolProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.DecCoin) {
       _builder.setCommunityPool(index, value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.DecCoin community_pool = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"community_pool&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.DecCoins"];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearCommunityPool")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.DecCoin, CommunityPoolProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.DecCoin, CommunityPoolProxy>.clear() {
       _builder.clearCommunityPool()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.distribution.v1beta1.Distribution.FeePool.copy(block: cosmos.distribution.v1beta1.FeePoolKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.Distribution.FeePool =
+public inline fun cosmos.distribution.v1beta1.Distribution.FeePool.copy(block: cosmos.distribution.v1beta1.FeePoolKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.Distribution.FeePool =
   cosmos.distribution.v1beta1.FeePoolKt.Dsl._create(this.toBuilder()).apply { block() }._build()

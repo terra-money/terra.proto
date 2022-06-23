@@ -28,53 +28,58 @@ import kotlin.jvm.JvmStatic
 /**
  * Holder for Kotlin coroutine-based client and server APIs for ibc.core.channel.v1.Msg.
  */
-object MsgGrpcKt {
-  const val SERVICE_NAME: String = MsgGrpc.SERVICE_NAME
+public object MsgGrpcKt {
+  public const val SERVICE_NAME: String = MsgGrpc.SERVICE_NAME
 
   @JvmStatic
-  val serviceDescriptor: ServiceDescriptor
+  public val serviceDescriptor: ServiceDescriptor
     get() = MsgGrpc.getServiceDescriptor()
 
-  val channelOpenInitMethod: MethodDescriptor<Tx.MsgChannelOpenInit, Tx.MsgChannelOpenInitResponse>
+  public val channelOpenInitMethod:
+      MethodDescriptor<Tx.MsgChannelOpenInit, Tx.MsgChannelOpenInitResponse>
     @JvmStatic
     get() = MsgGrpc.getChannelOpenInitMethod()
 
-  val channelOpenTryMethod: MethodDescriptor<Tx.MsgChannelOpenTry, Tx.MsgChannelOpenTryResponse>
+  public val channelOpenTryMethod:
+      MethodDescriptor<Tx.MsgChannelOpenTry, Tx.MsgChannelOpenTryResponse>
     @JvmStatic
     get() = MsgGrpc.getChannelOpenTryMethod()
 
-  val channelOpenAckMethod: MethodDescriptor<Tx.MsgChannelOpenAck, Tx.MsgChannelOpenAckResponse>
+  public val channelOpenAckMethod:
+      MethodDescriptor<Tx.MsgChannelOpenAck, Tx.MsgChannelOpenAckResponse>
     @JvmStatic
     get() = MsgGrpc.getChannelOpenAckMethod()
 
-  val channelOpenConfirmMethod: MethodDescriptor<Tx.MsgChannelOpenConfirm,
-      Tx.MsgChannelOpenConfirmResponse>
+  public val channelOpenConfirmMethod:
+      MethodDescriptor<Tx.MsgChannelOpenConfirm, Tx.MsgChannelOpenConfirmResponse>
     @JvmStatic
     get() = MsgGrpc.getChannelOpenConfirmMethod()
 
-  val channelCloseInitMethod: MethodDescriptor<Tx.MsgChannelCloseInit,
-      Tx.MsgChannelCloseInitResponse>
+  public val channelCloseInitMethod:
+      MethodDescriptor<Tx.MsgChannelCloseInit, Tx.MsgChannelCloseInitResponse>
     @JvmStatic
     get() = MsgGrpc.getChannelCloseInitMethod()
 
-  val channelCloseConfirmMethod: MethodDescriptor<Tx.MsgChannelCloseConfirm,
-      Tx.MsgChannelCloseConfirmResponse>
+  public val channelCloseConfirmMethod:
+      MethodDescriptor<Tx.MsgChannelCloseConfirm, Tx.MsgChannelCloseConfirmResponse>
     @JvmStatic
     get() = MsgGrpc.getChannelCloseConfirmMethod()
 
-  val recvPacketMethod: MethodDescriptor<Tx.MsgRecvPacket, Tx.MsgRecvPacketResponse>
+  public val recvPacketMethod: MethodDescriptor<Tx.MsgRecvPacket, Tx.MsgRecvPacketResponse>
     @JvmStatic
     get() = MsgGrpc.getRecvPacketMethod()
 
-  val timeoutMethod: MethodDescriptor<Tx.MsgTimeout, Tx.MsgTimeoutResponse>
+  public val timeoutMethod: MethodDescriptor<Tx.MsgTimeout, Tx.MsgTimeoutResponse>
     @JvmStatic
     get() = MsgGrpc.getTimeoutMethod()
 
-  val timeoutOnCloseMethod: MethodDescriptor<Tx.MsgTimeoutOnClose, Tx.MsgTimeoutOnCloseResponse>
+  public val timeoutOnCloseMethod:
+      MethodDescriptor<Tx.MsgTimeoutOnClose, Tx.MsgTimeoutOnCloseResponse>
     @JvmStatic
     get() = MsgGrpc.getTimeoutOnCloseMethod()
 
-  val acknowledgementMethod: MethodDescriptor<Tx.MsgAcknowledgement, Tx.MsgAcknowledgementResponse>
+  public val acknowledgementMethod:
+      MethodDescriptor<Tx.MsgAcknowledgement, Tx.MsgAcknowledgementResponse>
     @JvmStatic
     get() = MsgGrpc.getAcknowledgementMethod()
 
@@ -82,11 +87,11 @@ object MsgGrpcKt {
    * A stub for issuing RPCs to a(n) ibc.core.channel.v1.Msg service as suspending coroutines.
    */
   @StubFor(MsgGrpc::class)
-  class MsgCoroutineStub @JvmOverloads constructor(
+  public class MsgCoroutineStub @JvmOverloads constructor(
     channel: Channel,
-    callOptions: CallOptions = DEFAULT
+    callOptions: CallOptions = DEFAULT,
   ) : AbstractCoroutineStub<MsgCoroutineStub>(channel, callOptions) {
-    override fun build(channel: Channel, callOptions: CallOptions): MsgCoroutineStub =
+    public override fun build(channel: Channel, callOptions: CallOptions): MsgCoroutineStub =
         MsgCoroutineStub(channel, callOptions)
 
     /**
@@ -97,16 +102,19 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun channelOpenInit(request: Tx.MsgChannelOpenInit): Tx.MsgChannelOpenInitResponse =
-        unaryRpc(
+    public suspend fun channelOpenInit(request: Tx.MsgChannelOpenInit, headers: Metadata =
+        Metadata()): Tx.MsgChannelOpenInitResponse = unaryRpc(
       channel,
       MsgGrpc.getChannelOpenInitMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -115,16 +123,19 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun channelOpenTry(request: Tx.MsgChannelOpenTry): Tx.MsgChannelOpenTryResponse =
-        unaryRpc(
+    public suspend fun channelOpenTry(request: Tx.MsgChannelOpenTry, headers: Metadata =
+        Metadata()): Tx.MsgChannelOpenTryResponse = unaryRpc(
       channel,
       MsgGrpc.getChannelOpenTryMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -133,16 +144,19 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun channelOpenAck(request: Tx.MsgChannelOpenAck): Tx.MsgChannelOpenAckResponse =
-        unaryRpc(
+    public suspend fun channelOpenAck(request: Tx.MsgChannelOpenAck, headers: Metadata =
+        Metadata()): Tx.MsgChannelOpenAckResponse = unaryRpc(
       channel,
       MsgGrpc.getChannelOpenAckMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -151,16 +165,19 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun channelOpenConfirm(request: Tx.MsgChannelOpenConfirm):
-        Tx.MsgChannelOpenConfirmResponse = unaryRpc(
+    public suspend fun channelOpenConfirm(request: Tx.MsgChannelOpenConfirm, headers: Metadata =
+        Metadata()): Tx.MsgChannelOpenConfirmResponse = unaryRpc(
       channel,
       MsgGrpc.getChannelOpenConfirmMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -169,16 +186,19 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun channelCloseInit(request: Tx.MsgChannelCloseInit): Tx.MsgChannelCloseInitResponse =
-        unaryRpc(
+    public suspend fun channelCloseInit(request: Tx.MsgChannelCloseInit, headers: Metadata =
+        Metadata()): Tx.MsgChannelCloseInitResponse = unaryRpc(
       channel,
       MsgGrpc.getChannelCloseInitMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -187,16 +207,19 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun channelCloseConfirm(request: Tx.MsgChannelCloseConfirm):
-        Tx.MsgChannelCloseConfirmResponse = unaryRpc(
+    public suspend fun channelCloseConfirm(request: Tx.MsgChannelCloseConfirm, headers: Metadata =
+        Metadata()): Tx.MsgChannelCloseConfirmResponse = unaryRpc(
       channel,
       MsgGrpc.getChannelCloseConfirmMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -205,15 +228,19 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun recvPacket(request: Tx.MsgRecvPacket): Tx.MsgRecvPacketResponse = unaryRpc(
+    public suspend fun recvPacket(request: Tx.MsgRecvPacket, headers: Metadata = Metadata()):
+        Tx.MsgRecvPacketResponse = unaryRpc(
       channel,
       MsgGrpc.getRecvPacketMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -222,15 +249,19 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun timeout(request: Tx.MsgTimeout): Tx.MsgTimeoutResponse = unaryRpc(
+    public suspend fun timeout(request: Tx.MsgTimeout, headers: Metadata = Metadata()):
+        Tx.MsgTimeoutResponse = unaryRpc(
       channel,
       MsgGrpc.getTimeoutMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -239,16 +270,19 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun timeoutOnClose(request: Tx.MsgTimeoutOnClose): Tx.MsgTimeoutOnCloseResponse =
-        unaryRpc(
+    public suspend fun timeoutOnClose(request: Tx.MsgTimeoutOnClose, headers: Metadata =
+        Metadata()): Tx.MsgTimeoutOnCloseResponse = unaryRpc(
       channel,
       MsgGrpc.getTimeoutOnCloseMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -257,22 +291,25 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun acknowledgement(request: Tx.MsgAcknowledgement): Tx.MsgAcknowledgementResponse =
-        unaryRpc(
+    public suspend fun acknowledgement(request: Tx.MsgAcknowledgement, headers: Metadata =
+        Metadata()): Tx.MsgAcknowledgementResponse = unaryRpc(
       channel,
       MsgGrpc.getAcknowledgementMethod(),
       request,
       callOptions,
-      Metadata()
-    )}
+      headers
+    )
+  }
 
   /**
    * Skeletal implementation of the ibc.core.channel.v1.Msg service based on Kotlin coroutines.
    */
-  abstract class MsgCoroutineImplBase(
-    coroutineContext: CoroutineContext = EmptyCoroutineContext
+  public abstract class MsgCoroutineImplBase(
+    coroutineContext: CoroutineContext = EmptyCoroutineContext,
   ) : AbstractCoroutineServerImpl(coroutineContext) {
     /**
      * Returns the response to an RPC for ibc.core.channel.v1.Msg.ChannelOpenInit.
@@ -285,8 +322,8 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun channelOpenInit(request: Tx.MsgChannelOpenInit): Tx.MsgChannelOpenInitResponse
-        = throw
+    public open suspend fun channelOpenInit(request: Tx.MsgChannelOpenInit):
+        Tx.MsgChannelOpenInitResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.channel.v1.Msg.ChannelOpenInit is unimplemented"))
 
     /**
@@ -300,8 +337,8 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun channelOpenTry(request: Tx.MsgChannelOpenTry): Tx.MsgChannelOpenTryResponse =
-        throw
+    public open suspend fun channelOpenTry(request: Tx.MsgChannelOpenTry):
+        Tx.MsgChannelOpenTryResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.channel.v1.Msg.ChannelOpenTry is unimplemented"))
 
     /**
@@ -315,8 +352,8 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun channelOpenAck(request: Tx.MsgChannelOpenAck): Tx.MsgChannelOpenAckResponse =
-        throw
+    public open suspend fun channelOpenAck(request: Tx.MsgChannelOpenAck):
+        Tx.MsgChannelOpenAckResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.channel.v1.Msg.ChannelOpenAck is unimplemented"))
 
     /**
@@ -330,7 +367,7 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun channelOpenConfirm(request: Tx.MsgChannelOpenConfirm):
+    public open suspend fun channelOpenConfirm(request: Tx.MsgChannelOpenConfirm):
         Tx.MsgChannelOpenConfirmResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.channel.v1.Msg.ChannelOpenConfirm is unimplemented"))
 
@@ -345,7 +382,7 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun channelCloseInit(request: Tx.MsgChannelCloseInit):
+    public open suspend fun channelCloseInit(request: Tx.MsgChannelCloseInit):
         Tx.MsgChannelCloseInitResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.channel.v1.Msg.ChannelCloseInit is unimplemented"))
 
@@ -360,7 +397,7 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun channelCloseConfirm(request: Tx.MsgChannelCloseConfirm):
+    public open suspend fun channelCloseConfirm(request: Tx.MsgChannelCloseConfirm):
         Tx.MsgChannelCloseConfirmResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.channel.v1.Msg.ChannelCloseConfirm is unimplemented"))
 
@@ -375,7 +412,7 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun recvPacket(request: Tx.MsgRecvPacket): Tx.MsgRecvPacketResponse = throw
+    public open suspend fun recvPacket(request: Tx.MsgRecvPacket): Tx.MsgRecvPacketResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.channel.v1.Msg.RecvPacket is unimplemented"))
 
     /**
@@ -389,7 +426,7 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun timeout(request: Tx.MsgTimeout): Tx.MsgTimeoutResponse = throw
+    public open suspend fun timeout(request: Tx.MsgTimeout): Tx.MsgTimeoutResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.channel.v1.Msg.Timeout is unimplemented"))
 
     /**
@@ -403,8 +440,8 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun timeoutOnClose(request: Tx.MsgTimeoutOnClose): Tx.MsgTimeoutOnCloseResponse =
-        throw
+    public open suspend fun timeoutOnClose(request: Tx.MsgTimeoutOnClose):
+        Tx.MsgTimeoutOnCloseResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.channel.v1.Msg.TimeoutOnClose is unimplemented"))
 
     /**
@@ -418,11 +455,12 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun acknowledgement(request: Tx.MsgAcknowledgement): Tx.MsgAcknowledgementResponse
-        = throw
+    public open suspend fun acknowledgement(request: Tx.MsgAcknowledgement):
+        Tx.MsgAcknowledgementResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method ibc.core.channel.v1.Msg.Acknowledgement is unimplemented"))
 
-    final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())
+    public final override fun bindService(): ServerServiceDefinition =
+        builder(getServiceDescriptor())
       .addMethod(unaryServerMethodDefinition(
       context = this.context,
       descriptor = MsgGrpc.getChannelOpenInitMethod(),

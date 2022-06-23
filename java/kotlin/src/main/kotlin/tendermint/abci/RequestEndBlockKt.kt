@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun requestEndBlock(block: tendermint.abci.RequestEndBlockKt.Dsl.() -> Unit): tendermint.abci.Types.RequestEndBlock =
+public inline fun requestEndBlock(block: tendermint.abci.RequestEndBlockKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestEndBlock =
   tendermint.abci.RequestEndBlockKt.Dsl._create(tendermint.abci.Types.RequestEndBlock.newBuilder()).apply { block() }._build()
-object RequestEndBlockKt {
+public object RequestEndBlockKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.RequestEndBlock.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.RequestEndBlock.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.RequestEndBlock.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object RequestEndBlockKt {
     /**
      * <code>int64 height = 1;</code>
      */
-    var height: kotlin.Long
+    public var height: kotlin.Long
       @JvmName("getHeight")
       get() = _builder.getHeight()
       @JvmName("setHeight")
@@ -35,11 +35,11 @@ object RequestEndBlockKt {
     /**
      * <code>int64 height = 1;</code>
      */
-    fun clearHeight() {
+    public fun clearHeight() {
       _builder.clearHeight()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.RequestEndBlock.copy(block: tendermint.abci.RequestEndBlockKt.Dsl.() -> Unit): tendermint.abci.Types.RequestEndBlock =
+public inline fun tendermint.abci.Types.RequestEndBlock.copy(block: tendermint.abci.RequestEndBlockKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestEndBlock =
   tendermint.abci.RequestEndBlockKt.Dsl._create(this.toBuilder()).apply { block() }._build()

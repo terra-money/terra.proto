@@ -4,15 +4,15 @@
 package cosmos.base.tendermint.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun getLatestBlockRequest(block: cosmos.base.tendermint.v1beta1.GetLatestBlockRequestKt.Dsl.() -> Unit): cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest =
+public inline fun getLatestBlockRequest(block: cosmos.base.tendermint.v1beta1.GetLatestBlockRequestKt.Dsl.() -> kotlin.Unit): cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest =
   cosmos.base.tendermint.v1beta1.GetLatestBlockRequestKt.Dsl._create(cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest.newBuilder()).apply { block() }._build()
-object GetLatestBlockRequestKt {
+public object GetLatestBlockRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object GetLatestBlockRequestKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest.copy(block: cosmos.base.tendermint.v1beta1.GetLatestBlockRequestKt.Dsl.() -> Unit): cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest =
+public inline fun cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest.copy(block: cosmos.base.tendermint.v1beta1.GetLatestBlockRequestKt.Dsl.() -> kotlin.Unit): cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest =
   cosmos.base.tendermint.v1beta1.GetLatestBlockRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

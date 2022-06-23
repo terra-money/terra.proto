@@ -4,15 +4,15 @@
 package cosmos.gov.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryDepositRequest(block: cosmos.gov.v1beta1.QueryDepositRequestKt.Dsl.() -> Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest =
+public inline fun queryDepositRequest(block: cosmos.gov.v1beta1.QueryDepositRequestKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest =
   cosmos.gov.v1beta1.QueryDepositRequestKt.Dsl._create(cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest.newBuilder()).apply { block() }._build()
-object QueryDepositRequestKt {
+public object QueryDepositRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryDepositRequestKt {
      *
      * <code>uint64 proposal_id = 1;</code>
      */
-    var proposalId: kotlin.Long
+    public var proposalId: kotlin.Long
       @JvmName("getProposalId")
       get() = _builder.getProposalId()
       @JvmName("setProposalId")
@@ -43,7 +43,7 @@ object QueryDepositRequestKt {
      *
      * <code>uint64 proposal_id = 1;</code>
      */
-    fun clearProposalId() {
+    public fun clearProposalId() {
       _builder.clearProposalId()
     }
 
@@ -54,7 +54,7 @@ object QueryDepositRequestKt {
      *
      * <code>string depositor = 2;</code>
      */
-    var depositor: kotlin.String
+    public var depositor: kotlin.String
       @JvmName("getDepositor")
       get() = _builder.getDepositor()
       @JvmName("setDepositor")
@@ -68,11 +68,11 @@ object QueryDepositRequestKt {
      *
      * <code>string depositor = 2;</code>
      */
-    fun clearDepositor() {
+    public fun clearDepositor() {
       _builder.clearDepositor()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest.copy(block: cosmos.gov.v1beta1.QueryDepositRequestKt.Dsl.() -> Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest =
+public inline fun cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest.copy(block: cosmos.gov.v1beta1.QueryDepositRequestKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest =
   cosmos.gov.v1beta1.QueryDepositRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

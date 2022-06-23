@@ -4,15 +4,15 @@
 package cosmos.bank.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryTotalSupplyRequest(block: cosmos.bank.v1beta1.QueryTotalSupplyRequestKt.Dsl.() -> Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest =
+public inline fun queryTotalSupplyRequest(block: cosmos.bank.v1beta1.QueryTotalSupplyRequestKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest =
   cosmos.bank.v1beta1.QueryTotalSupplyRequestKt.Dsl._create(cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest.newBuilder()).apply { block() }._build()
-object QueryTotalSupplyRequestKt {
+public object QueryTotalSupplyRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest.Builder): Dsl = Dsl(builder)
@@ -25,11 +25,12 @@ object QueryTotalSupplyRequestKt {
     /**
      * <pre>
      * pagination defines an optional pagination for the request.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -39,26 +40,28 @@ object QueryTotalSupplyRequestKt {
     /**
      * <pre>
      * pagination defines an optional pagination for the request.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
      * <pre>
      * pagination defines an optional pagination for the request.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest.copy(block: cosmos.bank.v1beta1.QueryTotalSupplyRequestKt.Dsl.() -> Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest =
+public inline fun cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest.copy(block: cosmos.bank.v1beta1.QueryTotalSupplyRequestKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest =
   cosmos.bank.v1beta1.QueryTotalSupplyRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

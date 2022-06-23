@@ -4,15 +4,15 @@
 package cosmos.auth.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun moduleAccount(block: cosmos.auth.v1beta1.ModuleAccountKt.Dsl.() -> Unit): cosmos.auth.v1beta1.Auth.ModuleAccount =
+public inline fun moduleAccount(block: cosmos.auth.v1beta1.ModuleAccountKt.Dsl.() -> kotlin.Unit): cosmos.auth.v1beta1.Auth.ModuleAccount =
   cosmos.auth.v1beta1.ModuleAccountKt.Dsl._create(cosmos.auth.v1beta1.Auth.ModuleAccount.newBuilder()).apply { block() }._build()
-object ModuleAccountKt {
+public object ModuleAccountKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.auth.v1beta1.Auth.ModuleAccount.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.auth.v1beta1.Auth.ModuleAccount.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.auth.v1beta1.Auth.ModuleAccount.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ModuleAccountKt {
     /**
      * <code>.cosmos.auth.v1beta1.BaseAccount base_account = 1 [(.gogoproto.embed) = true, (.gogoproto.moretags) = "yaml:&#92;"base_account&#92;""];</code>
      */
-    var baseAccount: cosmos.auth.v1beta1.Auth.BaseAccount
+    public var baseAccount: cosmos.auth.v1beta1.Auth.BaseAccount
       @JvmName("getBaseAccount")
       get() = _builder.getBaseAccount()
       @JvmName("setBaseAccount")
@@ -35,21 +35,21 @@ object ModuleAccountKt {
     /**
      * <code>.cosmos.auth.v1beta1.BaseAccount base_account = 1 [(.gogoproto.embed) = true, (.gogoproto.moretags) = "yaml:&#92;"base_account&#92;""];</code>
      */
-    fun clearBaseAccount() {
+    public fun clearBaseAccount() {
       _builder.clearBaseAccount()
     }
     /**
      * <code>.cosmos.auth.v1beta1.BaseAccount base_account = 1 [(.gogoproto.embed) = true, (.gogoproto.moretags) = "yaml:&#92;"base_account&#92;""];</code>
      * @return Whether the baseAccount field is set.
      */
-    fun hasBaseAccount(): kotlin.Boolean {
+    public fun hasBaseAccount(): kotlin.Boolean {
       return _builder.hasBaseAccount()
     }
 
     /**
      * <code>string name = 2;</code>
      */
-    var name: kotlin.String
+    public var name: kotlin.String
       @JvmName("getName")
       get() = _builder.getName()
       @JvmName("setName")
@@ -59,7 +59,7 @@ object ModuleAccountKt {
     /**
      * <code>string name = 2;</code>
      */
-    fun clearName() {
+    public fun clearName() {
       _builder.clearName()
     }
 
@@ -68,13 +68,13 @@ object ModuleAccountKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class PermissionsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class PermissionsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated string permissions = 3;</code>
      * @return A list containing the permissions.
      */
-    val permissions: com.google.protobuf.kotlin.DslList<kotlin.String, PermissionsProxy>
-      @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
+    public val permissions: com.google.protobuf.kotlin.DslList<kotlin.String, PermissionsProxy>
+      @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getPermissionsList()
       )
@@ -84,7 +84,7 @@ object ModuleAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addPermissions")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, PermissionsProxy>.add(value: kotlin.String) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, PermissionsProxy>.add(value: kotlin.String) {
       _builder.addPermissions(value)
     }
     /**
@@ -93,8 +93,9 @@ object ModuleAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignPermissions")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, PermissionsProxy>.plusAssign(value: kotlin.String) {
-      _builder.addPermissions(value)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, PermissionsProxy>.plusAssign(value: kotlin.String) {
+      add(value)
     }
     /**
      * <code>repeated string permissions = 3;</code>
@@ -102,7 +103,7 @@ object ModuleAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllPermissions")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, PermissionsProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, PermissionsProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
       _builder.addAllPermissions(values)
     }
     /**
@@ -111,8 +112,9 @@ object ModuleAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllPermissions")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, PermissionsProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
-      _builder.addAllPermissions(values)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, PermissionsProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
+      addAll(values)
     }
     /**
      * <code>repeated string permissions = 3;</code>
@@ -121,17 +123,17 @@ object ModuleAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setPermissions")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, PermissionsProxy>.set(index: kotlin.Int, value: kotlin.String) {
+    public operator fun com.google.protobuf.kotlin.DslList<kotlin.String, PermissionsProxy>.set(index: kotlin.Int, value: kotlin.String) {
       _builder.setPermissions(index, value)
     }/**
      * <code>repeated string permissions = 3;</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearPermissions")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, PermissionsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, PermissionsProxy>.clear() {
       _builder.clearPermissions()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.auth.v1beta1.Auth.ModuleAccount.copy(block: cosmos.auth.v1beta1.ModuleAccountKt.Dsl.() -> Unit): cosmos.auth.v1beta1.Auth.ModuleAccount =
+public inline fun cosmos.auth.v1beta1.Auth.ModuleAccount.copy(block: cosmos.auth.v1beta1.ModuleAccountKt.Dsl.() -> kotlin.Unit): cosmos.auth.v1beta1.Auth.ModuleAccount =
   cosmos.auth.v1beta1.ModuleAccountKt.Dsl._create(this.toBuilder()).apply { block() }._build()

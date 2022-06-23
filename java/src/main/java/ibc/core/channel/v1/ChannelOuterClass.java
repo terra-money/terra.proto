@@ -829,7 +829,7 @@ public final class ChannelOuterClass {
       for (int i = 0; i < connectionHops_.size(); i++) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, connectionHops_.getRaw(i));
       }
-      if (!getVersionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(version_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, version_);
       }
       unknownFields.writeTo(output);
@@ -861,7 +861,7 @@ public final class ChannelOuterClass {
         size += dataSize;
         size += 1 * getConnectionHopsList().size();
       }
-      if (!getVersionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(version_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, version_);
       }
       size += unknownFields.getSerializedSize();
@@ -2444,13 +2444,13 @@ public final class ChannelOuterClass {
       for (int i = 0; i < connectionHops_.size(); i++) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, connectionHops_.getRaw(i));
       }
-      if (!getVersionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(version_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, version_);
       }
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 6, portId_);
       }
-      if (!getChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 7, channelId_);
       }
       unknownFields.writeTo(output);
@@ -2482,13 +2482,13 @@ public final class ChannelOuterClass {
         size += dataSize;
         size += 1 * getConnectionHopsList().size();
       }
-      if (!getVersionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(version_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, version_);
       }
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, portId_);
       }
-      if (!getChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, channelId_);
       }
       size += unknownFields.getSerializedSize();
@@ -3900,10 +3900,10 @@ public final class ChannelOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, portId_);
       }
-      if (!getChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, channelId_);
       }
       unknownFields.writeTo(output);
@@ -3915,10 +3915,10 @@ public final class ChannelOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, portId_);
       }
-      if (!getChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, channelId_);
       }
       size += unknownFields.getSerializedSize();
@@ -5020,16 +5020,16 @@ public final class ChannelOuterClass {
       if (sequence_ != 0L) {
         output.writeUInt64(1, sequence_);
       }
-      if (!getSourcePortBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sourcePort_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sourcePort_);
       }
-      if (!getSourceChannelBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sourceChannel_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, sourceChannel_);
       }
-      if (!getDestinationPortBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(destinationPort_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, destinationPort_);
       }
-      if (!getDestinationChannelBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(destinationChannel_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, destinationChannel_);
       }
       if (!data_.isEmpty()) {
@@ -5054,16 +5054,16 @@ public final class ChannelOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(1, sequence_);
       }
-      if (!getSourcePortBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sourcePort_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sourcePort_);
       }
-      if (!getSourceChannelBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sourceChannel_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, sourceChannel_);
       }
-      if (!getDestinationPortBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(destinationPort_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, destinationPort_);
       }
-      if (!getDestinationChannelBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(destinationChannel_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, destinationChannel_);
       }
       if (!data_.isEmpty()) {
@@ -6481,10 +6481,10 @@ public final class ChannelOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, portId_);
       }
-      if (!getChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, channelId_);
       }
       if (sequence_ != 0L) {
@@ -6502,10 +6502,10 @@ public final class ChannelOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getPortIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, portId_);
       }
-      if (!getChannelIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, channelId_);
       }
       if (sequence_ != 0L) {
@@ -7161,6 +7161,899 @@ public final class ChannelOuterClass {
 
   }
 
+  public interface PacketIdOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ibc.core.channel.v1.PacketId)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * channel port identifier
+     * </pre>
+     *
+     * <code>string port_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"port_id&#92;""];</code>
+     * @return The portId.
+     */
+    java.lang.String getPortId();
+    /**
+     * <pre>
+     * channel port identifier
+     * </pre>
+     *
+     * <code>string port_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"port_id&#92;""];</code>
+     * @return The bytes for portId.
+     */
+    com.google.protobuf.ByteString
+        getPortIdBytes();
+
+    /**
+     * <pre>
+     * channel unique identifier
+     * </pre>
+     *
+     * <code>string channel_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+     * @return The channelId.
+     */
+    java.lang.String getChannelId();
+    /**
+     * <pre>
+     * channel unique identifier
+     * </pre>
+     *
+     * <code>string channel_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+     * @return The bytes for channelId.
+     */
+    com.google.protobuf.ByteString
+        getChannelIdBytes();
+
+    /**
+     * <pre>
+     * packet sequence
+     * </pre>
+     *
+     * <code>uint64 sequence = 3;</code>
+     * @return The sequence.
+     */
+    long getSequence();
+  }
+  /**
+   * <pre>
+   * PacketId is an identifer for a unique Packet
+   * Source chains refer to packets by source port/channel
+   * Destination chains refer to packets by destination port/channel
+   * </pre>
+   *
+   * Protobuf type {@code ibc.core.channel.v1.PacketId}
+   */
+  public static final class PacketId extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ibc.core.channel.v1.PacketId)
+      PacketIdOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use PacketId.newBuilder() to construct.
+    private PacketId(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private PacketId() {
+      portId_ = "";
+      channelId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new PacketId();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private PacketId(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              portId_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              channelId_ = s;
+              break;
+            }
+            case 24: {
+
+              sequence_ = input.readUInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ibc.core.channel.v1.ChannelOuterClass.internal_static_ibc_core_channel_v1_PacketId_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ibc.core.channel.v1.ChannelOuterClass.internal_static_ibc_core_channel_v1_PacketId_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ibc.core.channel.v1.ChannelOuterClass.PacketId.class, ibc.core.channel.v1.ChannelOuterClass.PacketId.Builder.class);
+    }
+
+    public static final int PORT_ID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object portId_;
+    /**
+     * <pre>
+     * channel port identifier
+     * </pre>
+     *
+     * <code>string port_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"port_id&#92;""];</code>
+     * @return The portId.
+     */
+    @java.lang.Override
+    public java.lang.String getPortId() {
+      java.lang.Object ref = portId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        portId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * channel port identifier
+     * </pre>
+     *
+     * <code>string port_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"port_id&#92;""];</code>
+     * @return The bytes for portId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getPortIdBytes() {
+      java.lang.Object ref = portId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        portId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CHANNEL_ID_FIELD_NUMBER = 2;
+    private volatile java.lang.Object channelId_;
+    /**
+     * <pre>
+     * channel unique identifier
+     * </pre>
+     *
+     * <code>string channel_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+     * @return The channelId.
+     */
+    @java.lang.Override
+    public java.lang.String getChannelId() {
+      java.lang.Object ref = channelId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        channelId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * channel unique identifier
+     * </pre>
+     *
+     * <code>string channel_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+     * @return The bytes for channelId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getChannelIdBytes() {
+      java.lang.Object ref = channelId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        channelId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SEQUENCE_FIELD_NUMBER = 3;
+    private long sequence_;
+    /**
+     * <pre>
+     * packet sequence
+     * </pre>
+     *
+     * <code>uint64 sequence = 3;</code>
+     * @return The sequence.
+     */
+    @java.lang.Override
+    public long getSequence() {
+      return sequence_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, portId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, channelId_);
+      }
+      if (sequence_ != 0L) {
+        output.writeUInt64(3, sequence_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(portId_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, portId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(channelId_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, channelId_);
+      }
+      if (sequence_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(3, sequence_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ibc.core.channel.v1.ChannelOuterClass.PacketId)) {
+        return super.equals(obj);
+      }
+      ibc.core.channel.v1.ChannelOuterClass.PacketId other = (ibc.core.channel.v1.ChannelOuterClass.PacketId) obj;
+
+      if (!getPortId()
+          .equals(other.getPortId())) return false;
+      if (!getChannelId()
+          .equals(other.getChannelId())) return false;
+      if (getSequence()
+          != other.getSequence()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + PORT_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getPortId().hashCode();
+      hash = (37 * hash) + CHANNEL_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getChannelId().hashCode();
+      hash = (37 * hash) + SEQUENCE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getSequence());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ibc.core.channel.v1.ChannelOuterClass.PacketId parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ibc.core.channel.v1.ChannelOuterClass.PacketId parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ibc.core.channel.v1.ChannelOuterClass.PacketId parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ibc.core.channel.v1.ChannelOuterClass.PacketId parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ibc.core.channel.v1.ChannelOuterClass.PacketId parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ibc.core.channel.v1.ChannelOuterClass.PacketId parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ibc.core.channel.v1.ChannelOuterClass.PacketId parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static ibc.core.channel.v1.ChannelOuterClass.PacketId parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ibc.core.channel.v1.ChannelOuterClass.PacketId parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static ibc.core.channel.v1.ChannelOuterClass.PacketId parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ibc.core.channel.v1.ChannelOuterClass.PacketId parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static ibc.core.channel.v1.ChannelOuterClass.PacketId parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ibc.core.channel.v1.ChannelOuterClass.PacketId prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * PacketId is an identifer for a unique Packet
+     * Source chains refer to packets by source port/channel
+     * Destination chains refer to packets by destination port/channel
+     * </pre>
+     *
+     * Protobuf type {@code ibc.core.channel.v1.PacketId}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ibc.core.channel.v1.PacketId)
+        ibc.core.channel.v1.ChannelOuterClass.PacketIdOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ibc.core.channel.v1.ChannelOuterClass.internal_static_ibc_core_channel_v1_PacketId_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ibc.core.channel.v1.ChannelOuterClass.internal_static_ibc_core_channel_v1_PacketId_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ibc.core.channel.v1.ChannelOuterClass.PacketId.class, ibc.core.channel.v1.ChannelOuterClass.PacketId.Builder.class);
+      }
+
+      // Construct using ibc.core.channel.v1.ChannelOuterClass.PacketId.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        portId_ = "";
+
+        channelId_ = "";
+
+        sequence_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ibc.core.channel.v1.ChannelOuterClass.internal_static_ibc_core_channel_v1_PacketId_descriptor;
+      }
+
+      @java.lang.Override
+      public ibc.core.channel.v1.ChannelOuterClass.PacketId getDefaultInstanceForType() {
+        return ibc.core.channel.v1.ChannelOuterClass.PacketId.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ibc.core.channel.v1.ChannelOuterClass.PacketId build() {
+        ibc.core.channel.v1.ChannelOuterClass.PacketId result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ibc.core.channel.v1.ChannelOuterClass.PacketId buildPartial() {
+        ibc.core.channel.v1.ChannelOuterClass.PacketId result = new ibc.core.channel.v1.ChannelOuterClass.PacketId(this);
+        result.portId_ = portId_;
+        result.channelId_ = channelId_;
+        result.sequence_ = sequence_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ibc.core.channel.v1.ChannelOuterClass.PacketId) {
+          return mergeFrom((ibc.core.channel.v1.ChannelOuterClass.PacketId)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ibc.core.channel.v1.ChannelOuterClass.PacketId other) {
+        if (other == ibc.core.channel.v1.ChannelOuterClass.PacketId.getDefaultInstance()) return this;
+        if (!other.getPortId().isEmpty()) {
+          portId_ = other.portId_;
+          onChanged();
+        }
+        if (!other.getChannelId().isEmpty()) {
+          channelId_ = other.channelId_;
+          onChanged();
+        }
+        if (other.getSequence() != 0L) {
+          setSequence(other.getSequence());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        ibc.core.channel.v1.ChannelOuterClass.PacketId parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (ibc.core.channel.v1.ChannelOuterClass.PacketId) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object portId_ = "";
+      /**
+       * <pre>
+       * channel port identifier
+       * </pre>
+       *
+       * <code>string port_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"port_id&#92;""];</code>
+       * @return The portId.
+       */
+      public java.lang.String getPortId() {
+        java.lang.Object ref = portId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          portId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * channel port identifier
+       * </pre>
+       *
+       * <code>string port_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"port_id&#92;""];</code>
+       * @return The bytes for portId.
+       */
+      public com.google.protobuf.ByteString
+          getPortIdBytes() {
+        java.lang.Object ref = portId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          portId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * channel port identifier
+       * </pre>
+       *
+       * <code>string port_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"port_id&#92;""];</code>
+       * @param value The portId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPortId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        portId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * channel port identifier
+       * </pre>
+       *
+       * <code>string port_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"port_id&#92;""];</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPortId() {
+        
+        portId_ = getDefaultInstance().getPortId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * channel port identifier
+       * </pre>
+       *
+       * <code>string port_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"port_id&#92;""];</code>
+       * @param value The bytes for portId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPortIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        portId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object channelId_ = "";
+      /**
+       * <pre>
+       * channel unique identifier
+       * </pre>
+       *
+       * <code>string channel_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+       * @return The channelId.
+       */
+      public java.lang.String getChannelId() {
+        java.lang.Object ref = channelId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          channelId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * channel unique identifier
+       * </pre>
+       *
+       * <code>string channel_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+       * @return The bytes for channelId.
+       */
+      public com.google.protobuf.ByteString
+          getChannelIdBytes() {
+        java.lang.Object ref = channelId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          channelId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * channel unique identifier
+       * </pre>
+       *
+       * <code>string channel_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+       * @param value The channelId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setChannelId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        channelId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * channel unique identifier
+       * </pre>
+       *
+       * <code>string channel_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearChannelId() {
+        
+        channelId_ = getDefaultInstance().getChannelId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * channel unique identifier
+       * </pre>
+       *
+       * <code>string channel_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+       * @param value The bytes for channelId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setChannelIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        channelId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private long sequence_ ;
+      /**
+       * <pre>
+       * packet sequence
+       * </pre>
+       *
+       * <code>uint64 sequence = 3;</code>
+       * @return The sequence.
+       */
+      @java.lang.Override
+      public long getSequence() {
+        return sequence_;
+      }
+      /**
+       * <pre>
+       * packet sequence
+       * </pre>
+       *
+       * <code>uint64 sequence = 3;</code>
+       * @param value The sequence to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSequence(long value) {
+        
+        sequence_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * packet sequence
+       * </pre>
+       *
+       * <code>uint64 sequence = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSequence() {
+        
+        sequence_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ibc.core.channel.v1.PacketId)
+    }
+
+    // @@protoc_insertion_point(class_scope:ibc.core.channel.v1.PacketId)
+    private static final ibc.core.channel.v1.ChannelOuterClass.PacketId DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ibc.core.channel.v1.ChannelOuterClass.PacketId();
+    }
+
+    public static ibc.core.channel.v1.ChannelOuterClass.PacketId getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<PacketId>
+        PARSER = new com.google.protobuf.AbstractParser<PacketId>() {
+      @java.lang.Override
+      public PacketId parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new PacketId(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<PacketId> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PacketId> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ibc.core.channel.v1.ChannelOuterClass.PacketId getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface AcknowledgementOrBuilder extends
       // @@protoc_insertion_point(interface_extends:ibc.core.channel.v1.Acknowledgement)
       com.google.protobuf.MessageOrBuilder {
@@ -7203,7 +8096,7 @@ public final class ChannelOuterClass {
    * conflicts with other protobuf message formats used for acknowledgements.
    * The first byte of any message with this format will be the non-ASCII values
    * `0xaa` (result) or `0xb2` (error). Implemented as defined by ICS:
-   * https://github.com/cosmos/ics/tree/master/spec/ics-004-channel-and-packet-semantics#acknowledgement-envelope
+   * https://github.com/cosmos/ibc/tree/master/spec/core/ics-004-channel-and-packet-semantics#acknowledgement-envelope
    * </pre>
    *
    * Protobuf type {@code ibc.core.channel.v1.Acknowledgement}
@@ -7251,8 +8144,8 @@ public final class ChannelOuterClass {
               done = true;
               break;
             case 170: {
-              responseCase_ = 21;
               response_ = input.readBytes();
+              responseCase_ = 21;
               break;
             }
             case 178: {
@@ -7599,7 +8492,7 @@ public final class ChannelOuterClass {
      * conflicts with other protobuf message formats used for acknowledgements.
      * The first byte of any message with this format will be the non-ASCII values
      * `0xaa` (result) or `0xb2` (error). Implemented as defined by ICS:
-     * https://github.com/cosmos/ics/tree/master/spec/ics-004-channel-and-packet-semantics#acknowledgement-envelope
+     * https://github.com/cosmos/ibc/tree/master/spec/core/ics-004-channel-and-packet-semantics#acknowledgement-envelope
      * </pre>
      *
      * Protobuf type {@code ibc.core.channel.v1.Acknowledgement}
@@ -8000,6 +8893,11 @@ public final class ChannelOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_ibc_core_channel_v1_PacketState_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ibc_core_channel_v1_PacketId_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ibc_core_channel_v1_PacketId_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_ibc_core_channel_v1_Acknowledgement_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -8044,18 +8942,21 @@ public final class ChannelOuterClass {
       "eout_timestamp\":\004\210\240\037\000\"\203\001\n\013PacketState\022#\n" +
       "\007port_id\030\001 \001(\tB\022\362\336\037\016yaml:\"port_id\"\022)\n\nch" +
       "annel_id\030\002 \001(\tB\025\362\336\037\021yaml:\"channel_id\"\022\020\n" +
-      "\010sequence\030\003 \001(\004\022\014\n\004data\030\004 \001(\014:\004\210\240\037\000\"@\n\017A" +
-      "cknowledgement\022\020\n\006result\030\025 \001(\014H\000\022\017\n\005erro" +
-      "r\030\026 \001(\tH\000B\n\n\010response*\267\001\n\005State\0226\n\037STATE" +
-      "_UNINITIALIZED_UNSPECIFIED\020\000\032\021\212\235 \rUNINIT" +
-      "IALIZED\022\030\n\nSTATE_INIT\020\001\032\010\212\235 \004INIT\022\036\n\rSTA" +
-      "TE_TRYOPEN\020\002\032\013\212\235 \007TRYOPEN\022\030\n\nSTATE_OPEN\020" +
-      "\003\032\010\212\235 \004OPEN\022\034\n\014STATE_CLOSED\020\004\032\n\212\235 \006CLOSE" +
-      "D\032\004\210\243\036\000*w\n\005Order\022$\n\026ORDER_NONE_UNSPECIFI" +
-      "ED\020\000\032\010\212\235 \004NONE\022\"\n\017ORDER_UNORDERED\020\001\032\r\212\235 " +
-      "\tUNORDERED\022\036\n\rORDER_ORDERED\020\002\032\013\212\235 \007ORDER" +
-      "ED\032\004\210\243\036\000B8Z6github.com/cosmos/ibc-go/mod" +
-      "ules/core/04-channel/typesb\006proto3"
+      "\010sequence\030\003 \001(\004\022\014\n\004data\030\004 \001(\014:\004\210\240\037\000\"r\n\010P" +
+      "acketId\022#\n\007port_id\030\001 \001(\tB\022\362\336\037\016yaml:\"port" +
+      "_id\"\022)\n\nchannel_id\030\002 \001(\tB\025\362\336\037\021yaml:\"chan" +
+      "nel_id\"\022\020\n\010sequence\030\003 \001(\004:\004\210\240\037\000\"@\n\017Ackno" +
+      "wledgement\022\020\n\006result\030\025 \001(\014H\000\022\017\n\005error\030\026 " +
+      "\001(\tH\000B\n\n\010response*\267\001\n\005State\0226\n\037STATE_UNI" +
+      "NITIALIZED_UNSPECIFIED\020\000\032\021\212\235 \rUNINITIALI" +
+      "ZED\022\030\n\nSTATE_INIT\020\001\032\010\212\235 \004INIT\022\036\n\rSTATE_T" +
+      "RYOPEN\020\002\032\013\212\235 \007TRYOPEN\022\030\n\nSTATE_OPEN\020\003\032\010\212" +
+      "\235 \004OPEN\022\034\n\014STATE_CLOSED\020\004\032\n\212\235 \006CLOSED\032\004\210" +
+      "\243\036\000*w\n\005Order\022$\n\026ORDER_NONE_UNSPECIFIED\020\000" +
+      "\032\010\212\235 \004NONE\022\"\n\017ORDER_UNORDERED\020\001\032\r\212\235 \tUNO" +
+      "RDERED\022\036\n\rORDER_ORDERED\020\002\032\013\212\235 \007ORDERED\032\004" +
+      "\210\243\036\000B;Z9github.com/cosmos/ibc-go/v3/modu" +
+      "les/core/04-channel/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -8093,8 +8994,14 @@ public final class ChannelOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ibc_core_channel_v1_PacketState_descriptor,
         new java.lang.String[] { "PortId", "ChannelId", "Sequence", "Data", });
-    internal_static_ibc_core_channel_v1_Acknowledgement_descriptor =
+    internal_static_ibc_core_channel_v1_PacketId_descriptor =
       getDescriptor().getMessageTypes().get(5);
+    internal_static_ibc_core_channel_v1_PacketId_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ibc_core_channel_v1_PacketId_descriptor,
+        new java.lang.String[] { "PortId", "ChannelId", "Sequence", });
+    internal_static_ibc_core_channel_v1_Acknowledgement_descriptor =
+      getDescriptor().getMessageTypes().get(6);
     internal_static_ibc_core_channel_v1_Acknowledgement_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ibc_core_channel_v1_Acknowledgement_descriptor,

@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgRecvPacket(block: ibc.core.channel.v1.MsgRecvPacketKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgRecvPacket =
+public inline fun msgRecvPacket(block: ibc.core.channel.v1.MsgRecvPacketKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgRecvPacket =
   ibc.core.channel.v1.MsgRecvPacketKt.Dsl._create(ibc.core.channel.v1.Tx.MsgRecvPacket.newBuilder()).apply { block() }._build()
-object MsgRecvPacketKt {
+public object MsgRecvPacketKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.Tx.MsgRecvPacket.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.Tx.MsgRecvPacket.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.Tx.MsgRecvPacket.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object MsgRecvPacketKt {
     /**
      * <code>.ibc.core.channel.v1.Packet packet = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var packet: ibc.core.channel.v1.ChannelOuterClass.Packet
+    public var packet: ibc.core.channel.v1.ChannelOuterClass.Packet
       @JvmName("getPacket")
       get() = _builder.getPacket()
       @JvmName("setPacket")
@@ -35,21 +35,21 @@ object MsgRecvPacketKt {
     /**
      * <code>.ibc.core.channel.v1.Packet packet = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearPacket() {
+    public fun clearPacket() {
       _builder.clearPacket()
     }
     /**
      * <code>.ibc.core.channel.v1.Packet packet = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the packet field is set.
      */
-    fun hasPacket(): kotlin.Boolean {
+    public fun hasPacket(): kotlin.Boolean {
       return _builder.hasPacket()
     }
 
     /**
      * <code>bytes proof_commitment = 2 [(.gogoproto.moretags) = "yaml:&#92;"proof_commitment&#92;""];</code>
      */
-    var proofCommitment: com.google.protobuf.ByteString
+    public var proofCommitment: com.google.protobuf.ByteString
       @JvmName("getProofCommitment")
       get() = _builder.getProofCommitment()
       @JvmName("setProofCommitment")
@@ -59,14 +59,14 @@ object MsgRecvPacketKt {
     /**
      * <code>bytes proof_commitment = 2 [(.gogoproto.moretags) = "yaml:&#92;"proof_commitment&#92;""];</code>
      */
-    fun clearProofCommitment() {
+    public fun clearProofCommitment() {
       _builder.clearProofCommitment()
     }
 
     /**
      * <code>.ibc.core.client.v1.Height proof_height = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"proof_height&#92;""];</code>
      */
-    var proofHeight: ibc.core.client.v1.Client.Height
+    public var proofHeight: ibc.core.client.v1.Client.Height
       @JvmName("getProofHeight")
       get() = _builder.getProofHeight()
       @JvmName("setProofHeight")
@@ -76,21 +76,21 @@ object MsgRecvPacketKt {
     /**
      * <code>.ibc.core.client.v1.Height proof_height = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"proof_height&#92;""];</code>
      */
-    fun clearProofHeight() {
+    public fun clearProofHeight() {
       _builder.clearProofHeight()
     }
     /**
      * <code>.ibc.core.client.v1.Height proof_height = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"proof_height&#92;""];</code>
      * @return Whether the proofHeight field is set.
      */
-    fun hasProofHeight(): kotlin.Boolean {
+    public fun hasProofHeight(): kotlin.Boolean {
       return _builder.hasProofHeight()
     }
 
     /**
      * <code>string signer = 4;</code>
      */
-    var signer: kotlin.String
+    public var signer: kotlin.String
       @JvmName("getSigner")
       get() = _builder.getSigner()
       @JvmName("setSigner")
@@ -100,11 +100,11 @@ object MsgRecvPacketKt {
     /**
      * <code>string signer = 4;</code>
      */
-    fun clearSigner() {
+    public fun clearSigner() {
       _builder.clearSigner()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.Tx.MsgRecvPacket.copy(block: ibc.core.channel.v1.MsgRecvPacketKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgRecvPacket =
+public inline fun ibc.core.channel.v1.Tx.MsgRecvPacket.copy(block: ibc.core.channel.v1.MsgRecvPacketKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgRecvPacket =
   ibc.core.channel.v1.MsgRecvPacketKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package ibc.core.client.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgSubmitMisbehaviourResponse(block: ibc.core.client.v1.MsgSubmitMisbehaviourResponseKt.Dsl.() -> Unit): ibc.core.client.v1.Tx.MsgSubmitMisbehaviourResponse =
+public inline fun msgSubmitMisbehaviourResponse(block: ibc.core.client.v1.MsgSubmitMisbehaviourResponseKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.Tx.MsgSubmitMisbehaviourResponse =
   ibc.core.client.v1.MsgSubmitMisbehaviourResponseKt.Dsl._create(ibc.core.client.v1.Tx.MsgSubmitMisbehaviourResponse.newBuilder()).apply { block() }._build()
-object MsgSubmitMisbehaviourResponseKt {
+public object MsgSubmitMisbehaviourResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.client.v1.Tx.MsgSubmitMisbehaviourResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.client.v1.Tx.MsgSubmitMisbehaviourResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.client.v1.Tx.MsgSubmitMisbehaviourResponse.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object MsgSubmitMisbehaviourResponseKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.client.v1.Tx.MsgSubmitMisbehaviourResponse.copy(block: ibc.core.client.v1.MsgSubmitMisbehaviourResponseKt.Dsl.() -> Unit): ibc.core.client.v1.Tx.MsgSubmitMisbehaviourResponse =
+public inline fun ibc.core.client.v1.Tx.MsgSubmitMisbehaviourResponse.copy(block: ibc.core.client.v1.MsgSubmitMisbehaviourResponseKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.Tx.MsgSubmitMisbehaviourResponse =
   ibc.core.client.v1.MsgSubmitMisbehaviourResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.crypto.secp256k1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun pubKey(block: cosmos.crypto.secp256k1.PubKeyKt.Dsl.() -> Unit): cosmos.crypto.secp256k1.Keys.PubKey =
+public inline fun pubKey(block: cosmos.crypto.secp256k1.PubKeyKt.Dsl.() -> kotlin.Unit): cosmos.crypto.secp256k1.Keys.PubKey =
   cosmos.crypto.secp256k1.PubKeyKt.Dsl._create(cosmos.crypto.secp256k1.Keys.PubKey.newBuilder()).apply { block() }._build()
-object PubKeyKt {
+public object PubKeyKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.crypto.secp256k1.Keys.PubKey.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.crypto.secp256k1.Keys.PubKey.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.crypto.secp256k1.Keys.PubKey.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object PubKeyKt {
     /**
      * <code>bytes key = 1;</code>
      */
-    var key: com.google.protobuf.ByteString
+    public var key: com.google.protobuf.ByteString
       @JvmName("getKey")
       get() = _builder.getKey()
       @JvmName("setKey")
@@ -35,11 +35,11 @@ object PubKeyKt {
     /**
      * <code>bytes key = 1;</code>
      */
-    fun clearKey() {
+    public fun clearKey() {
       _builder.clearKey()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.crypto.secp256k1.Keys.PubKey.copy(block: cosmos.crypto.secp256k1.PubKeyKt.Dsl.() -> Unit): cosmos.crypto.secp256k1.Keys.PubKey =
+public inline fun cosmos.crypto.secp256k1.Keys.PubKey.copy(block: cosmos.crypto.secp256k1.PubKeyKt.Dsl.() -> kotlin.Unit): cosmos.crypto.secp256k1.Keys.PubKey =
   cosmos.crypto.secp256k1.PubKeyKt.Dsl._create(this.toBuilder()).apply { block() }._build()

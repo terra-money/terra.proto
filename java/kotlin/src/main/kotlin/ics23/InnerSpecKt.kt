@@ -4,15 +4,15 @@
 package ics23;
 
 @kotlin.jvm.JvmSynthetic
-inline fun innerSpec(block: ics23.InnerSpecKt.Dsl.() -> Unit): ics23.Proofs.InnerSpec =
+public inline fun innerSpec(block: ics23.InnerSpecKt.Dsl.() -> kotlin.Unit): ics23.Proofs.InnerSpec =
   ics23.InnerSpecKt.Dsl._create(ics23.Proofs.InnerSpec.newBuilder()).apply { block() }._build()
-object InnerSpecKt {
+public object InnerSpecKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ics23.Proofs.InnerSpec.Builder
+  public class Dsl private constructor(
+    private val _builder: ics23.Proofs.InnerSpec.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ics23.Proofs.InnerSpec.Builder): Dsl = Dsl(builder)
@@ -27,7 +27,7 @@ object InnerSpecKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class ChildOrderProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class ChildOrderProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * Child order is the ordering of the children node, must count from 0
@@ -37,7 +37,7 @@ object InnerSpecKt {
      *
      * <code>repeated int32 child_order = 1;</code>
      */
-     val childOrder: com.google.protobuf.kotlin.DslList<kotlin.Int, ChildOrderProxy>
+     public val childOrder: com.google.protobuf.kotlin.DslList<kotlin.Int, ChildOrderProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getChildOrderList()
@@ -54,7 +54,7 @@ object InnerSpecKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addChildOrder")
-    fun com.google.protobuf.kotlin.DslList<kotlin.Int, ChildOrderProxy>.add(value: kotlin.Int) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.Int, ChildOrderProxy>.add(value: kotlin.Int) {
       _builder.addChildOrder(value)
     }/**
      * <pre>
@@ -68,7 +68,8 @@ object InnerSpecKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignChildOrder")
-    inline operator fun com.google.protobuf.kotlin.DslList<kotlin.Int, ChildOrderProxy>.plusAssign(value: kotlin.Int) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.Int, ChildOrderProxy>.plusAssign(value: kotlin.Int) {
       add(value)
     }/**
      * <pre>
@@ -82,7 +83,7 @@ object InnerSpecKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllChildOrder")
-    fun com.google.protobuf.kotlin.DslList<kotlin.Int, ChildOrderProxy>.addAll(values: kotlin.collections.Iterable<kotlin.Int>) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.Int, ChildOrderProxy>.addAll(values: kotlin.collections.Iterable<kotlin.Int>) {
       _builder.addAllChildOrder(values)
     }/**
      * <pre>
@@ -96,7 +97,8 @@ object InnerSpecKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllChildOrder")
-    inline operator fun com.google.protobuf.kotlin.DslList<kotlin.Int, ChildOrderProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.Int>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.Int, ChildOrderProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.Int>) {
       addAll(values)
     }/**
      * <pre>
@@ -111,7 +113,7 @@ object InnerSpecKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setChildOrder")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.Int, ChildOrderProxy>.set(index: kotlin.Int, value: kotlin.Int) {
+    public operator fun com.google.protobuf.kotlin.DslList<kotlin.Int, ChildOrderProxy>.set(index: kotlin.Int, value: kotlin.Int) {
       _builder.setChildOrder(index, value)
     }/**
      * <pre>
@@ -124,13 +126,13 @@ object InnerSpecKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearChildOrder")
-    fun com.google.protobuf.kotlin.DslList<kotlin.Int, ChildOrderProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.Int, ChildOrderProxy>.clear() {
       _builder.clearChildOrder()
     }
     /**
      * <code>int32 child_size = 2;</code>
      */
-    var childSize: kotlin.Int
+    public var childSize: kotlin.Int
       @JvmName("getChildSize")
       get() = _builder.getChildSize()
       @JvmName("setChildSize")
@@ -140,14 +142,14 @@ object InnerSpecKt {
     /**
      * <code>int32 child_size = 2;</code>
      */
-    fun clearChildSize() {
+    public fun clearChildSize() {
       _builder.clearChildSize()
     }
 
     /**
      * <code>int32 min_prefix_length = 3;</code>
      */
-    var minPrefixLength: kotlin.Int
+    public var minPrefixLength: kotlin.Int
       @JvmName("getMinPrefixLength")
       get() = _builder.getMinPrefixLength()
       @JvmName("setMinPrefixLength")
@@ -157,14 +159,14 @@ object InnerSpecKt {
     /**
      * <code>int32 min_prefix_length = 3;</code>
      */
-    fun clearMinPrefixLength() {
+    public fun clearMinPrefixLength() {
       _builder.clearMinPrefixLength()
     }
 
     /**
      * <code>int32 max_prefix_length = 4;</code>
      */
-    var maxPrefixLength: kotlin.Int
+    public var maxPrefixLength: kotlin.Int
       @JvmName("getMaxPrefixLength")
       get() = _builder.getMaxPrefixLength()
       @JvmName("setMaxPrefixLength")
@@ -174,7 +176,7 @@ object InnerSpecKt {
     /**
      * <code>int32 max_prefix_length = 4;</code>
      */
-    fun clearMaxPrefixLength() {
+    public fun clearMaxPrefixLength() {
       _builder.clearMaxPrefixLength()
     }
 
@@ -185,7 +187,7 @@ object InnerSpecKt {
      *
      * <code>bytes empty_child = 5;</code>
      */
-    var emptyChild: com.google.protobuf.ByteString
+    public var emptyChild: com.google.protobuf.ByteString
       @JvmName("getEmptyChild")
       get() = _builder.getEmptyChild()
       @JvmName("setEmptyChild")
@@ -199,7 +201,7 @@ object InnerSpecKt {
      *
      * <code>bytes empty_child = 5;</code>
      */
-    fun clearEmptyChild() {
+    public fun clearEmptyChild() {
       _builder.clearEmptyChild()
     }
 
@@ -210,7 +212,7 @@ object InnerSpecKt {
      *
      * <code>.ics23.HashOp hash = 6;</code>
      */
-    var hash: ics23.Proofs.HashOp
+    public var hash: ics23.Proofs.HashOp
       @JvmName("getHash")
       get() = _builder.getHash()
       @JvmName("setHash")
@@ -224,11 +226,11 @@ object InnerSpecKt {
      *
      * <code>.ics23.HashOp hash = 6;</code>
      */
-    fun clearHash() {
+    public fun clearHash() {
       _builder.clearHash()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ics23.Proofs.InnerSpec.copy(block: ics23.InnerSpecKt.Dsl.() -> Unit): ics23.Proofs.InnerSpec =
+public inline fun ics23.Proofs.InnerSpec.copy(block: ics23.InnerSpecKt.Dsl.() -> kotlin.Unit): ics23.Proofs.InnerSpec =
   ics23.InnerSpecKt.Dsl._create(this.toBuilder()).apply { block() }._build()

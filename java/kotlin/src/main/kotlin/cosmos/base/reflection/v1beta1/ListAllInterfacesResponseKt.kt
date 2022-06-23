@@ -4,15 +4,15 @@
 package cosmos.base.reflection.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun listAllInterfacesResponse(block: cosmos.base.reflection.v1beta1.ListAllInterfacesResponseKt.Dsl.() -> Unit): cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesResponse =
+public inline fun listAllInterfacesResponse(block: cosmos.base.reflection.v1beta1.ListAllInterfacesResponseKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesResponse =
   cosmos.base.reflection.v1beta1.ListAllInterfacesResponseKt.Dsl._create(cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesResponse.newBuilder()).apply { block() }._build()
-object ListAllInterfacesResponseKt {
+public object ListAllInterfacesResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesResponse.Builder): Dsl = Dsl(builder)
@@ -27,7 +27,7 @@ object ListAllInterfacesResponseKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class InterfaceNamesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class InterfaceNamesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * interface_names is an array of all the registered interfaces.
@@ -36,8 +36,8 @@ object ListAllInterfacesResponseKt {
      * <code>repeated string interface_names = 1;</code>
      * @return A list containing the interfaceNames.
      */
-    val interfaceNames: com.google.protobuf.kotlin.DslList<kotlin.String, InterfaceNamesProxy>
-      @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
+    public val interfaceNames: com.google.protobuf.kotlin.DslList<kotlin.String, InterfaceNamesProxy>
+      @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getInterfaceNamesList()
       )
@@ -51,7 +51,7 @@ object ListAllInterfacesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addInterfaceNames")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, InterfaceNamesProxy>.add(value: kotlin.String) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, InterfaceNamesProxy>.add(value: kotlin.String) {
       _builder.addInterfaceNames(value)
     }
     /**
@@ -64,8 +64,9 @@ object ListAllInterfacesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignInterfaceNames")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, InterfaceNamesProxy>.plusAssign(value: kotlin.String) {
-      _builder.addInterfaceNames(value)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, InterfaceNamesProxy>.plusAssign(value: kotlin.String) {
+      add(value)
     }
     /**
      * <pre>
@@ -77,7 +78,7 @@ object ListAllInterfacesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllInterfaceNames")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, InterfaceNamesProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, InterfaceNamesProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
       _builder.addAllInterfaceNames(values)
     }
     /**
@@ -90,8 +91,9 @@ object ListAllInterfacesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllInterfaceNames")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, InterfaceNamesProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
-      _builder.addAllInterfaceNames(values)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, InterfaceNamesProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
+      addAll(values)
     }
     /**
      * <pre>
@@ -104,7 +106,7 @@ object ListAllInterfacesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setInterfaceNames")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, InterfaceNamesProxy>.set(index: kotlin.Int, value: kotlin.String) {
+    public operator fun com.google.protobuf.kotlin.DslList<kotlin.String, InterfaceNamesProxy>.set(index: kotlin.Int, value: kotlin.String) {
       _builder.setInterfaceNames(index, value)
     }/**
      * <pre>
@@ -115,10 +117,10 @@ object ListAllInterfacesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearInterfaceNames")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, InterfaceNamesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, InterfaceNamesProxy>.clear() {
       _builder.clearInterfaceNames()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesResponse.copy(block: cosmos.base.reflection.v1beta1.ListAllInterfacesResponseKt.Dsl.() -> Unit): cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesResponse =
+public inline fun cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesResponse.copy(block: cosmos.base.reflection.v1beta1.ListAllInterfacesResponseKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesResponse =
   cosmos.base.reflection.v1beta1.ListAllInterfacesResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

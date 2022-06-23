@@ -4,15 +4,15 @@
 package tendermint.types;
 
 @kotlin.jvm.JvmSynthetic
-inline fun part(block: tendermint.types.PartKt.Dsl.() -> Unit): tendermint.types.Types.Part =
+public inline fun part(block: tendermint.types.PartKt.Dsl.() -> kotlin.Unit): tendermint.types.Types.Part =
   tendermint.types.PartKt.Dsl._create(tendermint.types.Types.Part.newBuilder()).apply { block() }._build()
-object PartKt {
+public object PartKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.types.Types.Part.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.types.Types.Part.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.types.Types.Part.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object PartKt {
     /**
      * <code>uint32 index = 1;</code>
      */
-    var index: kotlin.Int
+    public var index: kotlin.Int
       @JvmName("getIndex")
       get() = _builder.getIndex()
       @JvmName("setIndex")
@@ -35,14 +35,14 @@ object PartKt {
     /**
      * <code>uint32 index = 1;</code>
      */
-    fun clearIndex() {
+    public fun clearIndex() {
       _builder.clearIndex()
     }
 
     /**
      * <code>bytes bytes = 2;</code>
      */
-    var bytes: com.google.protobuf.ByteString
+    public var bytes: com.google.protobuf.ByteString
       @JvmName("getBytes")
       get() = _builder.getBytes()
       @JvmName("setBytes")
@@ -52,14 +52,14 @@ object PartKt {
     /**
      * <code>bytes bytes = 2;</code>
      */
-    fun clearBytes() {
+    public fun clearBytes() {
       _builder.clearBytes()
     }
 
     /**
      * <code>.tendermint.crypto.Proof proof = 3 [(.gogoproto.nullable) = false];</code>
      */
-    var proof: tendermint.crypto.ProofOuterClass.Proof
+    public var proof: tendermint.crypto.ProofOuterClass.Proof
       @JvmName("getProof")
       get() = _builder.getProof()
       @JvmName("setProof")
@@ -69,18 +69,18 @@ object PartKt {
     /**
      * <code>.tendermint.crypto.Proof proof = 3 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearProof() {
+    public fun clearProof() {
       _builder.clearProof()
     }
     /**
      * <code>.tendermint.crypto.Proof proof = 3 [(.gogoproto.nullable) = false];</code>
      * @return Whether the proof field is set.
      */
-    fun hasProof(): kotlin.Boolean {
+    public fun hasProof(): kotlin.Boolean {
       return _builder.hasProof()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.types.Types.Part.copy(block: tendermint.types.PartKt.Dsl.() -> Unit): tendermint.types.Types.Part =
+public inline fun tendermint.types.Types.Part.copy(block: tendermint.types.PartKt.Dsl.() -> kotlin.Unit): tendermint.types.Types.Part =
   tendermint.types.PartKt.Dsl._create(this.toBuilder()).apply { block() }._build()

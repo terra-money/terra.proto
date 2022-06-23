@@ -1505,13 +1505,13 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getRateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(rate_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, rate_);
       }
-      if (!getMaxRateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(maxRate_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, maxRate_);
       }
-      if (!getMaxChangeRateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(maxChangeRate_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, maxChangeRate_);
       }
       unknownFields.writeTo(output);
@@ -1523,13 +1523,13 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getRateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(rate_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, rate_);
       }
-      if (!getMaxRateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(maxRate_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, maxRate_);
       }
-      if (!getMaxChangeRateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(maxChangeRate_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, maxChangeRate_);
       }
       size += unknownFields.getSerializedSize();
@@ -3588,19 +3588,19 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getMonikerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(moniker_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, moniker_);
       }
-      if (!getIdentityBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(identity_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, identity_);
       }
-      if (!getWebsiteBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(website_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, website_);
       }
-      if (!getSecurityContactBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(securityContact_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, securityContact_);
       }
-      if (!getDetailsBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(details_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, details_);
       }
       unknownFields.writeTo(output);
@@ -3612,19 +3612,19 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getMonikerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(moniker_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, moniker_);
       }
-      if (!getIdentityBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(identity_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, identity_);
       }
-      if (!getWebsiteBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(website_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, website_);
       }
-      if (!getSecurityContactBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(securityContact_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, securityContact_);
       }
-      if (!getDetailsBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(details_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, details_);
       }
       size += unknownFields.getSerializedSize();
@@ -5303,7 +5303,7 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getOperatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(operatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, operatorAddress_);
       }
       if (consensusPubkey_ != null) {
@@ -5315,10 +5315,10 @@ public final class Staking {
       if (status_ != cosmos.staking.v1beta1.Staking.BondStatus.BOND_STATUS_UNSPECIFIED.getNumber()) {
         output.writeEnum(4, status_);
       }
-      if (!getTokensBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(tokens_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, tokens_);
       }
-      if (!getDelegatorSharesBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorShares_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 6, delegatorShares_);
       }
       if (description_ != null) {
@@ -5333,7 +5333,7 @@ public final class Staking {
       if (commission_ != null) {
         output.writeMessage(10, getCommission());
       }
-      if (!getMinSelfDelegationBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(minSelfDelegation_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 11, minSelfDelegation_);
       }
       unknownFields.writeTo(output);
@@ -5345,7 +5345,7 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getOperatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(operatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, operatorAddress_);
       }
       if (consensusPubkey_ != null) {
@@ -5360,10 +5360,10 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(4, status_);
       }
-      if (!getTokensBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(tokens_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, tokens_);
       }
-      if (!getDelegatorSharesBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorShares_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, delegatorShares_);
       }
       if (description_ != null) {
@@ -5382,7 +5382,7 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, getCommission());
       }
-      if (!getMinSelfDelegationBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(minSelfDelegation_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(11, minSelfDelegation_);
       }
       size += unknownFields.getSerializedSize();
@@ -7902,10 +7902,10 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, validatorAddress_);
       }
       unknownFields.writeTo(output);
@@ -7917,10 +7917,10 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, validatorAddress_);
       }
       size += unknownFields.getSerializedSize();
@@ -9491,13 +9491,13 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, delegatorAddress_);
       }
-      if (!getValidatorSrcAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorSrcAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, validatorSrcAddress_);
       }
-      if (!getValidatorDstAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorDstAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, validatorDstAddress_);
       }
       unknownFields.writeTo(output);
@@ -9509,13 +9509,13 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, delegatorAddress_);
       }
-      if (!getValidatorSrcAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorSrcAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, validatorSrcAddress_);
       }
-      if (!getValidatorDstAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorDstAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, validatorDstAddress_);
       }
       size += unknownFields.getSerializedSize();
@@ -11221,13 +11221,13 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, validatorAddress_);
       }
-      if (!getSharesBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(shares_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, shares_);
       }
       unknownFields.writeTo(output);
@@ -11239,13 +11239,13 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, validatorAddress_);
       }
-      if (!getSharesBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(shares_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, shares_);
       }
       size += unknownFields.getSerializedSize();
@@ -12253,10 +12253,10 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, validatorAddress_);
       }
       for (int i = 0; i < entries_.size(); i++) {
@@ -12271,10 +12271,10 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, validatorAddress_);
       }
       for (int i = 0; i < entries_.size(); i++) {
@@ -13535,10 +13535,10 @@ public final class Staking {
       if (completionTime_ != null) {
         output.writeMessage(2, getCompletionTime());
       }
-      if (!getInitialBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(initialBalance_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, initialBalance_);
       }
-      if (!getBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(balance_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, balance_);
       }
       unknownFields.writeTo(output);
@@ -13558,10 +13558,10 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getCompletionTime());
       }
-      if (!getInitialBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(initialBalance_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, initialBalance_);
       }
-      if (!getBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(balance_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, balance_);
       }
       size += unknownFields.getSerializedSize();
@@ -14687,10 +14687,10 @@ public final class Staking {
       if (completionTime_ != null) {
         output.writeMessage(2, getCompletionTime());
       }
-      if (!getInitialBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(initialBalance_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, initialBalance_);
       }
-      if (!getSharesDstBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sharesDst_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, sharesDst_);
       }
       unknownFields.writeTo(output);
@@ -14710,10 +14710,10 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getCompletionTime());
       }
-      if (!getInitialBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(initialBalance_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, initialBalance_);
       }
-      if (!getSharesDstBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sharesDst_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, sharesDst_);
       }
       size += unknownFields.getSerializedSize();
@@ -15917,13 +15917,13 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, delegatorAddress_);
       }
-      if (!getValidatorSrcAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorSrcAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, validatorSrcAddress_);
       }
-      if (!getValidatorDstAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorDstAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, validatorDstAddress_);
       }
       for (int i = 0; i < entries_.size(); i++) {
@@ -15938,13 +15938,13 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, delegatorAddress_);
       }
-      if (!getValidatorSrcAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorSrcAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, validatorSrcAddress_);
       }
-      if (!getValidatorDstAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorDstAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, validatorDstAddress_);
       }
       for (int i = 0; i < entries_.size(); i++) {
@@ -17305,7 +17305,7 @@ public final class Staking {
       if (historicalEntries_ != 0) {
         output.writeUInt32(4, historicalEntries_);
       }
-      if (!getBondDenomBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bondDenom_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, bondDenom_);
       }
       unknownFields.writeTo(output);
@@ -17333,7 +17333,7 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(4, historicalEntries_);
       }
-      if (!getBondDenomBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bondDenom_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, bondDenom_);
       }
       size += unknownFields.getSerializedSize();
@@ -19147,7 +19147,7 @@ public final class Staking {
       if (redelegationEntry_ != null) {
         output.writeMessage(1, getRedelegationEntry());
       }
-      if (!getBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(balance_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, balance_);
       }
       unknownFields.writeTo(output);
@@ -19163,7 +19163,7 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getRedelegationEntry());
       }
-      if (!getBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(balance_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, balance_);
       }
       size += unknownFields.getSerializedSize();
@@ -20937,10 +20937,10 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getNotBondedTokensBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(notBondedTokens_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, notBondedTokens_);
       }
-      if (!getBondedTokensBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bondedTokens_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bondedTokens_);
       }
       unknownFields.writeTo(output);
@@ -20952,10 +20952,10 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getNotBondedTokensBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(notBondedTokens_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, notBondedTokens_);
       }
-      if (!getBondedTokensBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bondedTokens_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bondedTokens_);
       }
       size += unknownFields.getSerializedSize();

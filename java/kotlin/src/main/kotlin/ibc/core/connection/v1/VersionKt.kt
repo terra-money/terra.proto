@@ -4,15 +4,15 @@
 package ibc.core.connection.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun version(block: ibc.core.connection.v1.VersionKt.Dsl.() -> Unit): ibc.core.connection.v1.Connection.Version =
+public inline fun version(block: ibc.core.connection.v1.VersionKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.Connection.Version =
   ibc.core.connection.v1.VersionKt.Dsl._create(ibc.core.connection.v1.Connection.Version.newBuilder()).apply { block() }._build()
-object VersionKt {
+public object VersionKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.connection.v1.Connection.Version.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.connection.v1.Connection.Version.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.connection.v1.Connection.Version.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object VersionKt {
      *
      * <code>string identifier = 1;</code>
      */
-    var identifier: kotlin.String
+    public var identifier: kotlin.String
       @JvmName("getIdentifier")
       get() = _builder.getIdentifier()
       @JvmName("setIdentifier")
@@ -43,7 +43,7 @@ object VersionKt {
      *
      * <code>string identifier = 1;</code>
      */
-    fun clearIdentifier() {
+    public fun clearIdentifier() {
       _builder.clearIdentifier()
     }
 
@@ -52,7 +52,7 @@ object VersionKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class FeaturesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class FeaturesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * list of features compatible with the specified identifier
@@ -61,8 +61,8 @@ object VersionKt {
      * <code>repeated string features = 2;</code>
      * @return A list containing the features.
      */
-    val features: com.google.protobuf.kotlin.DslList<kotlin.String, FeaturesProxy>
-      @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
+    public val features: com.google.protobuf.kotlin.DslList<kotlin.String, FeaturesProxy>
+      @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getFeaturesList()
       )
@@ -76,7 +76,7 @@ object VersionKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addFeatures")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, FeaturesProxy>.add(value: kotlin.String) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, FeaturesProxy>.add(value: kotlin.String) {
       _builder.addFeatures(value)
     }
     /**
@@ -89,8 +89,9 @@ object VersionKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignFeatures")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, FeaturesProxy>.plusAssign(value: kotlin.String) {
-      _builder.addFeatures(value)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, FeaturesProxy>.plusAssign(value: kotlin.String) {
+      add(value)
     }
     /**
      * <pre>
@@ -102,7 +103,7 @@ object VersionKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllFeatures")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, FeaturesProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, FeaturesProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
       _builder.addAllFeatures(values)
     }
     /**
@@ -115,8 +116,9 @@ object VersionKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllFeatures")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, FeaturesProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
-      _builder.addAllFeatures(values)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, FeaturesProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
+      addAll(values)
     }
     /**
      * <pre>
@@ -129,7 +131,7 @@ object VersionKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setFeatures")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, FeaturesProxy>.set(index: kotlin.Int, value: kotlin.String) {
+    public operator fun com.google.protobuf.kotlin.DslList<kotlin.String, FeaturesProxy>.set(index: kotlin.Int, value: kotlin.String) {
       _builder.setFeatures(index, value)
     }/**
      * <pre>
@@ -140,10 +142,10 @@ object VersionKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearFeatures")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, FeaturesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, FeaturesProxy>.clear() {
       _builder.clearFeatures()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.connection.v1.Connection.Version.copy(block: ibc.core.connection.v1.VersionKt.Dsl.() -> Unit): ibc.core.connection.v1.Connection.Version =
+public inline fun ibc.core.connection.v1.Connection.Version.copy(block: ibc.core.connection.v1.VersionKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.Connection.Version =
   ibc.core.connection.v1.VersionKt.Dsl._create(this.toBuilder()).apply { block() }._build()

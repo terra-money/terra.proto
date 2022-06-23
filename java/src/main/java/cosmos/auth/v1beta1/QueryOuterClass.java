@@ -48,6 +48,7 @@ public final class QueryOuterClass {
   /**
    * <pre>
    * QueryAccountsRequest is the request type for the Query/Accounts RPC method.
+   * Since: cosmos-sdk 0.43
    * </pre>
    *
    * Protobuf type {@code cosmos.auth.v1beta1.QueryAccountsRequest}
@@ -340,6 +341,7 @@ public final class QueryOuterClass {
     /**
      * <pre>
      * QueryAccountsRequest is the request type for the Query/Accounts RPC method.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * Protobuf type {@code cosmos.auth.v1beta1.QueryAccountsRequest}
@@ -781,6 +783,7 @@ public final class QueryOuterClass {
   /**
    * <pre>
    * QueryAccountsResponse is the response type for the Query/Accounts RPC method.
+   * Since: cosmos-sdk 0.43
    * </pre>
    *
    * Protobuf type {@code cosmos.auth.v1beta1.QueryAccountsResponse}
@@ -1160,6 +1163,7 @@ public final class QueryOuterClass {
     /**
      * <pre>
      * QueryAccountsResponse is the response type for the Query/Accounts RPC method.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * Protobuf type {@code cosmos.auth.v1beta1.QueryAccountsResponse}
@@ -2051,7 +2055,7 @@ public final class QueryOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
       unknownFields.writeTo(output);
@@ -2063,7 +2067,7 @@ public final class QueryOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
       size += unknownFields.getSerializedSize();

@@ -187,7 +187,7 @@ public final class Authz {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getMsgBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(msg_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, msg_);
       }
       unknownFields.writeTo(output);
@@ -199,7 +199,7 @@ public final class Authz {
       if (size != -1) return size;
 
       size = 0;
-      if (!getMsgBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(msg_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, msg_);
       }
       size += unknownFields.getSerializedSize();
@@ -1462,6 +1462,1142 @@ public final class Authz {
 
   }
 
+  public interface GrantAuthorizationOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:cosmos.authz.v1beta1.GrantAuthorization)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string granter = 1;</code>
+     * @return The granter.
+     */
+    java.lang.String getGranter();
+    /**
+     * <code>string granter = 1;</code>
+     * @return The bytes for granter.
+     */
+    com.google.protobuf.ByteString
+        getGranterBytes();
+
+    /**
+     * <code>string grantee = 2;</code>
+     * @return The grantee.
+     */
+    java.lang.String getGrantee();
+    /**
+     * <code>string grantee = 2;</code>
+     * @return The bytes for grantee.
+     */
+    com.google.protobuf.ByteString
+        getGranteeBytes();
+
+    /**
+     * <code>.google.protobuf.Any authorization = 3 [(.cosmos_proto.accepts_interface) = "Authorization"];</code>
+     * @return Whether the authorization field is set.
+     */
+    boolean hasAuthorization();
+    /**
+     * <code>.google.protobuf.Any authorization = 3 [(.cosmos_proto.accepts_interface) = "Authorization"];</code>
+     * @return The authorization.
+     */
+    com.google.protobuf.Any getAuthorization();
+    /**
+     * <code>.google.protobuf.Any authorization = 3 [(.cosmos_proto.accepts_interface) = "Authorization"];</code>
+     */
+    com.google.protobuf.AnyOrBuilder getAuthorizationOrBuilder();
+
+    /**
+     * <code>.google.protobuf.Timestamp expiration = 4 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+     * @return Whether the expiration field is set.
+     */
+    boolean hasExpiration();
+    /**
+     * <code>.google.protobuf.Timestamp expiration = 4 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+     * @return The expiration.
+     */
+    com.google.protobuf.Timestamp getExpiration();
+    /**
+     * <code>.google.protobuf.Timestamp expiration = 4 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+     */
+    com.google.protobuf.TimestampOrBuilder getExpirationOrBuilder();
+  }
+  /**
+   * <pre>
+   * GrantAuthorization extends a grant with both the addresses of the grantee and granter.
+   * It is used in genesis.proto and query.proto
+   * Since: cosmos-sdk 0.45.2
+   * </pre>
+   *
+   * Protobuf type {@code cosmos.authz.v1beta1.GrantAuthorization}
+   */
+  public static final class GrantAuthorization extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:cosmos.authz.v1beta1.GrantAuthorization)
+      GrantAuthorizationOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GrantAuthorization.newBuilder() to construct.
+    private GrantAuthorization(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GrantAuthorization() {
+      granter_ = "";
+      grantee_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GrantAuthorization();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GrantAuthorization(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              granter_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              grantee_ = s;
+              break;
+            }
+            case 26: {
+              com.google.protobuf.Any.Builder subBuilder = null;
+              if (authorization_ != null) {
+                subBuilder = authorization_.toBuilder();
+              }
+              authorization_ = input.readMessage(com.google.protobuf.Any.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(authorization_);
+                authorization_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 34: {
+              com.google.protobuf.Timestamp.Builder subBuilder = null;
+              if (expiration_ != null) {
+                subBuilder = expiration_.toBuilder();
+              }
+              expiration_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(expiration_);
+                expiration_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return cosmos.authz.v1beta1.Authz.internal_static_cosmos_authz_v1beta1_GrantAuthorization_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return cosmos.authz.v1beta1.Authz.internal_static_cosmos_authz_v1beta1_GrantAuthorization_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              cosmos.authz.v1beta1.Authz.GrantAuthorization.class, cosmos.authz.v1beta1.Authz.GrantAuthorization.Builder.class);
+    }
+
+    public static final int GRANTER_FIELD_NUMBER = 1;
+    private volatile java.lang.Object granter_;
+    /**
+     * <code>string granter = 1;</code>
+     * @return The granter.
+     */
+    @java.lang.Override
+    public java.lang.String getGranter() {
+      java.lang.Object ref = granter_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        granter_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string granter = 1;</code>
+     * @return The bytes for granter.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getGranterBytes() {
+      java.lang.Object ref = granter_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        granter_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int GRANTEE_FIELD_NUMBER = 2;
+    private volatile java.lang.Object grantee_;
+    /**
+     * <code>string grantee = 2;</code>
+     * @return The grantee.
+     */
+    @java.lang.Override
+    public java.lang.String getGrantee() {
+      java.lang.Object ref = grantee_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        grantee_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string grantee = 2;</code>
+     * @return The bytes for grantee.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getGranteeBytes() {
+      java.lang.Object ref = grantee_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        grantee_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int AUTHORIZATION_FIELD_NUMBER = 3;
+    private com.google.protobuf.Any authorization_;
+    /**
+     * <code>.google.protobuf.Any authorization = 3 [(.cosmos_proto.accepts_interface) = "Authorization"];</code>
+     * @return Whether the authorization field is set.
+     */
+    @java.lang.Override
+    public boolean hasAuthorization() {
+      return authorization_ != null;
+    }
+    /**
+     * <code>.google.protobuf.Any authorization = 3 [(.cosmos_proto.accepts_interface) = "Authorization"];</code>
+     * @return The authorization.
+     */
+    @java.lang.Override
+    public com.google.protobuf.Any getAuthorization() {
+      return authorization_ == null ? com.google.protobuf.Any.getDefaultInstance() : authorization_;
+    }
+    /**
+     * <code>.google.protobuf.Any authorization = 3 [(.cosmos_proto.accepts_interface) = "Authorization"];</code>
+     */
+    @java.lang.Override
+    public com.google.protobuf.AnyOrBuilder getAuthorizationOrBuilder() {
+      return getAuthorization();
+    }
+
+    public static final int EXPIRATION_FIELD_NUMBER = 4;
+    private com.google.protobuf.Timestamp expiration_;
+    /**
+     * <code>.google.protobuf.Timestamp expiration = 4 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+     * @return Whether the expiration field is set.
+     */
+    @java.lang.Override
+    public boolean hasExpiration() {
+      return expiration_ != null;
+    }
+    /**
+     * <code>.google.protobuf.Timestamp expiration = 4 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+     * @return The expiration.
+     */
+    @java.lang.Override
+    public com.google.protobuf.Timestamp getExpiration() {
+      return expiration_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : expiration_;
+    }
+    /**
+     * <code>.google.protobuf.Timestamp expiration = 4 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+     */
+    @java.lang.Override
+    public com.google.protobuf.TimestampOrBuilder getExpirationOrBuilder() {
+      return getExpiration();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(granter_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, granter_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(grantee_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, grantee_);
+      }
+      if (authorization_ != null) {
+        output.writeMessage(3, getAuthorization());
+      }
+      if (expiration_ != null) {
+        output.writeMessage(4, getExpiration());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(granter_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, granter_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(grantee_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, grantee_);
+      }
+      if (authorization_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getAuthorization());
+      }
+      if (expiration_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, getExpiration());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof cosmos.authz.v1beta1.Authz.GrantAuthorization)) {
+        return super.equals(obj);
+      }
+      cosmos.authz.v1beta1.Authz.GrantAuthorization other = (cosmos.authz.v1beta1.Authz.GrantAuthorization) obj;
+
+      if (!getGranter()
+          .equals(other.getGranter())) return false;
+      if (!getGrantee()
+          .equals(other.getGrantee())) return false;
+      if (hasAuthorization() != other.hasAuthorization()) return false;
+      if (hasAuthorization()) {
+        if (!getAuthorization()
+            .equals(other.getAuthorization())) return false;
+      }
+      if (hasExpiration() != other.hasExpiration()) return false;
+      if (hasExpiration()) {
+        if (!getExpiration()
+            .equals(other.getExpiration())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + GRANTER_FIELD_NUMBER;
+      hash = (53 * hash) + getGranter().hashCode();
+      hash = (37 * hash) + GRANTEE_FIELD_NUMBER;
+      hash = (53 * hash) + getGrantee().hashCode();
+      if (hasAuthorization()) {
+        hash = (37 * hash) + AUTHORIZATION_FIELD_NUMBER;
+        hash = (53 * hash) + getAuthorization().hashCode();
+      }
+      if (hasExpiration()) {
+        hash = (37 * hash) + EXPIRATION_FIELD_NUMBER;
+        hash = (53 * hash) + getExpiration().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static cosmos.authz.v1beta1.Authz.GrantAuthorization parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static cosmos.authz.v1beta1.Authz.GrantAuthorization parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static cosmos.authz.v1beta1.Authz.GrantAuthorization parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static cosmos.authz.v1beta1.Authz.GrantAuthorization parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static cosmos.authz.v1beta1.Authz.GrantAuthorization parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static cosmos.authz.v1beta1.Authz.GrantAuthorization parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static cosmos.authz.v1beta1.Authz.GrantAuthorization parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static cosmos.authz.v1beta1.Authz.GrantAuthorization parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static cosmos.authz.v1beta1.Authz.GrantAuthorization parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static cosmos.authz.v1beta1.Authz.GrantAuthorization parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static cosmos.authz.v1beta1.Authz.GrantAuthorization parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static cosmos.authz.v1beta1.Authz.GrantAuthorization parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(cosmos.authz.v1beta1.Authz.GrantAuthorization prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * GrantAuthorization extends a grant with both the addresses of the grantee and granter.
+     * It is used in genesis.proto and query.proto
+     * Since: cosmos-sdk 0.45.2
+     * </pre>
+     *
+     * Protobuf type {@code cosmos.authz.v1beta1.GrantAuthorization}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:cosmos.authz.v1beta1.GrantAuthorization)
+        cosmos.authz.v1beta1.Authz.GrantAuthorizationOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return cosmos.authz.v1beta1.Authz.internal_static_cosmos_authz_v1beta1_GrantAuthorization_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return cosmos.authz.v1beta1.Authz.internal_static_cosmos_authz_v1beta1_GrantAuthorization_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                cosmos.authz.v1beta1.Authz.GrantAuthorization.class, cosmos.authz.v1beta1.Authz.GrantAuthorization.Builder.class);
+      }
+
+      // Construct using cosmos.authz.v1beta1.Authz.GrantAuthorization.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        granter_ = "";
+
+        grantee_ = "";
+
+        if (authorizationBuilder_ == null) {
+          authorization_ = null;
+        } else {
+          authorization_ = null;
+          authorizationBuilder_ = null;
+        }
+        if (expirationBuilder_ == null) {
+          expiration_ = null;
+        } else {
+          expiration_ = null;
+          expirationBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return cosmos.authz.v1beta1.Authz.internal_static_cosmos_authz_v1beta1_GrantAuthorization_descriptor;
+      }
+
+      @java.lang.Override
+      public cosmos.authz.v1beta1.Authz.GrantAuthorization getDefaultInstanceForType() {
+        return cosmos.authz.v1beta1.Authz.GrantAuthorization.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public cosmos.authz.v1beta1.Authz.GrantAuthorization build() {
+        cosmos.authz.v1beta1.Authz.GrantAuthorization result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public cosmos.authz.v1beta1.Authz.GrantAuthorization buildPartial() {
+        cosmos.authz.v1beta1.Authz.GrantAuthorization result = new cosmos.authz.v1beta1.Authz.GrantAuthorization(this);
+        result.granter_ = granter_;
+        result.grantee_ = grantee_;
+        if (authorizationBuilder_ == null) {
+          result.authorization_ = authorization_;
+        } else {
+          result.authorization_ = authorizationBuilder_.build();
+        }
+        if (expirationBuilder_ == null) {
+          result.expiration_ = expiration_;
+        } else {
+          result.expiration_ = expirationBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof cosmos.authz.v1beta1.Authz.GrantAuthorization) {
+          return mergeFrom((cosmos.authz.v1beta1.Authz.GrantAuthorization)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(cosmos.authz.v1beta1.Authz.GrantAuthorization other) {
+        if (other == cosmos.authz.v1beta1.Authz.GrantAuthorization.getDefaultInstance()) return this;
+        if (!other.getGranter().isEmpty()) {
+          granter_ = other.granter_;
+          onChanged();
+        }
+        if (!other.getGrantee().isEmpty()) {
+          grantee_ = other.grantee_;
+          onChanged();
+        }
+        if (other.hasAuthorization()) {
+          mergeAuthorization(other.getAuthorization());
+        }
+        if (other.hasExpiration()) {
+          mergeExpiration(other.getExpiration());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        cosmos.authz.v1beta1.Authz.GrantAuthorization parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (cosmos.authz.v1beta1.Authz.GrantAuthorization) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object granter_ = "";
+      /**
+       * <code>string granter = 1;</code>
+       * @return The granter.
+       */
+      public java.lang.String getGranter() {
+        java.lang.Object ref = granter_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          granter_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string granter = 1;</code>
+       * @return The bytes for granter.
+       */
+      public com.google.protobuf.ByteString
+          getGranterBytes() {
+        java.lang.Object ref = granter_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          granter_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string granter = 1;</code>
+       * @param value The granter to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGranter(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        granter_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string granter = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearGranter() {
+        
+        granter_ = getDefaultInstance().getGranter();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string granter = 1;</code>
+       * @param value The bytes for granter to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGranterBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        granter_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object grantee_ = "";
+      /**
+       * <code>string grantee = 2;</code>
+       * @return The grantee.
+       */
+      public java.lang.String getGrantee() {
+        java.lang.Object ref = grantee_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          grantee_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string grantee = 2;</code>
+       * @return The bytes for grantee.
+       */
+      public com.google.protobuf.ByteString
+          getGranteeBytes() {
+        java.lang.Object ref = grantee_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          grantee_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string grantee = 2;</code>
+       * @param value The grantee to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGrantee(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        grantee_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string grantee = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearGrantee() {
+        
+        grantee_ = getDefaultInstance().getGrantee();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string grantee = 2;</code>
+       * @param value The bytes for grantee to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGranteeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        grantee_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.Any authorization_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> authorizationBuilder_;
+      /**
+       * <code>.google.protobuf.Any authorization = 3 [(.cosmos_proto.accepts_interface) = "Authorization"];</code>
+       * @return Whether the authorization field is set.
+       */
+      public boolean hasAuthorization() {
+        return authorizationBuilder_ != null || authorization_ != null;
+      }
+      /**
+       * <code>.google.protobuf.Any authorization = 3 [(.cosmos_proto.accepts_interface) = "Authorization"];</code>
+       * @return The authorization.
+       */
+      public com.google.protobuf.Any getAuthorization() {
+        if (authorizationBuilder_ == null) {
+          return authorization_ == null ? com.google.protobuf.Any.getDefaultInstance() : authorization_;
+        } else {
+          return authorizationBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.google.protobuf.Any authorization = 3 [(.cosmos_proto.accepts_interface) = "Authorization"];</code>
+       */
+      public Builder setAuthorization(com.google.protobuf.Any value) {
+        if (authorizationBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          authorization_ = value;
+          onChanged();
+        } else {
+          authorizationBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Any authorization = 3 [(.cosmos_proto.accepts_interface) = "Authorization"];</code>
+       */
+      public Builder setAuthorization(
+          com.google.protobuf.Any.Builder builderForValue) {
+        if (authorizationBuilder_ == null) {
+          authorization_ = builderForValue.build();
+          onChanged();
+        } else {
+          authorizationBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Any authorization = 3 [(.cosmos_proto.accepts_interface) = "Authorization"];</code>
+       */
+      public Builder mergeAuthorization(com.google.protobuf.Any value) {
+        if (authorizationBuilder_ == null) {
+          if (authorization_ != null) {
+            authorization_ =
+              com.google.protobuf.Any.newBuilder(authorization_).mergeFrom(value).buildPartial();
+          } else {
+            authorization_ = value;
+          }
+          onChanged();
+        } else {
+          authorizationBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Any authorization = 3 [(.cosmos_proto.accepts_interface) = "Authorization"];</code>
+       */
+      public Builder clearAuthorization() {
+        if (authorizationBuilder_ == null) {
+          authorization_ = null;
+          onChanged();
+        } else {
+          authorization_ = null;
+          authorizationBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Any authorization = 3 [(.cosmos_proto.accepts_interface) = "Authorization"];</code>
+       */
+      public com.google.protobuf.Any.Builder getAuthorizationBuilder() {
+        
+        onChanged();
+        return getAuthorizationFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.google.protobuf.Any authorization = 3 [(.cosmos_proto.accepts_interface) = "Authorization"];</code>
+       */
+      public com.google.protobuf.AnyOrBuilder getAuthorizationOrBuilder() {
+        if (authorizationBuilder_ != null) {
+          return authorizationBuilder_.getMessageOrBuilder();
+        } else {
+          return authorization_ == null ?
+              com.google.protobuf.Any.getDefaultInstance() : authorization_;
+        }
+      }
+      /**
+       * <code>.google.protobuf.Any authorization = 3 [(.cosmos_proto.accepts_interface) = "Authorization"];</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
+          getAuthorizationFieldBuilder() {
+        if (authorizationBuilder_ == null) {
+          authorizationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
+                  getAuthorization(),
+                  getParentForChildren(),
+                  isClean());
+          authorization_ = null;
+        }
+        return authorizationBuilder_;
+      }
+
+      private com.google.protobuf.Timestamp expiration_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> expirationBuilder_;
+      /**
+       * <code>.google.protobuf.Timestamp expiration = 4 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+       * @return Whether the expiration field is set.
+       */
+      public boolean hasExpiration() {
+        return expirationBuilder_ != null || expiration_ != null;
+      }
+      /**
+       * <code>.google.protobuf.Timestamp expiration = 4 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+       * @return The expiration.
+       */
+      public com.google.protobuf.Timestamp getExpiration() {
+        if (expirationBuilder_ == null) {
+          return expiration_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : expiration_;
+        } else {
+          return expirationBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.google.protobuf.Timestamp expiration = 4 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+       */
+      public Builder setExpiration(com.google.protobuf.Timestamp value) {
+        if (expirationBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          expiration_ = value;
+          onChanged();
+        } else {
+          expirationBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Timestamp expiration = 4 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+       */
+      public Builder setExpiration(
+          com.google.protobuf.Timestamp.Builder builderForValue) {
+        if (expirationBuilder_ == null) {
+          expiration_ = builderForValue.build();
+          onChanged();
+        } else {
+          expirationBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Timestamp expiration = 4 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+       */
+      public Builder mergeExpiration(com.google.protobuf.Timestamp value) {
+        if (expirationBuilder_ == null) {
+          if (expiration_ != null) {
+            expiration_ =
+              com.google.protobuf.Timestamp.newBuilder(expiration_).mergeFrom(value).buildPartial();
+          } else {
+            expiration_ = value;
+          }
+          onChanged();
+        } else {
+          expirationBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Timestamp expiration = 4 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+       */
+      public Builder clearExpiration() {
+        if (expirationBuilder_ == null) {
+          expiration_ = null;
+          onChanged();
+        } else {
+          expiration_ = null;
+          expirationBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Timestamp expiration = 4 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+       */
+      public com.google.protobuf.Timestamp.Builder getExpirationBuilder() {
+        
+        onChanged();
+        return getExpirationFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.google.protobuf.Timestamp expiration = 4 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+       */
+      public com.google.protobuf.TimestampOrBuilder getExpirationOrBuilder() {
+        if (expirationBuilder_ != null) {
+          return expirationBuilder_.getMessageOrBuilder();
+        } else {
+          return expiration_ == null ?
+              com.google.protobuf.Timestamp.getDefaultInstance() : expiration_;
+        }
+      }
+      /**
+       * <code>.google.protobuf.Timestamp expiration = 4 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
+          getExpirationFieldBuilder() {
+        if (expirationBuilder_ == null) {
+          expirationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
+                  getExpiration(),
+                  getParentForChildren(),
+                  isClean());
+          expiration_ = null;
+        }
+        return expirationBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:cosmos.authz.v1beta1.GrantAuthorization)
+    }
+
+    // @@protoc_insertion_point(class_scope:cosmos.authz.v1beta1.GrantAuthorization)
+    private static final cosmos.authz.v1beta1.Authz.GrantAuthorization DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new cosmos.authz.v1beta1.Authz.GrantAuthorization();
+    }
+
+    public static cosmos.authz.v1beta1.Authz.GrantAuthorization getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GrantAuthorization>
+        PARSER = new com.google.protobuf.AbstractParser<GrantAuthorization>() {
+      @java.lang.Override
+      public GrantAuthorization parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GrantAuthorization(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GrantAuthorization> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GrantAuthorization> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public cosmos.authz.v1beta1.Authz.GrantAuthorization getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_cosmos_authz_v1beta1_GenericAuthorization_descriptor;
   private static final 
@@ -1472,6 +2608,11 @@ public final class Authz {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_cosmos_authz_v1beta1_Grant_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_cosmos_authz_v1beta1_GrantAuthorization_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_cosmos_authz_v1beta1_GrantAuthorization_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1489,9 +2630,13 @@ public final class Authz {
       "(\t:\021\322\264-\rAuthorization\"\201\001\n\005Grant\022>\n\rautho" +
       "rization\030\001 \001(\0132\024.google.protobuf.AnyB\021\312\264" +
       "-\rAuthorization\0228\n\nexpiration\030\002 \001(\0132\032.go" +
-      "ogle.protobuf.TimestampB\010\220\337\037\001\310\336\037\000B*Z$git" +
-      "hub.com/cosmos/cosmos-sdk/x/authz\310\341\036\000b\006p" +
-      "roto3"
+      "ogle.protobuf.TimestampB\010\220\337\037\001\310\336\037\000\"\260\001\n\022Gr" +
+      "antAuthorization\022\017\n\007granter\030\001 \001(\t\022\017\n\007gra" +
+      "ntee\030\002 \001(\t\022>\n\rauthorization\030\003 \001(\0132\024.goog" +
+      "le.protobuf.AnyB\021\312\264-\rAuthorization\0228\n\nex" +
+      "piration\030\004 \001(\0132\032.google.protobuf.Timesta" +
+      "mpB\010\310\336\037\000\220\337\037\001B*Z$github.com/cosmos/cosmos" +
+      "-sdk/x/authz\310\341\036\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1513,6 +2658,12 @@ public final class Authz {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_cosmos_authz_v1beta1_Grant_descriptor,
         new java.lang.String[] { "Authorization", "Expiration", });
+    internal_static_cosmos_authz_v1beta1_GrantAuthorization_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_cosmos_authz_v1beta1_GrantAuthorization_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_cosmos_authz_v1beta1_GrantAuthorization_descriptor,
+        new java.lang.String[] { "Granter", "Grantee", "Authorization", "Expiration", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
     registry.add(cosmos_proto.Cosmos.acceptsInterface);

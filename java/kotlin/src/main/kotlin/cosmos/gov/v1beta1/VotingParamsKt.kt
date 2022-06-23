@@ -4,15 +4,15 @@
 package cosmos.gov.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun votingParams(block: cosmos.gov.v1beta1.VotingParamsKt.Dsl.() -> Unit): cosmos.gov.v1beta1.Gov.VotingParams =
+public inline fun votingParams(block: cosmos.gov.v1beta1.VotingParamsKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.Gov.VotingParams =
   cosmos.gov.v1beta1.VotingParamsKt.Dsl._create(cosmos.gov.v1beta1.Gov.VotingParams.newBuilder()).apply { block() }._build()
-object VotingParamsKt {
+public object VotingParamsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.gov.v1beta1.Gov.VotingParams.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.gov.v1beta1.Gov.VotingParams.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.gov.v1beta1.Gov.VotingParams.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object VotingParamsKt {
      *
      * <code>.google.protobuf.Duration voting_period = 1 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "voting_period,omitempty", (.gogoproto.moretags) = "yaml:&#92;"voting_period&#92;"", (.gogoproto.stdduration) = true];</code>
      */
-    var votingPeriod: com.google.protobuf.Duration
+    public var votingPeriod: com.google.protobuf.Duration
       @JvmName("getVotingPeriod")
       get() = _builder.getVotingPeriod()
       @JvmName("setVotingPeriod")
@@ -43,7 +43,7 @@ object VotingParamsKt {
      *
      * <code>.google.protobuf.Duration voting_period = 1 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "voting_period,omitempty", (.gogoproto.moretags) = "yaml:&#92;"voting_period&#92;"", (.gogoproto.stdduration) = true];</code>
      */
-    fun clearVotingPeriod() {
+    public fun clearVotingPeriod() {
       _builder.clearVotingPeriod()
     }
     /**
@@ -54,11 +54,11 @@ object VotingParamsKt {
      * <code>.google.protobuf.Duration voting_period = 1 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "voting_period,omitempty", (.gogoproto.moretags) = "yaml:&#92;"voting_period&#92;"", (.gogoproto.stdduration) = true];</code>
      * @return Whether the votingPeriod field is set.
      */
-    fun hasVotingPeriod(): kotlin.Boolean {
+    public fun hasVotingPeriod(): kotlin.Boolean {
       return _builder.hasVotingPeriod()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.gov.v1beta1.Gov.VotingParams.copy(block: cosmos.gov.v1beta1.VotingParamsKt.Dsl.() -> Unit): cosmos.gov.v1beta1.Gov.VotingParams =
+public inline fun cosmos.gov.v1beta1.Gov.VotingParams.copy(block: cosmos.gov.v1beta1.VotingParamsKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.Gov.VotingParams =
   cosmos.gov.v1beta1.VotingParamsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

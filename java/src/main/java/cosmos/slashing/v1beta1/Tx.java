@@ -170,7 +170,7 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getValidatorAddrBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddr_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, validatorAddr_);
       }
       unknownFields.writeTo(output);
@@ -182,7 +182,7 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
-      if (!getValidatorAddrBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddr_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, validatorAddr_);
       }
       size += unknownFields.getSerializedSize();

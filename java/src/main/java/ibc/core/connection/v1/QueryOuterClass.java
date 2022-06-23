@@ -187,7 +187,7 @@ public final class QueryOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getConnectionIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(connectionId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, connectionId_);
       }
       unknownFields.writeTo(output);
@@ -199,7 +199,7 @@ public final class QueryOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getConnectionIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(connectionId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, connectionId_);
       }
       size += unknownFields.getSerializedSize();
@@ -3923,7 +3923,7 @@ public final class QueryOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, clientId_);
       }
       unknownFields.writeTo(output);
@@ -3935,7 +3935,7 @@ public final class QueryOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, clientId_);
       }
       size += unknownFields.getSerializedSize();
@@ -5610,7 +5610,7 @@ public final class QueryOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getConnectionIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(connectionId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, connectionId_);
       }
       unknownFields.writeTo(output);
@@ -5622,7 +5622,7 @@ public final class QueryOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getConnectionIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(connectionId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, connectionId_);
       }
       size += unknownFields.getSerializedSize();
@@ -7316,7 +7316,7 @@ public final class QueryOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getConnectionIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(connectionId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, connectionId_);
       }
       if (revisionNumber_ != 0L) {
@@ -7334,7 +7334,7 @@ public final class QueryOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getConnectionIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(connectionId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, connectionId_);
       }
       if (revisionNumber_ != 0L) {
@@ -8218,7 +8218,7 @@ public final class QueryOuterClass {
       if (consensusState_ != null) {
         output.writeMessage(1, getConsensusState());
       }
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, clientId_);
       }
       if (!proof_.isEmpty()) {
@@ -8240,7 +8240,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getConsensusState());
       }
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, clientId_);
       }
       if (!proof_.isEmpty()) {
@@ -9212,9 +9212,9 @@ public final class QueryOuterClass {
       "sponse\"\177\202\323\344\223\002y\022w/ibc/core/connection/v1/" +
       "connections/{connection_id}/consensus_st" +
       "ate/revision/{revision_number}/height/{r" +
-      "evision_height}B;Z9github.com/cosmos/ibc" +
-      "-go/modules/core/03-connection/typesb\006pr" +
-      "oto3"
+      "evision_height}B>Z<github.com/cosmos/ibc" +
+      "-go/v3/modules/core/03-connection/typesb" +
+      "\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

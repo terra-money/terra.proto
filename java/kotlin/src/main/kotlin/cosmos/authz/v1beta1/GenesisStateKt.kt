@@ -4,15 +4,15 @@
 package cosmos.authz.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun genesisState(block: cosmos.authz.v1beta1.GenesisStateKt.Dsl.() -> Unit): cosmos.authz.v1beta1.Genesis.GenesisState =
+public inline fun genesisState(block: cosmos.authz.v1beta1.GenesisStateKt.Dsl.() -> kotlin.Unit): cosmos.authz.v1beta1.Genesis.GenesisState =
   cosmos.authz.v1beta1.GenesisStateKt.Dsl._create(cosmos.authz.v1beta1.Genesis.GenesisState.newBuilder()).apply { block() }._build()
-object GenesisStateKt {
+public object GenesisStateKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.authz.v1beta1.Genesis.GenesisState.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.authz.v1beta1.Genesis.GenesisState.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.authz.v1beta1.Genesis.GenesisState.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object GenesisStateKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class AuthorizationProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class AuthorizationProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.authz.v1beta1.GrantAuthorization authorization = 1 [(.gogoproto.nullable) = false];</code>
      */
-     val authorization: com.google.protobuf.kotlin.DslList<cosmos.authz.v1beta1.Genesis.GrantAuthorization, AuthorizationProxy>
+     public val authorization: com.google.protobuf.kotlin.DslList<cosmos.authz.v1beta1.Authz.GrantAuthorization, AuthorizationProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getAuthorizationList()
@@ -42,7 +42,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAuthorization")
-    fun com.google.protobuf.kotlin.DslList<cosmos.authz.v1beta1.Genesis.GrantAuthorization, AuthorizationProxy>.add(value: cosmos.authz.v1beta1.Genesis.GrantAuthorization) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.authz.v1beta1.Authz.GrantAuthorization, AuthorizationProxy>.add(value: cosmos.authz.v1beta1.Authz.GrantAuthorization) {
       _builder.addAuthorization(value)
     }/**
      * <code>repeated .cosmos.authz.v1beta1.GrantAuthorization authorization = 1 [(.gogoproto.nullable) = false];</code>
@@ -50,7 +50,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAuthorization")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.authz.v1beta1.Genesis.GrantAuthorization, AuthorizationProxy>.plusAssign(value: cosmos.authz.v1beta1.Genesis.GrantAuthorization) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.authz.v1beta1.Authz.GrantAuthorization, AuthorizationProxy>.plusAssign(value: cosmos.authz.v1beta1.Authz.GrantAuthorization) {
       add(value)
     }/**
      * <code>repeated .cosmos.authz.v1beta1.GrantAuthorization authorization = 1 [(.gogoproto.nullable) = false];</code>
@@ -58,7 +59,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllAuthorization")
-    fun com.google.protobuf.kotlin.DslList<cosmos.authz.v1beta1.Genesis.GrantAuthorization, AuthorizationProxy>.addAll(values: kotlin.collections.Iterable<cosmos.authz.v1beta1.Genesis.GrantAuthorization>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.authz.v1beta1.Authz.GrantAuthorization, AuthorizationProxy>.addAll(values: kotlin.collections.Iterable<cosmos.authz.v1beta1.Authz.GrantAuthorization>) {
       _builder.addAllAuthorization(values)
     }/**
      * <code>repeated .cosmos.authz.v1beta1.GrantAuthorization authorization = 1 [(.gogoproto.nullable) = false];</code>
@@ -66,7 +67,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllAuthorization")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.authz.v1beta1.Genesis.GrantAuthorization, AuthorizationProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.authz.v1beta1.Genesis.GrantAuthorization>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.authz.v1beta1.Authz.GrantAuthorization, AuthorizationProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.authz.v1beta1.Authz.GrantAuthorization>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.authz.v1beta1.GrantAuthorization authorization = 1 [(.gogoproto.nullable) = false];</code>
@@ -75,17 +77,17 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setAuthorization")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.authz.v1beta1.Genesis.GrantAuthorization, AuthorizationProxy>.set(index: kotlin.Int, value: cosmos.authz.v1beta1.Genesis.GrantAuthorization) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.authz.v1beta1.Authz.GrantAuthorization, AuthorizationProxy>.set(index: kotlin.Int, value: cosmos.authz.v1beta1.Authz.GrantAuthorization) {
       _builder.setAuthorization(index, value)
     }/**
      * <code>repeated .cosmos.authz.v1beta1.GrantAuthorization authorization = 1 [(.gogoproto.nullable) = false];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearAuthorization")
-    fun com.google.protobuf.kotlin.DslList<cosmos.authz.v1beta1.Genesis.GrantAuthorization, AuthorizationProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.authz.v1beta1.Authz.GrantAuthorization, AuthorizationProxy>.clear() {
       _builder.clearAuthorization()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.authz.v1beta1.Genesis.GenesisState.copy(block: cosmos.authz.v1beta1.GenesisStateKt.Dsl.() -> Unit): cosmos.authz.v1beta1.Genesis.GenesisState =
+public inline fun cosmos.authz.v1beta1.Genesis.GenesisState.copy(block: cosmos.authz.v1beta1.GenesisStateKt.Dsl.() -> kotlin.Unit): cosmos.authz.v1beta1.Genesis.GenesisState =
   cosmos.authz.v1beta1.GenesisStateKt.Dsl._create(this.toBuilder()).apply { block() }._build()

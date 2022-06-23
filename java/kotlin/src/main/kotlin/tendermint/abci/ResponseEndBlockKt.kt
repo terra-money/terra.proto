@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun responseEndBlock(block: tendermint.abci.ResponseEndBlockKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseEndBlock =
+public inline fun responseEndBlock(block: tendermint.abci.ResponseEndBlockKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseEndBlock =
   tendermint.abci.ResponseEndBlockKt.Dsl._create(tendermint.abci.Types.ResponseEndBlock.newBuilder()).apply { block() }._build()
-object ResponseEndBlockKt {
+public object ResponseEndBlockKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.ResponseEndBlock.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.ResponseEndBlock.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.ResponseEndBlock.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object ResponseEndBlockKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class ValidatorUpdatesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class ValidatorUpdatesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .tendermint.abci.ValidatorUpdate validator_updates = 1 [(.gogoproto.nullable) = false];</code>
      */
-     val validatorUpdates: com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorUpdatesProxy>
+     public val validatorUpdates: com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorUpdatesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getValidatorUpdatesList()
@@ -42,7 +42,7 @@ object ResponseEndBlockKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addValidatorUpdates")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorUpdatesProxy>.add(value: tendermint.abci.Types.ValidatorUpdate) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorUpdatesProxy>.add(value: tendermint.abci.Types.ValidatorUpdate) {
       _builder.addValidatorUpdates(value)
     }/**
      * <code>repeated .tendermint.abci.ValidatorUpdate validator_updates = 1 [(.gogoproto.nullable) = false];</code>
@@ -50,7 +50,8 @@ object ResponseEndBlockKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignValidatorUpdates")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorUpdatesProxy>.plusAssign(value: tendermint.abci.Types.ValidatorUpdate) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorUpdatesProxy>.plusAssign(value: tendermint.abci.Types.ValidatorUpdate) {
       add(value)
     }/**
      * <code>repeated .tendermint.abci.ValidatorUpdate validator_updates = 1 [(.gogoproto.nullable) = false];</code>
@@ -58,7 +59,7 @@ object ResponseEndBlockKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllValidatorUpdates")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorUpdatesProxy>.addAll(values: kotlin.collections.Iterable<tendermint.abci.Types.ValidatorUpdate>) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorUpdatesProxy>.addAll(values: kotlin.collections.Iterable<tendermint.abci.Types.ValidatorUpdate>) {
       _builder.addAllValidatorUpdates(values)
     }/**
      * <code>repeated .tendermint.abci.ValidatorUpdate validator_updates = 1 [(.gogoproto.nullable) = false];</code>
@@ -66,7 +67,8 @@ object ResponseEndBlockKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllValidatorUpdates")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorUpdatesProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.abci.Types.ValidatorUpdate>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorUpdatesProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.abci.Types.ValidatorUpdate>) {
       addAll(values)
     }/**
      * <code>repeated .tendermint.abci.ValidatorUpdate validator_updates = 1 [(.gogoproto.nullable) = false];</code>
@@ -75,20 +77,20 @@ object ResponseEndBlockKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setValidatorUpdates")
-    operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorUpdatesProxy>.set(index: kotlin.Int, value: tendermint.abci.Types.ValidatorUpdate) {
+    public operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorUpdatesProxy>.set(index: kotlin.Int, value: tendermint.abci.Types.ValidatorUpdate) {
       _builder.setValidatorUpdates(index, value)
     }/**
      * <code>repeated .tendermint.abci.ValidatorUpdate validator_updates = 1 [(.gogoproto.nullable) = false];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearValidatorUpdates")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorUpdatesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorUpdatesProxy>.clear() {
       _builder.clearValidatorUpdates()
     }
     /**
      * <code>.tendermint.abci.ConsensusParams consensus_param_updates = 2;</code>
      */
-    var consensusParamUpdates: tendermint.abci.Types.ConsensusParams
+    public var consensusParamUpdates: tendermint.abci.Types.ConsensusParams
       @JvmName("getConsensusParamUpdates")
       get() = _builder.getConsensusParamUpdates()
       @JvmName("setConsensusParamUpdates")
@@ -98,14 +100,14 @@ object ResponseEndBlockKt {
     /**
      * <code>.tendermint.abci.ConsensusParams consensus_param_updates = 2;</code>
      */
-    fun clearConsensusParamUpdates() {
+    public fun clearConsensusParamUpdates() {
       _builder.clearConsensusParamUpdates()
     }
     /**
      * <code>.tendermint.abci.ConsensusParams consensus_param_updates = 2;</code>
      * @return Whether the consensusParamUpdates field is set.
      */
-    fun hasConsensusParamUpdates(): kotlin.Boolean {
+    public fun hasConsensusParamUpdates(): kotlin.Boolean {
       return _builder.hasConsensusParamUpdates()
     }
 
@@ -114,11 +116,11 @@ object ResponseEndBlockKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class EventsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class EventsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .tendermint.abci.Event events = 3 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
      */
-     val events: com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>
+     public val events: com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getEventsList()
@@ -129,7 +131,7 @@ object ResponseEndBlockKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addEvents")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.add(value: tendermint.abci.Types.Event) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.add(value: tendermint.abci.Types.Event) {
       _builder.addEvents(value)
     }/**
      * <code>repeated .tendermint.abci.Event events = 3 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
@@ -137,7 +139,8 @@ object ResponseEndBlockKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignEvents")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(value: tendermint.abci.Types.Event) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(value: tendermint.abci.Types.Event) {
       add(value)
     }/**
      * <code>repeated .tendermint.abci.Event events = 3 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
@@ -145,7 +148,7 @@ object ResponseEndBlockKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllEvents")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.addAll(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.addAll(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
       _builder.addAllEvents(values)
     }/**
      * <code>repeated .tendermint.abci.Event events = 3 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
@@ -153,7 +156,8 @@ object ResponseEndBlockKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllEvents")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
       addAll(values)
     }/**
      * <code>repeated .tendermint.abci.Event events = 3 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
@@ -162,17 +166,17 @@ object ResponseEndBlockKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setEvents")
-    operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.set(index: kotlin.Int, value: tendermint.abci.Types.Event) {
+    public operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.set(index: kotlin.Int, value: tendermint.abci.Types.Event) {
       _builder.setEvents(index, value)
     }/**
      * <code>repeated .tendermint.abci.Event events = 3 [(.gogoproto.nullable) = false, (.gogoproto.jsontag) = "events,omitempty"];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearEvents")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.clear() {
       _builder.clearEvents()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.ResponseEndBlock.copy(block: tendermint.abci.ResponseEndBlockKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseEndBlock =
+public inline fun tendermint.abci.Types.ResponseEndBlock.copy(block: tendermint.abci.ResponseEndBlockKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseEndBlock =
   tendermint.abci.ResponseEndBlockKt.Dsl._create(this.toBuilder()).apply { block() }._build()

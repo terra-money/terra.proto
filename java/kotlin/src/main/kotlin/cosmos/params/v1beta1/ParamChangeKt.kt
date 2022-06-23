@@ -4,15 +4,15 @@
 package cosmos.params.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun paramChange(block: cosmos.params.v1beta1.ParamChangeKt.Dsl.() -> Unit): cosmos.params.v1beta1.Params.ParamChange =
+public inline fun paramChange(block: cosmos.params.v1beta1.ParamChangeKt.Dsl.() -> kotlin.Unit): cosmos.params.v1beta1.Params.ParamChange =
   cosmos.params.v1beta1.ParamChangeKt.Dsl._create(cosmos.params.v1beta1.Params.ParamChange.newBuilder()).apply { block() }._build()
-object ParamChangeKt {
+public object ParamChangeKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.params.v1beta1.Params.ParamChange.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.params.v1beta1.Params.ParamChange.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.params.v1beta1.Params.ParamChange.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ParamChangeKt {
     /**
      * <code>string subspace = 1;</code>
      */
-    var subspace: kotlin.String
+    public var subspace: kotlin.String
       @JvmName("getSubspace")
       get() = _builder.getSubspace()
       @JvmName("setSubspace")
@@ -35,14 +35,14 @@ object ParamChangeKt {
     /**
      * <code>string subspace = 1;</code>
      */
-    fun clearSubspace() {
+    public fun clearSubspace() {
       _builder.clearSubspace()
     }
 
     /**
      * <code>string key = 2;</code>
      */
-    var key: kotlin.String
+    public var key: kotlin.String
       @JvmName("getKey")
       get() = _builder.getKey()
       @JvmName("setKey")
@@ -52,14 +52,14 @@ object ParamChangeKt {
     /**
      * <code>string key = 2;</code>
      */
-    fun clearKey() {
+    public fun clearKey() {
       _builder.clearKey()
     }
 
     /**
      * <code>string value = 3;</code>
      */
-    var value: kotlin.String
+    public var value: kotlin.String
       @JvmName("getValue")
       get() = _builder.getValue()
       @JvmName("setValue")
@@ -69,11 +69,11 @@ object ParamChangeKt {
     /**
      * <code>string value = 3;</code>
      */
-    fun clearValue() {
+    public fun clearValue() {
       _builder.clearValue()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.params.v1beta1.Params.ParamChange.copy(block: cosmos.params.v1beta1.ParamChangeKt.Dsl.() -> Unit): cosmos.params.v1beta1.Params.ParamChange =
+public inline fun cosmos.params.v1beta1.Params.ParamChange.copy(block: cosmos.params.v1beta1.ParamChangeKt.Dsl.() -> kotlin.Unit): cosmos.params.v1beta1.Params.ParamChange =
   cosmos.params.v1beta1.ParamChangeKt.Dsl._create(this.toBuilder()).apply { block() }._build()

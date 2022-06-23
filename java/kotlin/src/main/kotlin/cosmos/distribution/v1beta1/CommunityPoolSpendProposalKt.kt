@@ -4,15 +4,15 @@
 package cosmos.distribution.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun communityPoolSpendProposal(block: cosmos.distribution.v1beta1.CommunityPoolSpendProposalKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.Distribution.CommunityPoolSpendProposal =
+public inline fun communityPoolSpendProposal(block: cosmos.distribution.v1beta1.CommunityPoolSpendProposalKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.Distribution.CommunityPoolSpendProposal =
   cosmos.distribution.v1beta1.CommunityPoolSpendProposalKt.Dsl._create(cosmos.distribution.v1beta1.Distribution.CommunityPoolSpendProposal.newBuilder()).apply { block() }._build()
-object CommunityPoolSpendProposalKt {
+public object CommunityPoolSpendProposalKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.distribution.v1beta1.Distribution.CommunityPoolSpendProposal.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.distribution.v1beta1.Distribution.CommunityPoolSpendProposal.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.distribution.v1beta1.Distribution.CommunityPoolSpendProposal.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object CommunityPoolSpendProposalKt {
     /**
      * <code>string title = 1;</code>
      */
-    var title: kotlin.String
+    public var title: kotlin.String
       @JvmName("getTitle")
       get() = _builder.getTitle()
       @JvmName("setTitle")
@@ -35,14 +35,14 @@ object CommunityPoolSpendProposalKt {
     /**
      * <code>string title = 1;</code>
      */
-    fun clearTitle() {
+    public fun clearTitle() {
       _builder.clearTitle()
     }
 
     /**
      * <code>string description = 2;</code>
      */
-    var description: kotlin.String
+    public var description: kotlin.String
       @JvmName("getDescription")
       get() = _builder.getDescription()
       @JvmName("setDescription")
@@ -52,14 +52,14 @@ object CommunityPoolSpendProposalKt {
     /**
      * <code>string description = 2;</code>
      */
-    fun clearDescription() {
+    public fun clearDescription() {
       _builder.clearDescription()
     }
 
     /**
      * <code>string recipient = 3;</code>
      */
-    var recipient: kotlin.String
+    public var recipient: kotlin.String
       @JvmName("getRecipient")
       get() = _builder.getRecipient()
       @JvmName("setRecipient")
@@ -69,7 +69,7 @@ object CommunityPoolSpendProposalKt {
     /**
      * <code>string recipient = 3;</code>
      */
-    fun clearRecipient() {
+    public fun clearRecipient() {
       _builder.clearRecipient()
     }
 
@@ -78,11 +78,11 @@ object CommunityPoolSpendProposalKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class AmountProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class AmountProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.base.v1beta1.Coin amount = 4 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-     val amount: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>
+     public val amount: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getAmountList()
@@ -93,7 +93,7 @@ object CommunityPoolSpendProposalKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAmount")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.addAmount(value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin amount = 4 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -101,7 +101,8 @@ object CommunityPoolSpendProposalKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAmount")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       add(value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin amount = 4 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -109,7 +110,7 @@ object CommunityPoolSpendProposalKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllAmount")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       _builder.addAllAmount(values)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin amount = 4 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -117,7 +118,8 @@ object CommunityPoolSpendProposalKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllAmount")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin amount = 4 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -126,17 +128,17 @@ object CommunityPoolSpendProposalKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setAmount")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.setAmount(index, value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin amount = 4 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearAmount")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, AmountProxy>.clear() {
       _builder.clearAmount()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.distribution.v1beta1.Distribution.CommunityPoolSpendProposal.copy(block: cosmos.distribution.v1beta1.CommunityPoolSpendProposalKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.Distribution.CommunityPoolSpendProposal =
+public inline fun cosmos.distribution.v1beta1.Distribution.CommunityPoolSpendProposal.copy(block: cosmos.distribution.v1beta1.CommunityPoolSpendProposalKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.Distribution.CommunityPoolSpendProposal =
   cosmos.distribution.v1beta1.CommunityPoolSpendProposalKt.Dsl._create(this.toBuilder()).apply { block() }._build()

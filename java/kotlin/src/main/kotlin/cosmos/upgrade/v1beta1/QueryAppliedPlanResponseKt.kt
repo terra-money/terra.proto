@@ -4,15 +4,15 @@
 package cosmos.upgrade.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryAppliedPlanResponse(block: cosmos.upgrade.v1beta1.QueryAppliedPlanResponseKt.Dsl.() -> Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryAppliedPlanResponse =
+public inline fun queryAppliedPlanResponse(block: cosmos.upgrade.v1beta1.QueryAppliedPlanResponseKt.Dsl.() -> kotlin.Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryAppliedPlanResponse =
   cosmos.upgrade.v1beta1.QueryAppliedPlanResponseKt.Dsl._create(cosmos.upgrade.v1beta1.QueryOuterClass.QueryAppliedPlanResponse.newBuilder()).apply { block() }._build()
-object QueryAppliedPlanResponseKt {
+public object QueryAppliedPlanResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryAppliedPlanResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryAppliedPlanResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryAppliedPlanResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryAppliedPlanResponseKt {
      *
      * <code>int64 height = 1;</code>
      */
-    var height: kotlin.Long
+    public var height: kotlin.Long
       @JvmName("getHeight")
       get() = _builder.getHeight()
       @JvmName("setHeight")
@@ -43,11 +43,11 @@ object QueryAppliedPlanResponseKt {
      *
      * <code>int64 height = 1;</code>
      */
-    fun clearHeight() {
+    public fun clearHeight() {
       _builder.clearHeight()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.upgrade.v1beta1.QueryOuterClass.QueryAppliedPlanResponse.copy(block: cosmos.upgrade.v1beta1.QueryAppliedPlanResponseKt.Dsl.() -> Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryAppliedPlanResponse =
+public inline fun cosmos.upgrade.v1beta1.QueryOuterClass.QueryAppliedPlanResponse.copy(block: cosmos.upgrade.v1beta1.QueryAppliedPlanResponseKt.Dsl.() -> kotlin.Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryAppliedPlanResponse =
   cosmos.upgrade.v1beta1.QueryAppliedPlanResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package tendermint.types;
 
 @kotlin.jvm.JvmSynthetic
-inline fun consensusParams(block: tendermint.types.ConsensusParamsKt.Dsl.() -> Unit): tendermint.types.Params.ConsensusParams =
+public inline fun consensusParams(block: tendermint.types.ConsensusParamsKt.Dsl.() -> kotlin.Unit): tendermint.types.Params.ConsensusParams =
   tendermint.types.ConsensusParamsKt.Dsl._create(tendermint.types.Params.ConsensusParams.newBuilder()).apply { block() }._build()
-object ConsensusParamsKt {
+public object ConsensusParamsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.types.Params.ConsensusParams.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.types.Params.ConsensusParams.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.types.Params.ConsensusParams.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ConsensusParamsKt {
     /**
      * <code>.tendermint.types.BlockParams block = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var block: tendermint.types.Params.BlockParams
+    public var block: tendermint.types.Params.BlockParams
       @JvmName("getBlock")
       get() = _builder.getBlock()
       @JvmName("setBlock")
@@ -35,21 +35,21 @@ object ConsensusParamsKt {
     /**
      * <code>.tendermint.types.BlockParams block = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearBlock() {
+    public fun clearBlock() {
       _builder.clearBlock()
     }
     /**
      * <code>.tendermint.types.BlockParams block = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the block field is set.
      */
-    fun hasBlock(): kotlin.Boolean {
+    public fun hasBlock(): kotlin.Boolean {
       return _builder.hasBlock()
     }
 
     /**
      * <code>.tendermint.types.EvidenceParams evidence = 2 [(.gogoproto.nullable) = false];</code>
      */
-    var evidence: tendermint.types.Params.EvidenceParams
+    public var evidence: tendermint.types.Params.EvidenceParams
       @JvmName("getEvidence")
       get() = _builder.getEvidence()
       @JvmName("setEvidence")
@@ -59,21 +59,21 @@ object ConsensusParamsKt {
     /**
      * <code>.tendermint.types.EvidenceParams evidence = 2 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearEvidence() {
+    public fun clearEvidence() {
       _builder.clearEvidence()
     }
     /**
      * <code>.tendermint.types.EvidenceParams evidence = 2 [(.gogoproto.nullable) = false];</code>
      * @return Whether the evidence field is set.
      */
-    fun hasEvidence(): kotlin.Boolean {
+    public fun hasEvidence(): kotlin.Boolean {
       return _builder.hasEvidence()
     }
 
     /**
      * <code>.tendermint.types.ValidatorParams validator = 3 [(.gogoproto.nullable) = false];</code>
      */
-    var validator: tendermint.types.Params.ValidatorParams
+    public var validator: tendermint.types.Params.ValidatorParams
       @JvmName("getValidator")
       get() = _builder.getValidator()
       @JvmName("setValidator")
@@ -83,21 +83,21 @@ object ConsensusParamsKt {
     /**
      * <code>.tendermint.types.ValidatorParams validator = 3 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearValidator() {
+    public fun clearValidator() {
       _builder.clearValidator()
     }
     /**
      * <code>.tendermint.types.ValidatorParams validator = 3 [(.gogoproto.nullable) = false];</code>
      * @return Whether the validator field is set.
      */
-    fun hasValidator(): kotlin.Boolean {
+    public fun hasValidator(): kotlin.Boolean {
       return _builder.hasValidator()
     }
 
     /**
      * <code>.tendermint.types.VersionParams version = 4 [(.gogoproto.nullable) = false];</code>
      */
-    var version: tendermint.types.Params.VersionParams
+    public var version: tendermint.types.Params.VersionParams
       @JvmName("getVersion")
       get() = _builder.getVersion()
       @JvmName("setVersion")
@@ -107,18 +107,18 @@ object ConsensusParamsKt {
     /**
      * <code>.tendermint.types.VersionParams version = 4 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearVersion() {
+    public fun clearVersion() {
       _builder.clearVersion()
     }
     /**
      * <code>.tendermint.types.VersionParams version = 4 [(.gogoproto.nullable) = false];</code>
      * @return Whether the version field is set.
      */
-    fun hasVersion(): kotlin.Boolean {
+    public fun hasVersion(): kotlin.Boolean {
       return _builder.hasVersion()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.types.Params.ConsensusParams.copy(block: tendermint.types.ConsensusParamsKt.Dsl.() -> Unit): tendermint.types.Params.ConsensusParams =
+public inline fun tendermint.types.Params.ConsensusParams.copy(block: tendermint.types.ConsensusParamsKt.Dsl.() -> kotlin.Unit): tendermint.types.Params.ConsensusParams =
   tendermint.types.ConsensusParamsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

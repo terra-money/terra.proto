@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun responseInitChain(block: tendermint.abci.ResponseInitChainKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseInitChain =
+public inline fun responseInitChain(block: tendermint.abci.ResponseInitChainKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseInitChain =
   tendermint.abci.ResponseInitChainKt.Dsl._create(tendermint.abci.Types.ResponseInitChain.newBuilder()).apply { block() }._build()
-object ResponseInitChainKt {
+public object ResponseInitChainKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.ResponseInitChain.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.ResponseInitChain.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.ResponseInitChain.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ResponseInitChainKt {
     /**
      * <code>.tendermint.abci.ConsensusParams consensus_params = 1;</code>
      */
-    var consensusParams: tendermint.abci.Types.ConsensusParams
+    public var consensusParams: tendermint.abci.Types.ConsensusParams
       @JvmName("getConsensusParams")
       get() = _builder.getConsensusParams()
       @JvmName("setConsensusParams")
@@ -35,14 +35,14 @@ object ResponseInitChainKt {
     /**
      * <code>.tendermint.abci.ConsensusParams consensus_params = 1;</code>
      */
-    fun clearConsensusParams() {
+    public fun clearConsensusParams() {
       _builder.clearConsensusParams()
     }
     /**
      * <code>.tendermint.abci.ConsensusParams consensus_params = 1;</code>
      * @return Whether the consensusParams field is set.
      */
-    fun hasConsensusParams(): kotlin.Boolean {
+    public fun hasConsensusParams(): kotlin.Boolean {
       return _builder.hasConsensusParams()
     }
 
@@ -51,11 +51,11 @@ object ResponseInitChainKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class ValidatorsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class ValidatorsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .tendermint.abci.ValidatorUpdate validators = 2 [(.gogoproto.nullable) = false];</code>
      */
-     val validators: com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorsProxy>
+     public val validators: com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getValidatorsList()
@@ -66,7 +66,7 @@ object ResponseInitChainKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addValidators")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorsProxy>.add(value: tendermint.abci.Types.ValidatorUpdate) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorsProxy>.add(value: tendermint.abci.Types.ValidatorUpdate) {
       _builder.addValidators(value)
     }/**
      * <code>repeated .tendermint.abci.ValidatorUpdate validators = 2 [(.gogoproto.nullable) = false];</code>
@@ -74,7 +74,8 @@ object ResponseInitChainKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignValidators")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorsProxy>.plusAssign(value: tendermint.abci.Types.ValidatorUpdate) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorsProxy>.plusAssign(value: tendermint.abci.Types.ValidatorUpdate) {
       add(value)
     }/**
      * <code>repeated .tendermint.abci.ValidatorUpdate validators = 2 [(.gogoproto.nullable) = false];</code>
@@ -82,7 +83,7 @@ object ResponseInitChainKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllValidators")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorsProxy>.addAll(values: kotlin.collections.Iterable<tendermint.abci.Types.ValidatorUpdate>) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorsProxy>.addAll(values: kotlin.collections.Iterable<tendermint.abci.Types.ValidatorUpdate>) {
       _builder.addAllValidators(values)
     }/**
      * <code>repeated .tendermint.abci.ValidatorUpdate validators = 2 [(.gogoproto.nullable) = false];</code>
@@ -90,7 +91,8 @@ object ResponseInitChainKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllValidators")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorsProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.abci.Types.ValidatorUpdate>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorsProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.abci.Types.ValidatorUpdate>) {
       addAll(values)
     }/**
      * <code>repeated .tendermint.abci.ValidatorUpdate validators = 2 [(.gogoproto.nullable) = false];</code>
@@ -99,20 +101,20 @@ object ResponseInitChainKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setValidators")
-    operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorsProxy>.set(index: kotlin.Int, value: tendermint.abci.Types.ValidatorUpdate) {
+    public operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorsProxy>.set(index: kotlin.Int, value: tendermint.abci.Types.ValidatorUpdate) {
       _builder.setValidators(index, value)
     }/**
      * <code>repeated .tendermint.abci.ValidatorUpdate validators = 2 [(.gogoproto.nullable) = false];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearValidators")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.ValidatorUpdate, ValidatorsProxy>.clear() {
       _builder.clearValidators()
     }
     /**
      * <code>bytes app_hash = 3;</code>
      */
-    var appHash: com.google.protobuf.ByteString
+    public var appHash: com.google.protobuf.ByteString
       @JvmName("getAppHash")
       get() = _builder.getAppHash()
       @JvmName("setAppHash")
@@ -122,11 +124,11 @@ object ResponseInitChainKt {
     /**
      * <code>bytes app_hash = 3;</code>
      */
-    fun clearAppHash() {
+    public fun clearAppHash() {
       _builder.clearAppHash()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.ResponseInitChain.copy(block: tendermint.abci.ResponseInitChainKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseInitChain =
+public inline fun tendermint.abci.Types.ResponseInitChain.copy(block: tendermint.abci.ResponseInitChainKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseInitChain =
   tendermint.abci.ResponseInitChainKt.Dsl._create(this.toBuilder()).apply { block() }._build()

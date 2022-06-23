@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun responseException(block: tendermint.abci.ResponseExceptionKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseException =
+public inline fun responseException(block: tendermint.abci.ResponseExceptionKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseException =
   tendermint.abci.ResponseExceptionKt.Dsl._create(tendermint.abci.Types.ResponseException.newBuilder()).apply { block() }._build()
-object ResponseExceptionKt {
+public object ResponseExceptionKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.ResponseException.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.ResponseException.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.ResponseException.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ResponseExceptionKt {
     /**
      * <code>string error = 1;</code>
      */
-    var error: kotlin.String
+    public var error: kotlin.String
       @JvmName("getError")
       get() = _builder.getError()
       @JvmName("setError")
@@ -35,11 +35,11 @@ object ResponseExceptionKt {
     /**
      * <code>string error = 1;</code>
      */
-    fun clearError() {
+    public fun clearError() {
       _builder.clearError()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.ResponseException.copy(block: tendermint.abci.ResponseExceptionKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseException =
+public inline fun tendermint.abci.Types.ResponseException.copy(block: tendermint.abci.ResponseExceptionKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseException =
   tendermint.abci.ResponseExceptionKt.Dsl._create(this.toBuilder()).apply { block() }._build()

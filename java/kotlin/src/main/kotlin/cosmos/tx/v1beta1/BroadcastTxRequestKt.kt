@@ -4,15 +4,15 @@
 package cosmos.tx.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun broadcastTxRequest(block: cosmos.tx.v1beta1.BroadcastTxRequestKt.Dsl.() -> Unit): cosmos.tx.v1beta1.ServiceOuterClass.BroadcastTxRequest =
+public inline fun broadcastTxRequest(block: cosmos.tx.v1beta1.BroadcastTxRequestKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.ServiceOuterClass.BroadcastTxRequest =
   cosmos.tx.v1beta1.BroadcastTxRequestKt.Dsl._create(cosmos.tx.v1beta1.ServiceOuterClass.BroadcastTxRequest.newBuilder()).apply { block() }._build()
-object BroadcastTxRequestKt {
+public object BroadcastTxRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.tx.v1beta1.ServiceOuterClass.BroadcastTxRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.tx.v1beta1.ServiceOuterClass.BroadcastTxRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.tx.v1beta1.ServiceOuterClass.BroadcastTxRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object BroadcastTxRequestKt {
      *
      * <code>bytes tx_bytes = 1;</code>
      */
-    var txBytes: com.google.protobuf.ByteString
+    public var txBytes: com.google.protobuf.ByteString
       @JvmName("getTxBytes")
       get() = _builder.getTxBytes()
       @JvmName("setTxBytes")
@@ -43,14 +43,14 @@ object BroadcastTxRequestKt {
      *
      * <code>bytes tx_bytes = 1;</code>
      */
-    fun clearTxBytes() {
+    public fun clearTxBytes() {
       _builder.clearTxBytes()
     }
 
     /**
      * <code>.cosmos.tx.v1beta1.BroadcastMode mode = 2;</code>
      */
-    var mode: cosmos.tx.v1beta1.ServiceOuterClass.BroadcastMode
+    public var mode: cosmos.tx.v1beta1.ServiceOuterClass.BroadcastMode
       @JvmName("getMode")
       get() = _builder.getMode()
       @JvmName("setMode")
@@ -60,11 +60,11 @@ object BroadcastTxRequestKt {
     /**
      * <code>.cosmos.tx.v1beta1.BroadcastMode mode = 2;</code>
      */
-    fun clearMode() {
+    public fun clearMode() {
       _builder.clearMode()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.tx.v1beta1.ServiceOuterClass.BroadcastTxRequest.copy(block: cosmos.tx.v1beta1.BroadcastTxRequestKt.Dsl.() -> Unit): cosmos.tx.v1beta1.ServiceOuterClass.BroadcastTxRequest =
+public inline fun cosmos.tx.v1beta1.ServiceOuterClass.BroadcastTxRequest.copy(block: cosmos.tx.v1beta1.BroadcastTxRequestKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.ServiceOuterClass.BroadcastTxRequest =
   cosmos.tx.v1beta1.BroadcastTxRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

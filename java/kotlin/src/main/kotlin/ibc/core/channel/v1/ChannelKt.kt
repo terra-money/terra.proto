@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun channel(block: ibc.core.channel.v1.ChannelKt.Dsl.() -> Unit): ibc.core.channel.v1.ChannelOuterClass.Channel =
+public inline fun channel(block: ibc.core.channel.v1.ChannelKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.ChannelOuterClass.Channel =
   ibc.core.channel.v1.ChannelKt.Dsl._create(ibc.core.channel.v1.ChannelOuterClass.Channel.newBuilder()).apply { block() }._build()
-object ChannelKt {
+public object ChannelKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.ChannelOuterClass.Channel.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.ChannelOuterClass.Channel.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.ChannelOuterClass.Channel.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object ChannelKt {
      *
      * <code>.ibc.core.channel.v1.State state = 1;</code>
      */
-    var state: ibc.core.channel.v1.ChannelOuterClass.State
+    public var state: ibc.core.channel.v1.ChannelOuterClass.State
       @JvmName("getState")
       get() = _builder.getState()
       @JvmName("setState")
@@ -43,7 +43,7 @@ object ChannelKt {
      *
      * <code>.ibc.core.channel.v1.State state = 1;</code>
      */
-    fun clearState() {
+    public fun clearState() {
       _builder.clearState()
     }
 
@@ -54,7 +54,7 @@ object ChannelKt {
      *
      * <code>.ibc.core.channel.v1.Order ordering = 2;</code>
      */
-    var ordering: ibc.core.channel.v1.ChannelOuterClass.Order
+    public var ordering: ibc.core.channel.v1.ChannelOuterClass.Order
       @JvmName("getOrdering")
       get() = _builder.getOrdering()
       @JvmName("setOrdering")
@@ -68,7 +68,7 @@ object ChannelKt {
      *
      * <code>.ibc.core.channel.v1.Order ordering = 2;</code>
      */
-    fun clearOrdering() {
+    public fun clearOrdering() {
       _builder.clearOrdering()
     }
 
@@ -79,7 +79,7 @@ object ChannelKt {
      *
      * <code>.ibc.core.channel.v1.Counterparty counterparty = 3 [(.gogoproto.nullable) = false];</code>
      */
-    var counterparty: ibc.core.channel.v1.ChannelOuterClass.Counterparty
+    public var counterparty: ibc.core.channel.v1.ChannelOuterClass.Counterparty
       @JvmName("getCounterparty")
       get() = _builder.getCounterparty()
       @JvmName("setCounterparty")
@@ -93,7 +93,7 @@ object ChannelKt {
      *
      * <code>.ibc.core.channel.v1.Counterparty counterparty = 3 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearCounterparty() {
+    public fun clearCounterparty() {
       _builder.clearCounterparty()
     }
     /**
@@ -104,7 +104,7 @@ object ChannelKt {
      * <code>.ibc.core.channel.v1.Counterparty counterparty = 3 [(.gogoproto.nullable) = false];</code>
      * @return Whether the counterparty field is set.
      */
-    fun hasCounterparty(): kotlin.Boolean {
+    public fun hasCounterparty(): kotlin.Boolean {
       return _builder.hasCounterparty()
     }
 
@@ -113,7 +113,7 @@ object ChannelKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class ConnectionHopsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class ConnectionHopsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * list of connection identifiers, in order, along which packets sent on
@@ -123,8 +123,8 @@ object ChannelKt {
      * <code>repeated string connection_hops = 4 [(.gogoproto.moretags) = "yaml:&#92;"connection_hops&#92;""];</code>
      * @return A list containing the connectionHops.
      */
-    val connectionHops: com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionHopsProxy>
-      @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
+    public val connectionHops: com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionHopsProxy>
+      @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getConnectionHopsList()
       )
@@ -139,7 +139,7 @@ object ChannelKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addConnectionHops")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionHopsProxy>.add(value: kotlin.String) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionHopsProxy>.add(value: kotlin.String) {
       _builder.addConnectionHops(value)
     }
     /**
@@ -153,8 +153,9 @@ object ChannelKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignConnectionHops")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionHopsProxy>.plusAssign(value: kotlin.String) {
-      _builder.addConnectionHops(value)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionHopsProxy>.plusAssign(value: kotlin.String) {
+      add(value)
     }
     /**
      * <pre>
@@ -167,7 +168,7 @@ object ChannelKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllConnectionHops")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionHopsProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionHopsProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
       _builder.addAllConnectionHops(values)
     }
     /**
@@ -181,8 +182,9 @@ object ChannelKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllConnectionHops")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionHopsProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
-      _builder.addAllConnectionHops(values)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionHopsProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
+      addAll(values)
     }
     /**
      * <pre>
@@ -196,7 +198,7 @@ object ChannelKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setConnectionHops")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionHopsProxy>.set(index: kotlin.Int, value: kotlin.String) {
+    public operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionHopsProxy>.set(index: kotlin.Int, value: kotlin.String) {
       _builder.setConnectionHops(index, value)
     }/**
      * <pre>
@@ -208,7 +210,7 @@ object ChannelKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearConnectionHops")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionHopsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionHopsProxy>.clear() {
       _builder.clearConnectionHops()
     }
     /**
@@ -218,7 +220,7 @@ object ChannelKt {
      *
      * <code>string version = 5;</code>
      */
-    var version: kotlin.String
+    public var version: kotlin.String
       @JvmName("getVersion")
       get() = _builder.getVersion()
       @JvmName("setVersion")
@@ -232,11 +234,11 @@ object ChannelKt {
      *
      * <code>string version = 5;</code>
      */
-    fun clearVersion() {
+    public fun clearVersion() {
       _builder.clearVersion()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.ChannelOuterClass.Channel.copy(block: ibc.core.channel.v1.ChannelKt.Dsl.() -> Unit): ibc.core.channel.v1.ChannelOuterClass.Channel =
+public inline fun ibc.core.channel.v1.ChannelOuterClass.Channel.copy(block: ibc.core.channel.v1.ChannelKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.ChannelOuterClass.Channel =
   ibc.core.channel.v1.ChannelKt.Dsl._create(this.toBuilder()).apply { block() }._build()

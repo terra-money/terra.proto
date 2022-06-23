@@ -4,15 +4,15 @@
 package cosmos.staking.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun description(block: cosmos.staking.v1beta1.DescriptionKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Staking.Description =
+public inline fun description(block: cosmos.staking.v1beta1.DescriptionKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Staking.Description =
   cosmos.staking.v1beta1.DescriptionKt.Dsl._create(cosmos.staking.v1beta1.Staking.Description.newBuilder()).apply { block() }._build()
-object DescriptionKt {
+public object DescriptionKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.staking.v1beta1.Staking.Description.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.staking.v1beta1.Staking.Description.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.staking.v1beta1.Staking.Description.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object DescriptionKt {
      *
      * <code>string moniker = 1;</code>
      */
-    var moniker: kotlin.String
+    public var moniker: kotlin.String
       @JvmName("getMoniker")
       get() = _builder.getMoniker()
       @JvmName("setMoniker")
@@ -43,7 +43,7 @@ object DescriptionKt {
      *
      * <code>string moniker = 1;</code>
      */
-    fun clearMoniker() {
+    public fun clearMoniker() {
       _builder.clearMoniker()
     }
 
@@ -54,7 +54,7 @@ object DescriptionKt {
      *
      * <code>string identity = 2;</code>
      */
-    var identity: kotlin.String
+    public var identity: kotlin.String
       @JvmName("getIdentity")
       get() = _builder.getIdentity()
       @JvmName("setIdentity")
@@ -68,7 +68,7 @@ object DescriptionKt {
      *
      * <code>string identity = 2;</code>
      */
-    fun clearIdentity() {
+    public fun clearIdentity() {
       _builder.clearIdentity()
     }
 
@@ -79,7 +79,7 @@ object DescriptionKt {
      *
      * <code>string website = 3;</code>
      */
-    var website: kotlin.String
+    public var website: kotlin.String
       @JvmName("getWebsite")
       get() = _builder.getWebsite()
       @JvmName("setWebsite")
@@ -93,7 +93,7 @@ object DescriptionKt {
      *
      * <code>string website = 3;</code>
      */
-    fun clearWebsite() {
+    public fun clearWebsite() {
       _builder.clearWebsite()
     }
 
@@ -104,7 +104,7 @@ object DescriptionKt {
      *
      * <code>string security_contact = 4 [(.gogoproto.moretags) = "yaml:&#92;"security_contact&#92;""];</code>
      */
-    var securityContact: kotlin.String
+    public var securityContact: kotlin.String
       @JvmName("getSecurityContact")
       get() = _builder.getSecurityContact()
       @JvmName("setSecurityContact")
@@ -118,7 +118,7 @@ object DescriptionKt {
      *
      * <code>string security_contact = 4 [(.gogoproto.moretags) = "yaml:&#92;"security_contact&#92;""];</code>
      */
-    fun clearSecurityContact() {
+    public fun clearSecurityContact() {
       _builder.clearSecurityContact()
     }
 
@@ -129,7 +129,7 @@ object DescriptionKt {
      *
      * <code>string details = 5;</code>
      */
-    var details: kotlin.String
+    public var details: kotlin.String
       @JvmName("getDetails")
       get() = _builder.getDetails()
       @JvmName("setDetails")
@@ -143,11 +143,11 @@ object DescriptionKt {
      *
      * <code>string details = 5;</code>
      */
-    fun clearDetails() {
+    public fun clearDetails() {
       _builder.clearDetails()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.staking.v1beta1.Staking.Description.copy(block: cosmos.staking.v1beta1.DescriptionKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Staking.Description =
+public inline fun cosmos.staking.v1beta1.Staking.Description.copy(block: cosmos.staking.v1beta1.DescriptionKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Staking.Description =
   cosmos.staking.v1beta1.DescriptionKt.Dsl._create(this.toBuilder()).apply { block() }._build()

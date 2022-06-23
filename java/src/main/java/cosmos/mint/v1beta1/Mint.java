@@ -259,10 +259,10 @@ public final class Mint {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getInflationBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(inflation_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, inflation_);
       }
-      if (!getAnnualProvisionsBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(annualProvisions_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, annualProvisions_);
       }
       unknownFields.writeTo(output);
@@ -274,10 +274,10 @@ public final class Mint {
       if (size != -1) return size;
 
       size = 0;
-      if (!getInflationBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(inflation_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, inflation_);
       }
-      if (!getAnnualProvisionsBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(annualProvisions_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, annualProvisions_);
       }
       size += unknownFields.getSerializedSize();
@@ -1306,19 +1306,19 @@ public final class Mint {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getMintDenomBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(mintDenom_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, mintDenom_);
       }
-      if (!getInflationRateChangeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(inflationRateChange_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, inflationRateChange_);
       }
-      if (!getInflationMaxBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(inflationMax_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, inflationMax_);
       }
-      if (!getInflationMinBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(inflationMin_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, inflationMin_);
       }
-      if (!getGoalBondedBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(goalBonded_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, goalBonded_);
       }
       if (blocksPerYear_ != 0L) {
@@ -1333,19 +1333,19 @@ public final class Mint {
       if (size != -1) return size;
 
       size = 0;
-      if (!getMintDenomBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(mintDenom_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, mintDenom_);
       }
-      if (!getInflationRateChangeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(inflationRateChange_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, inflationRateChange_);
       }
-      if (!getInflationMaxBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(inflationMax_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, inflationMax_);
       }
-      if (!getInflationMinBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(inflationMin_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, inflationMin_);
       }
-      if (!getGoalBondedBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(goalBonded_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, goalBonded_);
       }
       if (blocksPerYear_ != 0L) {

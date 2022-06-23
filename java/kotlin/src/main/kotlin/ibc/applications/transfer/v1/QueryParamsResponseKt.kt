@@ -4,15 +4,15 @@
 package ibc.applications.transfer.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryParamsResponse(block: ibc.applications.transfer.v1.QueryParamsResponseKt.Dsl.() -> Unit): ibc.applications.transfer.v1.QueryOuterClass.QueryParamsResponse =
+public inline fun queryParamsResponse(block: ibc.applications.transfer.v1.QueryParamsResponseKt.Dsl.() -> kotlin.Unit): ibc.applications.transfer.v1.QueryOuterClass.QueryParamsResponse =
   ibc.applications.transfer.v1.QueryParamsResponseKt.Dsl._create(ibc.applications.transfer.v1.QueryOuterClass.QueryParamsResponse.newBuilder()).apply { block() }._build()
-object QueryParamsResponseKt {
+public object QueryParamsResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.applications.transfer.v1.QueryOuterClass.QueryParamsResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.applications.transfer.v1.QueryOuterClass.QueryParamsResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.applications.transfer.v1.QueryOuterClass.QueryParamsResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryParamsResponseKt {
      *
      * <code>.ibc.applications.transfer.v1.Params params = 1;</code>
      */
-    var params: ibc.applications.transfer.v1.Transfer.Params
+    public var params: ibc.applications.transfer.v1.Transfer.Params
       @JvmName("getParams")
       get() = _builder.getParams()
       @JvmName("setParams")
@@ -43,7 +43,7 @@ object QueryParamsResponseKt {
      *
      * <code>.ibc.applications.transfer.v1.Params params = 1;</code>
      */
-    fun clearParams() {
+    public fun clearParams() {
       _builder.clearParams()
     }
     /**
@@ -54,11 +54,11 @@ object QueryParamsResponseKt {
      * <code>.ibc.applications.transfer.v1.Params params = 1;</code>
      * @return Whether the params field is set.
      */
-    fun hasParams(): kotlin.Boolean {
+    public fun hasParams(): kotlin.Boolean {
       return _builder.hasParams()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.applications.transfer.v1.QueryOuterClass.QueryParamsResponse.copy(block: ibc.applications.transfer.v1.QueryParamsResponseKt.Dsl.() -> Unit): ibc.applications.transfer.v1.QueryOuterClass.QueryParamsResponse =
+public inline fun ibc.applications.transfer.v1.QueryOuterClass.QueryParamsResponse.copy(block: ibc.applications.transfer.v1.QueryParamsResponseKt.Dsl.() -> kotlin.Unit): ibc.applications.transfer.v1.QueryOuterClass.QueryParamsResponse =
   ibc.applications.transfer.v1.QueryParamsResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

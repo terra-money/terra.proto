@@ -4,15 +4,15 @@
 package ibc.core.client.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgUpdateClient(block: ibc.core.client.v1.MsgUpdateClientKt.Dsl.() -> Unit): ibc.core.client.v1.Tx.MsgUpdateClient =
+public inline fun msgUpdateClient(block: ibc.core.client.v1.MsgUpdateClientKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.Tx.MsgUpdateClient =
   ibc.core.client.v1.MsgUpdateClientKt.Dsl._create(ibc.core.client.v1.Tx.MsgUpdateClient.newBuilder()).apply { block() }._build()
-object MsgUpdateClientKt {
+public object MsgUpdateClientKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.client.v1.Tx.MsgUpdateClient.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.client.v1.Tx.MsgUpdateClient.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.client.v1.Tx.MsgUpdateClient.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object MsgUpdateClientKt {
      *
      * <code>string client_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"client_id&#92;""];</code>
      */
-    var clientId: kotlin.String
+    public var clientId: kotlin.String
       @JvmName("getClientId")
       get() = _builder.getClientId()
       @JvmName("setClientId")
@@ -43,7 +43,7 @@ object MsgUpdateClientKt {
      *
      * <code>string client_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"client_id&#92;""];</code>
      */
-    fun clearClientId() {
+    public fun clearClientId() {
       _builder.clearClientId()
     }
 
@@ -54,7 +54,7 @@ object MsgUpdateClientKt {
      *
      * <code>.google.protobuf.Any header = 2;</code>
      */
-    var header: com.google.protobuf.Any
+    public var header: com.google.protobuf.Any
       @JvmName("getHeader")
       get() = _builder.getHeader()
       @JvmName("setHeader")
@@ -68,7 +68,7 @@ object MsgUpdateClientKt {
      *
      * <code>.google.protobuf.Any header = 2;</code>
      */
-    fun clearHeader() {
+    public fun clearHeader() {
       _builder.clearHeader()
     }
     /**
@@ -79,7 +79,7 @@ object MsgUpdateClientKt {
      * <code>.google.protobuf.Any header = 2;</code>
      * @return Whether the header field is set.
      */
-    fun hasHeader(): kotlin.Boolean {
+    public fun hasHeader(): kotlin.Boolean {
       return _builder.hasHeader()
     }
 
@@ -90,7 +90,7 @@ object MsgUpdateClientKt {
      *
      * <code>string signer = 3;</code>
      */
-    var signer: kotlin.String
+    public var signer: kotlin.String
       @JvmName("getSigner")
       get() = _builder.getSigner()
       @JvmName("setSigner")
@@ -104,11 +104,11 @@ object MsgUpdateClientKt {
      *
      * <code>string signer = 3;</code>
      */
-    fun clearSigner() {
+    public fun clearSigner() {
       _builder.clearSigner()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.client.v1.Tx.MsgUpdateClient.copy(block: ibc.core.client.v1.MsgUpdateClientKt.Dsl.() -> Unit): ibc.core.client.v1.Tx.MsgUpdateClient =
+public inline fun ibc.core.client.v1.Tx.MsgUpdateClient.copy(block: ibc.core.client.v1.MsgUpdateClientKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.Tx.MsgUpdateClient =
   ibc.core.client.v1.MsgUpdateClientKt.Dsl._create(this.toBuilder()).apply { block() }._build()

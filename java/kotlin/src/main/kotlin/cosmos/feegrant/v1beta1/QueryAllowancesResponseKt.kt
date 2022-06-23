@@ -4,15 +4,15 @@
 package cosmos.feegrant.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryAllowancesResponse(block: cosmos.feegrant.v1beta1.QueryAllowancesResponseKt.Dsl.() -> Unit): cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesResponse =
+public inline fun queryAllowancesResponse(block: cosmos.feegrant.v1beta1.QueryAllowancesResponseKt.Dsl.() -> kotlin.Unit): cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesResponse =
   cosmos.feegrant.v1beta1.QueryAllowancesResponseKt.Dsl._create(cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesResponse.newBuilder()).apply { block() }._build()
-object QueryAllowancesResponseKt {
+public object QueryAllowancesResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesResponse.Builder): Dsl = Dsl(builder)
@@ -27,7 +27,7 @@ object QueryAllowancesResponseKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class AllowancesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class AllowancesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * allowances are allowance's granted for grantee by granter.
@@ -35,7 +35,7 @@ object QueryAllowancesResponseKt {
      *
      * <code>repeated .cosmos.feegrant.v1beta1.Grant allowances = 1;</code>
      */
-     val allowances: com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>
+     public val allowances: com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getAllowancesList()
@@ -50,7 +50,7 @@ object QueryAllowancesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllowances")
-    fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.add(value: cosmos.feegrant.v1beta1.Feegrant.Grant) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.add(value: cosmos.feegrant.v1beta1.Feegrant.Grant) {
       _builder.addAllowances(value)
     }/**
      * <pre>
@@ -62,7 +62,8 @@ object QueryAllowancesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllowances")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.plusAssign(value: cosmos.feegrant.v1beta1.Feegrant.Grant) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.plusAssign(value: cosmos.feegrant.v1beta1.Feegrant.Grant) {
       add(value)
     }/**
      * <pre>
@@ -74,7 +75,7 @@ object QueryAllowancesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllAllowances")
-    fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.feegrant.v1beta1.Feegrant.Grant>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.feegrant.v1beta1.Feegrant.Grant>) {
       _builder.addAllAllowances(values)
     }/**
      * <pre>
@@ -86,7 +87,8 @@ object QueryAllowancesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllAllowances")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.feegrant.v1beta1.Feegrant.Grant>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.feegrant.v1beta1.Feegrant.Grant>) {
       addAll(values)
     }/**
      * <pre>
@@ -99,7 +101,7 @@ object QueryAllowancesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setAllowances")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.set(index: kotlin.Int, value: cosmos.feegrant.v1beta1.Feegrant.Grant) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.set(index: kotlin.Int, value: cosmos.feegrant.v1beta1.Feegrant.Grant) {
       _builder.setAllowances(index, value)
     }/**
      * <pre>
@@ -110,7 +112,7 @@ object QueryAllowancesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearAllowances")
-    fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.feegrant.v1beta1.Feegrant.Grant, AllowancesProxy>.clear() {
       _builder.clearAllowances()
     }
     /**
@@ -120,7 +122,7 @@ object QueryAllowancesResponseKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageResponse
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageResponse
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -134,7 +136,7 @@ object QueryAllowancesResponseKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
@@ -145,11 +147,11 @@ object QueryAllowancesResponseKt {
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesResponse.copy(block: cosmos.feegrant.v1beta1.QueryAllowancesResponseKt.Dsl.() -> Unit): cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesResponse =
+public inline fun cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesResponse.copy(block: cosmos.feegrant.v1beta1.QueryAllowancesResponseKt.Dsl.() -> kotlin.Unit): cosmos.feegrant.v1beta1.QueryOuterClass.QueryAllowancesResponse =
   cosmos.feegrant.v1beta1.QueryAllowancesResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -259,10 +259,10 @@ public final class QueryOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getGranterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(granter_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, granter_);
       }
-      if (!getGranteeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(grantee_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, grantee_);
       }
       unknownFields.writeTo(output);
@@ -274,10 +274,10 @@ public final class QueryOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getGranterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(granter_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, granter_);
       }
-      if (!getGranteeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(grantee_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, grantee_);
       }
       size += unknownFields.getSerializedSize();
@@ -1735,7 +1735,7 @@ public final class QueryOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getGranteeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(grantee_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, grantee_);
       }
       if (pagination_ != null) {
@@ -1750,7 +1750,7 @@ public final class QueryOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getGranteeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(grantee_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, grantee_);
       }
       if (pagination_ != null) {

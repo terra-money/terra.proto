@@ -197,7 +197,7 @@ public final class Types {
       if (protocol_ != 0L) {
         output.writeUInt64(1, protocol_);
       }
-      if (!getSoftwareBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(software_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, software_);
       }
       unknownFields.writeTo(output);
@@ -213,7 +213,7 @@ public final class Types {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(1, protocol_);
       }
-      if (!getSoftwareBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(software_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, software_);
       }
       size += unknownFields.getSerializedSize();

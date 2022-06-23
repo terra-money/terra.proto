@@ -4,15 +4,15 @@
 package cosmos.evidence.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryEvidenceResponse(block: cosmos.evidence.v1beta1.QueryEvidenceResponseKt.Dsl.() -> Unit): cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse =
+public inline fun queryEvidenceResponse(block: cosmos.evidence.v1beta1.QueryEvidenceResponseKt.Dsl.() -> kotlin.Unit): cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse =
   cosmos.evidence.v1beta1.QueryEvidenceResponseKt.Dsl._create(cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse.newBuilder()).apply { block() }._build()
-object QueryEvidenceResponseKt {
+public object QueryEvidenceResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryEvidenceResponseKt {
      *
      * <code>.google.protobuf.Any evidence = 1;</code>
      */
-    var evidence: com.google.protobuf.Any
+    public var evidence: com.google.protobuf.Any
       @JvmName("getEvidence")
       get() = _builder.getEvidence()
       @JvmName("setEvidence")
@@ -43,7 +43,7 @@ object QueryEvidenceResponseKt {
      *
      * <code>.google.protobuf.Any evidence = 1;</code>
      */
-    fun clearEvidence() {
+    public fun clearEvidence() {
       _builder.clearEvidence()
     }
     /**
@@ -54,11 +54,11 @@ object QueryEvidenceResponseKt {
      * <code>.google.protobuf.Any evidence = 1;</code>
      * @return Whether the evidence field is set.
      */
-    fun hasEvidence(): kotlin.Boolean {
+    public fun hasEvidence(): kotlin.Boolean {
       return _builder.hasEvidence()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse.copy(block: cosmos.evidence.v1beta1.QueryEvidenceResponseKt.Dsl.() -> Unit): cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse =
+public inline fun cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse.copy(block: cosmos.evidence.v1beta1.QueryEvidenceResponseKt.Dsl.() -> kotlin.Unit): cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse =
   cosmos.evidence.v1beta1.QueryEvidenceResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

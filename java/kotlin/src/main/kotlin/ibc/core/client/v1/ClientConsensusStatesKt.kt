@@ -4,15 +4,15 @@
 package ibc.core.client.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun clientConsensusStates(block: ibc.core.client.v1.ClientConsensusStatesKt.Dsl.() -> Unit): ibc.core.client.v1.Client.ClientConsensusStates =
+public inline fun clientConsensusStates(block: ibc.core.client.v1.ClientConsensusStatesKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.Client.ClientConsensusStates =
   ibc.core.client.v1.ClientConsensusStatesKt.Dsl._create(ibc.core.client.v1.Client.ClientConsensusStates.newBuilder()).apply { block() }._build()
-object ClientConsensusStatesKt {
+public object ClientConsensusStatesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.client.v1.Client.ClientConsensusStates.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.client.v1.Client.ClientConsensusStates.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.client.v1.Client.ClientConsensusStates.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object ClientConsensusStatesKt {
      *
      * <code>string client_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"client_id&#92;""];</code>
      */
-    var clientId: kotlin.String
+    public var clientId: kotlin.String
       @JvmName("getClientId")
       get() = _builder.getClientId()
       @JvmName("setClientId")
@@ -43,7 +43,7 @@ object ClientConsensusStatesKt {
      *
      * <code>string client_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"client_id&#92;""];</code>
      */
-    fun clearClientId() {
+    public fun clearClientId() {
       _builder.clearClientId()
     }
 
@@ -52,7 +52,7 @@ object ClientConsensusStatesKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class ConsensusStatesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class ConsensusStatesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * consensus states and their heights associated with the client
@@ -60,7 +60,7 @@ object ClientConsensusStatesKt {
      *
      * <code>repeated .ibc.core.client.v1.ConsensusStateWithHeight consensus_states = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"consensus_states&#92;""];</code>
      */
-     val consensusStates: com.google.protobuf.kotlin.DslList<ibc.core.client.v1.Client.ConsensusStateWithHeight, ConsensusStatesProxy>
+     public val consensusStates: com.google.protobuf.kotlin.DslList<ibc.core.client.v1.Client.ConsensusStateWithHeight, ConsensusStatesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getConsensusStatesList()
@@ -75,7 +75,7 @@ object ClientConsensusStatesKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addConsensusStates")
-    fun com.google.protobuf.kotlin.DslList<ibc.core.client.v1.Client.ConsensusStateWithHeight, ConsensusStatesProxy>.add(value: ibc.core.client.v1.Client.ConsensusStateWithHeight) {
+    public fun com.google.protobuf.kotlin.DslList<ibc.core.client.v1.Client.ConsensusStateWithHeight, ConsensusStatesProxy>.add(value: ibc.core.client.v1.Client.ConsensusStateWithHeight) {
       _builder.addConsensusStates(value)
     }/**
      * <pre>
@@ -87,7 +87,8 @@ object ClientConsensusStatesKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignConsensusStates")
-    inline operator fun com.google.protobuf.kotlin.DslList<ibc.core.client.v1.Client.ConsensusStateWithHeight, ConsensusStatesProxy>.plusAssign(value: ibc.core.client.v1.Client.ConsensusStateWithHeight) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<ibc.core.client.v1.Client.ConsensusStateWithHeight, ConsensusStatesProxy>.plusAssign(value: ibc.core.client.v1.Client.ConsensusStateWithHeight) {
       add(value)
     }/**
      * <pre>
@@ -99,7 +100,7 @@ object ClientConsensusStatesKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllConsensusStates")
-    fun com.google.protobuf.kotlin.DslList<ibc.core.client.v1.Client.ConsensusStateWithHeight, ConsensusStatesProxy>.addAll(values: kotlin.collections.Iterable<ibc.core.client.v1.Client.ConsensusStateWithHeight>) {
+    public fun com.google.protobuf.kotlin.DslList<ibc.core.client.v1.Client.ConsensusStateWithHeight, ConsensusStatesProxy>.addAll(values: kotlin.collections.Iterable<ibc.core.client.v1.Client.ConsensusStateWithHeight>) {
       _builder.addAllConsensusStates(values)
     }/**
      * <pre>
@@ -111,7 +112,8 @@ object ClientConsensusStatesKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllConsensusStates")
-    inline operator fun com.google.protobuf.kotlin.DslList<ibc.core.client.v1.Client.ConsensusStateWithHeight, ConsensusStatesProxy>.plusAssign(values: kotlin.collections.Iterable<ibc.core.client.v1.Client.ConsensusStateWithHeight>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<ibc.core.client.v1.Client.ConsensusStateWithHeight, ConsensusStatesProxy>.plusAssign(values: kotlin.collections.Iterable<ibc.core.client.v1.Client.ConsensusStateWithHeight>) {
       addAll(values)
     }/**
      * <pre>
@@ -124,7 +126,7 @@ object ClientConsensusStatesKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setConsensusStates")
-    operator fun com.google.protobuf.kotlin.DslList<ibc.core.client.v1.Client.ConsensusStateWithHeight, ConsensusStatesProxy>.set(index: kotlin.Int, value: ibc.core.client.v1.Client.ConsensusStateWithHeight) {
+    public operator fun com.google.protobuf.kotlin.DslList<ibc.core.client.v1.Client.ConsensusStateWithHeight, ConsensusStatesProxy>.set(index: kotlin.Int, value: ibc.core.client.v1.Client.ConsensusStateWithHeight) {
       _builder.setConsensusStates(index, value)
     }/**
      * <pre>
@@ -135,10 +137,10 @@ object ClientConsensusStatesKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearConsensusStates")
-    fun com.google.protobuf.kotlin.DslList<ibc.core.client.v1.Client.ConsensusStateWithHeight, ConsensusStatesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<ibc.core.client.v1.Client.ConsensusStateWithHeight, ConsensusStatesProxy>.clear() {
       _builder.clearConsensusStates()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.client.v1.Client.ClientConsensusStates.copy(block: ibc.core.client.v1.ClientConsensusStatesKt.Dsl.() -> Unit): ibc.core.client.v1.Client.ClientConsensusStates =
+public inline fun ibc.core.client.v1.Client.ClientConsensusStates.copy(block: ibc.core.client.v1.ClientConsensusStatesKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.Client.ClientConsensusStates =
   ibc.core.client.v1.ClientConsensusStatesKt.Dsl._create(this.toBuilder()).apply { block() }._build()

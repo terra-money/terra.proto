@@ -4,15 +4,15 @@
 package cosmos.bank.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryBalanceResponse(block: cosmos.bank.v1beta1.QueryBalanceResponseKt.Dsl.() -> Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceResponse =
+public inline fun queryBalanceResponse(block: cosmos.bank.v1beta1.QueryBalanceResponseKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceResponse =
   cosmos.bank.v1beta1.QueryBalanceResponseKt.Dsl._create(cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceResponse.newBuilder()).apply { block() }._build()
-object QueryBalanceResponseKt {
+public object QueryBalanceResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryBalanceResponseKt {
      *
      * <code>.cosmos.base.v1beta1.Coin balance = 1;</code>
      */
-    var balance: cosmos.base.v1beta1.CoinOuterClass.Coin
+    public var balance: cosmos.base.v1beta1.CoinOuterClass.Coin
       @JvmName("getBalance")
       get() = _builder.getBalance()
       @JvmName("setBalance")
@@ -43,7 +43,7 @@ object QueryBalanceResponseKt {
      *
      * <code>.cosmos.base.v1beta1.Coin balance = 1;</code>
      */
-    fun clearBalance() {
+    public fun clearBalance() {
       _builder.clearBalance()
     }
     /**
@@ -54,11 +54,11 @@ object QueryBalanceResponseKt {
      * <code>.cosmos.base.v1beta1.Coin balance = 1;</code>
      * @return Whether the balance field is set.
      */
-    fun hasBalance(): kotlin.Boolean {
+    public fun hasBalance(): kotlin.Boolean {
       return _builder.hasBalance()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceResponse.copy(block: cosmos.bank.v1beta1.QueryBalanceResponseKt.Dsl.() -> Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceResponse =
+public inline fun cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceResponse.copy(block: cosmos.bank.v1beta1.QueryBalanceResponseKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceResponse =
   cosmos.bank.v1beta1.QueryBalanceResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

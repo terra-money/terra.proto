@@ -4,15 +4,15 @@
 package tendermint.types;
 
 @kotlin.jvm.JvmSynthetic
-inline fun validatorSet(block: tendermint.types.ValidatorSetKt.Dsl.() -> Unit): tendermint.types.ValidatorOuterClass.ValidatorSet =
+public inline fun validatorSet(block: tendermint.types.ValidatorSetKt.Dsl.() -> kotlin.Unit): tendermint.types.ValidatorOuterClass.ValidatorSet =
   tendermint.types.ValidatorSetKt.Dsl._create(tendermint.types.ValidatorOuterClass.ValidatorSet.newBuilder()).apply { block() }._build()
-object ValidatorSetKt {
+public object ValidatorSetKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.types.ValidatorOuterClass.ValidatorSet.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.types.ValidatorOuterClass.ValidatorSet.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.types.ValidatorOuterClass.ValidatorSet.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object ValidatorSetKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class ValidatorsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class ValidatorsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .tendermint.types.Validator validators = 1;</code>
      */
-     val validators: com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ValidatorsProxy>
+     public val validators: com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ValidatorsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getValidatorsList()
@@ -42,7 +42,7 @@ object ValidatorSetKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addValidators")
-    fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ValidatorsProxy>.add(value: tendermint.types.ValidatorOuterClass.Validator) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ValidatorsProxy>.add(value: tendermint.types.ValidatorOuterClass.Validator) {
       _builder.addValidators(value)
     }/**
      * <code>repeated .tendermint.types.Validator validators = 1;</code>
@@ -50,7 +50,8 @@ object ValidatorSetKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignValidators")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ValidatorsProxy>.plusAssign(value: tendermint.types.ValidatorOuterClass.Validator) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ValidatorsProxy>.plusAssign(value: tendermint.types.ValidatorOuterClass.Validator) {
       add(value)
     }/**
      * <code>repeated .tendermint.types.Validator validators = 1;</code>
@@ -58,7 +59,7 @@ object ValidatorSetKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllValidators")
-    fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ValidatorsProxy>.addAll(values: kotlin.collections.Iterable<tendermint.types.ValidatorOuterClass.Validator>) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ValidatorsProxy>.addAll(values: kotlin.collections.Iterable<tendermint.types.ValidatorOuterClass.Validator>) {
       _builder.addAllValidators(values)
     }/**
      * <code>repeated .tendermint.types.Validator validators = 1;</code>
@@ -66,7 +67,8 @@ object ValidatorSetKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllValidators")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ValidatorsProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.types.ValidatorOuterClass.Validator>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ValidatorsProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.types.ValidatorOuterClass.Validator>) {
       addAll(values)
     }/**
      * <code>repeated .tendermint.types.Validator validators = 1;</code>
@@ -75,20 +77,20 @@ object ValidatorSetKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setValidators")
-    operator fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ValidatorsProxy>.set(index: kotlin.Int, value: tendermint.types.ValidatorOuterClass.Validator) {
+    public operator fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ValidatorsProxy>.set(index: kotlin.Int, value: tendermint.types.ValidatorOuterClass.Validator) {
       _builder.setValidators(index, value)
     }/**
      * <code>repeated .tendermint.types.Validator validators = 1;</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearValidators")
-    fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ValidatorsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.types.ValidatorOuterClass.Validator, ValidatorsProxy>.clear() {
       _builder.clearValidators()
     }
     /**
      * <code>.tendermint.types.Validator proposer = 2;</code>
      */
-    var proposer: tendermint.types.ValidatorOuterClass.Validator
+    public var proposer: tendermint.types.ValidatorOuterClass.Validator
       @JvmName("getProposer")
       get() = _builder.getProposer()
       @JvmName("setProposer")
@@ -98,21 +100,21 @@ object ValidatorSetKt {
     /**
      * <code>.tendermint.types.Validator proposer = 2;</code>
      */
-    fun clearProposer() {
+    public fun clearProposer() {
       _builder.clearProposer()
     }
     /**
      * <code>.tendermint.types.Validator proposer = 2;</code>
      * @return Whether the proposer field is set.
      */
-    fun hasProposer(): kotlin.Boolean {
+    public fun hasProposer(): kotlin.Boolean {
       return _builder.hasProposer()
     }
 
     /**
      * <code>int64 total_voting_power = 3;</code>
      */
-    var totalVotingPower: kotlin.Long
+    public var totalVotingPower: kotlin.Long
       @JvmName("getTotalVotingPower")
       get() = _builder.getTotalVotingPower()
       @JvmName("setTotalVotingPower")
@@ -122,11 +124,11 @@ object ValidatorSetKt {
     /**
      * <code>int64 total_voting_power = 3;</code>
      */
-    fun clearTotalVotingPower() {
+    public fun clearTotalVotingPower() {
       _builder.clearTotalVotingPower()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.types.ValidatorOuterClass.ValidatorSet.copy(block: tendermint.types.ValidatorSetKt.Dsl.() -> Unit): tendermint.types.ValidatorOuterClass.ValidatorSet =
+public inline fun tendermint.types.ValidatorOuterClass.ValidatorSet.copy(block: tendermint.types.ValidatorSetKt.Dsl.() -> kotlin.Unit): tendermint.types.ValidatorOuterClass.ValidatorSet =
   tendermint.types.ValidatorSetKt.Dsl._create(this.toBuilder()).apply { block() }._build()

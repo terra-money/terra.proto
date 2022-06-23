@@ -4,15 +4,15 @@
 package cosmos.staking.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun unbondingDelegationEntry(block: cosmos.staking.v1beta1.UnbondingDelegationEntryKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry =
+public inline fun unbondingDelegationEntry(block: cosmos.staking.v1beta1.UnbondingDelegationEntryKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry =
   cosmos.staking.v1beta1.UnbondingDelegationEntryKt.Dsl._create(cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry.newBuilder()).apply { block() }._build()
-object UnbondingDelegationEntryKt {
+public object UnbondingDelegationEntryKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object UnbondingDelegationEntryKt {
      *
      * <code>int64 creation_height = 1 [(.gogoproto.moretags) = "yaml:&#92;"creation_height&#92;""];</code>
      */
-    var creationHeight: kotlin.Long
+    public var creationHeight: kotlin.Long
       @JvmName("getCreationHeight")
       get() = _builder.getCreationHeight()
       @JvmName("setCreationHeight")
@@ -43,7 +43,7 @@ object UnbondingDelegationEntryKt {
      *
      * <code>int64 creation_height = 1 [(.gogoproto.moretags) = "yaml:&#92;"creation_height&#92;""];</code>
      */
-    fun clearCreationHeight() {
+    public fun clearCreationHeight() {
       _builder.clearCreationHeight()
     }
 
@@ -54,7 +54,7 @@ object UnbondingDelegationEntryKt {
      *
      * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
      */
-    var completionTime: com.google.protobuf.Timestamp
+    public var completionTime: com.google.protobuf.Timestamp
       @JvmName("getCompletionTime")
       get() = _builder.getCompletionTime()
       @JvmName("setCompletionTime")
@@ -68,7 +68,7 @@ object UnbondingDelegationEntryKt {
      *
      * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
      */
-    fun clearCompletionTime() {
+    public fun clearCompletionTime() {
       _builder.clearCompletionTime()
     }
     /**
@@ -79,7 +79,7 @@ object UnbondingDelegationEntryKt {
      * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return Whether the completionTime field is set.
      */
-    fun hasCompletionTime(): kotlin.Boolean {
+    public fun hasCompletionTime(): kotlin.Boolean {
       return _builder.hasCompletionTime()
     }
 
@@ -90,7 +90,7 @@ object UnbondingDelegationEntryKt {
      *
      * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
      */
-    var initialBalance: kotlin.String
+    public var initialBalance: kotlin.String
       @JvmName("getInitialBalance")
       get() = _builder.getInitialBalance()
       @JvmName("setInitialBalance")
@@ -104,7 +104,7 @@ object UnbondingDelegationEntryKt {
      *
      * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
      */
-    fun clearInitialBalance() {
+    public fun clearInitialBalance() {
       _builder.clearInitialBalance()
     }
 
@@ -115,7 +115,7 @@ object UnbondingDelegationEntryKt {
      *
      * <code>string balance = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      */
-    var balance: kotlin.String
+    public var balance: kotlin.String
       @JvmName("getBalance")
       get() = _builder.getBalance()
       @JvmName("setBalance")
@@ -129,11 +129,11 @@ object UnbondingDelegationEntryKt {
      *
      * <code>string balance = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      */
-    fun clearBalance() {
+    public fun clearBalance() {
       _builder.clearBalance()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry.copy(block: cosmos.staking.v1beta1.UnbondingDelegationEntryKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry =
+public inline fun cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry.copy(block: cosmos.staking.v1beta1.UnbondingDelegationEntryKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry =
   cosmos.staking.v1beta1.UnbondingDelegationEntryKt.Dsl._create(this.toBuilder()).apply { block() }._build()

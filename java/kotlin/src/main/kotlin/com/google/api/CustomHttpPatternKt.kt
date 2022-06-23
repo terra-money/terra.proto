@@ -4,15 +4,15 @@
 package com.google.api;
 
 @kotlin.jvm.JvmSynthetic
-inline fun customHttpPattern(block: com.google.api.CustomHttpPatternKt.Dsl.() -> Unit): com.google.api.CustomHttpPattern =
+public inline fun customHttpPattern(block: com.google.api.CustomHttpPatternKt.Dsl.() -> kotlin.Unit): com.google.api.CustomHttpPattern =
   com.google.api.CustomHttpPatternKt.Dsl._create(com.google.api.CustomHttpPattern.newBuilder()).apply { block() }._build()
-object CustomHttpPatternKt {
+public object CustomHttpPatternKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: com.google.api.CustomHttpPattern.Builder
+  public class Dsl private constructor(
+    private val _builder: com.google.api.CustomHttpPattern.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: com.google.api.CustomHttpPattern.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object CustomHttpPatternKt {
      *
      * <code>string kind = 1;</code>
      */
-    var kind: kotlin.String
+    public var kind: kotlin.String
       @JvmName("getKind")
       get() = _builder.getKind()
       @JvmName("setKind")
@@ -43,7 +43,7 @@ object CustomHttpPatternKt {
      *
      * <code>string kind = 1;</code>
      */
-    fun clearKind() {
+    public fun clearKind() {
       _builder.clearKind()
     }
 
@@ -54,7 +54,7 @@ object CustomHttpPatternKt {
      *
      * <code>string path = 2;</code>
      */
-    var path: kotlin.String
+    public var path: kotlin.String
       @JvmName("getPath")
       get() = _builder.getPath()
       @JvmName("setPath")
@@ -68,11 +68,11 @@ object CustomHttpPatternKt {
      *
      * <code>string path = 2;</code>
      */
-    fun clearPath() {
+    public fun clearPath() {
       _builder.clearPath()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun com.google.api.CustomHttpPattern.copy(block: com.google.api.CustomHttpPatternKt.Dsl.() -> Unit): com.google.api.CustomHttpPattern =
+public inline fun com.google.api.CustomHttpPattern.copy(block: com.google.api.CustomHttpPatternKt.Dsl.() -> kotlin.Unit): com.google.api.CustomHttpPattern =
   com.google.api.CustomHttpPatternKt.Dsl._create(this.toBuilder()).apply { block() }._build()

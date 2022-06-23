@@ -4,15 +4,15 @@
 package cosmos.distribution.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryValidatorSlashesResponse(block: cosmos.distribution.v1beta1.QueryValidatorSlashesResponseKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorSlashesResponse =
+public inline fun queryValidatorSlashesResponse(block: cosmos.distribution.v1beta1.QueryValidatorSlashesResponseKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorSlashesResponse =
   cosmos.distribution.v1beta1.QueryValidatorSlashesResponseKt.Dsl._create(cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorSlashesResponse.newBuilder()).apply { block() }._build()
-object QueryValidatorSlashesResponseKt {
+public object QueryValidatorSlashesResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorSlashesResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorSlashesResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorSlashesResponse.Builder): Dsl = Dsl(builder)
@@ -27,7 +27,7 @@ object QueryValidatorSlashesResponseKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class SlashesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class SlashesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * slashes defines the slashes the validator received.
@@ -35,7 +35,7 @@ object QueryValidatorSlashesResponseKt {
      *
      * <code>repeated .cosmos.distribution.v1beta1.ValidatorSlashEvent slashes = 1 [(.gogoproto.nullable) = false];</code>
      */
-     val slashes: com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, SlashesProxy>
+     public val slashes: com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, SlashesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getSlashesList()
@@ -50,7 +50,7 @@ object QueryValidatorSlashesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addSlashes")
-    fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, SlashesProxy>.add(value: cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, SlashesProxy>.add(value: cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent) {
       _builder.addSlashes(value)
     }/**
      * <pre>
@@ -62,7 +62,8 @@ object QueryValidatorSlashesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignSlashes")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, SlashesProxy>.plusAssign(value: cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, SlashesProxy>.plusAssign(value: cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent) {
       add(value)
     }/**
      * <pre>
@@ -74,7 +75,7 @@ object QueryValidatorSlashesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllSlashes")
-    fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, SlashesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, SlashesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent>) {
       _builder.addAllSlashes(values)
     }/**
      * <pre>
@@ -86,7 +87,8 @@ object QueryValidatorSlashesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllSlashes")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, SlashesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, SlashesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent>) {
       addAll(values)
     }/**
      * <pre>
@@ -99,7 +101,7 @@ object QueryValidatorSlashesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setSlashes")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, SlashesProxy>.set(index: kotlin.Int, value: cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, SlashesProxy>.set(index: kotlin.Int, value: cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent) {
       _builder.setSlashes(index, value)
     }/**
      * <pre>
@@ -110,7 +112,7 @@ object QueryValidatorSlashesResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearSlashes")
-    fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, SlashesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.distribution.v1beta1.Distribution.ValidatorSlashEvent, SlashesProxy>.clear() {
       _builder.clearSlashes()
     }
     /**
@@ -120,7 +122,7 @@ object QueryValidatorSlashesResponseKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageResponse
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageResponse
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -134,7 +136,7 @@ object QueryValidatorSlashesResponseKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
@@ -145,11 +147,11 @@ object QueryValidatorSlashesResponseKt {
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorSlashesResponse.copy(block: cosmos.distribution.v1beta1.QueryValidatorSlashesResponseKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorSlashesResponse =
+public inline fun cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorSlashesResponse.copy(block: cosmos.distribution.v1beta1.QueryValidatorSlashesResponseKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorSlashesResponse =
   cosmos.distribution.v1beta1.QueryValidatorSlashesResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

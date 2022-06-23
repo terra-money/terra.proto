@@ -28,41 +28,47 @@ import kotlin.jvm.JvmStatic
 /**
  * Holder for Kotlin coroutine-based client and server APIs for cosmos.tx.v1beta1.Service.
  */
-object ServiceGrpcKt {
-  const val SERVICE_NAME: String = ServiceGrpc.SERVICE_NAME
+public object ServiceGrpcKt {
+  public const val SERVICE_NAME: String = ServiceGrpc.SERVICE_NAME
 
   @JvmStatic
-  val serviceDescriptor: ServiceDescriptor
+  public val serviceDescriptor: ServiceDescriptor
     get() = ServiceGrpc.getServiceDescriptor()
 
-  val simulateMethod: MethodDescriptor<ServiceOuterClass.SimulateRequest,
-      ServiceOuterClass.SimulateResponse>
+  public val simulateMethod:
+      MethodDescriptor<ServiceOuterClass.SimulateRequest, ServiceOuterClass.SimulateResponse>
     @JvmStatic
     get() = ServiceGrpc.getSimulateMethod()
 
-  val getTxMethod: MethodDescriptor<ServiceOuterClass.GetTxRequest, ServiceOuterClass.GetTxResponse>
+  public val getTxMethod:
+      MethodDescriptor<ServiceOuterClass.GetTxRequest, ServiceOuterClass.GetTxResponse>
     @JvmStatic
     get() = ServiceGrpc.getGetTxMethod()
 
-  val broadcastTxMethod: MethodDescriptor<ServiceOuterClass.BroadcastTxRequest,
-      ServiceOuterClass.BroadcastTxResponse>
+  public val broadcastTxMethod:
+      MethodDescriptor<ServiceOuterClass.BroadcastTxRequest, ServiceOuterClass.BroadcastTxResponse>
     @JvmStatic
     get() = ServiceGrpc.getBroadcastTxMethod()
 
-  val getTxsEventMethod: MethodDescriptor<ServiceOuterClass.GetTxsEventRequest,
-      ServiceOuterClass.GetTxsEventResponse>
+  public val getTxsEventMethod:
+      MethodDescriptor<ServiceOuterClass.GetTxsEventRequest, ServiceOuterClass.GetTxsEventResponse>
     @JvmStatic
     get() = ServiceGrpc.getGetTxsEventMethod()
+
+  public val getBlockWithTxsMethod:
+      MethodDescriptor<ServiceOuterClass.GetBlockWithTxsRequest, ServiceOuterClass.GetBlockWithTxsResponse>
+    @JvmStatic
+    get() = ServiceGrpc.getGetBlockWithTxsMethod()
 
   /**
    * A stub for issuing RPCs to a(n) cosmos.tx.v1beta1.Service service as suspending coroutines.
    */
   @StubFor(ServiceGrpc::class)
-  class ServiceCoroutineStub @JvmOverloads constructor(
+  public class ServiceCoroutineStub @JvmOverloads constructor(
     channel: Channel,
-    callOptions: CallOptions = DEFAULT
+    callOptions: CallOptions = DEFAULT,
   ) : AbstractCoroutineStub<ServiceCoroutineStub>(channel, callOptions) {
-    override fun build(channel: Channel, callOptions: CallOptions): ServiceCoroutineStub =
+    public override fun build(channel: Channel, callOptions: CallOptions): ServiceCoroutineStub =
         ServiceCoroutineStub(channel, callOptions)
 
     /**
@@ -73,16 +79,19 @@ object ServiceGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun simulate(request: ServiceOuterClass.SimulateRequest):
-        ServiceOuterClass.SimulateResponse = unaryRpc(
+    public suspend fun simulate(request: ServiceOuterClass.SimulateRequest, headers: Metadata =
+        Metadata()): ServiceOuterClass.SimulateResponse = unaryRpc(
       channel,
       ServiceGrpc.getSimulateMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -91,16 +100,19 @@ object ServiceGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun getTx(request: ServiceOuterClass.GetTxRequest): ServiceOuterClass.GetTxResponse =
-        unaryRpc(
+    public suspend fun getTx(request: ServiceOuterClass.GetTxRequest, headers: Metadata =
+        Metadata()): ServiceOuterClass.GetTxResponse = unaryRpc(
       channel,
       ServiceGrpc.getGetTxMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -109,16 +121,19 @@ object ServiceGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun broadcastTx(request: ServiceOuterClass.BroadcastTxRequest):
-        ServiceOuterClass.BroadcastTxResponse = unaryRpc(
+    public suspend fun broadcastTx(request: ServiceOuterClass.BroadcastTxRequest, headers: Metadata
+        = Metadata()): ServiceOuterClass.BroadcastTxResponse = unaryRpc(
       channel,
       ServiceGrpc.getBroadcastTxMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -127,22 +142,46 @@ object ServiceGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun getTxsEvent(request: ServiceOuterClass.GetTxsEventRequest):
-        ServiceOuterClass.GetTxsEventResponse = unaryRpc(
+    public suspend fun getTxsEvent(request: ServiceOuterClass.GetTxsEventRequest, headers: Metadata
+        = Metadata()): ServiceOuterClass.GetTxsEventResponse = unaryRpc(
       channel,
       ServiceGrpc.getGetTxsEventMethod(),
       request,
       callOptions,
-      Metadata()
-    )}
+      headers
+    )
+
+    /**
+     * Executes this RPC and returns the response message, suspending until the RPC completes
+     * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
+     * [StatusException] is thrown.  If this coroutine is cancelled, the RPC is also cancelled
+     * with the corresponding exception as a cause.
+     *
+     * @param request The request message to send to the server.
+     *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
+     * @return The single response from the server.
+     */
+    public suspend fun getBlockWithTxs(request: ServiceOuterClass.GetBlockWithTxsRequest,
+        headers: Metadata = Metadata()): ServiceOuterClass.GetBlockWithTxsResponse = unaryRpc(
+      channel,
+      ServiceGrpc.getGetBlockWithTxsMethod(),
+      request,
+      callOptions,
+      headers
+    )
+  }
 
   /**
    * Skeletal implementation of the cosmos.tx.v1beta1.Service service based on Kotlin coroutines.
    */
-  abstract class ServiceCoroutineImplBase(
-    coroutineContext: CoroutineContext = EmptyCoroutineContext
+  public abstract class ServiceCoroutineImplBase(
+    coroutineContext: CoroutineContext = EmptyCoroutineContext,
   ) : AbstractCoroutineServerImpl(coroutineContext) {
     /**
      * Returns the response to an RPC for cosmos.tx.v1beta1.Service.Simulate.
@@ -155,7 +194,7 @@ object ServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun simulate(request: ServiceOuterClass.SimulateRequest):
+    public open suspend fun simulate(request: ServiceOuterClass.SimulateRequest):
         ServiceOuterClass.SimulateResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.tx.v1beta1.Service.Simulate is unimplemented"))
 
@@ -170,8 +209,8 @@ object ServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun getTx(request: ServiceOuterClass.GetTxRequest): ServiceOuterClass.GetTxResponse
-        = throw
+    public open suspend fun getTx(request: ServiceOuterClass.GetTxRequest):
+        ServiceOuterClass.GetTxResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.tx.v1beta1.Service.GetTx is unimplemented"))
 
     /**
@@ -185,7 +224,7 @@ object ServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun broadcastTx(request: ServiceOuterClass.BroadcastTxRequest):
+    public open suspend fun broadcastTx(request: ServiceOuterClass.BroadcastTxRequest):
         ServiceOuterClass.BroadcastTxResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.tx.v1beta1.Service.BroadcastTx is unimplemented"))
 
@@ -200,11 +239,27 @@ object ServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun getTxsEvent(request: ServiceOuterClass.GetTxsEventRequest):
+    public open suspend fun getTxsEvent(request: ServiceOuterClass.GetTxsEventRequest):
         ServiceOuterClass.GetTxsEventResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.tx.v1beta1.Service.GetTxsEvent is unimplemented"))
 
-    final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())
+    /**
+     * Returns the response to an RPC for cosmos.tx.v1beta1.Service.GetBlockWithTxs.
+     *
+     * If this method fails with a [StatusException], the RPC will fail with the corresponding
+     * [Status].  If this method fails with a [java.util.concurrent.CancellationException], the RPC
+     * will fail
+     * with status `Status.CANCELLED`.  If this method fails for any other reason, the RPC will
+     * fail with `Status.UNKNOWN` with the exception as a cause.
+     *
+     * @param request The request from the client.
+     */
+    public open suspend fun getBlockWithTxs(request: ServiceOuterClass.GetBlockWithTxsRequest):
+        ServiceOuterClass.GetBlockWithTxsResponse = throw
+        StatusException(UNIMPLEMENTED.withDescription("Method cosmos.tx.v1beta1.Service.GetBlockWithTxs is unimplemented"))
+
+    public final override fun bindService(): ServerServiceDefinition =
+        builder(getServiceDescriptor())
       .addMethod(unaryServerMethodDefinition(
       context = this.context,
       descriptor = ServiceGrpc.getSimulateMethod(),
@@ -224,6 +279,11 @@ object ServiceGrpcKt {
       context = this.context,
       descriptor = ServiceGrpc.getGetTxsEventMethod(),
       implementation = ::getTxsEvent
+    ))
+      .addMethod(unaryServerMethodDefinition(
+      context = this.context,
+      descriptor = ServiceGrpc.getGetBlockWithTxsMethod(),
+      implementation = ::getBlockWithTxs
     )).build()
   }
 }

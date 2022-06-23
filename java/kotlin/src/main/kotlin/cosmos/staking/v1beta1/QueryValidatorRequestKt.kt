@@ -4,15 +4,15 @@
 package cosmos.staking.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryValidatorRequest(block: cosmos.staking.v1beta1.QueryValidatorRequestKt.Dsl.() -> Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest =
+public inline fun queryValidatorRequest(block: cosmos.staking.v1beta1.QueryValidatorRequestKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest =
   cosmos.staking.v1beta1.QueryValidatorRequestKt.Dsl._create(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest.newBuilder()).apply { block() }._build()
-object QueryValidatorRequestKt {
+public object QueryValidatorRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryValidatorRequestKt {
      *
      * <code>string validator_addr = 1;</code>
      */
-    var validatorAddr: kotlin.String
+    public var validatorAddr: kotlin.String
       @JvmName("getValidatorAddr")
       get() = _builder.getValidatorAddr()
       @JvmName("setValidatorAddr")
@@ -43,11 +43,11 @@ object QueryValidatorRequestKt {
      *
      * <code>string validator_addr = 1;</code>
      */
-    fun clearValidatorAddr() {
+    public fun clearValidatorAddr() {
       _builder.clearValidatorAddr()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest.copy(block: cosmos.staking.v1beta1.QueryValidatorRequestKt.Dsl.() -> Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest =
+public inline fun cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest.copy(block: cosmos.staking.v1beta1.QueryValidatorRequestKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest =
   cosmos.staking.v1beta1.QueryValidatorRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -25,14 +25,14 @@ import kotlin.jvm.JvmStatic
 /**
  * Holder for Kotlin coroutine-based client and server APIs for cosmos.slashing.v1beta1.Msg.
  */
-object MsgGrpcKt {
-  const val SERVICE_NAME: String = MsgGrpc.SERVICE_NAME
+public object MsgGrpcKt {
+  public const val SERVICE_NAME: String = MsgGrpc.SERVICE_NAME
 
   @JvmStatic
-  val serviceDescriptor: ServiceDescriptor
+  public val serviceDescriptor: ServiceDescriptor
     get() = MsgGrpc.getServiceDescriptor()
 
-  val unjailMethod: MethodDescriptor<Tx.MsgUnjail, Tx.MsgUnjailResponse>
+  public val unjailMethod: MethodDescriptor<Tx.MsgUnjail, Tx.MsgUnjailResponse>
     @JvmStatic
     get() = MsgGrpc.getUnjailMethod()
 
@@ -40,11 +40,11 @@ object MsgGrpcKt {
    * A stub for issuing RPCs to a(n) cosmos.slashing.v1beta1.Msg service as suspending coroutines.
    */
   @StubFor(MsgGrpc::class)
-  class MsgCoroutineStub @JvmOverloads constructor(
+  public class MsgCoroutineStub @JvmOverloads constructor(
     channel: Channel,
-    callOptions: CallOptions = DEFAULT
+    callOptions: CallOptions = DEFAULT,
   ) : AbstractCoroutineStub<MsgCoroutineStub>(channel, callOptions) {
-    override fun build(channel: Channel, callOptions: CallOptions): MsgCoroutineStub =
+    public override fun build(channel: Channel, callOptions: CallOptions): MsgCoroutineStub =
         MsgCoroutineStub(channel, callOptions)
 
     /**
@@ -56,21 +56,25 @@ object MsgGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun unjail(request: Tx.MsgUnjail): Tx.MsgUnjailResponse = unaryRpc(
+    public suspend fun unjail(request: Tx.MsgUnjail, headers: Metadata = Metadata()):
+        Tx.MsgUnjailResponse = unaryRpc(
       channel,
       MsgGrpc.getUnjailMethod(),
       request,
       callOptions,
-      Metadata()
-    )}
+      headers
+    )
+  }
 
   /**
    * Skeletal implementation of the cosmos.slashing.v1beta1.Msg service based on Kotlin coroutines.
    */
-  abstract class MsgCoroutineImplBase(
-    coroutineContext: CoroutineContext = EmptyCoroutineContext
+  public abstract class MsgCoroutineImplBase(
+    coroutineContext: CoroutineContext = EmptyCoroutineContext,
   ) : AbstractCoroutineServerImpl(coroutineContext) {
     /**
      * Returns the response to an RPC for cosmos.slashing.v1beta1.Msg.Unjail.
@@ -83,10 +87,11 @@ object MsgGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun unjail(request: Tx.MsgUnjail): Tx.MsgUnjailResponse = throw
+    public open suspend fun unjail(request: Tx.MsgUnjail): Tx.MsgUnjailResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.slashing.v1beta1.Msg.Unjail is unimplemented"))
 
-    final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())
+    public final override fun bindService(): ServerServiceDefinition =
+        builder(getServiceDescriptor())
       .addMethod(unaryServerMethodDefinition(
       context = this.context,
       descriptor = MsgGrpc.getUnjailMethod(),

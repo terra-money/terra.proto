@@ -4,15 +4,15 @@
 package ibc.core.client.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryConsensusStateRequest(block: ibc.core.client.v1.QueryConsensusStateRequestKt.Dsl.() -> Unit): ibc.core.client.v1.QueryOuterClass.QueryConsensusStateRequest =
+public inline fun queryConsensusStateRequest(block: ibc.core.client.v1.QueryConsensusStateRequestKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.QueryOuterClass.QueryConsensusStateRequest =
   ibc.core.client.v1.QueryConsensusStateRequestKt.Dsl._create(ibc.core.client.v1.QueryOuterClass.QueryConsensusStateRequest.newBuilder()).apply { block() }._build()
-object QueryConsensusStateRequestKt {
+public object QueryConsensusStateRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.client.v1.QueryOuterClass.QueryConsensusStateRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.client.v1.QueryOuterClass.QueryConsensusStateRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.client.v1.QueryOuterClass.QueryConsensusStateRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryConsensusStateRequestKt {
      *
      * <code>string client_id = 1;</code>
      */
-    var clientId: kotlin.String
+    public var clientId: kotlin.String
       @JvmName("getClientId")
       get() = _builder.getClientId()
       @JvmName("setClientId")
@@ -43,7 +43,7 @@ object QueryConsensusStateRequestKt {
      *
      * <code>string client_id = 1;</code>
      */
-    fun clearClientId() {
+    public fun clearClientId() {
       _builder.clearClientId()
     }
 
@@ -54,7 +54,7 @@ object QueryConsensusStateRequestKt {
      *
      * <code>uint64 revision_number = 2;</code>
      */
-    var revisionNumber: kotlin.Long
+    public var revisionNumber: kotlin.Long
       @JvmName("getRevisionNumber")
       get() = _builder.getRevisionNumber()
       @JvmName("setRevisionNumber")
@@ -68,7 +68,7 @@ object QueryConsensusStateRequestKt {
      *
      * <code>uint64 revision_number = 2;</code>
      */
-    fun clearRevisionNumber() {
+    public fun clearRevisionNumber() {
       _builder.clearRevisionNumber()
     }
 
@@ -79,7 +79,7 @@ object QueryConsensusStateRequestKt {
      *
      * <code>uint64 revision_height = 3;</code>
      */
-    var revisionHeight: kotlin.Long
+    public var revisionHeight: kotlin.Long
       @JvmName("getRevisionHeight")
       get() = _builder.getRevisionHeight()
       @JvmName("setRevisionHeight")
@@ -93,7 +93,7 @@ object QueryConsensusStateRequestKt {
      *
      * <code>uint64 revision_height = 3;</code>
      */
-    fun clearRevisionHeight() {
+    public fun clearRevisionHeight() {
       _builder.clearRevisionHeight()
     }
 
@@ -105,7 +105,7 @@ object QueryConsensusStateRequestKt {
      *
      * <code>bool latest_height = 4;</code>
      */
-    var latestHeight: kotlin.Boolean
+    public var latestHeight: kotlin.Boolean
       @JvmName("getLatestHeight")
       get() = _builder.getLatestHeight()
       @JvmName("setLatestHeight")
@@ -120,11 +120,11 @@ object QueryConsensusStateRequestKt {
      *
      * <code>bool latest_height = 4;</code>
      */
-    fun clearLatestHeight() {
+    public fun clearLatestHeight() {
       _builder.clearLatestHeight()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.client.v1.QueryOuterClass.QueryConsensusStateRequest.copy(block: ibc.core.client.v1.QueryConsensusStateRequestKt.Dsl.() -> Unit): ibc.core.client.v1.QueryOuterClass.QueryConsensusStateRequest =
+public inline fun ibc.core.client.v1.QueryOuterClass.QueryConsensusStateRequest.copy(block: ibc.core.client.v1.QueryConsensusStateRequestKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.QueryOuterClass.QueryConsensusStateRequest =
   ibc.core.client.v1.QueryConsensusStateRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

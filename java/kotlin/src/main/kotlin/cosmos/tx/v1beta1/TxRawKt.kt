@@ -4,15 +4,15 @@
 package cosmos.tx.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun txRaw(block: cosmos.tx.v1beta1.TxRawKt.Dsl.() -> Unit): cosmos.tx.v1beta1.TxOuterClass.TxRaw =
+public inline fun txRaw(block: cosmos.tx.v1beta1.TxRawKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.TxOuterClass.TxRaw =
   cosmos.tx.v1beta1.TxRawKt.Dsl._create(cosmos.tx.v1beta1.TxOuterClass.TxRaw.newBuilder()).apply { block() }._build()
-object TxRawKt {
+public object TxRawKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.tx.v1beta1.TxOuterClass.TxRaw.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.tx.v1beta1.TxOuterClass.TxRaw.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.tx.v1beta1.TxOuterClass.TxRaw.Builder): Dsl = Dsl(builder)
@@ -30,7 +30,7 @@ object TxRawKt {
      *
      * <code>bytes body_bytes = 1;</code>
      */
-    var bodyBytes: com.google.protobuf.ByteString
+    public var bodyBytes: com.google.protobuf.ByteString
       @JvmName("getBodyBytes")
       get() = _builder.getBodyBytes()
       @JvmName("setBodyBytes")
@@ -45,7 +45,7 @@ object TxRawKt {
      *
      * <code>bytes body_bytes = 1;</code>
      */
-    fun clearBodyBytes() {
+    public fun clearBodyBytes() {
       _builder.clearBodyBytes()
     }
 
@@ -57,7 +57,7 @@ object TxRawKt {
      *
      * <code>bytes auth_info_bytes = 2;</code>
      */
-    var authInfoBytes: com.google.protobuf.ByteString
+    public var authInfoBytes: com.google.protobuf.ByteString
       @JvmName("getAuthInfoBytes")
       get() = _builder.getAuthInfoBytes()
       @JvmName("setAuthInfoBytes")
@@ -72,7 +72,7 @@ object TxRawKt {
      *
      * <code>bytes auth_info_bytes = 2;</code>
      */
-    fun clearAuthInfoBytes() {
+    public fun clearAuthInfoBytes() {
       _builder.clearAuthInfoBytes()
     }
 
@@ -81,7 +81,7 @@ object TxRawKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class SignaturesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class SignaturesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * signatures is a list of signatures that matches the length and order of
@@ -91,7 +91,7 @@ object TxRawKt {
      *
      * <code>repeated bytes signatures = 3;</code>
      */
-     val signatures: com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, SignaturesProxy>
+     public val signatures: com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, SignaturesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getSignaturesList()
@@ -108,7 +108,7 @@ object TxRawKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addSignatures")
-    fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, SignaturesProxy>.add(value: com.google.protobuf.ByteString) {
+    public fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, SignaturesProxy>.add(value: com.google.protobuf.ByteString) {
       _builder.addSignatures(value)
     }/**
      * <pre>
@@ -122,7 +122,8 @@ object TxRawKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignSignatures")
-    inline operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, SignaturesProxy>.plusAssign(value: com.google.protobuf.ByteString) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, SignaturesProxy>.plusAssign(value: com.google.protobuf.ByteString) {
       add(value)
     }/**
      * <pre>
@@ -136,7 +137,7 @@ object TxRawKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllSignatures")
-    fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, SignaturesProxy>.addAll(values: kotlin.collections.Iterable<com.google.protobuf.ByteString>) {
+    public fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, SignaturesProxy>.addAll(values: kotlin.collections.Iterable<com.google.protobuf.ByteString>) {
       _builder.addAllSignatures(values)
     }/**
      * <pre>
@@ -150,7 +151,8 @@ object TxRawKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllSignatures")
-    inline operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, SignaturesProxy>.plusAssign(values: kotlin.collections.Iterable<com.google.protobuf.ByteString>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, SignaturesProxy>.plusAssign(values: kotlin.collections.Iterable<com.google.protobuf.ByteString>) {
       addAll(values)
     }/**
      * <pre>
@@ -165,7 +167,7 @@ object TxRawKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setSignatures")
-    operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, SignaturesProxy>.set(index: kotlin.Int, value: com.google.protobuf.ByteString) {
+    public operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, SignaturesProxy>.set(index: kotlin.Int, value: com.google.protobuf.ByteString) {
       _builder.setSignatures(index, value)
     }/**
      * <pre>
@@ -178,10 +180,10 @@ object TxRawKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearSignatures")
-    fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, SignaturesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<com.google.protobuf.ByteString, SignaturesProxy>.clear() {
       _builder.clearSignatures()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.tx.v1beta1.TxOuterClass.TxRaw.copy(block: cosmos.tx.v1beta1.TxRawKt.Dsl.() -> Unit): cosmos.tx.v1beta1.TxOuterClass.TxRaw =
+public inline fun cosmos.tx.v1beta1.TxOuterClass.TxRaw.copy(block: cosmos.tx.v1beta1.TxRawKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.TxOuterClass.TxRaw =
   cosmos.tx.v1beta1.TxRawKt.Dsl._create(this.toBuilder()).apply { block() }._build()

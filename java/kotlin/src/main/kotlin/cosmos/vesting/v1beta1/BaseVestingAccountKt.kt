@@ -4,15 +4,15 @@
 package cosmos.vesting.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun baseVestingAccount(block: cosmos.vesting.v1beta1.BaseVestingAccountKt.Dsl.() -> Unit): cosmos.vesting.v1beta1.Vesting.BaseVestingAccount =
+public inline fun baseVestingAccount(block: cosmos.vesting.v1beta1.BaseVestingAccountKt.Dsl.() -> kotlin.Unit): cosmos.vesting.v1beta1.Vesting.BaseVestingAccount =
   cosmos.vesting.v1beta1.BaseVestingAccountKt.Dsl._create(cosmos.vesting.v1beta1.Vesting.BaseVestingAccount.newBuilder()).apply { block() }._build()
-object BaseVestingAccountKt {
+public object BaseVestingAccountKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.vesting.v1beta1.Vesting.BaseVestingAccount.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.vesting.v1beta1.Vesting.BaseVestingAccount.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.vesting.v1beta1.Vesting.BaseVestingAccount.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object BaseVestingAccountKt {
     /**
      * <code>.cosmos.auth.v1beta1.BaseAccount base_account = 1 [(.gogoproto.embed) = true];</code>
      */
-    var baseAccount: cosmos.auth.v1beta1.Auth.BaseAccount
+    public var baseAccount: cosmos.auth.v1beta1.Auth.BaseAccount
       @JvmName("getBaseAccount")
       get() = _builder.getBaseAccount()
       @JvmName("setBaseAccount")
@@ -35,14 +35,14 @@ object BaseVestingAccountKt {
     /**
      * <code>.cosmos.auth.v1beta1.BaseAccount base_account = 1 [(.gogoproto.embed) = true];</code>
      */
-    fun clearBaseAccount() {
+    public fun clearBaseAccount() {
       _builder.clearBaseAccount()
     }
     /**
      * <code>.cosmos.auth.v1beta1.BaseAccount base_account = 1 [(.gogoproto.embed) = true];</code>
      * @return Whether the baseAccount field is set.
      */
-    fun hasBaseAccount(): kotlin.Boolean {
+    public fun hasBaseAccount(): kotlin.Boolean {
       return _builder.hasBaseAccount()
     }
 
@@ -51,11 +51,11 @@ object BaseVestingAccountKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class OriginalVestingProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class OriginalVestingProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.base.v1beta1.Coin original_vesting = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"original_vesting&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-     val originalVesting: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, OriginalVestingProxy>
+     public val originalVesting: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, OriginalVestingProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getOriginalVestingList()
@@ -66,7 +66,7 @@ object BaseVestingAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addOriginalVesting")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, OriginalVestingProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, OriginalVestingProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.addOriginalVesting(value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin original_vesting = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"original_vesting&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -74,7 +74,8 @@ object BaseVestingAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignOriginalVesting")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, OriginalVestingProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, OriginalVestingProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       add(value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin original_vesting = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"original_vesting&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -82,7 +83,7 @@ object BaseVestingAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllOriginalVesting")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, OriginalVestingProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, OriginalVestingProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       _builder.addAllOriginalVesting(values)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin original_vesting = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"original_vesting&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -90,7 +91,8 @@ object BaseVestingAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllOriginalVesting")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, OriginalVestingProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, OriginalVestingProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin original_vesting = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"original_vesting&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -99,14 +101,14 @@ object BaseVestingAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setOriginalVesting")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, OriginalVestingProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, OriginalVestingProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.setOriginalVesting(index, value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin original_vesting = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"original_vesting&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearOriginalVesting")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, OriginalVestingProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, OriginalVestingProxy>.clear() {
       _builder.clearOriginalVesting()
     }
     /**
@@ -114,11 +116,11 @@ object BaseVestingAccountKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class DelegatedFreeProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class DelegatedFreeProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.base.v1beta1.Coin delegated_free = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"delegated_free&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-     val delegatedFree: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedFreeProxy>
+     public val delegatedFree: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedFreeProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getDelegatedFreeList()
@@ -129,7 +131,7 @@ object BaseVestingAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addDelegatedFree")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedFreeProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedFreeProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.addDelegatedFree(value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin delegated_free = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"delegated_free&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -137,7 +139,8 @@ object BaseVestingAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignDelegatedFree")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedFreeProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedFreeProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       add(value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin delegated_free = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"delegated_free&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -145,7 +148,7 @@ object BaseVestingAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllDelegatedFree")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedFreeProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedFreeProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       _builder.addAllDelegatedFree(values)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin delegated_free = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"delegated_free&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -153,7 +156,8 @@ object BaseVestingAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllDelegatedFree")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedFreeProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedFreeProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin delegated_free = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"delegated_free&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -162,14 +166,14 @@ object BaseVestingAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setDelegatedFree")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedFreeProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedFreeProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.setDelegatedFree(index, value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin delegated_free = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"delegated_free&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearDelegatedFree")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedFreeProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedFreeProxy>.clear() {
       _builder.clearDelegatedFree()
     }
     /**
@@ -177,11 +181,11 @@ object BaseVestingAccountKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class DelegatedVestingProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class DelegatedVestingProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.base.v1beta1.Coin delegated_vesting = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"delegated_vesting&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-     val delegatedVesting: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedVestingProxy>
+     public val delegatedVesting: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedVestingProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getDelegatedVestingList()
@@ -192,7 +196,7 @@ object BaseVestingAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addDelegatedVesting")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedVestingProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedVestingProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.addDelegatedVesting(value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin delegated_vesting = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"delegated_vesting&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -200,7 +204,8 @@ object BaseVestingAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignDelegatedVesting")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedVestingProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedVestingProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       add(value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin delegated_vesting = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"delegated_vesting&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -208,7 +213,7 @@ object BaseVestingAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllDelegatedVesting")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedVestingProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedVestingProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       _builder.addAllDelegatedVesting(values)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin delegated_vesting = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"delegated_vesting&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -216,7 +221,8 @@ object BaseVestingAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllDelegatedVesting")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedVestingProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedVestingProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin delegated_vesting = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"delegated_vesting&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -225,20 +231,20 @@ object BaseVestingAccountKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setDelegatedVesting")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedVestingProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedVestingProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.setDelegatedVesting(index, value)
     }/**
      * <code>repeated .cosmos.base.v1beta1.Coin delegated_vesting = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"delegated_vesting&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearDelegatedVesting")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedVestingProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, DelegatedVestingProxy>.clear() {
       _builder.clearDelegatedVesting()
     }
     /**
      * <code>int64 end_time = 5 [(.gogoproto.moretags) = "yaml:&#92;"end_time&#92;""];</code>
      */
-    var endTime: kotlin.Long
+    public var endTime: kotlin.Long
       @JvmName("getEndTime")
       get() = _builder.getEndTime()
       @JvmName("setEndTime")
@@ -248,11 +254,11 @@ object BaseVestingAccountKt {
     /**
      * <code>int64 end_time = 5 [(.gogoproto.moretags) = "yaml:&#92;"end_time&#92;""];</code>
      */
-    fun clearEndTime() {
+    public fun clearEndTime() {
       _builder.clearEndTime()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.vesting.v1beta1.Vesting.BaseVestingAccount.copy(block: cosmos.vesting.v1beta1.BaseVestingAccountKt.Dsl.() -> Unit): cosmos.vesting.v1beta1.Vesting.BaseVestingAccount =
+public inline fun cosmos.vesting.v1beta1.Vesting.BaseVestingAccount.copy(block: cosmos.vesting.v1beta1.BaseVestingAccountKt.Dsl.() -> kotlin.Unit): cosmos.vesting.v1beta1.Vesting.BaseVestingAccount =
   cosmos.vesting.v1beta1.BaseVestingAccountKt.Dsl._create(this.toBuilder()).apply { block() }._build()

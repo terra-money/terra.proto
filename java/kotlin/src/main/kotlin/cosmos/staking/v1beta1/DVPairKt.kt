@@ -4,15 +4,15 @@
 package cosmos.staking.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun dVPair(block: cosmos.staking.v1beta1.DVPairKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Staking.DVPair =
+public inline fun dVPair(block: cosmos.staking.v1beta1.DVPairKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Staking.DVPair =
   cosmos.staking.v1beta1.DVPairKt.Dsl._create(cosmos.staking.v1beta1.Staking.DVPair.newBuilder()).apply { block() }._build()
-object DVPairKt {
+public object DVPairKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.staking.v1beta1.Staking.DVPair.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.staking.v1beta1.Staking.DVPair.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.staking.v1beta1.Staking.DVPair.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object DVPairKt {
     /**
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      */
-    var delegatorAddress: kotlin.String
+    public var delegatorAddress: kotlin.String
       @JvmName("getDelegatorAddress")
       get() = _builder.getDelegatorAddress()
       @JvmName("setDelegatorAddress")
@@ -35,14 +35,14 @@ object DVPairKt {
     /**
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      */
-    fun clearDelegatorAddress() {
+    public fun clearDelegatorAddress() {
       _builder.clearDelegatorAddress()
     }
 
     /**
      * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
      */
-    var validatorAddress: kotlin.String
+    public var validatorAddress: kotlin.String
       @JvmName("getValidatorAddress")
       get() = _builder.getValidatorAddress()
       @JvmName("setValidatorAddress")
@@ -52,11 +52,11 @@ object DVPairKt {
     /**
      * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
      */
-    fun clearValidatorAddress() {
+    public fun clearValidatorAddress() {
       _builder.clearValidatorAddress()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.staking.v1beta1.Staking.DVPair.copy(block: cosmos.staking.v1beta1.DVPairKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Staking.DVPair =
+public inline fun cosmos.staking.v1beta1.Staking.DVPair.copy(block: cosmos.staking.v1beta1.DVPairKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Staking.DVPair =
   cosmos.staking.v1beta1.DVPairKt.Dsl._create(this.toBuilder()).apply { block() }._build()

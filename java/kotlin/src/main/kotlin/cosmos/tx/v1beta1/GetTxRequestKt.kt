@@ -4,15 +4,15 @@
 package cosmos.tx.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun getTxRequest(block: cosmos.tx.v1beta1.GetTxRequestKt.Dsl.() -> Unit): cosmos.tx.v1beta1.ServiceOuterClass.GetTxRequest =
+public inline fun getTxRequest(block: cosmos.tx.v1beta1.GetTxRequestKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.ServiceOuterClass.GetTxRequest =
   cosmos.tx.v1beta1.GetTxRequestKt.Dsl._create(cosmos.tx.v1beta1.ServiceOuterClass.GetTxRequest.newBuilder()).apply { block() }._build()
-object GetTxRequestKt {
+public object GetTxRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.tx.v1beta1.ServiceOuterClass.GetTxRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.tx.v1beta1.ServiceOuterClass.GetTxRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.tx.v1beta1.ServiceOuterClass.GetTxRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object GetTxRequestKt {
      *
      * <code>string hash = 1;</code>
      */
-    var hash: kotlin.String
+    public var hash: kotlin.String
       @JvmName("getHash")
       get() = _builder.getHash()
       @JvmName("setHash")
@@ -43,11 +43,11 @@ object GetTxRequestKt {
      *
      * <code>string hash = 1;</code>
      */
-    fun clearHash() {
+    public fun clearHash() {
       _builder.clearHash()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.tx.v1beta1.ServiceOuterClass.GetTxRequest.copy(block: cosmos.tx.v1beta1.GetTxRequestKt.Dsl.() -> Unit): cosmos.tx.v1beta1.ServiceOuterClass.GetTxRequest =
+public inline fun cosmos.tx.v1beta1.ServiceOuterClass.GetTxRequest.copy(block: cosmos.tx.v1beta1.GetTxRequestKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.ServiceOuterClass.GetTxRequest =
   cosmos.tx.v1beta1.GetTxRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

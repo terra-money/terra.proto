@@ -4,15 +4,15 @@
 package cosmos.auth.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun params(block: cosmos.auth.v1beta1.ParamsKt.Dsl.() -> Unit): cosmos.auth.v1beta1.Auth.Params =
+public inline fun params(block: cosmos.auth.v1beta1.ParamsKt.Dsl.() -> kotlin.Unit): cosmos.auth.v1beta1.Auth.Params =
   cosmos.auth.v1beta1.ParamsKt.Dsl._create(cosmos.auth.v1beta1.Auth.Params.newBuilder()).apply { block() }._build()
-object ParamsKt {
+public object ParamsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.auth.v1beta1.Auth.Params.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.auth.v1beta1.Auth.Params.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.auth.v1beta1.Auth.Params.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ParamsKt {
     /**
      * <code>uint64 max_memo_characters = 1 [(.gogoproto.moretags) = "yaml:&#92;"max_memo_characters&#92;""];</code>
      */
-    var maxMemoCharacters: kotlin.Long
+    public var maxMemoCharacters: kotlin.Long
       @JvmName("getMaxMemoCharacters")
       get() = _builder.getMaxMemoCharacters()
       @JvmName("setMaxMemoCharacters")
@@ -35,14 +35,14 @@ object ParamsKt {
     /**
      * <code>uint64 max_memo_characters = 1 [(.gogoproto.moretags) = "yaml:&#92;"max_memo_characters&#92;""];</code>
      */
-    fun clearMaxMemoCharacters() {
+    public fun clearMaxMemoCharacters() {
       _builder.clearMaxMemoCharacters()
     }
 
     /**
      * <code>uint64 tx_sig_limit = 2 [(.gogoproto.moretags) = "yaml:&#92;"tx_sig_limit&#92;""];</code>
      */
-    var txSigLimit: kotlin.Long
+    public var txSigLimit: kotlin.Long
       @JvmName("getTxSigLimit")
       get() = _builder.getTxSigLimit()
       @JvmName("setTxSigLimit")
@@ -52,14 +52,14 @@ object ParamsKt {
     /**
      * <code>uint64 tx_sig_limit = 2 [(.gogoproto.moretags) = "yaml:&#92;"tx_sig_limit&#92;""];</code>
      */
-    fun clearTxSigLimit() {
+    public fun clearTxSigLimit() {
       _builder.clearTxSigLimit()
     }
 
     /**
      * <code>uint64 tx_size_cost_per_byte = 3 [(.gogoproto.moretags) = "yaml:&#92;"tx_size_cost_per_byte&#92;""];</code>
      */
-    var txSizeCostPerByte: kotlin.Long
+    public var txSizeCostPerByte: kotlin.Long
       @JvmName("getTxSizeCostPerByte")
       get() = _builder.getTxSizeCostPerByte()
       @JvmName("setTxSizeCostPerByte")
@@ -69,14 +69,14 @@ object ParamsKt {
     /**
      * <code>uint64 tx_size_cost_per_byte = 3 [(.gogoproto.moretags) = "yaml:&#92;"tx_size_cost_per_byte&#92;""];</code>
      */
-    fun clearTxSizeCostPerByte() {
+    public fun clearTxSizeCostPerByte() {
       _builder.clearTxSizeCostPerByte()
     }
 
     /**
      * <code>uint64 sig_verify_cost_ed25519 = 4 [(.gogoproto.customname) = "SigVerifyCostED25519", (.gogoproto.moretags) = "yaml:&#92;"sig_verify_cost_ed25519&#92;""];</code>
      */
-    var sigVerifyCostEd25519: kotlin.Long
+    public var sigVerifyCostEd25519: kotlin.Long
       @JvmName("getSigVerifyCostEd25519")
       get() = _builder.getSigVerifyCostEd25519()
       @JvmName("setSigVerifyCostEd25519")
@@ -86,14 +86,14 @@ object ParamsKt {
     /**
      * <code>uint64 sig_verify_cost_ed25519 = 4 [(.gogoproto.customname) = "SigVerifyCostED25519", (.gogoproto.moretags) = "yaml:&#92;"sig_verify_cost_ed25519&#92;""];</code>
      */
-    fun clearSigVerifyCostEd25519() {
+    public fun clearSigVerifyCostEd25519() {
       _builder.clearSigVerifyCostEd25519()
     }
 
     /**
      * <code>uint64 sig_verify_cost_secp256k1 = 5 [(.gogoproto.customname) = "SigVerifyCostSecp256k1", (.gogoproto.moretags) = "yaml:&#92;"sig_verify_cost_secp256k1&#92;""];</code>
      */
-    var sigVerifyCostSecp256K1: kotlin.Long
+    public var sigVerifyCostSecp256K1: kotlin.Long
       @JvmName("getSigVerifyCostSecp256K1")
       get() = _builder.getSigVerifyCostSecp256K1()
       @JvmName("setSigVerifyCostSecp256K1")
@@ -103,11 +103,11 @@ object ParamsKt {
     /**
      * <code>uint64 sig_verify_cost_secp256k1 = 5 [(.gogoproto.customname) = "SigVerifyCostSecp256k1", (.gogoproto.moretags) = "yaml:&#92;"sig_verify_cost_secp256k1&#92;""];</code>
      */
-    fun clearSigVerifyCostSecp256K1() {
+    public fun clearSigVerifyCostSecp256K1() {
       _builder.clearSigVerifyCostSecp256K1()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.auth.v1beta1.Auth.Params.copy(block: cosmos.auth.v1beta1.ParamsKt.Dsl.() -> Unit): cosmos.auth.v1beta1.Auth.Params =
+public inline fun cosmos.auth.v1beta1.Auth.Params.copy(block: cosmos.auth.v1beta1.ParamsKt.Dsl.() -> kotlin.Unit): cosmos.auth.v1beta1.Auth.Params =
   cosmos.auth.v1beta1.ParamsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryChannelConsensusStateRequest(block: ibc.core.channel.v1.QueryChannelConsensusStateRequestKt.Dsl.() -> Unit): ibc.core.channel.v1.QueryOuterClass.QueryChannelConsensusStateRequest =
+public inline fun queryChannelConsensusStateRequest(block: ibc.core.channel.v1.QueryChannelConsensusStateRequestKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.QueryOuterClass.QueryChannelConsensusStateRequest =
   ibc.core.channel.v1.QueryChannelConsensusStateRequestKt.Dsl._create(ibc.core.channel.v1.QueryOuterClass.QueryChannelConsensusStateRequest.newBuilder()).apply { block() }._build()
-object QueryChannelConsensusStateRequestKt {
+public object QueryChannelConsensusStateRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.QueryOuterClass.QueryChannelConsensusStateRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.QueryOuterClass.QueryChannelConsensusStateRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.QueryOuterClass.QueryChannelConsensusStateRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryChannelConsensusStateRequestKt {
      *
      * <code>string port_id = 1;</code>
      */
-    var portId: kotlin.String
+    public var portId: kotlin.String
       @JvmName("getPortId")
       get() = _builder.getPortId()
       @JvmName("setPortId")
@@ -43,7 +43,7 @@ object QueryChannelConsensusStateRequestKt {
      *
      * <code>string port_id = 1;</code>
      */
-    fun clearPortId() {
+    public fun clearPortId() {
       _builder.clearPortId()
     }
 
@@ -54,7 +54,7 @@ object QueryChannelConsensusStateRequestKt {
      *
      * <code>string channel_id = 2;</code>
      */
-    var channelId: kotlin.String
+    public var channelId: kotlin.String
       @JvmName("getChannelId")
       get() = _builder.getChannelId()
       @JvmName("setChannelId")
@@ -68,7 +68,7 @@ object QueryChannelConsensusStateRequestKt {
      *
      * <code>string channel_id = 2;</code>
      */
-    fun clearChannelId() {
+    public fun clearChannelId() {
       _builder.clearChannelId()
     }
 
@@ -79,7 +79,7 @@ object QueryChannelConsensusStateRequestKt {
      *
      * <code>uint64 revision_number = 3;</code>
      */
-    var revisionNumber: kotlin.Long
+    public var revisionNumber: kotlin.Long
       @JvmName("getRevisionNumber")
       get() = _builder.getRevisionNumber()
       @JvmName("setRevisionNumber")
@@ -93,7 +93,7 @@ object QueryChannelConsensusStateRequestKt {
      *
      * <code>uint64 revision_number = 3;</code>
      */
-    fun clearRevisionNumber() {
+    public fun clearRevisionNumber() {
       _builder.clearRevisionNumber()
     }
 
@@ -104,7 +104,7 @@ object QueryChannelConsensusStateRequestKt {
      *
      * <code>uint64 revision_height = 4;</code>
      */
-    var revisionHeight: kotlin.Long
+    public var revisionHeight: kotlin.Long
       @JvmName("getRevisionHeight")
       get() = _builder.getRevisionHeight()
       @JvmName("setRevisionHeight")
@@ -118,11 +118,11 @@ object QueryChannelConsensusStateRequestKt {
      *
      * <code>uint64 revision_height = 4;</code>
      */
-    fun clearRevisionHeight() {
+    public fun clearRevisionHeight() {
       _builder.clearRevisionHeight()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.QueryOuterClass.QueryChannelConsensusStateRequest.copy(block: ibc.core.channel.v1.QueryChannelConsensusStateRequestKt.Dsl.() -> Unit): ibc.core.channel.v1.QueryOuterClass.QueryChannelConsensusStateRequest =
+public inline fun ibc.core.channel.v1.QueryOuterClass.QueryChannelConsensusStateRequest.copy(block: ibc.core.channel.v1.QueryChannelConsensusStateRequestKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.QueryOuterClass.QueryChannelConsensusStateRequest =
   ibc.core.channel.v1.QueryChannelConsensusStateRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

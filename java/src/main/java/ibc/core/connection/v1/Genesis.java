@@ -1506,9 +1506,9 @@ public final class Genesis {
       "on_paths\"\022E\n\030next_connection_sequence\030\003 " +
       "\001(\004B#\362\336\037\037yaml:\"next_connection_sequence\"" +
       "\0224\n\006params\030\004 \001(\0132\036.ibc.core.connection.v" +
-      "1.ParamsB\004\310\336\037\000B;Z9github.com/cosmos/ibc-" +
-      "go/modules/core/03-connection/typesb\006pro" +
-      "to3"
+      "1.ParamsB\004\310\336\037\000B>Z<github.com/cosmos/ibc-" +
+      "go/v3/modules/core/03-connection/typesb\006" +
+      "proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

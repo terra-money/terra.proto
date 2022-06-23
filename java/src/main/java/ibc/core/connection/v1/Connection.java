@@ -647,7 +647,7 @@ public final class Connection {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, clientId_);
       }
       for (int i = 0; i < versions_.size(); i++) {
@@ -671,7 +671,7 @@ public final class Connection {
       if (size != -1) return size;
 
       size = 0;
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, clientId_);
       }
       for (int i = 0; i < versions_.size(); i++) {
@@ -2354,10 +2354,10 @@ public final class Connection {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(id_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
       }
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, clientId_);
       }
       for (int i = 0; i < versions_.size(); i++) {
@@ -2381,10 +2381,10 @@ public final class Connection {
       if (size != -1) return size;
 
       size = 0;
-      if (!getIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(id_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
       }
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, clientId_);
       }
       for (int i = 0; i < versions_.size(); i++) {
@@ -3962,10 +3962,10 @@ public final class Connection {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, clientId_);
       }
-      if (!getConnectionIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(connectionId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, connectionId_);
       }
       if (prefix_ != null) {
@@ -3980,10 +3980,10 @@ public final class Connection {
       if (size != -1) return size;
 
       size = 0;
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, clientId_);
       }
-      if (!getConnectionIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(connectionId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, connectionId_);
       }
       if (prefix_ != null) {
@@ -5702,7 +5702,7 @@ public final class Connection {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, clientId_);
       }
       for (int i = 0; i < paths_.size(); i++) {
@@ -5717,7 +5717,7 @@ public final class Connection {
       if (size != -1) return size;
 
       size = 0;
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, clientId_);
       }
       {
@@ -6603,7 +6603,7 @@ public final class Connection {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getIdentifierBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(identifier_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, identifier_);
       }
       for (int i = 0; i < features_.size(); i++) {
@@ -6618,7 +6618,7 @@ public final class Connection {
       if (size != -1) return size;
 
       size = 0;
-      if (!getIdentifierBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(identifier_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, identifier_);
       }
       {
@@ -7829,8 +7829,8 @@ public final class Connection {
       "LIZED_UNSPECIFIED\020\000\032\021\212\235 \rUNINITIALIZED\022\030" +
       "\n\nSTATE_INIT\020\001\032\010\212\235 \004INIT\022\036\n\rSTATE_TRYOPE" +
       "N\020\002\032\013\212\235 \007TRYOPEN\022\030\n\nSTATE_OPEN\020\003\032\010\212\235 \004OP" +
-      "EN\032\004\210\243\036\000B;Z9github.com/cosmos/ibc-go/mod" +
-      "ules/core/03-connection/typesb\006proto3"
+      "EN\032\004\210\243\036\000B>Z<github.com/cosmos/ibc-go/v3/" +
+      "modules/core/03-connection/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -4,15 +4,15 @@
 package ibc.lightclients.solomachine.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun headerData(block: ibc.lightclients.solomachine.v1.HeaderDataKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v1.Solomachine.HeaderData =
+public inline fun headerData(block: ibc.lightclients.solomachine.v1.HeaderDataKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v1.Solomachine.HeaderData =
   ibc.lightclients.solomachine.v1.HeaderDataKt.Dsl._create(ibc.lightclients.solomachine.v1.Solomachine.HeaderData.newBuilder()).apply { block() }._build()
-object HeaderDataKt {
+public object HeaderDataKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.lightclients.solomachine.v1.Solomachine.HeaderData.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.lightclients.solomachine.v1.Solomachine.HeaderData.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.lightclients.solomachine.v1.Solomachine.HeaderData.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object HeaderDataKt {
      *
      * <code>.google.protobuf.Any new_pub_key = 1 [(.gogoproto.moretags) = "yaml:&#92;"new_pub_key&#92;""];</code>
      */
-    var newPubKey: com.google.protobuf.Any
+    public var newPubKey: com.google.protobuf.Any
       @JvmName("getNewPubKey")
       get() = _builder.getNewPubKey()
       @JvmName("setNewPubKey")
@@ -43,7 +43,7 @@ object HeaderDataKt {
      *
      * <code>.google.protobuf.Any new_pub_key = 1 [(.gogoproto.moretags) = "yaml:&#92;"new_pub_key&#92;""];</code>
      */
-    fun clearNewPubKey() {
+    public fun clearNewPubKey() {
       _builder.clearNewPubKey()
     }
     /**
@@ -54,7 +54,7 @@ object HeaderDataKt {
      * <code>.google.protobuf.Any new_pub_key = 1 [(.gogoproto.moretags) = "yaml:&#92;"new_pub_key&#92;""];</code>
      * @return Whether the newPubKey field is set.
      */
-    fun hasNewPubKey(): kotlin.Boolean {
+    public fun hasNewPubKey(): kotlin.Boolean {
       return _builder.hasNewPubKey()
     }
 
@@ -65,7 +65,7 @@ object HeaderDataKt {
      *
      * <code>string new_diversifier = 2 [(.gogoproto.moretags) = "yaml:&#92;"new_diversifier&#92;""];</code>
      */
-    var newDiversifier: kotlin.String
+    public var newDiversifier: kotlin.String
       @JvmName("getNewDiversifier")
       get() = _builder.getNewDiversifier()
       @JvmName("setNewDiversifier")
@@ -79,11 +79,11 @@ object HeaderDataKt {
      *
      * <code>string new_diversifier = 2 [(.gogoproto.moretags) = "yaml:&#92;"new_diversifier&#92;""];</code>
      */
-    fun clearNewDiversifier() {
+    public fun clearNewDiversifier() {
       _builder.clearNewDiversifier()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.lightclients.solomachine.v1.Solomachine.HeaderData.copy(block: ibc.lightclients.solomachine.v1.HeaderDataKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v1.Solomachine.HeaderData =
+public inline fun ibc.lightclients.solomachine.v1.Solomachine.HeaderData.copy(block: ibc.lightclients.solomachine.v1.HeaderDataKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v1.Solomachine.HeaderData =
   ibc.lightclients.solomachine.v1.HeaderDataKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.tx.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun authInfo(block: cosmos.tx.v1beta1.AuthInfoKt.Dsl.() -> Unit): cosmos.tx.v1beta1.TxOuterClass.AuthInfo =
+public inline fun authInfo(block: cosmos.tx.v1beta1.AuthInfoKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.TxOuterClass.AuthInfo =
   cosmos.tx.v1beta1.AuthInfoKt.Dsl._create(cosmos.tx.v1beta1.TxOuterClass.AuthInfo.newBuilder()).apply { block() }._build()
-object AuthInfoKt {
+public object AuthInfoKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.tx.v1beta1.TxOuterClass.AuthInfo.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.tx.v1beta1.TxOuterClass.AuthInfo.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.tx.v1beta1.TxOuterClass.AuthInfo.Builder): Dsl = Dsl(builder)
@@ -27,7 +27,7 @@ object AuthInfoKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class SignerInfosProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class SignerInfosProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * signer_infos defines the signing modes for the required signers. The number
@@ -38,7 +38,7 @@ object AuthInfoKt {
      *
      * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
      */
-     val signerInfos: com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.SignerInfo, SignerInfosProxy>
+     public val signerInfos: com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.SignerInfo, SignerInfosProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getSignerInfosList()
@@ -56,7 +56,7 @@ object AuthInfoKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addSignerInfos")
-    fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.SignerInfo, SignerInfosProxy>.add(value: cosmos.tx.v1beta1.TxOuterClass.SignerInfo) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.SignerInfo, SignerInfosProxy>.add(value: cosmos.tx.v1beta1.TxOuterClass.SignerInfo) {
       _builder.addSignerInfos(value)
     }/**
      * <pre>
@@ -71,7 +71,8 @@ object AuthInfoKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignSignerInfos")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.SignerInfo, SignerInfosProxy>.plusAssign(value: cosmos.tx.v1beta1.TxOuterClass.SignerInfo) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.SignerInfo, SignerInfosProxy>.plusAssign(value: cosmos.tx.v1beta1.TxOuterClass.SignerInfo) {
       add(value)
     }/**
      * <pre>
@@ -86,7 +87,7 @@ object AuthInfoKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllSignerInfos")
-    fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.SignerInfo, SignerInfosProxy>.addAll(values: kotlin.collections.Iterable<cosmos.tx.v1beta1.TxOuterClass.SignerInfo>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.SignerInfo, SignerInfosProxy>.addAll(values: kotlin.collections.Iterable<cosmos.tx.v1beta1.TxOuterClass.SignerInfo>) {
       _builder.addAllSignerInfos(values)
     }/**
      * <pre>
@@ -101,7 +102,8 @@ object AuthInfoKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllSignerInfos")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.SignerInfo, SignerInfosProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.tx.v1beta1.TxOuterClass.SignerInfo>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.SignerInfo, SignerInfosProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.tx.v1beta1.TxOuterClass.SignerInfo>) {
       addAll(values)
     }/**
      * <pre>
@@ -117,7 +119,7 @@ object AuthInfoKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setSignerInfos")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.SignerInfo, SignerInfosProxy>.set(index: kotlin.Int, value: cosmos.tx.v1beta1.TxOuterClass.SignerInfo) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.SignerInfo, SignerInfosProxy>.set(index: kotlin.Int, value: cosmos.tx.v1beta1.TxOuterClass.SignerInfo) {
       _builder.setSignerInfos(index, value)
     }/**
      * <pre>
@@ -131,7 +133,7 @@ object AuthInfoKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearSignerInfos")
-    fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.SignerInfo, SignerInfosProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.SignerInfo, SignerInfosProxy>.clear() {
       _builder.clearSignerInfos()
     }
     /**
@@ -144,7 +146,7 @@ object AuthInfoKt {
      *
      * <code>.cosmos.tx.v1beta1.Fee fee = 2;</code>
      */
-    var fee: cosmos.tx.v1beta1.TxOuterClass.Fee
+    public var fee: cosmos.tx.v1beta1.TxOuterClass.Fee
       @JvmName("getFee")
       get() = _builder.getFee()
       @JvmName("setFee")
@@ -161,7 +163,7 @@ object AuthInfoKt {
      *
      * <code>.cosmos.tx.v1beta1.Fee fee = 2;</code>
      */
-    fun clearFee() {
+    public fun clearFee() {
       _builder.clearFee()
     }
     /**
@@ -175,11 +177,11 @@ object AuthInfoKt {
      * <code>.cosmos.tx.v1beta1.Fee fee = 2;</code>
      * @return Whether the fee field is set.
      */
-    fun hasFee(): kotlin.Boolean {
+    public fun hasFee(): kotlin.Boolean {
       return _builder.hasFee()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.tx.v1beta1.TxOuterClass.AuthInfo.copy(block: cosmos.tx.v1beta1.AuthInfoKt.Dsl.() -> Unit): cosmos.tx.v1beta1.TxOuterClass.AuthInfo =
+public inline fun cosmos.tx.v1beta1.TxOuterClass.AuthInfo.copy(block: cosmos.tx.v1beta1.AuthInfoKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.TxOuterClass.AuthInfo =
   cosmos.tx.v1beta1.AuthInfoKt.Dsl._create(this.toBuilder()).apply { block() }._build()

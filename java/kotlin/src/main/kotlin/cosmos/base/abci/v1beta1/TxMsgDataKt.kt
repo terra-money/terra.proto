@@ -4,15 +4,15 @@
 package cosmos.base.abci.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun txMsgData(block: cosmos.base.abci.v1beta1.TxMsgDataKt.Dsl.() -> Unit): cosmos.base.abci.v1beta1.Abci.TxMsgData =
+public inline fun txMsgData(block: cosmos.base.abci.v1beta1.TxMsgDataKt.Dsl.() -> kotlin.Unit): cosmos.base.abci.v1beta1.Abci.TxMsgData =
   cosmos.base.abci.v1beta1.TxMsgDataKt.Dsl._create(cosmos.base.abci.v1beta1.Abci.TxMsgData.newBuilder()).apply { block() }._build()
-object TxMsgDataKt {
+public object TxMsgDataKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.abci.v1beta1.Abci.TxMsgData.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.abci.v1beta1.Abci.TxMsgData.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.abci.v1beta1.Abci.TxMsgData.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object TxMsgDataKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class DataProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class DataProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .cosmos.base.abci.v1beta1.MsgData data = 1;</code>
      */
-     val data: com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.MsgData, DataProxy>
+     public val data: com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.MsgData, DataProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getDataList()
@@ -42,7 +42,7 @@ object TxMsgDataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addData")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.MsgData, DataProxy>.add(value: cosmos.base.abci.v1beta1.Abci.MsgData) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.MsgData, DataProxy>.add(value: cosmos.base.abci.v1beta1.Abci.MsgData) {
       _builder.addData(value)
     }/**
      * <code>repeated .cosmos.base.abci.v1beta1.MsgData data = 1;</code>
@@ -50,7 +50,8 @@ object TxMsgDataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignData")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.MsgData, DataProxy>.plusAssign(value: cosmos.base.abci.v1beta1.Abci.MsgData) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.MsgData, DataProxy>.plusAssign(value: cosmos.base.abci.v1beta1.Abci.MsgData) {
       add(value)
     }/**
      * <code>repeated .cosmos.base.abci.v1beta1.MsgData data = 1;</code>
@@ -58,7 +59,7 @@ object TxMsgDataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllData")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.MsgData, DataProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.abci.v1beta1.Abci.MsgData>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.MsgData, DataProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.abci.v1beta1.Abci.MsgData>) {
       _builder.addAllData(values)
     }/**
      * <code>repeated .cosmos.base.abci.v1beta1.MsgData data = 1;</code>
@@ -66,7 +67,8 @@ object TxMsgDataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllData")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.MsgData, DataProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.abci.v1beta1.Abci.MsgData>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.MsgData, DataProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.abci.v1beta1.Abci.MsgData>) {
       addAll(values)
     }/**
      * <code>repeated .cosmos.base.abci.v1beta1.MsgData data = 1;</code>
@@ -75,17 +77,17 @@ object TxMsgDataKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setData")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.MsgData, DataProxy>.set(index: kotlin.Int, value: cosmos.base.abci.v1beta1.Abci.MsgData) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.MsgData, DataProxy>.set(index: kotlin.Int, value: cosmos.base.abci.v1beta1.Abci.MsgData) {
       _builder.setData(index, value)
     }/**
      * <code>repeated .cosmos.base.abci.v1beta1.MsgData data = 1;</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearData")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.MsgData, DataProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.abci.v1beta1.Abci.MsgData, DataProxy>.clear() {
       _builder.clearData()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.abci.v1beta1.Abci.TxMsgData.copy(block: cosmos.base.abci.v1beta1.TxMsgDataKt.Dsl.() -> Unit): cosmos.base.abci.v1beta1.Abci.TxMsgData =
+public inline fun cosmos.base.abci.v1beta1.Abci.TxMsgData.copy(block: cosmos.base.abci.v1beta1.TxMsgDataKt.Dsl.() -> kotlin.Unit): cosmos.base.abci.v1beta1.Abci.TxMsgData =
   cosmos.base.abci.v1beta1.TxMsgDataKt.Dsl._create(this.toBuilder()).apply { block() }._build()

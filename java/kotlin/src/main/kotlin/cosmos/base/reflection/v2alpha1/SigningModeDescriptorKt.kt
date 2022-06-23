@@ -4,15 +4,15 @@
 package cosmos.base.reflection.v2alpha1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun signingModeDescriptor(block: cosmos.base.reflection.v2alpha1.SigningModeDescriptorKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.SigningModeDescriptor =
+public inline fun signingModeDescriptor(block: cosmos.base.reflection.v2alpha1.SigningModeDescriptorKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.SigningModeDescriptor =
   cosmos.base.reflection.v2alpha1.SigningModeDescriptorKt.Dsl._create(cosmos.base.reflection.v2alpha1.Reflection.SigningModeDescriptor.newBuilder()).apply { block() }._build()
-object SigningModeDescriptorKt {
+public object SigningModeDescriptorKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.reflection.v2alpha1.Reflection.SigningModeDescriptor.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.reflection.v2alpha1.Reflection.SigningModeDescriptor.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.reflection.v2alpha1.Reflection.SigningModeDescriptor.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object SigningModeDescriptorKt {
      *
      * <code>string name = 1;</code>
      */
-    var name: kotlin.String
+    public var name: kotlin.String
       @JvmName("getName")
       get() = _builder.getName()
       @JvmName("setName")
@@ -43,7 +43,7 @@ object SigningModeDescriptorKt {
      *
      * <code>string name = 1;</code>
      */
-    fun clearName() {
+    public fun clearName() {
       _builder.clearName()
     }
 
@@ -54,7 +54,7 @@ object SigningModeDescriptorKt {
      *
      * <code>int32 number = 2;</code>
      */
-    var number: kotlin.Int
+    public var number: kotlin.Int
       @JvmName("getNumber")
       get() = _builder.getNumber()
       @JvmName("setNumber")
@@ -68,7 +68,7 @@ object SigningModeDescriptorKt {
      *
      * <code>int32 number = 2;</code>
      */
-    fun clearNumber() {
+    public fun clearNumber() {
       _builder.clearNumber()
     }
 
@@ -80,7 +80,7 @@ object SigningModeDescriptorKt {
      *
      * <code>string authn_info_provider_method_fullname = 3;</code>
      */
-    var authnInfoProviderMethodFullname: kotlin.String
+    public var authnInfoProviderMethodFullname: kotlin.String
       @JvmName("getAuthnInfoProviderMethodFullname")
       get() = _builder.getAuthnInfoProviderMethodFullname()
       @JvmName("setAuthnInfoProviderMethodFullname")
@@ -95,11 +95,11 @@ object SigningModeDescriptorKt {
      *
      * <code>string authn_info_provider_method_fullname = 3;</code>
      */
-    fun clearAuthnInfoProviderMethodFullname() {
+    public fun clearAuthnInfoProviderMethodFullname() {
       _builder.clearAuthnInfoProviderMethodFullname()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.reflection.v2alpha1.Reflection.SigningModeDescriptor.copy(block: cosmos.base.reflection.v2alpha1.SigningModeDescriptorKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.SigningModeDescriptor =
+public inline fun cosmos.base.reflection.v2alpha1.Reflection.SigningModeDescriptor.copy(block: cosmos.base.reflection.v2alpha1.SigningModeDescriptorKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.SigningModeDescriptor =
   cosmos.base.reflection.v2alpha1.SigningModeDescriptorKt.Dsl._create(this.toBuilder()).apply { block() }._build()

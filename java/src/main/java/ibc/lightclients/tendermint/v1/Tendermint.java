@@ -956,7 +956,7 @@ public final class Tendermint {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getChainIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(chainId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, chainId_);
       }
       if (trustLevel_ != null) {
@@ -998,7 +998,7 @@ public final class Tendermint {
       if (size != -1) return size;
 
       size = 0;
-      if (!getChainIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(chainId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, chainId_);
       }
       if (trustLevel_ != null) {
@@ -4497,7 +4497,7 @@ public final class Tendermint {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, clientId_);
       }
       if (header1_ != null) {
@@ -4515,7 +4515,7 @@ public final class Tendermint {
       if (size != -1) return size;
 
       size = 0;
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, clientId_);
       }
       if (header1_ != null) {
@@ -7131,9 +7131,9 @@ public final class Tendermint {
       "rusted_validators\030\004 \001(\0132\036.tendermint.typ" +
       "es.ValidatorSetB\035\362\336\037\031yaml:\"trusted_valid" +
       "ators\"\"2\n\010Fraction\022\021\n\tnumerator\030\001 \001(\004\022\023\n" +
-      "\013denominator\030\002 \001(\004BDZBgithub.com/cosmos/" +
-      "ibc-go/modules/light-clients/07-tendermi" +
-      "nt/typesb\006proto3"
+      "\013denominator\030\002 \001(\004BGZEgithub.com/cosmos/" +
+      "ibc-go/v3/modules/light-clients/07-tende" +
+      "rmint/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

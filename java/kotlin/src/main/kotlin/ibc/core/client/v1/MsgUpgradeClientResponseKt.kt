@@ -4,15 +4,15 @@
 package ibc.core.client.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgUpgradeClientResponse(block: ibc.core.client.v1.MsgUpgradeClientResponseKt.Dsl.() -> Unit): ibc.core.client.v1.Tx.MsgUpgradeClientResponse =
+public inline fun msgUpgradeClientResponse(block: ibc.core.client.v1.MsgUpgradeClientResponseKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.Tx.MsgUpgradeClientResponse =
   ibc.core.client.v1.MsgUpgradeClientResponseKt.Dsl._create(ibc.core.client.v1.Tx.MsgUpgradeClientResponse.newBuilder()).apply { block() }._build()
-object MsgUpgradeClientResponseKt {
+public object MsgUpgradeClientResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.client.v1.Tx.MsgUpgradeClientResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.client.v1.Tx.MsgUpgradeClientResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.client.v1.Tx.MsgUpgradeClientResponse.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object MsgUpgradeClientResponseKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.client.v1.Tx.MsgUpgradeClientResponse.copy(block: ibc.core.client.v1.MsgUpgradeClientResponseKt.Dsl.() -> Unit): ibc.core.client.v1.Tx.MsgUpgradeClientResponse =
+public inline fun ibc.core.client.v1.Tx.MsgUpgradeClientResponse.copy(block: ibc.core.client.v1.MsgUpgradeClientResponseKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.Tx.MsgUpgradeClientResponse =
   ibc.core.client.v1.MsgUpgradeClientResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

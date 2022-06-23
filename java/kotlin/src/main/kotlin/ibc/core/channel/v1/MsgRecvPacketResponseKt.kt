@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgRecvPacketResponse(block: ibc.core.channel.v1.MsgRecvPacketResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgRecvPacketResponse =
+public inline fun msgRecvPacketResponse(block: ibc.core.channel.v1.MsgRecvPacketResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgRecvPacketResponse =
   ibc.core.channel.v1.MsgRecvPacketResponseKt.Dsl._create(ibc.core.channel.v1.Tx.MsgRecvPacketResponse.newBuilder()).apply { block() }._build()
-object MsgRecvPacketResponseKt {
+public object MsgRecvPacketResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.Tx.MsgRecvPacketResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.Tx.MsgRecvPacketResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.Tx.MsgRecvPacketResponse.Builder): Dsl = Dsl(builder)
@@ -21,8 +21,25 @@ object MsgRecvPacketResponseKt {
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
     internal fun _build(): ibc.core.channel.v1.Tx.MsgRecvPacketResponse = _builder.build()
+
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     */
+    public var result: ibc.core.channel.v1.Tx.ResponseResultType
+      @JvmName("getResult")
+      get() = _builder.getResult()
+      @JvmName("setResult")
+      set(value) {
+        _builder.setResult(value)
+      }
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     */
+    public fun clearResult() {
+      _builder.clearResult()
+    }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.Tx.MsgRecvPacketResponse.copy(block: ibc.core.channel.v1.MsgRecvPacketResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgRecvPacketResponse =
+public inline fun ibc.core.channel.v1.Tx.MsgRecvPacketResponse.copy(block: ibc.core.channel.v1.MsgRecvPacketResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgRecvPacketResponse =
   ibc.core.channel.v1.MsgRecvPacketResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

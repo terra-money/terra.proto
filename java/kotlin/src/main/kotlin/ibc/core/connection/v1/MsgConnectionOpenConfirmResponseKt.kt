@@ -4,15 +4,15 @@
 package ibc.core.connection.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgConnectionOpenConfirmResponse(block: ibc.core.connection.v1.MsgConnectionOpenConfirmResponseKt.Dsl.() -> Unit): ibc.core.connection.v1.Tx.MsgConnectionOpenConfirmResponse =
+public inline fun msgConnectionOpenConfirmResponse(block: ibc.core.connection.v1.MsgConnectionOpenConfirmResponseKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.Tx.MsgConnectionOpenConfirmResponse =
   ibc.core.connection.v1.MsgConnectionOpenConfirmResponseKt.Dsl._create(ibc.core.connection.v1.Tx.MsgConnectionOpenConfirmResponse.newBuilder()).apply { block() }._build()
-object MsgConnectionOpenConfirmResponseKt {
+public object MsgConnectionOpenConfirmResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.connection.v1.Tx.MsgConnectionOpenConfirmResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.connection.v1.Tx.MsgConnectionOpenConfirmResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.connection.v1.Tx.MsgConnectionOpenConfirmResponse.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object MsgConnectionOpenConfirmResponseKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.connection.v1.Tx.MsgConnectionOpenConfirmResponse.copy(block: ibc.core.connection.v1.MsgConnectionOpenConfirmResponseKt.Dsl.() -> Unit): ibc.core.connection.v1.Tx.MsgConnectionOpenConfirmResponse =
+public inline fun ibc.core.connection.v1.Tx.MsgConnectionOpenConfirmResponse.copy(block: ibc.core.connection.v1.MsgConnectionOpenConfirmResponseKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.Tx.MsgConnectionOpenConfirmResponse =
   ibc.core.connection.v1.MsgConnectionOpenConfirmResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

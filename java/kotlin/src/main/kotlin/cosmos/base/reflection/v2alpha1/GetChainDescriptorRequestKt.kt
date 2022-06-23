@@ -4,15 +4,15 @@
 package cosmos.base.reflection.v2alpha1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun getChainDescriptorRequest(block: cosmos.base.reflection.v2alpha1.GetChainDescriptorRequestKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorRequest =
+public inline fun getChainDescriptorRequest(block: cosmos.base.reflection.v2alpha1.GetChainDescriptorRequestKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorRequest =
   cosmos.base.reflection.v2alpha1.GetChainDescriptorRequestKt.Dsl._create(cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorRequest.newBuilder()).apply { block() }._build()
-object GetChainDescriptorRequestKt {
+public object GetChainDescriptorRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorRequest.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object GetChainDescriptorRequestKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorRequest.copy(block: cosmos.base.reflection.v2alpha1.GetChainDescriptorRequestKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorRequest =
+public inline fun cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorRequest.copy(block: cosmos.base.reflection.v2alpha1.GetChainDescriptorRequestKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorRequest =
   cosmos.base.reflection.v2alpha1.GetChainDescriptorRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

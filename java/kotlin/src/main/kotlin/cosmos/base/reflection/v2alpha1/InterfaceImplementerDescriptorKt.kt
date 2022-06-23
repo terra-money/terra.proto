@@ -4,15 +4,15 @@
 package cosmos.base.reflection.v2alpha1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun interfaceImplementerDescriptor(block: cosmos.base.reflection.v2alpha1.InterfaceImplementerDescriptorKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.InterfaceImplementerDescriptor =
+public inline fun interfaceImplementerDescriptor(block: cosmos.base.reflection.v2alpha1.InterfaceImplementerDescriptorKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.InterfaceImplementerDescriptor =
   cosmos.base.reflection.v2alpha1.InterfaceImplementerDescriptorKt.Dsl._create(cosmos.base.reflection.v2alpha1.Reflection.InterfaceImplementerDescriptor.newBuilder()).apply { block() }._build()
-object InterfaceImplementerDescriptorKt {
+public object InterfaceImplementerDescriptorKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.reflection.v2alpha1.Reflection.InterfaceImplementerDescriptor.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.reflection.v2alpha1.Reflection.InterfaceImplementerDescriptor.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.reflection.v2alpha1.Reflection.InterfaceImplementerDescriptor.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object InterfaceImplementerDescriptorKt {
      *
      * <code>string fullname = 1;</code>
      */
-    var fullname: kotlin.String
+    public var fullname: kotlin.String
       @JvmName("getFullname")
       get() = _builder.getFullname()
       @JvmName("setFullname")
@@ -43,7 +43,7 @@ object InterfaceImplementerDescriptorKt {
      *
      * <code>string fullname = 1;</code>
      */
-    fun clearFullname() {
+    public fun clearFullname() {
       _builder.clearFullname()
     }
 
@@ -57,7 +57,7 @@ object InterfaceImplementerDescriptorKt {
      *
      * <code>string type_url = 2;</code>
      */
-    var typeUrl: kotlin.String
+    public var typeUrl: kotlin.String
       @JvmName("getTypeUrl")
       get() = _builder.getTypeUrl()
       @JvmName("setTypeUrl")
@@ -74,11 +74,11 @@ object InterfaceImplementerDescriptorKt {
      *
      * <code>string type_url = 2;</code>
      */
-    fun clearTypeUrl() {
+    public fun clearTypeUrl() {
       _builder.clearTypeUrl()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.reflection.v2alpha1.Reflection.InterfaceImplementerDescriptor.copy(block: cosmos.base.reflection.v2alpha1.InterfaceImplementerDescriptorKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.InterfaceImplementerDescriptor =
+public inline fun cosmos.base.reflection.v2alpha1.Reflection.InterfaceImplementerDescriptor.copy(block: cosmos.base.reflection.v2alpha1.InterfaceImplementerDescriptorKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.InterfaceImplementerDescriptor =
   cosmos.base.reflection.v2alpha1.InterfaceImplementerDescriptorKt.Dsl._create(this.toBuilder()).apply { block() }._build()

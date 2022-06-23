@@ -4,15 +4,15 @@
 package cosmos.base.tendermint.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun validator(block: cosmos.base.tendermint.v1beta1.ValidatorKt.Dsl.() -> Unit): cosmos.base.tendermint.v1beta1.Query.Validator =
+public inline fun validator(block: cosmos.base.tendermint.v1beta1.ValidatorKt.Dsl.() -> kotlin.Unit): cosmos.base.tendermint.v1beta1.Query.Validator =
   cosmos.base.tendermint.v1beta1.ValidatorKt.Dsl._create(cosmos.base.tendermint.v1beta1.Query.Validator.newBuilder()).apply { block() }._build()
-object ValidatorKt {
+public object ValidatorKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.tendermint.v1beta1.Query.Validator.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.tendermint.v1beta1.Query.Validator.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.tendermint.v1beta1.Query.Validator.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ValidatorKt {
     /**
      * <code>string address = 1;</code>
      */
-    var address: kotlin.String
+    public var address: kotlin.String
       @JvmName("getAddress")
       get() = _builder.getAddress()
       @JvmName("setAddress")
@@ -35,14 +35,14 @@ object ValidatorKt {
     /**
      * <code>string address = 1;</code>
      */
-    fun clearAddress() {
+    public fun clearAddress() {
       _builder.clearAddress()
     }
 
     /**
      * <code>.google.protobuf.Any pub_key = 2;</code>
      */
-    var pubKey: com.google.protobuf.Any
+    public var pubKey: com.google.protobuf.Any
       @JvmName("getPubKey")
       get() = _builder.getPubKey()
       @JvmName("setPubKey")
@@ -52,21 +52,21 @@ object ValidatorKt {
     /**
      * <code>.google.protobuf.Any pub_key = 2;</code>
      */
-    fun clearPubKey() {
+    public fun clearPubKey() {
       _builder.clearPubKey()
     }
     /**
      * <code>.google.protobuf.Any pub_key = 2;</code>
      * @return Whether the pubKey field is set.
      */
-    fun hasPubKey(): kotlin.Boolean {
+    public fun hasPubKey(): kotlin.Boolean {
       return _builder.hasPubKey()
     }
 
     /**
      * <code>int64 voting_power = 3;</code>
      */
-    var votingPower: kotlin.Long
+    public var votingPower: kotlin.Long
       @JvmName("getVotingPower")
       get() = _builder.getVotingPower()
       @JvmName("setVotingPower")
@@ -76,14 +76,14 @@ object ValidatorKt {
     /**
      * <code>int64 voting_power = 3;</code>
      */
-    fun clearVotingPower() {
+    public fun clearVotingPower() {
       _builder.clearVotingPower()
     }
 
     /**
      * <code>int64 proposer_priority = 4;</code>
      */
-    var proposerPriority: kotlin.Long
+    public var proposerPriority: kotlin.Long
       @JvmName("getProposerPriority")
       get() = _builder.getProposerPriority()
       @JvmName("setProposerPriority")
@@ -93,11 +93,11 @@ object ValidatorKt {
     /**
      * <code>int64 proposer_priority = 4;</code>
      */
-    fun clearProposerPriority() {
+    public fun clearProposerPriority() {
       _builder.clearProposerPriority()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.tendermint.v1beta1.Query.Validator.copy(block: cosmos.base.tendermint.v1beta1.ValidatorKt.Dsl.() -> Unit): cosmos.base.tendermint.v1beta1.Query.Validator =
+public inline fun cosmos.base.tendermint.v1beta1.Query.Validator.copy(block: cosmos.base.tendermint.v1beta1.ValidatorKt.Dsl.() -> kotlin.Unit): cosmos.base.tendermint.v1beta1.Query.Validator =
   cosmos.base.tendermint.v1beta1.ValidatorKt.Dsl._create(this.toBuilder()).apply { block() }._build()

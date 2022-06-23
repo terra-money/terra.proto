@@ -2998,7 +2998,7 @@ public final class Types {
       if (version_ != null) {
         output.writeMessage(1, getVersion());
       }
-      if (!getChainIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(chainId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, chainId_);
       }
       if (height_ != 0L) {
@@ -3050,7 +3050,7 @@ public final class Types {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getVersion());
       }
-      if (!getChainIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(chainId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, chainId_);
       }
       if (height_ != 0L) {

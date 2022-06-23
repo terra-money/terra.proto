@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgTimeoutOnCloseResponse(block: ibc.core.channel.v1.MsgTimeoutOnCloseResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse =
+public inline fun msgTimeoutOnCloseResponse(block: ibc.core.channel.v1.MsgTimeoutOnCloseResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse =
   ibc.core.channel.v1.MsgTimeoutOnCloseResponseKt.Dsl._create(ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse.newBuilder()).apply { block() }._build()
-object MsgTimeoutOnCloseResponseKt {
+public object MsgTimeoutOnCloseResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse.Builder): Dsl = Dsl(builder)
@@ -21,8 +21,25 @@ object MsgTimeoutOnCloseResponseKt {
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
     internal fun _build(): ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse = _builder.build()
+
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     */
+    public var result: ibc.core.channel.v1.Tx.ResponseResultType
+      @JvmName("getResult")
+      get() = _builder.getResult()
+      @JvmName("setResult")
+      set(value) {
+        _builder.setResult(value)
+      }
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     */
+    public fun clearResult() {
+      _builder.clearResult()
+    }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse.copy(block: ibc.core.channel.v1.MsgTimeoutOnCloseResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse =
+public inline fun ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse.copy(block: ibc.core.channel.v1.MsgTimeoutOnCloseResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgTimeoutOnCloseResponse =
   ibc.core.channel.v1.MsgTimeoutOnCloseResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.bank.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryParamsResponse(block: cosmos.bank.v1beta1.QueryParamsResponseKt.Dsl.() -> Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryParamsResponse =
+public inline fun queryParamsResponse(block: cosmos.bank.v1beta1.QueryParamsResponseKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryParamsResponse =
   cosmos.bank.v1beta1.QueryParamsResponseKt.Dsl._create(cosmos.bank.v1beta1.QueryOuterClass.QueryParamsResponse.newBuilder()).apply { block() }._build()
-object QueryParamsResponseKt {
+public object QueryParamsResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.bank.v1beta1.QueryOuterClass.QueryParamsResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.bank.v1beta1.QueryOuterClass.QueryParamsResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.bank.v1beta1.QueryOuterClass.QueryParamsResponse.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object QueryParamsResponseKt {
     /**
      * <code>.cosmos.bank.v1beta1.Params params = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var params: cosmos.bank.v1beta1.Bank.Params
+    public var params: cosmos.bank.v1beta1.Bank.Params
       @JvmName("getParams")
       get() = _builder.getParams()
       @JvmName("setParams")
@@ -35,18 +35,18 @@ object QueryParamsResponseKt {
     /**
      * <code>.cosmos.bank.v1beta1.Params params = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearParams() {
+    public fun clearParams() {
       _builder.clearParams()
     }
     /**
      * <code>.cosmos.bank.v1beta1.Params params = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the params field is set.
      */
-    fun hasParams(): kotlin.Boolean {
+    public fun hasParams(): kotlin.Boolean {
       return _builder.hasParams()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.bank.v1beta1.QueryOuterClass.QueryParamsResponse.copy(block: cosmos.bank.v1beta1.QueryParamsResponseKt.Dsl.() -> Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryParamsResponse =
+public inline fun cosmos.bank.v1beta1.QueryOuterClass.QueryParamsResponse.copy(block: cosmos.bank.v1beta1.QueryParamsResponseKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryParamsResponse =
   cosmos.bank.v1beta1.QueryParamsResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

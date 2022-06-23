@@ -4,15 +4,15 @@
 package cosmos.gov.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun genesisState(block: cosmos.gov.v1beta1.GenesisStateKt.Dsl.() -> Unit): cosmos.gov.v1beta1.Genesis.GenesisState =
+public inline fun genesisState(block: cosmos.gov.v1beta1.GenesisStateKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.Genesis.GenesisState =
   cosmos.gov.v1beta1.GenesisStateKt.Dsl._create(cosmos.gov.v1beta1.Genesis.GenesisState.newBuilder()).apply { block() }._build()
-object GenesisStateKt {
+public object GenesisStateKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.gov.v1beta1.Genesis.GenesisState.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.gov.v1beta1.Genesis.GenesisState.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.gov.v1beta1.Genesis.GenesisState.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object GenesisStateKt {
      *
      * <code>uint64 starting_proposal_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"starting_proposal_id&#92;""];</code>
      */
-    var startingProposalId: kotlin.Long
+    public var startingProposalId: kotlin.Long
       @JvmName("getStartingProposalId")
       get() = _builder.getStartingProposalId()
       @JvmName("setStartingProposalId")
@@ -43,7 +43,7 @@ object GenesisStateKt {
      *
      * <code>uint64 starting_proposal_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"starting_proposal_id&#92;""];</code>
      */
-    fun clearStartingProposalId() {
+    public fun clearStartingProposalId() {
       _builder.clearStartingProposalId()
     }
 
@@ -52,7 +52,7 @@ object GenesisStateKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class DepositsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class DepositsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * deposits defines all the deposits present at genesis.
@@ -60,7 +60,7 @@ object GenesisStateKt {
      *
      * <code>repeated .cosmos.gov.v1beta1.Deposit deposits = 2 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "Deposits"];</code>
      */
-     val deposits: com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Deposit, DepositsProxy>
+     public val deposits: com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Deposit, DepositsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getDepositsList()
@@ -75,7 +75,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addDeposits")
-    fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Deposit, DepositsProxy>.add(value: cosmos.gov.v1beta1.Gov.Deposit) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Deposit, DepositsProxy>.add(value: cosmos.gov.v1beta1.Gov.Deposit) {
       _builder.addDeposits(value)
     }/**
      * <pre>
@@ -87,7 +87,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignDeposits")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Deposit, DepositsProxy>.plusAssign(value: cosmos.gov.v1beta1.Gov.Deposit) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Deposit, DepositsProxy>.plusAssign(value: cosmos.gov.v1beta1.Gov.Deposit) {
       add(value)
     }/**
      * <pre>
@@ -99,7 +100,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllDeposits")
-    fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Deposit, DepositsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.gov.v1beta1.Gov.Deposit>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Deposit, DepositsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.gov.v1beta1.Gov.Deposit>) {
       _builder.addAllDeposits(values)
     }/**
      * <pre>
@@ -111,7 +112,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllDeposits")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Deposit, DepositsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.gov.v1beta1.Gov.Deposit>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Deposit, DepositsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.gov.v1beta1.Gov.Deposit>) {
       addAll(values)
     }/**
      * <pre>
@@ -124,7 +126,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setDeposits")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Deposit, DepositsProxy>.set(index: kotlin.Int, value: cosmos.gov.v1beta1.Gov.Deposit) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Deposit, DepositsProxy>.set(index: kotlin.Int, value: cosmos.gov.v1beta1.Gov.Deposit) {
       _builder.setDeposits(index, value)
     }/**
      * <pre>
@@ -135,7 +137,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearDeposits")
-    fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Deposit, DepositsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Deposit, DepositsProxy>.clear() {
       _builder.clearDeposits()
     }
     /**
@@ -143,7 +145,7 @@ object GenesisStateKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class VotesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class VotesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * votes defines all the votes present at genesis.
@@ -151,7 +153,7 @@ object GenesisStateKt {
      *
      * <code>repeated .cosmos.gov.v1beta1.Vote votes = 3 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "Votes"];</code>
      */
-     val votes: com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Vote, VotesProxy>
+     public val votes: com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Vote, VotesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getVotesList()
@@ -166,7 +168,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addVotes")
-    fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Vote, VotesProxy>.add(value: cosmos.gov.v1beta1.Gov.Vote) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Vote, VotesProxy>.add(value: cosmos.gov.v1beta1.Gov.Vote) {
       _builder.addVotes(value)
     }/**
      * <pre>
@@ -178,7 +180,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignVotes")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Vote, VotesProxy>.plusAssign(value: cosmos.gov.v1beta1.Gov.Vote) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Vote, VotesProxy>.plusAssign(value: cosmos.gov.v1beta1.Gov.Vote) {
       add(value)
     }/**
      * <pre>
@@ -190,7 +193,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllVotes")
-    fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Vote, VotesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.gov.v1beta1.Gov.Vote>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Vote, VotesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.gov.v1beta1.Gov.Vote>) {
       _builder.addAllVotes(values)
     }/**
      * <pre>
@@ -202,7 +205,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllVotes")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Vote, VotesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.gov.v1beta1.Gov.Vote>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Vote, VotesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.gov.v1beta1.Gov.Vote>) {
       addAll(values)
     }/**
      * <pre>
@@ -215,7 +219,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setVotes")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Vote, VotesProxy>.set(index: kotlin.Int, value: cosmos.gov.v1beta1.Gov.Vote) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Vote, VotesProxy>.set(index: kotlin.Int, value: cosmos.gov.v1beta1.Gov.Vote) {
       _builder.setVotes(index, value)
     }/**
      * <pre>
@@ -226,7 +230,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearVotes")
-    fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Vote, VotesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Vote, VotesProxy>.clear() {
       _builder.clearVotes()
     }
     /**
@@ -234,7 +238,7 @@ object GenesisStateKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class ProposalsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class ProposalsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * proposals defines all the proposals present at genesis.
@@ -242,7 +246,7 @@ object GenesisStateKt {
      *
      * <code>repeated .cosmos.gov.v1beta1.Proposal proposals = 4 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "Proposals"];</code>
      */
-     val proposals: com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Proposal, ProposalsProxy>
+     public val proposals: com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Proposal, ProposalsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getProposalsList()
@@ -257,7 +261,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addProposals")
-    fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Proposal, ProposalsProxy>.add(value: cosmos.gov.v1beta1.Gov.Proposal) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Proposal, ProposalsProxy>.add(value: cosmos.gov.v1beta1.Gov.Proposal) {
       _builder.addProposals(value)
     }/**
      * <pre>
@@ -269,7 +273,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignProposals")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Proposal, ProposalsProxy>.plusAssign(value: cosmos.gov.v1beta1.Gov.Proposal) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Proposal, ProposalsProxy>.plusAssign(value: cosmos.gov.v1beta1.Gov.Proposal) {
       add(value)
     }/**
      * <pre>
@@ -281,7 +286,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllProposals")
-    fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Proposal, ProposalsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.gov.v1beta1.Gov.Proposal>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Proposal, ProposalsProxy>.addAll(values: kotlin.collections.Iterable<cosmos.gov.v1beta1.Gov.Proposal>) {
       _builder.addAllProposals(values)
     }/**
      * <pre>
@@ -293,7 +298,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllProposals")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Proposal, ProposalsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.gov.v1beta1.Gov.Proposal>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Proposal, ProposalsProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.gov.v1beta1.Gov.Proposal>) {
       addAll(values)
     }/**
      * <pre>
@@ -306,7 +312,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setProposals")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Proposal, ProposalsProxy>.set(index: kotlin.Int, value: cosmos.gov.v1beta1.Gov.Proposal) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Proposal, ProposalsProxy>.set(index: kotlin.Int, value: cosmos.gov.v1beta1.Gov.Proposal) {
       _builder.setProposals(index, value)
     }/**
      * <pre>
@@ -317,7 +323,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearProposals")
-    fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Proposal, ProposalsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.gov.v1beta1.Gov.Proposal, ProposalsProxy>.clear() {
       _builder.clearProposals()
     }
     /**
@@ -327,7 +333,7 @@ object GenesisStateKt {
      *
      * <code>.cosmos.gov.v1beta1.DepositParams deposit_params = 5 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"deposit_params&#92;""];</code>
      */
-    var depositParams: cosmos.gov.v1beta1.Gov.DepositParams
+    public var depositParams: cosmos.gov.v1beta1.Gov.DepositParams
       @JvmName("getDepositParams")
       get() = _builder.getDepositParams()
       @JvmName("setDepositParams")
@@ -341,7 +347,7 @@ object GenesisStateKt {
      *
      * <code>.cosmos.gov.v1beta1.DepositParams deposit_params = 5 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"deposit_params&#92;""];</code>
      */
-    fun clearDepositParams() {
+    public fun clearDepositParams() {
       _builder.clearDepositParams()
     }
     /**
@@ -352,7 +358,7 @@ object GenesisStateKt {
      * <code>.cosmos.gov.v1beta1.DepositParams deposit_params = 5 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"deposit_params&#92;""];</code>
      * @return Whether the depositParams field is set.
      */
-    fun hasDepositParams(): kotlin.Boolean {
+    public fun hasDepositParams(): kotlin.Boolean {
       return _builder.hasDepositParams()
     }
 
@@ -363,7 +369,7 @@ object GenesisStateKt {
      *
      * <code>.cosmos.gov.v1beta1.VotingParams voting_params = 6 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"voting_params&#92;""];</code>
      */
-    var votingParams: cosmos.gov.v1beta1.Gov.VotingParams
+    public var votingParams: cosmos.gov.v1beta1.Gov.VotingParams
       @JvmName("getVotingParams")
       get() = _builder.getVotingParams()
       @JvmName("setVotingParams")
@@ -377,7 +383,7 @@ object GenesisStateKt {
      *
      * <code>.cosmos.gov.v1beta1.VotingParams voting_params = 6 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"voting_params&#92;""];</code>
      */
-    fun clearVotingParams() {
+    public fun clearVotingParams() {
       _builder.clearVotingParams()
     }
     /**
@@ -388,7 +394,7 @@ object GenesisStateKt {
      * <code>.cosmos.gov.v1beta1.VotingParams voting_params = 6 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"voting_params&#92;""];</code>
      * @return Whether the votingParams field is set.
      */
-    fun hasVotingParams(): kotlin.Boolean {
+    public fun hasVotingParams(): kotlin.Boolean {
       return _builder.hasVotingParams()
     }
 
@@ -399,7 +405,7 @@ object GenesisStateKt {
      *
      * <code>.cosmos.gov.v1beta1.TallyParams tally_params = 7 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"tally_params&#92;""];</code>
      */
-    var tallyParams: cosmos.gov.v1beta1.Gov.TallyParams
+    public var tallyParams: cosmos.gov.v1beta1.Gov.TallyParams
       @JvmName("getTallyParams")
       get() = _builder.getTallyParams()
       @JvmName("setTallyParams")
@@ -413,7 +419,7 @@ object GenesisStateKt {
      *
      * <code>.cosmos.gov.v1beta1.TallyParams tally_params = 7 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"tally_params&#92;""];</code>
      */
-    fun clearTallyParams() {
+    public fun clearTallyParams() {
       _builder.clearTallyParams()
     }
     /**
@@ -424,11 +430,11 @@ object GenesisStateKt {
      * <code>.cosmos.gov.v1beta1.TallyParams tally_params = 7 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"tally_params&#92;""];</code>
      * @return Whether the tallyParams field is set.
      */
-    fun hasTallyParams(): kotlin.Boolean {
+    public fun hasTallyParams(): kotlin.Boolean {
       return _builder.hasTallyParams()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.gov.v1beta1.Genesis.GenesisState.copy(block: cosmos.gov.v1beta1.GenesisStateKt.Dsl.() -> Unit): cosmos.gov.v1beta1.Genesis.GenesisState =
+public inline fun cosmos.gov.v1beta1.Genesis.GenesisState.copy(block: cosmos.gov.v1beta1.GenesisStateKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.Genesis.GenesisState =
   cosmos.gov.v1beta1.GenesisStateKt.Dsl._create(this.toBuilder()).apply { block() }._build()

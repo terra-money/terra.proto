@@ -4,15 +4,15 @@
 package cosmos.bank.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun querySupplyOfRequest(block: cosmos.bank.v1beta1.QuerySupplyOfRequestKt.Dsl.() -> Unit): cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest =
+public inline fun querySupplyOfRequest(block: cosmos.bank.v1beta1.QuerySupplyOfRequestKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest =
   cosmos.bank.v1beta1.QuerySupplyOfRequestKt.Dsl._create(cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest.newBuilder()).apply { block() }._build()
-object QuerySupplyOfRequestKt {
+public object QuerySupplyOfRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QuerySupplyOfRequestKt {
      *
      * <code>string denom = 1;</code>
      */
-    var denom: kotlin.String
+    public var denom: kotlin.String
       @JvmName("getDenom")
       get() = _builder.getDenom()
       @JvmName("setDenom")
@@ -43,11 +43,11 @@ object QuerySupplyOfRequestKt {
      *
      * <code>string denom = 1;</code>
      */
-    fun clearDenom() {
+    public fun clearDenom() {
       _builder.clearDenom()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest.copy(block: cosmos.bank.v1beta1.QuerySupplyOfRequestKt.Dsl.() -> Unit): cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest =
+public inline fun cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest.copy(block: cosmos.bank.v1beta1.QuerySupplyOfRequestKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest =
   cosmos.bank.v1beta1.QuerySupplyOfRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

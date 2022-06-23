@@ -4,15 +4,15 @@
 package cosmos.slashing.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun validatorMissedBlocks(block: cosmos.slashing.v1beta1.ValidatorMissedBlocksKt.Dsl.() -> Unit): cosmos.slashing.v1beta1.Genesis.ValidatorMissedBlocks =
+public inline fun validatorMissedBlocks(block: cosmos.slashing.v1beta1.ValidatorMissedBlocksKt.Dsl.() -> kotlin.Unit): cosmos.slashing.v1beta1.Genesis.ValidatorMissedBlocks =
   cosmos.slashing.v1beta1.ValidatorMissedBlocksKt.Dsl._create(cosmos.slashing.v1beta1.Genesis.ValidatorMissedBlocks.newBuilder()).apply { block() }._build()
-object ValidatorMissedBlocksKt {
+public object ValidatorMissedBlocksKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.slashing.v1beta1.Genesis.ValidatorMissedBlocks.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.slashing.v1beta1.Genesis.ValidatorMissedBlocks.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.slashing.v1beta1.Genesis.ValidatorMissedBlocks.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object ValidatorMissedBlocksKt {
      *
      * <code>string address = 1;</code>
      */
-    var address: kotlin.String
+    public var address: kotlin.String
       @JvmName("getAddress")
       get() = _builder.getAddress()
       @JvmName("setAddress")
@@ -43,7 +43,7 @@ object ValidatorMissedBlocksKt {
      *
      * <code>string address = 1;</code>
      */
-    fun clearAddress() {
+    public fun clearAddress() {
       _builder.clearAddress()
     }
 
@@ -52,7 +52,7 @@ object ValidatorMissedBlocksKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class MissedBlocksProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class MissedBlocksProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * missed_blocks is an array of missed blocks by the validator.
@@ -60,7 +60,7 @@ object ValidatorMissedBlocksKt {
      *
      * <code>repeated .cosmos.slashing.v1beta1.MissedBlock missed_blocks = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"missed_blocks&#92;""];</code>
      */
-     val missedBlocks: com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Genesis.MissedBlock, MissedBlocksProxy>
+     public val missedBlocks: com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Genesis.MissedBlock, MissedBlocksProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getMissedBlocksList()
@@ -75,7 +75,7 @@ object ValidatorMissedBlocksKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addMissedBlocks")
-    fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Genesis.MissedBlock, MissedBlocksProxy>.add(value: cosmos.slashing.v1beta1.Genesis.MissedBlock) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Genesis.MissedBlock, MissedBlocksProxy>.add(value: cosmos.slashing.v1beta1.Genesis.MissedBlock) {
       _builder.addMissedBlocks(value)
     }/**
      * <pre>
@@ -87,7 +87,8 @@ object ValidatorMissedBlocksKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignMissedBlocks")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Genesis.MissedBlock, MissedBlocksProxy>.plusAssign(value: cosmos.slashing.v1beta1.Genesis.MissedBlock) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Genesis.MissedBlock, MissedBlocksProxy>.plusAssign(value: cosmos.slashing.v1beta1.Genesis.MissedBlock) {
       add(value)
     }/**
      * <pre>
@@ -99,7 +100,7 @@ object ValidatorMissedBlocksKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllMissedBlocks")
-    fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Genesis.MissedBlock, MissedBlocksProxy>.addAll(values: kotlin.collections.Iterable<cosmos.slashing.v1beta1.Genesis.MissedBlock>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Genesis.MissedBlock, MissedBlocksProxy>.addAll(values: kotlin.collections.Iterable<cosmos.slashing.v1beta1.Genesis.MissedBlock>) {
       _builder.addAllMissedBlocks(values)
     }/**
      * <pre>
@@ -111,7 +112,8 @@ object ValidatorMissedBlocksKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllMissedBlocks")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Genesis.MissedBlock, MissedBlocksProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.slashing.v1beta1.Genesis.MissedBlock>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Genesis.MissedBlock, MissedBlocksProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.slashing.v1beta1.Genesis.MissedBlock>) {
       addAll(values)
     }/**
      * <pre>
@@ -124,7 +126,7 @@ object ValidatorMissedBlocksKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setMissedBlocks")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Genesis.MissedBlock, MissedBlocksProxy>.set(index: kotlin.Int, value: cosmos.slashing.v1beta1.Genesis.MissedBlock) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Genesis.MissedBlock, MissedBlocksProxy>.set(index: kotlin.Int, value: cosmos.slashing.v1beta1.Genesis.MissedBlock) {
       _builder.setMissedBlocks(index, value)
     }/**
      * <pre>
@@ -135,10 +137,10 @@ object ValidatorMissedBlocksKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearMissedBlocks")
-    fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Genesis.MissedBlock, MissedBlocksProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.slashing.v1beta1.Genesis.MissedBlock, MissedBlocksProxy>.clear() {
       _builder.clearMissedBlocks()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.slashing.v1beta1.Genesis.ValidatorMissedBlocks.copy(block: cosmos.slashing.v1beta1.ValidatorMissedBlocksKt.Dsl.() -> Unit): cosmos.slashing.v1beta1.Genesis.ValidatorMissedBlocks =
+public inline fun cosmos.slashing.v1beta1.Genesis.ValidatorMissedBlocks.copy(block: cosmos.slashing.v1beta1.ValidatorMissedBlocksKt.Dsl.() -> kotlin.Unit): cosmos.slashing.v1beta1.Genesis.ValidatorMissedBlocks =
   cosmos.slashing.v1beta1.ValidatorMissedBlocksKt.Dsl._create(this.toBuilder()).apply { block() }._build()

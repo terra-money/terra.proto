@@ -92,13 +92,13 @@ public final class Keys {
               done = true;
               break;
             case 10: {
-              sumCase_ = 1;
               sum_ = input.readBytes();
+              sumCase_ = 1;
               break;
             }
             case 18: {
-              sumCase_ = 2;
               sum_ = input.readBytes();
+              sumCase_ = 2;
               break;
             }
             default: {

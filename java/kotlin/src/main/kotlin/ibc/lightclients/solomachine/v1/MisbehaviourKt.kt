@@ -4,15 +4,15 @@
 package ibc.lightclients.solomachine.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun misbehaviour(block: ibc.lightclients.solomachine.v1.MisbehaviourKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v1.Solomachine.Misbehaviour =
+public inline fun misbehaviour(block: ibc.lightclients.solomachine.v1.MisbehaviourKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v1.Solomachine.Misbehaviour =
   ibc.lightclients.solomachine.v1.MisbehaviourKt.Dsl._create(ibc.lightclients.solomachine.v1.Solomachine.Misbehaviour.newBuilder()).apply { block() }._build()
-object MisbehaviourKt {
+public object MisbehaviourKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.lightclients.solomachine.v1.Solomachine.Misbehaviour.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.lightclients.solomachine.v1.Solomachine.Misbehaviour.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.lightclients.solomachine.v1.Solomachine.Misbehaviour.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object MisbehaviourKt {
     /**
      * <code>string client_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"client_id&#92;""];</code>
      */
-    var clientId: kotlin.String
+    public var clientId: kotlin.String
       @JvmName("getClientId")
       get() = _builder.getClientId()
       @JvmName("setClientId")
@@ -35,14 +35,14 @@ object MisbehaviourKt {
     /**
      * <code>string client_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"client_id&#92;""];</code>
      */
-    fun clearClientId() {
+    public fun clearClientId() {
       _builder.clearClientId()
     }
 
     /**
      * <code>uint64 sequence = 2;</code>
      */
-    var sequence: kotlin.Long
+    public var sequence: kotlin.Long
       @JvmName("getSequence")
       get() = _builder.getSequence()
       @JvmName("setSequence")
@@ -52,14 +52,14 @@ object MisbehaviourKt {
     /**
      * <code>uint64 sequence = 2;</code>
      */
-    fun clearSequence() {
+    public fun clearSequence() {
       _builder.clearSequence()
     }
 
     /**
      * <code>.ibc.lightclients.solomachine.v1.SignatureAndData signature_one = 3 [(.gogoproto.moretags) = "yaml:&#92;"signature_one&#92;""];</code>
      */
-    var signatureOne: ibc.lightclients.solomachine.v1.Solomachine.SignatureAndData
+    public var signatureOne: ibc.lightclients.solomachine.v1.Solomachine.SignatureAndData
       @JvmName("getSignatureOne")
       get() = _builder.getSignatureOne()
       @JvmName("setSignatureOne")
@@ -69,21 +69,21 @@ object MisbehaviourKt {
     /**
      * <code>.ibc.lightclients.solomachine.v1.SignatureAndData signature_one = 3 [(.gogoproto.moretags) = "yaml:&#92;"signature_one&#92;""];</code>
      */
-    fun clearSignatureOne() {
+    public fun clearSignatureOne() {
       _builder.clearSignatureOne()
     }
     /**
      * <code>.ibc.lightclients.solomachine.v1.SignatureAndData signature_one = 3 [(.gogoproto.moretags) = "yaml:&#92;"signature_one&#92;""];</code>
      * @return Whether the signatureOne field is set.
      */
-    fun hasSignatureOne(): kotlin.Boolean {
+    public fun hasSignatureOne(): kotlin.Boolean {
       return _builder.hasSignatureOne()
     }
 
     /**
      * <code>.ibc.lightclients.solomachine.v1.SignatureAndData signature_two = 4 [(.gogoproto.moretags) = "yaml:&#92;"signature_two&#92;""];</code>
      */
-    var signatureTwo: ibc.lightclients.solomachine.v1.Solomachine.SignatureAndData
+    public var signatureTwo: ibc.lightclients.solomachine.v1.Solomachine.SignatureAndData
       @JvmName("getSignatureTwo")
       get() = _builder.getSignatureTwo()
       @JvmName("setSignatureTwo")
@@ -93,18 +93,18 @@ object MisbehaviourKt {
     /**
      * <code>.ibc.lightclients.solomachine.v1.SignatureAndData signature_two = 4 [(.gogoproto.moretags) = "yaml:&#92;"signature_two&#92;""];</code>
      */
-    fun clearSignatureTwo() {
+    public fun clearSignatureTwo() {
       _builder.clearSignatureTwo()
     }
     /**
      * <code>.ibc.lightclients.solomachine.v1.SignatureAndData signature_two = 4 [(.gogoproto.moretags) = "yaml:&#92;"signature_two&#92;""];</code>
      * @return Whether the signatureTwo field is set.
      */
-    fun hasSignatureTwo(): kotlin.Boolean {
+    public fun hasSignatureTwo(): kotlin.Boolean {
       return _builder.hasSignatureTwo()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.lightclients.solomachine.v1.Solomachine.Misbehaviour.copy(block: ibc.lightclients.solomachine.v1.MisbehaviourKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v1.Solomachine.Misbehaviour =
+public inline fun ibc.lightclients.solomachine.v1.Solomachine.Misbehaviour.copy(block: ibc.lightclients.solomachine.v1.MisbehaviourKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v1.Solomachine.Misbehaviour =
   ibc.lightclients.solomachine.v1.MisbehaviourKt.Dsl._create(this.toBuilder()).apply { block() }._build()

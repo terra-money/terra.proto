@@ -4,15 +4,15 @@
 package com.google.api;
 
 @kotlin.jvm.JvmSynthetic
-inline fun httpRule(block: com.google.api.HttpRuleKt.Dsl.() -> Unit): com.google.api.HttpRule =
+public inline fun httpRule(block: com.google.api.HttpRuleKt.Dsl.() -> kotlin.Unit): com.google.api.HttpRule =
   com.google.api.HttpRuleKt.Dsl._create(com.google.api.HttpRule.newBuilder()).apply { block() }._build()
-object HttpRuleKt {
+public object HttpRuleKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: com.google.api.HttpRule.Builder
+  public class Dsl private constructor(
+    private val _builder: com.google.api.HttpRule.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: com.google.api.HttpRule.Builder): Dsl = Dsl(builder)
@@ -30,7 +30,7 @@ object HttpRuleKt {
      *
      * <code>string selector = 1;</code>
      */
-    var selector: kotlin.String
+    public var selector: kotlin.String
       @JvmName("getSelector")
       get() = _builder.getSelector()
       @JvmName("setSelector")
@@ -45,7 +45,7 @@ object HttpRuleKt {
      *
      * <code>string selector = 1;</code>
      */
-    fun clearSelector() {
+    public fun clearSelector() {
       _builder.clearSelector()
     }
 
@@ -56,7 +56,7 @@ object HttpRuleKt {
      *
      * <code>string get = 2;</code>
      */
-    var get: kotlin.String
+    public var get: kotlin.String
       @JvmName("getGet")
       get() = _builder.getGet()
       @JvmName("setGet")
@@ -70,7 +70,7 @@ object HttpRuleKt {
      *
      * <code>string get = 2;</code>
      */
-    fun clearGet() {
+    public fun clearGet() {
       _builder.clearGet()
     }
     /**
@@ -81,7 +81,7 @@ object HttpRuleKt {
      * <code>string get = 2;</code>
      * @return Whether the get field is set.
      */
-    fun hasGet(): kotlin.Boolean {
+    public fun hasGet(): kotlin.Boolean {
       return _builder.hasGet()
     }
 
@@ -92,7 +92,7 @@ object HttpRuleKt {
      *
      * <code>string put = 3;</code>
      */
-    var put: kotlin.String
+    public var put: kotlin.String
       @JvmName("getPut")
       get() = _builder.getPut()
       @JvmName("setPut")
@@ -106,7 +106,7 @@ object HttpRuleKt {
      *
      * <code>string put = 3;</code>
      */
-    fun clearPut() {
+    public fun clearPut() {
       _builder.clearPut()
     }
     /**
@@ -117,7 +117,7 @@ object HttpRuleKt {
      * <code>string put = 3;</code>
      * @return Whether the put field is set.
      */
-    fun hasPut(): kotlin.Boolean {
+    public fun hasPut(): kotlin.Boolean {
       return _builder.hasPut()
     }
 
@@ -128,7 +128,7 @@ object HttpRuleKt {
      *
      * <code>string post = 4;</code>
      */
-    var post: kotlin.String
+    public var post: kotlin.String
       @JvmName("getPost")
       get() = _builder.getPost()
       @JvmName("setPost")
@@ -142,7 +142,7 @@ object HttpRuleKt {
      *
      * <code>string post = 4;</code>
      */
-    fun clearPost() {
+    public fun clearPost() {
       _builder.clearPost()
     }
     /**
@@ -153,7 +153,7 @@ object HttpRuleKt {
      * <code>string post = 4;</code>
      * @return Whether the post field is set.
      */
-    fun hasPost(): kotlin.Boolean {
+    public fun hasPost(): kotlin.Boolean {
       return _builder.hasPost()
     }
 
@@ -164,7 +164,7 @@ object HttpRuleKt {
      *
      * <code>string delete = 5;</code>
      */
-    var delete: kotlin.String
+    public var delete: kotlin.String
       @JvmName("getDelete")
       get() = _builder.getDelete()
       @JvmName("setDelete")
@@ -178,7 +178,7 @@ object HttpRuleKt {
      *
      * <code>string delete = 5;</code>
      */
-    fun clearDelete() {
+    public fun clearDelete() {
       _builder.clearDelete()
     }
     /**
@@ -189,7 +189,7 @@ object HttpRuleKt {
      * <code>string delete = 5;</code>
      * @return Whether the delete field is set.
      */
-    fun hasDelete(): kotlin.Boolean {
+    public fun hasDelete(): kotlin.Boolean {
       return _builder.hasDelete()
     }
 
@@ -200,7 +200,7 @@ object HttpRuleKt {
      *
      * <code>string patch = 6;</code>
      */
-    var patch: kotlin.String
+    public var patch: kotlin.String
       @JvmName("getPatch")
       get() = _builder.getPatch()
       @JvmName("setPatch")
@@ -214,7 +214,7 @@ object HttpRuleKt {
      *
      * <code>string patch = 6;</code>
      */
-    fun clearPatch() {
+    public fun clearPatch() {
       _builder.clearPatch()
     }
     /**
@@ -225,7 +225,7 @@ object HttpRuleKt {
      * <code>string patch = 6;</code>
      * @return Whether the patch field is set.
      */
-    fun hasPatch(): kotlin.Boolean {
+    public fun hasPatch(): kotlin.Boolean {
       return _builder.hasPatch()
     }
 
@@ -239,7 +239,7 @@ object HttpRuleKt {
      *
      * <code>.google.api.CustomHttpPattern custom = 8;</code>
      */
-    var custom: com.google.api.CustomHttpPattern
+    public var custom: com.google.api.CustomHttpPattern
       @JvmName("getCustom")
       get() = _builder.getCustom()
       @JvmName("setCustom")
@@ -256,7 +256,7 @@ object HttpRuleKt {
      *
      * <code>.google.api.CustomHttpPattern custom = 8;</code>
      */
-    fun clearCustom() {
+    public fun clearCustom() {
       _builder.clearCustom()
     }
     /**
@@ -270,7 +270,7 @@ object HttpRuleKt {
      * <code>.google.api.CustomHttpPattern custom = 8;</code>
      * @return Whether the custom field is set.
      */
-    fun hasCustom(): kotlin.Boolean {
+    public fun hasCustom(): kotlin.Boolean {
       return _builder.hasCustom()
     }
 
@@ -284,7 +284,7 @@ object HttpRuleKt {
      *
      * <code>string body = 7;</code>
      */
-    var body: kotlin.String
+    public var body: kotlin.String
       @JvmName("getBody")
       get() = _builder.getBody()
       @JvmName("setBody")
@@ -301,7 +301,7 @@ object HttpRuleKt {
      *
      * <code>string body = 7;</code>
      */
-    fun clearBody() {
+    public fun clearBody() {
       _builder.clearBody()
     }
 
@@ -314,7 +314,7 @@ object HttpRuleKt {
      *
      * <code>string response_body = 12;</code>
      */
-    var responseBody: kotlin.String
+    public var responseBody: kotlin.String
       @JvmName("getResponseBody")
       get() = _builder.getResponseBody()
       @JvmName("setResponseBody")
@@ -330,7 +330,7 @@ object HttpRuleKt {
      *
      * <code>string response_body = 12;</code>
      */
-    fun clearResponseBody() {
+    public fun clearResponseBody() {
       _builder.clearResponseBody()
     }
 
@@ -339,7 +339,7 @@ object HttpRuleKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class AdditionalBindingsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class AdditionalBindingsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * Additional HTTP bindings for the selector. Nested bindings must
@@ -349,7 +349,7 @@ object HttpRuleKt {
      *
      * <code>repeated .google.api.HttpRule additional_bindings = 11;</code>
      */
-     val additionalBindings: com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, AdditionalBindingsProxy>
+     public val additionalBindings: com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, AdditionalBindingsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getAdditionalBindingsList()
@@ -366,7 +366,7 @@ object HttpRuleKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAdditionalBindings")
-    fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, AdditionalBindingsProxy>.add(value: com.google.api.HttpRule) {
+    public fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, AdditionalBindingsProxy>.add(value: com.google.api.HttpRule) {
       _builder.addAdditionalBindings(value)
     }/**
      * <pre>
@@ -380,7 +380,8 @@ object HttpRuleKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAdditionalBindings")
-    inline operator fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, AdditionalBindingsProxy>.plusAssign(value: com.google.api.HttpRule) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, AdditionalBindingsProxy>.plusAssign(value: com.google.api.HttpRule) {
       add(value)
     }/**
      * <pre>
@@ -394,7 +395,7 @@ object HttpRuleKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllAdditionalBindings")
-    fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, AdditionalBindingsProxy>.addAll(values: kotlin.collections.Iterable<com.google.api.HttpRule>) {
+    public fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, AdditionalBindingsProxy>.addAll(values: kotlin.collections.Iterable<com.google.api.HttpRule>) {
       _builder.addAllAdditionalBindings(values)
     }/**
      * <pre>
@@ -408,7 +409,8 @@ object HttpRuleKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllAdditionalBindings")
-    inline operator fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, AdditionalBindingsProxy>.plusAssign(values: kotlin.collections.Iterable<com.google.api.HttpRule>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, AdditionalBindingsProxy>.plusAssign(values: kotlin.collections.Iterable<com.google.api.HttpRule>) {
       addAll(values)
     }/**
      * <pre>
@@ -423,7 +425,7 @@ object HttpRuleKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setAdditionalBindings")
-    operator fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, AdditionalBindingsProxy>.set(index: kotlin.Int, value: com.google.api.HttpRule) {
+    public operator fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, AdditionalBindingsProxy>.set(index: kotlin.Int, value: com.google.api.HttpRule) {
       _builder.setAdditionalBindings(index, value)
     }/**
      * <pre>
@@ -436,17 +438,17 @@ object HttpRuleKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearAdditionalBindings")
-    fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, AdditionalBindingsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<com.google.api.HttpRule, AdditionalBindingsProxy>.clear() {
       _builder.clearAdditionalBindings()
-    }val patternCase: com.google.api.HttpRule.PatternCase
+    }public val patternCase: com.google.api.HttpRule.PatternCase
       @JvmName("getPatternCase")
       get() = _builder.getPatternCase()
 
-    fun clearPattern() {
+    public fun clearPattern() {
       _builder.clearPattern()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun com.google.api.HttpRule.copy(block: com.google.api.HttpRuleKt.Dsl.() -> Unit): com.google.api.HttpRule =
+public inline fun com.google.api.HttpRule.copy(block: com.google.api.HttpRuleKt.Dsl.() -> kotlin.Unit): com.google.api.HttpRule =
   com.google.api.HttpRuleKt.Dsl._create(this.toBuilder()).apply { block() }._build()

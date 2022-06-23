@@ -4,15 +4,15 @@
 package cosmos.distribution.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryDelegationRewardsRequest(block: cosmos.distribution.v1beta1.QueryDelegationRewardsRequestKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegationRewardsRequest =
+public inline fun queryDelegationRewardsRequest(block: cosmos.distribution.v1beta1.QueryDelegationRewardsRequestKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegationRewardsRequest =
   cosmos.distribution.v1beta1.QueryDelegationRewardsRequestKt.Dsl._create(cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegationRewardsRequest.newBuilder()).apply { block() }._build()
-object QueryDelegationRewardsRequestKt {
+public object QueryDelegationRewardsRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegationRewardsRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegationRewardsRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegationRewardsRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryDelegationRewardsRequestKt {
      *
      * <code>string delegator_address = 1;</code>
      */
-    var delegatorAddress: kotlin.String
+    public var delegatorAddress: kotlin.String
       @JvmName("getDelegatorAddress")
       get() = _builder.getDelegatorAddress()
       @JvmName("setDelegatorAddress")
@@ -43,7 +43,7 @@ object QueryDelegationRewardsRequestKt {
      *
      * <code>string delegator_address = 1;</code>
      */
-    fun clearDelegatorAddress() {
+    public fun clearDelegatorAddress() {
       _builder.clearDelegatorAddress()
     }
 
@@ -54,7 +54,7 @@ object QueryDelegationRewardsRequestKt {
      *
      * <code>string validator_address = 2;</code>
      */
-    var validatorAddress: kotlin.String
+    public var validatorAddress: kotlin.String
       @JvmName("getValidatorAddress")
       get() = _builder.getValidatorAddress()
       @JvmName("setValidatorAddress")
@@ -68,11 +68,11 @@ object QueryDelegationRewardsRequestKt {
      *
      * <code>string validator_address = 2;</code>
      */
-    fun clearValidatorAddress() {
+    public fun clearValidatorAddress() {
       _builder.clearValidatorAddress()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegationRewardsRequest.copy(block: cosmos.distribution.v1beta1.QueryDelegationRewardsRequestKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegationRewardsRequest =
+public inline fun cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegationRewardsRequest.copy(block: cosmos.distribution.v1beta1.QueryDelegationRewardsRequestKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryDelegationRewardsRequest =
   cosmos.distribution.v1beta1.QueryDelegationRewardsRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

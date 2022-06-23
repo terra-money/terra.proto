@@ -28,50 +28,50 @@ import kotlin.jvm.JvmStatic
 /**
  * Holder for Kotlin coroutine-based client and server APIs for cosmos.gov.v1beta1.Query.
  */
-object QueryGrpcKt {
-  const val SERVICE_NAME: String = QueryGrpc.SERVICE_NAME
+public object QueryGrpcKt {
+  public const val SERVICE_NAME: String = QueryGrpc.SERVICE_NAME
 
   @JvmStatic
-  val serviceDescriptor: ServiceDescriptor
+  public val serviceDescriptor: ServiceDescriptor
     get() = QueryGrpc.getServiceDescriptor()
 
-  val proposalMethod: MethodDescriptor<QueryOuterClass.QueryProposalRequest,
-      QueryOuterClass.QueryProposalResponse>
+  public val proposalMethod:
+      MethodDescriptor<QueryOuterClass.QueryProposalRequest, QueryOuterClass.QueryProposalResponse>
     @JvmStatic
     get() = QueryGrpc.getProposalMethod()
 
-  val proposalsMethod: MethodDescriptor<QueryOuterClass.QueryProposalsRequest,
-      QueryOuterClass.QueryProposalsResponse>
+  public val proposalsMethod:
+      MethodDescriptor<QueryOuterClass.QueryProposalsRequest, QueryOuterClass.QueryProposalsResponse>
     @JvmStatic
     get() = QueryGrpc.getProposalsMethod()
 
-  val voteMethod: MethodDescriptor<QueryOuterClass.QueryVoteRequest,
-      QueryOuterClass.QueryVoteResponse>
+  public val voteMethod:
+      MethodDescriptor<QueryOuterClass.QueryVoteRequest, QueryOuterClass.QueryVoteResponse>
     @JvmStatic
     get() = QueryGrpc.getVoteMethod()
 
-  val votesMethod: MethodDescriptor<QueryOuterClass.QueryVotesRequest,
-      QueryOuterClass.QueryVotesResponse>
+  public val votesMethod:
+      MethodDescriptor<QueryOuterClass.QueryVotesRequest, QueryOuterClass.QueryVotesResponse>
     @JvmStatic
     get() = QueryGrpc.getVotesMethod()
 
-  val paramsMethod: MethodDescriptor<QueryOuterClass.QueryParamsRequest,
-      QueryOuterClass.QueryParamsResponse>
+  public val paramsMethod:
+      MethodDescriptor<QueryOuterClass.QueryParamsRequest, QueryOuterClass.QueryParamsResponse>
     @JvmStatic
     get() = QueryGrpc.getParamsMethod()
 
-  val depositMethod: MethodDescriptor<QueryOuterClass.QueryDepositRequest,
-      QueryOuterClass.QueryDepositResponse>
+  public val depositMethod:
+      MethodDescriptor<QueryOuterClass.QueryDepositRequest, QueryOuterClass.QueryDepositResponse>
     @JvmStatic
     get() = QueryGrpc.getDepositMethod()
 
-  val depositsMethod: MethodDescriptor<QueryOuterClass.QueryDepositsRequest,
-      QueryOuterClass.QueryDepositsResponse>
+  public val depositsMethod:
+      MethodDescriptor<QueryOuterClass.QueryDepositsRequest, QueryOuterClass.QueryDepositsResponse>
     @JvmStatic
     get() = QueryGrpc.getDepositsMethod()
 
-  val tallyResultMethod: MethodDescriptor<QueryOuterClass.QueryTallyResultRequest,
-      QueryOuterClass.QueryTallyResultResponse>
+  public val tallyResultMethod:
+      MethodDescriptor<QueryOuterClass.QueryTallyResultRequest, QueryOuterClass.QueryTallyResultResponse>
     @JvmStatic
     get() = QueryGrpc.getTallyResultMethod()
 
@@ -79,11 +79,11 @@ object QueryGrpcKt {
    * A stub for issuing RPCs to a(n) cosmos.gov.v1beta1.Query service as suspending coroutines.
    */
   @StubFor(QueryGrpc::class)
-  class QueryCoroutineStub @JvmOverloads constructor(
+  public class QueryCoroutineStub @JvmOverloads constructor(
     channel: Channel,
-    callOptions: CallOptions = DEFAULT
+    callOptions: CallOptions = DEFAULT,
   ) : AbstractCoroutineStub<QueryCoroutineStub>(channel, callOptions) {
-    override fun build(channel: Channel, callOptions: CallOptions): QueryCoroutineStub =
+    public override fun build(channel: Channel, callOptions: CallOptions): QueryCoroutineStub =
         QueryCoroutineStub(channel, callOptions)
 
     /**
@@ -94,16 +94,19 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun proposal(request: QueryOuterClass.QueryProposalRequest):
-        QueryOuterClass.QueryProposalResponse = unaryRpc(
+    public suspend fun proposal(request: QueryOuterClass.QueryProposalRequest, headers: Metadata =
+        Metadata()): QueryOuterClass.QueryProposalResponse = unaryRpc(
       channel,
       QueryGrpc.getProposalMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -112,16 +115,19 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun proposals(request: QueryOuterClass.QueryProposalsRequest):
-        QueryOuterClass.QueryProposalsResponse = unaryRpc(
+    public suspend fun proposals(request: QueryOuterClass.QueryProposalsRequest, headers: Metadata =
+        Metadata()): QueryOuterClass.QueryProposalsResponse = unaryRpc(
       channel,
       QueryGrpc.getProposalsMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -130,16 +136,19 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun vote(request: QueryOuterClass.QueryVoteRequest): QueryOuterClass.QueryVoteResponse =
-        unaryRpc(
+    public suspend fun vote(request: QueryOuterClass.QueryVoteRequest, headers: Metadata =
+        Metadata()): QueryOuterClass.QueryVoteResponse = unaryRpc(
       channel,
       QueryGrpc.getVoteMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -148,16 +157,19 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun votes(request: QueryOuterClass.QueryVotesRequest):
-        QueryOuterClass.QueryVotesResponse = unaryRpc(
+    public suspend fun votes(request: QueryOuterClass.QueryVotesRequest, headers: Metadata =
+        Metadata()): QueryOuterClass.QueryVotesResponse = unaryRpc(
       channel,
       QueryGrpc.getVotesMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -166,16 +178,19 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun params(request: QueryOuterClass.QueryParamsRequest):
-        QueryOuterClass.QueryParamsResponse = unaryRpc(
+    public suspend fun params(request: QueryOuterClass.QueryParamsRequest, headers: Metadata =
+        Metadata()): QueryOuterClass.QueryParamsResponse = unaryRpc(
       channel,
       QueryGrpc.getParamsMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -184,16 +199,19 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun deposit(request: QueryOuterClass.QueryDepositRequest):
-        QueryOuterClass.QueryDepositResponse = unaryRpc(
+    public suspend fun deposit(request: QueryOuterClass.QueryDepositRequest, headers: Metadata =
+        Metadata()): QueryOuterClass.QueryDepositResponse = unaryRpc(
       channel,
       QueryGrpc.getDepositMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -202,16 +220,19 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun deposits(request: QueryOuterClass.QueryDepositsRequest):
-        QueryOuterClass.QueryDepositsResponse = unaryRpc(
+    public suspend fun deposits(request: QueryOuterClass.QueryDepositsRequest, headers: Metadata =
+        Metadata()): QueryOuterClass.QueryDepositsResponse = unaryRpc(
       channel,
       QueryGrpc.getDepositsMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -220,22 +241,25 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun tallyResult(request: QueryOuterClass.QueryTallyResultRequest):
-        QueryOuterClass.QueryTallyResultResponse = unaryRpc(
+    public suspend fun tallyResult(request: QueryOuterClass.QueryTallyResultRequest,
+        headers: Metadata = Metadata()): QueryOuterClass.QueryTallyResultResponse = unaryRpc(
       channel,
       QueryGrpc.getTallyResultMethod(),
       request,
       callOptions,
-      Metadata()
-    )}
+      headers
+    )
+  }
 
   /**
    * Skeletal implementation of the cosmos.gov.v1beta1.Query service based on Kotlin coroutines.
    */
-  abstract class QueryCoroutineImplBase(
-    coroutineContext: CoroutineContext = EmptyCoroutineContext
+  public abstract class QueryCoroutineImplBase(
+    coroutineContext: CoroutineContext = EmptyCoroutineContext,
   ) : AbstractCoroutineServerImpl(coroutineContext) {
     /**
      * Returns the response to an RPC for cosmos.gov.v1beta1.Query.Proposal.
@@ -248,7 +272,7 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun proposal(request: QueryOuterClass.QueryProposalRequest):
+    public open suspend fun proposal(request: QueryOuterClass.QueryProposalRequest):
         QueryOuterClass.QueryProposalResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.gov.v1beta1.Query.Proposal is unimplemented"))
 
@@ -263,7 +287,7 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun proposals(request: QueryOuterClass.QueryProposalsRequest):
+    public open suspend fun proposals(request: QueryOuterClass.QueryProposalsRequest):
         QueryOuterClass.QueryProposalsResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.gov.v1beta1.Query.Proposals is unimplemented"))
 
@@ -278,7 +302,7 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun vote(request: QueryOuterClass.QueryVoteRequest):
+    public open suspend fun vote(request: QueryOuterClass.QueryVoteRequest):
         QueryOuterClass.QueryVoteResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.gov.v1beta1.Query.Vote is unimplemented"))
 
@@ -293,7 +317,7 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun votes(request: QueryOuterClass.QueryVotesRequest):
+    public open suspend fun votes(request: QueryOuterClass.QueryVotesRequest):
         QueryOuterClass.QueryVotesResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.gov.v1beta1.Query.Votes is unimplemented"))
 
@@ -308,7 +332,7 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun params(request: QueryOuterClass.QueryParamsRequest):
+    public open suspend fun params(request: QueryOuterClass.QueryParamsRequest):
         QueryOuterClass.QueryParamsResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.gov.v1beta1.Query.Params is unimplemented"))
 
@@ -323,7 +347,7 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun deposit(request: QueryOuterClass.QueryDepositRequest):
+    public open suspend fun deposit(request: QueryOuterClass.QueryDepositRequest):
         QueryOuterClass.QueryDepositResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.gov.v1beta1.Query.Deposit is unimplemented"))
 
@@ -338,7 +362,7 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun deposits(request: QueryOuterClass.QueryDepositsRequest):
+    public open suspend fun deposits(request: QueryOuterClass.QueryDepositsRequest):
         QueryOuterClass.QueryDepositsResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.gov.v1beta1.Query.Deposits is unimplemented"))
 
@@ -353,11 +377,12 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun tallyResult(request: QueryOuterClass.QueryTallyResultRequest):
+    public open suspend fun tallyResult(request: QueryOuterClass.QueryTallyResultRequest):
         QueryOuterClass.QueryTallyResultResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.gov.v1beta1.Query.TallyResult is unimplemented"))
 
-    final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())
+    public final override fun bindService(): ServerServiceDefinition =
+        builder(getServiceDescriptor())
       .addMethod(unaryServerMethodDefinition(
       context = this.context,
       descriptor = QueryGrpc.getProposalMethod(),

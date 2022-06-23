@@ -4,15 +4,15 @@
 package ibc.lightclients.solomachine.v2;
 
 @kotlin.jvm.JvmSynthetic
-inline fun consensusStateData(block: ibc.lightclients.solomachine.v2.ConsensusStateDataKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v2.Solomachine.ConsensusStateData =
+public inline fun consensusStateData(block: ibc.lightclients.solomachine.v2.ConsensusStateDataKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v2.Solomachine.ConsensusStateData =
   ibc.lightclients.solomachine.v2.ConsensusStateDataKt.Dsl._create(ibc.lightclients.solomachine.v2.Solomachine.ConsensusStateData.newBuilder()).apply { block() }._build()
-object ConsensusStateDataKt {
+public object ConsensusStateDataKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.lightclients.solomachine.v2.Solomachine.ConsensusStateData.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.lightclients.solomachine.v2.Solomachine.ConsensusStateData.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.lightclients.solomachine.v2.Solomachine.ConsensusStateData.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ConsensusStateDataKt {
     /**
      * <code>bytes path = 1;</code>
      */
-    var path: com.google.protobuf.ByteString
+    public var path: com.google.protobuf.ByteString
       @JvmName("getPath")
       get() = _builder.getPath()
       @JvmName("setPath")
@@ -35,14 +35,14 @@ object ConsensusStateDataKt {
     /**
      * <code>bytes path = 1;</code>
      */
-    fun clearPath() {
+    public fun clearPath() {
       _builder.clearPath()
     }
 
     /**
      * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
      */
-    var consensusState: com.google.protobuf.Any
+    public var consensusState: com.google.protobuf.Any
       @JvmName("getConsensusState")
       get() = _builder.getConsensusState()
       @JvmName("setConsensusState")
@@ -52,18 +52,18 @@ object ConsensusStateDataKt {
     /**
      * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
      */
-    fun clearConsensusState() {
+    public fun clearConsensusState() {
       _builder.clearConsensusState()
     }
     /**
      * <code>.google.protobuf.Any consensus_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
      * @return Whether the consensusState field is set.
      */
-    fun hasConsensusState(): kotlin.Boolean {
+    public fun hasConsensusState(): kotlin.Boolean {
       return _builder.hasConsensusState()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.lightclients.solomachine.v2.Solomachine.ConsensusStateData.copy(block: ibc.lightclients.solomachine.v2.ConsensusStateDataKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v2.Solomachine.ConsensusStateData =
+public inline fun ibc.lightclients.solomachine.v2.Solomachine.ConsensusStateData.copy(block: ibc.lightclients.solomachine.v2.ConsensusStateDataKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v2.Solomachine.ConsensusStateData =
   ibc.lightclients.solomachine.v2.ConsensusStateDataKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.feegrant.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun allowedMsgAllowance(block: cosmos.feegrant.v1beta1.AllowedMsgAllowanceKt.Dsl.() -> Unit): cosmos.feegrant.v1beta1.Feegrant.AllowedMsgAllowance =
+public inline fun allowedMsgAllowance(block: cosmos.feegrant.v1beta1.AllowedMsgAllowanceKt.Dsl.() -> kotlin.Unit): cosmos.feegrant.v1beta1.Feegrant.AllowedMsgAllowance =
   cosmos.feegrant.v1beta1.AllowedMsgAllowanceKt.Dsl._create(cosmos.feegrant.v1beta1.Feegrant.AllowedMsgAllowance.newBuilder()).apply { block() }._build()
-object AllowedMsgAllowanceKt {
+public object AllowedMsgAllowanceKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.feegrant.v1beta1.Feegrant.AllowedMsgAllowance.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.feegrant.v1beta1.Feegrant.AllowedMsgAllowance.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.feegrant.v1beta1.Feegrant.AllowedMsgAllowance.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object AllowedMsgAllowanceKt {
      *
      * <code>.google.protobuf.Any allowance = 1 [(.cosmos_proto.accepts_interface) = "FeeAllowanceI"];</code>
      */
-    var allowance: com.google.protobuf.Any
+    public var allowance: com.google.protobuf.Any
       @JvmName("getAllowance")
       get() = _builder.getAllowance()
       @JvmName("setAllowance")
@@ -43,7 +43,7 @@ object AllowedMsgAllowanceKt {
      *
      * <code>.google.protobuf.Any allowance = 1 [(.cosmos_proto.accepts_interface) = "FeeAllowanceI"];</code>
      */
-    fun clearAllowance() {
+    public fun clearAllowance() {
       _builder.clearAllowance()
     }
     /**
@@ -54,7 +54,7 @@ object AllowedMsgAllowanceKt {
      * <code>.google.protobuf.Any allowance = 1 [(.cosmos_proto.accepts_interface) = "FeeAllowanceI"];</code>
      * @return Whether the allowance field is set.
      */
-    fun hasAllowance(): kotlin.Boolean {
+    public fun hasAllowance(): kotlin.Boolean {
       return _builder.hasAllowance()
     }
 
@@ -63,7 +63,7 @@ object AllowedMsgAllowanceKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class AllowedMessagesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class AllowedMessagesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * allowed_messages are the messages for which the grantee has the access.
@@ -72,8 +72,8 @@ object AllowedMsgAllowanceKt {
      * <code>repeated string allowed_messages = 2;</code>
      * @return A list containing the allowedMessages.
      */
-    val allowedMessages: com.google.protobuf.kotlin.DslList<kotlin.String, AllowedMessagesProxy>
-      @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
+    public val allowedMessages: com.google.protobuf.kotlin.DslList<kotlin.String, AllowedMessagesProxy>
+      @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getAllowedMessagesList()
       )
@@ -87,7 +87,7 @@ object AllowedMsgAllowanceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllowedMessages")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, AllowedMessagesProxy>.add(value: kotlin.String) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, AllowedMessagesProxy>.add(value: kotlin.String) {
       _builder.addAllowedMessages(value)
     }
     /**
@@ -100,8 +100,9 @@ object AllowedMsgAllowanceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllowedMessages")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, AllowedMessagesProxy>.plusAssign(value: kotlin.String) {
-      _builder.addAllowedMessages(value)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, AllowedMessagesProxy>.plusAssign(value: kotlin.String) {
+      add(value)
     }
     /**
      * <pre>
@@ -113,7 +114,7 @@ object AllowedMsgAllowanceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllAllowedMessages")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, AllowedMessagesProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, AllowedMessagesProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
       _builder.addAllAllowedMessages(values)
     }
     /**
@@ -126,8 +127,9 @@ object AllowedMsgAllowanceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllAllowedMessages")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, AllowedMessagesProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
-      _builder.addAllAllowedMessages(values)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, AllowedMessagesProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
+      addAll(values)
     }
     /**
      * <pre>
@@ -140,7 +142,7 @@ object AllowedMsgAllowanceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setAllowedMessages")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, AllowedMessagesProxy>.set(index: kotlin.Int, value: kotlin.String) {
+    public operator fun com.google.protobuf.kotlin.DslList<kotlin.String, AllowedMessagesProxy>.set(index: kotlin.Int, value: kotlin.String) {
       _builder.setAllowedMessages(index, value)
     }/**
      * <pre>
@@ -151,10 +153,10 @@ object AllowedMsgAllowanceKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearAllowedMessages")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, AllowedMessagesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, AllowedMessagesProxy>.clear() {
       _builder.clearAllowedMessages()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.feegrant.v1beta1.Feegrant.AllowedMsgAllowance.copy(block: cosmos.feegrant.v1beta1.AllowedMsgAllowanceKt.Dsl.() -> Unit): cosmos.feegrant.v1beta1.Feegrant.AllowedMsgAllowance =
+public inline fun cosmos.feegrant.v1beta1.Feegrant.AllowedMsgAllowance.copy(block: cosmos.feegrant.v1beta1.AllowedMsgAllowanceKt.Dsl.() -> kotlin.Unit): cosmos.feegrant.v1beta1.Feegrant.AllowedMsgAllowance =
   cosmos.feegrant.v1beta1.AllowedMsgAllowanceKt.Dsl._create(this.toBuilder()).apply { block() }._build()

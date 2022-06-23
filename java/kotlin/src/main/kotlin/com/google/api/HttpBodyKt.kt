@@ -4,15 +4,15 @@
 package com.google.api;
 
 @kotlin.jvm.JvmSynthetic
-inline fun httpBody(block: com.google.api.HttpBodyKt.Dsl.() -> Unit): com.google.api.HttpBody =
+public inline fun httpBody(block: com.google.api.HttpBodyKt.Dsl.() -> kotlin.Unit): com.google.api.HttpBody =
   com.google.api.HttpBodyKt.Dsl._create(com.google.api.HttpBody.newBuilder()).apply { block() }._build()
-object HttpBodyKt {
+public object HttpBodyKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: com.google.api.HttpBody.Builder
+  public class Dsl private constructor(
+    private val _builder: com.google.api.HttpBody.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: com.google.api.HttpBody.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object HttpBodyKt {
      *
      * <code>string content_type = 1;</code>
      */
-    var contentType: kotlin.String
+    public var contentType: kotlin.String
       @JvmName("getContentType")
       get() = _builder.getContentType()
       @JvmName("setContentType")
@@ -43,7 +43,7 @@ object HttpBodyKt {
      *
      * <code>string content_type = 1;</code>
      */
-    fun clearContentType() {
+    public fun clearContentType() {
       _builder.clearContentType()
     }
 
@@ -54,7 +54,7 @@ object HttpBodyKt {
      *
      * <code>bytes data = 2;</code>
      */
-    var data: com.google.protobuf.ByteString
+    public var data: com.google.protobuf.ByteString
       @JvmName("getData")
       get() = _builder.getData()
       @JvmName("setData")
@@ -68,7 +68,7 @@ object HttpBodyKt {
      *
      * <code>bytes data = 2;</code>
      */
-    fun clearData() {
+    public fun clearData() {
       _builder.clearData()
     }
 
@@ -77,7 +77,7 @@ object HttpBodyKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class ExtensionsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class ExtensionsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * Application specific response metadata. Must be set in the first response
@@ -86,7 +86,7 @@ object HttpBodyKt {
      *
      * <code>repeated .google.protobuf.Any extensions = 3;</code>
      */
-     val extensions: com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, ExtensionsProxy>
+     public val extensions: com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, ExtensionsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getExtensionsList()
@@ -102,7 +102,7 @@ object HttpBodyKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addExtensions")
-    fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, ExtensionsProxy>.add(value: com.google.protobuf.Any) {
+    public fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, ExtensionsProxy>.add(value: com.google.protobuf.Any) {
       _builder.addExtensions(value)
     }/**
      * <pre>
@@ -115,7 +115,8 @@ object HttpBodyKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignExtensions")
-    inline operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, ExtensionsProxy>.plusAssign(value: com.google.protobuf.Any) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, ExtensionsProxy>.plusAssign(value: com.google.protobuf.Any) {
       add(value)
     }/**
      * <pre>
@@ -128,7 +129,7 @@ object HttpBodyKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllExtensions")
-    fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, ExtensionsProxy>.addAll(values: kotlin.collections.Iterable<com.google.protobuf.Any>) {
+    public fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, ExtensionsProxy>.addAll(values: kotlin.collections.Iterable<com.google.protobuf.Any>) {
       _builder.addAllExtensions(values)
     }/**
      * <pre>
@@ -141,7 +142,8 @@ object HttpBodyKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllExtensions")
-    inline operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, ExtensionsProxy>.plusAssign(values: kotlin.collections.Iterable<com.google.protobuf.Any>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, ExtensionsProxy>.plusAssign(values: kotlin.collections.Iterable<com.google.protobuf.Any>) {
       addAll(values)
     }/**
      * <pre>
@@ -155,7 +157,7 @@ object HttpBodyKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setExtensions")
-    operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, ExtensionsProxy>.set(index: kotlin.Int, value: com.google.protobuf.Any) {
+    public operator fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, ExtensionsProxy>.set(index: kotlin.Int, value: com.google.protobuf.Any) {
       _builder.setExtensions(index, value)
     }/**
      * <pre>
@@ -167,10 +169,10 @@ object HttpBodyKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearExtensions")
-    fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, ExtensionsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<com.google.protobuf.Any, ExtensionsProxy>.clear() {
       _builder.clearExtensions()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun com.google.api.HttpBody.copy(block: com.google.api.HttpBodyKt.Dsl.() -> Unit): com.google.api.HttpBody =
+public inline fun com.google.api.HttpBody.copy(block: com.google.api.HttpBodyKt.Dsl.() -> kotlin.Unit): com.google.api.HttpBody =
   com.google.api.HttpBodyKt.Dsl._create(this.toBuilder()).apply { block() }._build()

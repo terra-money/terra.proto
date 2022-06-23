@@ -17,6 +17,7 @@ public final class Authz {
   /**
    * <pre>
    * AuthorizationType defines the type of staking module authorization type
+   * Since: cosmos-sdk 0.43
    * </pre>
    *
    * Protobuf enum {@code cosmos.staking.v1beta1.AuthorizationType}
@@ -291,6 +292,7 @@ public final class Authz {
   /**
    * <pre>
    * StakeAuthorization defines authorization for delegate/undelegate/redelegate.
+   * Since: cosmos-sdk 0.43
    * </pre>
    *
    * Protobuf type {@code cosmos.staking.v1beta1.StakeAuthorization}
@@ -1473,6 +1475,7 @@ public final class Authz {
     /**
      * <pre>
      * StakeAuthorization defines authorization for delegate/undelegate/redelegate.
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * Protobuf type {@code cosmos.staking.v1beta1.StakeAuthorization}

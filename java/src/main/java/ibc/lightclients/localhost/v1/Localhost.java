@@ -265,7 +265,7 @@ public final class Localhost {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getChainIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(chainId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, chainId_);
       }
       if (height_ != null) {
@@ -280,7 +280,7 @@ public final class Localhost {
       if (size != -1) return size;
 
       size = 0;
-      if (!getChainIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(chainId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, chainId_);
       }
       if (height_ != null) {
@@ -911,8 +911,9 @@ public final class Localhost {
       "/client.proto\"l\n\013ClientState\022%\n\010chain_id" +
       "\030\001 \001(\tB\023\362\336\037\017yaml:\"chain_id\"\0220\n\006height\030\002 " +
       "\001(\0132\032.ibc.core.client.v1.HeightB\004\310\336\037\000:\004\210" +
-      "\240\037\000BCZAgithub.com/cosmos/ibc-go/modules/" +
-      "light-clients/09-localhost/typesb\006proto3"
+      "\240\037\000BFZDgithub.com/cosmos/ibc-go/v3/modul" +
+      "es/light-clients/09-localhost/typesb\006pro" +
+      "to3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

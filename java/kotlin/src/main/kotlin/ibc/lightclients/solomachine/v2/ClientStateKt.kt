@@ -4,15 +4,15 @@
 package ibc.lightclients.solomachine.v2;
 
 @kotlin.jvm.JvmSynthetic
-inline fun clientState(block: ibc.lightclients.solomachine.v2.ClientStateKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v2.Solomachine.ClientState =
+public inline fun clientState(block: ibc.lightclients.solomachine.v2.ClientStateKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v2.Solomachine.ClientState =
   ibc.lightclients.solomachine.v2.ClientStateKt.Dsl._create(ibc.lightclients.solomachine.v2.Solomachine.ClientState.newBuilder()).apply { block() }._build()
-object ClientStateKt {
+public object ClientStateKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.lightclients.solomachine.v2.Solomachine.ClientState.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.lightclients.solomachine.v2.Solomachine.ClientState.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.lightclients.solomachine.v2.Solomachine.ClientState.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object ClientStateKt {
      *
      * <code>uint64 sequence = 1;</code>
      */
-    var sequence: kotlin.Long
+    public var sequence: kotlin.Long
       @JvmName("getSequence")
       get() = _builder.getSequence()
       @JvmName("setSequence")
@@ -43,7 +43,7 @@ object ClientStateKt {
      *
      * <code>uint64 sequence = 1;</code>
      */
-    fun clearSequence() {
+    public fun clearSequence() {
       _builder.clearSequence()
     }
 
@@ -54,7 +54,7 @@ object ClientStateKt {
      *
      * <code>bool is_frozen = 2 [(.gogoproto.moretags) = "yaml:&#92;"is_frozen&#92;""];</code>
      */
-    var isFrozen: kotlin.Boolean
+    public var isFrozen: kotlin.Boolean
       @JvmName("getIsFrozen")
       get() = _builder.getIsFrozen()
       @JvmName("setIsFrozen")
@@ -68,14 +68,14 @@ object ClientStateKt {
      *
      * <code>bool is_frozen = 2 [(.gogoproto.moretags) = "yaml:&#92;"is_frozen&#92;""];</code>
      */
-    fun clearIsFrozen() {
+    public fun clearIsFrozen() {
       _builder.clearIsFrozen()
     }
 
     /**
      * <code>.ibc.lightclients.solomachine.v2.ConsensusState consensus_state = 3 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
      */
-    var consensusState: ibc.lightclients.solomachine.v2.Solomachine.ConsensusState
+    public var consensusState: ibc.lightclients.solomachine.v2.Solomachine.ConsensusState
       @JvmName("getConsensusState")
       get() = _builder.getConsensusState()
       @JvmName("setConsensusState")
@@ -85,14 +85,14 @@ object ClientStateKt {
     /**
      * <code>.ibc.lightclients.solomachine.v2.ConsensusState consensus_state = 3 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
      */
-    fun clearConsensusState() {
+    public fun clearConsensusState() {
       _builder.clearConsensusState()
     }
     /**
      * <code>.ibc.lightclients.solomachine.v2.ConsensusState consensus_state = 3 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
      * @return Whether the consensusState field is set.
      */
-    fun hasConsensusState(): kotlin.Boolean {
+    public fun hasConsensusState(): kotlin.Boolean {
       return _builder.hasConsensusState()
     }
 
@@ -104,7 +104,7 @@ object ClientStateKt {
      *
      * <code>bool allow_update_after_proposal = 4 [(.gogoproto.moretags) = "yaml:&#92;"allow_update_after_proposal&#92;""];</code>
      */
-    var allowUpdateAfterProposal: kotlin.Boolean
+    public var allowUpdateAfterProposal: kotlin.Boolean
       @JvmName("getAllowUpdateAfterProposal")
       get() = _builder.getAllowUpdateAfterProposal()
       @JvmName("setAllowUpdateAfterProposal")
@@ -119,11 +119,11 @@ object ClientStateKt {
      *
      * <code>bool allow_update_after_proposal = 4 [(.gogoproto.moretags) = "yaml:&#92;"allow_update_after_proposal&#92;""];</code>
      */
-    fun clearAllowUpdateAfterProposal() {
+    public fun clearAllowUpdateAfterProposal() {
       _builder.clearAllowUpdateAfterProposal()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.lightclients.solomachine.v2.Solomachine.ClientState.copy(block: ibc.lightclients.solomachine.v2.ClientStateKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v2.Solomachine.ClientState =
+public inline fun ibc.lightclients.solomachine.v2.Solomachine.ClientState.copy(block: ibc.lightclients.solomachine.v2.ClientStateKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v2.Solomachine.ClientState =
   ibc.lightclients.solomachine.v2.ClientStateKt.Dsl._create(this.toBuilder()).apply { block() }._build()

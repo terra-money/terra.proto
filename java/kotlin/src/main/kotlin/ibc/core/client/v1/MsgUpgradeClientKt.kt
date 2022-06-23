@@ -4,15 +4,15 @@
 package ibc.core.client.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgUpgradeClient(block: ibc.core.client.v1.MsgUpgradeClientKt.Dsl.() -> Unit): ibc.core.client.v1.Tx.MsgUpgradeClient =
+public inline fun msgUpgradeClient(block: ibc.core.client.v1.MsgUpgradeClientKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.Tx.MsgUpgradeClient =
   ibc.core.client.v1.MsgUpgradeClientKt.Dsl._create(ibc.core.client.v1.Tx.MsgUpgradeClient.newBuilder()).apply { block() }._build()
-object MsgUpgradeClientKt {
+public object MsgUpgradeClientKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.client.v1.Tx.MsgUpgradeClient.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.client.v1.Tx.MsgUpgradeClient.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.client.v1.Tx.MsgUpgradeClient.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object MsgUpgradeClientKt {
      *
      * <code>string client_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"client_id&#92;""];</code>
      */
-    var clientId: kotlin.String
+    public var clientId: kotlin.String
       @JvmName("getClientId")
       get() = _builder.getClientId()
       @JvmName("setClientId")
@@ -43,7 +43,7 @@ object MsgUpgradeClientKt {
      *
      * <code>string client_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"client_id&#92;""];</code>
      */
-    fun clearClientId() {
+    public fun clearClientId() {
       _builder.clearClientId()
     }
 
@@ -54,7 +54,7 @@ object MsgUpgradeClientKt {
      *
      * <code>.google.protobuf.Any client_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"client_state&#92;""];</code>
      */
-    var clientState: com.google.protobuf.Any
+    public var clientState: com.google.protobuf.Any
       @JvmName("getClientState")
       get() = _builder.getClientState()
       @JvmName("setClientState")
@@ -68,7 +68,7 @@ object MsgUpgradeClientKt {
      *
      * <code>.google.protobuf.Any client_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"client_state&#92;""];</code>
      */
-    fun clearClientState() {
+    public fun clearClientState() {
       _builder.clearClientState()
     }
     /**
@@ -79,7 +79,7 @@ object MsgUpgradeClientKt {
      * <code>.google.protobuf.Any client_state = 2 [(.gogoproto.moretags) = "yaml:&#92;"client_state&#92;""];</code>
      * @return Whether the clientState field is set.
      */
-    fun hasClientState(): kotlin.Boolean {
+    public fun hasClientState(): kotlin.Boolean {
       return _builder.hasClientState()
     }
 
@@ -91,7 +91,7 @@ object MsgUpgradeClientKt {
      *
      * <code>.google.protobuf.Any consensus_state = 3 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
      */
-    var consensusState: com.google.protobuf.Any
+    public var consensusState: com.google.protobuf.Any
       @JvmName("getConsensusState")
       get() = _builder.getConsensusState()
       @JvmName("setConsensusState")
@@ -106,7 +106,7 @@ object MsgUpgradeClientKt {
      *
      * <code>.google.protobuf.Any consensus_state = 3 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
      */
-    fun clearConsensusState() {
+    public fun clearConsensusState() {
       _builder.clearConsensusState()
     }
     /**
@@ -118,7 +118,7 @@ object MsgUpgradeClientKt {
      * <code>.google.protobuf.Any consensus_state = 3 [(.gogoproto.moretags) = "yaml:&#92;"consensus_state&#92;""];</code>
      * @return Whether the consensusState field is set.
      */
-    fun hasConsensusState(): kotlin.Boolean {
+    public fun hasConsensusState(): kotlin.Boolean {
       return _builder.hasConsensusState()
     }
 
@@ -129,7 +129,7 @@ object MsgUpgradeClientKt {
      *
      * <code>bytes proof_upgrade_client = 4 [(.gogoproto.moretags) = "yaml:&#92;"proof_upgrade_client&#92;""];</code>
      */
-    var proofUpgradeClient: com.google.protobuf.ByteString
+    public var proofUpgradeClient: com.google.protobuf.ByteString
       @JvmName("getProofUpgradeClient")
       get() = _builder.getProofUpgradeClient()
       @JvmName("setProofUpgradeClient")
@@ -143,7 +143,7 @@ object MsgUpgradeClientKt {
      *
      * <code>bytes proof_upgrade_client = 4 [(.gogoproto.moretags) = "yaml:&#92;"proof_upgrade_client&#92;""];</code>
      */
-    fun clearProofUpgradeClient() {
+    public fun clearProofUpgradeClient() {
       _builder.clearProofUpgradeClient()
     }
 
@@ -154,7 +154,7 @@ object MsgUpgradeClientKt {
      *
      * <code>bytes proof_upgrade_consensus_state = 5 [(.gogoproto.moretags) = "yaml:&#92;"proof_upgrade_consensus_state&#92;""];</code>
      */
-    var proofUpgradeConsensusState: com.google.protobuf.ByteString
+    public var proofUpgradeConsensusState: com.google.protobuf.ByteString
       @JvmName("getProofUpgradeConsensusState")
       get() = _builder.getProofUpgradeConsensusState()
       @JvmName("setProofUpgradeConsensusState")
@@ -168,7 +168,7 @@ object MsgUpgradeClientKt {
      *
      * <code>bytes proof_upgrade_consensus_state = 5 [(.gogoproto.moretags) = "yaml:&#92;"proof_upgrade_consensus_state&#92;""];</code>
      */
-    fun clearProofUpgradeConsensusState() {
+    public fun clearProofUpgradeConsensusState() {
       _builder.clearProofUpgradeConsensusState()
     }
 
@@ -179,7 +179,7 @@ object MsgUpgradeClientKt {
      *
      * <code>string signer = 6;</code>
      */
-    var signer: kotlin.String
+    public var signer: kotlin.String
       @JvmName("getSigner")
       get() = _builder.getSigner()
       @JvmName("setSigner")
@@ -193,11 +193,11 @@ object MsgUpgradeClientKt {
      *
      * <code>string signer = 6;</code>
      */
-    fun clearSigner() {
+    public fun clearSigner() {
       _builder.clearSigner()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.client.v1.Tx.MsgUpgradeClient.copy(block: ibc.core.client.v1.MsgUpgradeClientKt.Dsl.() -> Unit): ibc.core.client.v1.Tx.MsgUpgradeClient =
+public inline fun ibc.core.client.v1.Tx.MsgUpgradeClient.copy(block: ibc.core.client.v1.MsgUpgradeClientKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.Tx.MsgUpgradeClient =
   ibc.core.client.v1.MsgUpgradeClientKt.Dsl._create(this.toBuilder()).apply { block() }._build()

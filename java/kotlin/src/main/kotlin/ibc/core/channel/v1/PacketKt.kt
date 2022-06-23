@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun packet(block: ibc.core.channel.v1.PacketKt.Dsl.() -> Unit): ibc.core.channel.v1.ChannelOuterClass.Packet =
+public inline fun packet(block: ibc.core.channel.v1.PacketKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.ChannelOuterClass.Packet =
   ibc.core.channel.v1.PacketKt.Dsl._create(ibc.core.channel.v1.ChannelOuterClass.Packet.newBuilder()).apply { block() }._build()
-object PacketKt {
+public object PacketKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.ChannelOuterClass.Packet.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.ChannelOuterClass.Packet.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.ChannelOuterClass.Packet.Builder): Dsl = Dsl(builder)
@@ -31,7 +31,7 @@ object PacketKt {
      *
      * <code>uint64 sequence = 1;</code>
      */
-    var sequence: kotlin.Long
+    public var sequence: kotlin.Long
       @JvmName("getSequence")
       get() = _builder.getSequence()
       @JvmName("setSequence")
@@ -47,7 +47,7 @@ object PacketKt {
      *
      * <code>uint64 sequence = 1;</code>
      */
-    fun clearSequence() {
+    public fun clearSequence() {
       _builder.clearSequence()
     }
 
@@ -58,7 +58,7 @@ object PacketKt {
      *
      * <code>string source_port = 2 [(.gogoproto.moretags) = "yaml:&#92;"source_port&#92;""];</code>
      */
-    var sourcePort: kotlin.String
+    public var sourcePort: kotlin.String
       @JvmName("getSourcePort")
       get() = _builder.getSourcePort()
       @JvmName("setSourcePort")
@@ -72,7 +72,7 @@ object PacketKt {
      *
      * <code>string source_port = 2 [(.gogoproto.moretags) = "yaml:&#92;"source_port&#92;""];</code>
      */
-    fun clearSourcePort() {
+    public fun clearSourcePort() {
       _builder.clearSourcePort()
     }
 
@@ -83,7 +83,7 @@ object PacketKt {
      *
      * <code>string source_channel = 3 [(.gogoproto.moretags) = "yaml:&#92;"source_channel&#92;""];</code>
      */
-    var sourceChannel: kotlin.String
+    public var sourceChannel: kotlin.String
       @JvmName("getSourceChannel")
       get() = _builder.getSourceChannel()
       @JvmName("setSourceChannel")
@@ -97,7 +97,7 @@ object PacketKt {
      *
      * <code>string source_channel = 3 [(.gogoproto.moretags) = "yaml:&#92;"source_channel&#92;""];</code>
      */
-    fun clearSourceChannel() {
+    public fun clearSourceChannel() {
       _builder.clearSourceChannel()
     }
 
@@ -108,7 +108,7 @@ object PacketKt {
      *
      * <code>string destination_port = 4 [(.gogoproto.moretags) = "yaml:&#92;"destination_port&#92;""];</code>
      */
-    var destinationPort: kotlin.String
+    public var destinationPort: kotlin.String
       @JvmName("getDestinationPort")
       get() = _builder.getDestinationPort()
       @JvmName("setDestinationPort")
@@ -122,7 +122,7 @@ object PacketKt {
      *
      * <code>string destination_port = 4 [(.gogoproto.moretags) = "yaml:&#92;"destination_port&#92;""];</code>
      */
-    fun clearDestinationPort() {
+    public fun clearDestinationPort() {
       _builder.clearDestinationPort()
     }
 
@@ -133,7 +133,7 @@ object PacketKt {
      *
      * <code>string destination_channel = 5 [(.gogoproto.moretags) = "yaml:&#92;"destination_channel&#92;""];</code>
      */
-    var destinationChannel: kotlin.String
+    public var destinationChannel: kotlin.String
       @JvmName("getDestinationChannel")
       get() = _builder.getDestinationChannel()
       @JvmName("setDestinationChannel")
@@ -147,7 +147,7 @@ object PacketKt {
      *
      * <code>string destination_channel = 5 [(.gogoproto.moretags) = "yaml:&#92;"destination_channel&#92;""];</code>
      */
-    fun clearDestinationChannel() {
+    public fun clearDestinationChannel() {
       _builder.clearDestinationChannel()
     }
 
@@ -158,7 +158,7 @@ object PacketKt {
      *
      * <code>bytes data = 6;</code>
      */
-    var data: com.google.protobuf.ByteString
+    public var data: com.google.protobuf.ByteString
       @JvmName("getData")
       get() = _builder.getData()
       @JvmName("setData")
@@ -172,7 +172,7 @@ object PacketKt {
      *
      * <code>bytes data = 6;</code>
      */
-    fun clearData() {
+    public fun clearData() {
       _builder.clearData()
     }
 
@@ -183,7 +183,7 @@ object PacketKt {
      *
      * <code>.ibc.core.client.v1.Height timeout_height = 7 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"timeout_height&#92;""];</code>
      */
-    var timeoutHeight: ibc.core.client.v1.Client.Height
+    public var timeoutHeight: ibc.core.client.v1.Client.Height
       @JvmName("getTimeoutHeight")
       get() = _builder.getTimeoutHeight()
       @JvmName("setTimeoutHeight")
@@ -197,7 +197,7 @@ object PacketKt {
      *
      * <code>.ibc.core.client.v1.Height timeout_height = 7 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"timeout_height&#92;""];</code>
      */
-    fun clearTimeoutHeight() {
+    public fun clearTimeoutHeight() {
       _builder.clearTimeoutHeight()
     }
     /**
@@ -208,7 +208,7 @@ object PacketKt {
      * <code>.ibc.core.client.v1.Height timeout_height = 7 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"timeout_height&#92;""];</code>
      * @return Whether the timeoutHeight field is set.
      */
-    fun hasTimeoutHeight(): kotlin.Boolean {
+    public fun hasTimeoutHeight(): kotlin.Boolean {
       return _builder.hasTimeoutHeight()
     }
 
@@ -219,7 +219,7 @@ object PacketKt {
      *
      * <code>uint64 timeout_timestamp = 8 [(.gogoproto.moretags) = "yaml:&#92;"timeout_timestamp&#92;""];</code>
      */
-    var timeoutTimestamp: kotlin.Long
+    public var timeoutTimestamp: kotlin.Long
       @JvmName("getTimeoutTimestamp")
       get() = _builder.getTimeoutTimestamp()
       @JvmName("setTimeoutTimestamp")
@@ -233,11 +233,11 @@ object PacketKt {
      *
      * <code>uint64 timeout_timestamp = 8 [(.gogoproto.moretags) = "yaml:&#92;"timeout_timestamp&#92;""];</code>
      */
-    fun clearTimeoutTimestamp() {
+    public fun clearTimeoutTimestamp() {
       _builder.clearTimeoutTimestamp()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.ChannelOuterClass.Packet.copy(block: ibc.core.channel.v1.PacketKt.Dsl.() -> Unit): ibc.core.channel.v1.ChannelOuterClass.Packet =
+public inline fun ibc.core.channel.v1.ChannelOuterClass.Packet.copy(block: ibc.core.channel.v1.PacketKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.ChannelOuterClass.Packet =
   ibc.core.channel.v1.PacketKt.Dsl._create(this.toBuilder()).apply { block() }._build()

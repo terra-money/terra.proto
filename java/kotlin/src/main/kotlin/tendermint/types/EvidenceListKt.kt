@@ -4,15 +4,15 @@
 package tendermint.types;
 
 @kotlin.jvm.JvmSynthetic
-inline fun evidenceList(block: tendermint.types.EvidenceListKt.Dsl.() -> Unit): tendermint.types.EvidenceOuterClass.EvidenceList =
+public inline fun evidenceList(block: tendermint.types.EvidenceListKt.Dsl.() -> kotlin.Unit): tendermint.types.EvidenceOuterClass.EvidenceList =
   tendermint.types.EvidenceListKt.Dsl._create(tendermint.types.EvidenceOuterClass.EvidenceList.newBuilder()).apply { block() }._build()
-object EvidenceListKt {
+public object EvidenceListKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.types.EvidenceOuterClass.EvidenceList.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.types.EvidenceOuterClass.EvidenceList.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.types.EvidenceOuterClass.EvidenceList.Builder): Dsl = Dsl(builder)
@@ -27,11 +27,11 @@ object EvidenceListKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class EvidenceProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class EvidenceProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .tendermint.types.Evidence evidence = 1 [(.gogoproto.nullable) = false];</code>
      */
-     val evidence: com.google.protobuf.kotlin.DslList<tendermint.types.EvidenceOuterClass.Evidence, EvidenceProxy>
+     public val evidence: com.google.protobuf.kotlin.DslList<tendermint.types.EvidenceOuterClass.Evidence, EvidenceProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getEvidenceList()
@@ -42,7 +42,7 @@ object EvidenceListKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addEvidence")
-    fun com.google.protobuf.kotlin.DslList<tendermint.types.EvidenceOuterClass.Evidence, EvidenceProxy>.add(value: tendermint.types.EvidenceOuterClass.Evidence) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.types.EvidenceOuterClass.Evidence, EvidenceProxy>.add(value: tendermint.types.EvidenceOuterClass.Evidence) {
       _builder.addEvidence(value)
     }/**
      * <code>repeated .tendermint.types.Evidence evidence = 1 [(.gogoproto.nullable) = false];</code>
@@ -50,7 +50,8 @@ object EvidenceListKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignEvidence")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.types.EvidenceOuterClass.Evidence, EvidenceProxy>.plusAssign(value: tendermint.types.EvidenceOuterClass.Evidence) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.types.EvidenceOuterClass.Evidence, EvidenceProxy>.plusAssign(value: tendermint.types.EvidenceOuterClass.Evidence) {
       add(value)
     }/**
      * <code>repeated .tendermint.types.Evidence evidence = 1 [(.gogoproto.nullable) = false];</code>
@@ -58,7 +59,7 @@ object EvidenceListKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllEvidence")
-    fun com.google.protobuf.kotlin.DslList<tendermint.types.EvidenceOuterClass.Evidence, EvidenceProxy>.addAll(values: kotlin.collections.Iterable<tendermint.types.EvidenceOuterClass.Evidence>) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.types.EvidenceOuterClass.Evidence, EvidenceProxy>.addAll(values: kotlin.collections.Iterable<tendermint.types.EvidenceOuterClass.Evidence>) {
       _builder.addAllEvidence(values)
     }/**
      * <code>repeated .tendermint.types.Evidence evidence = 1 [(.gogoproto.nullable) = false];</code>
@@ -66,7 +67,8 @@ object EvidenceListKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllEvidence")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.types.EvidenceOuterClass.Evidence, EvidenceProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.types.EvidenceOuterClass.Evidence>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.types.EvidenceOuterClass.Evidence, EvidenceProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.types.EvidenceOuterClass.Evidence>) {
       addAll(values)
     }/**
      * <code>repeated .tendermint.types.Evidence evidence = 1 [(.gogoproto.nullable) = false];</code>
@@ -75,17 +77,17 @@ object EvidenceListKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setEvidence")
-    operator fun com.google.protobuf.kotlin.DslList<tendermint.types.EvidenceOuterClass.Evidence, EvidenceProxy>.set(index: kotlin.Int, value: tendermint.types.EvidenceOuterClass.Evidence) {
+    public operator fun com.google.protobuf.kotlin.DslList<tendermint.types.EvidenceOuterClass.Evidence, EvidenceProxy>.set(index: kotlin.Int, value: tendermint.types.EvidenceOuterClass.Evidence) {
       _builder.setEvidence(index, value)
     }/**
      * <code>repeated .tendermint.types.Evidence evidence = 1 [(.gogoproto.nullable) = false];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearEvidence")
-    fun com.google.protobuf.kotlin.DslList<tendermint.types.EvidenceOuterClass.Evidence, EvidenceProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.types.EvidenceOuterClass.Evidence, EvidenceProxy>.clear() {
       _builder.clearEvidence()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.types.EvidenceOuterClass.EvidenceList.copy(block: tendermint.types.EvidenceListKt.Dsl.() -> Unit): tendermint.types.EvidenceOuterClass.EvidenceList =
+public inline fun tendermint.types.EvidenceOuterClass.EvidenceList.copy(block: tendermint.types.EvidenceListKt.Dsl.() -> kotlin.Unit): tendermint.types.EvidenceOuterClass.EvidenceList =
   tendermint.types.EvidenceListKt.Dsl._create(this.toBuilder()).apply { block() }._build()

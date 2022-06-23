@@ -4,15 +4,15 @@
 package cosmos.base.reflection.v2alpha1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun getChainDescriptorResponse(block: cosmos.base.reflection.v2alpha1.GetChainDescriptorResponseKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorResponse =
+public inline fun getChainDescriptorResponse(block: cosmos.base.reflection.v2alpha1.GetChainDescriptorResponseKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorResponse =
   cosmos.base.reflection.v2alpha1.GetChainDescriptorResponseKt.Dsl._create(cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorResponse.newBuilder()).apply { block() }._build()
-object GetChainDescriptorResponseKt {
+public object GetChainDescriptorResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object GetChainDescriptorResponseKt {
      *
      * <code>.cosmos.base.reflection.v2alpha1.ChainDescriptor chain = 1;</code>
      */
-    var chain: cosmos.base.reflection.v2alpha1.Reflection.ChainDescriptor
+    public var chain: cosmos.base.reflection.v2alpha1.Reflection.ChainDescriptor
       @JvmName("getChain")
       get() = _builder.getChain()
       @JvmName("setChain")
@@ -43,7 +43,7 @@ object GetChainDescriptorResponseKt {
      *
      * <code>.cosmos.base.reflection.v2alpha1.ChainDescriptor chain = 1;</code>
      */
-    fun clearChain() {
+    public fun clearChain() {
       _builder.clearChain()
     }
     /**
@@ -54,11 +54,11 @@ object GetChainDescriptorResponseKt {
      * <code>.cosmos.base.reflection.v2alpha1.ChainDescriptor chain = 1;</code>
      * @return Whether the chain field is set.
      */
-    fun hasChain(): kotlin.Boolean {
+    public fun hasChain(): kotlin.Boolean {
       return _builder.hasChain()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorResponse.copy(block: cosmos.base.reflection.v2alpha1.GetChainDescriptorResponseKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorResponse =
+public inline fun cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorResponse.copy(block: cosmos.base.reflection.v2alpha1.GetChainDescriptorResponseKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.GetChainDescriptorResponse =
   cosmos.base.reflection.v2alpha1.GetChainDescriptorResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

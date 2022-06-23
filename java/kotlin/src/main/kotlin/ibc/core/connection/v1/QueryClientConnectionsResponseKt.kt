@@ -4,15 +4,15 @@
 package ibc.core.connection.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryClientConnectionsResponse(block: ibc.core.connection.v1.QueryClientConnectionsResponseKt.Dsl.() -> Unit): ibc.core.connection.v1.QueryOuterClass.QueryClientConnectionsResponse =
+public inline fun queryClientConnectionsResponse(block: ibc.core.connection.v1.QueryClientConnectionsResponseKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.QueryOuterClass.QueryClientConnectionsResponse =
   ibc.core.connection.v1.QueryClientConnectionsResponseKt.Dsl._create(ibc.core.connection.v1.QueryOuterClass.QueryClientConnectionsResponse.newBuilder()).apply { block() }._build()
-object QueryClientConnectionsResponseKt {
+public object QueryClientConnectionsResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.connection.v1.QueryOuterClass.QueryClientConnectionsResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.connection.v1.QueryOuterClass.QueryClientConnectionsResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.connection.v1.QueryOuterClass.QueryClientConnectionsResponse.Builder): Dsl = Dsl(builder)
@@ -27,7 +27,7 @@ object QueryClientConnectionsResponseKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class ConnectionPathsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class ConnectionPathsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * slice of all the connection paths associated with a client.
@@ -36,8 +36,8 @@ object QueryClientConnectionsResponseKt {
      * <code>repeated string connection_paths = 1;</code>
      * @return A list containing the connectionPaths.
      */
-    val connectionPaths: com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionPathsProxy>
-      @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
+    public val connectionPaths: com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionPathsProxy>
+      @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getConnectionPathsList()
       )
@@ -51,7 +51,7 @@ object QueryClientConnectionsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addConnectionPaths")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionPathsProxy>.add(value: kotlin.String) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionPathsProxy>.add(value: kotlin.String) {
       _builder.addConnectionPaths(value)
     }
     /**
@@ -64,8 +64,9 @@ object QueryClientConnectionsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignConnectionPaths")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionPathsProxy>.plusAssign(value: kotlin.String) {
-      _builder.addConnectionPaths(value)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionPathsProxy>.plusAssign(value: kotlin.String) {
+      add(value)
     }
     /**
      * <pre>
@@ -77,7 +78,7 @@ object QueryClientConnectionsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllConnectionPaths")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionPathsProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionPathsProxy>.addAll(values: kotlin.collections.Iterable<kotlin.String>) {
       _builder.addAllConnectionPaths(values)
     }
     /**
@@ -90,8 +91,9 @@ object QueryClientConnectionsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllConnectionPaths")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionPathsProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
-      _builder.addAllConnectionPaths(values)
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionPathsProxy>.plusAssign(values: kotlin.collections.Iterable<kotlin.String>) {
+      addAll(values)
     }
     /**
      * <pre>
@@ -104,7 +106,7 @@ object QueryClientConnectionsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setConnectionPaths")
-    operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionPathsProxy>.set(index: kotlin.Int, value: kotlin.String) {
+    public operator fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionPathsProxy>.set(index: kotlin.Int, value: kotlin.String) {
       _builder.setConnectionPaths(index, value)
     }/**
      * <pre>
@@ -115,7 +117,7 @@ object QueryClientConnectionsResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearConnectionPaths")
-    fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionPathsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<kotlin.String, ConnectionPathsProxy>.clear() {
       _builder.clearConnectionPaths()
     }
     /**
@@ -125,7 +127,7 @@ object QueryClientConnectionsResponseKt {
      *
      * <code>bytes proof = 2;</code>
      */
-    var proof: com.google.protobuf.ByteString
+    public var proof: com.google.protobuf.ByteString
       @JvmName("getProof")
       get() = _builder.getProof()
       @JvmName("setProof")
@@ -139,7 +141,7 @@ object QueryClientConnectionsResponseKt {
      *
      * <code>bytes proof = 2;</code>
      */
-    fun clearProof() {
+    public fun clearProof() {
       _builder.clearProof()
     }
 
@@ -150,7 +152,7 @@ object QueryClientConnectionsResponseKt {
      *
      * <code>.ibc.core.client.v1.Height proof_height = 3 [(.gogoproto.nullable) = false];</code>
      */
-    var proofHeight: ibc.core.client.v1.Client.Height
+    public var proofHeight: ibc.core.client.v1.Client.Height
       @JvmName("getProofHeight")
       get() = _builder.getProofHeight()
       @JvmName("setProofHeight")
@@ -164,7 +166,7 @@ object QueryClientConnectionsResponseKt {
      *
      * <code>.ibc.core.client.v1.Height proof_height = 3 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearProofHeight() {
+    public fun clearProofHeight() {
       _builder.clearProofHeight()
     }
     /**
@@ -175,11 +177,11 @@ object QueryClientConnectionsResponseKt {
      * <code>.ibc.core.client.v1.Height proof_height = 3 [(.gogoproto.nullable) = false];</code>
      * @return Whether the proofHeight field is set.
      */
-    fun hasProofHeight(): kotlin.Boolean {
+    public fun hasProofHeight(): kotlin.Boolean {
       return _builder.hasProofHeight()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.connection.v1.QueryOuterClass.QueryClientConnectionsResponse.copy(block: ibc.core.connection.v1.QueryClientConnectionsResponseKt.Dsl.() -> Unit): ibc.core.connection.v1.QueryOuterClass.QueryClientConnectionsResponse =
+public inline fun ibc.core.connection.v1.QueryOuterClass.QueryClientConnectionsResponse.copy(block: ibc.core.connection.v1.QueryClientConnectionsResponseKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.QueryOuterClass.QueryClientConnectionsResponse =
   ibc.core.connection.v1.QueryClientConnectionsResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -3131,7 +3131,7 @@ public final class Genesis {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, clientId_);
       }
       for (int i = 0; i < clientMetadata_.size(); i++) {
@@ -3146,7 +3146,7 @@ public final class Genesis {
       if (size != -1) return size;
 
       size = 0;
-      if (!getClientIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, clientId_);
       }
       for (int i = 0; i < clientMetadata_.size(); i++) {
@@ -3894,8 +3894,8 @@ public final class Genesis {
       "\001 \001(\tB\024\362\336\037\020yaml:\"client_id\"\022\\\n\017client_me" +
       "tadata\030\002 \003(\0132#.ibc.core.client.v1.Genesi" +
       "sMetadataB\036\310\336\037\000\362\336\037\026yaml:\"client_metadata" +
-      "\"B7Z5github.com/cosmos/ibc-go/modules/co" +
-      "re/02-client/typesb\006proto3"
+      "\"B:Z8github.com/cosmos/ibc-go/v3/modules" +
+      "/core/02-client/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

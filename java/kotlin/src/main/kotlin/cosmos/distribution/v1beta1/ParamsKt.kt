@@ -4,15 +4,15 @@
 package cosmos.distribution.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun params(block: cosmos.distribution.v1beta1.ParamsKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.Distribution.Params =
+public inline fun params(block: cosmos.distribution.v1beta1.ParamsKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.Distribution.Params =
   cosmos.distribution.v1beta1.ParamsKt.Dsl._create(cosmos.distribution.v1beta1.Distribution.Params.newBuilder()).apply { block() }._build()
-object ParamsKt {
+public object ParamsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.distribution.v1beta1.Distribution.Params.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.distribution.v1beta1.Distribution.Params.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.distribution.v1beta1.Distribution.Params.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ParamsKt {
     /**
      * <code>string community_tax = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"community_tax&#92;""];</code>
      */
-    var communityTax: kotlin.String
+    public var communityTax: kotlin.String
       @JvmName("getCommunityTax")
       get() = _builder.getCommunityTax()
       @JvmName("setCommunityTax")
@@ -35,14 +35,14 @@ object ParamsKt {
     /**
      * <code>string community_tax = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"community_tax&#92;""];</code>
      */
-    fun clearCommunityTax() {
+    public fun clearCommunityTax() {
       _builder.clearCommunityTax()
     }
 
     /**
      * <code>string base_proposer_reward = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"base_proposer_reward&#92;""];</code>
      */
-    var baseProposerReward: kotlin.String
+    public var baseProposerReward: kotlin.String
       @JvmName("getBaseProposerReward")
       get() = _builder.getBaseProposerReward()
       @JvmName("setBaseProposerReward")
@@ -52,14 +52,14 @@ object ParamsKt {
     /**
      * <code>string base_proposer_reward = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"base_proposer_reward&#92;""];</code>
      */
-    fun clearBaseProposerReward() {
+    public fun clearBaseProposerReward() {
       _builder.clearBaseProposerReward()
     }
 
     /**
      * <code>string bonus_proposer_reward = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"bonus_proposer_reward&#92;""];</code>
      */
-    var bonusProposerReward: kotlin.String
+    public var bonusProposerReward: kotlin.String
       @JvmName("getBonusProposerReward")
       get() = _builder.getBonusProposerReward()
       @JvmName("setBonusProposerReward")
@@ -69,14 +69,14 @@ object ParamsKt {
     /**
      * <code>string bonus_proposer_reward = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"bonus_proposer_reward&#92;""];</code>
      */
-    fun clearBonusProposerReward() {
+    public fun clearBonusProposerReward() {
       _builder.clearBonusProposerReward()
     }
 
     /**
      * <code>bool withdraw_addr_enabled = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addr_enabled&#92;""];</code>
      */
-    var withdrawAddrEnabled: kotlin.Boolean
+    public var withdrawAddrEnabled: kotlin.Boolean
       @JvmName("getWithdrawAddrEnabled")
       get() = _builder.getWithdrawAddrEnabled()
       @JvmName("setWithdrawAddrEnabled")
@@ -86,11 +86,11 @@ object ParamsKt {
     /**
      * <code>bool withdraw_addr_enabled = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addr_enabled&#92;""];</code>
      */
-    fun clearWithdrawAddrEnabled() {
+    public fun clearWithdrawAddrEnabled() {
       _builder.clearWithdrawAddrEnabled()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.distribution.v1beta1.Distribution.Params.copy(block: cosmos.distribution.v1beta1.ParamsKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.Distribution.Params =
+public inline fun cosmos.distribution.v1beta1.Distribution.Params.copy(block: cosmos.distribution.v1beta1.ParamsKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.Distribution.Params =
   cosmos.distribution.v1beta1.ParamsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

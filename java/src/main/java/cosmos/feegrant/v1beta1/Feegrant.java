@@ -4809,10 +4809,10 @@ public final class Feegrant {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getGranterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(granter_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, granter_);
       }
-      if (!getGranteeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(grantee_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, grantee_);
       }
       if (allowance_ != null) {
@@ -4827,10 +4827,10 @@ public final class Feegrant {
       if (size != -1) return size;
 
       size = 0;
-      if (!getGranterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(granter_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, granter_);
       }
-      if (!getGranteeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(grantee_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, grantee_);
       }
       if (allowance_ != null) {

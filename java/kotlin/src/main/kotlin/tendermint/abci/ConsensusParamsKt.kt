@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun consensusParams(block: tendermint.abci.ConsensusParamsKt.Dsl.() -> Unit): tendermint.abci.Types.ConsensusParams =
+public inline fun consensusParams(block: tendermint.abci.ConsensusParamsKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ConsensusParams =
   tendermint.abci.ConsensusParamsKt.Dsl._create(tendermint.abci.Types.ConsensusParams.newBuilder()).apply { block() }._build()
-object ConsensusParamsKt {
+public object ConsensusParamsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.ConsensusParams.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.ConsensusParams.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.ConsensusParams.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ConsensusParamsKt {
     /**
      * <code>.tendermint.abci.BlockParams block = 1;</code>
      */
-    var block: tendermint.abci.Types.BlockParams
+    public var block: tendermint.abci.Types.BlockParams
       @JvmName("getBlock")
       get() = _builder.getBlock()
       @JvmName("setBlock")
@@ -35,21 +35,21 @@ object ConsensusParamsKt {
     /**
      * <code>.tendermint.abci.BlockParams block = 1;</code>
      */
-    fun clearBlock() {
+    public fun clearBlock() {
       _builder.clearBlock()
     }
     /**
      * <code>.tendermint.abci.BlockParams block = 1;</code>
      * @return Whether the block field is set.
      */
-    fun hasBlock(): kotlin.Boolean {
+    public fun hasBlock(): kotlin.Boolean {
       return _builder.hasBlock()
     }
 
     /**
      * <code>.tendermint.types.EvidenceParams evidence = 2;</code>
      */
-    var evidence: tendermint.types.Params.EvidenceParams
+    public var evidence: tendermint.types.Params.EvidenceParams
       @JvmName("getEvidence")
       get() = _builder.getEvidence()
       @JvmName("setEvidence")
@@ -59,21 +59,21 @@ object ConsensusParamsKt {
     /**
      * <code>.tendermint.types.EvidenceParams evidence = 2;</code>
      */
-    fun clearEvidence() {
+    public fun clearEvidence() {
       _builder.clearEvidence()
     }
     /**
      * <code>.tendermint.types.EvidenceParams evidence = 2;</code>
      * @return Whether the evidence field is set.
      */
-    fun hasEvidence(): kotlin.Boolean {
+    public fun hasEvidence(): kotlin.Boolean {
       return _builder.hasEvidence()
     }
 
     /**
      * <code>.tendermint.types.ValidatorParams validator = 3;</code>
      */
-    var validator: tendermint.types.Params.ValidatorParams
+    public var validator: tendermint.types.Params.ValidatorParams
       @JvmName("getValidator")
       get() = _builder.getValidator()
       @JvmName("setValidator")
@@ -83,21 +83,21 @@ object ConsensusParamsKt {
     /**
      * <code>.tendermint.types.ValidatorParams validator = 3;</code>
      */
-    fun clearValidator() {
+    public fun clearValidator() {
       _builder.clearValidator()
     }
     /**
      * <code>.tendermint.types.ValidatorParams validator = 3;</code>
      * @return Whether the validator field is set.
      */
-    fun hasValidator(): kotlin.Boolean {
+    public fun hasValidator(): kotlin.Boolean {
       return _builder.hasValidator()
     }
 
     /**
      * <code>.tendermint.types.VersionParams version = 4;</code>
      */
-    var version: tendermint.types.Params.VersionParams
+    public var version: tendermint.types.Params.VersionParams
       @JvmName("getVersion")
       get() = _builder.getVersion()
       @JvmName("setVersion")
@@ -107,18 +107,18 @@ object ConsensusParamsKt {
     /**
      * <code>.tendermint.types.VersionParams version = 4;</code>
      */
-    fun clearVersion() {
+    public fun clearVersion() {
       _builder.clearVersion()
     }
     /**
      * <code>.tendermint.types.VersionParams version = 4;</code>
      * @return Whether the version field is set.
      */
-    fun hasVersion(): kotlin.Boolean {
+    public fun hasVersion(): kotlin.Boolean {
       return _builder.hasVersion()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.ConsensusParams.copy(block: tendermint.abci.ConsensusParamsKt.Dsl.() -> Unit): tendermint.abci.Types.ConsensusParams =
+public inline fun tendermint.abci.Types.ConsensusParams.copy(block: tendermint.abci.ConsensusParamsKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ConsensusParams =
   tendermint.abci.ConsensusParamsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

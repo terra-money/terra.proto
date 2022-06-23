@@ -19,6 +19,7 @@ import io.grpc.kotlin.ClientCalls.unaryRpc
 import io.grpc.kotlin.ServerCalls
 import io.grpc.kotlin.ServerCalls.unaryServerMethodDefinition
 import io.grpc.kotlin.StubFor
+import kotlin.Deprecated
 import kotlin.String
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
@@ -28,31 +29,30 @@ import kotlin.jvm.JvmStatic
 /**
  * Holder for Kotlin coroutine-based client and server APIs for cosmos.upgrade.v1beta1.Query.
  */
-object QueryGrpcKt {
-  const val SERVICE_NAME: String = QueryGrpc.SERVICE_NAME
+public object QueryGrpcKt {
+  public const val SERVICE_NAME: String = QueryGrpc.SERVICE_NAME
 
   @JvmStatic
-  val serviceDescriptor: ServiceDescriptor
+  public val serviceDescriptor: ServiceDescriptor
     get() = QueryGrpc.getServiceDescriptor()
 
-  val currentPlanMethod: MethodDescriptor<QueryOuterClass.QueryCurrentPlanRequest,
-      QueryOuterClass.QueryCurrentPlanResponse>
+  public val currentPlanMethod:
+      MethodDescriptor<QueryOuterClass.QueryCurrentPlanRequest, QueryOuterClass.QueryCurrentPlanResponse>
     @JvmStatic
     get() = QueryGrpc.getCurrentPlanMethod()
 
-  val appliedPlanMethod: MethodDescriptor<QueryOuterClass.QueryAppliedPlanRequest,
-      QueryOuterClass.QueryAppliedPlanResponse>
+  public val appliedPlanMethod:
+      MethodDescriptor<QueryOuterClass.QueryAppliedPlanRequest, QueryOuterClass.QueryAppliedPlanResponse>
     @JvmStatic
     get() = QueryGrpc.getAppliedPlanMethod()
 
-  val upgradedConsensusStateMethod:
-      MethodDescriptor<QueryOuterClass.QueryUpgradedConsensusStateRequest,
-      QueryOuterClass.QueryUpgradedConsensusStateResponse>
+  public val upgradedConsensusStateMethod:
+      MethodDescriptor<QueryOuterClass.QueryUpgradedConsensusStateRequest, QueryOuterClass.QueryUpgradedConsensusStateResponse>
     @JvmStatic
     get() = QueryGrpc.getUpgradedConsensusStateMethod()
 
-  val moduleVersionsMethod: MethodDescriptor<QueryOuterClass.QueryModuleVersionsRequest,
-      QueryOuterClass.QueryModuleVersionsResponse>
+  public val moduleVersionsMethod:
+      MethodDescriptor<QueryOuterClass.QueryModuleVersionsRequest, QueryOuterClass.QueryModuleVersionsResponse>
     @JvmStatic
     get() = QueryGrpc.getModuleVersionsMethod()
 
@@ -60,11 +60,11 @@ object QueryGrpcKt {
    * A stub for issuing RPCs to a(n) cosmos.upgrade.v1beta1.Query service as suspending coroutines.
    */
   @StubFor(QueryGrpc::class)
-  class QueryCoroutineStub @JvmOverloads constructor(
+  public class QueryCoroutineStub @JvmOverloads constructor(
     channel: Channel,
-    callOptions: CallOptions = DEFAULT
+    callOptions: CallOptions = DEFAULT,
   ) : AbstractCoroutineStub<QueryCoroutineStub>(channel, callOptions) {
-    override fun build(channel: Channel, callOptions: CallOptions): QueryCoroutineStub =
+    public override fun build(channel: Channel, callOptions: CallOptions): QueryCoroutineStub =
         QueryCoroutineStub(channel, callOptions)
 
     /**
@@ -75,16 +75,19 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun currentPlan(request: QueryOuterClass.QueryCurrentPlanRequest):
-        QueryOuterClass.QueryCurrentPlanResponse = unaryRpc(
+    public suspend fun currentPlan(request: QueryOuterClass.QueryCurrentPlanRequest,
+        headers: Metadata = Metadata()): QueryOuterClass.QueryCurrentPlanResponse = unaryRpc(
       channel,
       QueryGrpc.getCurrentPlanMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -93,16 +96,19 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun appliedPlan(request: QueryOuterClass.QueryAppliedPlanRequest):
-        QueryOuterClass.QueryAppliedPlanResponse = unaryRpc(
+    public suspend fun appliedPlan(request: QueryOuterClass.QueryAppliedPlanRequest,
+        headers: Metadata = Metadata()): QueryOuterClass.QueryAppliedPlanResponse = unaryRpc(
       channel,
       QueryGrpc.getAppliedPlanMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -111,16 +117,22 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun upgradedConsensusState(request: QueryOuterClass.QueryUpgradedConsensusStateRequest):
-        QueryOuterClass.QueryUpgradedConsensusStateResponse = unaryRpc(
+    @Deprecated("The underlying service method is marked deprecated.")
+    public suspend
+        fun upgradedConsensusState(request: QueryOuterClass.QueryUpgradedConsensusStateRequest,
+        headers: Metadata = Metadata()): QueryOuterClass.QueryUpgradedConsensusStateResponse =
+        unaryRpc(
       channel,
       QueryGrpc.getUpgradedConsensusStateMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -129,22 +141,25 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun moduleVersions(request: QueryOuterClass.QueryModuleVersionsRequest):
-        QueryOuterClass.QueryModuleVersionsResponse = unaryRpc(
+    public suspend fun moduleVersions(request: QueryOuterClass.QueryModuleVersionsRequest,
+        headers: Metadata = Metadata()): QueryOuterClass.QueryModuleVersionsResponse = unaryRpc(
       channel,
       QueryGrpc.getModuleVersionsMethod(),
       request,
       callOptions,
-      Metadata()
-    )}
+      headers
+    )
+  }
 
   /**
    * Skeletal implementation of the cosmos.upgrade.v1beta1.Query service based on Kotlin coroutines.
    */
-  abstract class QueryCoroutineImplBase(
-    coroutineContext: CoroutineContext = EmptyCoroutineContext
+  public abstract class QueryCoroutineImplBase(
+    coroutineContext: CoroutineContext = EmptyCoroutineContext,
   ) : AbstractCoroutineServerImpl(coroutineContext) {
     /**
      * Returns the response to an RPC for cosmos.upgrade.v1beta1.Query.CurrentPlan.
@@ -157,7 +172,7 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun currentPlan(request: QueryOuterClass.QueryCurrentPlanRequest):
+    public open suspend fun currentPlan(request: QueryOuterClass.QueryCurrentPlanRequest):
         QueryOuterClass.QueryCurrentPlanResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.upgrade.v1beta1.Query.CurrentPlan is unimplemented"))
 
@@ -172,7 +187,7 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun appliedPlan(request: QueryOuterClass.QueryAppliedPlanRequest):
+    public open suspend fun appliedPlan(request: QueryOuterClass.QueryAppliedPlanRequest):
         QueryOuterClass.QueryAppliedPlanResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.upgrade.v1beta1.Query.AppliedPlan is unimplemented"))
 
@@ -187,7 +202,8 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend
+    @Deprecated("The underlying service method is marked deprecated.")
+    public open suspend
         fun upgradedConsensusState(request: QueryOuterClass.QueryUpgradedConsensusStateRequest):
         QueryOuterClass.QueryUpgradedConsensusStateResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.upgrade.v1beta1.Query.UpgradedConsensusState is unimplemented"))
@@ -203,11 +219,12 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun moduleVersions(request: QueryOuterClass.QueryModuleVersionsRequest):
+    public open suspend fun moduleVersions(request: QueryOuterClass.QueryModuleVersionsRequest):
         QueryOuterClass.QueryModuleVersionsResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.upgrade.v1beta1.Query.ModuleVersions is unimplemented"))
 
-    final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())
+    public final override fun bindService(): ServerServiceDefinition =
+        builder(getServiceDescriptor())
       .addMethod(unaryServerMethodDefinition(
       context = this.context,
       descriptor = QueryGrpc.getCurrentPlanMethod(),

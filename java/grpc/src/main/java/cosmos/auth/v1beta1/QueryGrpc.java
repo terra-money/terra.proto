@@ -8,7 +8,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.40.1)",
+    value = "by gRPC proto compiler (version 1.47.0)",
     comments = "Source: cosmos/auth/v1beta1/query.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class QueryGrpc {
@@ -165,6 +165,7 @@ public final class QueryGrpc {
     /**
      * <pre>
      * Accounts returns all the existing accounts
+     * Since: cosmos-sdk 0.43
      * </pre>
      */
     public void accounts(cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest request,
@@ -239,6 +240,7 @@ public final class QueryGrpc {
     /**
      * <pre>
      * Accounts returns all the existing accounts
+     * Since: cosmos-sdk 0.43
      * </pre>
      */
     public void accounts(cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest request,
@@ -290,6 +292,7 @@ public final class QueryGrpc {
     /**
      * <pre>
      * Accounts returns all the existing accounts
+     * Since: cosmos-sdk 0.43
      * </pre>
      */
     public cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsResponse accounts(cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest request) {
@@ -338,6 +341,7 @@ public final class QueryGrpc {
     /**
      * <pre>
      * Accounts returns all the existing accounts
+     * Since: cosmos-sdk 0.43
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsResponse> accounts(

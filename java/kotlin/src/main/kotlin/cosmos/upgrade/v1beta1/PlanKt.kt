@@ -4,15 +4,15 @@
 package cosmos.upgrade.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun plan(block: cosmos.upgrade.v1beta1.PlanKt.Dsl.() -> Unit): cosmos.upgrade.v1beta1.Upgrade.Plan =
+public inline fun plan(block: cosmos.upgrade.v1beta1.PlanKt.Dsl.() -> kotlin.Unit): cosmos.upgrade.v1beta1.Upgrade.Plan =
   cosmos.upgrade.v1beta1.PlanKt.Dsl._create(cosmos.upgrade.v1beta1.Upgrade.Plan.newBuilder()).apply { block() }._build()
-object PlanKt {
+public object PlanKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.upgrade.v1beta1.Upgrade.Plan.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.upgrade.v1beta1.Upgrade.Plan.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.upgrade.v1beta1.Upgrade.Plan.Builder): Dsl = Dsl(builder)
@@ -35,7 +35,7 @@ object PlanKt {
      *
      * <code>string name = 1;</code>
      */
-    var name: kotlin.String
+    public var name: kotlin.String
       @JvmName("getName")
       get() = _builder.getName()
       @JvmName("setName")
@@ -55,7 +55,7 @@ object PlanKt {
      *
      * <code>string name = 1;</code>
      */
-    fun clearName() {
+    public fun clearName() {
       _builder.clearName()
     }
 
@@ -68,7 +68,7 @@ object PlanKt {
      *
      * <code>.google.protobuf.Timestamp time = 2 [deprecated = true, (.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
      */
-    @kotlin.Deprecated(message = "Field time is deprecated") var time: com.google.protobuf.Timestamp
+    @kotlin.Deprecated(message = "Field time is deprecated") public var time: com.google.protobuf.Timestamp
       @JvmName("getTime")
       get() = _builder.getTime()
       @JvmName("setTime")
@@ -83,8 +83,9 @@ object PlanKt {
      * </pre>
      *
      * <code>.google.protobuf.Timestamp time = 2 [deprecated = true, (.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+     * @deprecated
      */
-    fun clearTime() {
+    public fun clearTime() {
       _builder.clearTime()
     }
     /**
@@ -95,9 +96,10 @@ object PlanKt {
      * </pre>
      *
      * <code>.google.protobuf.Timestamp time = 2 [deprecated = true, (.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
+     * @deprecated
      * @return Whether the time field is set.
      */
-    fun hasTime(): kotlin.Boolean {
+    public fun hasTime(): kotlin.Boolean {
       return _builder.hasTime()
     }
 
@@ -109,7 +111,7 @@ object PlanKt {
      *
      * <code>int64 height = 3;</code>
      */
-    var height: kotlin.Long
+    public var height: kotlin.Long
       @JvmName("getHeight")
       get() = _builder.getHeight()
       @JvmName("setHeight")
@@ -124,7 +126,7 @@ object PlanKt {
      *
      * <code>int64 height = 3;</code>
      */
-    fun clearHeight() {
+    public fun clearHeight() {
       _builder.clearHeight()
     }
 
@@ -136,7 +138,7 @@ object PlanKt {
      *
      * <code>string info = 4;</code>
      */
-    var info: kotlin.String
+    public var info: kotlin.String
       @JvmName("getInfo")
       get() = _builder.getInfo()
       @JvmName("setInfo")
@@ -151,7 +153,7 @@ object PlanKt {
      *
      * <code>string info = 4;</code>
      */
-    fun clearInfo() {
+    public fun clearInfo() {
       _builder.clearInfo()
     }
 
@@ -164,7 +166,7 @@ object PlanKt {
      *
      * <code>.google.protobuf.Any upgraded_client_state = 5 [deprecated = true, (.gogoproto.moretags) = "yaml:&#92;"upgraded_client_state&#92;""];</code>
      */
-    @kotlin.Deprecated(message = "Field upgradedClientState is deprecated") var upgradedClientState: com.google.protobuf.Any
+    @kotlin.Deprecated(message = "Field upgradedClientState is deprecated") public var upgradedClientState: com.google.protobuf.Any
       @JvmName("getUpgradedClientState")
       get() = _builder.getUpgradedClientState()
       @JvmName("setUpgradedClientState")
@@ -179,8 +181,9 @@ object PlanKt {
      * </pre>
      *
      * <code>.google.protobuf.Any upgraded_client_state = 5 [deprecated = true, (.gogoproto.moretags) = "yaml:&#92;"upgraded_client_state&#92;""];</code>
+     * @deprecated
      */
-    fun clearUpgradedClientState() {
+    public fun clearUpgradedClientState() {
       _builder.clearUpgradedClientState()
     }
     /**
@@ -191,13 +194,14 @@ object PlanKt {
      * </pre>
      *
      * <code>.google.protobuf.Any upgraded_client_state = 5 [deprecated = true, (.gogoproto.moretags) = "yaml:&#92;"upgraded_client_state&#92;""];</code>
+     * @deprecated
      * @return Whether the upgradedClientState field is set.
      */
-    fun hasUpgradedClientState(): kotlin.Boolean {
+    public fun hasUpgradedClientState(): kotlin.Boolean {
       return _builder.hasUpgradedClientState()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.upgrade.v1beta1.Upgrade.Plan.copy(block: cosmos.upgrade.v1beta1.PlanKt.Dsl.() -> Unit): cosmos.upgrade.v1beta1.Upgrade.Plan =
+public inline fun cosmos.upgrade.v1beta1.Upgrade.Plan.copy(block: cosmos.upgrade.v1beta1.PlanKt.Dsl.() -> kotlin.Unit): cosmos.upgrade.v1beta1.Upgrade.Plan =
   cosmos.upgrade.v1beta1.PlanKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package ics23;
 
 @kotlin.jvm.JvmSynthetic
-inline fun innerOp(block: ics23.InnerOpKt.Dsl.() -> Unit): ics23.Proofs.InnerOp =
+public inline fun innerOp(block: ics23.InnerOpKt.Dsl.() -> kotlin.Unit): ics23.Proofs.InnerOp =
   ics23.InnerOpKt.Dsl._create(ics23.Proofs.InnerOp.newBuilder()).apply { block() }._build()
-object InnerOpKt {
+public object InnerOpKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ics23.Proofs.InnerOp.Builder
+  public class Dsl private constructor(
+    private val _builder: ics23.Proofs.InnerOp.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ics23.Proofs.InnerOp.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object InnerOpKt {
     /**
      * <code>.ics23.HashOp hash = 1;</code>
      */
-    var hash: ics23.Proofs.HashOp
+    public var hash: ics23.Proofs.HashOp
       @JvmName("getHash")
       get() = _builder.getHash()
       @JvmName("setHash")
@@ -35,14 +35,14 @@ object InnerOpKt {
     /**
      * <code>.ics23.HashOp hash = 1;</code>
      */
-    fun clearHash() {
+    public fun clearHash() {
       _builder.clearHash()
     }
 
     /**
      * <code>bytes prefix = 2;</code>
      */
-    var prefix: com.google.protobuf.ByteString
+    public var prefix: com.google.protobuf.ByteString
       @JvmName("getPrefix")
       get() = _builder.getPrefix()
       @JvmName("setPrefix")
@@ -52,14 +52,14 @@ object InnerOpKt {
     /**
      * <code>bytes prefix = 2;</code>
      */
-    fun clearPrefix() {
+    public fun clearPrefix() {
       _builder.clearPrefix()
     }
 
     /**
      * <code>bytes suffix = 3;</code>
      */
-    var suffix: com.google.protobuf.ByteString
+    public var suffix: com.google.protobuf.ByteString
       @JvmName("getSuffix")
       get() = _builder.getSuffix()
       @JvmName("setSuffix")
@@ -69,11 +69,11 @@ object InnerOpKt {
     /**
      * <code>bytes suffix = 3;</code>
      */
-    fun clearSuffix() {
+    public fun clearSuffix() {
       _builder.clearSuffix()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ics23.Proofs.InnerOp.copy(block: ics23.InnerOpKt.Dsl.() -> Unit): ics23.Proofs.InnerOp =
+public inline fun ics23.Proofs.InnerOp.copy(block: ics23.InnerOpKt.Dsl.() -> kotlin.Unit): ics23.Proofs.InnerOp =
   ics23.InnerOpKt.Dsl._create(this.toBuilder()).apply { block() }._build()

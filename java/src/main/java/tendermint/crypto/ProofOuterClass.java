@@ -1868,13 +1868,13 @@ public final class ProofOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getKeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, key_);
       }
-      if (!getInputBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(input_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, input_);
       }
-      if (!getOutputBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(output_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, output_);
       }
       unknownFields.writeTo(output);
@@ -1886,13 +1886,13 @@ public final class ProofOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getKeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, key_);
       }
-      if (!getInputBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(input_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, input_);
       }
-      if (!getOutputBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(output_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, output_);
       }
       size += unknownFields.getSerializedSize();
@@ -2674,7 +2674,7 @@ public final class ProofOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTypeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(type_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, type_);
       }
       if (!key_.isEmpty()) {
@@ -2692,7 +2692,7 @@ public final class ProofOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTypeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(type_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, type_);
       }
       if (!key_.isEmpty()) {

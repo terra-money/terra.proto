@@ -4,15 +4,15 @@
 package ics23;
 
 @kotlin.jvm.JvmSynthetic
-inline fun commitmentProof(block: ics23.CommitmentProofKt.Dsl.() -> Unit): ics23.Proofs.CommitmentProof =
+public inline fun commitmentProof(block: ics23.CommitmentProofKt.Dsl.() -> kotlin.Unit): ics23.Proofs.CommitmentProof =
   ics23.CommitmentProofKt.Dsl._create(ics23.Proofs.CommitmentProof.newBuilder()).apply { block() }._build()
-object CommitmentProofKt {
+public object CommitmentProofKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ics23.Proofs.CommitmentProof.Builder
+  public class Dsl private constructor(
+    private val _builder: ics23.Proofs.CommitmentProof.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ics23.Proofs.CommitmentProof.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object CommitmentProofKt {
     /**
      * <code>.ics23.ExistenceProof exist = 1;</code>
      */
-    var exist: ics23.Proofs.ExistenceProof
+    public var exist: ics23.Proofs.ExistenceProof
       @JvmName("getExist")
       get() = _builder.getExist()
       @JvmName("setExist")
@@ -35,21 +35,21 @@ object CommitmentProofKt {
     /**
      * <code>.ics23.ExistenceProof exist = 1;</code>
      */
-    fun clearExist() {
+    public fun clearExist() {
       _builder.clearExist()
     }
     /**
      * <code>.ics23.ExistenceProof exist = 1;</code>
      * @return Whether the exist field is set.
      */
-    fun hasExist(): kotlin.Boolean {
+    public fun hasExist(): kotlin.Boolean {
       return _builder.hasExist()
     }
 
     /**
      * <code>.ics23.NonExistenceProof nonexist = 2;</code>
      */
-    var nonexist: ics23.Proofs.NonExistenceProof
+    public var nonexist: ics23.Proofs.NonExistenceProof
       @JvmName("getNonexist")
       get() = _builder.getNonexist()
       @JvmName("setNonexist")
@@ -59,21 +59,21 @@ object CommitmentProofKt {
     /**
      * <code>.ics23.NonExistenceProof nonexist = 2;</code>
      */
-    fun clearNonexist() {
+    public fun clearNonexist() {
       _builder.clearNonexist()
     }
     /**
      * <code>.ics23.NonExistenceProof nonexist = 2;</code>
      * @return Whether the nonexist field is set.
      */
-    fun hasNonexist(): kotlin.Boolean {
+    public fun hasNonexist(): kotlin.Boolean {
       return _builder.hasNonexist()
     }
 
     /**
      * <code>.ics23.BatchProof batch = 3;</code>
      */
-    var batch: ics23.Proofs.BatchProof
+    public var batch: ics23.Proofs.BatchProof
       @JvmName("getBatch")
       get() = _builder.getBatch()
       @JvmName("setBatch")
@@ -83,21 +83,21 @@ object CommitmentProofKt {
     /**
      * <code>.ics23.BatchProof batch = 3;</code>
      */
-    fun clearBatch() {
+    public fun clearBatch() {
       _builder.clearBatch()
     }
     /**
      * <code>.ics23.BatchProof batch = 3;</code>
      * @return Whether the batch field is set.
      */
-    fun hasBatch(): kotlin.Boolean {
+    public fun hasBatch(): kotlin.Boolean {
       return _builder.hasBatch()
     }
 
     /**
      * <code>.ics23.CompressedBatchProof compressed = 4;</code>
      */
-    var compressed: ics23.Proofs.CompressedBatchProof
+    public var compressed: ics23.Proofs.CompressedBatchProof
       @JvmName("getCompressed")
       get() = _builder.getCompressed()
       @JvmName("setCompressed")
@@ -107,25 +107,25 @@ object CommitmentProofKt {
     /**
      * <code>.ics23.CompressedBatchProof compressed = 4;</code>
      */
-    fun clearCompressed() {
+    public fun clearCompressed() {
       _builder.clearCompressed()
     }
     /**
      * <code>.ics23.CompressedBatchProof compressed = 4;</code>
      * @return Whether the compressed field is set.
      */
-    fun hasCompressed(): kotlin.Boolean {
+    public fun hasCompressed(): kotlin.Boolean {
       return _builder.hasCompressed()
     }
-    val proofCase: ics23.Proofs.CommitmentProof.ProofCase
+    public val proofCase: ics23.Proofs.CommitmentProof.ProofCase
       @JvmName("getProofCase")
       get() = _builder.getProofCase()
 
-    fun clearProof() {
+    public fun clearProof() {
       _builder.clearProof()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ics23.Proofs.CommitmentProof.copy(block: ics23.CommitmentProofKt.Dsl.() -> Unit): ics23.Proofs.CommitmentProof =
+public inline fun ics23.Proofs.CommitmentProof.copy(block: ics23.CommitmentProofKt.Dsl.() -> kotlin.Unit): ics23.Proofs.CommitmentProof =
   ics23.CommitmentProofKt.Dsl._create(this.toBuilder()).apply { block() }._build()

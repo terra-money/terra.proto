@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgTimeoutResponse(block: ibc.core.channel.v1.MsgTimeoutResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgTimeoutResponse =
+public inline fun msgTimeoutResponse(block: ibc.core.channel.v1.MsgTimeoutResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgTimeoutResponse =
   ibc.core.channel.v1.MsgTimeoutResponseKt.Dsl._create(ibc.core.channel.v1.Tx.MsgTimeoutResponse.newBuilder()).apply { block() }._build()
-object MsgTimeoutResponseKt {
+public object MsgTimeoutResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.Tx.MsgTimeoutResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.Tx.MsgTimeoutResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.Tx.MsgTimeoutResponse.Builder): Dsl = Dsl(builder)
@@ -21,8 +21,25 @@ object MsgTimeoutResponseKt {
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
     internal fun _build(): ibc.core.channel.v1.Tx.MsgTimeoutResponse = _builder.build()
+
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     */
+    public var result: ibc.core.channel.v1.Tx.ResponseResultType
+      @JvmName("getResult")
+      get() = _builder.getResult()
+      @JvmName("setResult")
+      set(value) {
+        _builder.setResult(value)
+      }
+    /**
+     * <code>.ibc.core.channel.v1.ResponseResultType result = 1;</code>
+     */
+    public fun clearResult() {
+      _builder.clearResult()
+    }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.Tx.MsgTimeoutResponse.copy(block: ibc.core.channel.v1.MsgTimeoutResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgTimeoutResponse =
+public inline fun ibc.core.channel.v1.Tx.MsgTimeoutResponse.copy(block: ibc.core.channel.v1.MsgTimeoutResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgTimeoutResponse =
   ibc.core.channel.v1.MsgTimeoutResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

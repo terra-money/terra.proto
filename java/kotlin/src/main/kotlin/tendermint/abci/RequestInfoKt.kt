@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun requestInfo(block: tendermint.abci.RequestInfoKt.Dsl.() -> Unit): tendermint.abci.Types.RequestInfo =
+public inline fun requestInfo(block: tendermint.abci.RequestInfoKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestInfo =
   tendermint.abci.RequestInfoKt.Dsl._create(tendermint.abci.Types.RequestInfo.newBuilder()).apply { block() }._build()
-object RequestInfoKt {
+public object RequestInfoKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.RequestInfo.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.RequestInfo.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.RequestInfo.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object RequestInfoKt {
     /**
      * <code>string version = 1;</code>
      */
-    var version: kotlin.String
+    public var version: kotlin.String
       @JvmName("getVersion")
       get() = _builder.getVersion()
       @JvmName("setVersion")
@@ -35,14 +35,14 @@ object RequestInfoKt {
     /**
      * <code>string version = 1;</code>
      */
-    fun clearVersion() {
+    public fun clearVersion() {
       _builder.clearVersion()
     }
 
     /**
      * <code>uint64 block_version = 2;</code>
      */
-    var blockVersion: kotlin.Long
+    public var blockVersion: kotlin.Long
       @JvmName("getBlockVersion")
       get() = _builder.getBlockVersion()
       @JvmName("setBlockVersion")
@@ -52,14 +52,14 @@ object RequestInfoKt {
     /**
      * <code>uint64 block_version = 2;</code>
      */
-    fun clearBlockVersion() {
+    public fun clearBlockVersion() {
       _builder.clearBlockVersion()
     }
 
     /**
      * <code>uint64 p2p_version = 3;</code>
      */
-    var p2PVersion: kotlin.Long
+    public var p2PVersion: kotlin.Long
       @JvmName("getP2PVersion")
       get() = _builder.getP2PVersion()
       @JvmName("setP2PVersion")
@@ -69,11 +69,11 @@ object RequestInfoKt {
     /**
      * <code>uint64 p2p_version = 3;</code>
      */
-    fun clearP2PVersion() {
+    public fun clearP2PVersion() {
       _builder.clearP2PVersion()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.RequestInfo.copy(block: tendermint.abci.RequestInfoKt.Dsl.() -> Unit): tendermint.abci.Types.RequestInfo =
+public inline fun tendermint.abci.Types.RequestInfo.copy(block: tendermint.abci.RequestInfoKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestInfo =
   tendermint.abci.RequestInfoKt.Dsl._create(this.toBuilder()).apply { block() }._build()

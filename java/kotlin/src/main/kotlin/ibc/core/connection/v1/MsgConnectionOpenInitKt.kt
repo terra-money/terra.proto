@@ -4,15 +4,15 @@
 package ibc.core.connection.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgConnectionOpenInit(block: ibc.core.connection.v1.MsgConnectionOpenInitKt.Dsl.() -> Unit): ibc.core.connection.v1.Tx.MsgConnectionOpenInit =
+public inline fun msgConnectionOpenInit(block: ibc.core.connection.v1.MsgConnectionOpenInitKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.Tx.MsgConnectionOpenInit =
   ibc.core.connection.v1.MsgConnectionOpenInitKt.Dsl._create(ibc.core.connection.v1.Tx.MsgConnectionOpenInit.newBuilder()).apply { block() }._build()
-object MsgConnectionOpenInitKt {
+public object MsgConnectionOpenInitKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.connection.v1.Tx.MsgConnectionOpenInit.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.connection.v1.Tx.MsgConnectionOpenInit.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.connection.v1.Tx.MsgConnectionOpenInit.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object MsgConnectionOpenInitKt {
     /**
      * <code>string client_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"client_id&#92;""];</code>
      */
-    var clientId: kotlin.String
+    public var clientId: kotlin.String
       @JvmName("getClientId")
       get() = _builder.getClientId()
       @JvmName("setClientId")
@@ -35,14 +35,14 @@ object MsgConnectionOpenInitKt {
     /**
      * <code>string client_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"client_id&#92;""];</code>
      */
-    fun clearClientId() {
+    public fun clearClientId() {
       _builder.clearClientId()
     }
 
     /**
      * <code>.ibc.core.connection.v1.Counterparty counterparty = 2 [(.gogoproto.nullable) = false];</code>
      */
-    var counterparty: ibc.core.connection.v1.Connection.Counterparty
+    public var counterparty: ibc.core.connection.v1.Connection.Counterparty
       @JvmName("getCounterparty")
       get() = _builder.getCounterparty()
       @JvmName("setCounterparty")
@@ -52,21 +52,21 @@ object MsgConnectionOpenInitKt {
     /**
      * <code>.ibc.core.connection.v1.Counterparty counterparty = 2 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearCounterparty() {
+    public fun clearCounterparty() {
       _builder.clearCounterparty()
     }
     /**
      * <code>.ibc.core.connection.v1.Counterparty counterparty = 2 [(.gogoproto.nullable) = false];</code>
      * @return Whether the counterparty field is set.
      */
-    fun hasCounterparty(): kotlin.Boolean {
+    public fun hasCounterparty(): kotlin.Boolean {
       return _builder.hasCounterparty()
     }
 
     /**
      * <code>.ibc.core.connection.v1.Version version = 3;</code>
      */
-    var version: ibc.core.connection.v1.Connection.Version
+    public var version: ibc.core.connection.v1.Connection.Version
       @JvmName("getVersion")
       get() = _builder.getVersion()
       @JvmName("setVersion")
@@ -76,21 +76,21 @@ object MsgConnectionOpenInitKt {
     /**
      * <code>.ibc.core.connection.v1.Version version = 3;</code>
      */
-    fun clearVersion() {
+    public fun clearVersion() {
       _builder.clearVersion()
     }
     /**
      * <code>.ibc.core.connection.v1.Version version = 3;</code>
      * @return Whether the version field is set.
      */
-    fun hasVersion(): kotlin.Boolean {
+    public fun hasVersion(): kotlin.Boolean {
       return _builder.hasVersion()
     }
 
     /**
      * <code>uint64 delay_period = 4 [(.gogoproto.moretags) = "yaml:&#92;"delay_period&#92;""];</code>
      */
-    var delayPeriod: kotlin.Long
+    public var delayPeriod: kotlin.Long
       @JvmName("getDelayPeriod")
       get() = _builder.getDelayPeriod()
       @JvmName("setDelayPeriod")
@@ -100,14 +100,14 @@ object MsgConnectionOpenInitKt {
     /**
      * <code>uint64 delay_period = 4 [(.gogoproto.moretags) = "yaml:&#92;"delay_period&#92;""];</code>
      */
-    fun clearDelayPeriod() {
+    public fun clearDelayPeriod() {
       _builder.clearDelayPeriod()
     }
 
     /**
      * <code>string signer = 5;</code>
      */
-    var signer: kotlin.String
+    public var signer: kotlin.String
       @JvmName("getSigner")
       get() = _builder.getSigner()
       @JvmName("setSigner")
@@ -117,11 +117,11 @@ object MsgConnectionOpenInitKt {
     /**
      * <code>string signer = 5;</code>
      */
-    fun clearSigner() {
+    public fun clearSigner() {
       _builder.clearSigner()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.connection.v1.Tx.MsgConnectionOpenInit.copy(block: ibc.core.connection.v1.MsgConnectionOpenInitKt.Dsl.() -> Unit): ibc.core.connection.v1.Tx.MsgConnectionOpenInit =
+public inline fun ibc.core.connection.v1.Tx.MsgConnectionOpenInit.copy(block: ibc.core.connection.v1.MsgConnectionOpenInitKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.Tx.MsgConnectionOpenInit =
   ibc.core.connection.v1.MsgConnectionOpenInitKt.Dsl._create(this.toBuilder()).apply { block() }._build()

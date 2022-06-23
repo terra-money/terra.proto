@@ -4,15 +4,15 @@
 package cosmos.base.abci.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun result(block: cosmos.base.abci.v1beta1.ResultKt.Dsl.() -> Unit): cosmos.base.abci.v1beta1.Abci.Result =
+public inline fun result(block: cosmos.base.abci.v1beta1.ResultKt.Dsl.() -> kotlin.Unit): cosmos.base.abci.v1beta1.Abci.Result =
   cosmos.base.abci.v1beta1.ResultKt.Dsl._create(cosmos.base.abci.v1beta1.Abci.Result.newBuilder()).apply { block() }._build()
-object ResultKt {
+public object ResultKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.abci.v1beta1.Abci.Result.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.abci.v1beta1.Abci.Result.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.abci.v1beta1.Abci.Result.Builder): Dsl = Dsl(builder)
@@ -30,7 +30,7 @@ object ResultKt {
      *
      * <code>bytes data = 1;</code>
      */
-    var data: com.google.protobuf.ByteString
+    public var data: com.google.protobuf.ByteString
       @JvmName("getData")
       get() = _builder.getData()
       @JvmName("setData")
@@ -45,7 +45,7 @@ object ResultKt {
      *
      * <code>bytes data = 1;</code>
      */
-    fun clearData() {
+    public fun clearData() {
       _builder.clearData()
     }
 
@@ -56,7 +56,7 @@ object ResultKt {
      *
      * <code>string log = 2;</code>
      */
-    var log: kotlin.String
+    public var log: kotlin.String
       @JvmName("getLog")
       get() = _builder.getLog()
       @JvmName("setLog")
@@ -70,7 +70,7 @@ object ResultKt {
      *
      * <code>string log = 2;</code>
      */
-    fun clearLog() {
+    public fun clearLog() {
       _builder.clearLog()
     }
 
@@ -79,7 +79,7 @@ object ResultKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class EventsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class EventsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * Events contains a slice of Event objects that were emitted during message
@@ -88,7 +88,7 @@ object ResultKt {
      *
      * <code>repeated .tendermint.abci.Event events = 3 [(.gogoproto.nullable) = false];</code>
      */
-     val events: com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>
+     public val events: com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getEventsList()
@@ -104,7 +104,7 @@ object ResultKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addEvents")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.add(value: tendermint.abci.Types.Event) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.add(value: tendermint.abci.Types.Event) {
       _builder.addEvents(value)
     }/**
      * <pre>
@@ -117,7 +117,8 @@ object ResultKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignEvents")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(value: tendermint.abci.Types.Event) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(value: tendermint.abci.Types.Event) {
       add(value)
     }/**
      * <pre>
@@ -130,7 +131,7 @@ object ResultKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllEvents")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.addAll(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.addAll(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
       _builder.addAllEvents(values)
     }/**
      * <pre>
@@ -143,7 +144,8 @@ object ResultKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllEvents")
-    inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.plusAssign(values: kotlin.collections.Iterable<tendermint.abci.Types.Event>) {
       addAll(values)
     }/**
      * <pre>
@@ -157,7 +159,7 @@ object ResultKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setEvents")
-    operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.set(index: kotlin.Int, value: tendermint.abci.Types.Event) {
+    public operator fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.set(index: kotlin.Int, value: tendermint.abci.Types.Event) {
       _builder.setEvents(index, value)
     }/**
      * <pre>
@@ -169,10 +171,10 @@ object ResultKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearEvents")
-    fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<tendermint.abci.Types.Event, EventsProxy>.clear() {
       _builder.clearEvents()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.abci.v1beta1.Abci.Result.copy(block: cosmos.base.abci.v1beta1.ResultKt.Dsl.() -> Unit): cosmos.base.abci.v1beta1.Abci.Result =
+public inline fun cosmos.base.abci.v1beta1.Abci.Result.copy(block: cosmos.base.abci.v1beta1.ResultKt.Dsl.() -> kotlin.Unit): cosmos.base.abci.v1beta1.Abci.Result =
   cosmos.base.abci.v1beta1.ResultKt.Dsl._create(this.toBuilder()).apply { block() }._build()

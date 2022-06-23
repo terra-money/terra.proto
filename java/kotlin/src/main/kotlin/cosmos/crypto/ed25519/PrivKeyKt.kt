@@ -4,15 +4,15 @@
 package cosmos.crypto.ed25519;
 
 @kotlin.jvm.JvmSynthetic
-inline fun privKey(block: cosmos.crypto.ed25519.PrivKeyKt.Dsl.() -> Unit): cosmos.crypto.ed25519.Keys.PrivKey =
+public inline fun privKey(block: cosmos.crypto.ed25519.PrivKeyKt.Dsl.() -> kotlin.Unit): cosmos.crypto.ed25519.Keys.PrivKey =
   cosmos.crypto.ed25519.PrivKeyKt.Dsl._create(cosmos.crypto.ed25519.Keys.PrivKey.newBuilder()).apply { block() }._build()
-object PrivKeyKt {
+public object PrivKeyKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.crypto.ed25519.Keys.PrivKey.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.crypto.ed25519.Keys.PrivKey.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.crypto.ed25519.Keys.PrivKey.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object PrivKeyKt {
     /**
      * <code>bytes key = 1 [(.gogoproto.casttype) = "crypto/ed25519.PrivateKey"];</code>
      */
-    var key: com.google.protobuf.ByteString
+    public var key: com.google.protobuf.ByteString
       @JvmName("getKey")
       get() = _builder.getKey()
       @JvmName("setKey")
@@ -35,11 +35,11 @@ object PrivKeyKt {
     /**
      * <code>bytes key = 1 [(.gogoproto.casttype) = "crypto/ed25519.PrivateKey"];</code>
      */
-    fun clearKey() {
+    public fun clearKey() {
       _builder.clearKey()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.crypto.ed25519.Keys.PrivKey.copy(block: cosmos.crypto.ed25519.PrivKeyKt.Dsl.() -> Unit): cosmos.crypto.ed25519.Keys.PrivKey =
+public inline fun cosmos.crypto.ed25519.Keys.PrivKey.copy(block: cosmos.crypto.ed25519.PrivKeyKt.Dsl.() -> kotlin.Unit): cosmos.crypto.ed25519.Keys.PrivKey =
   cosmos.crypto.ed25519.PrivKeyKt.Dsl._create(this.toBuilder()).apply { block() }._build()

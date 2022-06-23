@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryChannelsRequest(block: ibc.core.channel.v1.QueryChannelsRequestKt.Dsl.() -> Unit): ibc.core.channel.v1.QueryOuterClass.QueryChannelsRequest =
+public inline fun queryChannelsRequest(block: ibc.core.channel.v1.QueryChannelsRequestKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.QueryOuterClass.QueryChannelsRequest =
   ibc.core.channel.v1.QueryChannelsRequestKt.Dsl._create(ibc.core.channel.v1.QueryOuterClass.QueryChannelsRequest.newBuilder()).apply { block() }._build()
-object QueryChannelsRequestKt {
+public object QueryChannelsRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.QueryOuterClass.QueryChannelsRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.QueryOuterClass.QueryChannelsRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.QueryOuterClass.QueryChannelsRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryChannelsRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -43,7 +43,7 @@ object QueryChannelsRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
@@ -54,11 +54,11 @@ object QueryChannelsRequestKt {
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.QueryOuterClass.QueryChannelsRequest.copy(block: ibc.core.channel.v1.QueryChannelsRequestKt.Dsl.() -> Unit): ibc.core.channel.v1.QueryOuterClass.QueryChannelsRequest =
+public inline fun ibc.core.channel.v1.QueryOuterClass.QueryChannelsRequest.copy(block: ibc.core.channel.v1.QueryChannelsRequestKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.QueryOuterClass.QueryChannelsRequest =
   ibc.core.channel.v1.QueryChannelsRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

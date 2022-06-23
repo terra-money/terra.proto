@@ -4,15 +4,15 @@
 package cosmos.authz.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun genericAuthorization(block: cosmos.authz.v1beta1.GenericAuthorizationKt.Dsl.() -> Unit): cosmos.authz.v1beta1.Authz.GenericAuthorization =
+public inline fun genericAuthorization(block: cosmos.authz.v1beta1.GenericAuthorizationKt.Dsl.() -> kotlin.Unit): cosmos.authz.v1beta1.Authz.GenericAuthorization =
   cosmos.authz.v1beta1.GenericAuthorizationKt.Dsl._create(cosmos.authz.v1beta1.Authz.GenericAuthorization.newBuilder()).apply { block() }._build()
-object GenericAuthorizationKt {
+public object GenericAuthorizationKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.authz.v1beta1.Authz.GenericAuthorization.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.authz.v1beta1.Authz.GenericAuthorization.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.authz.v1beta1.Authz.GenericAuthorization.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object GenericAuthorizationKt {
      *
      * <code>string msg = 1;</code>
      */
-    var msg: kotlin.String
+    public var msg: kotlin.String
       @JvmName("getMsg")
       get() = _builder.getMsg()
       @JvmName("setMsg")
@@ -43,11 +43,11 @@ object GenericAuthorizationKt {
      *
      * <code>string msg = 1;</code>
      */
-    fun clearMsg() {
+    public fun clearMsg() {
       _builder.clearMsg()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.authz.v1beta1.Authz.GenericAuthorization.copy(block: cosmos.authz.v1beta1.GenericAuthorizationKt.Dsl.() -> Unit): cosmos.authz.v1beta1.Authz.GenericAuthorization =
+public inline fun cosmos.authz.v1beta1.Authz.GenericAuthorization.copy(block: cosmos.authz.v1beta1.GenericAuthorizationKt.Dsl.() -> kotlin.Unit): cosmos.authz.v1beta1.Authz.GenericAuthorization =
   cosmos.authz.v1beta1.GenericAuthorizationKt.Dsl._create(this.toBuilder()).apply { block() }._build()

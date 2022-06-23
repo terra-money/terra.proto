@@ -2331,7 +2331,7 @@ public final class Reflection {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getFullnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fullname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, fullname_);
       }
       for (int i = 0; i < msgs_.size(); i++) {
@@ -2346,7 +2346,7 @@ public final class Reflection {
       if (size != -1) return size;
 
       size = 0;
-      if (!getFullnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fullname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, fullname_);
       }
       for (int i = 0; i < msgs_.size(); i++) {
@@ -4347,13 +4347,13 @@ public final class Reflection {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
       }
       if (number_ != 0) {
         output.writeInt32(2, number_);
       }
-      if (!getAuthnInfoProviderMethodFullnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(authnInfoProviderMethodFullname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, authnInfoProviderMethodFullname_);
       }
       unknownFields.writeTo(output);
@@ -4365,14 +4365,14 @@ public final class Reflection {
       if (size != -1) return size;
 
       size = 0;
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
       }
       if (number_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, number_);
       }
-      if (!getAuthnInfoProviderMethodFullnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(authnInfoProviderMethodFullname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, authnInfoProviderMethodFullname_);
       }
       size += unknownFields.getSerializedSize();
@@ -5140,7 +5140,7 @@ public final class Reflection {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(id_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
       }
       unknownFields.writeTo(output);
@@ -5152,7 +5152,7 @@ public final class Reflection {
       if (size != -1) return size;
 
       size = 0;
-      if (!getIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(id_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
       }
       size += unknownFields.getSerializedSize();
@@ -6910,7 +6910,7 @@ public final class Reflection {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getFullnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fullname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, fullname_);
       }
       for (int i = 0; i < interfaceAcceptingMessages_.size(); i++) {
@@ -6928,7 +6928,7 @@ public final class Reflection {
       if (size != -1) return size;
 
       size = 0;
-      if (!getFullnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fullname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, fullname_);
       }
       for (int i = 0; i < interfaceAcceptingMessages_.size(); i++) {
@@ -8361,10 +8361,10 @@ public final class Reflection {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getFullnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fullname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, fullname_);
       }
-      if (!getTypeUrlBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(typeUrl_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, typeUrl_);
       }
       unknownFields.writeTo(output);
@@ -8376,10 +8376,10 @@ public final class Reflection {
       if (size != -1) return size;
 
       size = 0;
-      if (!getFullnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fullname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, fullname_);
       }
-      if (!getTypeUrlBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(typeUrl_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, typeUrl_);
       }
       size += unknownFields.getSerializedSize();
@@ -9224,7 +9224,7 @@ public final class Reflection {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getFullnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fullname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, fullname_);
       }
       for (int i = 0; i < fieldDescriptorNames_.size(); i++) {
@@ -9239,7 +9239,7 @@ public final class Reflection {
       if (size != -1) return size;
 
       size = 0;
-      if (!getFullnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fullname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, fullname_);
       }
       {
@@ -10037,7 +10037,7 @@ public final class Reflection {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getBech32AccountAddressPrefixBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bech32AccountAddressPrefix_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, bech32AccountAddressPrefix_);
       }
       unknownFields.writeTo(output);
@@ -10049,7 +10049,7 @@ public final class Reflection {
       if (size != -1) return size;
 
       size = 0;
-      if (!getBech32AccountAddressPrefixBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bech32AccountAddressPrefix_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, bech32AccountAddressPrefix_);
       }
       size += unknownFields.getSerializedSize();
@@ -10649,7 +10649,7 @@ public final class Reflection {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getMsgTypeUrlBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(msgTypeUrl_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, msgTypeUrl_);
       }
       unknownFields.writeTo(output);
@@ -10661,7 +10661,7 @@ public final class Reflection {
       if (size != -1) return size;
 
       size = 0;
-      if (!getMsgTypeUrlBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(msgTypeUrl_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, msgTypeUrl_);
       }
       size += unknownFields.getSerializedSize();
@@ -19027,7 +19027,7 @@ public final class Reflection {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getFullnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fullname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, fullname_);
       }
       if (isModule_ != false) {
@@ -19045,7 +19045,7 @@ public final class Reflection {
       if (size != -1) return size;
 
       size = 0;
-      if (!getFullnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fullname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, fullname_);
       }
       if (isModule_ != false) {
@@ -20148,10 +20148,10 @@ public final class Reflection {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
       }
-      if (!getFullQueryPathBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fullQueryPath_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, fullQueryPath_);
       }
       unknownFields.writeTo(output);
@@ -20163,10 +20163,10 @@ public final class Reflection {
       if (size != -1) return size;
 
       size = 0;
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
       }
-      if (!getFullQueryPathBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fullQueryPath_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, fullQueryPath_);
       }
       size += unknownFields.getSerializedSize();

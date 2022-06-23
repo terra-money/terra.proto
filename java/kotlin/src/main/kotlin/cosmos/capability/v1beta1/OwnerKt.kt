@@ -4,15 +4,15 @@
 package cosmos.capability.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun owner(block: cosmos.capability.v1beta1.OwnerKt.Dsl.() -> Unit): cosmos.capability.v1beta1.CapabilityOuterClass.Owner =
+public inline fun owner(block: cosmos.capability.v1beta1.OwnerKt.Dsl.() -> kotlin.Unit): cosmos.capability.v1beta1.CapabilityOuterClass.Owner =
   cosmos.capability.v1beta1.OwnerKt.Dsl._create(cosmos.capability.v1beta1.CapabilityOuterClass.Owner.newBuilder()).apply { block() }._build()
-object OwnerKt {
+public object OwnerKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.capability.v1beta1.CapabilityOuterClass.Owner.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.capability.v1beta1.CapabilityOuterClass.Owner.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.capability.v1beta1.CapabilityOuterClass.Owner.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object OwnerKt {
     /**
      * <code>string module = 1 [(.gogoproto.moretags) = "yaml:&#92;"module&#92;""];</code>
      */
-    var module: kotlin.String
+    public var module: kotlin.String
       @JvmName("getModule")
       get() = _builder.getModule()
       @JvmName("setModule")
@@ -35,14 +35,14 @@ object OwnerKt {
     /**
      * <code>string module = 1 [(.gogoproto.moretags) = "yaml:&#92;"module&#92;""];</code>
      */
-    fun clearModule() {
+    public fun clearModule() {
       _builder.clearModule()
     }
 
     /**
      * <code>string name = 2 [(.gogoproto.moretags) = "yaml:&#92;"name&#92;""];</code>
      */
-    var name: kotlin.String
+    public var name: kotlin.String
       @JvmName("getName")
       get() = _builder.getName()
       @JvmName("setName")
@@ -52,11 +52,11 @@ object OwnerKt {
     /**
      * <code>string name = 2 [(.gogoproto.moretags) = "yaml:&#92;"name&#92;""];</code>
      */
-    fun clearName() {
+    public fun clearName() {
       _builder.clearName()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.capability.v1beta1.CapabilityOuterClass.Owner.copy(block: cosmos.capability.v1beta1.OwnerKt.Dsl.() -> Unit): cosmos.capability.v1beta1.CapabilityOuterClass.Owner =
+public inline fun cosmos.capability.v1beta1.CapabilityOuterClass.Owner.copy(block: cosmos.capability.v1beta1.OwnerKt.Dsl.() -> kotlin.Unit): cosmos.capability.v1beta1.CapabilityOuterClass.Owner =
   cosmos.capability.v1beta1.OwnerKt.Dsl._create(this.toBuilder()).apply { block() }._build()

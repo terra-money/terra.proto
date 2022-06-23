@@ -4,15 +4,15 @@
 package cosmos.base.reflection.v2alpha1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryMethodDescriptor(block: cosmos.base.reflection.v2alpha1.QueryMethodDescriptorKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor =
+public inline fun queryMethodDescriptor(block: cosmos.base.reflection.v2alpha1.QueryMethodDescriptorKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor =
   cosmos.base.reflection.v2alpha1.QueryMethodDescriptorKt.Dsl._create(cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor.newBuilder()).apply { block() }._build()
-object QueryMethodDescriptorKt {
+public object QueryMethodDescriptorKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryMethodDescriptorKt {
      *
      * <code>string name = 1;</code>
      */
-    var name: kotlin.String
+    public var name: kotlin.String
       @JvmName("getName")
       get() = _builder.getName()
       @JvmName("setName")
@@ -43,7 +43,7 @@ object QueryMethodDescriptorKt {
      *
      * <code>string name = 1;</code>
      */
-    fun clearName() {
+    public fun clearName() {
       _builder.clearName()
     }
 
@@ -55,7 +55,7 @@ object QueryMethodDescriptorKt {
      *
      * <code>string full_query_path = 2;</code>
      */
-    var fullQueryPath: kotlin.String
+    public var fullQueryPath: kotlin.String
       @JvmName("getFullQueryPath")
       get() = _builder.getFullQueryPath()
       @JvmName("setFullQueryPath")
@@ -70,11 +70,11 @@ object QueryMethodDescriptorKt {
      *
      * <code>string full_query_path = 2;</code>
      */
-    fun clearFullQueryPath() {
+    public fun clearFullQueryPath() {
       _builder.clearFullQueryPath()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor.copy(block: cosmos.base.reflection.v2alpha1.QueryMethodDescriptorKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor =
+public inline fun cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor.copy(block: cosmos.base.reflection.v2alpha1.QueryMethodDescriptorKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.QueryMethodDescriptor =
   cosmos.base.reflection.v2alpha1.QueryMethodDescriptorKt.Dsl._create(this.toBuilder()).apply { block() }._build()

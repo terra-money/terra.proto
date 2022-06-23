@@ -4,15 +4,15 @@
 package cosmos.bank.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryDenomMetadataRequest(block: cosmos.bank.v1beta1.QueryDenomMetadataRequestKt.Dsl.() -> Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest =
+public inline fun queryDenomMetadataRequest(block: cosmos.bank.v1beta1.QueryDenomMetadataRequestKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest =
   cosmos.bank.v1beta1.QueryDenomMetadataRequestKt.Dsl._create(cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest.newBuilder()).apply { block() }._build()
-object QueryDenomMetadataRequestKt {
+public object QueryDenomMetadataRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryDenomMetadataRequestKt {
      *
      * <code>string denom = 1;</code>
      */
-    var denom: kotlin.String
+    public var denom: kotlin.String
       @JvmName("getDenom")
       get() = _builder.getDenom()
       @JvmName("setDenom")
@@ -43,11 +43,11 @@ object QueryDenomMetadataRequestKt {
      *
      * <code>string denom = 1;</code>
      */
-    fun clearDenom() {
+    public fun clearDenom() {
       _builder.clearDenom()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest.copy(block: cosmos.bank.v1beta1.QueryDenomMetadataRequestKt.Dsl.() -> Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest =
+public inline fun cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest.copy(block: cosmos.bank.v1beta1.QueryDenomMetadataRequestKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest =
   cosmos.bank.v1beta1.QueryDenomMetadataRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

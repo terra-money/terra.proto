@@ -28,20 +28,20 @@ import kotlin.jvm.JvmStatic
 /**
  * Holder for Kotlin coroutine-based client and server APIs for cosmos.feegrant.v1beta1.Query.
  */
-object QueryGrpcKt {
-  const val SERVICE_NAME: String = QueryGrpc.SERVICE_NAME
+public object QueryGrpcKt {
+  public const val SERVICE_NAME: String = QueryGrpc.SERVICE_NAME
 
   @JvmStatic
-  val serviceDescriptor: ServiceDescriptor
+  public val serviceDescriptor: ServiceDescriptor
     get() = QueryGrpc.getServiceDescriptor()
 
-  val allowanceMethod: MethodDescriptor<QueryOuterClass.QueryAllowanceRequest,
-      QueryOuterClass.QueryAllowanceResponse>
+  public val allowanceMethod:
+      MethodDescriptor<QueryOuterClass.QueryAllowanceRequest, QueryOuterClass.QueryAllowanceResponse>
     @JvmStatic
     get() = QueryGrpc.getAllowanceMethod()
 
-  val allowancesMethod: MethodDescriptor<QueryOuterClass.QueryAllowancesRequest,
-      QueryOuterClass.QueryAllowancesResponse>
+  public val allowancesMethod:
+      MethodDescriptor<QueryOuterClass.QueryAllowancesRequest, QueryOuterClass.QueryAllowancesResponse>
     @JvmStatic
     get() = QueryGrpc.getAllowancesMethod()
 
@@ -49,11 +49,11 @@ object QueryGrpcKt {
    * A stub for issuing RPCs to a(n) cosmos.feegrant.v1beta1.Query service as suspending coroutines.
    */
   @StubFor(QueryGrpc::class)
-  class QueryCoroutineStub @JvmOverloads constructor(
+  public class QueryCoroutineStub @JvmOverloads constructor(
     channel: Channel,
-    callOptions: CallOptions = DEFAULT
+    callOptions: CallOptions = DEFAULT,
   ) : AbstractCoroutineStub<QueryCoroutineStub>(channel, callOptions) {
-    override fun build(channel: Channel, callOptions: CallOptions): QueryCoroutineStub =
+    public override fun build(channel: Channel, callOptions: CallOptions): QueryCoroutineStub =
         QueryCoroutineStub(channel, callOptions)
 
     /**
@@ -64,16 +64,19 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun allowance(request: QueryOuterClass.QueryAllowanceRequest):
-        QueryOuterClass.QueryAllowanceResponse = unaryRpc(
+    public suspend fun allowance(request: QueryOuterClass.QueryAllowanceRequest, headers: Metadata =
+        Metadata()): QueryOuterClass.QueryAllowanceResponse = unaryRpc(
       channel,
       QueryGrpc.getAllowanceMethod(),
       request,
       callOptions,
-      Metadata()
+      headers
     )
+
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
      * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
@@ -82,23 +85,26 @@ object QueryGrpcKt {
      *
      * @param request The request message to send to the server.
      *
+     * @param headers Metadata to attach to the request.  Most users will not need this.
+     *
      * @return The single response from the server.
      */
-    suspend fun allowances(request: QueryOuterClass.QueryAllowancesRequest):
-        QueryOuterClass.QueryAllowancesResponse = unaryRpc(
+    public suspend fun allowances(request: QueryOuterClass.QueryAllowancesRequest, headers: Metadata
+        = Metadata()): QueryOuterClass.QueryAllowancesResponse = unaryRpc(
       channel,
       QueryGrpc.getAllowancesMethod(),
       request,
       callOptions,
-      Metadata()
-    )}
+      headers
+    )
+  }
 
   /**
    * Skeletal implementation of the cosmos.feegrant.v1beta1.Query service based on Kotlin
    * coroutines.
    */
-  abstract class QueryCoroutineImplBase(
-    coroutineContext: CoroutineContext = EmptyCoroutineContext
+  public abstract class QueryCoroutineImplBase(
+    coroutineContext: CoroutineContext = EmptyCoroutineContext,
   ) : AbstractCoroutineServerImpl(coroutineContext) {
     /**
      * Returns the response to an RPC for cosmos.feegrant.v1beta1.Query.Allowance.
@@ -111,7 +117,7 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun allowance(request: QueryOuterClass.QueryAllowanceRequest):
+    public open suspend fun allowance(request: QueryOuterClass.QueryAllowanceRequest):
         QueryOuterClass.QueryAllowanceResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.feegrant.v1beta1.Query.Allowance is unimplemented"))
 
@@ -126,11 +132,12 @@ object QueryGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun allowances(request: QueryOuterClass.QueryAllowancesRequest):
+    public open suspend fun allowances(request: QueryOuterClass.QueryAllowancesRequest):
         QueryOuterClass.QueryAllowancesResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method cosmos.feegrant.v1beta1.Query.Allowances is unimplemented"))
 
-    final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())
+    public final override fun bindService(): ServerServiceDefinition =
+        builder(getServiceDescriptor())
       .addMethod(unaryServerMethodDefinition(
       context = this.context,
       descriptor = QueryGrpc.getAllowanceMethod(),

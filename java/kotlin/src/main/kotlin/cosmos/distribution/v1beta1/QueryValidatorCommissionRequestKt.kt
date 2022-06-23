@@ -4,15 +4,15 @@
 package cosmos.distribution.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryValidatorCommissionRequest(block: cosmos.distribution.v1beta1.QueryValidatorCommissionRequestKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionRequest =
+public inline fun queryValidatorCommissionRequest(block: cosmos.distribution.v1beta1.QueryValidatorCommissionRequestKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionRequest =
   cosmos.distribution.v1beta1.QueryValidatorCommissionRequestKt.Dsl._create(cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionRequest.newBuilder()).apply { block() }._build()
-object QueryValidatorCommissionRequestKt {
+public object QueryValidatorCommissionRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryValidatorCommissionRequestKt {
      *
      * <code>string validator_address = 1;</code>
      */
-    var validatorAddress: kotlin.String
+    public var validatorAddress: kotlin.String
       @JvmName("getValidatorAddress")
       get() = _builder.getValidatorAddress()
       @JvmName("setValidatorAddress")
@@ -43,11 +43,11 @@ object QueryValidatorCommissionRequestKt {
      *
      * <code>string validator_address = 1;</code>
      */
-    fun clearValidatorAddress() {
+    public fun clearValidatorAddress() {
       _builder.clearValidatorAddress()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionRequest.copy(block: cosmos.distribution.v1beta1.QueryValidatorCommissionRequestKt.Dsl.() -> Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionRequest =
+public inline fun cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionRequest.copy(block: cosmos.distribution.v1beta1.QueryValidatorCommissionRequestKt.Dsl.() -> kotlin.Unit): cosmos.distribution.v1beta1.QueryOuterClass.QueryValidatorCommissionRequest =
   cosmos.distribution.v1beta1.QueryValidatorCommissionRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

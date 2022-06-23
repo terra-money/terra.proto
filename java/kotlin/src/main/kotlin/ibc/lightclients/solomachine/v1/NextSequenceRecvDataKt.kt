@@ -4,15 +4,15 @@
 package ibc.lightclients.solomachine.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun nextSequenceRecvData(block: ibc.lightclients.solomachine.v1.NextSequenceRecvDataKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v1.Solomachine.NextSequenceRecvData =
+public inline fun nextSequenceRecvData(block: ibc.lightclients.solomachine.v1.NextSequenceRecvDataKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v1.Solomachine.NextSequenceRecvData =
   ibc.lightclients.solomachine.v1.NextSequenceRecvDataKt.Dsl._create(ibc.lightclients.solomachine.v1.Solomachine.NextSequenceRecvData.newBuilder()).apply { block() }._build()
-object NextSequenceRecvDataKt {
+public object NextSequenceRecvDataKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.lightclients.solomachine.v1.Solomachine.NextSequenceRecvData.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.lightclients.solomachine.v1.Solomachine.NextSequenceRecvData.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.lightclients.solomachine.v1.Solomachine.NextSequenceRecvData.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object NextSequenceRecvDataKt {
     /**
      * <code>bytes path = 1;</code>
      */
-    var path: com.google.protobuf.ByteString
+    public var path: com.google.protobuf.ByteString
       @JvmName("getPath")
       get() = _builder.getPath()
       @JvmName("setPath")
@@ -35,14 +35,14 @@ object NextSequenceRecvDataKt {
     /**
      * <code>bytes path = 1;</code>
      */
-    fun clearPath() {
+    public fun clearPath() {
       _builder.clearPath()
     }
 
     /**
      * <code>uint64 next_seq_recv = 2 [(.gogoproto.moretags) = "yaml:&#92;"next_seq_recv&#92;""];</code>
      */
-    var nextSeqRecv: kotlin.Long
+    public var nextSeqRecv: kotlin.Long
       @JvmName("getNextSeqRecv")
       get() = _builder.getNextSeqRecv()
       @JvmName("setNextSeqRecv")
@@ -52,11 +52,11 @@ object NextSequenceRecvDataKt {
     /**
      * <code>uint64 next_seq_recv = 2 [(.gogoproto.moretags) = "yaml:&#92;"next_seq_recv&#92;""];</code>
      */
-    fun clearNextSeqRecv() {
+    public fun clearNextSeqRecv() {
       _builder.clearNextSeqRecv()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.lightclients.solomachine.v1.Solomachine.NextSequenceRecvData.copy(block: ibc.lightclients.solomachine.v1.NextSequenceRecvDataKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v1.Solomachine.NextSequenceRecvData =
+public inline fun ibc.lightclients.solomachine.v1.Solomachine.NextSequenceRecvData.copy(block: ibc.lightclients.solomachine.v1.NextSequenceRecvDataKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v1.Solomachine.NextSequenceRecvData =
   ibc.lightclients.solomachine.v1.NextSequenceRecvDataKt.Dsl._create(this.toBuilder()).apply { block() }._build()

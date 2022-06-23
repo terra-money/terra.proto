@@ -4,15 +4,15 @@
 package ibc.core.client.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun upgradeProposal(block: ibc.core.client.v1.UpgradeProposalKt.Dsl.() -> Unit): ibc.core.client.v1.Client.UpgradeProposal =
+public inline fun upgradeProposal(block: ibc.core.client.v1.UpgradeProposalKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.Client.UpgradeProposal =
   ibc.core.client.v1.UpgradeProposalKt.Dsl._create(ibc.core.client.v1.Client.UpgradeProposal.newBuilder()).apply { block() }._build()
-object UpgradeProposalKt {
+public object UpgradeProposalKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.client.v1.Client.UpgradeProposal.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.client.v1.Client.UpgradeProposal.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.client.v1.Client.UpgradeProposal.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object UpgradeProposalKt {
     /**
      * <code>string title = 1;</code>
      */
-    var title: kotlin.String
+    public var title: kotlin.String
       @JvmName("getTitle")
       get() = _builder.getTitle()
       @JvmName("setTitle")
@@ -35,14 +35,14 @@ object UpgradeProposalKt {
     /**
      * <code>string title = 1;</code>
      */
-    fun clearTitle() {
+    public fun clearTitle() {
       _builder.clearTitle()
     }
 
     /**
      * <code>string description = 2;</code>
      */
-    var description: kotlin.String
+    public var description: kotlin.String
       @JvmName("getDescription")
       get() = _builder.getDescription()
       @JvmName("setDescription")
@@ -52,14 +52,14 @@ object UpgradeProposalKt {
     /**
      * <code>string description = 2;</code>
      */
-    fun clearDescription() {
+    public fun clearDescription() {
       _builder.clearDescription()
     }
 
     /**
      * <code>.cosmos.upgrade.v1beta1.Plan plan = 3 [(.gogoproto.nullable) = false];</code>
      */
-    var plan: cosmos.upgrade.v1beta1.Upgrade.Plan
+    public var plan: cosmos.upgrade.v1beta1.Upgrade.Plan
       @JvmName("getPlan")
       get() = _builder.getPlan()
       @JvmName("setPlan")
@@ -69,14 +69,14 @@ object UpgradeProposalKt {
     /**
      * <code>.cosmos.upgrade.v1beta1.Plan plan = 3 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearPlan() {
+    public fun clearPlan() {
       _builder.clearPlan()
     }
     /**
      * <code>.cosmos.upgrade.v1beta1.Plan plan = 3 [(.gogoproto.nullable) = false];</code>
      * @return Whether the plan field is set.
      */
-    fun hasPlan(): kotlin.Boolean {
+    public fun hasPlan(): kotlin.Boolean {
       return _builder.hasPlan()
     }
 
@@ -92,7 +92,7 @@ object UpgradeProposalKt {
      *
      * <code>.google.protobuf.Any upgraded_client_state = 4 [(.gogoproto.moretags) = "yaml:&#92;"upgraded_client_state&#92;""];</code>
      */
-    var upgradedClientState: com.google.protobuf.Any
+    public var upgradedClientState: com.google.protobuf.Any
       @JvmName("getUpgradedClientState")
       get() = _builder.getUpgradedClientState()
       @JvmName("setUpgradedClientState")
@@ -111,7 +111,7 @@ object UpgradeProposalKt {
      *
      * <code>.google.protobuf.Any upgraded_client_state = 4 [(.gogoproto.moretags) = "yaml:&#92;"upgraded_client_state&#92;""];</code>
      */
-    fun clearUpgradedClientState() {
+    public fun clearUpgradedClientState() {
       _builder.clearUpgradedClientState()
     }
     /**
@@ -127,11 +127,11 @@ object UpgradeProposalKt {
      * <code>.google.protobuf.Any upgraded_client_state = 4 [(.gogoproto.moretags) = "yaml:&#92;"upgraded_client_state&#92;""];</code>
      * @return Whether the upgradedClientState field is set.
      */
-    fun hasUpgradedClientState(): kotlin.Boolean {
+    public fun hasUpgradedClientState(): kotlin.Boolean {
       return _builder.hasUpgradedClientState()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.client.v1.Client.UpgradeProposal.copy(block: ibc.core.client.v1.UpgradeProposalKt.Dsl.() -> Unit): ibc.core.client.v1.Client.UpgradeProposal =
+public inline fun ibc.core.client.v1.Client.UpgradeProposal.copy(block: ibc.core.client.v1.UpgradeProposalKt.Dsl.() -> kotlin.Unit): ibc.core.client.v1.Client.UpgradeProposal =
   ibc.core.client.v1.UpgradeProposalKt.Dsl._create(this.toBuilder()).apply { block() }._build()

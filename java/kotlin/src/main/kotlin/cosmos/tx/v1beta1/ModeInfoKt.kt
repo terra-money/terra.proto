@@ -4,15 +4,15 @@
 package cosmos.tx.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun modeInfo(block: cosmos.tx.v1beta1.ModeInfoKt.Dsl.() -> Unit): cosmos.tx.v1beta1.TxOuterClass.ModeInfo =
+public inline fun modeInfo(block: cosmos.tx.v1beta1.ModeInfoKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.TxOuterClass.ModeInfo =
   cosmos.tx.v1beta1.ModeInfoKt.Dsl._create(cosmos.tx.v1beta1.TxOuterClass.ModeInfo.newBuilder()).apply { block() }._build()
-object ModeInfoKt {
+public object ModeInfoKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object ModeInfoKt {
      *
      * <code>.cosmos.tx.v1beta1.ModeInfo.Single single = 1;</code>
      */
-    var single: cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single
+    public var single: cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single
       @JvmName("getSingle")
       get() = _builder.getSingle()
       @JvmName("setSingle")
@@ -43,7 +43,7 @@ object ModeInfoKt {
      *
      * <code>.cosmos.tx.v1beta1.ModeInfo.Single single = 1;</code>
      */
-    fun clearSingle() {
+    public fun clearSingle() {
       _builder.clearSingle()
     }
     /**
@@ -54,7 +54,7 @@ object ModeInfoKt {
      * <code>.cosmos.tx.v1beta1.ModeInfo.Single single = 1;</code>
      * @return Whether the single field is set.
      */
-    fun hasSingle(): kotlin.Boolean {
+    public fun hasSingle(): kotlin.Boolean {
       return _builder.hasSingle()
     }
 
@@ -65,7 +65,7 @@ object ModeInfoKt {
      *
      * <code>.cosmos.tx.v1beta1.ModeInfo.Multi multi = 2;</code>
      */
-    var multi: cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi
+    public var multi: cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi
       @JvmName("getMulti")
       get() = _builder.getMulti()
       @JvmName("setMulti")
@@ -79,7 +79,7 @@ object ModeInfoKt {
      *
      * <code>.cosmos.tx.v1beta1.ModeInfo.Multi multi = 2;</code>
      */
-    fun clearMulti() {
+    public fun clearMulti() {
       _builder.clearMulti()
     }
     /**
@@ -90,27 +90,27 @@ object ModeInfoKt {
      * <code>.cosmos.tx.v1beta1.ModeInfo.Multi multi = 2;</code>
      * @return Whether the multi field is set.
      */
-    fun hasMulti(): kotlin.Boolean {
+    public fun hasMulti(): kotlin.Boolean {
       return _builder.hasMulti()
     }
-    val sumCase: cosmos.tx.v1beta1.TxOuterClass.ModeInfo.SumCase
+    public val sumCase: cosmos.tx.v1beta1.TxOuterClass.ModeInfo.SumCase
       @JvmName("getSumCase")
       get() = _builder.getSumCase()
 
-    fun clearSum() {
+    public fun clearSum() {
       _builder.clearSum()
     }
   }
   @kotlin.jvm.JvmSynthetic
-  inline fun single(block: cosmos.tx.v1beta1.ModeInfoKt.SingleKt.Dsl.() -> Unit): cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single =
+  public inline fun single(block: cosmos.tx.v1beta1.ModeInfoKt.SingleKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single =
     cosmos.tx.v1beta1.ModeInfoKt.SingleKt.Dsl._create(cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single.newBuilder()).apply { block() }._build()
-  object SingleKt {
+  public object SingleKt {
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
     @com.google.protobuf.kotlin.ProtoDslMarker
-    class Dsl private constructor(
-      @kotlin.jvm.JvmField private val _builder: cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single.Builder
+    public class Dsl private constructor(
+      private val _builder: cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single.Builder
     ) {
-      companion object {
+      public companion object {
         @kotlin.jvm.JvmSynthetic
         @kotlin.PublishedApi
         internal fun _create(builder: cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single.Builder): Dsl = Dsl(builder)
@@ -127,7 +127,7 @@ object ModeInfoKt {
        *
        * <code>.cosmos.tx.signing.v1beta1.SignMode mode = 1;</code>
        */
-      var mode: cosmos.tx.signing.v1beta1.Signing.SignMode
+      public var mode: cosmos.tx.signing.v1beta1.Signing.SignMode
         @JvmName("getMode")
         get() = _builder.getMode()
         @JvmName("setMode")
@@ -141,21 +141,21 @@ object ModeInfoKt {
        *
        * <code>.cosmos.tx.signing.v1beta1.SignMode mode = 1;</code>
        */
-      fun clearMode() {
+      public fun clearMode() {
         _builder.clearMode()
       }
     }
   }
   @kotlin.jvm.JvmSynthetic
-  inline fun multi(block: cosmos.tx.v1beta1.ModeInfoKt.MultiKt.Dsl.() -> Unit): cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi =
+  public inline fun multi(block: cosmos.tx.v1beta1.ModeInfoKt.MultiKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi =
     cosmos.tx.v1beta1.ModeInfoKt.MultiKt.Dsl._create(cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi.newBuilder()).apply { block() }._build()
-  object MultiKt {
+  public object MultiKt {
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
     @com.google.protobuf.kotlin.ProtoDslMarker
-    class Dsl private constructor(
-      @kotlin.jvm.JvmField private val _builder: cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi.Builder
+    public class Dsl private constructor(
+      private val _builder: cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi.Builder
     ) {
-      companion object {
+      public companion object {
         @kotlin.jvm.JvmSynthetic
         @kotlin.PublishedApi
         internal fun _create(builder: cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi.Builder): Dsl = Dsl(builder)
@@ -172,7 +172,7 @@ object ModeInfoKt {
        *
        * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
        */
-      var bitarray: cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray
+      public var bitarray: cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray
         @JvmName("getBitarray")
         get() = _builder.getBitarray()
         @JvmName("setBitarray")
@@ -186,7 +186,7 @@ object ModeInfoKt {
        *
        * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
        */
-      fun clearBitarray() {
+      public fun clearBitarray() {
         _builder.clearBitarray()
       }
       /**
@@ -197,7 +197,7 @@ object ModeInfoKt {
        * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
        * @return Whether the bitarray field is set.
        */
-      fun hasBitarray(): kotlin.Boolean {
+      public fun hasBitarray(): kotlin.Boolean {
         return _builder.hasBitarray()
       }
 
@@ -206,7 +206,7 @@ object ModeInfoKt {
        * generics.
        */
       @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-      class ModeInfosProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+      public class ModeInfosProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
       /**
        * <pre>
        * mode_infos is the corresponding modes of the signers of the multisig
@@ -215,7 +215,7 @@ object ModeInfoKt {
        *
        * <code>repeated .cosmos.tx.v1beta1.ModeInfo mode_infos = 2;</code>
        */
-       val modeInfos: com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.ModeInfo, ModeInfosProxy>
+       public val modeInfos: com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.ModeInfo, ModeInfosProxy>
         @kotlin.jvm.JvmSynthetic
         get() = com.google.protobuf.kotlin.DslList(
           _builder.getModeInfosList()
@@ -231,7 +231,7 @@ object ModeInfoKt {
        */
       @kotlin.jvm.JvmSynthetic
       @kotlin.jvm.JvmName("addModeInfos")
-      fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.ModeInfo, ModeInfosProxy>.add(value: cosmos.tx.v1beta1.TxOuterClass.ModeInfo) {
+      public fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.ModeInfo, ModeInfosProxy>.add(value: cosmos.tx.v1beta1.TxOuterClass.ModeInfo) {
         _builder.addModeInfos(value)
       }/**
        * <pre>
@@ -244,7 +244,8 @@ object ModeInfoKt {
        */
       @kotlin.jvm.JvmSynthetic
       @kotlin.jvm.JvmName("plusAssignModeInfos")
-      inline operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.ModeInfo, ModeInfosProxy>.plusAssign(value: cosmos.tx.v1beta1.TxOuterClass.ModeInfo) {
+      @Suppress("NOTHING_TO_INLINE")
+      public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.ModeInfo, ModeInfosProxy>.plusAssign(value: cosmos.tx.v1beta1.TxOuterClass.ModeInfo) {
         add(value)
       }/**
        * <pre>
@@ -257,7 +258,7 @@ object ModeInfoKt {
        */
       @kotlin.jvm.JvmSynthetic
       @kotlin.jvm.JvmName("addAllModeInfos")
-      fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.ModeInfo, ModeInfosProxy>.addAll(values: kotlin.collections.Iterable<cosmos.tx.v1beta1.TxOuterClass.ModeInfo>) {
+      public fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.ModeInfo, ModeInfosProxy>.addAll(values: kotlin.collections.Iterable<cosmos.tx.v1beta1.TxOuterClass.ModeInfo>) {
         _builder.addAllModeInfos(values)
       }/**
        * <pre>
@@ -270,7 +271,8 @@ object ModeInfoKt {
        */
       @kotlin.jvm.JvmSynthetic
       @kotlin.jvm.JvmName("plusAssignAllModeInfos")
-      inline operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.ModeInfo, ModeInfosProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.tx.v1beta1.TxOuterClass.ModeInfo>) {
+      @Suppress("NOTHING_TO_INLINE")
+      public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.ModeInfo, ModeInfosProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.tx.v1beta1.TxOuterClass.ModeInfo>) {
         addAll(values)
       }/**
        * <pre>
@@ -284,7 +286,7 @@ object ModeInfoKt {
        */
       @kotlin.jvm.JvmSynthetic
       @kotlin.jvm.JvmName("setModeInfos")
-      operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.ModeInfo, ModeInfosProxy>.set(index: kotlin.Int, value: cosmos.tx.v1beta1.TxOuterClass.ModeInfo) {
+      public operator fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.ModeInfo, ModeInfosProxy>.set(index: kotlin.Int, value: cosmos.tx.v1beta1.TxOuterClass.ModeInfo) {
         _builder.setModeInfos(index, value)
       }/**
        * <pre>
@@ -296,17 +298,17 @@ object ModeInfoKt {
        */
       @kotlin.jvm.JvmSynthetic
       @kotlin.jvm.JvmName("clearModeInfos")
-      fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.ModeInfo, ModeInfosProxy>.clear() {
+      public fun com.google.protobuf.kotlin.DslList<cosmos.tx.v1beta1.TxOuterClass.ModeInfo, ModeInfosProxy>.clear() {
         _builder.clearModeInfos()
       }}
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.tx.v1beta1.TxOuterClass.ModeInfo.copy(block: cosmos.tx.v1beta1.ModeInfoKt.Dsl.() -> Unit): cosmos.tx.v1beta1.TxOuterClass.ModeInfo =
+public inline fun cosmos.tx.v1beta1.TxOuterClass.ModeInfo.copy(block: cosmos.tx.v1beta1.ModeInfoKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.TxOuterClass.ModeInfo =
   cosmos.tx.v1beta1.ModeInfoKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single.copy(block: cosmos.tx.v1beta1.ModeInfoKt.SingleKt.Dsl.() -> Unit): cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single =
+public inline fun cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single.copy(block: cosmos.tx.v1beta1.ModeInfoKt.SingleKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single =
   cosmos.tx.v1beta1.ModeInfoKt.SingleKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi.copy(block: cosmos.tx.v1beta1.ModeInfoKt.MultiKt.Dsl.() -> Unit): cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi =
+public inline fun cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi.copy(block: cosmos.tx.v1beta1.ModeInfoKt.MultiKt.Dsl.() -> kotlin.Unit): cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi =
   cosmos.tx.v1beta1.ModeInfoKt.MultiKt.Dsl._create(this.toBuilder()).apply { block() }._build()

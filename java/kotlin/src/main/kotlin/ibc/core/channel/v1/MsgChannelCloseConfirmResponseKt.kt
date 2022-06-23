@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgChannelCloseConfirmResponse(block: ibc.core.channel.v1.MsgChannelCloseConfirmResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgChannelCloseConfirmResponse =
+public inline fun msgChannelCloseConfirmResponse(block: ibc.core.channel.v1.MsgChannelCloseConfirmResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgChannelCloseConfirmResponse =
   ibc.core.channel.v1.MsgChannelCloseConfirmResponseKt.Dsl._create(ibc.core.channel.v1.Tx.MsgChannelCloseConfirmResponse.newBuilder()).apply { block() }._build()
-object MsgChannelCloseConfirmResponseKt {
+public object MsgChannelCloseConfirmResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.Tx.MsgChannelCloseConfirmResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.Tx.MsgChannelCloseConfirmResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.Tx.MsgChannelCloseConfirmResponse.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object MsgChannelCloseConfirmResponseKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.Tx.MsgChannelCloseConfirmResponse.copy(block: ibc.core.channel.v1.MsgChannelCloseConfirmResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgChannelCloseConfirmResponse =
+public inline fun ibc.core.channel.v1.Tx.MsgChannelCloseConfirmResponse.copy(block: ibc.core.channel.v1.MsgChannelCloseConfirmResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgChannelCloseConfirmResponse =
   ibc.core.channel.v1.MsgChannelCloseConfirmResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

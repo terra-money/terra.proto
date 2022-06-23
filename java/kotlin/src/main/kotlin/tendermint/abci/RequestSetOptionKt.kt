@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun requestSetOption(block: tendermint.abci.RequestSetOptionKt.Dsl.() -> Unit): tendermint.abci.Types.RequestSetOption =
+public inline fun requestSetOption(block: tendermint.abci.RequestSetOptionKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestSetOption =
   tendermint.abci.RequestSetOptionKt.Dsl._create(tendermint.abci.Types.RequestSetOption.newBuilder()).apply { block() }._build()
-object RequestSetOptionKt {
+public object RequestSetOptionKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.RequestSetOption.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.RequestSetOption.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.RequestSetOption.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object RequestSetOptionKt {
     /**
      * <code>string key = 1;</code>
      */
-    var key: kotlin.String
+    public var key: kotlin.String
       @JvmName("getKey")
       get() = _builder.getKey()
       @JvmName("setKey")
@@ -35,14 +35,14 @@ object RequestSetOptionKt {
     /**
      * <code>string key = 1;</code>
      */
-    fun clearKey() {
+    public fun clearKey() {
       _builder.clearKey()
     }
 
     /**
      * <code>string value = 2;</code>
      */
-    var value: kotlin.String
+    public var value: kotlin.String
       @JvmName("getValue")
       get() = _builder.getValue()
       @JvmName("setValue")
@@ -52,11 +52,11 @@ object RequestSetOptionKt {
     /**
      * <code>string value = 2;</code>
      */
-    fun clearValue() {
+    public fun clearValue() {
       _builder.clearValue()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.RequestSetOption.copy(block: tendermint.abci.RequestSetOptionKt.Dsl.() -> Unit): tendermint.abci.Types.RequestSetOption =
+public inline fun tendermint.abci.Types.RequestSetOption.copy(block: tendermint.abci.RequestSetOptionKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestSetOption =
   tendermint.abci.RequestSetOptionKt.Dsl._create(this.toBuilder()).apply { block() }._build()

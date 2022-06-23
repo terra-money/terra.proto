@@ -4,15 +4,15 @@
 package cosmos.base.kv.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun pair(block: cosmos.base.kv.v1beta1.PairKt.Dsl.() -> Unit): cosmos.base.kv.v1beta1.Kv.Pair =
+public inline fun pair(block: cosmos.base.kv.v1beta1.PairKt.Dsl.() -> kotlin.Unit): cosmos.base.kv.v1beta1.Kv.Pair =
   cosmos.base.kv.v1beta1.PairKt.Dsl._create(cosmos.base.kv.v1beta1.Kv.Pair.newBuilder()).apply { block() }._build()
-object PairKt {
+public object PairKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.kv.v1beta1.Kv.Pair.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.kv.v1beta1.Kv.Pair.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.kv.v1beta1.Kv.Pair.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object PairKt {
     /**
      * <code>bytes key = 1;</code>
      */
-    var key: com.google.protobuf.ByteString
+    public var key: com.google.protobuf.ByteString
       @JvmName("getKey")
       get() = _builder.getKey()
       @JvmName("setKey")
@@ -35,14 +35,14 @@ object PairKt {
     /**
      * <code>bytes key = 1;</code>
      */
-    fun clearKey() {
+    public fun clearKey() {
       _builder.clearKey()
     }
 
     /**
      * <code>bytes value = 2;</code>
      */
-    var value: com.google.protobuf.ByteString
+    public var value: com.google.protobuf.ByteString
       @JvmName("getValue")
       get() = _builder.getValue()
       @JvmName("setValue")
@@ -52,11 +52,11 @@ object PairKt {
     /**
      * <code>bytes value = 2;</code>
      */
-    fun clearValue() {
+    public fun clearValue() {
       _builder.clearValue()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.kv.v1beta1.Kv.Pair.copy(block: cosmos.base.kv.v1beta1.PairKt.Dsl.() -> Unit): cosmos.base.kv.v1beta1.Kv.Pair =
+public inline fun cosmos.base.kv.v1beta1.Kv.Pair.copy(block: cosmos.base.kv.v1beta1.PairKt.Dsl.() -> kotlin.Unit): cosmos.base.kv.v1beta1.Kv.Pair =
   cosmos.base.kv.v1beta1.PairKt.Dsl._create(this.toBuilder()).apply { block() }._build()

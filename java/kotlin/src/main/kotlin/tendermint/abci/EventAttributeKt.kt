@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun eventAttribute(block: tendermint.abci.EventAttributeKt.Dsl.() -> Unit): tendermint.abci.Types.EventAttribute =
+public inline fun eventAttribute(block: tendermint.abci.EventAttributeKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.EventAttribute =
   tendermint.abci.EventAttributeKt.Dsl._create(tendermint.abci.Types.EventAttribute.newBuilder()).apply { block() }._build()
-object EventAttributeKt {
+public object EventAttributeKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.EventAttribute.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.EventAttribute.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.EventAttribute.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object EventAttributeKt {
     /**
      * <code>bytes key = 1;</code>
      */
-    var key: com.google.protobuf.ByteString
+    public var key: com.google.protobuf.ByteString
       @JvmName("getKey")
       get() = _builder.getKey()
       @JvmName("setKey")
@@ -35,14 +35,14 @@ object EventAttributeKt {
     /**
      * <code>bytes key = 1;</code>
      */
-    fun clearKey() {
+    public fun clearKey() {
       _builder.clearKey()
     }
 
     /**
      * <code>bytes value = 2;</code>
      */
-    var value: com.google.protobuf.ByteString
+    public var value: com.google.protobuf.ByteString
       @JvmName("getValue")
       get() = _builder.getValue()
       @JvmName("setValue")
@@ -52,7 +52,7 @@ object EventAttributeKt {
     /**
      * <code>bytes value = 2;</code>
      */
-    fun clearValue() {
+    public fun clearValue() {
       _builder.clearValue()
     }
 
@@ -63,7 +63,7 @@ object EventAttributeKt {
      *
      * <code>bool index = 3;</code>
      */
-    var index: kotlin.Boolean
+    public var index: kotlin.Boolean
       @JvmName("getIndex")
       get() = _builder.getIndex()
       @JvmName("setIndex")
@@ -77,11 +77,11 @@ object EventAttributeKt {
      *
      * <code>bool index = 3;</code>
      */
-    fun clearIndex() {
+    public fun clearIndex() {
       _builder.clearIndex()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.EventAttribute.copy(block: tendermint.abci.EventAttributeKt.Dsl.() -> Unit): tendermint.abci.Types.EventAttribute =
+public inline fun tendermint.abci.Types.EventAttribute.copy(block: tendermint.abci.EventAttributeKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.EventAttribute =
   tendermint.abci.EventAttributeKt.Dsl._create(this.toBuilder()).apply { block() }._build()

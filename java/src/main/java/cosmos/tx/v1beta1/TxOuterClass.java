@@ -2409,7 +2409,7 @@ public final class TxOuterClass {
       if (!authInfoBytes_.isEmpty()) {
         output.writeBytes(2, authInfoBytes_);
       }
-      if (!getChainIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(chainId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, chainId_);
       }
       if (accountNumber_ != 0L) {
@@ -2432,7 +2432,7 @@ public final class TxOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, authInfoBytes_);
       }
-      if (!getChainIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(chainId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, chainId_);
       }
       if (accountNumber_ != 0L) {
@@ -3713,7 +3713,7 @@ public final class TxOuterClass {
       for (int i = 0; i < messages_.size(); i++) {
         output.writeMessage(1, messages_.get(i));
       }
-      if (!getMemoBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(memo_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, memo_);
       }
       if (timeoutHeight_ != 0L) {
@@ -3738,7 +3738,7 @@ public final class TxOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, messages_.get(i));
       }
-      if (!getMemoBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(memo_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, memo_);
       }
       if (timeoutHeight_ != 0L) {
@@ -11185,10 +11185,10 @@ public final class TxOuterClass {
       if (gasLimit_ != 0L) {
         output.writeUInt64(2, gasLimit_);
       }
-      if (!getPayerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(payer_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, payer_);
       }
-      if (!getGranterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(granter_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, granter_);
       }
       unknownFields.writeTo(output);
@@ -11208,10 +11208,10 @@ public final class TxOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(2, gasLimit_);
       }
-      if (!getPayerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(payer_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, payer_);
       }
-      if (!getGranterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(granter_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, granter_);
       }
       size += unknownFields.getSerializedSize();

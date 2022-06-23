@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun requestListSnapshots(block: tendermint.abci.RequestListSnapshotsKt.Dsl.() -> Unit): tendermint.abci.Types.RequestListSnapshots =
+public inline fun requestListSnapshots(block: tendermint.abci.RequestListSnapshotsKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestListSnapshots =
   tendermint.abci.RequestListSnapshotsKt.Dsl._create(tendermint.abci.Types.RequestListSnapshots.newBuilder()).apply { block() }._build()
-object RequestListSnapshotsKt {
+public object RequestListSnapshotsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.RequestListSnapshots.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.RequestListSnapshots.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.RequestListSnapshots.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object RequestListSnapshotsKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.RequestListSnapshots.copy(block: tendermint.abci.RequestListSnapshotsKt.Dsl.() -> Unit): tendermint.abci.Types.RequestListSnapshots =
+public inline fun tendermint.abci.Types.RequestListSnapshots.copy(block: tendermint.abci.RequestListSnapshotsKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.RequestListSnapshots =
   tendermint.abci.RequestListSnapshotsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

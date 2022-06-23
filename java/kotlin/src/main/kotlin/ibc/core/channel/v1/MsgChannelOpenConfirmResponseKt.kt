@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgChannelOpenConfirmResponse(block: ibc.core.channel.v1.MsgChannelOpenConfirmResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgChannelOpenConfirmResponse =
+public inline fun msgChannelOpenConfirmResponse(block: ibc.core.channel.v1.MsgChannelOpenConfirmResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgChannelOpenConfirmResponse =
   ibc.core.channel.v1.MsgChannelOpenConfirmResponseKt.Dsl._create(ibc.core.channel.v1.Tx.MsgChannelOpenConfirmResponse.newBuilder()).apply { block() }._build()
-object MsgChannelOpenConfirmResponseKt {
+public object MsgChannelOpenConfirmResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.Tx.MsgChannelOpenConfirmResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.Tx.MsgChannelOpenConfirmResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.Tx.MsgChannelOpenConfirmResponse.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object MsgChannelOpenConfirmResponseKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.Tx.MsgChannelOpenConfirmResponse.copy(block: ibc.core.channel.v1.MsgChannelOpenConfirmResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgChannelOpenConfirmResponse =
+public inline fun ibc.core.channel.v1.Tx.MsgChannelOpenConfirmResponse.copy(block: ibc.core.channel.v1.MsgChannelOpenConfirmResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgChannelOpenConfirmResponse =
   ibc.core.channel.v1.MsgChannelOpenConfirmResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

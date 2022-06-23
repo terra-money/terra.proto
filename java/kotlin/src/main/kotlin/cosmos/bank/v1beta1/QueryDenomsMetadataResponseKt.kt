@@ -4,15 +4,15 @@
 package cosmos.bank.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryDenomsMetadataResponse(block: cosmos.bank.v1beta1.QueryDenomsMetadataResponseKt.Dsl.() -> Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataResponse =
+public inline fun queryDenomsMetadataResponse(block: cosmos.bank.v1beta1.QueryDenomsMetadataResponseKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataResponse =
   cosmos.bank.v1beta1.QueryDenomsMetadataResponseKt.Dsl._create(cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataResponse.newBuilder()).apply { block() }._build()
-object QueryDenomsMetadataResponseKt {
+public object QueryDenomsMetadataResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataResponse.Builder): Dsl = Dsl(builder)
@@ -27,7 +27,7 @@ object QueryDenomsMetadataResponseKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class MetadatasProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class MetadatasProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * metadata provides the client information for all the registered tokens.
@@ -35,7 +35,7 @@ object QueryDenomsMetadataResponseKt {
      *
      * <code>repeated .cosmos.bank.v1beta1.Metadata metadatas = 1 [(.gogoproto.nullable) = false];</code>
      */
-     val metadatas: com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, MetadatasProxy>
+     public val metadatas: com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, MetadatasProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getMetadatasList()
@@ -50,7 +50,7 @@ object QueryDenomsMetadataResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addMetadatas")
-    fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, MetadatasProxy>.add(value: cosmos.bank.v1beta1.Bank.Metadata) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, MetadatasProxy>.add(value: cosmos.bank.v1beta1.Bank.Metadata) {
       _builder.addMetadatas(value)
     }/**
      * <pre>
@@ -62,7 +62,8 @@ object QueryDenomsMetadataResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignMetadatas")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, MetadatasProxy>.plusAssign(value: cosmos.bank.v1beta1.Bank.Metadata) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, MetadatasProxy>.plusAssign(value: cosmos.bank.v1beta1.Bank.Metadata) {
       add(value)
     }/**
      * <pre>
@@ -74,7 +75,7 @@ object QueryDenomsMetadataResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllMetadatas")
-    fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, MetadatasProxy>.addAll(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Bank.Metadata>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, MetadatasProxy>.addAll(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Bank.Metadata>) {
       _builder.addAllMetadatas(values)
     }/**
      * <pre>
@@ -86,7 +87,8 @@ object QueryDenomsMetadataResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllMetadatas")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, MetadatasProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Bank.Metadata>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, MetadatasProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Bank.Metadata>) {
       addAll(values)
     }/**
      * <pre>
@@ -99,7 +101,7 @@ object QueryDenomsMetadataResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setMetadatas")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, MetadatasProxy>.set(index: kotlin.Int, value: cosmos.bank.v1beta1.Bank.Metadata) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, MetadatasProxy>.set(index: kotlin.Int, value: cosmos.bank.v1beta1.Bank.Metadata) {
       _builder.setMetadatas(index, value)
     }/**
      * <pre>
@@ -110,7 +112,7 @@ object QueryDenomsMetadataResponseKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearMetadatas")
-    fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, MetadatasProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, MetadatasProxy>.clear() {
       _builder.clearMetadatas()
     }
     /**
@@ -120,7 +122,7 @@ object QueryDenomsMetadataResponseKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageResponse
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageResponse
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -134,7 +136,7 @@ object QueryDenomsMetadataResponseKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
@@ -145,11 +147,11 @@ object QueryDenomsMetadataResponseKt {
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataResponse.copy(block: cosmos.bank.v1beta1.QueryDenomsMetadataResponseKt.Dsl.() -> Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataResponse =
+public inline fun cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataResponse.copy(block: cosmos.bank.v1beta1.QueryDenomsMetadataResponseKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataResponse =
   cosmos.bank.v1beta1.QueryDenomsMetadataResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

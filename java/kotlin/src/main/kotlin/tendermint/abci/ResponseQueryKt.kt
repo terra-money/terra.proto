@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun responseQuery(block: tendermint.abci.ResponseQueryKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseQuery =
+public inline fun responseQuery(block: tendermint.abci.ResponseQueryKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseQuery =
   tendermint.abci.ResponseQueryKt.Dsl._create(tendermint.abci.Types.ResponseQuery.newBuilder()).apply { block() }._build()
-object ResponseQueryKt {
+public object ResponseQueryKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.ResponseQuery.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.ResponseQuery.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.ResponseQuery.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ResponseQueryKt {
     /**
      * <code>uint32 code = 1;</code>
      */
-    var code: kotlin.Int
+    public var code: kotlin.Int
       @JvmName("getCode")
       get() = _builder.getCode()
       @JvmName("setCode")
@@ -35,7 +35,7 @@ object ResponseQueryKt {
     /**
      * <code>uint32 code = 1;</code>
      */
-    fun clearCode() {
+    public fun clearCode() {
       _builder.clearCode()
     }
 
@@ -46,7 +46,7 @@ object ResponseQueryKt {
      *
      * <code>string log = 3;</code>
      */
-    var log: kotlin.String
+    public var log: kotlin.String
       @JvmName("getLog")
       get() = _builder.getLog()
       @JvmName("setLog")
@@ -60,7 +60,7 @@ object ResponseQueryKt {
      *
      * <code>string log = 3;</code>
      */
-    fun clearLog() {
+    public fun clearLog() {
       _builder.clearLog()
     }
 
@@ -71,7 +71,7 @@ object ResponseQueryKt {
      *
      * <code>string info = 4;</code>
      */
-    var info: kotlin.String
+    public var info: kotlin.String
       @JvmName("getInfo")
       get() = _builder.getInfo()
       @JvmName("setInfo")
@@ -85,14 +85,14 @@ object ResponseQueryKt {
      *
      * <code>string info = 4;</code>
      */
-    fun clearInfo() {
+    public fun clearInfo() {
       _builder.clearInfo()
     }
 
     /**
      * <code>int64 index = 5;</code>
      */
-    var index: kotlin.Long
+    public var index: kotlin.Long
       @JvmName("getIndex")
       get() = _builder.getIndex()
       @JvmName("setIndex")
@@ -102,14 +102,14 @@ object ResponseQueryKt {
     /**
      * <code>int64 index = 5;</code>
      */
-    fun clearIndex() {
+    public fun clearIndex() {
       _builder.clearIndex()
     }
 
     /**
      * <code>bytes key = 6;</code>
      */
-    var key: com.google.protobuf.ByteString
+    public var key: com.google.protobuf.ByteString
       @JvmName("getKey")
       get() = _builder.getKey()
       @JvmName("setKey")
@@ -119,14 +119,14 @@ object ResponseQueryKt {
     /**
      * <code>bytes key = 6;</code>
      */
-    fun clearKey() {
+    public fun clearKey() {
       _builder.clearKey()
     }
 
     /**
      * <code>bytes value = 7;</code>
      */
-    var value: com.google.protobuf.ByteString
+    public var value: com.google.protobuf.ByteString
       @JvmName("getValue")
       get() = _builder.getValue()
       @JvmName("setValue")
@@ -136,14 +136,14 @@ object ResponseQueryKt {
     /**
      * <code>bytes value = 7;</code>
      */
-    fun clearValue() {
+    public fun clearValue() {
       _builder.clearValue()
     }
 
     /**
      * <code>.tendermint.crypto.ProofOps proof_ops = 8;</code>
      */
-    var proofOps: tendermint.crypto.ProofOuterClass.ProofOps
+    public var proofOps: tendermint.crypto.ProofOuterClass.ProofOps
       @JvmName("getProofOps")
       get() = _builder.getProofOps()
       @JvmName("setProofOps")
@@ -153,21 +153,21 @@ object ResponseQueryKt {
     /**
      * <code>.tendermint.crypto.ProofOps proof_ops = 8;</code>
      */
-    fun clearProofOps() {
+    public fun clearProofOps() {
       _builder.clearProofOps()
     }
     /**
      * <code>.tendermint.crypto.ProofOps proof_ops = 8;</code>
      * @return Whether the proofOps field is set.
      */
-    fun hasProofOps(): kotlin.Boolean {
+    public fun hasProofOps(): kotlin.Boolean {
       return _builder.hasProofOps()
     }
 
     /**
      * <code>int64 height = 9;</code>
      */
-    var height: kotlin.Long
+    public var height: kotlin.Long
       @JvmName("getHeight")
       get() = _builder.getHeight()
       @JvmName("setHeight")
@@ -177,14 +177,14 @@ object ResponseQueryKt {
     /**
      * <code>int64 height = 9;</code>
      */
-    fun clearHeight() {
+    public fun clearHeight() {
       _builder.clearHeight()
     }
 
     /**
      * <code>string codespace = 10;</code>
      */
-    var codespace: kotlin.String
+    public var codespace: kotlin.String
       @JvmName("getCodespace")
       get() = _builder.getCodespace()
       @JvmName("setCodespace")
@@ -194,11 +194,11 @@ object ResponseQueryKt {
     /**
      * <code>string codespace = 10;</code>
      */
-    fun clearCodespace() {
+    public fun clearCodespace() {
       _builder.clearCodespace()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.ResponseQuery.copy(block: tendermint.abci.ResponseQueryKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseQuery =
+public inline fun tendermint.abci.Types.ResponseQuery.copy(block: tendermint.abci.ResponseQueryKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseQuery =
   tendermint.abci.ResponseQueryKt.Dsl._create(this.toBuilder()).apply { block() }._build()

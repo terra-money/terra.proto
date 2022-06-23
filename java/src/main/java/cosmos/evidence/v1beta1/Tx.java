@@ -225,7 +225,7 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getSubmitterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(submitter_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, submitter_);
       }
       if (evidence_ != null) {
@@ -240,7 +240,7 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
-      if (!getSubmitterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(submitter_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, submitter_);
       }
       if (evidence_ != null) {

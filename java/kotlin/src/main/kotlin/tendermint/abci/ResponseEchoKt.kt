@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun responseEcho(block: tendermint.abci.ResponseEchoKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseEcho =
+public inline fun responseEcho(block: tendermint.abci.ResponseEchoKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseEcho =
   tendermint.abci.ResponseEchoKt.Dsl._create(tendermint.abci.Types.ResponseEcho.newBuilder()).apply { block() }._build()
-object ResponseEchoKt {
+public object ResponseEchoKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.ResponseEcho.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.ResponseEcho.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.ResponseEcho.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ResponseEchoKt {
     /**
      * <code>string message = 1;</code>
      */
-    var message: kotlin.String
+    public var message: kotlin.String
       @JvmName("getMessage")
       get() = _builder.getMessage()
       @JvmName("setMessage")
@@ -35,11 +35,11 @@ object ResponseEchoKt {
     /**
      * <code>string message = 1;</code>
      */
-    fun clearMessage() {
+    public fun clearMessage() {
       _builder.clearMessage()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.ResponseEcho.copy(block: tendermint.abci.ResponseEchoKt.Dsl.() -> Unit): tendermint.abci.Types.ResponseEcho =
+public inline fun tendermint.abci.Types.ResponseEcho.copy(block: tendermint.abci.ResponseEchoKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.ResponseEcho =
   tendermint.abci.ResponseEchoKt.Dsl._create(this.toBuilder()).apply { block() }._build()

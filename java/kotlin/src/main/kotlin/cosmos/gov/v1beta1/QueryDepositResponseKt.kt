@@ -4,15 +4,15 @@
 package cosmos.gov.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryDepositResponse(block: cosmos.gov.v1beta1.QueryDepositResponseKt.Dsl.() -> Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse =
+public inline fun queryDepositResponse(block: cosmos.gov.v1beta1.QueryDepositResponseKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse =
   cosmos.gov.v1beta1.QueryDepositResponseKt.Dsl._create(cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse.newBuilder()).apply { block() }._build()
-object QueryDepositResponseKt {
+public object QueryDepositResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryDepositResponseKt {
      *
      * <code>.cosmos.gov.v1beta1.Deposit deposit = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var deposit: cosmos.gov.v1beta1.Gov.Deposit
+    public var deposit: cosmos.gov.v1beta1.Gov.Deposit
       @JvmName("getDeposit")
       get() = _builder.getDeposit()
       @JvmName("setDeposit")
@@ -43,7 +43,7 @@ object QueryDepositResponseKt {
      *
      * <code>.cosmos.gov.v1beta1.Deposit deposit = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearDeposit() {
+    public fun clearDeposit() {
       _builder.clearDeposit()
     }
     /**
@@ -54,11 +54,11 @@ object QueryDepositResponseKt {
      * <code>.cosmos.gov.v1beta1.Deposit deposit = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the deposit field is set.
      */
-    fun hasDeposit(): kotlin.Boolean {
+    public fun hasDeposit(): kotlin.Boolean {
       return _builder.hasDeposit()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse.copy(block: cosmos.gov.v1beta1.QueryDepositResponseKt.Dsl.() -> Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse =
+public inline fun cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse.copy(block: cosmos.gov.v1beta1.QueryDepositResponseKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse =
   cosmos.gov.v1beta1.QueryDepositResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

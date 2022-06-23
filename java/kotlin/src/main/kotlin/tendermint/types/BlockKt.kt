@@ -4,15 +4,15 @@
 package tendermint.types;
 
 @kotlin.jvm.JvmSynthetic
-inline fun block(block: tendermint.types.BlockKt.Dsl.() -> Unit): tendermint.types.BlockOuterClass.Block =
+public inline fun block(block: tendermint.types.BlockKt.Dsl.() -> kotlin.Unit): tendermint.types.BlockOuterClass.Block =
   tendermint.types.BlockKt.Dsl._create(tendermint.types.BlockOuterClass.Block.newBuilder()).apply { block() }._build()
-object BlockKt {
+public object BlockKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.types.BlockOuterClass.Block.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.types.BlockOuterClass.Block.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.types.BlockOuterClass.Block.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object BlockKt {
     /**
      * <code>.tendermint.types.Header header = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var header: tendermint.types.Types.Header
+    public var header: tendermint.types.Types.Header
       @JvmName("getHeader")
       get() = _builder.getHeader()
       @JvmName("setHeader")
@@ -35,21 +35,21 @@ object BlockKt {
     /**
      * <code>.tendermint.types.Header header = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearHeader() {
+    public fun clearHeader() {
       _builder.clearHeader()
     }
     /**
      * <code>.tendermint.types.Header header = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the header field is set.
      */
-    fun hasHeader(): kotlin.Boolean {
+    public fun hasHeader(): kotlin.Boolean {
       return _builder.hasHeader()
     }
 
     /**
      * <code>.tendermint.types.Data data = 2 [(.gogoproto.nullable) = false];</code>
      */
-    var data: tendermint.types.Types.Data
+    public var data: tendermint.types.Types.Data
       @JvmName("getData")
       get() = _builder.getData()
       @JvmName("setData")
@@ -59,21 +59,21 @@ object BlockKt {
     /**
      * <code>.tendermint.types.Data data = 2 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearData() {
+    public fun clearData() {
       _builder.clearData()
     }
     /**
      * <code>.tendermint.types.Data data = 2 [(.gogoproto.nullable) = false];</code>
      * @return Whether the data field is set.
      */
-    fun hasData(): kotlin.Boolean {
+    public fun hasData(): kotlin.Boolean {
       return _builder.hasData()
     }
 
     /**
      * <code>.tendermint.types.EvidenceList evidence = 3 [(.gogoproto.nullable) = false];</code>
      */
-    var evidence: tendermint.types.EvidenceOuterClass.EvidenceList
+    public var evidence: tendermint.types.EvidenceOuterClass.EvidenceList
       @JvmName("getEvidence")
       get() = _builder.getEvidence()
       @JvmName("setEvidence")
@@ -83,21 +83,21 @@ object BlockKt {
     /**
      * <code>.tendermint.types.EvidenceList evidence = 3 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearEvidence() {
+    public fun clearEvidence() {
       _builder.clearEvidence()
     }
     /**
      * <code>.tendermint.types.EvidenceList evidence = 3 [(.gogoproto.nullable) = false];</code>
      * @return Whether the evidence field is set.
      */
-    fun hasEvidence(): kotlin.Boolean {
+    public fun hasEvidence(): kotlin.Boolean {
       return _builder.hasEvidence()
     }
 
     /**
      * <code>.tendermint.types.Commit last_commit = 4;</code>
      */
-    var lastCommit: tendermint.types.Types.Commit
+    public var lastCommit: tendermint.types.Types.Commit
       @JvmName("getLastCommit")
       get() = _builder.getLastCommit()
       @JvmName("setLastCommit")
@@ -107,18 +107,18 @@ object BlockKt {
     /**
      * <code>.tendermint.types.Commit last_commit = 4;</code>
      */
-    fun clearLastCommit() {
+    public fun clearLastCommit() {
       _builder.clearLastCommit()
     }
     /**
      * <code>.tendermint.types.Commit last_commit = 4;</code>
      * @return Whether the lastCommit field is set.
      */
-    fun hasLastCommit(): kotlin.Boolean {
+    public fun hasLastCommit(): kotlin.Boolean {
       return _builder.hasLastCommit()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.types.BlockOuterClass.Block.copy(block: tendermint.types.BlockKt.Dsl.() -> Unit): tendermint.types.BlockOuterClass.Block =
+public inline fun tendermint.types.BlockOuterClass.Block.copy(block: tendermint.types.BlockKt.Dsl.() -> kotlin.Unit): tendermint.types.BlockOuterClass.Block =
   tendermint.types.BlockKt.Dsl._create(this.toBuilder()).apply { block() }._build()

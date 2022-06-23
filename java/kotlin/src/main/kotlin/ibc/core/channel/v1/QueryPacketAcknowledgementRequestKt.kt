@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryPacketAcknowledgementRequest(block: ibc.core.channel.v1.QueryPacketAcknowledgementRequestKt.Dsl.() -> Unit): ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementRequest =
+public inline fun queryPacketAcknowledgementRequest(block: ibc.core.channel.v1.QueryPacketAcknowledgementRequestKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementRequest =
   ibc.core.channel.v1.QueryPacketAcknowledgementRequestKt.Dsl._create(ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementRequest.newBuilder()).apply { block() }._build()
-object QueryPacketAcknowledgementRequestKt {
+public object QueryPacketAcknowledgementRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryPacketAcknowledgementRequestKt {
      *
      * <code>string port_id = 1;</code>
      */
-    var portId: kotlin.String
+    public var portId: kotlin.String
       @JvmName("getPortId")
       get() = _builder.getPortId()
       @JvmName("setPortId")
@@ -43,7 +43,7 @@ object QueryPacketAcknowledgementRequestKt {
      *
      * <code>string port_id = 1;</code>
      */
-    fun clearPortId() {
+    public fun clearPortId() {
       _builder.clearPortId()
     }
 
@@ -54,7 +54,7 @@ object QueryPacketAcknowledgementRequestKt {
      *
      * <code>string channel_id = 2;</code>
      */
-    var channelId: kotlin.String
+    public var channelId: kotlin.String
       @JvmName("getChannelId")
       get() = _builder.getChannelId()
       @JvmName("setChannelId")
@@ -68,7 +68,7 @@ object QueryPacketAcknowledgementRequestKt {
      *
      * <code>string channel_id = 2;</code>
      */
-    fun clearChannelId() {
+    public fun clearChannelId() {
       _builder.clearChannelId()
     }
 
@@ -79,7 +79,7 @@ object QueryPacketAcknowledgementRequestKt {
      *
      * <code>uint64 sequence = 3;</code>
      */
-    var sequence: kotlin.Long
+    public var sequence: kotlin.Long
       @JvmName("getSequence")
       get() = _builder.getSequence()
       @JvmName("setSequence")
@@ -93,11 +93,11 @@ object QueryPacketAcknowledgementRequestKt {
      *
      * <code>uint64 sequence = 3;</code>
      */
-    fun clearSequence() {
+    public fun clearSequence() {
       _builder.clearSequence()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementRequest.copy(block: ibc.core.channel.v1.QueryPacketAcknowledgementRequestKt.Dsl.() -> Unit): ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementRequest =
+public inline fun ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementRequest.copy(block: ibc.core.channel.v1.QueryPacketAcknowledgementRequestKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.QueryOuterClass.QueryPacketAcknowledgementRequest =
   ibc.core.channel.v1.QueryPacketAcknowledgementRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.staking.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun delegationResponse(block: cosmos.staking.v1beta1.DelegationResponseKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Staking.DelegationResponse =
+public inline fun delegationResponse(block: cosmos.staking.v1beta1.DelegationResponseKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Staking.DelegationResponse =
   cosmos.staking.v1beta1.DelegationResponseKt.Dsl._create(cosmos.staking.v1beta1.Staking.DelegationResponse.newBuilder()).apply { block() }._build()
-object DelegationResponseKt {
+public object DelegationResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.staking.v1beta1.Staking.DelegationResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.staking.v1beta1.Staking.DelegationResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.staking.v1beta1.Staking.DelegationResponse.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object DelegationResponseKt {
     /**
      * <code>.cosmos.staking.v1beta1.Delegation delegation = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var delegation: cosmos.staking.v1beta1.Staking.Delegation
+    public var delegation: cosmos.staking.v1beta1.Staking.Delegation
       @JvmName("getDelegation")
       get() = _builder.getDelegation()
       @JvmName("setDelegation")
@@ -35,21 +35,21 @@ object DelegationResponseKt {
     /**
      * <code>.cosmos.staking.v1beta1.Delegation delegation = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearDelegation() {
+    public fun clearDelegation() {
       _builder.clearDelegation()
     }
     /**
      * <code>.cosmos.staking.v1beta1.Delegation delegation = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the delegation field is set.
      */
-    fun hasDelegation(): kotlin.Boolean {
+    public fun hasDelegation(): kotlin.Boolean {
       return _builder.hasDelegation()
     }
 
     /**
      * <code>.cosmos.base.v1beta1.Coin balance = 2 [(.gogoproto.nullable) = false];</code>
      */
-    var balance: cosmos.base.v1beta1.CoinOuterClass.Coin
+    public var balance: cosmos.base.v1beta1.CoinOuterClass.Coin
       @JvmName("getBalance")
       get() = _builder.getBalance()
       @JvmName("setBalance")
@@ -59,18 +59,18 @@ object DelegationResponseKt {
     /**
      * <code>.cosmos.base.v1beta1.Coin balance = 2 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearBalance() {
+    public fun clearBalance() {
       _builder.clearBalance()
     }
     /**
      * <code>.cosmos.base.v1beta1.Coin balance = 2 [(.gogoproto.nullable) = false];</code>
      * @return Whether the balance field is set.
      */
-    fun hasBalance(): kotlin.Boolean {
+    public fun hasBalance(): kotlin.Boolean {
       return _builder.hasBalance()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.staking.v1beta1.Staking.DelegationResponse.copy(block: cosmos.staking.v1beta1.DelegationResponseKt.Dsl.() -> Unit): cosmos.staking.v1beta1.Staking.DelegationResponse =
+public inline fun cosmos.staking.v1beta1.Staking.DelegationResponse.copy(block: cosmos.staking.v1beta1.DelegationResponseKt.Dsl.() -> kotlin.Unit): cosmos.staking.v1beta1.Staking.DelegationResponse =
   cosmos.staking.v1beta1.DelegationResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

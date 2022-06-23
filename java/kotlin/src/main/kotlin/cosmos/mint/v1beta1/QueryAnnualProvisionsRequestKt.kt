@@ -4,15 +4,15 @@
 package cosmos.mint.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryAnnualProvisionsRequest(block: cosmos.mint.v1beta1.QueryAnnualProvisionsRequestKt.Dsl.() -> Unit): cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest =
+public inline fun queryAnnualProvisionsRequest(block: cosmos.mint.v1beta1.QueryAnnualProvisionsRequestKt.Dsl.() -> kotlin.Unit): cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest =
   cosmos.mint.v1beta1.QueryAnnualProvisionsRequestKt.Dsl._create(cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest.newBuilder()).apply { block() }._build()
-object QueryAnnualProvisionsRequestKt {
+public object QueryAnnualProvisionsRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object QueryAnnualProvisionsRequestKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest.copy(block: cosmos.mint.v1beta1.QueryAnnualProvisionsRequestKt.Dsl.() -> Unit): cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest =
+public inline fun cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest.copy(block: cosmos.mint.v1beta1.QueryAnnualProvisionsRequestKt.Dsl.() -> kotlin.Unit): cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest =
   cosmos.mint.v1beta1.QueryAnnualProvisionsRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package ibc.core.connection.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgConnectionOpenAck(block: ibc.core.connection.v1.MsgConnectionOpenAckKt.Dsl.() -> Unit): ibc.core.connection.v1.Tx.MsgConnectionOpenAck =
+public inline fun msgConnectionOpenAck(block: ibc.core.connection.v1.MsgConnectionOpenAckKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.Tx.MsgConnectionOpenAck =
   ibc.core.connection.v1.MsgConnectionOpenAckKt.Dsl._create(ibc.core.connection.v1.Tx.MsgConnectionOpenAck.newBuilder()).apply { block() }._build()
-object MsgConnectionOpenAckKt {
+public object MsgConnectionOpenAckKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.connection.v1.Tx.MsgConnectionOpenAck.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.connection.v1.Tx.MsgConnectionOpenAck.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.connection.v1.Tx.MsgConnectionOpenAck.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object MsgConnectionOpenAckKt {
     /**
      * <code>string connection_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"connection_id&#92;""];</code>
      */
-    var connectionId: kotlin.String
+    public var connectionId: kotlin.String
       @JvmName("getConnectionId")
       get() = _builder.getConnectionId()
       @JvmName("setConnectionId")
@@ -35,14 +35,14 @@ object MsgConnectionOpenAckKt {
     /**
      * <code>string connection_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"connection_id&#92;""];</code>
      */
-    fun clearConnectionId() {
+    public fun clearConnectionId() {
       _builder.clearConnectionId()
     }
 
     /**
      * <code>string counterparty_connection_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"counterparty_connection_id&#92;""];</code>
      */
-    var counterpartyConnectionId: kotlin.String
+    public var counterpartyConnectionId: kotlin.String
       @JvmName("getCounterpartyConnectionId")
       get() = _builder.getCounterpartyConnectionId()
       @JvmName("setCounterpartyConnectionId")
@@ -52,14 +52,14 @@ object MsgConnectionOpenAckKt {
     /**
      * <code>string counterparty_connection_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"counterparty_connection_id&#92;""];</code>
      */
-    fun clearCounterpartyConnectionId() {
+    public fun clearCounterpartyConnectionId() {
       _builder.clearCounterpartyConnectionId()
     }
 
     /**
      * <code>.ibc.core.connection.v1.Version version = 3;</code>
      */
-    var version: ibc.core.connection.v1.Connection.Version
+    public var version: ibc.core.connection.v1.Connection.Version
       @JvmName("getVersion")
       get() = _builder.getVersion()
       @JvmName("setVersion")
@@ -69,21 +69,21 @@ object MsgConnectionOpenAckKt {
     /**
      * <code>.ibc.core.connection.v1.Version version = 3;</code>
      */
-    fun clearVersion() {
+    public fun clearVersion() {
       _builder.clearVersion()
     }
     /**
      * <code>.ibc.core.connection.v1.Version version = 3;</code>
      * @return Whether the version field is set.
      */
-    fun hasVersion(): kotlin.Boolean {
+    public fun hasVersion(): kotlin.Boolean {
       return _builder.hasVersion()
     }
 
     /**
      * <code>.google.protobuf.Any client_state = 4 [(.gogoproto.moretags) = "yaml:&#92;"client_state&#92;""];</code>
      */
-    var clientState: com.google.protobuf.Any
+    public var clientState: com.google.protobuf.Any
       @JvmName("getClientState")
       get() = _builder.getClientState()
       @JvmName("setClientState")
@@ -93,21 +93,21 @@ object MsgConnectionOpenAckKt {
     /**
      * <code>.google.protobuf.Any client_state = 4 [(.gogoproto.moretags) = "yaml:&#92;"client_state&#92;""];</code>
      */
-    fun clearClientState() {
+    public fun clearClientState() {
       _builder.clearClientState()
     }
     /**
      * <code>.google.protobuf.Any client_state = 4 [(.gogoproto.moretags) = "yaml:&#92;"client_state&#92;""];</code>
      * @return Whether the clientState field is set.
      */
-    fun hasClientState(): kotlin.Boolean {
+    public fun hasClientState(): kotlin.Boolean {
       return _builder.hasClientState()
     }
 
     /**
      * <code>.ibc.core.client.v1.Height proof_height = 5 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"proof_height&#92;""];</code>
      */
-    var proofHeight: ibc.core.client.v1.Client.Height
+    public var proofHeight: ibc.core.client.v1.Client.Height
       @JvmName("getProofHeight")
       get() = _builder.getProofHeight()
       @JvmName("setProofHeight")
@@ -117,14 +117,14 @@ object MsgConnectionOpenAckKt {
     /**
      * <code>.ibc.core.client.v1.Height proof_height = 5 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"proof_height&#92;""];</code>
      */
-    fun clearProofHeight() {
+    public fun clearProofHeight() {
       _builder.clearProofHeight()
     }
     /**
      * <code>.ibc.core.client.v1.Height proof_height = 5 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"proof_height&#92;""];</code>
      * @return Whether the proofHeight field is set.
      */
-    fun hasProofHeight(): kotlin.Boolean {
+    public fun hasProofHeight(): kotlin.Boolean {
       return _builder.hasProofHeight()
     }
 
@@ -136,7 +136,7 @@ object MsgConnectionOpenAckKt {
      *
      * <code>bytes proof_try = 6 [(.gogoproto.moretags) = "yaml:&#92;"proof_try&#92;""];</code>
      */
-    var proofTry: com.google.protobuf.ByteString
+    public var proofTry: com.google.protobuf.ByteString
       @JvmName("getProofTry")
       get() = _builder.getProofTry()
       @JvmName("setProofTry")
@@ -151,7 +151,7 @@ object MsgConnectionOpenAckKt {
      *
      * <code>bytes proof_try = 6 [(.gogoproto.moretags) = "yaml:&#92;"proof_try&#92;""];</code>
      */
-    fun clearProofTry() {
+    public fun clearProofTry() {
       _builder.clearProofTry()
     }
 
@@ -162,7 +162,7 @@ object MsgConnectionOpenAckKt {
      *
      * <code>bytes proof_client = 7 [(.gogoproto.moretags) = "yaml:&#92;"proof_client&#92;""];</code>
      */
-    var proofClient: com.google.protobuf.ByteString
+    public var proofClient: com.google.protobuf.ByteString
       @JvmName("getProofClient")
       get() = _builder.getProofClient()
       @JvmName("setProofClient")
@@ -176,7 +176,7 @@ object MsgConnectionOpenAckKt {
      *
      * <code>bytes proof_client = 7 [(.gogoproto.moretags) = "yaml:&#92;"proof_client&#92;""];</code>
      */
-    fun clearProofClient() {
+    public fun clearProofClient() {
       _builder.clearProofClient()
     }
 
@@ -187,7 +187,7 @@ object MsgConnectionOpenAckKt {
      *
      * <code>bytes proof_consensus = 8 [(.gogoproto.moretags) = "yaml:&#92;"proof_consensus&#92;""];</code>
      */
-    var proofConsensus: com.google.protobuf.ByteString
+    public var proofConsensus: com.google.protobuf.ByteString
       @JvmName("getProofConsensus")
       get() = _builder.getProofConsensus()
       @JvmName("setProofConsensus")
@@ -201,14 +201,14 @@ object MsgConnectionOpenAckKt {
      *
      * <code>bytes proof_consensus = 8 [(.gogoproto.moretags) = "yaml:&#92;"proof_consensus&#92;""];</code>
      */
-    fun clearProofConsensus() {
+    public fun clearProofConsensus() {
       _builder.clearProofConsensus()
     }
 
     /**
      * <code>.ibc.core.client.v1.Height consensus_height = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"consensus_height&#92;""];</code>
      */
-    var consensusHeight: ibc.core.client.v1.Client.Height
+    public var consensusHeight: ibc.core.client.v1.Client.Height
       @JvmName("getConsensusHeight")
       get() = _builder.getConsensusHeight()
       @JvmName("setConsensusHeight")
@@ -218,21 +218,21 @@ object MsgConnectionOpenAckKt {
     /**
      * <code>.ibc.core.client.v1.Height consensus_height = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"consensus_height&#92;""];</code>
      */
-    fun clearConsensusHeight() {
+    public fun clearConsensusHeight() {
       _builder.clearConsensusHeight()
     }
     /**
      * <code>.ibc.core.client.v1.Height consensus_height = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"consensus_height&#92;""];</code>
      * @return Whether the consensusHeight field is set.
      */
-    fun hasConsensusHeight(): kotlin.Boolean {
+    public fun hasConsensusHeight(): kotlin.Boolean {
       return _builder.hasConsensusHeight()
     }
 
     /**
      * <code>string signer = 10;</code>
      */
-    var signer: kotlin.String
+    public var signer: kotlin.String
       @JvmName("getSigner")
       get() = _builder.getSigner()
       @JvmName("setSigner")
@@ -242,11 +242,11 @@ object MsgConnectionOpenAckKt {
     /**
      * <code>string signer = 10;</code>
      */
-    fun clearSigner() {
+    public fun clearSigner() {
       _builder.clearSigner()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.connection.v1.Tx.MsgConnectionOpenAck.copy(block: ibc.core.connection.v1.MsgConnectionOpenAckKt.Dsl.() -> Unit): ibc.core.connection.v1.Tx.MsgConnectionOpenAck =
+public inline fun ibc.core.connection.v1.Tx.MsgConnectionOpenAck.copy(block: ibc.core.connection.v1.MsgConnectionOpenAckKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.Tx.MsgConnectionOpenAck =
   ibc.core.connection.v1.MsgConnectionOpenAckKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.capability.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun genesisState(block: cosmos.capability.v1beta1.GenesisStateKt.Dsl.() -> Unit): cosmos.capability.v1beta1.Genesis.GenesisState =
+public inline fun genesisState(block: cosmos.capability.v1beta1.GenesisStateKt.Dsl.() -> kotlin.Unit): cosmos.capability.v1beta1.Genesis.GenesisState =
   cosmos.capability.v1beta1.GenesisStateKt.Dsl._create(cosmos.capability.v1beta1.Genesis.GenesisState.newBuilder()).apply { block() }._build()
-object GenesisStateKt {
+public object GenesisStateKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.capability.v1beta1.Genesis.GenesisState.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.capability.v1beta1.Genesis.GenesisState.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.capability.v1beta1.Genesis.GenesisState.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object GenesisStateKt {
      *
      * <code>uint64 index = 1;</code>
      */
-    var index: kotlin.Long
+    public var index: kotlin.Long
       @JvmName("getIndex")
       get() = _builder.getIndex()
       @JvmName("setIndex")
@@ -43,7 +43,7 @@ object GenesisStateKt {
      *
      * <code>uint64 index = 1;</code>
      */
-    fun clearIndex() {
+    public fun clearIndex() {
       _builder.clearIndex()
     }
 
@@ -52,7 +52,7 @@ object GenesisStateKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class OwnersProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class OwnersProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * owners represents a map from index to owners of the capability index
@@ -61,7 +61,7 @@ object GenesisStateKt {
      *
      * <code>repeated .cosmos.capability.v1beta1.GenesisOwners owners = 2 [(.gogoproto.nullable) = false];</code>
      */
-     val owners: com.google.protobuf.kotlin.DslList<cosmos.capability.v1beta1.Genesis.GenesisOwners, OwnersProxy>
+     public val owners: com.google.protobuf.kotlin.DslList<cosmos.capability.v1beta1.Genesis.GenesisOwners, OwnersProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getOwnersList()
@@ -77,7 +77,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addOwners")
-    fun com.google.protobuf.kotlin.DslList<cosmos.capability.v1beta1.Genesis.GenesisOwners, OwnersProxy>.add(value: cosmos.capability.v1beta1.Genesis.GenesisOwners) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.capability.v1beta1.Genesis.GenesisOwners, OwnersProxy>.add(value: cosmos.capability.v1beta1.Genesis.GenesisOwners) {
       _builder.addOwners(value)
     }/**
      * <pre>
@@ -90,7 +90,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignOwners")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.capability.v1beta1.Genesis.GenesisOwners, OwnersProxy>.plusAssign(value: cosmos.capability.v1beta1.Genesis.GenesisOwners) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.capability.v1beta1.Genesis.GenesisOwners, OwnersProxy>.plusAssign(value: cosmos.capability.v1beta1.Genesis.GenesisOwners) {
       add(value)
     }/**
      * <pre>
@@ -103,7 +104,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllOwners")
-    fun com.google.protobuf.kotlin.DslList<cosmos.capability.v1beta1.Genesis.GenesisOwners, OwnersProxy>.addAll(values: kotlin.collections.Iterable<cosmos.capability.v1beta1.Genesis.GenesisOwners>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.capability.v1beta1.Genesis.GenesisOwners, OwnersProxy>.addAll(values: kotlin.collections.Iterable<cosmos.capability.v1beta1.Genesis.GenesisOwners>) {
       _builder.addAllOwners(values)
     }/**
      * <pre>
@@ -116,7 +117,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllOwners")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.capability.v1beta1.Genesis.GenesisOwners, OwnersProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.capability.v1beta1.Genesis.GenesisOwners>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.capability.v1beta1.Genesis.GenesisOwners, OwnersProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.capability.v1beta1.Genesis.GenesisOwners>) {
       addAll(values)
     }/**
      * <pre>
@@ -130,7 +132,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setOwners")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.capability.v1beta1.Genesis.GenesisOwners, OwnersProxy>.set(index: kotlin.Int, value: cosmos.capability.v1beta1.Genesis.GenesisOwners) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.capability.v1beta1.Genesis.GenesisOwners, OwnersProxy>.set(index: kotlin.Int, value: cosmos.capability.v1beta1.Genesis.GenesisOwners) {
       _builder.setOwners(index, value)
     }/**
      * <pre>
@@ -142,10 +144,10 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearOwners")
-    fun com.google.protobuf.kotlin.DslList<cosmos.capability.v1beta1.Genesis.GenesisOwners, OwnersProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.capability.v1beta1.Genesis.GenesisOwners, OwnersProxy>.clear() {
       _builder.clearOwners()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.capability.v1beta1.Genesis.GenesisState.copy(block: cosmos.capability.v1beta1.GenesisStateKt.Dsl.() -> Unit): cosmos.capability.v1beta1.Genesis.GenesisState =
+public inline fun cosmos.capability.v1beta1.Genesis.GenesisState.copy(block: cosmos.capability.v1beta1.GenesisStateKt.Dsl.() -> kotlin.Unit): cosmos.capability.v1beta1.Genesis.GenesisState =
   cosmos.capability.v1beta1.GenesisStateKt.Dsl._create(this.toBuilder()).apply { block() }._build()

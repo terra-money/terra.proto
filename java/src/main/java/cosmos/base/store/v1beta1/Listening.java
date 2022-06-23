@@ -65,6 +65,7 @@ public final class Listening {
    * StoreKVPair is a KVStore KVPair used for listening to state changes (Sets and Deletes)
    * It optionally includes the StoreKey for the originating KVStore and a Boolean flag to distinguish between Sets and
    * Deletes
+   * Since: cosmos-sdk 0.43
    * </pre>
    *
    * Protobuf type {@code cosmos.base.store.v1beta1.StoreKVPair}
@@ -264,7 +265,7 @@ public final class Listening {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getStoreKeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(storeKey_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, storeKey_);
       }
       if (delete_ != false) {
@@ -285,7 +286,7 @@ public final class Listening {
       if (size != -1) return size;
 
       size = 0;
-      if (!getStoreKeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(storeKey_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, storeKey_);
       }
       if (delete_ != false) {
@@ -443,6 +444,7 @@ public final class Listening {
      * StoreKVPair is a KVStore KVPair used for listening to state changes (Sets and Deletes)
      * It optionally includes the StoreKey for the originating KVStore and a Boolean flag to distinguish between Sets and
      * Deletes
+     * Since: cosmos-sdk 0.43
      * </pre>
      *
      * Protobuf type {@code cosmos.base.store.v1beta1.StoreKVPair}

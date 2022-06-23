@@ -4,15 +4,15 @@
 package cosmos.gov.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryDepositsRequest(block: cosmos.gov.v1beta1.QueryDepositsRequestKt.Dsl.() -> Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest =
+public inline fun queryDepositsRequest(block: cosmos.gov.v1beta1.QueryDepositsRequestKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest =
   cosmos.gov.v1beta1.QueryDepositsRequestKt.Dsl._create(cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest.newBuilder()).apply { block() }._build()
-object QueryDepositsRequestKt {
+public object QueryDepositsRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryDepositsRequestKt {
      *
      * <code>uint64 proposal_id = 1;</code>
      */
-    var proposalId: kotlin.Long
+    public var proposalId: kotlin.Long
       @JvmName("getProposalId")
       get() = _builder.getProposalId()
       @JvmName("setProposalId")
@@ -43,7 +43,7 @@ object QueryDepositsRequestKt {
      *
      * <code>uint64 proposal_id = 1;</code>
      */
-    fun clearProposalId() {
+    public fun clearProposalId() {
       _builder.clearProposalId()
     }
 
@@ -54,7 +54,7 @@ object QueryDepositsRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 2;</code>
      */
-    var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
+    public var pagination: cosmos.base.query.v1beta1.Pagination.PageRequest
       @JvmName("getPagination")
       get() = _builder.getPagination()
       @JvmName("setPagination")
@@ -68,7 +68,7 @@ object QueryDepositsRequestKt {
      *
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 2;</code>
      */
-    fun clearPagination() {
+    public fun clearPagination() {
       _builder.clearPagination()
     }
     /**
@@ -79,11 +79,11 @@ object QueryDepositsRequestKt {
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 2;</code>
      * @return Whether the pagination field is set.
      */
-    fun hasPagination(): kotlin.Boolean {
+    public fun hasPagination(): kotlin.Boolean {
       return _builder.hasPagination()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest.copy(block: cosmos.gov.v1beta1.QueryDepositsRequestKt.Dsl.() -> Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest =
+public inline fun cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest.copy(block: cosmos.gov.v1beta1.QueryDepositsRequestKt.Dsl.() -> kotlin.Unit): cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest =
   cosmos.gov.v1beta1.QueryDepositsRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

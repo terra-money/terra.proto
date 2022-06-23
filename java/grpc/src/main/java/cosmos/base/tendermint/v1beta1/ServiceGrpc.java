@@ -8,7 +8,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.40.1)",
+    value = "by gRPC proto compiler (version 1.47.0)",
     comments = "Source: cosmos/base/tendermint/v1beta1/query.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class ServiceGrpc {

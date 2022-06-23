@@ -4,15 +4,15 @@
 package tendermint.crypto;
 
 @kotlin.jvm.JvmSynthetic
-inline fun proofOp(block: tendermint.crypto.ProofOpKt.Dsl.() -> Unit): tendermint.crypto.ProofOuterClass.ProofOp =
+public inline fun proofOp(block: tendermint.crypto.ProofOpKt.Dsl.() -> kotlin.Unit): tendermint.crypto.ProofOuterClass.ProofOp =
   tendermint.crypto.ProofOpKt.Dsl._create(tendermint.crypto.ProofOuterClass.ProofOp.newBuilder()).apply { block() }._build()
-object ProofOpKt {
+public object ProofOpKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.crypto.ProofOuterClass.ProofOp.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.crypto.ProofOuterClass.ProofOp.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.crypto.ProofOuterClass.ProofOp.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ProofOpKt {
     /**
      * <code>string type = 1;</code>
      */
-    var type: kotlin.String
+    public var type: kotlin.String
       @JvmName("getType")
       get() = _builder.getType()
       @JvmName("setType")
@@ -35,14 +35,14 @@ object ProofOpKt {
     /**
      * <code>string type = 1;</code>
      */
-    fun clearType() {
+    public fun clearType() {
       _builder.clearType()
     }
 
     /**
      * <code>bytes key = 2;</code>
      */
-    var key: com.google.protobuf.ByteString
+    public var key: com.google.protobuf.ByteString
       @JvmName("getKey")
       get() = _builder.getKey()
       @JvmName("setKey")
@@ -52,14 +52,14 @@ object ProofOpKt {
     /**
      * <code>bytes key = 2;</code>
      */
-    fun clearKey() {
+    public fun clearKey() {
       _builder.clearKey()
     }
 
     /**
      * <code>bytes data = 3;</code>
      */
-    var data: com.google.protobuf.ByteString
+    public var data: com.google.protobuf.ByteString
       @JvmName("getData")
       get() = _builder.getData()
       @JvmName("setData")
@@ -69,11 +69,11 @@ object ProofOpKt {
     /**
      * <code>bytes data = 3;</code>
      */
-    fun clearData() {
+    public fun clearData() {
       _builder.clearData()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.crypto.ProofOuterClass.ProofOp.copy(block: tendermint.crypto.ProofOpKt.Dsl.() -> Unit): tendermint.crypto.ProofOuterClass.ProofOp =
+public inline fun tendermint.crypto.ProofOuterClass.ProofOp.copy(block: tendermint.crypto.ProofOpKt.Dsl.() -> kotlin.Unit): tendermint.crypto.ProofOuterClass.ProofOp =
   tendermint.crypto.ProofOpKt.Dsl._create(this.toBuilder()).apply { block() }._build()

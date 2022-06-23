@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgChannelOpenInitResponse(block: ibc.core.channel.v1.MsgChannelOpenInitResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse =
+public inline fun msgChannelOpenInitResponse(block: ibc.core.channel.v1.MsgChannelOpenInitResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse =
   ibc.core.channel.v1.MsgChannelOpenInitResponseKt.Dsl._create(ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse.newBuilder()).apply { block() }._build()
-object MsgChannelOpenInitResponseKt {
+public object MsgChannelOpenInitResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse.Builder): Dsl = Dsl(builder)
@@ -21,8 +21,25 @@ object MsgChannelOpenInitResponseKt {
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
     internal fun _build(): ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse = _builder.build()
+
+    /**
+     * <code>string channel_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+     */
+    public var channelId: kotlin.String
+      @JvmName("getChannelId")
+      get() = _builder.getChannelId()
+      @JvmName("setChannelId")
+      set(value) {
+        _builder.setChannelId(value)
+      }
+    /**
+     * <code>string channel_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"channel_id&#92;""];</code>
+     */
+    public fun clearChannelId() {
+      _builder.clearChannelId()
+    }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse.copy(block: ibc.core.channel.v1.MsgChannelOpenInitResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse =
+public inline fun ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse.copy(block: ibc.core.channel.v1.MsgChannelOpenInitResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgChannelOpenInitResponse =
   ibc.core.channel.v1.MsgChannelOpenInitResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

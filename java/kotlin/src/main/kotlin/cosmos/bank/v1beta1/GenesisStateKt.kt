@@ -4,15 +4,15 @@
 package cosmos.bank.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun genesisState(block: cosmos.bank.v1beta1.GenesisStateKt.Dsl.() -> Unit): cosmos.bank.v1beta1.Genesis.GenesisState =
+public inline fun genesisState(block: cosmos.bank.v1beta1.GenesisStateKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.Genesis.GenesisState =
   cosmos.bank.v1beta1.GenesisStateKt.Dsl._create(cosmos.bank.v1beta1.Genesis.GenesisState.newBuilder()).apply { block() }._build()
-object GenesisStateKt {
+public object GenesisStateKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.bank.v1beta1.Genesis.GenesisState.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.bank.v1beta1.Genesis.GenesisState.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.bank.v1beta1.Genesis.GenesisState.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object GenesisStateKt {
      *
      * <code>.cosmos.bank.v1beta1.Params params = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var params: cosmos.bank.v1beta1.Bank.Params
+    public var params: cosmos.bank.v1beta1.Bank.Params
       @JvmName("getParams")
       get() = _builder.getParams()
       @JvmName("setParams")
@@ -43,7 +43,7 @@ object GenesisStateKt {
      *
      * <code>.cosmos.bank.v1beta1.Params params = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearParams() {
+    public fun clearParams() {
       _builder.clearParams()
     }
     /**
@@ -54,7 +54,7 @@ object GenesisStateKt {
      * <code>.cosmos.bank.v1beta1.Params params = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the params field is set.
      */
-    fun hasParams(): kotlin.Boolean {
+    public fun hasParams(): kotlin.Boolean {
       return _builder.hasParams()
     }
 
@@ -63,7 +63,7 @@ object GenesisStateKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class BalancesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class BalancesProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * balances is an array containing the balances of all the accounts.
@@ -71,7 +71,7 @@ object GenesisStateKt {
      *
      * <code>repeated .cosmos.bank.v1beta1.Balance balances = 2 [(.gogoproto.nullable) = false];</code>
      */
-     val balances: com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Genesis.Balance, BalancesProxy>
+     public val balances: com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Genesis.Balance, BalancesProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getBalancesList()
@@ -86,7 +86,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addBalances")
-    fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Genesis.Balance, BalancesProxy>.add(value: cosmos.bank.v1beta1.Genesis.Balance) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Genesis.Balance, BalancesProxy>.add(value: cosmos.bank.v1beta1.Genesis.Balance) {
       _builder.addBalances(value)
     }/**
      * <pre>
@@ -98,7 +98,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignBalances")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Genesis.Balance, BalancesProxy>.plusAssign(value: cosmos.bank.v1beta1.Genesis.Balance) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Genesis.Balance, BalancesProxy>.plusAssign(value: cosmos.bank.v1beta1.Genesis.Balance) {
       add(value)
     }/**
      * <pre>
@@ -110,7 +111,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllBalances")
-    fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Genesis.Balance, BalancesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Genesis.Balance>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Genesis.Balance, BalancesProxy>.addAll(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Genesis.Balance>) {
       _builder.addAllBalances(values)
     }/**
      * <pre>
@@ -122,7 +123,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllBalances")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Genesis.Balance, BalancesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Genesis.Balance>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Genesis.Balance, BalancesProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Genesis.Balance>) {
       addAll(values)
     }/**
      * <pre>
@@ -135,7 +137,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setBalances")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Genesis.Balance, BalancesProxy>.set(index: kotlin.Int, value: cosmos.bank.v1beta1.Genesis.Balance) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Genesis.Balance, BalancesProxy>.set(index: kotlin.Int, value: cosmos.bank.v1beta1.Genesis.Balance) {
       _builder.setBalances(index, value)
     }/**
      * <pre>
@@ -146,7 +148,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearBalances")
-    fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Genesis.Balance, BalancesProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Genesis.Balance, BalancesProxy>.clear() {
       _builder.clearBalances()
     }
     /**
@@ -154,7 +156,7 @@ object GenesisStateKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class SupplyProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class SupplyProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * supply represents the total supply. If it is left empty, then supply will be calculated based on the provided
@@ -163,7 +165,7 @@ object GenesisStateKt {
      *
      * <code>repeated .cosmos.base.v1beta1.Coin supply = 3 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-     val supply: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SupplyProxy>
+     public val supply: com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SupplyProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getSupplyList()
@@ -179,7 +181,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addSupply")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SupplyProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SupplyProxy>.add(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.addSupply(value)
     }/**
      * <pre>
@@ -192,7 +194,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignSupply")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SupplyProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SupplyProxy>.plusAssign(value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       add(value)
     }/**
      * <pre>
@@ -205,7 +208,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllSupply")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SupplyProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SupplyProxy>.addAll(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       _builder.addAllSupply(values)
     }/**
      * <pre>
@@ -218,7 +221,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllSupply")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SupplyProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SupplyProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.base.v1beta1.CoinOuterClass.Coin>) {
       addAll(values)
     }/**
      * <pre>
@@ -232,7 +236,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setSupply")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SupplyProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SupplyProxy>.set(index: kotlin.Int, value: cosmos.base.v1beta1.CoinOuterClass.Coin) {
       _builder.setSupply(index, value)
     }/**
      * <pre>
@@ -244,7 +248,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearSupply")
-    fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SupplyProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.base.v1beta1.CoinOuterClass.Coin, SupplyProxy>.clear() {
       _builder.clearSupply()
     }
     /**
@@ -252,7 +256,7 @@ object GenesisStateKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class DenomMetadataProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class DenomMetadataProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <pre>
      * denom_metadata defines the metadata of the differents coins.
@@ -260,7 +264,7 @@ object GenesisStateKt {
      *
      * <code>repeated .cosmos.bank.v1beta1.Metadata denom_metadata = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"denom_metadata&#92;""];</code>
      */
-     val denomMetadata: com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, DenomMetadataProxy>
+     public val denomMetadata: com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, DenomMetadataProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getDenomMetadataList()
@@ -275,7 +279,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addDenomMetadata")
-    fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, DenomMetadataProxy>.add(value: cosmos.bank.v1beta1.Bank.Metadata) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, DenomMetadataProxy>.add(value: cosmos.bank.v1beta1.Bank.Metadata) {
       _builder.addDenomMetadata(value)
     }/**
      * <pre>
@@ -287,7 +291,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignDenomMetadata")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, DenomMetadataProxy>.plusAssign(value: cosmos.bank.v1beta1.Bank.Metadata) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, DenomMetadataProxy>.plusAssign(value: cosmos.bank.v1beta1.Bank.Metadata) {
       add(value)
     }/**
      * <pre>
@@ -299,7 +304,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllDenomMetadata")
-    fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, DenomMetadataProxy>.addAll(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Bank.Metadata>) {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, DenomMetadataProxy>.addAll(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Bank.Metadata>) {
       _builder.addAllDenomMetadata(values)
     }/**
      * <pre>
@@ -311,7 +316,8 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllDenomMetadata")
-    inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, DenomMetadataProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Bank.Metadata>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, DenomMetadataProxy>.plusAssign(values: kotlin.collections.Iterable<cosmos.bank.v1beta1.Bank.Metadata>) {
       addAll(values)
     }/**
      * <pre>
@@ -324,7 +330,7 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setDenomMetadata")
-    operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, DenomMetadataProxy>.set(index: kotlin.Int, value: cosmos.bank.v1beta1.Bank.Metadata) {
+    public operator fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, DenomMetadataProxy>.set(index: kotlin.Int, value: cosmos.bank.v1beta1.Bank.Metadata) {
       _builder.setDenomMetadata(index, value)
     }/**
      * <pre>
@@ -335,10 +341,10 @@ object GenesisStateKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearDenomMetadata")
-    fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, DenomMetadataProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<cosmos.bank.v1beta1.Bank.Metadata, DenomMetadataProxy>.clear() {
       _builder.clearDenomMetadata()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.bank.v1beta1.Genesis.GenesisState.copy(block: cosmos.bank.v1beta1.GenesisStateKt.Dsl.() -> Unit): cosmos.bank.v1beta1.Genesis.GenesisState =
+public inline fun cosmos.bank.v1beta1.Genesis.GenesisState.copy(block: cosmos.bank.v1beta1.GenesisStateKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.Genesis.GenesisState =
   cosmos.bank.v1beta1.GenesisStateKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package cosmos.authz.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgGrantResponse(block: cosmos.authz.v1beta1.MsgGrantResponseKt.Dsl.() -> Unit): cosmos.authz.v1beta1.Tx.MsgGrantResponse =
+public inline fun msgGrantResponse(block: cosmos.authz.v1beta1.MsgGrantResponseKt.Dsl.() -> kotlin.Unit): cosmos.authz.v1beta1.Tx.MsgGrantResponse =
   cosmos.authz.v1beta1.MsgGrantResponseKt.Dsl._create(cosmos.authz.v1beta1.Tx.MsgGrantResponse.newBuilder()).apply { block() }._build()
-object MsgGrantResponseKt {
+public object MsgGrantResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.authz.v1beta1.Tx.MsgGrantResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.authz.v1beta1.Tx.MsgGrantResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.authz.v1beta1.Tx.MsgGrantResponse.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object MsgGrantResponseKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.authz.v1beta1.Tx.MsgGrantResponse.copy(block: cosmos.authz.v1beta1.MsgGrantResponseKt.Dsl.() -> Unit): cosmos.authz.v1beta1.Tx.MsgGrantResponse =
+public inline fun cosmos.authz.v1beta1.Tx.MsgGrantResponse.copy(block: cosmos.authz.v1beta1.MsgGrantResponseKt.Dsl.() -> kotlin.Unit): cosmos.authz.v1beta1.Tx.MsgGrantResponse =
   cosmos.authz.v1beta1.MsgGrantResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

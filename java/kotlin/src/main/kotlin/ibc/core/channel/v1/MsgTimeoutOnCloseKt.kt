@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgTimeoutOnClose(block: ibc.core.channel.v1.MsgTimeoutOnCloseKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgTimeoutOnClose =
+public inline fun msgTimeoutOnClose(block: ibc.core.channel.v1.MsgTimeoutOnCloseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgTimeoutOnClose =
   ibc.core.channel.v1.MsgTimeoutOnCloseKt.Dsl._create(ibc.core.channel.v1.Tx.MsgTimeoutOnClose.newBuilder()).apply { block() }._build()
-object MsgTimeoutOnCloseKt {
+public object MsgTimeoutOnCloseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.Tx.MsgTimeoutOnClose.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.Tx.MsgTimeoutOnClose.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.Tx.MsgTimeoutOnClose.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object MsgTimeoutOnCloseKt {
     /**
      * <code>.ibc.core.channel.v1.Packet packet = 1 [(.gogoproto.nullable) = false];</code>
      */
-    var packet: ibc.core.channel.v1.ChannelOuterClass.Packet
+    public var packet: ibc.core.channel.v1.ChannelOuterClass.Packet
       @JvmName("getPacket")
       get() = _builder.getPacket()
       @JvmName("setPacket")
@@ -35,21 +35,21 @@ object MsgTimeoutOnCloseKt {
     /**
      * <code>.ibc.core.channel.v1.Packet packet = 1 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearPacket() {
+    public fun clearPacket() {
       _builder.clearPacket()
     }
     /**
      * <code>.ibc.core.channel.v1.Packet packet = 1 [(.gogoproto.nullable) = false];</code>
      * @return Whether the packet field is set.
      */
-    fun hasPacket(): kotlin.Boolean {
+    public fun hasPacket(): kotlin.Boolean {
       return _builder.hasPacket()
     }
 
     /**
      * <code>bytes proof_unreceived = 2 [(.gogoproto.moretags) = "yaml:&#92;"proof_unreceived&#92;""];</code>
      */
-    var proofUnreceived: com.google.protobuf.ByteString
+    public var proofUnreceived: com.google.protobuf.ByteString
       @JvmName("getProofUnreceived")
       get() = _builder.getProofUnreceived()
       @JvmName("setProofUnreceived")
@@ -59,14 +59,14 @@ object MsgTimeoutOnCloseKt {
     /**
      * <code>bytes proof_unreceived = 2 [(.gogoproto.moretags) = "yaml:&#92;"proof_unreceived&#92;""];</code>
      */
-    fun clearProofUnreceived() {
+    public fun clearProofUnreceived() {
       _builder.clearProofUnreceived()
     }
 
     /**
      * <code>bytes proof_close = 3 [(.gogoproto.moretags) = "yaml:&#92;"proof_close&#92;""];</code>
      */
-    var proofClose: com.google.protobuf.ByteString
+    public var proofClose: com.google.protobuf.ByteString
       @JvmName("getProofClose")
       get() = _builder.getProofClose()
       @JvmName("setProofClose")
@@ -76,14 +76,14 @@ object MsgTimeoutOnCloseKt {
     /**
      * <code>bytes proof_close = 3 [(.gogoproto.moretags) = "yaml:&#92;"proof_close&#92;""];</code>
      */
-    fun clearProofClose() {
+    public fun clearProofClose() {
       _builder.clearProofClose()
     }
 
     /**
      * <code>.ibc.core.client.v1.Height proof_height = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"proof_height&#92;""];</code>
      */
-    var proofHeight: ibc.core.client.v1.Client.Height
+    public var proofHeight: ibc.core.client.v1.Client.Height
       @JvmName("getProofHeight")
       get() = _builder.getProofHeight()
       @JvmName("setProofHeight")
@@ -93,21 +93,21 @@ object MsgTimeoutOnCloseKt {
     /**
      * <code>.ibc.core.client.v1.Height proof_height = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"proof_height&#92;""];</code>
      */
-    fun clearProofHeight() {
+    public fun clearProofHeight() {
       _builder.clearProofHeight()
     }
     /**
      * <code>.ibc.core.client.v1.Height proof_height = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"proof_height&#92;""];</code>
      * @return Whether the proofHeight field is set.
      */
-    fun hasProofHeight(): kotlin.Boolean {
+    public fun hasProofHeight(): kotlin.Boolean {
       return _builder.hasProofHeight()
     }
 
     /**
      * <code>uint64 next_sequence_recv = 5 [(.gogoproto.moretags) = "yaml:&#92;"next_sequence_recv&#92;""];</code>
      */
-    var nextSequenceRecv: kotlin.Long
+    public var nextSequenceRecv: kotlin.Long
       @JvmName("getNextSequenceRecv")
       get() = _builder.getNextSequenceRecv()
       @JvmName("setNextSequenceRecv")
@@ -117,14 +117,14 @@ object MsgTimeoutOnCloseKt {
     /**
      * <code>uint64 next_sequence_recv = 5 [(.gogoproto.moretags) = "yaml:&#92;"next_sequence_recv&#92;""];</code>
      */
-    fun clearNextSequenceRecv() {
+    public fun clearNextSequenceRecv() {
       _builder.clearNextSequenceRecv()
     }
 
     /**
      * <code>string signer = 6;</code>
      */
-    var signer: kotlin.String
+    public var signer: kotlin.String
       @JvmName("getSigner")
       get() = _builder.getSigner()
       @JvmName("setSigner")
@@ -134,11 +134,11 @@ object MsgTimeoutOnCloseKt {
     /**
      * <code>string signer = 6;</code>
      */
-    fun clearSigner() {
+    public fun clearSigner() {
       _builder.clearSigner()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.Tx.MsgTimeoutOnClose.copy(block: ibc.core.channel.v1.MsgTimeoutOnCloseKt.Dsl.() -> Unit): ibc.core.channel.v1.Tx.MsgTimeoutOnClose =
+public inline fun ibc.core.channel.v1.Tx.MsgTimeoutOnClose.copy(block: ibc.core.channel.v1.MsgTimeoutOnCloseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.Tx.MsgTimeoutOnClose =
   ibc.core.channel.v1.MsgTimeoutOnCloseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

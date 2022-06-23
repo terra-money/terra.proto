@@ -4,15 +4,15 @@
 package ibc.core.channel.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryNextSequenceReceiveResponse(block: ibc.core.channel.v1.QueryNextSequenceReceiveResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.QueryOuterClass.QueryNextSequenceReceiveResponse =
+public inline fun queryNextSequenceReceiveResponse(block: ibc.core.channel.v1.QueryNextSequenceReceiveResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.QueryOuterClass.QueryNextSequenceReceiveResponse =
   ibc.core.channel.v1.QueryNextSequenceReceiveResponseKt.Dsl._create(ibc.core.channel.v1.QueryOuterClass.QueryNextSequenceReceiveResponse.newBuilder()).apply { block() }._build()
-object QueryNextSequenceReceiveResponseKt {
+public object QueryNextSequenceReceiveResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.channel.v1.QueryOuterClass.QueryNextSequenceReceiveResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.channel.v1.QueryOuterClass.QueryNextSequenceReceiveResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.channel.v1.QueryOuterClass.QueryNextSequenceReceiveResponse.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object QueryNextSequenceReceiveResponseKt {
      *
      * <code>uint64 next_sequence_receive = 1;</code>
      */
-    var nextSequenceReceive: kotlin.Long
+    public var nextSequenceReceive: kotlin.Long
       @JvmName("getNextSequenceReceive")
       get() = _builder.getNextSequenceReceive()
       @JvmName("setNextSequenceReceive")
@@ -43,7 +43,7 @@ object QueryNextSequenceReceiveResponseKt {
      *
      * <code>uint64 next_sequence_receive = 1;</code>
      */
-    fun clearNextSequenceReceive() {
+    public fun clearNextSequenceReceive() {
       _builder.clearNextSequenceReceive()
     }
 
@@ -54,7 +54,7 @@ object QueryNextSequenceReceiveResponseKt {
      *
      * <code>bytes proof = 2;</code>
      */
-    var proof: com.google.protobuf.ByteString
+    public var proof: com.google.protobuf.ByteString
       @JvmName("getProof")
       get() = _builder.getProof()
       @JvmName("setProof")
@@ -68,7 +68,7 @@ object QueryNextSequenceReceiveResponseKt {
      *
      * <code>bytes proof = 2;</code>
      */
-    fun clearProof() {
+    public fun clearProof() {
       _builder.clearProof()
     }
 
@@ -79,7 +79,7 @@ object QueryNextSequenceReceiveResponseKt {
      *
      * <code>.ibc.core.client.v1.Height proof_height = 3 [(.gogoproto.nullable) = false];</code>
      */
-    var proofHeight: ibc.core.client.v1.Client.Height
+    public var proofHeight: ibc.core.client.v1.Client.Height
       @JvmName("getProofHeight")
       get() = _builder.getProofHeight()
       @JvmName("setProofHeight")
@@ -93,7 +93,7 @@ object QueryNextSequenceReceiveResponseKt {
      *
      * <code>.ibc.core.client.v1.Height proof_height = 3 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearProofHeight() {
+    public fun clearProofHeight() {
       _builder.clearProofHeight()
     }
     /**
@@ -104,11 +104,11 @@ object QueryNextSequenceReceiveResponseKt {
      * <code>.ibc.core.client.v1.Height proof_height = 3 [(.gogoproto.nullable) = false];</code>
      * @return Whether the proofHeight field is set.
      */
-    fun hasProofHeight(): kotlin.Boolean {
+    public fun hasProofHeight(): kotlin.Boolean {
       return _builder.hasProofHeight()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.channel.v1.QueryOuterClass.QueryNextSequenceReceiveResponse.copy(block: ibc.core.channel.v1.QueryNextSequenceReceiveResponseKt.Dsl.() -> Unit): ibc.core.channel.v1.QueryOuterClass.QueryNextSequenceReceiveResponse =
+public inline fun ibc.core.channel.v1.QueryOuterClass.QueryNextSequenceReceiveResponse.copy(block: ibc.core.channel.v1.QueryNextSequenceReceiveResponseKt.Dsl.() -> kotlin.Unit): ibc.core.channel.v1.QueryOuterClass.QueryNextSequenceReceiveResponse =
   ibc.core.channel.v1.QueryNextSequenceReceiveResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

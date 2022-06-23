@@ -4,15 +4,15 @@
 package tendermint.crypto;
 
 @kotlin.jvm.JvmSynthetic
-inline fun publicKey(block: tendermint.crypto.PublicKeyKt.Dsl.() -> Unit): tendermint.crypto.Keys.PublicKey =
+public inline fun publicKey(block: tendermint.crypto.PublicKeyKt.Dsl.() -> kotlin.Unit): tendermint.crypto.Keys.PublicKey =
   tendermint.crypto.PublicKeyKt.Dsl._create(tendermint.crypto.Keys.PublicKey.newBuilder()).apply { block() }._build()
-object PublicKeyKt {
+public object PublicKeyKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.crypto.Keys.PublicKey.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.crypto.Keys.PublicKey.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.crypto.Keys.PublicKey.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object PublicKeyKt {
     /**
      * <code>bytes ed25519 = 1;</code>
      */
-    var ed25519: com.google.protobuf.ByteString
+    public var ed25519: com.google.protobuf.ByteString
       @JvmName("getEd25519")
       get() = _builder.getEd25519()
       @JvmName("setEd25519")
@@ -35,21 +35,21 @@ object PublicKeyKt {
     /**
      * <code>bytes ed25519 = 1;</code>
      */
-    fun clearEd25519() {
+    public fun clearEd25519() {
       _builder.clearEd25519()
     }
     /**
      * <code>bytes ed25519 = 1;</code>
      * @return Whether the ed25519 field is set.
      */
-    fun hasEd25519(): kotlin.Boolean {
+    public fun hasEd25519(): kotlin.Boolean {
       return _builder.hasEd25519()
     }
 
     /**
      * <code>bytes secp256k1 = 2;</code>
      */
-    var secp256K1: com.google.protobuf.ByteString
+    public var secp256K1: com.google.protobuf.ByteString
       @JvmName("getSecp256K1")
       get() = _builder.getSecp256K1()
       @JvmName("setSecp256K1")
@@ -59,25 +59,25 @@ object PublicKeyKt {
     /**
      * <code>bytes secp256k1 = 2;</code>
      */
-    fun clearSecp256K1() {
+    public fun clearSecp256K1() {
       _builder.clearSecp256K1()
     }
     /**
      * <code>bytes secp256k1 = 2;</code>
      * @return Whether the secp256k1 field is set.
      */
-    fun hasSecp256K1(): kotlin.Boolean {
+    public fun hasSecp256K1(): kotlin.Boolean {
       return _builder.hasSecp256K1()
     }
-    val sumCase: tendermint.crypto.Keys.PublicKey.SumCase
+    public val sumCase: tendermint.crypto.Keys.PublicKey.SumCase
       @JvmName("getSumCase")
       get() = _builder.getSumCase()
 
-    fun clearSum() {
+    public fun clearSum() {
       _builder.clearSum()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.crypto.Keys.PublicKey.copy(block: tendermint.crypto.PublicKeyKt.Dsl.() -> Unit): tendermint.crypto.Keys.PublicKey =
+public inline fun tendermint.crypto.Keys.PublicKey.copy(block: tendermint.crypto.PublicKeyKt.Dsl.() -> kotlin.Unit): tendermint.crypto.Keys.PublicKey =
   tendermint.crypto.PublicKeyKt.Dsl._create(this.toBuilder()).apply { block() }._build()

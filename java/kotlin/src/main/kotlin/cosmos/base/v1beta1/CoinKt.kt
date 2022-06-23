@@ -4,15 +4,15 @@
 package cosmos.base.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun coin(block: cosmos.base.v1beta1.CoinKt.Dsl.() -> Unit): cosmos.base.v1beta1.CoinOuterClass.Coin =
+public inline fun coin(block: cosmos.base.v1beta1.CoinKt.Dsl.() -> kotlin.Unit): cosmos.base.v1beta1.CoinOuterClass.Coin =
   cosmos.base.v1beta1.CoinKt.Dsl._create(cosmos.base.v1beta1.CoinOuterClass.Coin.newBuilder()).apply { block() }._build()
-object CoinKt {
+public object CoinKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.v1beta1.CoinOuterClass.Coin.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.v1beta1.CoinOuterClass.Coin.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.v1beta1.CoinOuterClass.Coin.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object CoinKt {
     /**
      * <code>string denom = 1;</code>
      */
-    var denom: kotlin.String
+    public var denom: kotlin.String
       @JvmName("getDenom")
       get() = _builder.getDenom()
       @JvmName("setDenom")
@@ -35,14 +35,14 @@ object CoinKt {
     /**
      * <code>string denom = 1;</code>
      */
-    fun clearDenom() {
+    public fun clearDenom() {
       _builder.clearDenom()
     }
 
     /**
      * <code>string amount = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "Int"];</code>
      */
-    var amount: kotlin.String
+    public var amount: kotlin.String
       @JvmName("getAmount")
       get() = _builder.getAmount()
       @JvmName("setAmount")
@@ -52,11 +52,11 @@ object CoinKt {
     /**
      * <code>string amount = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "Int"];</code>
      */
-    fun clearAmount() {
+    public fun clearAmount() {
       _builder.clearAmount()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.v1beta1.CoinOuterClass.Coin.copy(block: cosmos.base.v1beta1.CoinKt.Dsl.() -> Unit): cosmos.base.v1beta1.CoinOuterClass.Coin =
+public inline fun cosmos.base.v1beta1.CoinOuterClass.Coin.copy(block: cosmos.base.v1beta1.CoinKt.Dsl.() -> kotlin.Unit): cosmos.base.v1beta1.CoinOuterClass.Coin =
   cosmos.base.v1beta1.CoinKt.Dsl._create(this.toBuilder()).apply { block() }._build()

@@ -4,15 +4,15 @@
 package ics23;
 
 @kotlin.jvm.JvmSynthetic
-inline fun existenceProof(block: ics23.ExistenceProofKt.Dsl.() -> Unit): ics23.Proofs.ExistenceProof =
+public inline fun existenceProof(block: ics23.ExistenceProofKt.Dsl.() -> kotlin.Unit): ics23.Proofs.ExistenceProof =
   ics23.ExistenceProofKt.Dsl._create(ics23.Proofs.ExistenceProof.newBuilder()).apply { block() }._build()
-object ExistenceProofKt {
+public object ExistenceProofKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ics23.Proofs.ExistenceProof.Builder
+  public class Dsl private constructor(
+    private val _builder: ics23.Proofs.ExistenceProof.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ics23.Proofs.ExistenceProof.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ExistenceProofKt {
     /**
      * <code>bytes key = 1;</code>
      */
-    var key: com.google.protobuf.ByteString
+    public var key: com.google.protobuf.ByteString
       @JvmName("getKey")
       get() = _builder.getKey()
       @JvmName("setKey")
@@ -35,14 +35,14 @@ object ExistenceProofKt {
     /**
      * <code>bytes key = 1;</code>
      */
-    fun clearKey() {
+    public fun clearKey() {
       _builder.clearKey()
     }
 
     /**
      * <code>bytes value = 2;</code>
      */
-    var value: com.google.protobuf.ByteString
+    public var value: com.google.protobuf.ByteString
       @JvmName("getValue")
       get() = _builder.getValue()
       @JvmName("setValue")
@@ -52,14 +52,14 @@ object ExistenceProofKt {
     /**
      * <code>bytes value = 2;</code>
      */
-    fun clearValue() {
+    public fun clearValue() {
       _builder.clearValue()
     }
 
     /**
      * <code>.ics23.LeafOp leaf = 3;</code>
      */
-    var leaf: ics23.Proofs.LeafOp
+    public var leaf: ics23.Proofs.LeafOp
       @JvmName("getLeaf")
       get() = _builder.getLeaf()
       @JvmName("setLeaf")
@@ -69,14 +69,14 @@ object ExistenceProofKt {
     /**
      * <code>.ics23.LeafOp leaf = 3;</code>
      */
-    fun clearLeaf() {
+    public fun clearLeaf() {
       _builder.clearLeaf()
     }
     /**
      * <code>.ics23.LeafOp leaf = 3;</code>
      * @return Whether the leaf field is set.
      */
-    fun hasLeaf(): kotlin.Boolean {
+    public fun hasLeaf(): kotlin.Boolean {
       return _builder.hasLeaf()
     }
 
@@ -85,11 +85,11 @@ object ExistenceProofKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class PathProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class PathProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .ics23.InnerOp path = 4;</code>
      */
-     val path: com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, PathProxy>
+     public val path: com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, PathProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getPathList()
@@ -100,7 +100,7 @@ object ExistenceProofKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addPath")
-    fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, PathProxy>.add(value: ics23.Proofs.InnerOp) {
+    public fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, PathProxy>.add(value: ics23.Proofs.InnerOp) {
       _builder.addPath(value)
     }/**
      * <code>repeated .ics23.InnerOp path = 4;</code>
@@ -108,7 +108,8 @@ object ExistenceProofKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignPath")
-    inline operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, PathProxy>.plusAssign(value: ics23.Proofs.InnerOp) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, PathProxy>.plusAssign(value: ics23.Proofs.InnerOp) {
       add(value)
     }/**
      * <code>repeated .ics23.InnerOp path = 4;</code>
@@ -116,7 +117,7 @@ object ExistenceProofKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllPath")
-    fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, PathProxy>.addAll(values: kotlin.collections.Iterable<ics23.Proofs.InnerOp>) {
+    public fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, PathProxy>.addAll(values: kotlin.collections.Iterable<ics23.Proofs.InnerOp>) {
       _builder.addAllPath(values)
     }/**
      * <code>repeated .ics23.InnerOp path = 4;</code>
@@ -124,7 +125,8 @@ object ExistenceProofKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllPath")
-    inline operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, PathProxy>.plusAssign(values: kotlin.collections.Iterable<ics23.Proofs.InnerOp>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, PathProxy>.plusAssign(values: kotlin.collections.Iterable<ics23.Proofs.InnerOp>) {
       addAll(values)
     }/**
      * <code>repeated .ics23.InnerOp path = 4;</code>
@@ -133,17 +135,17 @@ object ExistenceProofKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setPath")
-    operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, PathProxy>.set(index: kotlin.Int, value: ics23.Proofs.InnerOp) {
+    public operator fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, PathProxy>.set(index: kotlin.Int, value: ics23.Proofs.InnerOp) {
       _builder.setPath(index, value)
     }/**
      * <code>repeated .ics23.InnerOp path = 4;</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearPath")
-    fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, PathProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<ics23.Proofs.InnerOp, PathProxy>.clear() {
       _builder.clearPath()
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ics23.Proofs.ExistenceProof.copy(block: ics23.ExistenceProofKt.Dsl.() -> Unit): ics23.Proofs.ExistenceProof =
+public inline fun ics23.Proofs.ExistenceProof.copy(block: ics23.ExistenceProofKt.Dsl.() -> kotlin.Unit): ics23.Proofs.ExistenceProof =
   ics23.ExistenceProofKt.Dsl._create(this.toBuilder()).apply { block() }._build()

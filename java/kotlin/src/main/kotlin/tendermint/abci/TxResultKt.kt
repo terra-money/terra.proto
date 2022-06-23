@@ -4,15 +4,15 @@
 package tendermint.abci;
 
 @kotlin.jvm.JvmSynthetic
-inline fun txResult(block: tendermint.abci.TxResultKt.Dsl.() -> Unit): tendermint.abci.Types.TxResult =
+public inline fun txResult(block: tendermint.abci.TxResultKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.TxResult =
   tendermint.abci.TxResultKt.Dsl._create(tendermint.abci.Types.TxResult.newBuilder()).apply { block() }._build()
-object TxResultKt {
+public object TxResultKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: tendermint.abci.Types.TxResult.Builder
+  public class Dsl private constructor(
+    private val _builder: tendermint.abci.Types.TxResult.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: tendermint.abci.Types.TxResult.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object TxResultKt {
     /**
      * <code>int64 height = 1;</code>
      */
-    var height: kotlin.Long
+    public var height: kotlin.Long
       @JvmName("getHeight")
       get() = _builder.getHeight()
       @JvmName("setHeight")
@@ -35,14 +35,14 @@ object TxResultKt {
     /**
      * <code>int64 height = 1;</code>
      */
-    fun clearHeight() {
+    public fun clearHeight() {
       _builder.clearHeight()
     }
 
     /**
      * <code>uint32 index = 2;</code>
      */
-    var index: kotlin.Int
+    public var index: kotlin.Int
       @JvmName("getIndex")
       get() = _builder.getIndex()
       @JvmName("setIndex")
@@ -52,14 +52,14 @@ object TxResultKt {
     /**
      * <code>uint32 index = 2;</code>
      */
-    fun clearIndex() {
+    public fun clearIndex() {
       _builder.clearIndex()
     }
 
     /**
      * <code>bytes tx = 3;</code>
      */
-    var tx: com.google.protobuf.ByteString
+    public var tx: com.google.protobuf.ByteString
       @JvmName("getTx")
       get() = _builder.getTx()
       @JvmName("setTx")
@@ -69,14 +69,14 @@ object TxResultKt {
     /**
      * <code>bytes tx = 3;</code>
      */
-    fun clearTx() {
+    public fun clearTx() {
       _builder.clearTx()
     }
 
     /**
      * <code>.tendermint.abci.ResponseDeliverTx result = 4 [(.gogoproto.nullable) = false];</code>
      */
-    var result: tendermint.abci.Types.ResponseDeliverTx
+    public var result: tendermint.abci.Types.ResponseDeliverTx
       @JvmName("getResult")
       get() = _builder.getResult()
       @JvmName("setResult")
@@ -86,18 +86,18 @@ object TxResultKt {
     /**
      * <code>.tendermint.abci.ResponseDeliverTx result = 4 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearResult() {
+    public fun clearResult() {
       _builder.clearResult()
     }
     /**
      * <code>.tendermint.abci.ResponseDeliverTx result = 4 [(.gogoproto.nullable) = false];</code>
      * @return Whether the result field is set.
      */
-    fun hasResult(): kotlin.Boolean {
+    public fun hasResult(): kotlin.Boolean {
       return _builder.hasResult()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun tendermint.abci.Types.TxResult.copy(block: tendermint.abci.TxResultKt.Dsl.() -> Unit): tendermint.abci.Types.TxResult =
+public inline fun tendermint.abci.Types.TxResult.copy(block: tendermint.abci.TxResultKt.Dsl.() -> kotlin.Unit): tendermint.abci.Types.TxResult =
   tendermint.abci.TxResultKt.Dsl._create(this.toBuilder()).apply { block() }._build()

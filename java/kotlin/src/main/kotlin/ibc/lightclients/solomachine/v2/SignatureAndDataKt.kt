@@ -4,15 +4,15 @@
 package ibc.lightclients.solomachine.v2;
 
 @kotlin.jvm.JvmSynthetic
-inline fun signatureAndData(block: ibc.lightclients.solomachine.v2.SignatureAndDataKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v2.Solomachine.SignatureAndData =
+public inline fun signatureAndData(block: ibc.lightclients.solomachine.v2.SignatureAndDataKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v2.Solomachine.SignatureAndData =
   ibc.lightclients.solomachine.v2.SignatureAndDataKt.Dsl._create(ibc.lightclients.solomachine.v2.Solomachine.SignatureAndData.newBuilder()).apply { block() }._build()
-object SignatureAndDataKt {
+public object SignatureAndDataKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.lightclients.solomachine.v2.Solomachine.SignatureAndData.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.lightclients.solomachine.v2.Solomachine.SignatureAndData.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.lightclients.solomachine.v2.Solomachine.SignatureAndData.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object SignatureAndDataKt {
     /**
      * <code>bytes signature = 1;</code>
      */
-    var signature: com.google.protobuf.ByteString
+    public var signature: com.google.protobuf.ByteString
       @JvmName("getSignature")
       get() = _builder.getSignature()
       @JvmName("setSignature")
@@ -35,14 +35,14 @@ object SignatureAndDataKt {
     /**
      * <code>bytes signature = 1;</code>
      */
-    fun clearSignature() {
+    public fun clearSignature() {
       _builder.clearSignature()
     }
 
     /**
      * <code>.ibc.lightclients.solomachine.v2.DataType data_type = 2 [(.gogoproto.moretags) = "yaml:&#92;"data_type&#92;""];</code>
      */
-    var dataType: ibc.lightclients.solomachine.v2.Solomachine.DataType
+    public var dataType: ibc.lightclients.solomachine.v2.Solomachine.DataType
       @JvmName("getDataType")
       get() = _builder.getDataType()
       @JvmName("setDataType")
@@ -52,14 +52,14 @@ object SignatureAndDataKt {
     /**
      * <code>.ibc.lightclients.solomachine.v2.DataType data_type = 2 [(.gogoproto.moretags) = "yaml:&#92;"data_type&#92;""];</code>
      */
-    fun clearDataType() {
+    public fun clearDataType() {
       _builder.clearDataType()
     }
 
     /**
      * <code>bytes data = 3;</code>
      */
-    var data: com.google.protobuf.ByteString
+    public var data: com.google.protobuf.ByteString
       @JvmName("getData")
       get() = _builder.getData()
       @JvmName("setData")
@@ -69,14 +69,14 @@ object SignatureAndDataKt {
     /**
      * <code>bytes data = 3;</code>
      */
-    fun clearData() {
+    public fun clearData() {
       _builder.clearData()
     }
 
     /**
      * <code>uint64 timestamp = 4;</code>
      */
-    var timestamp: kotlin.Long
+    public var timestamp: kotlin.Long
       @JvmName("getTimestamp")
       get() = _builder.getTimestamp()
       @JvmName("setTimestamp")
@@ -86,11 +86,11 @@ object SignatureAndDataKt {
     /**
      * <code>uint64 timestamp = 4;</code>
      */
-    fun clearTimestamp() {
+    public fun clearTimestamp() {
       _builder.clearTimestamp()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.lightclients.solomachine.v2.Solomachine.SignatureAndData.copy(block: ibc.lightclients.solomachine.v2.SignatureAndDataKt.Dsl.() -> Unit): ibc.lightclients.solomachine.v2.Solomachine.SignatureAndData =
+public inline fun ibc.lightclients.solomachine.v2.Solomachine.SignatureAndData.copy(block: ibc.lightclients.solomachine.v2.SignatureAndDataKt.Dsl.() -> kotlin.Unit): ibc.lightclients.solomachine.v2.Solomachine.SignatureAndData =
   ibc.lightclients.solomachine.v2.SignatureAndDataKt.Dsl._create(this.toBuilder()).apply { block() }._build()

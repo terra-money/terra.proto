@@ -4,15 +4,15 @@
 package cosmos.bank.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgSendResponse(block: cosmos.bank.v1beta1.MsgSendResponseKt.Dsl.() -> Unit): cosmos.bank.v1beta1.Tx.MsgSendResponse =
+public inline fun msgSendResponse(block: cosmos.bank.v1beta1.MsgSendResponseKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.Tx.MsgSendResponse =
   cosmos.bank.v1beta1.MsgSendResponseKt.Dsl._create(cosmos.bank.v1beta1.Tx.MsgSendResponse.newBuilder()).apply { block() }._build()
-object MsgSendResponseKt {
+public object MsgSendResponseKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.bank.v1beta1.Tx.MsgSendResponse.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.bank.v1beta1.Tx.MsgSendResponse.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.bank.v1beta1.Tx.MsgSendResponse.Builder): Dsl = Dsl(builder)
@@ -24,5 +24,5 @@ object MsgSendResponseKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.bank.v1beta1.Tx.MsgSendResponse.copy(block: cosmos.bank.v1beta1.MsgSendResponseKt.Dsl.() -> Unit): cosmos.bank.v1beta1.Tx.MsgSendResponse =
+public inline fun cosmos.bank.v1beta1.Tx.MsgSendResponse.copy(block: cosmos.bank.v1beta1.MsgSendResponseKt.Dsl.() -> kotlin.Unit): cosmos.bank.v1beta1.Tx.MsgSendResponse =
   cosmos.bank.v1beta1.MsgSendResponseKt.Dsl._create(this.toBuilder()).apply { block() }._build()

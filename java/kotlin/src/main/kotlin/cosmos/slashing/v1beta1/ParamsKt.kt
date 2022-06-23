@@ -4,15 +4,15 @@
 package cosmos.slashing.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun params(block: cosmos.slashing.v1beta1.ParamsKt.Dsl.() -> Unit): cosmos.slashing.v1beta1.Slashing.Params =
+public inline fun params(block: cosmos.slashing.v1beta1.ParamsKt.Dsl.() -> kotlin.Unit): cosmos.slashing.v1beta1.Slashing.Params =
   cosmos.slashing.v1beta1.ParamsKt.Dsl._create(cosmos.slashing.v1beta1.Slashing.Params.newBuilder()).apply { block() }._build()
-object ParamsKt {
+public object ParamsKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.slashing.v1beta1.Slashing.Params.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.slashing.v1beta1.Slashing.Params.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.slashing.v1beta1.Slashing.Params.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object ParamsKt {
     /**
      * <code>int64 signed_blocks_window = 1 [(.gogoproto.moretags) = "yaml:&#92;"signed_blocks_window&#92;""];</code>
      */
-    var signedBlocksWindow: kotlin.Long
+    public var signedBlocksWindow: kotlin.Long
       @JvmName("getSignedBlocksWindow")
       get() = _builder.getSignedBlocksWindow()
       @JvmName("setSignedBlocksWindow")
@@ -35,14 +35,14 @@ object ParamsKt {
     /**
      * <code>int64 signed_blocks_window = 1 [(.gogoproto.moretags) = "yaml:&#92;"signed_blocks_window&#92;""];</code>
      */
-    fun clearSignedBlocksWindow() {
+    public fun clearSignedBlocksWindow() {
       _builder.clearSignedBlocksWindow()
     }
 
     /**
      * <code>bytes min_signed_per_window = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"min_signed_per_window&#92;""];</code>
      */
-    var minSignedPerWindow: com.google.protobuf.ByteString
+    public var minSignedPerWindow: com.google.protobuf.ByteString
       @JvmName("getMinSignedPerWindow")
       get() = _builder.getMinSignedPerWindow()
       @JvmName("setMinSignedPerWindow")
@@ -52,14 +52,14 @@ object ParamsKt {
     /**
      * <code>bytes min_signed_per_window = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"min_signed_per_window&#92;""];</code>
      */
-    fun clearMinSignedPerWindow() {
+    public fun clearMinSignedPerWindow() {
       _builder.clearMinSignedPerWindow()
     }
 
     /**
      * <code>.google.protobuf.Duration downtime_jail_duration = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"downtime_jail_duration&#92;"", (.gogoproto.stdduration) = true];</code>
      */
-    var downtimeJailDuration: com.google.protobuf.Duration
+    public var downtimeJailDuration: com.google.protobuf.Duration
       @JvmName("getDowntimeJailDuration")
       get() = _builder.getDowntimeJailDuration()
       @JvmName("setDowntimeJailDuration")
@@ -69,21 +69,21 @@ object ParamsKt {
     /**
      * <code>.google.protobuf.Duration downtime_jail_duration = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"downtime_jail_duration&#92;"", (.gogoproto.stdduration) = true];</code>
      */
-    fun clearDowntimeJailDuration() {
+    public fun clearDowntimeJailDuration() {
       _builder.clearDowntimeJailDuration()
     }
     /**
      * <code>.google.protobuf.Duration downtime_jail_duration = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"downtime_jail_duration&#92;"", (.gogoproto.stdduration) = true];</code>
      * @return Whether the downtimeJailDuration field is set.
      */
-    fun hasDowntimeJailDuration(): kotlin.Boolean {
+    public fun hasDowntimeJailDuration(): kotlin.Boolean {
       return _builder.hasDowntimeJailDuration()
     }
 
     /**
      * <code>bytes slash_fraction_double_sign = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"slash_fraction_double_sign&#92;""];</code>
      */
-    var slashFractionDoubleSign: com.google.protobuf.ByteString
+    public var slashFractionDoubleSign: com.google.protobuf.ByteString
       @JvmName("getSlashFractionDoubleSign")
       get() = _builder.getSlashFractionDoubleSign()
       @JvmName("setSlashFractionDoubleSign")
@@ -93,14 +93,14 @@ object ParamsKt {
     /**
      * <code>bytes slash_fraction_double_sign = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"slash_fraction_double_sign&#92;""];</code>
      */
-    fun clearSlashFractionDoubleSign() {
+    public fun clearSlashFractionDoubleSign() {
       _builder.clearSlashFractionDoubleSign()
     }
 
     /**
      * <code>bytes slash_fraction_downtime = 5 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"slash_fraction_downtime&#92;""];</code>
      */
-    var slashFractionDowntime: com.google.protobuf.ByteString
+    public var slashFractionDowntime: com.google.protobuf.ByteString
       @JvmName("getSlashFractionDowntime")
       get() = _builder.getSlashFractionDowntime()
       @JvmName("setSlashFractionDowntime")
@@ -110,11 +110,11 @@ object ParamsKt {
     /**
      * <code>bytes slash_fraction_downtime = 5 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"slash_fraction_downtime&#92;""];</code>
      */
-    fun clearSlashFractionDowntime() {
+    public fun clearSlashFractionDowntime() {
       _builder.clearSlashFractionDowntime()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.slashing.v1beta1.Slashing.Params.copy(block: cosmos.slashing.v1beta1.ParamsKt.Dsl.() -> Unit): cosmos.slashing.v1beta1.Slashing.Params =
+public inline fun cosmos.slashing.v1beta1.Slashing.Params.copy(block: cosmos.slashing.v1beta1.ParamsKt.Dsl.() -> kotlin.Unit): cosmos.slashing.v1beta1.Slashing.Params =
   cosmos.slashing.v1beta1.ParamsKt.Dsl._create(this.toBuilder()).apply { block() }._build()

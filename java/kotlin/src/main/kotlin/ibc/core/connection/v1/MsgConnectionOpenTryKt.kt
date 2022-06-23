@@ -4,15 +4,15 @@
 package ibc.core.connection.v1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun msgConnectionOpenTry(block: ibc.core.connection.v1.MsgConnectionOpenTryKt.Dsl.() -> Unit): ibc.core.connection.v1.Tx.MsgConnectionOpenTry =
+public inline fun msgConnectionOpenTry(block: ibc.core.connection.v1.MsgConnectionOpenTryKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.Tx.MsgConnectionOpenTry =
   ibc.core.connection.v1.MsgConnectionOpenTryKt.Dsl._create(ibc.core.connection.v1.Tx.MsgConnectionOpenTry.newBuilder()).apply { block() }._build()
-object MsgConnectionOpenTryKt {
+public object MsgConnectionOpenTryKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: ibc.core.connection.v1.Tx.MsgConnectionOpenTry.Builder
+  public class Dsl private constructor(
+    private val _builder: ibc.core.connection.v1.Tx.MsgConnectionOpenTry.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: ibc.core.connection.v1.Tx.MsgConnectionOpenTry.Builder): Dsl = Dsl(builder)
@@ -25,7 +25,7 @@ object MsgConnectionOpenTryKt {
     /**
      * <code>string client_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"client_id&#92;""];</code>
      */
-    var clientId: kotlin.String
+    public var clientId: kotlin.String
       @JvmName("getClientId")
       get() = _builder.getClientId()
       @JvmName("setClientId")
@@ -35,7 +35,7 @@ object MsgConnectionOpenTryKt {
     /**
      * <code>string client_id = 1 [(.gogoproto.moretags) = "yaml:&#92;"client_id&#92;""];</code>
      */
-    fun clearClientId() {
+    public fun clearClientId() {
       _builder.clearClientId()
     }
 
@@ -47,7 +47,7 @@ object MsgConnectionOpenTryKt {
      *
      * <code>string previous_connection_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"previous_connection_id&#92;""];</code>
      */
-    var previousConnectionId: kotlin.String
+    public var previousConnectionId: kotlin.String
       @JvmName("getPreviousConnectionId")
       get() = _builder.getPreviousConnectionId()
       @JvmName("setPreviousConnectionId")
@@ -62,14 +62,14 @@ object MsgConnectionOpenTryKt {
      *
      * <code>string previous_connection_id = 2 [(.gogoproto.moretags) = "yaml:&#92;"previous_connection_id&#92;""];</code>
      */
-    fun clearPreviousConnectionId() {
+    public fun clearPreviousConnectionId() {
       _builder.clearPreviousConnectionId()
     }
 
     /**
      * <code>.google.protobuf.Any client_state = 3 [(.gogoproto.moretags) = "yaml:&#92;"client_state&#92;""];</code>
      */
-    var clientState: com.google.protobuf.Any
+    public var clientState: com.google.protobuf.Any
       @JvmName("getClientState")
       get() = _builder.getClientState()
       @JvmName("setClientState")
@@ -79,21 +79,21 @@ object MsgConnectionOpenTryKt {
     /**
      * <code>.google.protobuf.Any client_state = 3 [(.gogoproto.moretags) = "yaml:&#92;"client_state&#92;""];</code>
      */
-    fun clearClientState() {
+    public fun clearClientState() {
       _builder.clearClientState()
     }
     /**
      * <code>.google.protobuf.Any client_state = 3 [(.gogoproto.moretags) = "yaml:&#92;"client_state&#92;""];</code>
      * @return Whether the clientState field is set.
      */
-    fun hasClientState(): kotlin.Boolean {
+    public fun hasClientState(): kotlin.Boolean {
       return _builder.hasClientState()
     }
 
     /**
      * <code>.ibc.core.connection.v1.Counterparty counterparty = 4 [(.gogoproto.nullable) = false];</code>
      */
-    var counterparty: ibc.core.connection.v1.Connection.Counterparty
+    public var counterparty: ibc.core.connection.v1.Connection.Counterparty
       @JvmName("getCounterparty")
       get() = _builder.getCounterparty()
       @JvmName("setCounterparty")
@@ -103,21 +103,21 @@ object MsgConnectionOpenTryKt {
     /**
      * <code>.ibc.core.connection.v1.Counterparty counterparty = 4 [(.gogoproto.nullable) = false];</code>
      */
-    fun clearCounterparty() {
+    public fun clearCounterparty() {
       _builder.clearCounterparty()
     }
     /**
      * <code>.ibc.core.connection.v1.Counterparty counterparty = 4 [(.gogoproto.nullable) = false];</code>
      * @return Whether the counterparty field is set.
      */
-    fun hasCounterparty(): kotlin.Boolean {
+    public fun hasCounterparty(): kotlin.Boolean {
       return _builder.hasCounterparty()
     }
 
     /**
      * <code>uint64 delay_period = 5 [(.gogoproto.moretags) = "yaml:&#92;"delay_period&#92;""];</code>
      */
-    var delayPeriod: kotlin.Long
+    public var delayPeriod: kotlin.Long
       @JvmName("getDelayPeriod")
       get() = _builder.getDelayPeriod()
       @JvmName("setDelayPeriod")
@@ -127,7 +127,7 @@ object MsgConnectionOpenTryKt {
     /**
      * <code>uint64 delay_period = 5 [(.gogoproto.moretags) = "yaml:&#92;"delay_period&#92;""];</code>
      */
-    fun clearDelayPeriod() {
+    public fun clearDelayPeriod() {
       _builder.clearDelayPeriod()
     }
 
@@ -136,11 +136,11 @@ object MsgConnectionOpenTryKt {
      * generics.
      */
     @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
-    class CounterpartyVersionsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
+    public class CounterpartyVersionsProxy private constructor() : com.google.protobuf.kotlin.DslProxy()
     /**
      * <code>repeated .ibc.core.connection.v1.Version counterparty_versions = 6 [(.gogoproto.moretags) = "yaml:&#92;"counterparty_versions&#92;""];</code>
      */
-     val counterpartyVersions: com.google.protobuf.kotlin.DslList<ibc.core.connection.v1.Connection.Version, CounterpartyVersionsProxy>
+     public val counterpartyVersions: com.google.protobuf.kotlin.DslList<ibc.core.connection.v1.Connection.Version, CounterpartyVersionsProxy>
       @kotlin.jvm.JvmSynthetic
       get() = com.google.protobuf.kotlin.DslList(
         _builder.getCounterpartyVersionsList()
@@ -151,7 +151,7 @@ object MsgConnectionOpenTryKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addCounterpartyVersions")
-    fun com.google.protobuf.kotlin.DslList<ibc.core.connection.v1.Connection.Version, CounterpartyVersionsProxy>.add(value: ibc.core.connection.v1.Connection.Version) {
+    public fun com.google.protobuf.kotlin.DslList<ibc.core.connection.v1.Connection.Version, CounterpartyVersionsProxy>.add(value: ibc.core.connection.v1.Connection.Version) {
       _builder.addCounterpartyVersions(value)
     }/**
      * <code>repeated .ibc.core.connection.v1.Version counterparty_versions = 6 [(.gogoproto.moretags) = "yaml:&#92;"counterparty_versions&#92;""];</code>
@@ -159,7 +159,8 @@ object MsgConnectionOpenTryKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignCounterpartyVersions")
-    inline operator fun com.google.protobuf.kotlin.DslList<ibc.core.connection.v1.Connection.Version, CounterpartyVersionsProxy>.plusAssign(value: ibc.core.connection.v1.Connection.Version) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<ibc.core.connection.v1.Connection.Version, CounterpartyVersionsProxy>.plusAssign(value: ibc.core.connection.v1.Connection.Version) {
       add(value)
     }/**
      * <code>repeated .ibc.core.connection.v1.Version counterparty_versions = 6 [(.gogoproto.moretags) = "yaml:&#92;"counterparty_versions&#92;""];</code>
@@ -167,7 +168,7 @@ object MsgConnectionOpenTryKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("addAllCounterpartyVersions")
-    fun com.google.protobuf.kotlin.DslList<ibc.core.connection.v1.Connection.Version, CounterpartyVersionsProxy>.addAll(values: kotlin.collections.Iterable<ibc.core.connection.v1.Connection.Version>) {
+    public fun com.google.protobuf.kotlin.DslList<ibc.core.connection.v1.Connection.Version, CounterpartyVersionsProxy>.addAll(values: kotlin.collections.Iterable<ibc.core.connection.v1.Connection.Version>) {
       _builder.addAllCounterpartyVersions(values)
     }/**
      * <code>repeated .ibc.core.connection.v1.Version counterparty_versions = 6 [(.gogoproto.moretags) = "yaml:&#92;"counterparty_versions&#92;""];</code>
@@ -175,7 +176,8 @@ object MsgConnectionOpenTryKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("plusAssignAllCounterpartyVersions")
-    inline operator fun com.google.protobuf.kotlin.DslList<ibc.core.connection.v1.Connection.Version, CounterpartyVersionsProxy>.plusAssign(values: kotlin.collections.Iterable<ibc.core.connection.v1.Connection.Version>) {
+    @Suppress("NOTHING_TO_INLINE")
+    public inline operator fun com.google.protobuf.kotlin.DslList<ibc.core.connection.v1.Connection.Version, CounterpartyVersionsProxy>.plusAssign(values: kotlin.collections.Iterable<ibc.core.connection.v1.Connection.Version>) {
       addAll(values)
     }/**
      * <code>repeated .ibc.core.connection.v1.Version counterparty_versions = 6 [(.gogoproto.moretags) = "yaml:&#92;"counterparty_versions&#92;""];</code>
@@ -184,20 +186,20 @@ object MsgConnectionOpenTryKt {
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("setCounterpartyVersions")
-    operator fun com.google.protobuf.kotlin.DslList<ibc.core.connection.v1.Connection.Version, CounterpartyVersionsProxy>.set(index: kotlin.Int, value: ibc.core.connection.v1.Connection.Version) {
+    public operator fun com.google.protobuf.kotlin.DslList<ibc.core.connection.v1.Connection.Version, CounterpartyVersionsProxy>.set(index: kotlin.Int, value: ibc.core.connection.v1.Connection.Version) {
       _builder.setCounterpartyVersions(index, value)
     }/**
      * <code>repeated .ibc.core.connection.v1.Version counterparty_versions = 6 [(.gogoproto.moretags) = "yaml:&#92;"counterparty_versions&#92;""];</code>
      */
     @kotlin.jvm.JvmSynthetic
     @kotlin.jvm.JvmName("clearCounterpartyVersions")
-    fun com.google.protobuf.kotlin.DslList<ibc.core.connection.v1.Connection.Version, CounterpartyVersionsProxy>.clear() {
+    public fun com.google.protobuf.kotlin.DslList<ibc.core.connection.v1.Connection.Version, CounterpartyVersionsProxy>.clear() {
       _builder.clearCounterpartyVersions()
     }
     /**
      * <code>.ibc.core.client.v1.Height proof_height = 7 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"proof_height&#92;""];</code>
      */
-    var proofHeight: ibc.core.client.v1.Client.Height
+    public var proofHeight: ibc.core.client.v1.Client.Height
       @JvmName("getProofHeight")
       get() = _builder.getProofHeight()
       @JvmName("setProofHeight")
@@ -207,14 +209,14 @@ object MsgConnectionOpenTryKt {
     /**
      * <code>.ibc.core.client.v1.Height proof_height = 7 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"proof_height&#92;""];</code>
      */
-    fun clearProofHeight() {
+    public fun clearProofHeight() {
       _builder.clearProofHeight()
     }
     /**
      * <code>.ibc.core.client.v1.Height proof_height = 7 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"proof_height&#92;""];</code>
      * @return Whether the proofHeight field is set.
      */
-    fun hasProofHeight(): kotlin.Boolean {
+    public fun hasProofHeight(): kotlin.Boolean {
       return _builder.hasProofHeight()
     }
 
@@ -226,7 +228,7 @@ object MsgConnectionOpenTryKt {
      *
      * <code>bytes proof_init = 8 [(.gogoproto.moretags) = "yaml:&#92;"proof_init&#92;""];</code>
      */
-    var proofInit: com.google.protobuf.ByteString
+    public var proofInit: com.google.protobuf.ByteString
       @JvmName("getProofInit")
       get() = _builder.getProofInit()
       @JvmName("setProofInit")
@@ -241,7 +243,7 @@ object MsgConnectionOpenTryKt {
      *
      * <code>bytes proof_init = 8 [(.gogoproto.moretags) = "yaml:&#92;"proof_init&#92;""];</code>
      */
-    fun clearProofInit() {
+    public fun clearProofInit() {
       _builder.clearProofInit()
     }
 
@@ -252,7 +254,7 @@ object MsgConnectionOpenTryKt {
      *
      * <code>bytes proof_client = 9 [(.gogoproto.moretags) = "yaml:&#92;"proof_client&#92;""];</code>
      */
-    var proofClient: com.google.protobuf.ByteString
+    public var proofClient: com.google.protobuf.ByteString
       @JvmName("getProofClient")
       get() = _builder.getProofClient()
       @JvmName("setProofClient")
@@ -266,7 +268,7 @@ object MsgConnectionOpenTryKt {
      *
      * <code>bytes proof_client = 9 [(.gogoproto.moretags) = "yaml:&#92;"proof_client&#92;""];</code>
      */
-    fun clearProofClient() {
+    public fun clearProofClient() {
       _builder.clearProofClient()
     }
 
@@ -277,7 +279,7 @@ object MsgConnectionOpenTryKt {
      *
      * <code>bytes proof_consensus = 10 [(.gogoproto.moretags) = "yaml:&#92;"proof_consensus&#92;""];</code>
      */
-    var proofConsensus: com.google.protobuf.ByteString
+    public var proofConsensus: com.google.protobuf.ByteString
       @JvmName("getProofConsensus")
       get() = _builder.getProofConsensus()
       @JvmName("setProofConsensus")
@@ -291,14 +293,14 @@ object MsgConnectionOpenTryKt {
      *
      * <code>bytes proof_consensus = 10 [(.gogoproto.moretags) = "yaml:&#92;"proof_consensus&#92;""];</code>
      */
-    fun clearProofConsensus() {
+    public fun clearProofConsensus() {
       _builder.clearProofConsensus()
     }
 
     /**
      * <code>.ibc.core.client.v1.Height consensus_height = 11 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"consensus_height&#92;""];</code>
      */
-    var consensusHeight: ibc.core.client.v1.Client.Height
+    public var consensusHeight: ibc.core.client.v1.Client.Height
       @JvmName("getConsensusHeight")
       get() = _builder.getConsensusHeight()
       @JvmName("setConsensusHeight")
@@ -308,21 +310,21 @@ object MsgConnectionOpenTryKt {
     /**
      * <code>.ibc.core.client.v1.Height consensus_height = 11 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"consensus_height&#92;""];</code>
      */
-    fun clearConsensusHeight() {
+    public fun clearConsensusHeight() {
       _builder.clearConsensusHeight()
     }
     /**
      * <code>.ibc.core.client.v1.Height consensus_height = 11 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"consensus_height&#92;""];</code>
      * @return Whether the consensusHeight field is set.
      */
-    fun hasConsensusHeight(): kotlin.Boolean {
+    public fun hasConsensusHeight(): kotlin.Boolean {
       return _builder.hasConsensusHeight()
     }
 
     /**
      * <code>string signer = 12;</code>
      */
-    var signer: kotlin.String
+    public var signer: kotlin.String
       @JvmName("getSigner")
       get() = _builder.getSigner()
       @JvmName("setSigner")
@@ -332,11 +334,11 @@ object MsgConnectionOpenTryKt {
     /**
      * <code>string signer = 12;</code>
      */
-    fun clearSigner() {
+    public fun clearSigner() {
       _builder.clearSigner()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun ibc.core.connection.v1.Tx.MsgConnectionOpenTry.copy(block: ibc.core.connection.v1.MsgConnectionOpenTryKt.Dsl.() -> Unit): ibc.core.connection.v1.Tx.MsgConnectionOpenTry =
+public inline fun ibc.core.connection.v1.Tx.MsgConnectionOpenTry.copy(block: ibc.core.connection.v1.MsgConnectionOpenTryKt.Dsl.() -> kotlin.Unit): ibc.core.connection.v1.Tx.MsgConnectionOpenTry =
   ibc.core.connection.v1.MsgConnectionOpenTryKt.Dsl._create(this.toBuilder()).apply { block() }._build()

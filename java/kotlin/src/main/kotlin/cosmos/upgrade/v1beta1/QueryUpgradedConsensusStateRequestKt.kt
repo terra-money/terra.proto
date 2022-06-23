@@ -4,15 +4,15 @@
 package cosmos.upgrade.v1beta1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun queryUpgradedConsensusStateRequest(block: cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateRequestKt.Dsl.() -> Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateRequest =
+public inline fun queryUpgradedConsensusStateRequest(block: cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateRequestKt.Dsl.() -> kotlin.Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateRequest =
   cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateRequestKt.Dsl._create(cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateRequest.newBuilder()).apply { block() }._build()
-object QueryUpgradedConsensusStateRequestKt {
+public object QueryUpgradedConsensusStateRequestKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateRequest.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateRequest.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateRequest.Builder): Dsl = Dsl(builder)
@@ -30,7 +30,7 @@ object QueryUpgradedConsensusStateRequestKt {
      *
      * <code>int64 last_height = 1;</code>
      */
-    var lastHeight: kotlin.Long
+    public var lastHeight: kotlin.Long
       @JvmName("getLastHeight")
       get() = _builder.getLastHeight()
       @JvmName("setLastHeight")
@@ -45,11 +45,11 @@ object QueryUpgradedConsensusStateRequestKt {
      *
      * <code>int64 last_height = 1;</code>
      */
-    fun clearLastHeight() {
+    public fun clearLastHeight() {
       _builder.clearLastHeight()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateRequest.copy(block: cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateRequestKt.Dsl.() -> Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateRequest =
+public inline fun cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateRequest.copy(block: cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateRequestKt.Dsl.() -> kotlin.Unit): cosmos.upgrade.v1beta1.QueryOuterClass.QueryUpgradedConsensusStateRequest =
   cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()

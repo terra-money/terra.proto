@@ -4,15 +4,15 @@
 package cosmos.base.reflection.v2alpha1;
 
 @kotlin.jvm.JvmSynthetic
-inline fun chainDescriptor(block: cosmos.base.reflection.v2alpha1.ChainDescriptorKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.ChainDescriptor =
+public inline fun chainDescriptor(block: cosmos.base.reflection.v2alpha1.ChainDescriptorKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.ChainDescriptor =
   cosmos.base.reflection.v2alpha1.ChainDescriptorKt.Dsl._create(cosmos.base.reflection.v2alpha1.Reflection.ChainDescriptor.newBuilder()).apply { block() }._build()
-object ChainDescriptorKt {
+public object ChainDescriptorKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
-  class Dsl private constructor(
-    @kotlin.jvm.JvmField private val _builder: cosmos.base.reflection.v2alpha1.Reflection.ChainDescriptor.Builder
+  public class Dsl private constructor(
+    private val _builder: cosmos.base.reflection.v2alpha1.Reflection.ChainDescriptor.Builder
   ) {
-    companion object {
+    public companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
       internal fun _create(builder: cosmos.base.reflection.v2alpha1.Reflection.ChainDescriptor.Builder): Dsl = Dsl(builder)
@@ -29,7 +29,7 @@ object ChainDescriptorKt {
      *
      * <code>string id = 1;</code>
      */
-    var id: kotlin.String
+    public var id: kotlin.String
       @JvmName("getId")
       get() = _builder.getId()
       @JvmName("setId")
@@ -43,11 +43,11 @@ object ChainDescriptorKt {
      *
      * <code>string id = 1;</code>
      */
-    fun clearId() {
+    public fun clearId() {
       _builder.clearId()
     }
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun cosmos.base.reflection.v2alpha1.Reflection.ChainDescriptor.copy(block: cosmos.base.reflection.v2alpha1.ChainDescriptorKt.Dsl.() -> Unit): cosmos.base.reflection.v2alpha1.Reflection.ChainDescriptor =
+public inline fun cosmos.base.reflection.v2alpha1.Reflection.ChainDescriptor.copy(block: cosmos.base.reflection.v2alpha1.ChainDescriptorKt.Dsl.() -> kotlin.Unit): cosmos.base.reflection.v2alpha1.Reflection.ChainDescriptor =
   cosmos.base.reflection.v2alpha1.ChainDescriptorKt.Dsl._create(this.toBuilder()).apply { block() }._build()
