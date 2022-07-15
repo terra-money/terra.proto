@@ -174,6 +174,31 @@ class QueryAllowancesResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class QueryAllowancesByGranterRequest(betterproto.Message):
+    """
+    QueryAllowancesByGranterRequest is the request type for the
+    Query/AllowancesByGranter RPC method.
+    """
+
+    granter: str = betterproto.string_field(1)
+    # pagination defines an pagination for the request.
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class QueryAllowancesByGranterResponse(betterproto.Message):
+    """
+    QueryAllowancesByGranterResponse is the response type for the
+    Query/AllowancesByGranter RPC method.
+    """
+
+    # allowances that have been issued by the granter.
+    allowances: List["Grant"] = betterproto.message_field(1)
+    # pagination defines an pagination for the response.
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
 class GenesisState(betterproto.Message):
     """
     GenesisState contains a set of fee allowances, persisted from the store
@@ -249,6 +274,24 @@ class QueryStub(betterproto.ServiceStub):
             QueryAllowancesResponse,
         )
 
+    async def allowances_by_granter(
+        self,
+        *,
+        granter: str = "",
+        pagination: "__base_query_v1_beta1__.PageRequest" = None
+    ) -> "QueryAllowancesByGranterResponse":
+
+        request = QueryAllowancesByGranterRequest()
+        request.granter = granter
+        if pagination is not None:
+            request.pagination = pagination
+
+        return await self._unary_unary(
+            "/cosmos.feegrant.v1beta1.Query/AllowancesByGranter",
+            request,
+            QueryAllowancesByGranterResponse,
+        )
+
 
 class MsgBase(ServiceBase):
     async def grant_allowance(
@@ -313,6 +356,11 @@ class QueryBase(ServiceBase):
     ) -> "QueryAllowancesResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def allowances_by_granter(
+        self, granter: str, pagination: "__base_query_v1_beta1__.PageRequest"
+    ) -> "QueryAllowancesByGranterResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
     async def __rpc_allowance(self, stream: grpclib.server.Stream) -> None:
         request = await stream.recv_message()
 
@@ -335,6 +383,17 @@ class QueryBase(ServiceBase):
         response = await self.allowances(**request_kwargs)
         await stream.send_message(response)
 
+    async def __rpc_allowances_by_granter(self, stream: grpclib.server.Stream) -> None:
+        request = await stream.recv_message()
+
+        request_kwargs = {
+            "granter": request.granter,
+            "pagination": request.pagination,
+        }
+
+        response = await self.allowances_by_granter(**request_kwargs)
+        await stream.send_message(response)
+
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
             "/cosmos.feegrant.v1beta1.Query/Allowance": grpclib.const.Handler(
@@ -348,6 +407,12 @@ class QueryBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryAllowancesRequest,
                 QueryAllowancesResponse,
+            ),
+            "/cosmos.feegrant.v1beta1.Query/AllowancesByGranter": grpclib.const.Handler(
+                self.__rpc_allowances_by_granter,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                QueryAllowancesByGranterRequest,
+                QueryAllowancesByGranterResponse,
             ),
         }
 
