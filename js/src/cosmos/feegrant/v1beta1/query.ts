@@ -39,6 +39,21 @@ export interface QueryAllowancesResponse {
   pagination?: PageResponse;
 }
 
+/** QueryAllowancesByGranterRequest is the request type for the Query/AllowancesByGranter RPC method. */
+export interface QueryAllowancesByGranterRequest {
+  granter: string;
+  /** pagination defines an pagination for the request. */
+  pagination?: PageRequest;
+}
+
+/** QueryAllowancesByGranterResponse is the response type for the Query/AllowancesByGranter RPC method. */
+export interface QueryAllowancesByGranterResponse {
+  /** allowances that have been issued by the granter. */
+  allowances: Grant[];
+  /** pagination defines an pagination for the response. */
+  pagination?: PageResponse;
+}
+
 const baseQueryAllowanceRequest: object = { granter: "", grantee: "" };
 
 export const QueryAllowanceRequest = {
@@ -320,6 +335,159 @@ export const QueryAllowancesResponse = {
   },
 };
 
+const baseQueryAllowancesByGranterRequest: object = { granter: "" };
+
+export const QueryAllowancesByGranterRequest = {
+  encode(message: QueryAllowancesByGranterRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.granter !== "") {
+      writer.uint32(10).string(message.granter);
+    }
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllowancesByGranterRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryAllowancesByGranterRequest } as QueryAllowancesByGranterRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.granter = reader.string();
+          break;
+        case 2:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllowancesByGranterRequest {
+    const message = { ...baseQueryAllowancesByGranterRequest } as QueryAllowancesByGranterRequest;
+    if (object.granter !== undefined && object.granter !== null) {
+      message.granter = String(object.granter);
+    } else {
+      message.granter = "";
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryAllowancesByGranterRequest): unknown {
+    const obj: any = {};
+    message.granter !== undefined && (obj.granter = message.granter);
+    message.pagination !== undefined &&
+      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryAllowancesByGranterRequest>): QueryAllowancesByGranterRequest {
+    const message = { ...baseQueryAllowancesByGranterRequest } as QueryAllowancesByGranterRequest;
+    if (object.granter !== undefined && object.granter !== null) {
+      message.granter = object.granter;
+    } else {
+      message.granter = "";
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+};
+
+const baseQueryAllowancesByGranterResponse: object = {};
+
+export const QueryAllowancesByGranterResponse = {
+  encode(message: QueryAllowancesByGranterResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.allowances) {
+      Grant.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllowancesByGranterResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryAllowancesByGranterResponse } as QueryAllowancesByGranterResponse;
+    message.allowances = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.allowances.push(Grant.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllowancesByGranterResponse {
+    const message = { ...baseQueryAllowancesByGranterResponse } as QueryAllowancesByGranterResponse;
+    message.allowances = [];
+    if (object.allowances !== undefined && object.allowances !== null) {
+      for (const e of object.allowances) {
+        message.allowances.push(Grant.fromJSON(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryAllowancesByGranterResponse): unknown {
+    const obj: any = {};
+    if (message.allowances) {
+      obj.allowances = message.allowances.map((e) => (e ? Grant.toJSON(e) : undefined));
+    } else {
+      obj.allowances = [];
+    }
+    message.pagination !== undefined &&
+      (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryAllowancesByGranterResponse>): QueryAllowancesByGranterResponse {
+    const message = { ...baseQueryAllowancesByGranterResponse } as QueryAllowancesByGranterResponse;
+    message.allowances = [];
+    if (object.allowances !== undefined && object.allowances !== null) {
+      for (const e of object.allowances) {
+        message.allowances.push(Grant.fromPartial(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Allowance returns fee granted to the grantee by the granter. */
@@ -332,6 +500,14 @@ export interface Query {
     request: DeepPartial<QueryAllowancesRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryAllowancesResponse>;
+  /**
+   * AllowancesByGranter returns all the grants given by an address
+   * Since v0.46
+   */
+  AllowancesByGranter(
+    request: DeepPartial<QueryAllowancesByGranterRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAllowancesByGranterResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -341,6 +517,7 @@ export class QueryClientImpl implements Query {
     this.rpc = rpc;
     this.Allowance = this.Allowance.bind(this);
     this.Allowances = this.Allowances.bind(this);
+    this.AllowancesByGranter = this.AllowancesByGranter.bind(this);
   }
 
   Allowance(
@@ -355,6 +532,17 @@ export class QueryClientImpl implements Query {
     metadata?: grpc.Metadata,
   ): Promise<QueryAllowancesResponse> {
     return this.rpc.unary(QueryAllowancesDesc, QueryAllowancesRequest.fromPartial(request), metadata);
+  }
+
+  AllowancesByGranter(
+    request: DeepPartial<QueryAllowancesByGranterRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAllowancesByGranterResponse> {
+    return this.rpc.unary(
+      QueryAllowancesByGranterDesc,
+      QueryAllowancesByGranterRequest.fromPartial(request),
+      metadata,
+    );
   }
 }
 
@@ -398,6 +586,28 @@ export const QueryAllowancesDesc: UnaryMethodDefinitionish = {
     deserializeBinary(data: Uint8Array) {
       return {
         ...QueryAllowancesResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryAllowancesByGranterDesc: UnaryMethodDefinitionish = {
+  methodName: "AllowancesByGranter",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryAllowancesByGranterRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryAllowancesByGranterResponse.decode(data),
         toObject() {
           return this;
         },
