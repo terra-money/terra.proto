@@ -10,6 +10,30 @@ import grpclib
 
 
 @dataclass(eq=False, repr=False)
+class MsgCreateVestingAccount(betterproto.Message):
+    """
+    MsgCreateVestingAccount defines a message that enables creating a vesting
+    account.
+    """
+
+    from_address: str = betterproto.string_field(1)
+    to_address: str = betterproto.string_field(2)
+    amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(3)
+    end_time: int = betterproto.int64_field(4)
+    delayed: bool = betterproto.bool_field(5)
+
+
+@dataclass(eq=False, repr=False)
+class MsgCreateVestingAccountResponse(betterproto.Message):
+    """
+    MsgCreateVestingAccountResponse defines the Msg/CreateVestingAccount
+    response type.
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
 class BaseVestingAccount(betterproto.Message):
     """
     BaseVestingAccount implements the VestingAccount interface. It contains all
@@ -77,73 +101,6 @@ class PermanentLockedAccount(betterproto.Message):
     base_vesting_account: "BaseVestingAccount" = betterproto.message_field(1)
 
 
-@dataclass(eq=False, repr=False)
-class MsgCreateVestingAccount(betterproto.Message):
-    """
-    MsgCreateVestingAccount defines a message that enables creating a vesting
-    account.
-    """
-
-    from_address: str = betterproto.string_field(1)
-    to_address: str = betterproto.string_field(2)
-    amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(3)
-    end_time: int = betterproto.int64_field(4)
-    delayed: bool = betterproto.bool_field(5)
-
-
-@dataclass(eq=False, repr=False)
-class MsgCreateVestingAccountResponse(betterproto.Message):
-    """
-    MsgCreateVestingAccountResponse defines the Msg/CreateVestingAccount
-    response type.
-    """
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class MsgCreatePeriodicVestingAccount(betterproto.Message):
-    """
-    MsgCreatePeriodicVestingAccount defines a message that enables creating a
-    vesting account.
-    """
-
-    from_address: str = betterproto.string_field(1)
-    to_address: str = betterproto.string_field(2)
-    start_time: int = betterproto.int64_field(3)
-    vesting_periods: List["Period"] = betterproto.message_field(4)
-
-
-@dataclass(eq=False, repr=False)
-class MsgCreatePeriodicVestingAccountResponse(betterproto.Message):
-    """
-    MsgCreatePeriodicVestingAccountResponse defines the
-    Msg/CreatePeriodicVestingAccount response type.
-    """
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class MsgDonateAllVestingTokens(betterproto.Message):
-    """
-    MsgDonateAllVestingTokens defines a message that enables donating all
-    vesting token to community pool.
-    """
-
-    from_address: str = betterproto.string_field(1)
-
-
-@dataclass(eq=False, repr=False)
-class MsgDonateAllVestingTokensResponse(betterproto.Message):
-    """
-    MsgDonateAllVestingTokensResponse defines the Msg/MsgDonateAllVestingTokens
-    response type.
-    """
-
-    pass
-
-
 class MsgStub(betterproto.ServiceStub):
     async def create_vesting_account(
         self,
@@ -170,42 +127,6 @@ class MsgStub(betterproto.ServiceStub):
             MsgCreateVestingAccountResponse,
         )
 
-    async def create_periodic_vesting_account(
-        self,
-        *,
-        from_address: str = "",
-        to_address: str = "",
-        start_time: int = 0,
-        vesting_periods: Optional[List["Period"]] = None
-    ) -> "MsgCreatePeriodicVestingAccountResponse":
-        vesting_periods = vesting_periods or []
-
-        request = MsgCreatePeriodicVestingAccount()
-        request.from_address = from_address
-        request.to_address = to_address
-        request.start_time = start_time
-        if vesting_periods is not None:
-            request.vesting_periods = vesting_periods
-
-        return await self._unary_unary(
-            "/cosmos.vesting.v1beta1.Msg/CreatePeriodicVestingAccount",
-            request,
-            MsgCreatePeriodicVestingAccountResponse,
-        )
-
-    async def donate_all_vesting_tokens(
-        self, *, from_address: str = ""
-    ) -> "MsgDonateAllVestingTokensResponse":
-
-        request = MsgDonateAllVestingTokens()
-        request.from_address = from_address
-
-        return await self._unary_unary(
-            "/cosmos.vesting.v1beta1.Msg/DonateAllVestingTokens",
-            request,
-            MsgDonateAllVestingTokensResponse,
-        )
-
 
 class MsgBase(ServiceBase):
     async def create_vesting_account(
@@ -216,20 +137,6 @@ class MsgBase(ServiceBase):
         end_time: int,
         delayed: bool,
     ) -> "MsgCreateVestingAccountResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def create_periodic_vesting_account(
-        self,
-        from_address: str,
-        to_address: str,
-        start_time: int,
-        vesting_periods: Optional[List["Period"]],
-    ) -> "MsgCreatePeriodicVestingAccountResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def donate_all_vesting_tokens(
-        self, from_address: str
-    ) -> "MsgDonateAllVestingTokensResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_create_vesting_account(self, stream: grpclib.server.Stream) -> None:
@@ -246,33 +153,6 @@ class MsgBase(ServiceBase):
         response = await self.create_vesting_account(**request_kwargs)
         await stream.send_message(response)
 
-    async def __rpc_create_periodic_vesting_account(
-        self, stream: grpclib.server.Stream
-    ) -> None:
-        request = await stream.recv_message()
-
-        request_kwargs = {
-            "from_address": request.from_address,
-            "to_address": request.to_address,
-            "start_time": request.start_time,
-            "vesting_periods": request.vesting_periods,
-        }
-
-        response = await self.create_periodic_vesting_account(**request_kwargs)
-        await stream.send_message(response)
-
-    async def __rpc_donate_all_vesting_tokens(
-        self, stream: grpclib.server.Stream
-    ) -> None:
-        request = await stream.recv_message()
-
-        request_kwargs = {
-            "from_address": request.from_address,
-        }
-
-        response = await self.donate_all_vesting_tokens(**request_kwargs)
-        await stream.send_message(response)
-
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
             "/cosmos.vesting.v1beta1.Msg/CreateVestingAccount": grpclib.const.Handler(
@@ -280,18 +160,6 @@ class MsgBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgCreateVestingAccount,
                 MsgCreateVestingAccountResponse,
-            ),
-            "/cosmos.vesting.v1beta1.Msg/CreatePeriodicVestingAccount": grpclib.const.Handler(
-                self.__rpc_create_periodic_vesting_account,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgCreatePeriodicVestingAccount,
-                MsgCreatePeriodicVestingAccountResponse,
-            ),
-            "/cosmos.vesting.v1beta1.Msg/DonateAllVestingTokens": grpclib.const.Handler(
-                self.__rpc_donate_all_vesting_tokens,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgDonateAllVestingTokens,
-                MsgDonateAllVestingTokensResponse,
             ),
         }
 
