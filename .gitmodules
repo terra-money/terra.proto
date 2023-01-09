@@ -1,3 +1,7 @@
 [submodule "terrad"]
 	path = terrad
 	url = git@github.com:terra-money/core.git
+[submodule "allianced"]
+	path = allianced
+	url = git@github.com:terra-money/alliance.git
+	branch = v0.0.1-beta1/v0.45-sdk
