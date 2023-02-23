@@ -12,6 +12,7 @@ mkdir -p "$OUT_DIR"
 echo "Processing proto files ..."
 ALLIANCED_DIR="../allianced/proto"
 TERRAD_THIRD_PARTY_DIR="../terrad/third_party/proto"
+STRIDE_DIR="../third_party"
 
 protoc \
   --plugin="protoc-gen-ts_proto=${PROTOC_GEN_TS_PROTO_PATH}" \
@@ -19,4 +20,5 @@ protoc \
   --ts_proto_opt="esModuleInterop=true,forceLong=long,useOptionals=true,outputClientImpl=grpc-web" \
   --proto_path="$ALLIANCED_DIR" \
   --proto_path="$TERRAD_THIRD_PARTY_DIR" \
-  $(find ${ALLIANCED_DIR} ${TERRAD_THIRD_PARTY_DIR} -path -prune -o -name '*.proto' -print0 | xargs -0)
+  --proto_path="$STRIDE_DIR" \
+  $(find ${ALLIANCED_DIR} ${TERRAD_THIRD_PARTY_DIR} ${STRIDE_DIR} -path -prune -o -name '*.proto' -print0 | xargs -0)
