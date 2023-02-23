@@ -46,15 +46,12 @@ export function validator_ValidatorStatusToJSON(object: Validator_ValidatorStatu
       return "ACTIVE";
     case Validator_ValidatorStatus.INACTIVE:
       return "INACTIVE";
-    case Validator_ValidatorStatus.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return "UNKNOWN";
   }
 }
 
-function createBaseValidatorExchangeRate(): ValidatorExchangeRate {
-  return { internalTokensToSharesRate: "", epochNumber: Long.UZERO };
-}
+const baseValidatorExchangeRate: object = { internalTokensToSharesRate: "", epochNumber: Long.UZERO };
 
 export const ValidatorExchangeRate = {
   encode(message: ValidatorExchangeRate, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -70,7 +67,7 @@ export const ValidatorExchangeRate = {
   decode(input: _m0.Reader | Uint8Array, length?: number): ValidatorExchangeRate {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseValidatorExchangeRate();
+    const message = { ...baseValidatorExchangeRate } as ValidatorExchangeRate;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -89,12 +86,18 @@ export const ValidatorExchangeRate = {
   },
 
   fromJSON(object: any): ValidatorExchangeRate {
-    return {
-      internalTokensToSharesRate: isSet(object.internalTokensToSharesRate)
-        ? String(object.internalTokensToSharesRate)
-        : "",
-      epochNumber: isSet(object.epochNumber) ? Long.fromValue(object.epochNumber) : Long.UZERO,
-    };
+    const message = { ...baseValidatorExchangeRate } as ValidatorExchangeRate;
+    if (object.internalTokensToSharesRate !== undefined && object.internalTokensToSharesRate !== null) {
+      message.internalTokensToSharesRate = String(object.internalTokensToSharesRate);
+    } else {
+      message.internalTokensToSharesRate = "";
+    }
+    if (object.epochNumber !== undefined && object.epochNumber !== null) {
+      message.epochNumber = Long.fromString(object.epochNumber);
+    } else {
+      message.epochNumber = Long.UZERO;
+    }
+    return message;
   },
 
   toJSON(message: ValidatorExchangeRate): unknown {
@@ -105,31 +108,30 @@ export const ValidatorExchangeRate = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ValidatorExchangeRate>, I>>(base?: I): ValidatorExchangeRate {
-    return ValidatorExchangeRate.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<ValidatorExchangeRate>, I>>(object: I): ValidatorExchangeRate {
-    const message = createBaseValidatorExchangeRate();
-    message.internalTokensToSharesRate = object.internalTokensToSharesRate ?? "";
-    message.epochNumber = (object.epochNumber !== undefined && object.epochNumber !== null)
-      ? Long.fromValue(object.epochNumber)
-      : Long.UZERO;
+  fromPartial(object: DeepPartial<ValidatorExchangeRate>): ValidatorExchangeRate {
+    const message = { ...baseValidatorExchangeRate } as ValidatorExchangeRate;
+    if (object.internalTokensToSharesRate !== undefined && object.internalTokensToSharesRate !== null) {
+      message.internalTokensToSharesRate = object.internalTokensToSharesRate;
+    } else {
+      message.internalTokensToSharesRate = "";
+    }
+    if (object.epochNumber !== undefined && object.epochNumber !== null) {
+      message.epochNumber = object.epochNumber as Long;
+    } else {
+      message.epochNumber = Long.UZERO;
+    }
     return message;
   },
 };
 
-function createBaseValidator(): Validator {
-  return {
-    name: "",
-    address: "",
-    status: 0,
-    commissionRate: Long.UZERO,
-    delegationAmt: Long.UZERO,
-    weight: Long.UZERO,
-    internalExchangeRate: undefined,
-  };
-}
+const baseValidator: object = {
+  name: "",
+  address: "",
+  status: 0,
+  commissionRate: Long.UZERO,
+  delegationAmt: Long.UZERO,
+  weight: Long.UZERO,
+};
 
 export const Validator = {
   encode(message: Validator, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -160,7 +162,7 @@ export const Validator = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Validator {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseValidator();
+    const message = { ...baseValidator } as Validator;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -194,17 +196,43 @@ export const Validator = {
   },
 
   fromJSON(object: any): Validator {
-    return {
-      name: isSet(object.name) ? String(object.name) : "",
-      address: isSet(object.address) ? String(object.address) : "",
-      status: isSet(object.status) ? validator_ValidatorStatusFromJSON(object.status) : 0,
-      commissionRate: isSet(object.commissionRate) ? Long.fromValue(object.commissionRate) : Long.UZERO,
-      delegationAmt: isSet(object.delegationAmt) ? Long.fromValue(object.delegationAmt) : Long.UZERO,
-      weight: isSet(object.weight) ? Long.fromValue(object.weight) : Long.UZERO,
-      internalExchangeRate: isSet(object.internalExchangeRate)
-        ? ValidatorExchangeRate.fromJSON(object.internalExchangeRate)
-        : undefined,
-    };
+    const message = { ...baseValidator } as Validator;
+    if (object.name !== undefined && object.name !== null) {
+      message.name = String(object.name);
+    } else {
+      message.name = "";
+    }
+    if (object.address !== undefined && object.address !== null) {
+      message.address = String(object.address);
+    } else {
+      message.address = "";
+    }
+    if (object.status !== undefined && object.status !== null) {
+      message.status = validator_ValidatorStatusFromJSON(object.status);
+    } else {
+      message.status = 0;
+    }
+    if (object.commissionRate !== undefined && object.commissionRate !== null) {
+      message.commissionRate = Long.fromString(object.commissionRate);
+    } else {
+      message.commissionRate = Long.UZERO;
+    }
+    if (object.delegationAmt !== undefined && object.delegationAmt !== null) {
+      message.delegationAmt = Long.fromString(object.delegationAmt);
+    } else {
+      message.delegationAmt = Long.UZERO;
+    }
+    if (object.weight !== undefined && object.weight !== null) {
+      message.weight = Long.fromString(object.weight);
+    } else {
+      message.weight = Long.UZERO;
+    }
+    if (object.internalExchangeRate !== undefined && object.internalExchangeRate !== null) {
+      message.internalExchangeRate = ValidatorExchangeRate.fromJSON(object.internalExchangeRate);
+    } else {
+      message.internalExchangeRate = undefined;
+    }
+    return message;
   },
 
   toJSON(message: Validator): unknown {
@@ -212,57 +240,71 @@ export const Validator = {
     message.name !== undefined && (obj.name = message.name);
     message.address !== undefined && (obj.address = message.address);
     message.status !== undefined && (obj.status = validator_ValidatorStatusToJSON(message.status));
-    message.commissionRate !== undefined && (obj.commissionRate = (message.commissionRate || Long.UZERO).toString());
-    message.delegationAmt !== undefined && (obj.delegationAmt = (message.delegationAmt || Long.UZERO).toString());
+    message.commissionRate !== undefined &&
+      (obj.commissionRate = (message.commissionRate || Long.UZERO).toString());
+    message.delegationAmt !== undefined &&
+      (obj.delegationAmt = (message.delegationAmt || Long.UZERO).toString());
     message.weight !== undefined && (obj.weight = (message.weight || Long.UZERO).toString());
-    message.internalExchangeRate !== undefined && (obj.internalExchangeRate = message.internalExchangeRate
-      ? ValidatorExchangeRate.toJSON(message.internalExchangeRate)
-      : undefined);
+    message.internalExchangeRate !== undefined &&
+      (obj.internalExchangeRate = message.internalExchangeRate
+        ? ValidatorExchangeRate.toJSON(message.internalExchangeRate)
+        : undefined);
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Validator>, I>>(base?: I): Validator {
-    return Validator.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<Validator>, I>>(object: I): Validator {
-    const message = createBaseValidator();
-    message.name = object.name ?? "";
-    message.address = object.address ?? "";
-    message.status = object.status ?? 0;
-    message.commissionRate = (object.commissionRate !== undefined && object.commissionRate !== null)
-      ? Long.fromValue(object.commissionRate)
-      : Long.UZERO;
-    message.delegationAmt = (object.delegationAmt !== undefined && object.delegationAmt !== null)
-      ? Long.fromValue(object.delegationAmt)
-      : Long.UZERO;
-    message.weight = (object.weight !== undefined && object.weight !== null)
-      ? Long.fromValue(object.weight)
-      : Long.UZERO;
-    message.internalExchangeRate = (object.internalExchangeRate !== undefined && object.internalExchangeRate !== null)
-      ? ValidatorExchangeRate.fromPartial(object.internalExchangeRate)
-      : undefined;
+  fromPartial(object: DeepPartial<Validator>): Validator {
+    const message = { ...baseValidator } as Validator;
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    } else {
+      message.name = "";
+    }
+    if (object.address !== undefined && object.address !== null) {
+      message.address = object.address;
+    } else {
+      message.address = "";
+    }
+    if (object.status !== undefined && object.status !== null) {
+      message.status = object.status;
+    } else {
+      message.status = 0;
+    }
+    if (object.commissionRate !== undefined && object.commissionRate !== null) {
+      message.commissionRate = object.commissionRate as Long;
+    } else {
+      message.commissionRate = Long.UZERO;
+    }
+    if (object.delegationAmt !== undefined && object.delegationAmt !== null) {
+      message.delegationAmt = object.delegationAmt as Long;
+    } else {
+      message.delegationAmt = Long.UZERO;
+    }
+    if (object.weight !== undefined && object.weight !== null) {
+      message.weight = object.weight as Long;
+    } else {
+      message.weight = Long.UZERO;
+    }
+    if (object.internalExchangeRate !== undefined && object.internalExchangeRate !== null) {
+      message.internalExchangeRate = ValidatorExchangeRate.fromPartial(object.internalExchangeRate);
+    } else {
+      message.internalExchangeRate = undefined;
+    }
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
 }

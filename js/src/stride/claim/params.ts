@@ -25,9 +25,7 @@ export interface Airdrop {
   claimedSoFar: Long;
 }
 
-function createBaseParams(): Params {
-  return { airdrops: [] };
-}
+const baseParams: object = {};
 
 export const Params = {
   encode(message: Params, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -40,7 +38,8 @@ export const Params = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Params {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseParams();
+    const message = { ...baseParams } as Params;
+    message.airdrops = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -56,40 +55,44 @@ export const Params = {
   },
 
   fromJSON(object: any): Params {
-    return { airdrops: Array.isArray(object?.airdrops) ? object.airdrops.map((e: any) => Airdrop.fromJSON(e)) : [] };
+    const message = { ...baseParams } as Params;
+    message.airdrops = [];
+    if (object.airdrops !== undefined && object.airdrops !== null) {
+      for (const e of object.airdrops) {
+        message.airdrops.push(Airdrop.fromJSON(e));
+      }
+    }
+    return message;
   },
 
   toJSON(message: Params): unknown {
     const obj: any = {};
     if (message.airdrops) {
-      obj.airdrops = message.airdrops.map((e) => e ? Airdrop.toJSON(e) : undefined);
+      obj.airdrops = message.airdrops.map((e) => (e ? Airdrop.toJSON(e) : undefined));
     } else {
       obj.airdrops = [];
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Params>, I>>(base?: I): Params {
-    return Params.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<Params>, I>>(object: I): Params {
-    const message = createBaseParams();
-    message.airdrops = object.airdrops?.map((e) => Airdrop.fromPartial(e)) || [];
+  fromPartial(object: DeepPartial<Params>): Params {
+    const message = { ...baseParams } as Params;
+    message.airdrops = [];
+    if (object.airdrops !== undefined && object.airdrops !== null) {
+      for (const e of object.airdrops) {
+        message.airdrops.push(Airdrop.fromPartial(e));
+      }
+    }
     return message;
   },
 };
 
-function createBaseAirdrop(): Airdrop {
-  return {
-    airdropIdentifier: "",
-    airdropStartTime: undefined,
-    airdropDuration: undefined,
-    claimDenom: "",
-    distributorAddress: "",
-    claimedSoFar: Long.ZERO,
-  };
-}
+const baseAirdrop: object = {
+  airdropIdentifier: "",
+  claimDenom: "",
+  distributorAddress: "",
+  claimedSoFar: Long.ZERO,
+};
 
 export const Airdrop = {
   encode(message: Airdrop, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -117,7 +120,7 @@ export const Airdrop = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Airdrop {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseAirdrop();
+    const message = { ...baseAirdrop } as Airdrop;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -148,14 +151,38 @@ export const Airdrop = {
   },
 
   fromJSON(object: any): Airdrop {
-    return {
-      airdropIdentifier: isSet(object.airdropIdentifier) ? String(object.airdropIdentifier) : "",
-      airdropStartTime: isSet(object.airdropStartTime) ? fromJsonTimestamp(object.airdropStartTime) : undefined,
-      airdropDuration: isSet(object.airdropDuration) ? Duration.fromJSON(object.airdropDuration) : undefined,
-      claimDenom: isSet(object.claimDenom) ? String(object.claimDenom) : "",
-      distributorAddress: isSet(object.distributorAddress) ? String(object.distributorAddress) : "",
-      claimedSoFar: isSet(object.claimedSoFar) ? Long.fromValue(object.claimedSoFar) : Long.ZERO,
-    };
+    const message = { ...baseAirdrop } as Airdrop;
+    if (object.airdropIdentifier !== undefined && object.airdropIdentifier !== null) {
+      message.airdropIdentifier = String(object.airdropIdentifier);
+    } else {
+      message.airdropIdentifier = "";
+    }
+    if (object.airdropStartTime !== undefined && object.airdropStartTime !== null) {
+      message.airdropStartTime = fromJsonTimestamp(object.airdropStartTime);
+    } else {
+      message.airdropStartTime = undefined;
+    }
+    if (object.airdropDuration !== undefined && object.airdropDuration !== null) {
+      message.airdropDuration = Duration.fromJSON(object.airdropDuration);
+    } else {
+      message.airdropDuration = undefined;
+    }
+    if (object.claimDenom !== undefined && object.claimDenom !== null) {
+      message.claimDenom = String(object.claimDenom);
+    } else {
+      message.claimDenom = "";
+    }
+    if (object.distributorAddress !== undefined && object.distributorAddress !== null) {
+      message.distributorAddress = String(object.distributorAddress);
+    } else {
+      message.distributorAddress = "";
+    }
+    if (object.claimedSoFar !== undefined && object.claimedSoFar !== null) {
+      message.claimedSoFar = Long.fromString(object.claimedSoFar);
+    } else {
+      message.claimedSoFar = Long.ZERO;
+    }
+    return message;
   },
 
   toJSON(message: Airdrop): unknown {
@@ -170,37 +197,52 @@ export const Airdrop = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Airdrop>, I>>(base?: I): Airdrop {
-    return Airdrop.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<Airdrop>, I>>(object: I): Airdrop {
-    const message = createBaseAirdrop();
-    message.airdropIdentifier = object.airdropIdentifier ?? "";
-    message.airdropStartTime = object.airdropStartTime ?? undefined;
-    message.airdropDuration = (object.airdropDuration !== undefined && object.airdropDuration !== null)
-      ? Duration.fromPartial(object.airdropDuration)
-      : undefined;
-    message.claimDenom = object.claimDenom ?? "";
-    message.distributorAddress = object.distributorAddress ?? "";
-    message.claimedSoFar = (object.claimedSoFar !== undefined && object.claimedSoFar !== null)
-      ? Long.fromValue(object.claimedSoFar)
-      : Long.ZERO;
+  fromPartial(object: DeepPartial<Airdrop>): Airdrop {
+    const message = { ...baseAirdrop } as Airdrop;
+    if (object.airdropIdentifier !== undefined && object.airdropIdentifier !== null) {
+      message.airdropIdentifier = object.airdropIdentifier;
+    } else {
+      message.airdropIdentifier = "";
+    }
+    if (object.airdropStartTime !== undefined && object.airdropStartTime !== null) {
+      message.airdropStartTime = object.airdropStartTime;
+    } else {
+      message.airdropStartTime = undefined;
+    }
+    if (object.airdropDuration !== undefined && object.airdropDuration !== null) {
+      message.airdropDuration = Duration.fromPartial(object.airdropDuration);
+    } else {
+      message.airdropDuration = undefined;
+    }
+    if (object.claimDenom !== undefined && object.claimDenom !== null) {
+      message.claimDenom = object.claimDenom;
+    } else {
+      message.claimDenom = "";
+    }
+    if (object.distributorAddress !== undefined && object.distributorAddress !== null) {
+      message.distributorAddress = object.distributorAddress;
+    } else {
+      message.distributorAddress = "";
+    }
+    if (object.claimedSoFar !== undefined && object.claimedSoFar !== null) {
+      message.claimedSoFar = object.claimedSoFar as Long;
+    } else {
+      message.claimedSoFar = Long.ZERO;
+    }
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function toTimestamp(date: Date): Timestamp {
   const seconds = numberToLong(date.getTime() / 1_000);
@@ -231,8 +273,4 @@ function numberToLong(number: number) {
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
 }

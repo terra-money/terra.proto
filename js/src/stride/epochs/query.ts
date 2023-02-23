@@ -1,10 +1,10 @@
 /* eslint-disable */
-import { grpc } from "@improbable-eng/grpc-web";
-import { BrowserHeaders } from "browser-headers";
 import Long from "long";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
-import { EpochInfo } from "./genesis";
+import { EpochInfo } from "../../stride/epochs/genesis";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "stride.epochs";
 
@@ -33,9 +33,7 @@ export interface QueryEpochInfoResponse {
   epoch?: EpochInfo;
 }
 
-function createBaseQueryEpochsInfoRequest(): QueryEpochsInfoRequest {
-  return { pagination: undefined };
-}
+const baseQueryEpochsInfoRequest: object = {};
 
 export const QueryEpochsInfoRequest = {
   encode(message: QueryEpochsInfoRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -48,7 +46,7 @@ export const QueryEpochsInfoRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryEpochsInfoRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryEpochsInfoRequest();
+    const message = { ...baseQueryEpochsInfoRequest } as QueryEpochsInfoRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -64,7 +62,13 @@ export const QueryEpochsInfoRequest = {
   },
 
   fromJSON(object: any): QueryEpochsInfoRequest {
-    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
+    const message = { ...baseQueryEpochsInfoRequest } as QueryEpochsInfoRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
   },
 
   toJSON(message: QueryEpochsInfoRequest): unknown {
@@ -74,22 +78,18 @@ export const QueryEpochsInfoRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryEpochsInfoRequest>, I>>(base?: I): QueryEpochsInfoRequest {
-    return QueryEpochsInfoRequest.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryEpochsInfoRequest>, I>>(object: I): QueryEpochsInfoRequest {
-    const message = createBaseQueryEpochsInfoRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+  fromPartial(object: DeepPartial<QueryEpochsInfoRequest>): QueryEpochsInfoRequest {
+    const message = { ...baseQueryEpochsInfoRequest } as QueryEpochsInfoRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
     return message;
   },
 };
 
-function createBaseQueryEpochsInfoResponse(): QueryEpochsInfoResponse {
-  return { epochs: [], pagination: undefined };
-}
+const baseQueryEpochsInfoResponse: object = {};
 
 export const QueryEpochsInfoResponse = {
   encode(message: QueryEpochsInfoResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -105,7 +105,8 @@ export const QueryEpochsInfoResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryEpochsInfoResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryEpochsInfoResponse();
+    const message = { ...baseQueryEpochsInfoResponse } as QueryEpochsInfoResponse;
+    message.epochs = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -124,16 +125,25 @@ export const QueryEpochsInfoResponse = {
   },
 
   fromJSON(object: any): QueryEpochsInfoResponse {
-    return {
-      epochs: Array.isArray(object?.epochs) ? object.epochs.map((e: any) => EpochInfo.fromJSON(e)) : [],
-      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
-    };
+    const message = { ...baseQueryEpochsInfoResponse } as QueryEpochsInfoResponse;
+    message.epochs = [];
+    if (object.epochs !== undefined && object.epochs !== null) {
+      for (const e of object.epochs) {
+        message.epochs.push(EpochInfo.fromJSON(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
   },
 
   toJSON(message: QueryEpochsInfoResponse): unknown {
     const obj: any = {};
     if (message.epochs) {
-      obj.epochs = message.epochs.map((e) => e ? EpochInfo.toJSON(e) : undefined);
+      obj.epochs = message.epochs.map((e) => (e ? EpochInfo.toJSON(e) : undefined));
     } else {
       obj.epochs = [];
     }
@@ -142,23 +152,24 @@ export const QueryEpochsInfoResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryEpochsInfoResponse>, I>>(base?: I): QueryEpochsInfoResponse {
-    return QueryEpochsInfoResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryEpochsInfoResponse>, I>>(object: I): QueryEpochsInfoResponse {
-    const message = createBaseQueryEpochsInfoResponse();
-    message.epochs = object.epochs?.map((e) => EpochInfo.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+  fromPartial(object: DeepPartial<QueryEpochsInfoResponse>): QueryEpochsInfoResponse {
+    const message = { ...baseQueryEpochsInfoResponse } as QueryEpochsInfoResponse;
+    message.epochs = [];
+    if (object.epochs !== undefined && object.epochs !== null) {
+      for (const e of object.epochs) {
+        message.epochs.push(EpochInfo.fromPartial(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
     return message;
   },
 };
 
-function createBaseQueryCurrentEpochRequest(): QueryCurrentEpochRequest {
-  return { identifier: "" };
-}
+const baseQueryCurrentEpochRequest: object = { identifier: "" };
 
 export const QueryCurrentEpochRequest = {
   encode(message: QueryCurrentEpochRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -171,7 +182,7 @@ export const QueryCurrentEpochRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryCurrentEpochRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryCurrentEpochRequest();
+    const message = { ...baseQueryCurrentEpochRequest } as QueryCurrentEpochRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -187,7 +198,13 @@ export const QueryCurrentEpochRequest = {
   },
 
   fromJSON(object: any): QueryCurrentEpochRequest {
-    return { identifier: isSet(object.identifier) ? String(object.identifier) : "" };
+    const message = { ...baseQueryCurrentEpochRequest } as QueryCurrentEpochRequest;
+    if (object.identifier !== undefined && object.identifier !== null) {
+      message.identifier = String(object.identifier);
+    } else {
+      message.identifier = "";
+    }
+    return message;
   },
 
   toJSON(message: QueryCurrentEpochRequest): unknown {
@@ -196,20 +213,18 @@ export const QueryCurrentEpochRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryCurrentEpochRequest>, I>>(base?: I): QueryCurrentEpochRequest {
-    return QueryCurrentEpochRequest.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryCurrentEpochRequest>, I>>(object: I): QueryCurrentEpochRequest {
-    const message = createBaseQueryCurrentEpochRequest();
-    message.identifier = object.identifier ?? "";
+  fromPartial(object: DeepPartial<QueryCurrentEpochRequest>): QueryCurrentEpochRequest {
+    const message = { ...baseQueryCurrentEpochRequest } as QueryCurrentEpochRequest;
+    if (object.identifier !== undefined && object.identifier !== null) {
+      message.identifier = object.identifier;
+    } else {
+      message.identifier = "";
+    }
     return message;
   },
 };
 
-function createBaseQueryCurrentEpochResponse(): QueryCurrentEpochResponse {
-  return { currentEpoch: Long.ZERO };
-}
+const baseQueryCurrentEpochResponse: object = { currentEpoch: Long.ZERO };
 
 export const QueryCurrentEpochResponse = {
   encode(message: QueryCurrentEpochResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -222,7 +237,7 @@ export const QueryCurrentEpochResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryCurrentEpochResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryCurrentEpochResponse();
+    const message = { ...baseQueryCurrentEpochResponse } as QueryCurrentEpochResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -238,7 +253,13 @@ export const QueryCurrentEpochResponse = {
   },
 
   fromJSON(object: any): QueryCurrentEpochResponse {
-    return { currentEpoch: isSet(object.currentEpoch) ? Long.fromValue(object.currentEpoch) : Long.ZERO };
+    const message = { ...baseQueryCurrentEpochResponse } as QueryCurrentEpochResponse;
+    if (object.currentEpoch !== undefined && object.currentEpoch !== null) {
+      message.currentEpoch = Long.fromString(object.currentEpoch);
+    } else {
+      message.currentEpoch = Long.ZERO;
+    }
+    return message;
   },
 
   toJSON(message: QueryCurrentEpochResponse): unknown {
@@ -247,22 +268,18 @@ export const QueryCurrentEpochResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryCurrentEpochResponse>, I>>(base?: I): QueryCurrentEpochResponse {
-    return QueryCurrentEpochResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryCurrentEpochResponse>, I>>(object: I): QueryCurrentEpochResponse {
-    const message = createBaseQueryCurrentEpochResponse();
-    message.currentEpoch = (object.currentEpoch !== undefined && object.currentEpoch !== null)
-      ? Long.fromValue(object.currentEpoch)
-      : Long.ZERO;
+  fromPartial(object: DeepPartial<QueryCurrentEpochResponse>): QueryCurrentEpochResponse {
+    const message = { ...baseQueryCurrentEpochResponse } as QueryCurrentEpochResponse;
+    if (object.currentEpoch !== undefined && object.currentEpoch !== null) {
+      message.currentEpoch = object.currentEpoch as Long;
+    } else {
+      message.currentEpoch = Long.ZERO;
+    }
     return message;
   },
 };
 
-function createBaseQueryEpochInfoRequest(): QueryEpochInfoRequest {
-  return { identifier: "" };
-}
+const baseQueryEpochInfoRequest: object = { identifier: "" };
 
 export const QueryEpochInfoRequest = {
   encode(message: QueryEpochInfoRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -275,7 +292,7 @@ export const QueryEpochInfoRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryEpochInfoRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryEpochInfoRequest();
+    const message = { ...baseQueryEpochInfoRequest } as QueryEpochInfoRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -291,7 +308,13 @@ export const QueryEpochInfoRequest = {
   },
 
   fromJSON(object: any): QueryEpochInfoRequest {
-    return { identifier: isSet(object.identifier) ? String(object.identifier) : "" };
+    const message = { ...baseQueryEpochInfoRequest } as QueryEpochInfoRequest;
+    if (object.identifier !== undefined && object.identifier !== null) {
+      message.identifier = String(object.identifier);
+    } else {
+      message.identifier = "";
+    }
+    return message;
   },
 
   toJSON(message: QueryEpochInfoRequest): unknown {
@@ -300,20 +323,18 @@ export const QueryEpochInfoRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryEpochInfoRequest>, I>>(base?: I): QueryEpochInfoRequest {
-    return QueryEpochInfoRequest.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryEpochInfoRequest>, I>>(object: I): QueryEpochInfoRequest {
-    const message = createBaseQueryEpochInfoRequest();
-    message.identifier = object.identifier ?? "";
+  fromPartial(object: DeepPartial<QueryEpochInfoRequest>): QueryEpochInfoRequest {
+    const message = { ...baseQueryEpochInfoRequest } as QueryEpochInfoRequest;
+    if (object.identifier !== undefined && object.identifier !== null) {
+      message.identifier = object.identifier;
+    } else {
+      message.identifier = "";
+    }
     return message;
   },
 };
 
-function createBaseQueryEpochInfoResponse(): QueryEpochInfoResponse {
-  return { epoch: undefined };
-}
+const baseQueryEpochInfoResponse: object = {};
 
 export const QueryEpochInfoResponse = {
   encode(message: QueryEpochInfoResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -326,7 +347,7 @@ export const QueryEpochInfoResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryEpochInfoResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryEpochInfoResponse();
+    const message = { ...baseQueryEpochInfoResponse } as QueryEpochInfoResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -342,7 +363,13 @@ export const QueryEpochInfoResponse = {
   },
 
   fromJSON(object: any): QueryEpochInfoResponse {
-    return { epoch: isSet(object.epoch) ? EpochInfo.fromJSON(object.epoch) : undefined };
+    const message = { ...baseQueryEpochInfoResponse } as QueryEpochInfoResponse;
+    if (object.epoch !== undefined && object.epoch !== null) {
+      message.epoch = EpochInfo.fromJSON(object.epoch);
+    } else {
+      message.epoch = undefined;
+    }
+    return message;
   },
 
   toJSON(message: QueryEpochInfoResponse): unknown {
@@ -351,15 +378,13 @@ export const QueryEpochInfoResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryEpochInfoResponse>, I>>(base?: I): QueryEpochInfoResponse {
-    return QueryEpochInfoResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryEpochInfoResponse>, I>>(object: I): QueryEpochInfoResponse {
-    const message = createBaseQueryEpochInfoResponse();
-    message.epoch = (object.epoch !== undefined && object.epoch !== null)
-      ? EpochInfo.fromPartial(object.epoch)
-      : undefined;
+  fromPartial(object: DeepPartial<QueryEpochInfoResponse>): QueryEpochInfoResponse {
+    const message = { ...baseQueryEpochInfoResponse } as QueryEpochInfoResponse;
+    if (object.epoch !== undefined && object.epoch !== null) {
+      message.epoch = EpochInfo.fromPartial(object.epoch);
+    } else {
+      message.epoch = undefined;
+    }
     return message;
   },
 };
@@ -367,14 +392,20 @@ export const QueryEpochInfoResponse = {
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** EpochInfos provide running epochInfos */
-  EpochInfos(request: DeepPartial<QueryEpochsInfoRequest>, metadata?: grpc.Metadata): Promise<QueryEpochsInfoResponse>;
+  EpochInfos(
+    request: DeepPartial<QueryEpochsInfoRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryEpochsInfoResponse>;
   /** CurrentEpoch provide current epoch of specified identifier */
   CurrentEpoch(
     request: DeepPartial<QueryCurrentEpochRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryCurrentEpochResponse>;
   /** CurrentEpoch provide current epoch of specified identifier */
-  EpochInfo(request: DeepPartial<QueryEpochInfoRequest>, metadata?: grpc.Metadata): Promise<QueryEpochInfoResponse>;
+  EpochInfo(
+    request: DeepPartial<QueryEpochInfoRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryEpochInfoResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -387,7 +418,10 @@ export class QueryClientImpl implements Query {
     this.EpochInfo = this.EpochInfo.bind(this);
   }
 
-  EpochInfos(request: DeepPartial<QueryEpochsInfoRequest>, metadata?: grpc.Metadata): Promise<QueryEpochsInfoResponse> {
+  EpochInfos(
+    request: DeepPartial<QueryEpochsInfoRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryEpochsInfoResponse> {
     return this.rpc.unary(QueryEpochInfosDesc, QueryEpochsInfoRequest.fromPartial(request), metadata);
   }
 
@@ -398,12 +432,17 @@ export class QueryClientImpl implements Query {
     return this.rpc.unary(QueryCurrentEpochDesc, QueryCurrentEpochRequest.fromPartial(request), metadata);
   }
 
-  EpochInfo(request: DeepPartial<QueryEpochInfoRequest>, metadata?: grpc.Metadata): Promise<QueryEpochInfoResponse> {
+  EpochInfo(
+    request: DeepPartial<QueryEpochInfoRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryEpochInfoResponse> {
     return this.rpc.unary(QueryEpochInfoDesc, QueryEpochInfoRequest.fromPartial(request), metadata);
   }
 }
 
-export const QueryDesc = { serviceName: "stride.epochs.Query" };
+export const QueryDesc = {
+  serviceName: "stride.epochs.Query",
+};
 
 export const QueryEpochInfosDesc: UnaryMethodDefinitionish = {
   methodName: "EpochInfos",
@@ -417,11 +456,10 @@ export const QueryEpochInfosDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = QueryEpochsInfoResponse.decode(data);
       return {
-        ...value,
+        ...QueryEpochsInfoResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -440,11 +478,10 @@ export const QueryCurrentEpochDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = QueryCurrentEpochResponse.decode(data);
       return {
-        ...value,
+        ...QueryCurrentEpochResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -463,11 +500,10 @@ export const QueryEpochInfoDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = QueryEpochInfoResponse.decode(data);
       return {
-        ...value,
+        ...QueryEpochInfoResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -496,7 +532,6 @@ export class GrpcWebImpl {
 
     debug?: boolean;
     metadata?: grpc.Metadata;
-    upStreamRetryCodes?: number[];
   };
 
   constructor(
@@ -506,7 +541,6 @@ export class GrpcWebImpl {
 
       debug?: boolean;
       metadata?: grpc.Metadata;
-      upStreamRetryCodes?: number[];
     },
   ) {
     this.host = host;
@@ -519,9 +553,10 @@ export class GrpcWebImpl {
     metadata: grpc.Metadata | undefined,
   ): Promise<any> {
     const request = { ..._request, ...methodDesc.requestType };
-    const maybeCombinedMetadata = metadata && this.options.metadata
-      ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
-      : metadata || this.options.metadata;
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
     return new Promise((resolve, reject) => {
       grpc.unary(methodDesc, {
         request,
@@ -531,9 +566,11 @@ export class GrpcWebImpl {
         debug: this.options.debug,
         onEnd: function (response) {
           if (response.status === grpc.Code.OK) {
-            resolve(response.message!.toObject());
+            resolve(response.message);
           } else {
-            const err = new GrpcWebError(response.statusMessage, response.status, response.trailers);
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
             reject(err);
           }
         },
@@ -542,48 +579,18 @@ export class GrpcWebImpl {
   }
 }
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  throw "Unable to locate global object";
-})();
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
-export class GrpcWebError extends tsProtoGlobalThis.Error {
-  constructor(message: string, public code: grpc.Code, public metadata: grpc.Metadata) {
-    super(message);
-  }
 }

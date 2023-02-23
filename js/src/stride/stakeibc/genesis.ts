@@ -1,10 +1,10 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal";
-import { EpochTracker } from "./epoch_tracker";
-import { HostZone } from "./host_zone";
-import { ICAAccount } from "./ica_account";
-import { Params } from "./params";
+import { Params } from "../../stride/stakeibc/params";
+import { ICAAccount } from "../../stride/stakeibc/ica_account";
+import { HostZone } from "../../stride/stakeibc/host_zone";
+import { EpochTracker } from "../../stride/stakeibc/epoch_tracker";
 
 export const protobufPackage = "stride.stakeibc";
 
@@ -26,17 +26,7 @@ export interface GenesisState_DenomToHostZoneEntry {
   value: string;
 }
 
-function createBaseGenesisState(): GenesisState {
-  return {
-    params: undefined,
-    portId: "",
-    icaAccount: undefined,
-    hostZoneList: [],
-    hostZoneCount: Long.UZERO,
-    denomToHostZone: {},
-    epochTrackerList: [],
-  };
-}
+const baseGenesisState: object = { portId: "", hostZoneCount: Long.UZERO };
 
 export const GenesisState = {
   encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -67,7 +57,10 @@ export const GenesisState = {
   decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGenesisState();
+    const message = { ...baseGenesisState } as GenesisState;
+    message.hostZoneList = [];
+    message.denomToHostZone = {};
+    message.epochTrackerList = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -104,24 +97,46 @@ export const GenesisState = {
   },
 
   fromJSON(object: any): GenesisState {
-    return {
-      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
-      portId: isSet(object.portId) ? String(object.portId) : "",
-      icaAccount: isSet(object.icaAccount) ? ICAAccount.fromJSON(object.icaAccount) : undefined,
-      hostZoneList: Array.isArray(object?.hostZoneList)
-        ? object.hostZoneList.map((e: any) => HostZone.fromJSON(e))
-        : [],
-      hostZoneCount: isSet(object.hostZoneCount) ? Long.fromValue(object.hostZoneCount) : Long.UZERO,
-      denomToHostZone: isObject(object.denomToHostZone)
-        ? Object.entries(object.denomToHostZone).reduce<{ [key: string]: string }>((acc, [key, value]) => {
-          acc[key] = String(value);
-          return acc;
-        }, {})
-        : {},
-      epochTrackerList: Array.isArray(object?.epochTrackerList)
-        ? object.epochTrackerList.map((e: any) => EpochTracker.fromJSON(e))
-        : [],
-    };
+    const message = { ...baseGenesisState } as GenesisState;
+    message.hostZoneList = [];
+    message.denomToHostZone = {};
+    message.epochTrackerList = [];
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromJSON(object.params);
+    } else {
+      message.params = undefined;
+    }
+    if (object.portId !== undefined && object.portId !== null) {
+      message.portId = String(object.portId);
+    } else {
+      message.portId = "";
+    }
+    if (object.icaAccount !== undefined && object.icaAccount !== null) {
+      message.icaAccount = ICAAccount.fromJSON(object.icaAccount);
+    } else {
+      message.icaAccount = undefined;
+    }
+    if (object.hostZoneList !== undefined && object.hostZoneList !== null) {
+      for (const e of object.hostZoneList) {
+        message.hostZoneList.push(HostZone.fromJSON(e));
+      }
+    }
+    if (object.hostZoneCount !== undefined && object.hostZoneCount !== null) {
+      message.hostZoneCount = Long.fromString(object.hostZoneCount);
+    } else {
+      message.hostZoneCount = Long.UZERO;
+    }
+    if (object.denomToHostZone !== undefined && object.denomToHostZone !== null) {
+      Object.entries(object.denomToHostZone).forEach(([key, value]) => {
+        message.denomToHostZone[key] = String(value);
+      });
+    }
+    if (object.epochTrackerList !== undefined && object.epochTrackerList !== null) {
+      for (const e of object.epochTrackerList) {
+        message.epochTrackerList.push(EpochTracker.fromJSON(e));
+      }
+    }
+    return message;
   },
 
   toJSON(message: GenesisState): unknown {
@@ -131,11 +146,12 @@ export const GenesisState = {
     message.icaAccount !== undefined &&
       (obj.icaAccount = message.icaAccount ? ICAAccount.toJSON(message.icaAccount) : undefined);
     if (message.hostZoneList) {
-      obj.hostZoneList = message.hostZoneList.map((e) => e ? HostZone.toJSON(e) : undefined);
+      obj.hostZoneList = message.hostZoneList.map((e) => (e ? HostZone.toJSON(e) : undefined));
     } else {
       obj.hostZoneList = [];
     }
-    message.hostZoneCount !== undefined && (obj.hostZoneCount = (message.hostZoneCount || Long.UZERO).toString());
+    message.hostZoneCount !== undefined &&
+      (obj.hostZoneCount = (message.hostZoneCount || Long.UZERO).toString());
     obj.denomToHostZone = {};
     if (message.denomToHostZone) {
       Object.entries(message.denomToHostZone).forEach(([k, v]) => {
@@ -143,47 +159,60 @@ export const GenesisState = {
       });
     }
     if (message.epochTrackerList) {
-      obj.epochTrackerList = message.epochTrackerList.map((e) => e ? EpochTracker.toJSON(e) : undefined);
+      obj.epochTrackerList = message.epochTrackerList.map((e) => (e ? EpochTracker.toJSON(e) : undefined));
     } else {
       obj.epochTrackerList = [];
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<GenesisState>, I>>(base?: I): GenesisState {
-    return GenesisState.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
-    const message = createBaseGenesisState();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
-    message.portId = object.portId ?? "";
-    message.icaAccount = (object.icaAccount !== undefined && object.icaAccount !== null)
-      ? ICAAccount.fromPartial(object.icaAccount)
-      : undefined;
-    message.hostZoneList = object.hostZoneList?.map((e) => HostZone.fromPartial(e)) || [];
-    message.hostZoneCount = (object.hostZoneCount !== undefined && object.hostZoneCount !== null)
-      ? Long.fromValue(object.hostZoneCount)
-      : Long.UZERO;
-    message.denomToHostZone = Object.entries(object.denomToHostZone ?? {}).reduce<{ [key: string]: string }>(
-      (acc, [key, value]) => {
+  fromPartial(object: DeepPartial<GenesisState>): GenesisState {
+    const message = { ...baseGenesisState } as GenesisState;
+    message.hostZoneList = [];
+    message.denomToHostZone = {};
+    message.epochTrackerList = [];
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromPartial(object.params);
+    } else {
+      message.params = undefined;
+    }
+    if (object.portId !== undefined && object.portId !== null) {
+      message.portId = object.portId;
+    } else {
+      message.portId = "";
+    }
+    if (object.icaAccount !== undefined && object.icaAccount !== null) {
+      message.icaAccount = ICAAccount.fromPartial(object.icaAccount);
+    } else {
+      message.icaAccount = undefined;
+    }
+    if (object.hostZoneList !== undefined && object.hostZoneList !== null) {
+      for (const e of object.hostZoneList) {
+        message.hostZoneList.push(HostZone.fromPartial(e));
+      }
+    }
+    if (object.hostZoneCount !== undefined && object.hostZoneCount !== null) {
+      message.hostZoneCount = object.hostZoneCount as Long;
+    } else {
+      message.hostZoneCount = Long.UZERO;
+    }
+    if (object.denomToHostZone !== undefined && object.denomToHostZone !== null) {
+      Object.entries(object.denomToHostZone).forEach(([key, value]) => {
         if (value !== undefined) {
-          acc[key] = String(value);
+          message.denomToHostZone[key] = String(value);
         }
-        return acc;
-      },
-      {},
-    );
-    message.epochTrackerList = object.epochTrackerList?.map((e) => EpochTracker.fromPartial(e)) || [];
+      });
+    }
+    if (object.epochTrackerList !== undefined && object.epochTrackerList !== null) {
+      for (const e of object.epochTrackerList) {
+        message.epochTrackerList.push(EpochTracker.fromPartial(e));
+      }
+    }
     return message;
   },
 };
 
-function createBaseGenesisState_DenomToHostZoneEntry(): GenesisState_DenomToHostZoneEntry {
-  return { key: "", value: "" };
-}
+const baseGenesisState_DenomToHostZoneEntry: object = { key: "", value: "" };
 
 export const GenesisState_DenomToHostZoneEntry = {
   encode(message: GenesisState_DenomToHostZoneEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -199,7 +228,7 @@ export const GenesisState_DenomToHostZoneEntry = {
   decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState_DenomToHostZoneEntry {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGenesisState_DenomToHostZoneEntry();
+    const message = { ...baseGenesisState_DenomToHostZoneEntry } as GenesisState_DenomToHostZoneEntry;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -218,7 +247,18 @@ export const GenesisState_DenomToHostZoneEntry = {
   },
 
   fromJSON(object: any): GenesisState_DenomToHostZoneEntry {
-    return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object.value) ? String(object.value) : "" };
+    const message = { ...baseGenesisState_DenomToHostZoneEntry } as GenesisState_DenomToHostZoneEntry;
+    if (object.key !== undefined && object.key !== null) {
+      message.key = String(object.key);
+    } else {
+      message.key = "";
+    }
+    if (object.value !== undefined && object.value !== null) {
+      message.value = String(object.value);
+    } else {
+      message.value = "";
+    }
+    return message;
   },
 
   toJSON(message: GenesisState_DenomToHostZoneEntry): unknown {
@@ -228,43 +268,34 @@ export const GenesisState_DenomToHostZoneEntry = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<GenesisState_DenomToHostZoneEntry>, I>>(
-    base?: I,
-  ): GenesisState_DenomToHostZoneEntry {
-    return GenesisState_DenomToHostZoneEntry.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<GenesisState_DenomToHostZoneEntry>, I>>(
-    object: I,
-  ): GenesisState_DenomToHostZoneEntry {
-    const message = createBaseGenesisState_DenomToHostZoneEntry();
-    message.key = object.key ?? "";
-    message.value = object.value ?? "";
+  fromPartial(object: DeepPartial<GenesisState_DenomToHostZoneEntry>): GenesisState_DenomToHostZoneEntry {
+    const message = { ...baseGenesisState_DenomToHostZoneEntry } as GenesisState_DenomToHostZoneEntry;
+    if (object.key !== undefined && object.key !== null) {
+      message.key = object.key;
+    } else {
+      message.key = "";
+    }
+    if (object.value !== undefined && object.value !== null) {
+      message.value = object.value;
+    } else {
+      message.value = "";
+    }
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isObject(value: any): boolean {
-  return typeof value === "object" && value !== null;
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
 }

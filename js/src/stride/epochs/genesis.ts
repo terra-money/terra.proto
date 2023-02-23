@@ -21,17 +21,12 @@ export interface GenesisState {
   epochs: EpochInfo[];
 }
 
-function createBaseEpochInfo(): EpochInfo {
-  return {
-    identifier: "",
-    startTime: undefined,
-    duration: undefined,
-    currentEpoch: Long.ZERO,
-    currentEpochStartTime: undefined,
-    epochCountingStarted: false,
-    currentEpochStartHeight: Long.ZERO,
-  };
-}
+const baseEpochInfo: object = {
+  identifier: "",
+  currentEpoch: Long.ZERO,
+  epochCountingStarted: false,
+  currentEpochStartHeight: Long.ZERO,
+};
 
 export const EpochInfo = {
   encode(message: EpochInfo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -62,7 +57,7 @@ export const EpochInfo = {
   decode(input: _m0.Reader | Uint8Array, length?: number): EpochInfo {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseEpochInfo();
+    const message = { ...baseEpochInfo } as EpochInfo;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -96,26 +91,51 @@ export const EpochInfo = {
   },
 
   fromJSON(object: any): EpochInfo {
-    return {
-      identifier: isSet(object.identifier) ? String(object.identifier) : "",
-      startTime: isSet(object.startTime) ? fromJsonTimestamp(object.startTime) : undefined,
-      duration: isSet(object.duration) ? Duration.fromJSON(object.duration) : undefined,
-      currentEpoch: isSet(object.currentEpoch) ? Long.fromValue(object.currentEpoch) : Long.ZERO,
-      currentEpochStartTime: isSet(object.currentEpochStartTime)
-        ? fromJsonTimestamp(object.currentEpochStartTime)
-        : undefined,
-      epochCountingStarted: isSet(object.epochCountingStarted) ? Boolean(object.epochCountingStarted) : false,
-      currentEpochStartHeight: isSet(object.currentEpochStartHeight)
-        ? Long.fromValue(object.currentEpochStartHeight)
-        : Long.ZERO,
-    };
+    const message = { ...baseEpochInfo } as EpochInfo;
+    if (object.identifier !== undefined && object.identifier !== null) {
+      message.identifier = String(object.identifier);
+    } else {
+      message.identifier = "";
+    }
+    if (object.startTime !== undefined && object.startTime !== null) {
+      message.startTime = fromJsonTimestamp(object.startTime);
+    } else {
+      message.startTime = undefined;
+    }
+    if (object.duration !== undefined && object.duration !== null) {
+      message.duration = Duration.fromJSON(object.duration);
+    } else {
+      message.duration = undefined;
+    }
+    if (object.currentEpoch !== undefined && object.currentEpoch !== null) {
+      message.currentEpoch = Long.fromString(object.currentEpoch);
+    } else {
+      message.currentEpoch = Long.ZERO;
+    }
+    if (object.currentEpochStartTime !== undefined && object.currentEpochStartTime !== null) {
+      message.currentEpochStartTime = fromJsonTimestamp(object.currentEpochStartTime);
+    } else {
+      message.currentEpochStartTime = undefined;
+    }
+    if (object.epochCountingStarted !== undefined && object.epochCountingStarted !== null) {
+      message.epochCountingStarted = Boolean(object.epochCountingStarted);
+    } else {
+      message.epochCountingStarted = false;
+    }
+    if (object.currentEpochStartHeight !== undefined && object.currentEpochStartHeight !== null) {
+      message.currentEpochStartHeight = Long.fromString(object.currentEpochStartHeight);
+    } else {
+      message.currentEpochStartHeight = Long.ZERO;
+    }
+    return message;
   },
 
   toJSON(message: EpochInfo): unknown {
     const obj: any = {};
     message.identifier !== undefined && (obj.identifier = message.identifier);
     message.startTime !== undefined && (obj.startTime = message.startTime.toISOString());
-    message.duration !== undefined && (obj.duration = message.duration ? Duration.toJSON(message.duration) : undefined);
+    message.duration !== undefined &&
+      (obj.duration = message.duration ? Duration.toJSON(message.duration) : undefined);
     message.currentEpoch !== undefined && (obj.currentEpoch = (message.currentEpoch || Long.ZERO).toString());
     message.currentEpochStartTime !== undefined &&
       (obj.currentEpochStartTime = message.currentEpochStartTime.toISOString());
@@ -125,33 +145,48 @@ export const EpochInfo = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<EpochInfo>, I>>(base?: I): EpochInfo {
-    return EpochInfo.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<EpochInfo>, I>>(object: I): EpochInfo {
-    const message = createBaseEpochInfo();
-    message.identifier = object.identifier ?? "";
-    message.startTime = object.startTime ?? undefined;
-    message.duration = (object.duration !== undefined && object.duration !== null)
-      ? Duration.fromPartial(object.duration)
-      : undefined;
-    message.currentEpoch = (object.currentEpoch !== undefined && object.currentEpoch !== null)
-      ? Long.fromValue(object.currentEpoch)
-      : Long.ZERO;
-    message.currentEpochStartTime = object.currentEpochStartTime ?? undefined;
-    message.epochCountingStarted = object.epochCountingStarted ?? false;
-    message.currentEpochStartHeight =
-      (object.currentEpochStartHeight !== undefined && object.currentEpochStartHeight !== null)
-        ? Long.fromValue(object.currentEpochStartHeight)
-        : Long.ZERO;
+  fromPartial(object: DeepPartial<EpochInfo>): EpochInfo {
+    const message = { ...baseEpochInfo } as EpochInfo;
+    if (object.identifier !== undefined && object.identifier !== null) {
+      message.identifier = object.identifier;
+    } else {
+      message.identifier = "";
+    }
+    if (object.startTime !== undefined && object.startTime !== null) {
+      message.startTime = object.startTime;
+    } else {
+      message.startTime = undefined;
+    }
+    if (object.duration !== undefined && object.duration !== null) {
+      message.duration = Duration.fromPartial(object.duration);
+    } else {
+      message.duration = undefined;
+    }
+    if (object.currentEpoch !== undefined && object.currentEpoch !== null) {
+      message.currentEpoch = object.currentEpoch as Long;
+    } else {
+      message.currentEpoch = Long.ZERO;
+    }
+    if (object.currentEpochStartTime !== undefined && object.currentEpochStartTime !== null) {
+      message.currentEpochStartTime = object.currentEpochStartTime;
+    } else {
+      message.currentEpochStartTime = undefined;
+    }
+    if (object.epochCountingStarted !== undefined && object.epochCountingStarted !== null) {
+      message.epochCountingStarted = object.epochCountingStarted;
+    } else {
+      message.epochCountingStarted = false;
+    }
+    if (object.currentEpochStartHeight !== undefined && object.currentEpochStartHeight !== null) {
+      message.currentEpochStartHeight = object.currentEpochStartHeight as Long;
+    } else {
+      message.currentEpochStartHeight = Long.ZERO;
+    }
     return message;
   },
 };
 
-function createBaseGenesisState(): GenesisState {
-  return { epochs: [] };
-}
+const baseGenesisState: object = {};
 
 export const GenesisState = {
   encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -164,7 +199,8 @@ export const GenesisState = {
   decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGenesisState();
+    const message = { ...baseGenesisState } as GenesisState;
+    message.epochs = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -180,41 +216,48 @@ export const GenesisState = {
   },
 
   fromJSON(object: any): GenesisState {
-    return { epochs: Array.isArray(object?.epochs) ? object.epochs.map((e: any) => EpochInfo.fromJSON(e)) : [] };
+    const message = { ...baseGenesisState } as GenesisState;
+    message.epochs = [];
+    if (object.epochs !== undefined && object.epochs !== null) {
+      for (const e of object.epochs) {
+        message.epochs.push(EpochInfo.fromJSON(e));
+      }
+    }
+    return message;
   },
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
     if (message.epochs) {
-      obj.epochs = message.epochs.map((e) => e ? EpochInfo.toJSON(e) : undefined);
+      obj.epochs = message.epochs.map((e) => (e ? EpochInfo.toJSON(e) : undefined));
     } else {
       obj.epochs = [];
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<GenesisState>, I>>(base?: I): GenesisState {
-    return GenesisState.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
-    const message = createBaseGenesisState();
-    message.epochs = object.epochs?.map((e) => EpochInfo.fromPartial(e)) || [];
+  fromPartial(object: DeepPartial<GenesisState>): GenesisState {
+    const message = { ...baseGenesisState } as GenesisState;
+    message.epochs = [];
+    if (object.epochs !== undefined && object.epochs !== null) {
+      for (const e of object.epochs) {
+        message.epochs.push(EpochInfo.fromPartial(e));
+      }
+    }
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function toTimestamp(date: Date): Timestamp {
   const seconds = numberToLong(date.getTime() / 1_000);
@@ -245,8 +288,4 @@ function numberToLong(number: number) {
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
 }

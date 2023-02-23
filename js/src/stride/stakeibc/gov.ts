@@ -13,9 +13,14 @@ export interface AddValidatorProposal {
   deposit: string;
 }
 
-function createBaseAddValidatorProposal(): AddValidatorProposal {
-  return { title: "", description: "", hostZone: "", validatorName: "", validatorAddress: "", deposit: "" };
-}
+const baseAddValidatorProposal: object = {
+  title: "",
+  description: "",
+  hostZone: "",
+  validatorName: "",
+  validatorAddress: "",
+  deposit: "",
+};
 
 export const AddValidatorProposal = {
   encode(message: AddValidatorProposal, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -43,7 +48,7 @@ export const AddValidatorProposal = {
   decode(input: _m0.Reader | Uint8Array, length?: number): AddValidatorProposal {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseAddValidatorProposal();
+    const message = { ...baseAddValidatorProposal } as AddValidatorProposal;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -74,14 +79,38 @@ export const AddValidatorProposal = {
   },
 
   fromJSON(object: any): AddValidatorProposal {
-    return {
-      title: isSet(object.title) ? String(object.title) : "",
-      description: isSet(object.description) ? String(object.description) : "",
-      hostZone: isSet(object.hostZone) ? String(object.hostZone) : "",
-      validatorName: isSet(object.validatorName) ? String(object.validatorName) : "",
-      validatorAddress: isSet(object.validatorAddress) ? String(object.validatorAddress) : "",
-      deposit: isSet(object.deposit) ? String(object.deposit) : "",
-    };
+    const message = { ...baseAddValidatorProposal } as AddValidatorProposal;
+    if (object.title !== undefined && object.title !== null) {
+      message.title = String(object.title);
+    } else {
+      message.title = "";
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = String(object.description);
+    } else {
+      message.description = "";
+    }
+    if (object.hostZone !== undefined && object.hostZone !== null) {
+      message.hostZone = String(object.hostZone);
+    } else {
+      message.hostZone = "";
+    }
+    if (object.validatorName !== undefined && object.validatorName !== null) {
+      message.validatorName = String(object.validatorName);
+    } else {
+      message.validatorName = "";
+    }
+    if (object.validatorAddress !== undefined && object.validatorAddress !== null) {
+      message.validatorAddress = String(object.validatorAddress);
+    } else {
+      message.validatorAddress = "";
+    }
+    if (object.deposit !== undefined && object.deposit !== null) {
+      message.deposit = String(object.deposit);
+    } else {
+      message.deposit = "";
+    }
+    return message;
   },
 
   toJSON(message: AddValidatorProposal): unknown {
@@ -95,39 +124,54 @@ export const AddValidatorProposal = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<AddValidatorProposal>, I>>(base?: I): AddValidatorProposal {
-    return AddValidatorProposal.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<AddValidatorProposal>, I>>(object: I): AddValidatorProposal {
-    const message = createBaseAddValidatorProposal();
-    message.title = object.title ?? "";
-    message.description = object.description ?? "";
-    message.hostZone = object.hostZone ?? "";
-    message.validatorName = object.validatorName ?? "";
-    message.validatorAddress = object.validatorAddress ?? "";
-    message.deposit = object.deposit ?? "";
+  fromPartial(object: DeepPartial<AddValidatorProposal>): AddValidatorProposal {
+    const message = { ...baseAddValidatorProposal } as AddValidatorProposal;
+    if (object.title !== undefined && object.title !== null) {
+      message.title = object.title;
+    } else {
+      message.title = "";
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = object.description;
+    } else {
+      message.description = "";
+    }
+    if (object.hostZone !== undefined && object.hostZone !== null) {
+      message.hostZone = object.hostZone;
+    } else {
+      message.hostZone = "";
+    }
+    if (object.validatorName !== undefined && object.validatorName !== null) {
+      message.validatorName = object.validatorName;
+    } else {
+      message.validatorName = "";
+    }
+    if (object.validatorAddress !== undefined && object.validatorAddress !== null) {
+      message.validatorAddress = object.validatorAddress;
+    } else {
+      message.validatorAddress = "";
+    }
+    if (object.deposit !== undefined && object.deposit !== null) {
+      message.deposit = object.deposit;
+    } else {
+      message.deposit = "";
+    }
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
 }

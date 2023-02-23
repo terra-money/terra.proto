@@ -52,9 +52,7 @@ export interface Params {
   mintingRewardsDistributionStartEpoch: Long;
 }
 
-function createBaseMinter(): Minter {
-  return { epochProvisions: "" };
-}
+const baseMinter: object = { epochProvisions: "" };
 
 export const Minter = {
   encode(message: Minter, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -67,7 +65,7 @@ export const Minter = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Minter {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMinter();
+    const message = { ...baseMinter } as Minter;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -83,7 +81,13 @@ export const Minter = {
   },
 
   fromJSON(object: any): Minter {
-    return { epochProvisions: isSet(object.epochProvisions) ? String(object.epochProvisions) : "" };
+    const message = { ...baseMinter } as Minter;
+    if (object.epochProvisions !== undefined && object.epochProvisions !== null) {
+      message.epochProvisions = String(object.epochProvisions);
+    } else {
+      message.epochProvisions = "";
+    }
+    return message;
   },
 
   toJSON(message: Minter): unknown {
@@ -92,20 +96,23 @@ export const Minter = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Minter>, I>>(base?: I): Minter {
-    return Minter.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<Minter>, I>>(object: I): Minter {
-    const message = createBaseMinter();
-    message.epochProvisions = object.epochProvisions ?? "";
+  fromPartial(object: DeepPartial<Minter>): Minter {
+    const message = { ...baseMinter } as Minter;
+    if (object.epochProvisions !== undefined && object.epochProvisions !== null) {
+      message.epochProvisions = object.epochProvisions;
+    } else {
+      message.epochProvisions = "";
+    }
     return message;
   },
 };
 
-function createBaseDistributionProportions(): DistributionProportions {
-  return { staking: "", communityPoolGrowth: "", communityPoolSecurityBudget: "", strategicReserve: "" };
-}
+const baseDistributionProportions: object = {
+  staking: "",
+  communityPoolGrowth: "",
+  communityPoolSecurityBudget: "",
+  strategicReserve: "",
+};
 
 export const DistributionProportions = {
   encode(message: DistributionProportions, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -127,7 +134,7 @@ export const DistributionProportions = {
   decode(input: _m0.Reader | Uint8Array, length?: number): DistributionProportions {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseDistributionProportions();
+    const message = { ...baseDistributionProportions } as DistributionProportions;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -152,14 +159,28 @@ export const DistributionProportions = {
   },
 
   fromJSON(object: any): DistributionProportions {
-    return {
-      staking: isSet(object.staking) ? String(object.staking) : "",
-      communityPoolGrowth: isSet(object.communityPoolGrowth) ? String(object.communityPoolGrowth) : "",
-      communityPoolSecurityBudget: isSet(object.communityPoolSecurityBudget)
-        ? String(object.communityPoolSecurityBudget)
-        : "",
-      strategicReserve: isSet(object.strategicReserve) ? String(object.strategicReserve) : "",
-    };
+    const message = { ...baseDistributionProportions } as DistributionProportions;
+    if (object.staking !== undefined && object.staking !== null) {
+      message.staking = String(object.staking);
+    } else {
+      message.staking = "";
+    }
+    if (object.communityPoolGrowth !== undefined && object.communityPoolGrowth !== null) {
+      message.communityPoolGrowth = String(object.communityPoolGrowth);
+    } else {
+      message.communityPoolGrowth = "";
+    }
+    if (object.communityPoolSecurityBudget !== undefined && object.communityPoolSecurityBudget !== null) {
+      message.communityPoolSecurityBudget = String(object.communityPoolSecurityBudget);
+    } else {
+      message.communityPoolSecurityBudget = "";
+    }
+    if (object.strategicReserve !== undefined && object.strategicReserve !== null) {
+      message.strategicReserve = String(object.strategicReserve);
+    } else {
+      message.strategicReserve = "";
+    }
+    return message;
   },
 
   toJSON(message: DistributionProportions): unknown {
@@ -172,31 +193,40 @@ export const DistributionProportions = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<DistributionProportions>, I>>(base?: I): DistributionProportions {
-    return DistributionProportions.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<DistributionProportions>, I>>(object: I): DistributionProportions {
-    const message = createBaseDistributionProportions();
-    message.staking = object.staking ?? "";
-    message.communityPoolGrowth = object.communityPoolGrowth ?? "";
-    message.communityPoolSecurityBudget = object.communityPoolSecurityBudget ?? "";
-    message.strategicReserve = object.strategicReserve ?? "";
+  fromPartial(object: DeepPartial<DistributionProportions>): DistributionProportions {
+    const message = { ...baseDistributionProportions } as DistributionProportions;
+    if (object.staking !== undefined && object.staking !== null) {
+      message.staking = object.staking;
+    } else {
+      message.staking = "";
+    }
+    if (object.communityPoolGrowth !== undefined && object.communityPoolGrowth !== null) {
+      message.communityPoolGrowth = object.communityPoolGrowth;
+    } else {
+      message.communityPoolGrowth = "";
+    }
+    if (object.communityPoolSecurityBudget !== undefined && object.communityPoolSecurityBudget !== null) {
+      message.communityPoolSecurityBudget = object.communityPoolSecurityBudget;
+    } else {
+      message.communityPoolSecurityBudget = "";
+    }
+    if (object.strategicReserve !== undefined && object.strategicReserve !== null) {
+      message.strategicReserve = object.strategicReserve;
+    } else {
+      message.strategicReserve = "";
+    }
     return message;
   },
 };
 
-function createBaseParams(): Params {
-  return {
-    mintDenom: "",
-    genesisEpochProvisions: "",
-    epochIdentifier: "",
-    reductionPeriodInEpochs: Long.ZERO,
-    reductionFactor: "",
-    distributionProportions: undefined,
-    mintingRewardsDistributionStartEpoch: Long.ZERO,
-  };
-}
+const baseParams: object = {
+  mintDenom: "",
+  genesisEpochProvisions: "",
+  epochIdentifier: "",
+  reductionPeriodInEpochs: Long.ZERO,
+  reductionFactor: "",
+  mintingRewardsDistributionStartEpoch: Long.ZERO,
+};
 
 export const Params = {
   encode(message: Params, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -227,7 +257,7 @@ export const Params = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Params {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseParams();
+    const message = { ...baseParams } as Params;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -261,84 +291,126 @@ export const Params = {
   },
 
   fromJSON(object: any): Params {
-    return {
-      mintDenom: isSet(object.mintDenom) ? String(object.mintDenom) : "",
-      genesisEpochProvisions: isSet(object.genesisEpochProvisions) ? String(object.genesisEpochProvisions) : "",
-      epochIdentifier: isSet(object.epochIdentifier) ? String(object.epochIdentifier) : "",
-      reductionPeriodInEpochs: isSet(object.reductionPeriodInEpochs)
-        ? Long.fromValue(object.reductionPeriodInEpochs)
-        : Long.ZERO,
-      reductionFactor: isSet(object.reductionFactor) ? String(object.reductionFactor) : "",
-      distributionProportions: isSet(object.distributionProportions)
-        ? DistributionProportions.fromJSON(object.distributionProportions)
-        : undefined,
-      mintingRewardsDistributionStartEpoch: isSet(object.mintingRewardsDistributionStartEpoch)
-        ? Long.fromValue(object.mintingRewardsDistributionStartEpoch)
-        : Long.ZERO,
-    };
+    const message = { ...baseParams } as Params;
+    if (object.mintDenom !== undefined && object.mintDenom !== null) {
+      message.mintDenom = String(object.mintDenom);
+    } else {
+      message.mintDenom = "";
+    }
+    if (object.genesisEpochProvisions !== undefined && object.genesisEpochProvisions !== null) {
+      message.genesisEpochProvisions = String(object.genesisEpochProvisions);
+    } else {
+      message.genesisEpochProvisions = "";
+    }
+    if (object.epochIdentifier !== undefined && object.epochIdentifier !== null) {
+      message.epochIdentifier = String(object.epochIdentifier);
+    } else {
+      message.epochIdentifier = "";
+    }
+    if (object.reductionPeriodInEpochs !== undefined && object.reductionPeriodInEpochs !== null) {
+      message.reductionPeriodInEpochs = Long.fromString(object.reductionPeriodInEpochs);
+    } else {
+      message.reductionPeriodInEpochs = Long.ZERO;
+    }
+    if (object.reductionFactor !== undefined && object.reductionFactor !== null) {
+      message.reductionFactor = String(object.reductionFactor);
+    } else {
+      message.reductionFactor = "";
+    }
+    if (object.distributionProportions !== undefined && object.distributionProportions !== null) {
+      message.distributionProportions = DistributionProportions.fromJSON(object.distributionProportions);
+    } else {
+      message.distributionProportions = undefined;
+    }
+    if (
+      object.mintingRewardsDistributionStartEpoch !== undefined &&
+      object.mintingRewardsDistributionStartEpoch !== null
+    ) {
+      message.mintingRewardsDistributionStartEpoch = Long.fromString(
+        object.mintingRewardsDistributionStartEpoch,
+      );
+    } else {
+      message.mintingRewardsDistributionStartEpoch = Long.ZERO;
+    }
+    return message;
   },
 
   toJSON(message: Params): unknown {
     const obj: any = {};
     message.mintDenom !== undefined && (obj.mintDenom = message.mintDenom);
-    message.genesisEpochProvisions !== undefined && (obj.genesisEpochProvisions = message.genesisEpochProvisions);
+    message.genesisEpochProvisions !== undefined &&
+      (obj.genesisEpochProvisions = message.genesisEpochProvisions);
     message.epochIdentifier !== undefined && (obj.epochIdentifier = message.epochIdentifier);
     message.reductionPeriodInEpochs !== undefined &&
       (obj.reductionPeriodInEpochs = (message.reductionPeriodInEpochs || Long.ZERO).toString());
     message.reductionFactor !== undefined && (obj.reductionFactor = message.reductionFactor);
-    message.distributionProportions !== undefined && (obj.distributionProportions = message.distributionProportions
-      ? DistributionProportions.toJSON(message.distributionProportions)
-      : undefined);
+    message.distributionProportions !== undefined &&
+      (obj.distributionProportions = message.distributionProportions
+        ? DistributionProportions.toJSON(message.distributionProportions)
+        : undefined);
     message.mintingRewardsDistributionStartEpoch !== undefined &&
-      (obj.mintingRewardsDistributionStartEpoch = (message.mintingRewardsDistributionStartEpoch || Long.ZERO)
-        .toString());
+      (obj.mintingRewardsDistributionStartEpoch = (
+        message.mintingRewardsDistributionStartEpoch || Long.ZERO
+      ).toString());
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Params>, I>>(base?: I): Params {
-    return Params.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<Params>, I>>(object: I): Params {
-    const message = createBaseParams();
-    message.mintDenom = object.mintDenom ?? "";
-    message.genesisEpochProvisions = object.genesisEpochProvisions ?? "";
-    message.epochIdentifier = object.epochIdentifier ?? "";
-    message.reductionPeriodInEpochs =
-      (object.reductionPeriodInEpochs !== undefined && object.reductionPeriodInEpochs !== null)
-        ? Long.fromValue(object.reductionPeriodInEpochs)
-        : Long.ZERO;
-    message.reductionFactor = object.reductionFactor ?? "";
-    message.distributionProportions =
-      (object.distributionProportions !== undefined && object.distributionProportions !== null)
-        ? DistributionProportions.fromPartial(object.distributionProportions)
-        : undefined;
-    message.mintingRewardsDistributionStartEpoch =
-      (object.mintingRewardsDistributionStartEpoch !== undefined &&
-          object.mintingRewardsDistributionStartEpoch !== null)
-        ? Long.fromValue(object.mintingRewardsDistributionStartEpoch)
-        : Long.ZERO;
+  fromPartial(object: DeepPartial<Params>): Params {
+    const message = { ...baseParams } as Params;
+    if (object.mintDenom !== undefined && object.mintDenom !== null) {
+      message.mintDenom = object.mintDenom;
+    } else {
+      message.mintDenom = "";
+    }
+    if (object.genesisEpochProvisions !== undefined && object.genesisEpochProvisions !== null) {
+      message.genesisEpochProvisions = object.genesisEpochProvisions;
+    } else {
+      message.genesisEpochProvisions = "";
+    }
+    if (object.epochIdentifier !== undefined && object.epochIdentifier !== null) {
+      message.epochIdentifier = object.epochIdentifier;
+    } else {
+      message.epochIdentifier = "";
+    }
+    if (object.reductionPeriodInEpochs !== undefined && object.reductionPeriodInEpochs !== null) {
+      message.reductionPeriodInEpochs = object.reductionPeriodInEpochs as Long;
+    } else {
+      message.reductionPeriodInEpochs = Long.ZERO;
+    }
+    if (object.reductionFactor !== undefined && object.reductionFactor !== null) {
+      message.reductionFactor = object.reductionFactor;
+    } else {
+      message.reductionFactor = "";
+    }
+    if (object.distributionProportions !== undefined && object.distributionProportions !== null) {
+      message.distributionProportions = DistributionProportions.fromPartial(object.distributionProportions);
+    } else {
+      message.distributionProportions = undefined;
+    }
+    if (
+      object.mintingRewardsDistributionStartEpoch !== undefined &&
+      object.mintingRewardsDistributionStartEpoch !== null
+    ) {
+      message.mintingRewardsDistributionStartEpoch = object.mintingRewardsDistributionStartEpoch as Long;
+    } else {
+      message.mintingRewardsDistributionStartEpoch = Long.ZERO;
+    }
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
 }

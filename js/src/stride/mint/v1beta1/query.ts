@@ -1,15 +1,14 @@
 /* eslint-disable */
-import { grpc } from "@improbable-eng/grpc-web";
-import { BrowserHeaders } from "browser-headers";
 import Long from "long";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
-import { Params } from "./mint";
+import { Params } from "../../../stride/mint/v1beta1/mint";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "stride.mint.v1beta1";
 
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
-export interface QueryParamsRequest {
-}
+export interface QueryParamsRequest {}
 
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */
 export interface QueryParamsResponse {
@@ -21,8 +20,7 @@ export interface QueryParamsResponse {
  * QueryEpochProvisionsRequest is the request type for the
  * Query/EpochProvisions RPC method.
  */
-export interface QueryEpochProvisionsRequest {
-}
+export interface QueryEpochProvisionsRequest {}
 
 /**
  * QueryEpochProvisionsResponse is the response type for the
@@ -33,9 +31,7 @@ export interface QueryEpochProvisionsResponse {
   epochProvisions: Uint8Array;
 }
 
-function createBaseQueryParamsRequest(): QueryParamsRequest {
-  return {};
-}
+const baseQueryParamsRequest: object = {};
 
 export const QueryParamsRequest = {
   encode(_: QueryParamsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -45,7 +41,7 @@ export const QueryParamsRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryParamsRequest();
+    const message = { ...baseQueryParamsRequest } as QueryParamsRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -58,7 +54,8 @@ export const QueryParamsRequest = {
   },
 
   fromJSON(_: any): QueryParamsRequest {
-    return {};
+    const message = { ...baseQueryParamsRequest } as QueryParamsRequest;
+    return message;
   },
 
   toJSON(_: QueryParamsRequest): unknown {
@@ -66,19 +63,13 @@ export const QueryParamsRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryParamsRequest>, I>>(base?: I): QueryParamsRequest {
-    return QueryParamsRequest.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryParamsRequest>, I>>(_: I): QueryParamsRequest {
-    const message = createBaseQueryParamsRequest();
+  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
+    const message = { ...baseQueryParamsRequest } as QueryParamsRequest;
     return message;
   },
 };
 
-function createBaseQueryParamsResponse(): QueryParamsResponse {
-  return { params: undefined };
-}
+const baseQueryParamsResponse: object = {};
 
 export const QueryParamsResponse = {
   encode(message: QueryParamsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -91,7 +82,7 @@ export const QueryParamsResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryParamsResponse();
+    const message = { ...baseQueryParamsResponse } as QueryParamsResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -107,7 +98,13 @@ export const QueryParamsResponse = {
   },
 
   fromJSON(object: any): QueryParamsResponse {
-    return { params: isSet(object.params) ? Params.fromJSON(object.params) : undefined };
+    const message = { ...baseQueryParamsResponse } as QueryParamsResponse;
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromJSON(object.params);
+    } else {
+      message.params = undefined;
+    }
+    return message;
   },
 
   toJSON(message: QueryParamsResponse): unknown {
@@ -116,22 +113,18 @@ export const QueryParamsResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(base?: I): QueryParamsResponse {
-    return QueryParamsResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(object: I): QueryParamsResponse {
-    const message = createBaseQueryParamsResponse();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
+  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
+    const message = { ...baseQueryParamsResponse } as QueryParamsResponse;
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromPartial(object.params);
+    } else {
+      message.params = undefined;
+    }
     return message;
   },
 };
 
-function createBaseQueryEpochProvisionsRequest(): QueryEpochProvisionsRequest {
-  return {};
-}
+const baseQueryEpochProvisionsRequest: object = {};
 
 export const QueryEpochProvisionsRequest = {
   encode(_: QueryEpochProvisionsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -141,7 +134,7 @@ export const QueryEpochProvisionsRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryEpochProvisionsRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryEpochProvisionsRequest();
+    const message = { ...baseQueryEpochProvisionsRequest } as QueryEpochProvisionsRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -154,7 +147,8 @@ export const QueryEpochProvisionsRequest = {
   },
 
   fromJSON(_: any): QueryEpochProvisionsRequest {
-    return {};
+    const message = { ...baseQueryEpochProvisionsRequest } as QueryEpochProvisionsRequest;
+    return message;
   },
 
   toJSON(_: QueryEpochProvisionsRequest): unknown {
@@ -162,19 +156,13 @@ export const QueryEpochProvisionsRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryEpochProvisionsRequest>, I>>(base?: I): QueryEpochProvisionsRequest {
-    return QueryEpochProvisionsRequest.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryEpochProvisionsRequest>, I>>(_: I): QueryEpochProvisionsRequest {
-    const message = createBaseQueryEpochProvisionsRequest();
+  fromPartial(_: DeepPartial<QueryEpochProvisionsRequest>): QueryEpochProvisionsRequest {
+    const message = { ...baseQueryEpochProvisionsRequest } as QueryEpochProvisionsRequest;
     return message;
   },
 };
 
-function createBaseQueryEpochProvisionsResponse(): QueryEpochProvisionsResponse {
-  return { epochProvisions: new Uint8Array() };
-}
+const baseQueryEpochProvisionsResponse: object = {};
 
 export const QueryEpochProvisionsResponse = {
   encode(message: QueryEpochProvisionsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -187,7 +175,8 @@ export const QueryEpochProvisionsResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryEpochProvisionsResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryEpochProvisionsResponse();
+    const message = { ...baseQueryEpochProvisionsResponse } as QueryEpochProvisionsResponse;
+    message.epochProvisions = new Uint8Array();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -203,9 +192,12 @@ export const QueryEpochProvisionsResponse = {
   },
 
   fromJSON(object: any): QueryEpochProvisionsResponse {
-    return {
-      epochProvisions: isSet(object.epochProvisions) ? bytesFromBase64(object.epochProvisions) : new Uint8Array(),
-    };
+    const message = { ...baseQueryEpochProvisionsResponse } as QueryEpochProvisionsResponse;
+    message.epochProvisions = new Uint8Array();
+    if (object.epochProvisions !== undefined && object.epochProvisions !== null) {
+      message.epochProvisions = bytesFromBase64(object.epochProvisions);
+    }
+    return message;
   },
 
   toJSON(message: QueryEpochProvisionsResponse): unknown {
@@ -217,13 +209,13 @@ export const QueryEpochProvisionsResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryEpochProvisionsResponse>, I>>(base?: I): QueryEpochProvisionsResponse {
-    return QueryEpochProvisionsResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryEpochProvisionsResponse>, I>>(object: I): QueryEpochProvisionsResponse {
-    const message = createBaseQueryEpochProvisionsResponse();
-    message.epochProvisions = object.epochProvisions ?? new Uint8Array();
+  fromPartial(object: DeepPartial<QueryEpochProvisionsResponse>): QueryEpochProvisionsResponse {
+    const message = { ...baseQueryEpochProvisionsResponse } as QueryEpochProvisionsResponse;
+    if (object.epochProvisions !== undefined && object.epochProvisions !== null) {
+      message.epochProvisions = object.epochProvisions;
+    } else {
+      message.epochProvisions = new Uint8Array();
+    }
     return message;
   },
 };
@@ -256,11 +248,17 @@ export class QueryClientImpl implements Query {
     request: DeepPartial<QueryEpochProvisionsRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryEpochProvisionsResponse> {
-    return this.rpc.unary(QueryEpochProvisionsDesc, QueryEpochProvisionsRequest.fromPartial(request), metadata);
+    return this.rpc.unary(
+      QueryEpochProvisionsDesc,
+      QueryEpochProvisionsRequest.fromPartial(request),
+      metadata,
+    );
   }
 }
 
-export const QueryDesc = { serviceName: "stride.mint.v1beta1.Query" };
+export const QueryDesc = {
+  serviceName: "stride.mint.v1beta1.Query",
+};
 
 export const QueryParamsDesc: UnaryMethodDefinitionish = {
   methodName: "Params",
@@ -274,11 +272,10 @@ export const QueryParamsDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = QueryParamsResponse.decode(data);
       return {
-        ...value,
+        ...QueryParamsResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -297,11 +294,10 @@ export const QueryEpochProvisionsDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = QueryEpochProvisionsResponse.decode(data);
       return {
-        ...value,
+        ...QueryEpochProvisionsResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -330,7 +326,6 @@ export class GrpcWebImpl {
 
     debug?: boolean;
     metadata?: grpc.Metadata;
-    upStreamRetryCodes?: number[];
   };
 
   constructor(
@@ -340,7 +335,6 @@ export class GrpcWebImpl {
 
       debug?: boolean;
       metadata?: grpc.Metadata;
-      upStreamRetryCodes?: number[];
     },
   ) {
     this.host = host;
@@ -353,9 +347,10 @@ export class GrpcWebImpl {
     metadata: grpc.Metadata | undefined,
   ): Promise<any> {
     const request = { ..._request, ...methodDesc.requestType };
-    const maybeCombinedMetadata = metadata && this.options.metadata
-      ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
-      : metadata || this.options.metadata;
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
     return new Promise((resolve, reject) => {
       grpc.unary(methodDesc, {
         request,
@@ -365,9 +360,11 @@ export class GrpcWebImpl {
         debug: this.options.debug,
         onEnd: function (response) {
           if (response.status === grpc.Code.OK) {
-            resolve(response.message!.toObject());
+            resolve(response.message);
           } else {
-            const err = new GrpcWebError(response.statusMessage, response.status, response.trailers);
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
             reject(err);
           }
         },
@@ -378,71 +375,47 @@ export class GrpcWebImpl {
 
 declare var self: any | undefined;
 declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
+var globalThis: any = (() => {
+  if (typeof globalThis !== "undefined") return globalThis;
+  if (typeof self !== "undefined") return self;
+  if (typeof window !== "undefined") return window;
+  if (typeof global !== "undefined") return global;
   throw "Unable to locate global object";
 })();
 
+const atob: (b64: string) => string =
+  globalThis.atob || ((b64) => globalThis.Buffer.from(b64, "base64").toString("binary"));
 function bytesFromBase64(b64: string): Uint8Array {
-  if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
-  } else {
-    const bin = tsProtoGlobalThis.atob(b64);
-    const arr = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; ++i) {
-      arr[i] = bin.charCodeAt(i);
-    }
-    return arr;
+  const bin = atob(b64);
+  const arr = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; ++i) {
+    arr[i] = bin.charCodeAt(i);
   }
+  return arr;
 }
 
+const btoa: (bin: string) => string =
+  globalThis.btoa || ((bin) => globalThis.Buffer.from(bin, "binary").toString("base64"));
 function base64FromBytes(arr: Uint8Array): string {
-  if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
-  } else {
-    const bin: string[] = [];
-    arr.forEach((byte) => {
-      bin.push(String.fromCharCode(byte));
-    });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+  const bin: string[] = [];
+  for (const byte of arr) {
+    bin.push(String.fromCharCode(byte));
   }
+  return btoa(bin.join(""));
 }
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
-export class GrpcWebError extends tsProtoGlobalThis.Error {
-  constructor(message: string, public code: grpc.Code, public metadata: grpc.Metadata) {
-    super(message);
-  }
 }

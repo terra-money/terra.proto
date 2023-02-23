@@ -5,12 +5,9 @@ import _m0 from "protobufjs/minimal";
 export const protobufPackage = "stride.icacallbacks";
 
 /** Params defines the parameters for the module. */
-export interface Params {
-}
+export interface Params {}
 
-function createBaseParams(): Params {
-  return {};
-}
+const baseParams: object = {};
 
 export const Params = {
   encode(_: Params, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -20,7 +17,7 @@ export const Params = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Params {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseParams();
+    const message = { ...baseParams } as Params;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -33,7 +30,8 @@ export const Params = {
   },
 
   fromJSON(_: any): Params {
-    return {};
+    const message = { ...baseParams } as Params;
+    return message;
   },
 
   toJSON(_: Params): unknown {
@@ -41,27 +39,22 @@ export const Params = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Params>, I>>(base?: I): Params {
-    return Params.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<Params>, I>>(_: I): Params {
-    const message = createBaseParams();
+  fromPartial(_: DeepPartial<Params>): Params {
+    const message = { ...baseParams } as Params;
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;

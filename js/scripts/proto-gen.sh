@@ -12,7 +12,7 @@ mkdir -p "$OUT_DIR"
 echo "Processing proto files ..."
 ALLIANCED_DIR="../allianced/proto"
 TERRAD_THIRD_PARTY_DIR="../terrad/third_party/proto"
-STRIDE_DIR="../third_party/stride/proto"
+STRIDE_DIR="../third_party"
 
 protoc \
   --plugin="protoc-gen-ts_proto=${PROTOC_GEN_TS_PROTO_PATH}" \

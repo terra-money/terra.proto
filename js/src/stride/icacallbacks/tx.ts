@@ -1,12 +1,13 @@
 /* eslint-disable */
+import Long from "long";
 import { grpc } from "@improbable-eng/grpc-web";
+import _m0 from "protobufjs/minimal";
 import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "stride.icacallbacks";
 
 /** Msg defines the Msg service. */
-export interface Msg {
-}
+export interface Msg {}
 
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
@@ -16,7 +17,9 @@ export class MsgClientImpl implements Msg {
   }
 }
 
-export const MsgDesc = { serviceName: "stride.icacallbacks.Msg" };
+export const MsgDesc = {
+  serviceName: "stride.icacallbacks.Msg",
+};
 
 interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
   requestStream: any;
@@ -40,7 +43,6 @@ export class GrpcWebImpl {
 
     debug?: boolean;
     metadata?: grpc.Metadata;
-    upStreamRetryCodes?: number[];
   };
 
   constructor(
@@ -50,7 +52,6 @@ export class GrpcWebImpl {
 
       debug?: boolean;
       metadata?: grpc.Metadata;
-      upStreamRetryCodes?: number[];
     },
   ) {
     this.host = host;
@@ -63,9 +64,10 @@ export class GrpcWebImpl {
     metadata: grpc.Metadata | undefined,
   ): Promise<any> {
     const request = { ..._request, ...methodDesc.requestType };
-    const maybeCombinedMetadata = metadata && this.options.metadata
-      ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
-      : metadata || this.options.metadata;
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
     return new Promise((resolve, reject) => {
       grpc.unary(methodDesc, {
         request,
@@ -75,9 +77,11 @@ export class GrpcWebImpl {
         debug: this.options.debug,
         onEnd: function (response) {
           if (response.status === grpc.Code.OK) {
-            resolve(response.message!.toObject());
+            resolve(response.message);
           } else {
-            const err = new GrpcWebError(response.statusMessage, response.status, response.trailers);
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
             reject(err);
           }
         },
@@ -86,27 +90,7 @@ export class GrpcWebImpl {
   }
 }
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  throw "Unable to locate global object";
-})();
-
-export class GrpcWebError extends tsProtoGlobalThis.Error {
-  constructor(message: string, public code: grpc.Code, public metadata: grpc.Metadata) {
-    super(message);
-  }
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
 }

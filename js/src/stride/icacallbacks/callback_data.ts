@@ -13,16 +13,13 @@ export interface CallbackData {
   callbackArgs: Uint8Array;
 }
 
-function createBaseCallbackData(): CallbackData {
-  return {
-    callbackKey: "",
-    portId: "",
-    channelId: "",
-    sequence: Long.UZERO,
-    callbackId: "",
-    callbackArgs: new Uint8Array(),
-  };
-}
+const baseCallbackData: object = {
+  callbackKey: "",
+  portId: "",
+  channelId: "",
+  sequence: Long.UZERO,
+  callbackId: "",
+};
 
 export const CallbackData = {
   encode(message: CallbackData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -50,7 +47,8 @@ export const CallbackData = {
   decode(input: _m0.Reader | Uint8Array, length?: number): CallbackData {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseCallbackData();
+    const message = { ...baseCallbackData } as CallbackData;
+    message.callbackArgs = new Uint8Array();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -81,14 +79,37 @@ export const CallbackData = {
   },
 
   fromJSON(object: any): CallbackData {
-    return {
-      callbackKey: isSet(object.callbackKey) ? String(object.callbackKey) : "",
-      portId: isSet(object.portId) ? String(object.portId) : "",
-      channelId: isSet(object.channelId) ? String(object.channelId) : "",
-      sequence: isSet(object.sequence) ? Long.fromValue(object.sequence) : Long.UZERO,
-      callbackId: isSet(object.callbackId) ? String(object.callbackId) : "",
-      callbackArgs: isSet(object.callbackArgs) ? bytesFromBase64(object.callbackArgs) : new Uint8Array(),
-    };
+    const message = { ...baseCallbackData } as CallbackData;
+    message.callbackArgs = new Uint8Array();
+    if (object.callbackKey !== undefined && object.callbackKey !== null) {
+      message.callbackKey = String(object.callbackKey);
+    } else {
+      message.callbackKey = "";
+    }
+    if (object.portId !== undefined && object.portId !== null) {
+      message.portId = String(object.portId);
+    } else {
+      message.portId = "";
+    }
+    if (object.channelId !== undefined && object.channelId !== null) {
+      message.channelId = String(object.channelId);
+    } else {
+      message.channelId = "";
+    }
+    if (object.sequence !== undefined && object.sequence !== null) {
+      message.sequence = Long.fromString(object.sequence);
+    } else {
+      message.sequence = Long.UZERO;
+    }
+    if (object.callbackId !== undefined && object.callbackId !== null) {
+      message.callbackId = String(object.callbackId);
+    } else {
+      message.callbackId = "";
+    }
+    if (object.callbackArgs !== undefined && object.callbackArgs !== null) {
+      message.callbackArgs = bytesFromBase64(object.callbackArgs);
+    }
+    return message;
   },
 
   toJSON(message: CallbackData): unknown {
@@ -105,85 +126,85 @@ export const CallbackData = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<CallbackData>, I>>(base?: I): CallbackData {
-    return CallbackData.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<CallbackData>, I>>(object: I): CallbackData {
-    const message = createBaseCallbackData();
-    message.callbackKey = object.callbackKey ?? "";
-    message.portId = object.portId ?? "";
-    message.channelId = object.channelId ?? "";
-    message.sequence = (object.sequence !== undefined && object.sequence !== null)
-      ? Long.fromValue(object.sequence)
-      : Long.UZERO;
-    message.callbackId = object.callbackId ?? "";
-    message.callbackArgs = object.callbackArgs ?? new Uint8Array();
+  fromPartial(object: DeepPartial<CallbackData>): CallbackData {
+    const message = { ...baseCallbackData } as CallbackData;
+    if (object.callbackKey !== undefined && object.callbackKey !== null) {
+      message.callbackKey = object.callbackKey;
+    } else {
+      message.callbackKey = "";
+    }
+    if (object.portId !== undefined && object.portId !== null) {
+      message.portId = object.portId;
+    } else {
+      message.portId = "";
+    }
+    if (object.channelId !== undefined && object.channelId !== null) {
+      message.channelId = object.channelId;
+    } else {
+      message.channelId = "";
+    }
+    if (object.sequence !== undefined && object.sequence !== null) {
+      message.sequence = object.sequence as Long;
+    } else {
+      message.sequence = Long.UZERO;
+    }
+    if (object.callbackId !== undefined && object.callbackId !== null) {
+      message.callbackId = object.callbackId;
+    } else {
+      message.callbackId = "";
+    }
+    if (object.callbackArgs !== undefined && object.callbackArgs !== null) {
+      message.callbackArgs = object.callbackArgs;
+    } else {
+      message.callbackArgs = new Uint8Array();
+    }
     return message;
   },
 };
 
 declare var self: any | undefined;
 declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
+var globalThis: any = (() => {
+  if (typeof globalThis !== "undefined") return globalThis;
+  if (typeof self !== "undefined") return self;
+  if (typeof window !== "undefined") return window;
+  if (typeof global !== "undefined") return global;
   throw "Unable to locate global object";
 })();
 
+const atob: (b64: string) => string =
+  globalThis.atob || ((b64) => globalThis.Buffer.from(b64, "base64").toString("binary"));
 function bytesFromBase64(b64: string): Uint8Array {
-  if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
-  } else {
-    const bin = tsProtoGlobalThis.atob(b64);
-    const arr = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; ++i) {
-      arr[i] = bin.charCodeAt(i);
-    }
-    return arr;
+  const bin = atob(b64);
+  const arr = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; ++i) {
+    arr[i] = bin.charCodeAt(i);
   }
+  return arr;
 }
 
+const btoa: (bin: string) => string =
+  globalThis.btoa || ((bin) => globalThis.Buffer.from(bin, "binary").toString("base64"));
 function base64FromBytes(arr: Uint8Array): string {
-  if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
-  } else {
-    const bin: string[] = [];
-    arr.forEach((byte) => {
-      bin.push(String.fromCharCode(byte));
-    });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+  const bin: string[] = [];
+  for (const byte of arr) {
+    bin.push(String.fromCharCode(byte));
   }
+  return btoa(bin.join(""));
 }
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
 }

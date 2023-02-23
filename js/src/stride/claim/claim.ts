@@ -37,9 +37,8 @@ export function actionToJSON(object: Action): string {
       return "ACTION_LIQUID_STAKE";
     case Action.ACTION_DELEGATE_STAKE:
       return "ACTION_DELEGATE_STAKE";
-    case Action.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return "UNKNOWN";
   }
 }
 
@@ -58,9 +57,7 @@ export interface ClaimRecord {
   actionCompleted: boolean[];
 }
 
-function createBaseClaimRecord(): ClaimRecord {
-  return { airdropIdentifier: "", address: "", weight: "", actionCompleted: [] };
-}
+const baseClaimRecord: object = { airdropIdentifier: "", address: "", weight: "", actionCompleted: false };
 
 export const ClaimRecord = {
   encode(message: ClaimRecord, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -84,7 +81,8 @@ export const ClaimRecord = {
   decode(input: _m0.Reader | Uint8Array, length?: number): ClaimRecord {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseClaimRecord();
+    const message = { ...baseClaimRecord } as ClaimRecord;
+    message.actionCompleted = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -116,12 +114,29 @@ export const ClaimRecord = {
   },
 
   fromJSON(object: any): ClaimRecord {
-    return {
-      airdropIdentifier: isSet(object.airdropIdentifier) ? String(object.airdropIdentifier) : "",
-      address: isSet(object.address) ? String(object.address) : "",
-      weight: isSet(object.weight) ? String(object.weight) : "",
-      actionCompleted: Array.isArray(object?.actionCompleted) ? object.actionCompleted.map((e: any) => Boolean(e)) : [],
-    };
+    const message = { ...baseClaimRecord } as ClaimRecord;
+    message.actionCompleted = [];
+    if (object.airdropIdentifier !== undefined && object.airdropIdentifier !== null) {
+      message.airdropIdentifier = String(object.airdropIdentifier);
+    } else {
+      message.airdropIdentifier = "";
+    }
+    if (object.address !== undefined && object.address !== null) {
+      message.address = String(object.address);
+    } else {
+      message.address = "";
+    }
+    if (object.weight !== undefined && object.weight !== null) {
+      message.weight = String(object.weight);
+    } else {
+      message.weight = "";
+    }
+    if (object.actionCompleted !== undefined && object.actionCompleted !== null) {
+      for (const e of object.actionCompleted) {
+        message.actionCompleted.push(Boolean(e));
+      }
+    }
+    return message;
   },
 
   toJSON(message: ClaimRecord): unknown {
@@ -137,37 +152,45 @@ export const ClaimRecord = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ClaimRecord>, I>>(base?: I): ClaimRecord {
-    return ClaimRecord.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<ClaimRecord>, I>>(object: I): ClaimRecord {
-    const message = createBaseClaimRecord();
-    message.airdropIdentifier = object.airdropIdentifier ?? "";
-    message.address = object.address ?? "";
-    message.weight = object.weight ?? "";
-    message.actionCompleted = object.actionCompleted?.map((e) => e) || [];
+  fromPartial(object: DeepPartial<ClaimRecord>): ClaimRecord {
+    const message = { ...baseClaimRecord } as ClaimRecord;
+    message.actionCompleted = [];
+    if (object.airdropIdentifier !== undefined && object.airdropIdentifier !== null) {
+      message.airdropIdentifier = object.airdropIdentifier;
+    } else {
+      message.airdropIdentifier = "";
+    }
+    if (object.address !== undefined && object.address !== null) {
+      message.address = object.address;
+    } else {
+      message.address = "";
+    }
+    if (object.weight !== undefined && object.weight !== null) {
+      message.weight = object.weight;
+    } else {
+      message.weight = "";
+    }
+    if (object.actionCompleted !== undefined && object.actionCompleted !== null) {
+      for (const e of object.actionCompleted) {
+        message.actionCompleted.push(e);
+      }
+    }
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
 }

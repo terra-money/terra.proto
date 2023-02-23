@@ -1,14 +1,14 @@
 /* eslint-disable */
-import { grpc } from "@improbable-eng/grpc-web";
-import { BrowserHeaders } from "browser-headers";
 import Long from "long";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
+import { Params } from "../../stride/stakeibc/params";
+import { ICAAccount } from "../../stride/stakeibc/ica_account";
+import { HostZone } from "../../stride/stakeibc/host_zone";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
-import { EpochTracker } from "./epoch_tracker";
-import { HostZone } from "./host_zone";
-import { ICAAccount } from "./ica_account";
-import { Params } from "./params";
-import { Validator } from "./validator";
+import { EpochTracker } from "../../stride/stakeibc/epoch_tracker";
+import { BrowserHeaders } from "browser-headers";
+import { Validator } from "../../stride/stakeibc/validator";
 
 export const protobufPackage = "stride.stakeibc";
 
@@ -30,8 +30,7 @@ export interface QueryInterchainAccountFromAddressResponse {
 }
 
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
-export interface QueryParamsRequest {
-}
+export interface QueryParamsRequest {}
 
 /** QueryParamsResponse is response type for the Query/Params RPC method. */
 export interface QueryParamsResponse {
@@ -47,8 +46,7 @@ export interface QueryGetValidatorsResponse {
   validators: Validator[];
 }
 
-export interface QueryGetICAAccountRequest {
-}
+export interface QueryGetICAAccountRequest {}
 
 export interface QueryGetICAAccountResponse {
   icaAccount?: ICAAccount;
@@ -96,12 +94,13 @@ export interface QueryAllEpochTrackerResponse {
   pagination?: PageResponse;
 }
 
-function createBaseQueryInterchainAccountFromAddressRequest(): QueryInterchainAccountFromAddressRequest {
-  return { owner: "", connectionId: "" };
-}
+const baseQueryInterchainAccountFromAddressRequest: object = { owner: "", connectionId: "" };
 
 export const QueryInterchainAccountFromAddressRequest = {
-  encode(message: QueryInterchainAccountFromAddressRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: QueryInterchainAccountFromAddressRequest,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
     if (message.owner !== "") {
       writer.uint32(10).string(message.owner);
     }
@@ -114,7 +113,9 @@ export const QueryInterchainAccountFromAddressRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryInterchainAccountFromAddressRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryInterchainAccountFromAddressRequest();
+    const message = {
+      ...baseQueryInterchainAccountFromAddressRequest,
+    } as QueryInterchainAccountFromAddressRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -133,10 +134,20 @@ export const QueryInterchainAccountFromAddressRequest = {
   },
 
   fromJSON(object: any): QueryInterchainAccountFromAddressRequest {
-    return {
-      owner: isSet(object.owner) ? String(object.owner) : "",
-      connectionId: isSet(object.connectionId) ? String(object.connectionId) : "",
-    };
+    const message = {
+      ...baseQueryInterchainAccountFromAddressRequest,
+    } as QueryInterchainAccountFromAddressRequest;
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = String(object.owner);
+    } else {
+      message.owner = "";
+    }
+    if (object.connectionId !== undefined && object.connectionId !== null) {
+      message.connectionId = String(object.connectionId);
+    } else {
+      message.connectionId = "";
+    }
+    return message;
   },
 
   toJSON(message: QueryInterchainAccountFromAddressRequest): unknown {
@@ -146,28 +157,33 @@ export const QueryInterchainAccountFromAddressRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryInterchainAccountFromAddressRequest>, I>>(
-    base?: I,
+  fromPartial(
+    object: DeepPartial<QueryInterchainAccountFromAddressRequest>,
   ): QueryInterchainAccountFromAddressRequest {
-    return QueryInterchainAccountFromAddressRequest.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryInterchainAccountFromAddressRequest>, I>>(
-    object: I,
-  ): QueryInterchainAccountFromAddressRequest {
-    const message = createBaseQueryInterchainAccountFromAddressRequest();
-    message.owner = object.owner ?? "";
-    message.connectionId = object.connectionId ?? "";
+    const message = {
+      ...baseQueryInterchainAccountFromAddressRequest,
+    } as QueryInterchainAccountFromAddressRequest;
+    if (object.owner !== undefined && object.owner !== null) {
+      message.owner = object.owner;
+    } else {
+      message.owner = "";
+    }
+    if (object.connectionId !== undefined && object.connectionId !== null) {
+      message.connectionId = object.connectionId;
+    } else {
+      message.connectionId = "";
+    }
     return message;
   },
 };
 
-function createBaseQueryInterchainAccountFromAddressResponse(): QueryInterchainAccountFromAddressResponse {
-  return { interchainAccountAddress: "" };
-}
+const baseQueryInterchainAccountFromAddressResponse: object = { interchainAccountAddress: "" };
 
 export const QueryInterchainAccountFromAddressResponse = {
-  encode(message: QueryInterchainAccountFromAddressResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: QueryInterchainAccountFromAddressResponse,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
     if (message.interchainAccountAddress !== "") {
       writer.uint32(10).string(message.interchainAccountAddress);
     }
@@ -177,7 +193,9 @@ export const QueryInterchainAccountFromAddressResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryInterchainAccountFromAddressResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryInterchainAccountFromAddressResponse();
+    const message = {
+      ...baseQueryInterchainAccountFromAddressResponse,
+    } as QueryInterchainAccountFromAddressResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -193,35 +211,40 @@ export const QueryInterchainAccountFromAddressResponse = {
   },
 
   fromJSON(object: any): QueryInterchainAccountFromAddressResponse {
-    return {
-      interchainAccountAddress: isSet(object.interchainAccountAddress) ? String(object.interchainAccountAddress) : "",
-    };
+    const message = {
+      ...baseQueryInterchainAccountFromAddressResponse,
+    } as QueryInterchainAccountFromAddressResponse;
+    if (object.interchainAccountAddress !== undefined && object.interchainAccountAddress !== null) {
+      message.interchainAccountAddress = String(object.interchainAccountAddress);
+    } else {
+      message.interchainAccountAddress = "";
+    }
+    return message;
   },
 
   toJSON(message: QueryInterchainAccountFromAddressResponse): unknown {
     const obj: any = {};
-    message.interchainAccountAddress !== undefined && (obj.interchainAccountAddress = message.interchainAccountAddress);
+    message.interchainAccountAddress !== undefined &&
+      (obj.interchainAccountAddress = message.interchainAccountAddress);
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryInterchainAccountFromAddressResponse>, I>>(
-    base?: I,
+  fromPartial(
+    object: DeepPartial<QueryInterchainAccountFromAddressResponse>,
   ): QueryInterchainAccountFromAddressResponse {
-    return QueryInterchainAccountFromAddressResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryInterchainAccountFromAddressResponse>, I>>(
-    object: I,
-  ): QueryInterchainAccountFromAddressResponse {
-    const message = createBaseQueryInterchainAccountFromAddressResponse();
-    message.interchainAccountAddress = object.interchainAccountAddress ?? "";
+    const message = {
+      ...baseQueryInterchainAccountFromAddressResponse,
+    } as QueryInterchainAccountFromAddressResponse;
+    if (object.interchainAccountAddress !== undefined && object.interchainAccountAddress !== null) {
+      message.interchainAccountAddress = object.interchainAccountAddress;
+    } else {
+      message.interchainAccountAddress = "";
+    }
     return message;
   },
 };
 
-function createBaseQueryParamsRequest(): QueryParamsRequest {
-  return {};
-}
+const baseQueryParamsRequest: object = {};
 
 export const QueryParamsRequest = {
   encode(_: QueryParamsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -231,7 +254,7 @@ export const QueryParamsRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryParamsRequest();
+    const message = { ...baseQueryParamsRequest } as QueryParamsRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -244,7 +267,8 @@ export const QueryParamsRequest = {
   },
 
   fromJSON(_: any): QueryParamsRequest {
-    return {};
+    const message = { ...baseQueryParamsRequest } as QueryParamsRequest;
+    return message;
   },
 
   toJSON(_: QueryParamsRequest): unknown {
@@ -252,19 +276,13 @@ export const QueryParamsRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryParamsRequest>, I>>(base?: I): QueryParamsRequest {
-    return QueryParamsRequest.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryParamsRequest>, I>>(_: I): QueryParamsRequest {
-    const message = createBaseQueryParamsRequest();
+  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
+    const message = { ...baseQueryParamsRequest } as QueryParamsRequest;
     return message;
   },
 };
 
-function createBaseQueryParamsResponse(): QueryParamsResponse {
-  return { params: undefined };
-}
+const baseQueryParamsResponse: object = {};
 
 export const QueryParamsResponse = {
   encode(message: QueryParamsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -277,7 +295,7 @@ export const QueryParamsResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryParamsResponse();
+    const message = { ...baseQueryParamsResponse } as QueryParamsResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -293,7 +311,13 @@ export const QueryParamsResponse = {
   },
 
   fromJSON(object: any): QueryParamsResponse {
-    return { params: isSet(object.params) ? Params.fromJSON(object.params) : undefined };
+    const message = { ...baseQueryParamsResponse } as QueryParamsResponse;
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromJSON(object.params);
+    } else {
+      message.params = undefined;
+    }
+    return message;
   },
 
   toJSON(message: QueryParamsResponse): unknown {
@@ -302,22 +326,18 @@ export const QueryParamsResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(base?: I): QueryParamsResponse {
-    return QueryParamsResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(object: I): QueryParamsResponse {
-    const message = createBaseQueryParamsResponse();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
+  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
+    const message = { ...baseQueryParamsResponse } as QueryParamsResponse;
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromPartial(object.params);
+    } else {
+      message.params = undefined;
+    }
     return message;
   },
 };
 
-function createBaseQueryGetValidatorsRequest(): QueryGetValidatorsRequest {
-  return { chainId: "" };
-}
+const baseQueryGetValidatorsRequest: object = { chainId: "" };
 
 export const QueryGetValidatorsRequest = {
   encode(message: QueryGetValidatorsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -330,7 +350,7 @@ export const QueryGetValidatorsRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetValidatorsRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetValidatorsRequest();
+    const message = { ...baseQueryGetValidatorsRequest } as QueryGetValidatorsRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -346,7 +366,13 @@ export const QueryGetValidatorsRequest = {
   },
 
   fromJSON(object: any): QueryGetValidatorsRequest {
-    return { chainId: isSet(object.chainId) ? String(object.chainId) : "" };
+    const message = { ...baseQueryGetValidatorsRequest } as QueryGetValidatorsRequest;
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = String(object.chainId);
+    } else {
+      message.chainId = "";
+    }
+    return message;
   },
 
   toJSON(message: QueryGetValidatorsRequest): unknown {
@@ -355,20 +381,18 @@ export const QueryGetValidatorsRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryGetValidatorsRequest>, I>>(base?: I): QueryGetValidatorsRequest {
-    return QueryGetValidatorsRequest.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryGetValidatorsRequest>, I>>(object: I): QueryGetValidatorsRequest {
-    const message = createBaseQueryGetValidatorsRequest();
-    message.chainId = object.chainId ?? "";
+  fromPartial(object: DeepPartial<QueryGetValidatorsRequest>): QueryGetValidatorsRequest {
+    const message = { ...baseQueryGetValidatorsRequest } as QueryGetValidatorsRequest;
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = object.chainId;
+    } else {
+      message.chainId = "";
+    }
     return message;
   },
 };
 
-function createBaseQueryGetValidatorsResponse(): QueryGetValidatorsResponse {
-  return { validators: [] };
-}
+const baseQueryGetValidatorsResponse: object = {};
 
 export const QueryGetValidatorsResponse = {
   encode(message: QueryGetValidatorsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -381,7 +405,8 @@ export const QueryGetValidatorsResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetValidatorsResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetValidatorsResponse();
+    const message = { ...baseQueryGetValidatorsResponse } as QueryGetValidatorsResponse;
+    message.validators = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -397,35 +422,39 @@ export const QueryGetValidatorsResponse = {
   },
 
   fromJSON(object: any): QueryGetValidatorsResponse {
-    return {
-      validators: Array.isArray(object?.validators) ? object.validators.map((e: any) => Validator.fromJSON(e)) : [],
-    };
+    const message = { ...baseQueryGetValidatorsResponse } as QueryGetValidatorsResponse;
+    message.validators = [];
+    if (object.validators !== undefined && object.validators !== null) {
+      for (const e of object.validators) {
+        message.validators.push(Validator.fromJSON(e));
+      }
+    }
+    return message;
   },
 
   toJSON(message: QueryGetValidatorsResponse): unknown {
     const obj: any = {};
     if (message.validators) {
-      obj.validators = message.validators.map((e) => e ? Validator.toJSON(e) : undefined);
+      obj.validators = message.validators.map((e) => (e ? Validator.toJSON(e) : undefined));
     } else {
       obj.validators = [];
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryGetValidatorsResponse>, I>>(base?: I): QueryGetValidatorsResponse {
-    return QueryGetValidatorsResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryGetValidatorsResponse>, I>>(object: I): QueryGetValidatorsResponse {
-    const message = createBaseQueryGetValidatorsResponse();
-    message.validators = object.validators?.map((e) => Validator.fromPartial(e)) || [];
+  fromPartial(object: DeepPartial<QueryGetValidatorsResponse>): QueryGetValidatorsResponse {
+    const message = { ...baseQueryGetValidatorsResponse } as QueryGetValidatorsResponse;
+    message.validators = [];
+    if (object.validators !== undefined && object.validators !== null) {
+      for (const e of object.validators) {
+        message.validators.push(Validator.fromPartial(e));
+      }
+    }
     return message;
   },
 };
 
-function createBaseQueryGetICAAccountRequest(): QueryGetICAAccountRequest {
-  return {};
-}
+const baseQueryGetICAAccountRequest: object = {};
 
 export const QueryGetICAAccountRequest = {
   encode(_: QueryGetICAAccountRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -435,7 +464,7 @@ export const QueryGetICAAccountRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetICAAccountRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetICAAccountRequest();
+    const message = { ...baseQueryGetICAAccountRequest } as QueryGetICAAccountRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -448,7 +477,8 @@ export const QueryGetICAAccountRequest = {
   },
 
   fromJSON(_: any): QueryGetICAAccountRequest {
-    return {};
+    const message = { ...baseQueryGetICAAccountRequest } as QueryGetICAAccountRequest;
+    return message;
   },
 
   toJSON(_: QueryGetICAAccountRequest): unknown {
@@ -456,19 +486,13 @@ export const QueryGetICAAccountRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryGetICAAccountRequest>, I>>(base?: I): QueryGetICAAccountRequest {
-    return QueryGetICAAccountRequest.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryGetICAAccountRequest>, I>>(_: I): QueryGetICAAccountRequest {
-    const message = createBaseQueryGetICAAccountRequest();
+  fromPartial(_: DeepPartial<QueryGetICAAccountRequest>): QueryGetICAAccountRequest {
+    const message = { ...baseQueryGetICAAccountRequest } as QueryGetICAAccountRequest;
     return message;
   },
 };
 
-function createBaseQueryGetICAAccountResponse(): QueryGetICAAccountResponse {
-  return { icaAccount: undefined };
-}
+const baseQueryGetICAAccountResponse: object = {};
 
 export const QueryGetICAAccountResponse = {
   encode(message: QueryGetICAAccountResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -481,7 +505,7 @@ export const QueryGetICAAccountResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetICAAccountResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetICAAccountResponse();
+    const message = { ...baseQueryGetICAAccountResponse } as QueryGetICAAccountResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -497,7 +521,13 @@ export const QueryGetICAAccountResponse = {
   },
 
   fromJSON(object: any): QueryGetICAAccountResponse {
-    return { icaAccount: isSet(object.icaAccount) ? ICAAccount.fromJSON(object.icaAccount) : undefined };
+    const message = { ...baseQueryGetICAAccountResponse } as QueryGetICAAccountResponse;
+    if (object.icaAccount !== undefined && object.icaAccount !== null) {
+      message.icaAccount = ICAAccount.fromJSON(object.icaAccount);
+    } else {
+      message.icaAccount = undefined;
+    }
+    return message;
   },
 
   toJSON(message: QueryGetICAAccountResponse): unknown {
@@ -507,22 +537,18 @@ export const QueryGetICAAccountResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryGetICAAccountResponse>, I>>(base?: I): QueryGetICAAccountResponse {
-    return QueryGetICAAccountResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryGetICAAccountResponse>, I>>(object: I): QueryGetICAAccountResponse {
-    const message = createBaseQueryGetICAAccountResponse();
-    message.icaAccount = (object.icaAccount !== undefined && object.icaAccount !== null)
-      ? ICAAccount.fromPartial(object.icaAccount)
-      : undefined;
+  fromPartial(object: DeepPartial<QueryGetICAAccountResponse>): QueryGetICAAccountResponse {
+    const message = { ...baseQueryGetICAAccountResponse } as QueryGetICAAccountResponse;
+    if (object.icaAccount !== undefined && object.icaAccount !== null) {
+      message.icaAccount = ICAAccount.fromPartial(object.icaAccount);
+    } else {
+      message.icaAccount = undefined;
+    }
     return message;
   },
 };
 
-function createBaseQueryGetHostZoneRequest(): QueryGetHostZoneRequest {
-  return { chainId: "" };
-}
+const baseQueryGetHostZoneRequest: object = { chainId: "" };
 
 export const QueryGetHostZoneRequest = {
   encode(message: QueryGetHostZoneRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -535,7 +561,7 @@ export const QueryGetHostZoneRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetHostZoneRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetHostZoneRequest();
+    const message = { ...baseQueryGetHostZoneRequest } as QueryGetHostZoneRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -551,7 +577,13 @@ export const QueryGetHostZoneRequest = {
   },
 
   fromJSON(object: any): QueryGetHostZoneRequest {
-    return { chainId: isSet(object.chainId) ? String(object.chainId) : "" };
+    const message = { ...baseQueryGetHostZoneRequest } as QueryGetHostZoneRequest;
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = String(object.chainId);
+    } else {
+      message.chainId = "";
+    }
+    return message;
   },
 
   toJSON(message: QueryGetHostZoneRequest): unknown {
@@ -560,20 +592,18 @@ export const QueryGetHostZoneRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryGetHostZoneRequest>, I>>(base?: I): QueryGetHostZoneRequest {
-    return QueryGetHostZoneRequest.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryGetHostZoneRequest>, I>>(object: I): QueryGetHostZoneRequest {
-    const message = createBaseQueryGetHostZoneRequest();
-    message.chainId = object.chainId ?? "";
+  fromPartial(object: DeepPartial<QueryGetHostZoneRequest>): QueryGetHostZoneRequest {
+    const message = { ...baseQueryGetHostZoneRequest } as QueryGetHostZoneRequest;
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = object.chainId;
+    } else {
+      message.chainId = "";
+    }
     return message;
   },
 };
 
-function createBaseQueryGetHostZoneResponse(): QueryGetHostZoneResponse {
-  return { hostZone: undefined };
-}
+const baseQueryGetHostZoneResponse: object = {};
 
 export const QueryGetHostZoneResponse = {
   encode(message: QueryGetHostZoneResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -586,7 +616,7 @@ export const QueryGetHostZoneResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetHostZoneResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetHostZoneResponse();
+    const message = { ...baseQueryGetHostZoneResponse } as QueryGetHostZoneResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -602,31 +632,34 @@ export const QueryGetHostZoneResponse = {
   },
 
   fromJSON(object: any): QueryGetHostZoneResponse {
-    return { hostZone: isSet(object.hostZone) ? HostZone.fromJSON(object.hostZone) : undefined };
+    const message = { ...baseQueryGetHostZoneResponse } as QueryGetHostZoneResponse;
+    if (object.hostZone !== undefined && object.hostZone !== null) {
+      message.hostZone = HostZone.fromJSON(object.hostZone);
+    } else {
+      message.hostZone = undefined;
+    }
+    return message;
   },
 
   toJSON(message: QueryGetHostZoneResponse): unknown {
     const obj: any = {};
-    message.hostZone !== undefined && (obj.hostZone = message.hostZone ? HostZone.toJSON(message.hostZone) : undefined);
+    message.hostZone !== undefined &&
+      (obj.hostZone = message.hostZone ? HostZone.toJSON(message.hostZone) : undefined);
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryGetHostZoneResponse>, I>>(base?: I): QueryGetHostZoneResponse {
-    return QueryGetHostZoneResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryGetHostZoneResponse>, I>>(object: I): QueryGetHostZoneResponse {
-    const message = createBaseQueryGetHostZoneResponse();
-    message.hostZone = (object.hostZone !== undefined && object.hostZone !== null)
-      ? HostZone.fromPartial(object.hostZone)
-      : undefined;
+  fromPartial(object: DeepPartial<QueryGetHostZoneResponse>): QueryGetHostZoneResponse {
+    const message = { ...baseQueryGetHostZoneResponse } as QueryGetHostZoneResponse;
+    if (object.hostZone !== undefined && object.hostZone !== null) {
+      message.hostZone = HostZone.fromPartial(object.hostZone);
+    } else {
+      message.hostZone = undefined;
+    }
     return message;
   },
 };
 
-function createBaseQueryAllHostZoneRequest(): QueryAllHostZoneRequest {
-  return { pagination: undefined };
-}
+const baseQueryAllHostZoneRequest: object = {};
 
 export const QueryAllHostZoneRequest = {
   encode(message: QueryAllHostZoneRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -639,7 +672,7 @@ export const QueryAllHostZoneRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllHostZoneRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryAllHostZoneRequest();
+    const message = { ...baseQueryAllHostZoneRequest } as QueryAllHostZoneRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -655,7 +688,13 @@ export const QueryAllHostZoneRequest = {
   },
 
   fromJSON(object: any): QueryAllHostZoneRequest {
-    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
+    const message = { ...baseQueryAllHostZoneRequest } as QueryAllHostZoneRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
   },
 
   toJSON(message: QueryAllHostZoneRequest): unknown {
@@ -665,22 +704,18 @@ export const QueryAllHostZoneRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryAllHostZoneRequest>, I>>(base?: I): QueryAllHostZoneRequest {
-    return QueryAllHostZoneRequest.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryAllHostZoneRequest>, I>>(object: I): QueryAllHostZoneRequest {
-    const message = createBaseQueryAllHostZoneRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+  fromPartial(object: DeepPartial<QueryAllHostZoneRequest>): QueryAllHostZoneRequest {
+    const message = { ...baseQueryAllHostZoneRequest } as QueryAllHostZoneRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
     return message;
   },
 };
 
-function createBaseQueryAllHostZoneResponse(): QueryAllHostZoneResponse {
-  return { hostZone: [], pagination: undefined };
-}
+const baseQueryAllHostZoneResponse: object = {};
 
 export const QueryAllHostZoneResponse = {
   encode(message: QueryAllHostZoneResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -696,7 +731,8 @@ export const QueryAllHostZoneResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllHostZoneResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryAllHostZoneResponse();
+    const message = { ...baseQueryAllHostZoneResponse } as QueryAllHostZoneResponse;
+    message.hostZone = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -715,16 +751,25 @@ export const QueryAllHostZoneResponse = {
   },
 
   fromJSON(object: any): QueryAllHostZoneResponse {
-    return {
-      hostZone: Array.isArray(object?.hostZone) ? object.hostZone.map((e: any) => HostZone.fromJSON(e)) : [],
-      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
-    };
+    const message = { ...baseQueryAllHostZoneResponse } as QueryAllHostZoneResponse;
+    message.hostZone = [];
+    if (object.hostZone !== undefined && object.hostZone !== null) {
+      for (const e of object.hostZone) {
+        message.hostZone.push(HostZone.fromJSON(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
   },
 
   toJSON(message: QueryAllHostZoneResponse): unknown {
     const obj: any = {};
     if (message.hostZone) {
-      obj.hostZone = message.hostZone.map((e) => e ? HostZone.toJSON(e) : undefined);
+      obj.hostZone = message.hostZone.map((e) => (e ? HostZone.toJSON(e) : undefined));
     } else {
       obj.hostZone = [];
     }
@@ -733,23 +778,24 @@ export const QueryAllHostZoneResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryAllHostZoneResponse>, I>>(base?: I): QueryAllHostZoneResponse {
-    return QueryAllHostZoneResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryAllHostZoneResponse>, I>>(object: I): QueryAllHostZoneResponse {
-    const message = createBaseQueryAllHostZoneResponse();
-    message.hostZone = object.hostZone?.map((e) => HostZone.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+  fromPartial(object: DeepPartial<QueryAllHostZoneResponse>): QueryAllHostZoneResponse {
+    const message = { ...baseQueryAllHostZoneResponse } as QueryAllHostZoneResponse;
+    message.hostZone = [];
+    if (object.hostZone !== undefined && object.hostZone !== null) {
+      for (const e of object.hostZone) {
+        message.hostZone.push(HostZone.fromPartial(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
     return message;
   },
 };
 
-function createBaseQueryModuleAddressRequest(): QueryModuleAddressRequest {
-  return { name: "" };
-}
+const baseQueryModuleAddressRequest: object = { name: "" };
 
 export const QueryModuleAddressRequest = {
   encode(message: QueryModuleAddressRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -762,7 +808,7 @@ export const QueryModuleAddressRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryModuleAddressRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryModuleAddressRequest();
+    const message = { ...baseQueryModuleAddressRequest } as QueryModuleAddressRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -778,7 +824,13 @@ export const QueryModuleAddressRequest = {
   },
 
   fromJSON(object: any): QueryModuleAddressRequest {
-    return { name: isSet(object.name) ? String(object.name) : "" };
+    const message = { ...baseQueryModuleAddressRequest } as QueryModuleAddressRequest;
+    if (object.name !== undefined && object.name !== null) {
+      message.name = String(object.name);
+    } else {
+      message.name = "";
+    }
+    return message;
   },
 
   toJSON(message: QueryModuleAddressRequest): unknown {
@@ -787,20 +839,18 @@ export const QueryModuleAddressRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryModuleAddressRequest>, I>>(base?: I): QueryModuleAddressRequest {
-    return QueryModuleAddressRequest.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryModuleAddressRequest>, I>>(object: I): QueryModuleAddressRequest {
-    const message = createBaseQueryModuleAddressRequest();
-    message.name = object.name ?? "";
+  fromPartial(object: DeepPartial<QueryModuleAddressRequest>): QueryModuleAddressRequest {
+    const message = { ...baseQueryModuleAddressRequest } as QueryModuleAddressRequest;
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    } else {
+      message.name = "";
+    }
     return message;
   },
 };
 
-function createBaseQueryModuleAddressResponse(): QueryModuleAddressResponse {
-  return { addr: "" };
-}
+const baseQueryModuleAddressResponse: object = { addr: "" };
 
 export const QueryModuleAddressResponse = {
   encode(message: QueryModuleAddressResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -813,7 +863,7 @@ export const QueryModuleAddressResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryModuleAddressResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryModuleAddressResponse();
+    const message = { ...baseQueryModuleAddressResponse } as QueryModuleAddressResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -829,7 +879,13 @@ export const QueryModuleAddressResponse = {
   },
 
   fromJSON(object: any): QueryModuleAddressResponse {
-    return { addr: isSet(object.addr) ? String(object.addr) : "" };
+    const message = { ...baseQueryModuleAddressResponse } as QueryModuleAddressResponse;
+    if (object.addr !== undefined && object.addr !== null) {
+      message.addr = String(object.addr);
+    } else {
+      message.addr = "";
+    }
+    return message;
   },
 
   toJSON(message: QueryModuleAddressResponse): unknown {
@@ -838,20 +894,18 @@ export const QueryModuleAddressResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryModuleAddressResponse>, I>>(base?: I): QueryModuleAddressResponse {
-    return QueryModuleAddressResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryModuleAddressResponse>, I>>(object: I): QueryModuleAddressResponse {
-    const message = createBaseQueryModuleAddressResponse();
-    message.addr = object.addr ?? "";
+  fromPartial(object: DeepPartial<QueryModuleAddressResponse>): QueryModuleAddressResponse {
+    const message = { ...baseQueryModuleAddressResponse } as QueryModuleAddressResponse;
+    if (object.addr !== undefined && object.addr !== null) {
+      message.addr = object.addr;
+    } else {
+      message.addr = "";
+    }
     return message;
   },
 };
 
-function createBaseQueryGetEpochTrackerRequest(): QueryGetEpochTrackerRequest {
-  return { epochIdentifier: "" };
-}
+const baseQueryGetEpochTrackerRequest: object = { epochIdentifier: "" };
 
 export const QueryGetEpochTrackerRequest = {
   encode(message: QueryGetEpochTrackerRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -864,7 +918,7 @@ export const QueryGetEpochTrackerRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEpochTrackerRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetEpochTrackerRequest();
+    const message = { ...baseQueryGetEpochTrackerRequest } as QueryGetEpochTrackerRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -880,7 +934,13 @@ export const QueryGetEpochTrackerRequest = {
   },
 
   fromJSON(object: any): QueryGetEpochTrackerRequest {
-    return { epochIdentifier: isSet(object.epochIdentifier) ? String(object.epochIdentifier) : "" };
+    const message = { ...baseQueryGetEpochTrackerRequest } as QueryGetEpochTrackerRequest;
+    if (object.epochIdentifier !== undefined && object.epochIdentifier !== null) {
+      message.epochIdentifier = String(object.epochIdentifier);
+    } else {
+      message.epochIdentifier = "";
+    }
+    return message;
   },
 
   toJSON(message: QueryGetEpochTrackerRequest): unknown {
@@ -889,20 +949,18 @@ export const QueryGetEpochTrackerRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryGetEpochTrackerRequest>, I>>(base?: I): QueryGetEpochTrackerRequest {
-    return QueryGetEpochTrackerRequest.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryGetEpochTrackerRequest>, I>>(object: I): QueryGetEpochTrackerRequest {
-    const message = createBaseQueryGetEpochTrackerRequest();
-    message.epochIdentifier = object.epochIdentifier ?? "";
+  fromPartial(object: DeepPartial<QueryGetEpochTrackerRequest>): QueryGetEpochTrackerRequest {
+    const message = { ...baseQueryGetEpochTrackerRequest } as QueryGetEpochTrackerRequest;
+    if (object.epochIdentifier !== undefined && object.epochIdentifier !== null) {
+      message.epochIdentifier = object.epochIdentifier;
+    } else {
+      message.epochIdentifier = "";
+    }
     return message;
   },
 };
 
-function createBaseQueryGetEpochTrackerResponse(): QueryGetEpochTrackerResponse {
-  return { epochTracker: undefined };
-}
+const baseQueryGetEpochTrackerResponse: object = {};
 
 export const QueryGetEpochTrackerResponse = {
   encode(message: QueryGetEpochTrackerResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -915,7 +973,7 @@ export const QueryGetEpochTrackerResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEpochTrackerResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryGetEpochTrackerResponse();
+    const message = { ...baseQueryGetEpochTrackerResponse } as QueryGetEpochTrackerResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -931,7 +989,13 @@ export const QueryGetEpochTrackerResponse = {
   },
 
   fromJSON(object: any): QueryGetEpochTrackerResponse {
-    return { epochTracker: isSet(object.epochTracker) ? EpochTracker.fromJSON(object.epochTracker) : undefined };
+    const message = { ...baseQueryGetEpochTrackerResponse } as QueryGetEpochTrackerResponse;
+    if (object.epochTracker !== undefined && object.epochTracker !== null) {
+      message.epochTracker = EpochTracker.fromJSON(object.epochTracker);
+    } else {
+      message.epochTracker = undefined;
+    }
+    return message;
   },
 
   toJSON(message: QueryGetEpochTrackerResponse): unknown {
@@ -941,22 +1005,18 @@ export const QueryGetEpochTrackerResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryGetEpochTrackerResponse>, I>>(base?: I): QueryGetEpochTrackerResponse {
-    return QueryGetEpochTrackerResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryGetEpochTrackerResponse>, I>>(object: I): QueryGetEpochTrackerResponse {
-    const message = createBaseQueryGetEpochTrackerResponse();
-    message.epochTracker = (object.epochTracker !== undefined && object.epochTracker !== null)
-      ? EpochTracker.fromPartial(object.epochTracker)
-      : undefined;
+  fromPartial(object: DeepPartial<QueryGetEpochTrackerResponse>): QueryGetEpochTrackerResponse {
+    const message = { ...baseQueryGetEpochTrackerResponse } as QueryGetEpochTrackerResponse;
+    if (object.epochTracker !== undefined && object.epochTracker !== null) {
+      message.epochTracker = EpochTracker.fromPartial(object.epochTracker);
+    } else {
+      message.epochTracker = undefined;
+    }
     return message;
   },
 };
 
-function createBaseQueryAllEpochTrackerRequest(): QueryAllEpochTrackerRequest {
-  return { pagination: undefined };
-}
+const baseQueryAllEpochTrackerRequest: object = {};
 
 export const QueryAllEpochTrackerRequest = {
   encode(message: QueryAllEpochTrackerRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -969,7 +1029,7 @@ export const QueryAllEpochTrackerRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllEpochTrackerRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryAllEpochTrackerRequest();
+    const message = { ...baseQueryAllEpochTrackerRequest } as QueryAllEpochTrackerRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -985,7 +1045,13 @@ export const QueryAllEpochTrackerRequest = {
   },
 
   fromJSON(object: any): QueryAllEpochTrackerRequest {
-    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
+    const message = { ...baseQueryAllEpochTrackerRequest } as QueryAllEpochTrackerRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
   },
 
   toJSON(message: QueryAllEpochTrackerRequest): unknown {
@@ -995,22 +1061,18 @@ export const QueryAllEpochTrackerRequest = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryAllEpochTrackerRequest>, I>>(base?: I): QueryAllEpochTrackerRequest {
-    return QueryAllEpochTrackerRequest.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryAllEpochTrackerRequest>, I>>(object: I): QueryAllEpochTrackerRequest {
-    const message = createBaseQueryAllEpochTrackerRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+  fromPartial(object: DeepPartial<QueryAllEpochTrackerRequest>): QueryAllEpochTrackerRequest {
+    const message = { ...baseQueryAllEpochTrackerRequest } as QueryAllEpochTrackerRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
     return message;
   },
 };
 
-function createBaseQueryAllEpochTrackerResponse(): QueryAllEpochTrackerResponse {
-  return { epochTracker: [], pagination: undefined };
-}
+const baseQueryAllEpochTrackerResponse: object = {};
 
 export const QueryAllEpochTrackerResponse = {
   encode(message: QueryAllEpochTrackerResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -1026,7 +1088,8 @@ export const QueryAllEpochTrackerResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllEpochTrackerResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryAllEpochTrackerResponse();
+    const message = { ...baseQueryAllEpochTrackerResponse } as QueryAllEpochTrackerResponse;
+    message.epochTracker = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1045,18 +1108,25 @@ export const QueryAllEpochTrackerResponse = {
   },
 
   fromJSON(object: any): QueryAllEpochTrackerResponse {
-    return {
-      epochTracker: Array.isArray(object?.epochTracker)
-        ? object.epochTracker.map((e: any) => EpochTracker.fromJSON(e))
-        : [],
-      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
-    };
+    const message = { ...baseQueryAllEpochTrackerResponse } as QueryAllEpochTrackerResponse;
+    message.epochTracker = [];
+    if (object.epochTracker !== undefined && object.epochTracker !== null) {
+      for (const e of object.epochTracker) {
+        message.epochTracker.push(EpochTracker.fromJSON(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
   },
 
   toJSON(message: QueryAllEpochTrackerResponse): unknown {
     const obj: any = {};
     if (message.epochTracker) {
-      obj.epochTracker = message.epochTracker.map((e) => e ? EpochTracker.toJSON(e) : undefined);
+      obj.epochTracker = message.epochTracker.map((e) => (e ? EpochTracker.toJSON(e) : undefined));
     } else {
       obj.epochTracker = [];
     }
@@ -1065,16 +1135,19 @@ export const QueryAllEpochTrackerResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryAllEpochTrackerResponse>, I>>(base?: I): QueryAllEpochTrackerResponse {
-    return QueryAllEpochTrackerResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryAllEpochTrackerResponse>, I>>(object: I): QueryAllEpochTrackerResponse {
-    const message = createBaseQueryAllEpochTrackerResponse();
-    message.epochTracker = object.epochTracker?.map((e) => EpochTracker.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+  fromPartial(object: DeepPartial<QueryAllEpochTrackerResponse>): QueryAllEpochTrackerResponse {
+    const message = { ...baseQueryAllEpochTrackerResponse } as QueryAllEpochTrackerResponse;
+    message.epochTracker = [];
+    if (object.epochTracker !== undefined && object.epochTracker !== null) {
+      for (const e of object.epochTracker) {
+        message.epochTracker.push(EpochTracker.fromPartial(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
     return message;
   },
 };
@@ -1094,7 +1167,10 @@ export interface Query {
     metadata?: grpc.Metadata,
   ): Promise<QueryGetICAAccountResponse>;
   /** Queries a HostZone by id. */
-  HostZone(request: DeepPartial<QueryGetHostZoneRequest>, metadata?: grpc.Metadata): Promise<QueryGetHostZoneResponse>;
+  HostZone(
+    request: DeepPartial<QueryGetHostZoneRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryGetHostZoneResponse>;
   /** Queries a list of HostZone items. */
   HostZoneAll(
     request: DeepPartial<QueryAllHostZoneRequest>,
@@ -1159,7 +1235,10 @@ export class QueryClientImpl implements Query {
     return this.rpc.unary(QueryICAAccountDesc, QueryGetICAAccountRequest.fromPartial(request), metadata);
   }
 
-  HostZone(request: DeepPartial<QueryGetHostZoneRequest>, metadata?: grpc.Metadata): Promise<QueryGetHostZoneResponse> {
+  HostZone(
+    request: DeepPartial<QueryGetHostZoneRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryGetHostZoneResponse> {
     return this.rpc.unary(QueryHostZoneDesc, QueryGetHostZoneRequest.fromPartial(request), metadata);
   }
 
@@ -1199,11 +1278,17 @@ export class QueryClientImpl implements Query {
     request: DeepPartial<QueryAllEpochTrackerRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryAllEpochTrackerResponse> {
-    return this.rpc.unary(QueryEpochTrackerAllDesc, QueryAllEpochTrackerRequest.fromPartial(request), metadata);
+    return this.rpc.unary(
+      QueryEpochTrackerAllDesc,
+      QueryAllEpochTrackerRequest.fromPartial(request),
+      metadata,
+    );
   }
 }
 
-export const QueryDesc = { serviceName: "stride.stakeibc.Query" };
+export const QueryDesc = {
+  serviceName: "stride.stakeibc.Query",
+};
 
 export const QueryParamsDesc: UnaryMethodDefinitionish = {
   methodName: "Params",
@@ -1217,11 +1302,10 @@ export const QueryParamsDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = QueryParamsResponse.decode(data);
       return {
-        ...value,
+        ...QueryParamsResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1240,11 +1324,10 @@ export const QueryValidatorsDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = QueryGetValidatorsResponse.decode(data);
       return {
-        ...value,
+        ...QueryGetValidatorsResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1263,11 +1346,10 @@ export const QueryICAAccountDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = QueryGetICAAccountResponse.decode(data);
       return {
-        ...value,
+        ...QueryGetICAAccountResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1286,11 +1368,10 @@ export const QueryHostZoneDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = QueryGetHostZoneResponse.decode(data);
       return {
-        ...value,
+        ...QueryGetHostZoneResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1309,11 +1390,10 @@ export const QueryHostZoneAllDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = QueryAllHostZoneResponse.decode(data);
       return {
-        ...value,
+        ...QueryAllHostZoneResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1332,11 +1412,10 @@ export const QueryModuleAddressDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = QueryModuleAddressResponse.decode(data);
       return {
-        ...value,
+        ...QueryModuleAddressResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1355,11 +1434,10 @@ export const QueryInterchainAccountFromAddressDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = QueryInterchainAccountFromAddressResponse.decode(data);
       return {
-        ...value,
+        ...QueryInterchainAccountFromAddressResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1378,11 +1456,10 @@ export const QueryEpochTrackerDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = QueryGetEpochTrackerResponse.decode(data);
       return {
-        ...value,
+        ...QueryGetEpochTrackerResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1401,11 +1478,10 @@ export const QueryEpochTrackerAllDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = QueryAllEpochTrackerResponse.decode(data);
       return {
-        ...value,
+        ...QueryAllEpochTrackerResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1434,7 +1510,6 @@ export class GrpcWebImpl {
 
     debug?: boolean;
     metadata?: grpc.Metadata;
-    upStreamRetryCodes?: number[];
   };
 
   constructor(
@@ -1444,7 +1519,6 @@ export class GrpcWebImpl {
 
       debug?: boolean;
       metadata?: grpc.Metadata;
-      upStreamRetryCodes?: number[];
     },
   ) {
     this.host = host;
@@ -1457,9 +1531,10 @@ export class GrpcWebImpl {
     metadata: grpc.Metadata | undefined,
   ): Promise<any> {
     const request = { ..._request, ...methodDesc.requestType };
-    const maybeCombinedMetadata = metadata && this.options.metadata
-      ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
-      : metadata || this.options.metadata;
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
     return new Promise((resolve, reject) => {
       grpc.unary(methodDesc, {
         request,
@@ -1469,9 +1544,11 @@ export class GrpcWebImpl {
         debug: this.options.debug,
         onEnd: function (response) {
           if (response.status === grpc.Code.OK) {
-            resolve(response.message!.toObject());
+            resolve(response.message);
           } else {
-            const err = new GrpcWebError(response.statusMessage, response.status, response.trailers);
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
             reject(err);
           }
         },
@@ -1480,48 +1557,18 @@ export class GrpcWebImpl {
   }
 }
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  throw "Unable to locate global object";
-})();
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
-export class GrpcWebError extends tsProtoGlobalThis.Error {
-  constructor(message: string, public code: grpc.Code, public metadata: grpc.Metadata) {
-    super(message);
-  }
 }

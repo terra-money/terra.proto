@@ -9,12 +9,9 @@ export interface IcacallbacksPacketData {
   noData?: NoData | undefined;
 }
 
-export interface NoData {
-}
+export interface NoData {}
 
-function createBaseIcacallbacksPacketData(): IcacallbacksPacketData {
-  return { noData: undefined };
-}
+const baseIcacallbacksPacketData: object = {};
 
 export const IcacallbacksPacketData = {
   encode(message: IcacallbacksPacketData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -27,7 +24,7 @@ export const IcacallbacksPacketData = {
   decode(input: _m0.Reader | Uint8Array, length?: number): IcacallbacksPacketData {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseIcacallbacksPacketData();
+    const message = { ...baseIcacallbacksPacketData } as IcacallbacksPacketData;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -43,7 +40,13 @@ export const IcacallbacksPacketData = {
   },
 
   fromJSON(object: any): IcacallbacksPacketData {
-    return { noData: isSet(object.noData) ? NoData.fromJSON(object.noData) : undefined };
+    const message = { ...baseIcacallbacksPacketData } as IcacallbacksPacketData;
+    if (object.noData !== undefined && object.noData !== null) {
+      message.noData = NoData.fromJSON(object.noData);
+    } else {
+      message.noData = undefined;
+    }
+    return message;
   },
 
   toJSON(message: IcacallbacksPacketData): unknown {
@@ -52,22 +55,18 @@ export const IcacallbacksPacketData = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<IcacallbacksPacketData>, I>>(base?: I): IcacallbacksPacketData {
-    return IcacallbacksPacketData.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<IcacallbacksPacketData>, I>>(object: I): IcacallbacksPacketData {
-    const message = createBaseIcacallbacksPacketData();
-    message.noData = (object.noData !== undefined && object.noData !== null)
-      ? NoData.fromPartial(object.noData)
-      : undefined;
+  fromPartial(object: DeepPartial<IcacallbacksPacketData>): IcacallbacksPacketData {
+    const message = { ...baseIcacallbacksPacketData } as IcacallbacksPacketData;
+    if (object.noData !== undefined && object.noData !== null) {
+      message.noData = NoData.fromPartial(object.noData);
+    } else {
+      message.noData = undefined;
+    }
     return message;
   },
 };
 
-function createBaseNoData(): NoData {
-  return {};
-}
+const baseNoData: object = {};
 
 export const NoData = {
   encode(_: NoData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -77,7 +76,7 @@ export const NoData = {
   decode(input: _m0.Reader | Uint8Array, length?: number): NoData {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseNoData();
+    const message = { ...baseNoData } as NoData;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -90,7 +89,8 @@ export const NoData = {
   },
 
   fromJSON(_: any): NoData {
-    return {};
+    const message = { ...baseNoData } as NoData;
+    return message;
   },
 
   toJSON(_: NoData): unknown {
@@ -98,33 +98,24 @@ export const NoData = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<NoData>, I>>(base?: I): NoData {
-    return NoData.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<NoData>, I>>(_: I): NoData {
-    const message = createBaseNoData();
+  fromPartial(_: DeepPartial<NoData>): NoData {
+    const message = { ...baseNoData } as NoData;
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
 }

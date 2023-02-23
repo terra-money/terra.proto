@@ -1,9 +1,13 @@
 /* eslint-disable */
-import { grpc } from "@improbable-eng/grpc-web";
-import { BrowserHeaders } from "browser-headers";
 import Long from "long";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
-import { ICAAccountType, iCAAccountTypeFromJSON, iCAAccountTypeToJSON } from "./ica_account";
+import {
+  ICAAccountType,
+  iCAAccountTypeFromJSON,
+  iCAAccountTypeToJSON,
+} from "../../stride/stakeibc/ica_account";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "stride.stakeibc";
 
@@ -14,8 +18,7 @@ export interface MsgLiquidStake {
   hostDenom: string;
 }
 
-export interface MsgLiquidStakeResponse {
-}
+export interface MsgLiquidStakeResponse {}
 
 export interface MsgClearBalance {
   creator: string;
@@ -24,8 +27,7 @@ export interface MsgClearBalance {
   channel: string;
 }
 
-export interface MsgClearBalanceResponse {
-}
+export interface MsgClearBalanceResponse {}
 
 export interface MsgRedeemStake {
   creator: string;
@@ -34,8 +36,7 @@ export interface MsgRedeemStake {
   receiver: string;
 }
 
-export interface MsgRedeemStakeResponse {
-}
+export interface MsgRedeemStakeResponse {}
 
 /** next: 13 */
 export interface MsgRegisterHostZone {
@@ -52,8 +53,7 @@ export interface MsgRegisterHostZone {
  * TODO(TEST-53): Remove this pre-launch (no need for clients to create /
  * interact with ICAs)
  */
-export interface MsgRegisterHostZoneResponse {
-}
+export interface MsgRegisterHostZoneResponse {}
 
 export interface MsgClaimUndelegatedTokens {
   creator: string;
@@ -63,8 +63,7 @@ export interface MsgClaimUndelegatedTokens {
   sender: string;
 }
 
-export interface MsgClaimUndelegatedTokensResponse {
-}
+export interface MsgClaimUndelegatedTokensResponse {}
 
 export interface MsgRebalanceValidators {
   creator: string;
@@ -72,8 +71,7 @@ export interface MsgRebalanceValidators {
   numRebalance: Long;
 }
 
-export interface MsgRebalanceValidatorsResponse {
-}
+export interface MsgRebalanceValidatorsResponse {}
 
 export interface MsgAddValidator {
   creator: string;
@@ -84,8 +82,7 @@ export interface MsgAddValidator {
   weight: Long;
 }
 
-export interface MsgAddValidatorResponse {
-}
+export interface MsgAddValidatorResponse {}
 
 export interface MsgChangeValidatorWeight {
   creator: string;
@@ -94,8 +91,7 @@ export interface MsgChangeValidatorWeight {
   weight: Long;
 }
 
-export interface MsgChangeValidatorWeightResponse {
-}
+export interface MsgChangeValidatorWeightResponse {}
 
 export interface MsgDeleteValidator {
   creator: string;
@@ -103,8 +99,7 @@ export interface MsgDeleteValidator {
   valAddr: string;
 }
 
-export interface MsgDeleteValidatorResponse {
-}
+export interface MsgDeleteValidatorResponse {}
 
 export interface MsgRestoreInterchainAccount {
   creator: string;
@@ -112,8 +107,7 @@ export interface MsgRestoreInterchainAccount {
   accountType: ICAAccountType;
 }
 
-export interface MsgRestoreInterchainAccountResponse {
-}
+export interface MsgRestoreInterchainAccountResponse {}
 
 export interface MsgUpdateValidatorSharesExchRate {
   creator: string;
@@ -121,12 +115,9 @@ export interface MsgUpdateValidatorSharesExchRate {
   valoper: string;
 }
 
-export interface MsgUpdateValidatorSharesExchRateResponse {
-}
+export interface MsgUpdateValidatorSharesExchRateResponse {}
 
-function createBaseMsgLiquidStake(): MsgLiquidStake {
-  return { creator: "", amount: Long.UZERO, hostDenom: "" };
-}
+const baseMsgLiquidStake: object = { creator: "", amount: Long.UZERO, hostDenom: "" };
 
 export const MsgLiquidStake = {
   encode(message: MsgLiquidStake, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -145,7 +136,7 @@ export const MsgLiquidStake = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgLiquidStake {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgLiquidStake();
+    const message = { ...baseMsgLiquidStake } as MsgLiquidStake;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -167,11 +158,23 @@ export const MsgLiquidStake = {
   },
 
   fromJSON(object: any): MsgLiquidStake {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      amount: isSet(object.amount) ? Long.fromValue(object.amount) : Long.UZERO,
-      hostDenom: isSet(object.hostDenom) ? String(object.hostDenom) : "",
-    };
+    const message = { ...baseMsgLiquidStake } as MsgLiquidStake;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = Long.fromString(object.amount);
+    } else {
+      message.amount = Long.UZERO;
+    }
+    if (object.hostDenom !== undefined && object.hostDenom !== null) {
+      message.hostDenom = String(object.hostDenom);
+    } else {
+      message.hostDenom = "";
+    }
+    return message;
   },
 
   toJSON(message: MsgLiquidStake): unknown {
@@ -182,24 +185,28 @@ export const MsgLiquidStake = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgLiquidStake>, I>>(base?: I): MsgLiquidStake {
-    return MsgLiquidStake.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgLiquidStake>, I>>(object: I): MsgLiquidStake {
-    const message = createBaseMsgLiquidStake();
-    message.creator = object.creator ?? "";
-    message.amount = (object.amount !== undefined && object.amount !== null)
-      ? Long.fromValue(object.amount)
-      : Long.UZERO;
-    message.hostDenom = object.hostDenom ?? "";
+  fromPartial(object: DeepPartial<MsgLiquidStake>): MsgLiquidStake {
+    const message = { ...baseMsgLiquidStake } as MsgLiquidStake;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = object.amount as Long;
+    } else {
+      message.amount = Long.UZERO;
+    }
+    if (object.hostDenom !== undefined && object.hostDenom !== null) {
+      message.hostDenom = object.hostDenom;
+    } else {
+      message.hostDenom = "";
+    }
     return message;
   },
 };
 
-function createBaseMsgLiquidStakeResponse(): MsgLiquidStakeResponse {
-  return {};
-}
+const baseMsgLiquidStakeResponse: object = {};
 
 export const MsgLiquidStakeResponse = {
   encode(_: MsgLiquidStakeResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -209,7 +216,7 @@ export const MsgLiquidStakeResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgLiquidStakeResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgLiquidStakeResponse();
+    const message = { ...baseMsgLiquidStakeResponse } as MsgLiquidStakeResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -222,7 +229,8 @@ export const MsgLiquidStakeResponse = {
   },
 
   fromJSON(_: any): MsgLiquidStakeResponse {
-    return {};
+    const message = { ...baseMsgLiquidStakeResponse } as MsgLiquidStakeResponse;
+    return message;
   },
 
   toJSON(_: MsgLiquidStakeResponse): unknown {
@@ -230,19 +238,13 @@ export const MsgLiquidStakeResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgLiquidStakeResponse>, I>>(base?: I): MsgLiquidStakeResponse {
-    return MsgLiquidStakeResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgLiquidStakeResponse>, I>>(_: I): MsgLiquidStakeResponse {
-    const message = createBaseMsgLiquidStakeResponse();
+  fromPartial(_: DeepPartial<MsgLiquidStakeResponse>): MsgLiquidStakeResponse {
+    const message = { ...baseMsgLiquidStakeResponse } as MsgLiquidStakeResponse;
     return message;
   },
 };
 
-function createBaseMsgClearBalance(): MsgClearBalance {
-  return { creator: "", chainId: "", amount: Long.UZERO, channel: "" };
-}
+const baseMsgClearBalance: object = { creator: "", chainId: "", amount: Long.UZERO, channel: "" };
 
 export const MsgClearBalance = {
   encode(message: MsgClearBalance, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -264,7 +266,7 @@ export const MsgClearBalance = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgClearBalance {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgClearBalance();
+    const message = { ...baseMsgClearBalance } as MsgClearBalance;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -289,12 +291,28 @@ export const MsgClearBalance = {
   },
 
   fromJSON(object: any): MsgClearBalance {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      chainId: isSet(object.chainId) ? String(object.chainId) : "",
-      amount: isSet(object.amount) ? Long.fromValue(object.amount) : Long.UZERO,
-      channel: isSet(object.channel) ? String(object.channel) : "",
-    };
+    const message = { ...baseMsgClearBalance } as MsgClearBalance;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = String(object.chainId);
+    } else {
+      message.chainId = "";
+    }
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = Long.fromString(object.amount);
+    } else {
+      message.amount = Long.UZERO;
+    }
+    if (object.channel !== undefined && object.channel !== null) {
+      message.channel = String(object.channel);
+    } else {
+      message.channel = "";
+    }
+    return message;
   },
 
   toJSON(message: MsgClearBalance): unknown {
@@ -306,25 +324,33 @@ export const MsgClearBalance = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgClearBalance>, I>>(base?: I): MsgClearBalance {
-    return MsgClearBalance.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgClearBalance>, I>>(object: I): MsgClearBalance {
-    const message = createBaseMsgClearBalance();
-    message.creator = object.creator ?? "";
-    message.chainId = object.chainId ?? "";
-    message.amount = (object.amount !== undefined && object.amount !== null)
-      ? Long.fromValue(object.amount)
-      : Long.UZERO;
-    message.channel = object.channel ?? "";
+  fromPartial(object: DeepPartial<MsgClearBalance>): MsgClearBalance {
+    const message = { ...baseMsgClearBalance } as MsgClearBalance;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = object.chainId;
+    } else {
+      message.chainId = "";
+    }
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = object.amount as Long;
+    } else {
+      message.amount = Long.UZERO;
+    }
+    if (object.channel !== undefined && object.channel !== null) {
+      message.channel = object.channel;
+    } else {
+      message.channel = "";
+    }
     return message;
   },
 };
 
-function createBaseMsgClearBalanceResponse(): MsgClearBalanceResponse {
-  return {};
-}
+const baseMsgClearBalanceResponse: object = {};
 
 export const MsgClearBalanceResponse = {
   encode(_: MsgClearBalanceResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -334,7 +360,7 @@ export const MsgClearBalanceResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgClearBalanceResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgClearBalanceResponse();
+    const message = { ...baseMsgClearBalanceResponse } as MsgClearBalanceResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -347,7 +373,8 @@ export const MsgClearBalanceResponse = {
   },
 
   fromJSON(_: any): MsgClearBalanceResponse {
-    return {};
+    const message = { ...baseMsgClearBalanceResponse } as MsgClearBalanceResponse;
+    return message;
   },
 
   toJSON(_: MsgClearBalanceResponse): unknown {
@@ -355,19 +382,13 @@ export const MsgClearBalanceResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgClearBalanceResponse>, I>>(base?: I): MsgClearBalanceResponse {
-    return MsgClearBalanceResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgClearBalanceResponse>, I>>(_: I): MsgClearBalanceResponse {
-    const message = createBaseMsgClearBalanceResponse();
+  fromPartial(_: DeepPartial<MsgClearBalanceResponse>): MsgClearBalanceResponse {
+    const message = { ...baseMsgClearBalanceResponse } as MsgClearBalanceResponse;
     return message;
   },
 };
 
-function createBaseMsgRedeemStake(): MsgRedeemStake {
-  return { creator: "", amount: Long.UZERO, hostZone: "", receiver: "" };
-}
+const baseMsgRedeemStake: object = { creator: "", amount: Long.UZERO, hostZone: "", receiver: "" };
 
 export const MsgRedeemStake = {
   encode(message: MsgRedeemStake, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -389,7 +410,7 @@ export const MsgRedeemStake = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgRedeemStake {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgRedeemStake();
+    const message = { ...baseMsgRedeemStake } as MsgRedeemStake;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -414,12 +435,28 @@ export const MsgRedeemStake = {
   },
 
   fromJSON(object: any): MsgRedeemStake {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      amount: isSet(object.amount) ? Long.fromValue(object.amount) : Long.UZERO,
-      hostZone: isSet(object.hostZone) ? String(object.hostZone) : "",
-      receiver: isSet(object.receiver) ? String(object.receiver) : "",
-    };
+    const message = { ...baseMsgRedeemStake } as MsgRedeemStake;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = Long.fromString(object.amount);
+    } else {
+      message.amount = Long.UZERO;
+    }
+    if (object.hostZone !== undefined && object.hostZone !== null) {
+      message.hostZone = String(object.hostZone);
+    } else {
+      message.hostZone = "";
+    }
+    if (object.receiver !== undefined && object.receiver !== null) {
+      message.receiver = String(object.receiver);
+    } else {
+      message.receiver = "";
+    }
+    return message;
   },
 
   toJSON(message: MsgRedeemStake): unknown {
@@ -431,25 +468,33 @@ export const MsgRedeemStake = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgRedeemStake>, I>>(base?: I): MsgRedeemStake {
-    return MsgRedeemStake.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgRedeemStake>, I>>(object: I): MsgRedeemStake {
-    const message = createBaseMsgRedeemStake();
-    message.creator = object.creator ?? "";
-    message.amount = (object.amount !== undefined && object.amount !== null)
-      ? Long.fromValue(object.amount)
-      : Long.UZERO;
-    message.hostZone = object.hostZone ?? "";
-    message.receiver = object.receiver ?? "";
+  fromPartial(object: DeepPartial<MsgRedeemStake>): MsgRedeemStake {
+    const message = { ...baseMsgRedeemStake } as MsgRedeemStake;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = object.amount as Long;
+    } else {
+      message.amount = Long.UZERO;
+    }
+    if (object.hostZone !== undefined && object.hostZone !== null) {
+      message.hostZone = object.hostZone;
+    } else {
+      message.hostZone = "";
+    }
+    if (object.receiver !== undefined && object.receiver !== null) {
+      message.receiver = object.receiver;
+    } else {
+      message.receiver = "";
+    }
     return message;
   },
 };
 
-function createBaseMsgRedeemStakeResponse(): MsgRedeemStakeResponse {
-  return {};
-}
+const baseMsgRedeemStakeResponse: object = {};
 
 export const MsgRedeemStakeResponse = {
   encode(_: MsgRedeemStakeResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -459,7 +504,7 @@ export const MsgRedeemStakeResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgRedeemStakeResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgRedeemStakeResponse();
+    const message = { ...baseMsgRedeemStakeResponse } as MsgRedeemStakeResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -472,7 +517,8 @@ export const MsgRedeemStakeResponse = {
   },
 
   fromJSON(_: any): MsgRedeemStakeResponse {
-    return {};
+    const message = { ...baseMsgRedeemStakeResponse } as MsgRedeemStakeResponse;
+    return message;
   },
 
   toJSON(_: MsgRedeemStakeResponse): unknown {
@@ -480,27 +526,21 @@ export const MsgRedeemStakeResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgRedeemStakeResponse>, I>>(base?: I): MsgRedeemStakeResponse {
-    return MsgRedeemStakeResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgRedeemStakeResponse>, I>>(_: I): MsgRedeemStakeResponse {
-    const message = createBaseMsgRedeemStakeResponse();
+  fromPartial(_: DeepPartial<MsgRedeemStakeResponse>): MsgRedeemStakeResponse {
+    const message = { ...baseMsgRedeemStakeResponse } as MsgRedeemStakeResponse;
     return message;
   },
 };
 
-function createBaseMsgRegisterHostZone(): MsgRegisterHostZone {
-  return {
-    connectionId: "",
-    bech32prefix: "",
-    hostDenom: "",
-    ibcDenom: "",
-    creator: "",
-    transferChannelId: "",
-    unbondingFrequency: Long.UZERO,
-  };
-}
+const baseMsgRegisterHostZone: object = {
+  connectionId: "",
+  bech32prefix: "",
+  hostDenom: "",
+  ibcDenom: "",
+  creator: "",
+  transferChannelId: "",
+  unbondingFrequency: Long.UZERO,
+};
 
 export const MsgRegisterHostZone = {
   encode(message: MsgRegisterHostZone, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -531,7 +571,7 @@ export const MsgRegisterHostZone = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgRegisterHostZone {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgRegisterHostZone();
+    const message = { ...baseMsgRegisterHostZone } as MsgRegisterHostZone;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -565,15 +605,43 @@ export const MsgRegisterHostZone = {
   },
 
   fromJSON(object: any): MsgRegisterHostZone {
-    return {
-      connectionId: isSet(object.connectionId) ? String(object.connectionId) : "",
-      bech32prefix: isSet(object.bech32prefix) ? String(object.bech32prefix) : "",
-      hostDenom: isSet(object.hostDenom) ? String(object.hostDenom) : "",
-      ibcDenom: isSet(object.ibcDenom) ? String(object.ibcDenom) : "",
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      transferChannelId: isSet(object.transferChannelId) ? String(object.transferChannelId) : "",
-      unbondingFrequency: isSet(object.unbondingFrequency) ? Long.fromValue(object.unbondingFrequency) : Long.UZERO,
-    };
+    const message = { ...baseMsgRegisterHostZone } as MsgRegisterHostZone;
+    if (object.connectionId !== undefined && object.connectionId !== null) {
+      message.connectionId = String(object.connectionId);
+    } else {
+      message.connectionId = "";
+    }
+    if (object.bech32prefix !== undefined && object.bech32prefix !== null) {
+      message.bech32prefix = String(object.bech32prefix);
+    } else {
+      message.bech32prefix = "";
+    }
+    if (object.hostDenom !== undefined && object.hostDenom !== null) {
+      message.hostDenom = String(object.hostDenom);
+    } else {
+      message.hostDenom = "";
+    }
+    if (object.ibcDenom !== undefined && object.ibcDenom !== null) {
+      message.ibcDenom = String(object.ibcDenom);
+    } else {
+      message.ibcDenom = "";
+    }
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.transferChannelId !== undefined && object.transferChannelId !== null) {
+      message.transferChannelId = String(object.transferChannelId);
+    } else {
+      message.transferChannelId = "";
+    }
+    if (object.unbondingFrequency !== undefined && object.unbondingFrequency !== null) {
+      message.unbondingFrequency = Long.fromString(object.unbondingFrequency);
+    } else {
+      message.unbondingFrequency = Long.UZERO;
+    }
+    return message;
   },
 
   toJSON(message: MsgRegisterHostZone): unknown {
@@ -589,28 +657,48 @@ export const MsgRegisterHostZone = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgRegisterHostZone>, I>>(base?: I): MsgRegisterHostZone {
-    return MsgRegisterHostZone.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgRegisterHostZone>, I>>(object: I): MsgRegisterHostZone {
-    const message = createBaseMsgRegisterHostZone();
-    message.connectionId = object.connectionId ?? "";
-    message.bech32prefix = object.bech32prefix ?? "";
-    message.hostDenom = object.hostDenom ?? "";
-    message.ibcDenom = object.ibcDenom ?? "";
-    message.creator = object.creator ?? "";
-    message.transferChannelId = object.transferChannelId ?? "";
-    message.unbondingFrequency = (object.unbondingFrequency !== undefined && object.unbondingFrequency !== null)
-      ? Long.fromValue(object.unbondingFrequency)
-      : Long.UZERO;
+  fromPartial(object: DeepPartial<MsgRegisterHostZone>): MsgRegisterHostZone {
+    const message = { ...baseMsgRegisterHostZone } as MsgRegisterHostZone;
+    if (object.connectionId !== undefined && object.connectionId !== null) {
+      message.connectionId = object.connectionId;
+    } else {
+      message.connectionId = "";
+    }
+    if (object.bech32prefix !== undefined && object.bech32prefix !== null) {
+      message.bech32prefix = object.bech32prefix;
+    } else {
+      message.bech32prefix = "";
+    }
+    if (object.hostDenom !== undefined && object.hostDenom !== null) {
+      message.hostDenom = object.hostDenom;
+    } else {
+      message.hostDenom = "";
+    }
+    if (object.ibcDenom !== undefined && object.ibcDenom !== null) {
+      message.ibcDenom = object.ibcDenom;
+    } else {
+      message.ibcDenom = "";
+    }
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.transferChannelId !== undefined && object.transferChannelId !== null) {
+      message.transferChannelId = object.transferChannelId;
+    } else {
+      message.transferChannelId = "";
+    }
+    if (object.unbondingFrequency !== undefined && object.unbondingFrequency !== null) {
+      message.unbondingFrequency = object.unbondingFrequency as Long;
+    } else {
+      message.unbondingFrequency = Long.UZERO;
+    }
     return message;
   },
 };
 
-function createBaseMsgRegisterHostZoneResponse(): MsgRegisterHostZoneResponse {
-  return {};
-}
+const baseMsgRegisterHostZoneResponse: object = {};
 
 export const MsgRegisterHostZoneResponse = {
   encode(_: MsgRegisterHostZoneResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -620,7 +708,7 @@ export const MsgRegisterHostZoneResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgRegisterHostZoneResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgRegisterHostZoneResponse();
+    const message = { ...baseMsgRegisterHostZoneResponse } as MsgRegisterHostZoneResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -633,7 +721,8 @@ export const MsgRegisterHostZoneResponse = {
   },
 
   fromJSON(_: any): MsgRegisterHostZoneResponse {
-    return {};
+    const message = { ...baseMsgRegisterHostZoneResponse } as MsgRegisterHostZoneResponse;
+    return message;
   },
 
   toJSON(_: MsgRegisterHostZoneResponse): unknown {
@@ -641,19 +730,13 @@ export const MsgRegisterHostZoneResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgRegisterHostZoneResponse>, I>>(base?: I): MsgRegisterHostZoneResponse {
-    return MsgRegisterHostZoneResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgRegisterHostZoneResponse>, I>>(_: I): MsgRegisterHostZoneResponse {
-    const message = createBaseMsgRegisterHostZoneResponse();
+  fromPartial(_: DeepPartial<MsgRegisterHostZoneResponse>): MsgRegisterHostZoneResponse {
+    const message = { ...baseMsgRegisterHostZoneResponse } as MsgRegisterHostZoneResponse;
     return message;
   },
 };
 
-function createBaseMsgClaimUndelegatedTokens(): MsgClaimUndelegatedTokens {
-  return { creator: "", hostZoneId: "", epoch: Long.UZERO, sender: "" };
-}
+const baseMsgClaimUndelegatedTokens: object = { creator: "", hostZoneId: "", epoch: Long.UZERO, sender: "" };
 
 export const MsgClaimUndelegatedTokens = {
   encode(message: MsgClaimUndelegatedTokens, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -675,7 +758,7 @@ export const MsgClaimUndelegatedTokens = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgClaimUndelegatedTokens {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgClaimUndelegatedTokens();
+    const message = { ...baseMsgClaimUndelegatedTokens } as MsgClaimUndelegatedTokens;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -700,12 +783,28 @@ export const MsgClaimUndelegatedTokens = {
   },
 
   fromJSON(object: any): MsgClaimUndelegatedTokens {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      hostZoneId: isSet(object.hostZoneId) ? String(object.hostZoneId) : "",
-      epoch: isSet(object.epoch) ? Long.fromValue(object.epoch) : Long.UZERO,
-      sender: isSet(object.sender) ? String(object.sender) : "",
-    };
+    const message = { ...baseMsgClaimUndelegatedTokens } as MsgClaimUndelegatedTokens;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = String(object.hostZoneId);
+    } else {
+      message.hostZoneId = "";
+    }
+    if (object.epoch !== undefined && object.epoch !== null) {
+      message.epoch = Long.fromString(object.epoch);
+    } else {
+      message.epoch = Long.UZERO;
+    }
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = String(object.sender);
+    } else {
+      message.sender = "";
+    }
+    return message;
   },
 
   toJSON(message: MsgClaimUndelegatedTokens): unknown {
@@ -717,23 +816,33 @@ export const MsgClaimUndelegatedTokens = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgClaimUndelegatedTokens>, I>>(base?: I): MsgClaimUndelegatedTokens {
-    return MsgClaimUndelegatedTokens.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgClaimUndelegatedTokens>, I>>(object: I): MsgClaimUndelegatedTokens {
-    const message = createBaseMsgClaimUndelegatedTokens();
-    message.creator = object.creator ?? "";
-    message.hostZoneId = object.hostZoneId ?? "";
-    message.epoch = (object.epoch !== undefined && object.epoch !== null) ? Long.fromValue(object.epoch) : Long.UZERO;
-    message.sender = object.sender ?? "";
+  fromPartial(object: DeepPartial<MsgClaimUndelegatedTokens>): MsgClaimUndelegatedTokens {
+    const message = { ...baseMsgClaimUndelegatedTokens } as MsgClaimUndelegatedTokens;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = object.hostZoneId;
+    } else {
+      message.hostZoneId = "";
+    }
+    if (object.epoch !== undefined && object.epoch !== null) {
+      message.epoch = object.epoch as Long;
+    } else {
+      message.epoch = Long.UZERO;
+    }
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = object.sender;
+    } else {
+      message.sender = "";
+    }
     return message;
   },
 };
 
-function createBaseMsgClaimUndelegatedTokensResponse(): MsgClaimUndelegatedTokensResponse {
-  return {};
-}
+const baseMsgClaimUndelegatedTokensResponse: object = {};
 
 export const MsgClaimUndelegatedTokensResponse = {
   encode(_: MsgClaimUndelegatedTokensResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -743,7 +852,7 @@ export const MsgClaimUndelegatedTokensResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgClaimUndelegatedTokensResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgClaimUndelegatedTokensResponse();
+    const message = { ...baseMsgClaimUndelegatedTokensResponse } as MsgClaimUndelegatedTokensResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -756,7 +865,8 @@ export const MsgClaimUndelegatedTokensResponse = {
   },
 
   fromJSON(_: any): MsgClaimUndelegatedTokensResponse {
-    return {};
+    const message = { ...baseMsgClaimUndelegatedTokensResponse } as MsgClaimUndelegatedTokensResponse;
+    return message;
   },
 
   toJSON(_: MsgClaimUndelegatedTokensResponse): unknown {
@@ -764,23 +874,13 @@ export const MsgClaimUndelegatedTokensResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgClaimUndelegatedTokensResponse>, I>>(
-    base?: I,
-  ): MsgClaimUndelegatedTokensResponse {
-    return MsgClaimUndelegatedTokensResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgClaimUndelegatedTokensResponse>, I>>(
-    _: I,
-  ): MsgClaimUndelegatedTokensResponse {
-    const message = createBaseMsgClaimUndelegatedTokensResponse();
+  fromPartial(_: DeepPartial<MsgClaimUndelegatedTokensResponse>): MsgClaimUndelegatedTokensResponse {
+    const message = { ...baseMsgClaimUndelegatedTokensResponse } as MsgClaimUndelegatedTokensResponse;
     return message;
   },
 };
 
-function createBaseMsgRebalanceValidators(): MsgRebalanceValidators {
-  return { creator: "", hostZone: "", numRebalance: Long.UZERO };
-}
+const baseMsgRebalanceValidators: object = { creator: "", hostZone: "", numRebalance: Long.UZERO };
 
 export const MsgRebalanceValidators = {
   encode(message: MsgRebalanceValidators, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -799,7 +899,7 @@ export const MsgRebalanceValidators = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgRebalanceValidators {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgRebalanceValidators();
+    const message = { ...baseMsgRebalanceValidators } as MsgRebalanceValidators;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -821,39 +921,56 @@ export const MsgRebalanceValidators = {
   },
 
   fromJSON(object: any): MsgRebalanceValidators {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      hostZone: isSet(object.hostZone) ? String(object.hostZone) : "",
-      numRebalance: isSet(object.numRebalance) ? Long.fromValue(object.numRebalance) : Long.UZERO,
-    };
+    const message = { ...baseMsgRebalanceValidators } as MsgRebalanceValidators;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.hostZone !== undefined && object.hostZone !== null) {
+      message.hostZone = String(object.hostZone);
+    } else {
+      message.hostZone = "";
+    }
+    if (object.numRebalance !== undefined && object.numRebalance !== null) {
+      message.numRebalance = Long.fromString(object.numRebalance);
+    } else {
+      message.numRebalance = Long.UZERO;
+    }
+    return message;
   },
 
   toJSON(message: MsgRebalanceValidators): unknown {
     const obj: any = {};
     message.creator !== undefined && (obj.creator = message.creator);
     message.hostZone !== undefined && (obj.hostZone = message.hostZone);
-    message.numRebalance !== undefined && (obj.numRebalance = (message.numRebalance || Long.UZERO).toString());
+    message.numRebalance !== undefined &&
+      (obj.numRebalance = (message.numRebalance || Long.UZERO).toString());
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgRebalanceValidators>, I>>(base?: I): MsgRebalanceValidators {
-    return MsgRebalanceValidators.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgRebalanceValidators>, I>>(object: I): MsgRebalanceValidators {
-    const message = createBaseMsgRebalanceValidators();
-    message.creator = object.creator ?? "";
-    message.hostZone = object.hostZone ?? "";
-    message.numRebalance = (object.numRebalance !== undefined && object.numRebalance !== null)
-      ? Long.fromValue(object.numRebalance)
-      : Long.UZERO;
+  fromPartial(object: DeepPartial<MsgRebalanceValidators>): MsgRebalanceValidators {
+    const message = { ...baseMsgRebalanceValidators } as MsgRebalanceValidators;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.hostZone !== undefined && object.hostZone !== null) {
+      message.hostZone = object.hostZone;
+    } else {
+      message.hostZone = "";
+    }
+    if (object.numRebalance !== undefined && object.numRebalance !== null) {
+      message.numRebalance = object.numRebalance as Long;
+    } else {
+      message.numRebalance = Long.UZERO;
+    }
     return message;
   },
 };
 
-function createBaseMsgRebalanceValidatorsResponse(): MsgRebalanceValidatorsResponse {
-  return {};
-}
+const baseMsgRebalanceValidatorsResponse: object = {};
 
 export const MsgRebalanceValidatorsResponse = {
   encode(_: MsgRebalanceValidatorsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -863,7 +980,7 @@ export const MsgRebalanceValidatorsResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgRebalanceValidatorsResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgRebalanceValidatorsResponse();
+    const message = { ...baseMsgRebalanceValidatorsResponse } as MsgRebalanceValidatorsResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -876,7 +993,8 @@ export const MsgRebalanceValidatorsResponse = {
   },
 
   fromJSON(_: any): MsgRebalanceValidatorsResponse {
-    return {};
+    const message = { ...baseMsgRebalanceValidatorsResponse } as MsgRebalanceValidatorsResponse;
+    return message;
   },
 
   toJSON(_: MsgRebalanceValidatorsResponse): unknown {
@@ -884,19 +1002,20 @@ export const MsgRebalanceValidatorsResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgRebalanceValidatorsResponse>, I>>(base?: I): MsgRebalanceValidatorsResponse {
-    return MsgRebalanceValidatorsResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgRebalanceValidatorsResponse>, I>>(_: I): MsgRebalanceValidatorsResponse {
-    const message = createBaseMsgRebalanceValidatorsResponse();
+  fromPartial(_: DeepPartial<MsgRebalanceValidatorsResponse>): MsgRebalanceValidatorsResponse {
+    const message = { ...baseMsgRebalanceValidatorsResponse } as MsgRebalanceValidatorsResponse;
     return message;
   },
 };
 
-function createBaseMsgAddValidator(): MsgAddValidator {
-  return { creator: "", hostZone: "", name: "", address: "", commission: Long.UZERO, weight: Long.UZERO };
-}
+const baseMsgAddValidator: object = {
+  creator: "",
+  hostZone: "",
+  name: "",
+  address: "",
+  commission: Long.UZERO,
+  weight: Long.UZERO,
+};
 
 export const MsgAddValidator = {
   encode(message: MsgAddValidator, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -924,7 +1043,7 @@ export const MsgAddValidator = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgAddValidator {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgAddValidator();
+    const message = { ...baseMsgAddValidator } as MsgAddValidator;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -955,14 +1074,38 @@ export const MsgAddValidator = {
   },
 
   fromJSON(object: any): MsgAddValidator {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      hostZone: isSet(object.hostZone) ? String(object.hostZone) : "",
-      name: isSet(object.name) ? String(object.name) : "",
-      address: isSet(object.address) ? String(object.address) : "",
-      commission: isSet(object.commission) ? Long.fromValue(object.commission) : Long.UZERO,
-      weight: isSet(object.weight) ? Long.fromValue(object.weight) : Long.UZERO,
-    };
+    const message = { ...baseMsgAddValidator } as MsgAddValidator;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.hostZone !== undefined && object.hostZone !== null) {
+      message.hostZone = String(object.hostZone);
+    } else {
+      message.hostZone = "";
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = String(object.name);
+    } else {
+      message.name = "";
+    }
+    if (object.address !== undefined && object.address !== null) {
+      message.address = String(object.address);
+    } else {
+      message.address = "";
+    }
+    if (object.commission !== undefined && object.commission !== null) {
+      message.commission = Long.fromString(object.commission);
+    } else {
+      message.commission = Long.UZERO;
+    }
+    if (object.weight !== undefined && object.weight !== null) {
+      message.weight = Long.fromString(object.weight);
+    } else {
+      message.weight = Long.UZERO;
+    }
+    return message;
   },
 
   toJSON(message: MsgAddValidator): unknown {
@@ -976,29 +1119,43 @@ export const MsgAddValidator = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgAddValidator>, I>>(base?: I): MsgAddValidator {
-    return MsgAddValidator.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgAddValidator>, I>>(object: I): MsgAddValidator {
-    const message = createBaseMsgAddValidator();
-    message.creator = object.creator ?? "";
-    message.hostZone = object.hostZone ?? "";
-    message.name = object.name ?? "";
-    message.address = object.address ?? "";
-    message.commission = (object.commission !== undefined && object.commission !== null)
-      ? Long.fromValue(object.commission)
-      : Long.UZERO;
-    message.weight = (object.weight !== undefined && object.weight !== null)
-      ? Long.fromValue(object.weight)
-      : Long.UZERO;
+  fromPartial(object: DeepPartial<MsgAddValidator>): MsgAddValidator {
+    const message = { ...baseMsgAddValidator } as MsgAddValidator;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.hostZone !== undefined && object.hostZone !== null) {
+      message.hostZone = object.hostZone;
+    } else {
+      message.hostZone = "";
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    } else {
+      message.name = "";
+    }
+    if (object.address !== undefined && object.address !== null) {
+      message.address = object.address;
+    } else {
+      message.address = "";
+    }
+    if (object.commission !== undefined && object.commission !== null) {
+      message.commission = object.commission as Long;
+    } else {
+      message.commission = Long.UZERO;
+    }
+    if (object.weight !== undefined && object.weight !== null) {
+      message.weight = object.weight as Long;
+    } else {
+      message.weight = Long.UZERO;
+    }
     return message;
   },
 };
 
-function createBaseMsgAddValidatorResponse(): MsgAddValidatorResponse {
-  return {};
-}
+const baseMsgAddValidatorResponse: object = {};
 
 export const MsgAddValidatorResponse = {
   encode(_: MsgAddValidatorResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -1008,7 +1165,7 @@ export const MsgAddValidatorResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgAddValidatorResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgAddValidatorResponse();
+    const message = { ...baseMsgAddValidatorResponse } as MsgAddValidatorResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1021,7 +1178,8 @@ export const MsgAddValidatorResponse = {
   },
 
   fromJSON(_: any): MsgAddValidatorResponse {
-    return {};
+    const message = { ...baseMsgAddValidatorResponse } as MsgAddValidatorResponse;
+    return message;
   },
 
   toJSON(_: MsgAddValidatorResponse): unknown {
@@ -1029,19 +1187,13 @@ export const MsgAddValidatorResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgAddValidatorResponse>, I>>(base?: I): MsgAddValidatorResponse {
-    return MsgAddValidatorResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgAddValidatorResponse>, I>>(_: I): MsgAddValidatorResponse {
-    const message = createBaseMsgAddValidatorResponse();
+  fromPartial(_: DeepPartial<MsgAddValidatorResponse>): MsgAddValidatorResponse {
+    const message = { ...baseMsgAddValidatorResponse } as MsgAddValidatorResponse;
     return message;
   },
 };
 
-function createBaseMsgChangeValidatorWeight(): MsgChangeValidatorWeight {
-  return { creator: "", hostZone: "", valAddr: "", weight: Long.UZERO };
-}
+const baseMsgChangeValidatorWeight: object = { creator: "", hostZone: "", valAddr: "", weight: Long.UZERO };
 
 export const MsgChangeValidatorWeight = {
   encode(message: MsgChangeValidatorWeight, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -1063,7 +1215,7 @@ export const MsgChangeValidatorWeight = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgChangeValidatorWeight {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgChangeValidatorWeight();
+    const message = { ...baseMsgChangeValidatorWeight } as MsgChangeValidatorWeight;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1088,12 +1240,28 @@ export const MsgChangeValidatorWeight = {
   },
 
   fromJSON(object: any): MsgChangeValidatorWeight {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      hostZone: isSet(object.hostZone) ? String(object.hostZone) : "",
-      valAddr: isSet(object.valAddr) ? String(object.valAddr) : "",
-      weight: isSet(object.weight) ? Long.fromValue(object.weight) : Long.UZERO,
-    };
+    const message = { ...baseMsgChangeValidatorWeight } as MsgChangeValidatorWeight;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.hostZone !== undefined && object.hostZone !== null) {
+      message.hostZone = String(object.hostZone);
+    } else {
+      message.hostZone = "";
+    }
+    if (object.valAddr !== undefined && object.valAddr !== null) {
+      message.valAddr = String(object.valAddr);
+    } else {
+      message.valAddr = "";
+    }
+    if (object.weight !== undefined && object.weight !== null) {
+      message.weight = Long.fromString(object.weight);
+    } else {
+      message.weight = Long.UZERO;
+    }
+    return message;
   },
 
   toJSON(message: MsgChangeValidatorWeight): unknown {
@@ -1105,25 +1273,33 @@ export const MsgChangeValidatorWeight = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgChangeValidatorWeight>, I>>(base?: I): MsgChangeValidatorWeight {
-    return MsgChangeValidatorWeight.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgChangeValidatorWeight>, I>>(object: I): MsgChangeValidatorWeight {
-    const message = createBaseMsgChangeValidatorWeight();
-    message.creator = object.creator ?? "";
-    message.hostZone = object.hostZone ?? "";
-    message.valAddr = object.valAddr ?? "";
-    message.weight = (object.weight !== undefined && object.weight !== null)
-      ? Long.fromValue(object.weight)
-      : Long.UZERO;
+  fromPartial(object: DeepPartial<MsgChangeValidatorWeight>): MsgChangeValidatorWeight {
+    const message = { ...baseMsgChangeValidatorWeight } as MsgChangeValidatorWeight;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.hostZone !== undefined && object.hostZone !== null) {
+      message.hostZone = object.hostZone;
+    } else {
+      message.hostZone = "";
+    }
+    if (object.valAddr !== undefined && object.valAddr !== null) {
+      message.valAddr = object.valAddr;
+    } else {
+      message.valAddr = "";
+    }
+    if (object.weight !== undefined && object.weight !== null) {
+      message.weight = object.weight as Long;
+    } else {
+      message.weight = Long.UZERO;
+    }
     return message;
   },
 };
 
-function createBaseMsgChangeValidatorWeightResponse(): MsgChangeValidatorWeightResponse {
-  return {};
-}
+const baseMsgChangeValidatorWeightResponse: object = {};
 
 export const MsgChangeValidatorWeightResponse = {
   encode(_: MsgChangeValidatorWeightResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -1133,7 +1309,7 @@ export const MsgChangeValidatorWeightResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgChangeValidatorWeightResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgChangeValidatorWeightResponse();
+    const message = { ...baseMsgChangeValidatorWeightResponse } as MsgChangeValidatorWeightResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1146,7 +1322,8 @@ export const MsgChangeValidatorWeightResponse = {
   },
 
   fromJSON(_: any): MsgChangeValidatorWeightResponse {
-    return {};
+    const message = { ...baseMsgChangeValidatorWeightResponse } as MsgChangeValidatorWeightResponse;
+    return message;
   },
 
   toJSON(_: MsgChangeValidatorWeightResponse): unknown {
@@ -1154,23 +1331,13 @@ export const MsgChangeValidatorWeightResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgChangeValidatorWeightResponse>, I>>(
-    base?: I,
-  ): MsgChangeValidatorWeightResponse {
-    return MsgChangeValidatorWeightResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgChangeValidatorWeightResponse>, I>>(
-    _: I,
-  ): MsgChangeValidatorWeightResponse {
-    const message = createBaseMsgChangeValidatorWeightResponse();
+  fromPartial(_: DeepPartial<MsgChangeValidatorWeightResponse>): MsgChangeValidatorWeightResponse {
+    const message = { ...baseMsgChangeValidatorWeightResponse } as MsgChangeValidatorWeightResponse;
     return message;
   },
 };
 
-function createBaseMsgDeleteValidator(): MsgDeleteValidator {
-  return { creator: "", hostZone: "", valAddr: "" };
-}
+const baseMsgDeleteValidator: object = { creator: "", hostZone: "", valAddr: "" };
 
 export const MsgDeleteValidator = {
   encode(message: MsgDeleteValidator, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -1189,7 +1356,7 @@ export const MsgDeleteValidator = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgDeleteValidator {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgDeleteValidator();
+    const message = { ...baseMsgDeleteValidator } as MsgDeleteValidator;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1211,11 +1378,23 @@ export const MsgDeleteValidator = {
   },
 
   fromJSON(object: any): MsgDeleteValidator {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      hostZone: isSet(object.hostZone) ? String(object.hostZone) : "",
-      valAddr: isSet(object.valAddr) ? String(object.valAddr) : "",
-    };
+    const message = { ...baseMsgDeleteValidator } as MsgDeleteValidator;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.hostZone !== undefined && object.hostZone !== null) {
+      message.hostZone = String(object.hostZone);
+    } else {
+      message.hostZone = "";
+    }
+    if (object.valAddr !== undefined && object.valAddr !== null) {
+      message.valAddr = String(object.valAddr);
+    } else {
+      message.valAddr = "";
+    }
+    return message;
   },
 
   toJSON(message: MsgDeleteValidator): unknown {
@@ -1226,22 +1405,28 @@ export const MsgDeleteValidator = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgDeleteValidator>, I>>(base?: I): MsgDeleteValidator {
-    return MsgDeleteValidator.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgDeleteValidator>, I>>(object: I): MsgDeleteValidator {
-    const message = createBaseMsgDeleteValidator();
-    message.creator = object.creator ?? "";
-    message.hostZone = object.hostZone ?? "";
-    message.valAddr = object.valAddr ?? "";
+  fromPartial(object: DeepPartial<MsgDeleteValidator>): MsgDeleteValidator {
+    const message = { ...baseMsgDeleteValidator } as MsgDeleteValidator;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.hostZone !== undefined && object.hostZone !== null) {
+      message.hostZone = object.hostZone;
+    } else {
+      message.hostZone = "";
+    }
+    if (object.valAddr !== undefined && object.valAddr !== null) {
+      message.valAddr = object.valAddr;
+    } else {
+      message.valAddr = "";
+    }
     return message;
   },
 };
 
-function createBaseMsgDeleteValidatorResponse(): MsgDeleteValidatorResponse {
-  return {};
-}
+const baseMsgDeleteValidatorResponse: object = {};
 
 export const MsgDeleteValidatorResponse = {
   encode(_: MsgDeleteValidatorResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -1251,7 +1436,7 @@ export const MsgDeleteValidatorResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgDeleteValidatorResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgDeleteValidatorResponse();
+    const message = { ...baseMsgDeleteValidatorResponse } as MsgDeleteValidatorResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1264,7 +1449,8 @@ export const MsgDeleteValidatorResponse = {
   },
 
   fromJSON(_: any): MsgDeleteValidatorResponse {
-    return {};
+    const message = { ...baseMsgDeleteValidatorResponse } as MsgDeleteValidatorResponse;
+    return message;
   },
 
   toJSON(_: MsgDeleteValidatorResponse): unknown {
@@ -1272,19 +1458,13 @@ export const MsgDeleteValidatorResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgDeleteValidatorResponse>, I>>(base?: I): MsgDeleteValidatorResponse {
-    return MsgDeleteValidatorResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgDeleteValidatorResponse>, I>>(_: I): MsgDeleteValidatorResponse {
-    const message = createBaseMsgDeleteValidatorResponse();
+  fromPartial(_: DeepPartial<MsgDeleteValidatorResponse>): MsgDeleteValidatorResponse {
+    const message = { ...baseMsgDeleteValidatorResponse } as MsgDeleteValidatorResponse;
     return message;
   },
 };
 
-function createBaseMsgRestoreInterchainAccount(): MsgRestoreInterchainAccount {
-  return { creator: "", chainId: "", accountType: 0 };
-}
+const baseMsgRestoreInterchainAccount: object = { creator: "", chainId: "", accountType: 0 };
 
 export const MsgRestoreInterchainAccount = {
   encode(message: MsgRestoreInterchainAccount, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -1303,7 +1483,7 @@ export const MsgRestoreInterchainAccount = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgRestoreInterchainAccount {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgRestoreInterchainAccount();
+    const message = { ...baseMsgRestoreInterchainAccount } as MsgRestoreInterchainAccount;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1325,11 +1505,23 @@ export const MsgRestoreInterchainAccount = {
   },
 
   fromJSON(object: any): MsgRestoreInterchainAccount {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      chainId: isSet(object.chainId) ? String(object.chainId) : "",
-      accountType: isSet(object.accountType) ? iCAAccountTypeFromJSON(object.accountType) : 0,
-    };
+    const message = { ...baseMsgRestoreInterchainAccount } as MsgRestoreInterchainAccount;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = String(object.chainId);
+    } else {
+      message.chainId = "";
+    }
+    if (object.accountType !== undefined && object.accountType !== null) {
+      message.accountType = iCAAccountTypeFromJSON(object.accountType);
+    } else {
+      message.accountType = 0;
+    }
+    return message;
   },
 
   toJSON(message: MsgRestoreInterchainAccount): unknown {
@@ -1340,22 +1532,28 @@ export const MsgRestoreInterchainAccount = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgRestoreInterchainAccount>, I>>(base?: I): MsgRestoreInterchainAccount {
-    return MsgRestoreInterchainAccount.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgRestoreInterchainAccount>, I>>(object: I): MsgRestoreInterchainAccount {
-    const message = createBaseMsgRestoreInterchainAccount();
-    message.creator = object.creator ?? "";
-    message.chainId = object.chainId ?? "";
-    message.accountType = object.accountType ?? 0;
+  fromPartial(object: DeepPartial<MsgRestoreInterchainAccount>): MsgRestoreInterchainAccount {
+    const message = { ...baseMsgRestoreInterchainAccount } as MsgRestoreInterchainAccount;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = object.chainId;
+    } else {
+      message.chainId = "";
+    }
+    if (object.accountType !== undefined && object.accountType !== null) {
+      message.accountType = object.accountType;
+    } else {
+      message.accountType = 0;
+    }
     return message;
   },
 };
 
-function createBaseMsgRestoreInterchainAccountResponse(): MsgRestoreInterchainAccountResponse {
-  return {};
-}
+const baseMsgRestoreInterchainAccountResponse: object = {};
 
 export const MsgRestoreInterchainAccountResponse = {
   encode(_: MsgRestoreInterchainAccountResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -1365,7 +1563,7 @@ export const MsgRestoreInterchainAccountResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgRestoreInterchainAccountResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgRestoreInterchainAccountResponse();
+    const message = { ...baseMsgRestoreInterchainAccountResponse } as MsgRestoreInterchainAccountResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1378,7 +1576,8 @@ export const MsgRestoreInterchainAccountResponse = {
   },
 
   fromJSON(_: any): MsgRestoreInterchainAccountResponse {
-    return {};
+    const message = { ...baseMsgRestoreInterchainAccountResponse } as MsgRestoreInterchainAccountResponse;
+    return message;
   },
 
   toJSON(_: MsgRestoreInterchainAccountResponse): unknown {
@@ -1386,23 +1585,13 @@ export const MsgRestoreInterchainAccountResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgRestoreInterchainAccountResponse>, I>>(
-    base?: I,
-  ): MsgRestoreInterchainAccountResponse {
-    return MsgRestoreInterchainAccountResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgRestoreInterchainAccountResponse>, I>>(
-    _: I,
-  ): MsgRestoreInterchainAccountResponse {
-    const message = createBaseMsgRestoreInterchainAccountResponse();
+  fromPartial(_: DeepPartial<MsgRestoreInterchainAccountResponse>): MsgRestoreInterchainAccountResponse {
+    const message = { ...baseMsgRestoreInterchainAccountResponse } as MsgRestoreInterchainAccountResponse;
     return message;
   },
 };
 
-function createBaseMsgUpdateValidatorSharesExchRate(): MsgUpdateValidatorSharesExchRate {
-  return { creator: "", chainId: "", valoper: "" };
-}
+const baseMsgUpdateValidatorSharesExchRate: object = { creator: "", chainId: "", valoper: "" };
 
 export const MsgUpdateValidatorSharesExchRate = {
   encode(message: MsgUpdateValidatorSharesExchRate, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -1421,7 +1610,7 @@ export const MsgUpdateValidatorSharesExchRate = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateValidatorSharesExchRate {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgUpdateValidatorSharesExchRate();
+    const message = { ...baseMsgUpdateValidatorSharesExchRate } as MsgUpdateValidatorSharesExchRate;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1443,11 +1632,23 @@ export const MsgUpdateValidatorSharesExchRate = {
   },
 
   fromJSON(object: any): MsgUpdateValidatorSharesExchRate {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      chainId: isSet(object.chainId) ? String(object.chainId) : "",
-      valoper: isSet(object.valoper) ? String(object.valoper) : "",
-    };
+    const message = { ...baseMsgUpdateValidatorSharesExchRate } as MsgUpdateValidatorSharesExchRate;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = String(object.chainId);
+    } else {
+      message.chainId = "";
+    }
+    if (object.valoper !== undefined && object.valoper !== null) {
+      message.valoper = String(object.valoper);
+    } else {
+      message.valoper = "";
+    }
+    return message;
   },
 
   toJSON(message: MsgUpdateValidatorSharesExchRate): unknown {
@@ -1458,26 +1659,28 @@ export const MsgUpdateValidatorSharesExchRate = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgUpdateValidatorSharesExchRate>, I>>(
-    base?: I,
-  ): MsgUpdateValidatorSharesExchRate {
-    return MsgUpdateValidatorSharesExchRate.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateValidatorSharesExchRate>, I>>(
-    object: I,
-  ): MsgUpdateValidatorSharesExchRate {
-    const message = createBaseMsgUpdateValidatorSharesExchRate();
-    message.creator = object.creator ?? "";
-    message.chainId = object.chainId ?? "";
-    message.valoper = object.valoper ?? "";
+  fromPartial(object: DeepPartial<MsgUpdateValidatorSharesExchRate>): MsgUpdateValidatorSharesExchRate {
+    const message = { ...baseMsgUpdateValidatorSharesExchRate } as MsgUpdateValidatorSharesExchRate;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = object.chainId;
+    } else {
+      message.chainId = "";
+    }
+    if (object.valoper !== undefined && object.valoper !== null) {
+      message.valoper = object.valoper;
+    } else {
+      message.valoper = "";
+    }
     return message;
   },
 };
 
-function createBaseMsgUpdateValidatorSharesExchRateResponse(): MsgUpdateValidatorSharesExchRateResponse {
-  return {};
-}
+const baseMsgUpdateValidatorSharesExchRateResponse: object = {};
 
 export const MsgUpdateValidatorSharesExchRateResponse = {
   encode(_: MsgUpdateValidatorSharesExchRateResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -1487,7 +1690,9 @@ export const MsgUpdateValidatorSharesExchRateResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateValidatorSharesExchRateResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgUpdateValidatorSharesExchRateResponse();
+    const message = {
+      ...baseMsgUpdateValidatorSharesExchRateResponse,
+    } as MsgUpdateValidatorSharesExchRateResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1500,7 +1705,10 @@ export const MsgUpdateValidatorSharesExchRateResponse = {
   },
 
   fromJSON(_: any): MsgUpdateValidatorSharesExchRateResponse {
-    return {};
+    const message = {
+      ...baseMsgUpdateValidatorSharesExchRateResponse,
+    } as MsgUpdateValidatorSharesExchRateResponse;
+    return message;
   },
 
   toJSON(_: MsgUpdateValidatorSharesExchRateResponse): unknown {
@@ -1508,24 +1716,26 @@ export const MsgUpdateValidatorSharesExchRateResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgUpdateValidatorSharesExchRateResponse>, I>>(
-    base?: I,
+  fromPartial(
+    _: DeepPartial<MsgUpdateValidatorSharesExchRateResponse>,
   ): MsgUpdateValidatorSharesExchRateResponse {
-    return MsgUpdateValidatorSharesExchRateResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateValidatorSharesExchRateResponse>, I>>(
-    _: I,
-  ): MsgUpdateValidatorSharesExchRateResponse {
-    const message = createBaseMsgUpdateValidatorSharesExchRateResponse();
+    const message = {
+      ...baseMsgUpdateValidatorSharesExchRateResponse,
+    } as MsgUpdateValidatorSharesExchRateResponse;
     return message;
   },
 };
 
 /** Msg defines the Msg service. */
 export interface Msg {
-  LiquidStake(request: DeepPartial<MsgLiquidStake>, metadata?: grpc.Metadata): Promise<MsgLiquidStakeResponse>;
-  RedeemStake(request: DeepPartial<MsgRedeemStake>, metadata?: grpc.Metadata): Promise<MsgRedeemStakeResponse>;
+  LiquidStake(
+    request: DeepPartial<MsgLiquidStake>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgLiquidStakeResponse>;
+  RedeemStake(
+    request: DeepPartial<MsgRedeemStake>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgRedeemStakeResponse>;
   /**
    * TODO(TEST-53): Remove this pre-launch (no need for clients to create /
    * interact with ICAs)
@@ -1542,7 +1752,10 @@ export interface Msg {
     request: DeepPartial<MsgRebalanceValidators>,
     metadata?: grpc.Metadata,
   ): Promise<MsgRebalanceValidatorsResponse>;
-  AddValidator(request: DeepPartial<MsgAddValidator>, metadata?: grpc.Metadata): Promise<MsgAddValidatorResponse>;
+  AddValidator(
+    request: DeepPartial<MsgAddValidator>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgAddValidatorResponse>;
   ChangeValidatorWeight(
     request: DeepPartial<MsgChangeValidatorWeight>,
     metadata?: grpc.Metadata,
@@ -1560,7 +1773,10 @@ export interface Msg {
     metadata?: grpc.Metadata,
   ): Promise<MsgUpdateValidatorSharesExchRateResponse>;
   /** this line is used by starport scaffolding # proto/tx/rpc */
-  ClearBalance(request: DeepPartial<MsgClearBalance>, metadata?: grpc.Metadata): Promise<MsgClearBalanceResponse>;
+  ClearBalance(
+    request: DeepPartial<MsgClearBalance>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgClearBalanceResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -1581,11 +1797,17 @@ export class MsgClientImpl implements Msg {
     this.ClearBalance = this.ClearBalance.bind(this);
   }
 
-  LiquidStake(request: DeepPartial<MsgLiquidStake>, metadata?: grpc.Metadata): Promise<MsgLiquidStakeResponse> {
+  LiquidStake(
+    request: DeepPartial<MsgLiquidStake>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgLiquidStakeResponse> {
     return this.rpc.unary(MsgLiquidStakeDesc, MsgLiquidStake.fromPartial(request), metadata);
   }
 
-  RedeemStake(request: DeepPartial<MsgRedeemStake>, metadata?: grpc.Metadata): Promise<MsgRedeemStakeResponse> {
+  RedeemStake(
+    request: DeepPartial<MsgRedeemStake>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgRedeemStakeResponse> {
     return this.rpc.unary(MsgRedeemStakeDesc, MsgRedeemStake.fromPartial(request), metadata);
   }
 
@@ -1600,7 +1822,11 @@ export class MsgClientImpl implements Msg {
     request: DeepPartial<MsgClaimUndelegatedTokens>,
     metadata?: grpc.Metadata,
   ): Promise<MsgClaimUndelegatedTokensResponse> {
-    return this.rpc.unary(MsgClaimUndelegatedTokensDesc, MsgClaimUndelegatedTokens.fromPartial(request), metadata);
+    return this.rpc.unary(
+      MsgClaimUndelegatedTokensDesc,
+      MsgClaimUndelegatedTokens.fromPartial(request),
+      metadata,
+    );
   }
 
   RebalanceValidators(
@@ -1610,7 +1836,10 @@ export class MsgClientImpl implements Msg {
     return this.rpc.unary(MsgRebalanceValidatorsDesc, MsgRebalanceValidators.fromPartial(request), metadata);
   }
 
-  AddValidator(request: DeepPartial<MsgAddValidator>, metadata?: grpc.Metadata): Promise<MsgAddValidatorResponse> {
+  AddValidator(
+    request: DeepPartial<MsgAddValidator>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgAddValidatorResponse> {
     return this.rpc.unary(MsgAddValidatorDesc, MsgAddValidator.fromPartial(request), metadata);
   }
 
@@ -1618,7 +1847,11 @@ export class MsgClientImpl implements Msg {
     request: DeepPartial<MsgChangeValidatorWeight>,
     metadata?: grpc.Metadata,
   ): Promise<MsgChangeValidatorWeightResponse> {
-    return this.rpc.unary(MsgChangeValidatorWeightDesc, MsgChangeValidatorWeight.fromPartial(request), metadata);
+    return this.rpc.unary(
+      MsgChangeValidatorWeightDesc,
+      MsgChangeValidatorWeight.fromPartial(request),
+      metadata,
+    );
   }
 
   DeleteValidator(
@@ -1632,7 +1865,11 @@ export class MsgClientImpl implements Msg {
     request: DeepPartial<MsgRestoreInterchainAccount>,
     metadata?: grpc.Metadata,
   ): Promise<MsgRestoreInterchainAccountResponse> {
-    return this.rpc.unary(MsgRestoreInterchainAccountDesc, MsgRestoreInterchainAccount.fromPartial(request), metadata);
+    return this.rpc.unary(
+      MsgRestoreInterchainAccountDesc,
+      MsgRestoreInterchainAccount.fromPartial(request),
+      metadata,
+    );
   }
 
   UpdateValidatorSharesExchRate(
@@ -1646,12 +1883,17 @@ export class MsgClientImpl implements Msg {
     );
   }
 
-  ClearBalance(request: DeepPartial<MsgClearBalance>, metadata?: grpc.Metadata): Promise<MsgClearBalanceResponse> {
+  ClearBalance(
+    request: DeepPartial<MsgClearBalance>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgClearBalanceResponse> {
     return this.rpc.unary(MsgClearBalanceDesc, MsgClearBalance.fromPartial(request), metadata);
   }
 }
 
-export const MsgDesc = { serviceName: "stride.stakeibc.Msg" };
+export const MsgDesc = {
+  serviceName: "stride.stakeibc.Msg",
+};
 
 export const MsgLiquidStakeDesc: UnaryMethodDefinitionish = {
   methodName: "LiquidStake",
@@ -1665,11 +1907,10 @@ export const MsgLiquidStakeDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = MsgLiquidStakeResponse.decode(data);
       return {
-        ...value,
+        ...MsgLiquidStakeResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1688,11 +1929,10 @@ export const MsgRedeemStakeDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = MsgRedeemStakeResponse.decode(data);
       return {
-        ...value,
+        ...MsgRedeemStakeResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1711,11 +1951,10 @@ export const MsgRegisterHostZoneDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = MsgRegisterHostZoneResponse.decode(data);
       return {
-        ...value,
+        ...MsgRegisterHostZoneResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1734,11 +1973,10 @@ export const MsgClaimUndelegatedTokensDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = MsgClaimUndelegatedTokensResponse.decode(data);
       return {
-        ...value,
+        ...MsgClaimUndelegatedTokensResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1757,11 +1995,10 @@ export const MsgRebalanceValidatorsDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = MsgRebalanceValidatorsResponse.decode(data);
       return {
-        ...value,
+        ...MsgRebalanceValidatorsResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1780,11 +2017,10 @@ export const MsgAddValidatorDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = MsgAddValidatorResponse.decode(data);
       return {
-        ...value,
+        ...MsgAddValidatorResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1803,11 +2039,10 @@ export const MsgChangeValidatorWeightDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = MsgChangeValidatorWeightResponse.decode(data);
       return {
-        ...value,
+        ...MsgChangeValidatorWeightResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1826,11 +2061,10 @@ export const MsgDeleteValidatorDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = MsgDeleteValidatorResponse.decode(data);
       return {
-        ...value,
+        ...MsgDeleteValidatorResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1849,11 +2083,10 @@ export const MsgRestoreInterchainAccountDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = MsgRestoreInterchainAccountResponse.decode(data);
       return {
-        ...value,
+        ...MsgRestoreInterchainAccountResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1872,11 +2105,10 @@ export const MsgUpdateValidatorSharesExchRateDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = MsgUpdateValidatorSharesExchRateResponse.decode(data);
       return {
-        ...value,
+        ...MsgUpdateValidatorSharesExchRateResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1895,11 +2127,10 @@ export const MsgClearBalanceDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = MsgClearBalanceResponse.decode(data);
       return {
-        ...value,
+        ...MsgClearBalanceResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -1928,7 +2159,6 @@ export class GrpcWebImpl {
 
     debug?: boolean;
     metadata?: grpc.Metadata;
-    upStreamRetryCodes?: number[];
   };
 
   constructor(
@@ -1938,7 +2168,6 @@ export class GrpcWebImpl {
 
       debug?: boolean;
       metadata?: grpc.Metadata;
-      upStreamRetryCodes?: number[];
     },
   ) {
     this.host = host;
@@ -1951,9 +2180,10 @@ export class GrpcWebImpl {
     metadata: grpc.Metadata | undefined,
   ): Promise<any> {
     const request = { ..._request, ...methodDesc.requestType };
-    const maybeCombinedMetadata = metadata && this.options.metadata
-      ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
-      : metadata || this.options.metadata;
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
     return new Promise((resolve, reject) => {
       grpc.unary(methodDesc, {
         request,
@@ -1963,9 +2193,11 @@ export class GrpcWebImpl {
         debug: this.options.debug,
         onEnd: function (response) {
           if (response.status === grpc.Code.OK) {
-            resolve(response.message!.toObject());
+            resolve(response.message);
           } else {
-            const err = new GrpcWebError(response.statusMessage, response.status, response.trailers);
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
             reject(err);
           }
         },
@@ -1974,48 +2206,18 @@ export class GrpcWebImpl {
   }
 }
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  throw "Unable to locate global object";
-})();
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
-export class GrpcWebError extends tsProtoGlobalThis.Error {
-  constructor(message: string, public code: grpc.Code, public metadata: grpc.Metadata) {
-    super(message);
-  }
 }

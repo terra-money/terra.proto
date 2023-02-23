@@ -1,9 +1,9 @@
 /* eslint-disable */
-import { grpc } from "@improbable-eng/grpc-web";
-import { BrowserHeaders } from "browser-headers";
 import Long from "long";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { ProofOps } from "../../../tendermint/crypto/proof";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "stride.interchainquery.v1";
 
@@ -21,19 +21,9 @@ export interface MsgSubmitQueryResponse {
  * MsgSubmitQueryResponseResponse defines the MsgSubmitQueryResponse response
  * type.
  */
-export interface MsgSubmitQueryResponseResponse {
-}
+export interface MsgSubmitQueryResponseResponse {}
 
-function createBaseMsgSubmitQueryResponse(): MsgSubmitQueryResponse {
-  return {
-    chainId: "",
-    queryId: "",
-    result: new Uint8Array(),
-    proofOps: undefined,
-    height: Long.ZERO,
-    fromAddress: "",
-  };
-}
+const baseMsgSubmitQueryResponse: object = { chainId: "", queryId: "", height: Long.ZERO, fromAddress: "" };
 
 export const MsgSubmitQueryResponse = {
   encode(message: MsgSubmitQueryResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -61,7 +51,8 @@ export const MsgSubmitQueryResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitQueryResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgSubmitQueryResponse();
+    const message = { ...baseMsgSubmitQueryResponse } as MsgSubmitQueryResponse;
+    message.result = new Uint8Array();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -92,14 +83,37 @@ export const MsgSubmitQueryResponse = {
   },
 
   fromJSON(object: any): MsgSubmitQueryResponse {
-    return {
-      chainId: isSet(object.chainId) ? String(object.chainId) : "",
-      queryId: isSet(object.queryId) ? String(object.queryId) : "",
-      result: isSet(object.result) ? bytesFromBase64(object.result) : new Uint8Array(),
-      proofOps: isSet(object.proofOps) ? ProofOps.fromJSON(object.proofOps) : undefined,
-      height: isSet(object.height) ? Long.fromValue(object.height) : Long.ZERO,
-      fromAddress: isSet(object.fromAddress) ? String(object.fromAddress) : "",
-    };
+    const message = { ...baseMsgSubmitQueryResponse } as MsgSubmitQueryResponse;
+    message.result = new Uint8Array();
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = String(object.chainId);
+    } else {
+      message.chainId = "";
+    }
+    if (object.queryId !== undefined && object.queryId !== null) {
+      message.queryId = String(object.queryId);
+    } else {
+      message.queryId = "";
+    }
+    if (object.result !== undefined && object.result !== null) {
+      message.result = bytesFromBase64(object.result);
+    }
+    if (object.proofOps !== undefined && object.proofOps !== null) {
+      message.proofOps = ProofOps.fromJSON(object.proofOps);
+    } else {
+      message.proofOps = undefined;
+    }
+    if (object.height !== undefined && object.height !== null) {
+      message.height = Long.fromString(object.height);
+    } else {
+      message.height = Long.ZERO;
+    }
+    if (object.fromAddress !== undefined && object.fromAddress !== null) {
+      message.fromAddress = String(object.fromAddress);
+    } else {
+      message.fromAddress = "";
+    }
+    return message;
   },
 
   toJSON(message: MsgSubmitQueryResponse): unknown {
@@ -108,35 +122,50 @@ export const MsgSubmitQueryResponse = {
     message.queryId !== undefined && (obj.queryId = message.queryId);
     message.result !== undefined &&
       (obj.result = base64FromBytes(message.result !== undefined ? message.result : new Uint8Array()));
-    message.proofOps !== undefined && (obj.proofOps = message.proofOps ? ProofOps.toJSON(message.proofOps) : undefined);
+    message.proofOps !== undefined &&
+      (obj.proofOps = message.proofOps ? ProofOps.toJSON(message.proofOps) : undefined);
     message.height !== undefined && (obj.height = (message.height || Long.ZERO).toString());
     message.fromAddress !== undefined && (obj.fromAddress = message.fromAddress);
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgSubmitQueryResponse>, I>>(base?: I): MsgSubmitQueryResponse {
-    return MsgSubmitQueryResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgSubmitQueryResponse>, I>>(object: I): MsgSubmitQueryResponse {
-    const message = createBaseMsgSubmitQueryResponse();
-    message.chainId = object.chainId ?? "";
-    message.queryId = object.queryId ?? "";
-    message.result = object.result ?? new Uint8Array();
-    message.proofOps = (object.proofOps !== undefined && object.proofOps !== null)
-      ? ProofOps.fromPartial(object.proofOps)
-      : undefined;
-    message.height = (object.height !== undefined && object.height !== null)
-      ? Long.fromValue(object.height)
-      : Long.ZERO;
-    message.fromAddress = object.fromAddress ?? "";
+  fromPartial(object: DeepPartial<MsgSubmitQueryResponse>): MsgSubmitQueryResponse {
+    const message = { ...baseMsgSubmitQueryResponse } as MsgSubmitQueryResponse;
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = object.chainId;
+    } else {
+      message.chainId = "";
+    }
+    if (object.queryId !== undefined && object.queryId !== null) {
+      message.queryId = object.queryId;
+    } else {
+      message.queryId = "";
+    }
+    if (object.result !== undefined && object.result !== null) {
+      message.result = object.result;
+    } else {
+      message.result = new Uint8Array();
+    }
+    if (object.proofOps !== undefined && object.proofOps !== null) {
+      message.proofOps = ProofOps.fromPartial(object.proofOps);
+    } else {
+      message.proofOps = undefined;
+    }
+    if (object.height !== undefined && object.height !== null) {
+      message.height = object.height as Long;
+    } else {
+      message.height = Long.ZERO;
+    }
+    if (object.fromAddress !== undefined && object.fromAddress !== null) {
+      message.fromAddress = object.fromAddress;
+    } else {
+      message.fromAddress = "";
+    }
     return message;
   },
 };
 
-function createBaseMsgSubmitQueryResponseResponse(): MsgSubmitQueryResponseResponse {
-  return {};
-}
+const baseMsgSubmitQueryResponseResponse: object = {};
 
 export const MsgSubmitQueryResponseResponse = {
   encode(_: MsgSubmitQueryResponseResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -146,7 +175,7 @@ export const MsgSubmitQueryResponseResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitQueryResponseResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgSubmitQueryResponseResponse();
+    const message = { ...baseMsgSubmitQueryResponseResponse } as MsgSubmitQueryResponseResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -159,7 +188,8 @@ export const MsgSubmitQueryResponseResponse = {
   },
 
   fromJSON(_: any): MsgSubmitQueryResponseResponse {
-    return {};
+    const message = { ...baseMsgSubmitQueryResponseResponse } as MsgSubmitQueryResponseResponse;
+    return message;
   },
 
   toJSON(_: MsgSubmitQueryResponseResponse): unknown {
@@ -167,12 +197,8 @@ export const MsgSubmitQueryResponseResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgSubmitQueryResponseResponse>, I>>(base?: I): MsgSubmitQueryResponseResponse {
-    return MsgSubmitQueryResponseResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgSubmitQueryResponseResponse>, I>>(_: I): MsgSubmitQueryResponseResponse {
-    const message = createBaseMsgSubmitQueryResponseResponse();
+  fromPartial(_: DeepPartial<MsgSubmitQueryResponseResponse>): MsgSubmitQueryResponseResponse {
+    const message = { ...baseMsgSubmitQueryResponseResponse } as MsgSubmitQueryResponseResponse;
     return message;
   },
 };
@@ -202,7 +228,9 @@ export class MsgClientImpl implements Msg {
   }
 }
 
-export const MsgDesc = { serviceName: "stride.interchainquery.v1.Msg" };
+export const MsgDesc = {
+  serviceName: "stride.interchainquery.v1.Msg",
+};
 
 export const MsgSubmitQueryResponseDesc: UnaryMethodDefinitionish = {
   methodName: "SubmitQueryResponse",
@@ -216,11 +244,10 @@ export const MsgSubmitQueryResponseDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = MsgSubmitQueryResponseResponse.decode(data);
       return {
-        ...value,
+        ...MsgSubmitQueryResponseResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -249,7 +276,6 @@ export class GrpcWebImpl {
 
     debug?: boolean;
     metadata?: grpc.Metadata;
-    upStreamRetryCodes?: number[];
   };
 
   constructor(
@@ -259,7 +285,6 @@ export class GrpcWebImpl {
 
       debug?: boolean;
       metadata?: grpc.Metadata;
-      upStreamRetryCodes?: number[];
     },
   ) {
     this.host = host;
@@ -272,9 +297,10 @@ export class GrpcWebImpl {
     metadata: grpc.Metadata | undefined,
   ): Promise<any> {
     const request = { ..._request, ...methodDesc.requestType };
-    const maybeCombinedMetadata = metadata && this.options.metadata
-      ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
-      : metadata || this.options.metadata;
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
     return new Promise((resolve, reject) => {
       grpc.unary(methodDesc, {
         request,
@@ -284,9 +310,11 @@ export class GrpcWebImpl {
         debug: this.options.debug,
         onEnd: function (response) {
           if (response.status === grpc.Code.OK) {
-            resolve(response.message!.toObject());
+            resolve(response.message);
           } else {
-            const err = new GrpcWebError(response.statusMessage, response.status, response.trailers);
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
             reject(err);
           }
         },
@@ -297,71 +325,47 @@ export class GrpcWebImpl {
 
 declare var self: any | undefined;
 declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
+var globalThis: any = (() => {
+  if (typeof globalThis !== "undefined") return globalThis;
+  if (typeof self !== "undefined") return self;
+  if (typeof window !== "undefined") return window;
+  if (typeof global !== "undefined") return global;
   throw "Unable to locate global object";
 })();
 
+const atob: (b64: string) => string =
+  globalThis.atob || ((b64) => globalThis.Buffer.from(b64, "base64").toString("binary"));
 function bytesFromBase64(b64: string): Uint8Array {
-  if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
-  } else {
-    const bin = tsProtoGlobalThis.atob(b64);
-    const arr = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; ++i) {
-      arr[i] = bin.charCodeAt(i);
-    }
-    return arr;
+  const bin = atob(b64);
+  const arr = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; ++i) {
+    arr[i] = bin.charCodeAt(i);
   }
+  return arr;
 }
 
+const btoa: (bin: string) => string =
+  globalThis.btoa || ((bin) => globalThis.Buffer.from(bin, "binary").toString("base64"));
 function base64FromBytes(arr: Uint8Array): string {
-  if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
-  } else {
-    const bin: string[] = [];
-    arr.forEach((byte) => {
-      bin.push(String.fromCharCode(byte));
-    });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+  const bin: string[] = [];
+  for (const byte of arr) {
+    bin.push(String.fromCharCode(byte));
   }
+  return btoa(bin.join(""));
 }
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
-export class GrpcWebError extends tsProtoGlobalThis.Error {
-  constructor(message: string, public code: grpc.Code, public metadata: grpc.Metadata) {
-    super(message);
-  }
 }

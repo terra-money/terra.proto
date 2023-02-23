@@ -53,9 +53,7 @@ export interface RebalanceCallback {
   rebalancings: Rebalancing[];
 }
 
-function createBaseSplitDelegation(): SplitDelegation {
-  return { validator: "", amount: Long.UZERO };
-}
+const baseSplitDelegation: object = { validator: "", amount: Long.UZERO };
 
 export const SplitDelegation = {
   encode(message: SplitDelegation, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -71,7 +69,7 @@ export const SplitDelegation = {
   decode(input: _m0.Reader | Uint8Array, length?: number): SplitDelegation {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseSplitDelegation();
+    const message = { ...baseSplitDelegation } as SplitDelegation;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -90,10 +88,18 @@ export const SplitDelegation = {
   },
 
   fromJSON(object: any): SplitDelegation {
-    return {
-      validator: isSet(object.validator) ? String(object.validator) : "",
-      amount: isSet(object.amount) ? Long.fromValue(object.amount) : Long.UZERO,
-    };
+    const message = { ...baseSplitDelegation } as SplitDelegation;
+    if (object.validator !== undefined && object.validator !== null) {
+      message.validator = String(object.validator);
+    } else {
+      message.validator = "";
+    }
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = Long.fromString(object.amount);
+    } else {
+      message.amount = Long.UZERO;
+    }
+    return message;
   },
 
   toJSON(message: SplitDelegation): unknown {
@@ -103,23 +109,23 @@ export const SplitDelegation = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<SplitDelegation>, I>>(base?: I): SplitDelegation {
-    return SplitDelegation.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<SplitDelegation>, I>>(object: I): SplitDelegation {
-    const message = createBaseSplitDelegation();
-    message.validator = object.validator ?? "";
-    message.amount = (object.amount !== undefined && object.amount !== null)
-      ? Long.fromValue(object.amount)
-      : Long.UZERO;
+  fromPartial(object: DeepPartial<SplitDelegation>): SplitDelegation {
+    const message = { ...baseSplitDelegation } as SplitDelegation;
+    if (object.validator !== undefined && object.validator !== null) {
+      message.validator = object.validator;
+    } else {
+      message.validator = "";
+    }
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = object.amount as Long;
+    } else {
+      message.amount = Long.UZERO;
+    }
     return message;
   },
 };
 
-function createBaseDelegateCallback(): DelegateCallback {
-  return { hostZoneId: "", depositRecordId: Long.UZERO, splitDelegations: [] };
-}
+const baseDelegateCallback: object = { hostZoneId: "", depositRecordId: Long.UZERO };
 
 export const DelegateCallback = {
   encode(message: DelegateCallback, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -138,7 +144,8 @@ export const DelegateCallback = {
   decode(input: _m0.Reader | Uint8Array, length?: number): DelegateCallback {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseDelegateCallback();
+    const message = { ...baseDelegateCallback } as DelegateCallback;
+    message.splitDelegations = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -160,45 +167,62 @@ export const DelegateCallback = {
   },
 
   fromJSON(object: any): DelegateCallback {
-    return {
-      hostZoneId: isSet(object.hostZoneId) ? String(object.hostZoneId) : "",
-      depositRecordId: isSet(object.depositRecordId) ? Long.fromValue(object.depositRecordId) : Long.UZERO,
-      splitDelegations: Array.isArray(object?.splitDelegations)
-        ? object.splitDelegations.map((e: any) => SplitDelegation.fromJSON(e))
-        : [],
-    };
+    const message = { ...baseDelegateCallback } as DelegateCallback;
+    message.splitDelegations = [];
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = String(object.hostZoneId);
+    } else {
+      message.hostZoneId = "";
+    }
+    if (object.depositRecordId !== undefined && object.depositRecordId !== null) {
+      message.depositRecordId = Long.fromString(object.depositRecordId);
+    } else {
+      message.depositRecordId = Long.UZERO;
+    }
+    if (object.splitDelegations !== undefined && object.splitDelegations !== null) {
+      for (const e of object.splitDelegations) {
+        message.splitDelegations.push(SplitDelegation.fromJSON(e));
+      }
+    }
+    return message;
   },
 
   toJSON(message: DelegateCallback): unknown {
     const obj: any = {};
     message.hostZoneId !== undefined && (obj.hostZoneId = message.hostZoneId);
-    message.depositRecordId !== undefined && (obj.depositRecordId = (message.depositRecordId || Long.UZERO).toString());
+    message.depositRecordId !== undefined &&
+      (obj.depositRecordId = (message.depositRecordId || Long.UZERO).toString());
     if (message.splitDelegations) {
-      obj.splitDelegations = message.splitDelegations.map((e) => e ? SplitDelegation.toJSON(e) : undefined);
+      obj.splitDelegations = message.splitDelegations.map((e) => (e ? SplitDelegation.toJSON(e) : undefined));
     } else {
       obj.splitDelegations = [];
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<DelegateCallback>, I>>(base?: I): DelegateCallback {
-    return DelegateCallback.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<DelegateCallback>, I>>(object: I): DelegateCallback {
-    const message = createBaseDelegateCallback();
-    message.hostZoneId = object.hostZoneId ?? "";
-    message.depositRecordId = (object.depositRecordId !== undefined && object.depositRecordId !== null)
-      ? Long.fromValue(object.depositRecordId)
-      : Long.UZERO;
-    message.splitDelegations = object.splitDelegations?.map((e) => SplitDelegation.fromPartial(e)) || [];
+  fromPartial(object: DeepPartial<DelegateCallback>): DelegateCallback {
+    const message = { ...baseDelegateCallback } as DelegateCallback;
+    message.splitDelegations = [];
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = object.hostZoneId;
+    } else {
+      message.hostZoneId = "";
+    }
+    if (object.depositRecordId !== undefined && object.depositRecordId !== null) {
+      message.depositRecordId = object.depositRecordId as Long;
+    } else {
+      message.depositRecordId = Long.UZERO;
+    }
+    if (object.splitDelegations !== undefined && object.splitDelegations !== null) {
+      for (const e of object.splitDelegations) {
+        message.splitDelegations.push(SplitDelegation.fromPartial(e));
+      }
+    }
     return message;
   },
 };
 
-function createBaseClaimCallback(): ClaimCallback {
-  return { userRedemptionRecordId: "", chainId: "", epochNumber: Long.UZERO };
-}
+const baseClaimCallback: object = { userRedemptionRecordId: "", chainId: "", epochNumber: Long.UZERO };
 
 export const ClaimCallback = {
   encode(message: ClaimCallback, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -217,7 +241,7 @@ export const ClaimCallback = {
   decode(input: _m0.Reader | Uint8Array, length?: number): ClaimCallback {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseClaimCallback();
+    const message = { ...baseClaimCallback } as ClaimCallback;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -239,39 +263,56 @@ export const ClaimCallback = {
   },
 
   fromJSON(object: any): ClaimCallback {
-    return {
-      userRedemptionRecordId: isSet(object.userRedemptionRecordId) ? String(object.userRedemptionRecordId) : "",
-      chainId: isSet(object.chainId) ? String(object.chainId) : "",
-      epochNumber: isSet(object.epochNumber) ? Long.fromValue(object.epochNumber) : Long.UZERO,
-    };
+    const message = { ...baseClaimCallback } as ClaimCallback;
+    if (object.userRedemptionRecordId !== undefined && object.userRedemptionRecordId !== null) {
+      message.userRedemptionRecordId = String(object.userRedemptionRecordId);
+    } else {
+      message.userRedemptionRecordId = "";
+    }
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = String(object.chainId);
+    } else {
+      message.chainId = "";
+    }
+    if (object.epochNumber !== undefined && object.epochNumber !== null) {
+      message.epochNumber = Long.fromString(object.epochNumber);
+    } else {
+      message.epochNumber = Long.UZERO;
+    }
+    return message;
   },
 
   toJSON(message: ClaimCallback): unknown {
     const obj: any = {};
-    message.userRedemptionRecordId !== undefined && (obj.userRedemptionRecordId = message.userRedemptionRecordId);
+    message.userRedemptionRecordId !== undefined &&
+      (obj.userRedemptionRecordId = message.userRedemptionRecordId);
     message.chainId !== undefined && (obj.chainId = message.chainId);
     message.epochNumber !== undefined && (obj.epochNumber = (message.epochNumber || Long.UZERO).toString());
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ClaimCallback>, I>>(base?: I): ClaimCallback {
-    return ClaimCallback.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<ClaimCallback>, I>>(object: I): ClaimCallback {
-    const message = createBaseClaimCallback();
-    message.userRedemptionRecordId = object.userRedemptionRecordId ?? "";
-    message.chainId = object.chainId ?? "";
-    message.epochNumber = (object.epochNumber !== undefined && object.epochNumber !== null)
-      ? Long.fromValue(object.epochNumber)
-      : Long.UZERO;
+  fromPartial(object: DeepPartial<ClaimCallback>): ClaimCallback {
+    const message = { ...baseClaimCallback } as ClaimCallback;
+    if (object.userRedemptionRecordId !== undefined && object.userRedemptionRecordId !== null) {
+      message.userRedemptionRecordId = object.userRedemptionRecordId;
+    } else {
+      message.userRedemptionRecordId = "";
+    }
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = object.chainId;
+    } else {
+      message.chainId = "";
+    }
+    if (object.epochNumber !== undefined && object.epochNumber !== null) {
+      message.epochNumber = object.epochNumber as Long;
+    } else {
+      message.epochNumber = Long.UZERO;
+    }
     return message;
   },
 };
 
-function createBaseReinvestCallback(): ReinvestCallback {
-  return { reinvestAmount: undefined, hostZoneId: "" };
-}
+const baseReinvestCallback: object = { hostZoneId: "" };
 
 export const ReinvestCallback = {
   encode(message: ReinvestCallback, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -287,7 +328,7 @@ export const ReinvestCallback = {
   decode(input: _m0.Reader | Uint8Array, length?: number): ReinvestCallback {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseReinvestCallback();
+    const message = { ...baseReinvestCallback } as ReinvestCallback;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -306,10 +347,18 @@ export const ReinvestCallback = {
   },
 
   fromJSON(object: any): ReinvestCallback {
-    return {
-      reinvestAmount: isSet(object.reinvestAmount) ? Coin.fromJSON(object.reinvestAmount) : undefined,
-      hostZoneId: isSet(object.hostZoneId) ? String(object.hostZoneId) : "",
-    };
+    const message = { ...baseReinvestCallback } as ReinvestCallback;
+    if (object.reinvestAmount !== undefined && object.reinvestAmount !== null) {
+      message.reinvestAmount = Coin.fromJSON(object.reinvestAmount);
+    } else {
+      message.reinvestAmount = undefined;
+    }
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = String(object.hostZoneId);
+    } else {
+      message.hostZoneId = "";
+    }
+    return message;
   },
 
   toJSON(message: ReinvestCallback): unknown {
@@ -320,23 +369,23 @@ export const ReinvestCallback = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ReinvestCallback>, I>>(base?: I): ReinvestCallback {
-    return ReinvestCallback.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<ReinvestCallback>, I>>(object: I): ReinvestCallback {
-    const message = createBaseReinvestCallback();
-    message.reinvestAmount = (object.reinvestAmount !== undefined && object.reinvestAmount !== null)
-      ? Coin.fromPartial(object.reinvestAmount)
-      : undefined;
-    message.hostZoneId = object.hostZoneId ?? "";
+  fromPartial(object: DeepPartial<ReinvestCallback>): ReinvestCallback {
+    const message = { ...baseReinvestCallback } as ReinvestCallback;
+    if (object.reinvestAmount !== undefined && object.reinvestAmount !== null) {
+      message.reinvestAmount = Coin.fromPartial(object.reinvestAmount);
+    } else {
+      message.reinvestAmount = undefined;
+    }
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = object.hostZoneId;
+    } else {
+      message.hostZoneId = "";
+    }
     return message;
   },
 };
 
-function createBaseUndelegateCallback(): UndelegateCallback {
-  return { hostZoneId: "", splitDelegations: [], epochUnbondingRecordIds: [] };
-}
+const baseUndelegateCallback: object = { hostZoneId: "", epochUnbondingRecordIds: Long.UZERO };
 
 export const UndelegateCallback = {
   encode(message: UndelegateCallback, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -357,7 +406,9 @@ export const UndelegateCallback = {
   decode(input: _m0.Reader | Uint8Array, length?: number): UndelegateCallback {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUndelegateCallback();
+    const message = { ...baseUndelegateCallback } as UndelegateCallback;
+    message.splitDelegations = [];
+    message.epochUnbondingRecordIds = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -386,22 +437,32 @@ export const UndelegateCallback = {
   },
 
   fromJSON(object: any): UndelegateCallback {
-    return {
-      hostZoneId: isSet(object.hostZoneId) ? String(object.hostZoneId) : "",
-      splitDelegations: Array.isArray(object?.splitDelegations)
-        ? object.splitDelegations.map((e: any) => SplitDelegation.fromJSON(e))
-        : [],
-      epochUnbondingRecordIds: Array.isArray(object?.epochUnbondingRecordIds)
-        ? object.epochUnbondingRecordIds.map((e: any) => Long.fromValue(e))
-        : [],
-    };
+    const message = { ...baseUndelegateCallback } as UndelegateCallback;
+    message.splitDelegations = [];
+    message.epochUnbondingRecordIds = [];
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = String(object.hostZoneId);
+    } else {
+      message.hostZoneId = "";
+    }
+    if (object.splitDelegations !== undefined && object.splitDelegations !== null) {
+      for (const e of object.splitDelegations) {
+        message.splitDelegations.push(SplitDelegation.fromJSON(e));
+      }
+    }
+    if (object.epochUnbondingRecordIds !== undefined && object.epochUnbondingRecordIds !== null) {
+      for (const e of object.epochUnbondingRecordIds) {
+        message.epochUnbondingRecordIds.push(Long.fromString(e));
+      }
+    }
+    return message;
   },
 
   toJSON(message: UndelegateCallback): unknown {
     const obj: any = {};
     message.hostZoneId !== undefined && (obj.hostZoneId = message.hostZoneId);
     if (message.splitDelegations) {
-      obj.splitDelegations = message.splitDelegations.map((e) => e ? SplitDelegation.toJSON(e) : undefined);
+      obj.splitDelegations = message.splitDelegations.map((e) => (e ? SplitDelegation.toJSON(e) : undefined));
     } else {
       obj.splitDelegations = [];
     }
@@ -413,22 +474,30 @@ export const UndelegateCallback = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<UndelegateCallback>, I>>(base?: I): UndelegateCallback {
-    return UndelegateCallback.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<UndelegateCallback>, I>>(object: I): UndelegateCallback {
-    const message = createBaseUndelegateCallback();
-    message.hostZoneId = object.hostZoneId ?? "";
-    message.splitDelegations = object.splitDelegations?.map((e) => SplitDelegation.fromPartial(e)) || [];
-    message.epochUnbondingRecordIds = object.epochUnbondingRecordIds?.map((e) => Long.fromValue(e)) || [];
+  fromPartial(object: DeepPartial<UndelegateCallback>): UndelegateCallback {
+    const message = { ...baseUndelegateCallback } as UndelegateCallback;
+    message.splitDelegations = [];
+    message.epochUnbondingRecordIds = [];
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = object.hostZoneId;
+    } else {
+      message.hostZoneId = "";
+    }
+    if (object.splitDelegations !== undefined && object.splitDelegations !== null) {
+      for (const e of object.splitDelegations) {
+        message.splitDelegations.push(SplitDelegation.fromPartial(e));
+      }
+    }
+    if (object.epochUnbondingRecordIds !== undefined && object.epochUnbondingRecordIds !== null) {
+      for (const e of object.epochUnbondingRecordIds) {
+        message.epochUnbondingRecordIds.push(e);
+      }
+    }
     return message;
   },
 };
 
-function createBaseRedemptionCallback(): RedemptionCallback {
-  return { hostZoneId: "", epochUnbondingRecordIds: [] };
-}
+const baseRedemptionCallback: object = { hostZoneId: "", epochUnbondingRecordIds: Long.UZERO };
 
 export const RedemptionCallback = {
   encode(message: RedemptionCallback, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -446,7 +515,8 @@ export const RedemptionCallback = {
   decode(input: _m0.Reader | Uint8Array, length?: number): RedemptionCallback {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseRedemptionCallback();
+    const message = { ...baseRedemptionCallback } as RedemptionCallback;
+    message.epochUnbondingRecordIds = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -472,12 +542,19 @@ export const RedemptionCallback = {
   },
 
   fromJSON(object: any): RedemptionCallback {
-    return {
-      hostZoneId: isSet(object.hostZoneId) ? String(object.hostZoneId) : "",
-      epochUnbondingRecordIds: Array.isArray(object?.epochUnbondingRecordIds)
-        ? object.epochUnbondingRecordIds.map((e: any) => Long.fromValue(e))
-        : [],
-    };
+    const message = { ...baseRedemptionCallback } as RedemptionCallback;
+    message.epochUnbondingRecordIds = [];
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = String(object.hostZoneId);
+    } else {
+      message.hostZoneId = "";
+    }
+    if (object.epochUnbondingRecordIds !== undefined && object.epochUnbondingRecordIds !== null) {
+      for (const e of object.epochUnbondingRecordIds) {
+        message.epochUnbondingRecordIds.push(Long.fromString(e));
+      }
+    }
+    return message;
   },
 
   toJSON(message: RedemptionCallback): unknown {
@@ -491,21 +568,24 @@ export const RedemptionCallback = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<RedemptionCallback>, I>>(base?: I): RedemptionCallback {
-    return RedemptionCallback.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<RedemptionCallback>, I>>(object: I): RedemptionCallback {
-    const message = createBaseRedemptionCallback();
-    message.hostZoneId = object.hostZoneId ?? "";
-    message.epochUnbondingRecordIds = object.epochUnbondingRecordIds?.map((e) => Long.fromValue(e)) || [];
+  fromPartial(object: DeepPartial<RedemptionCallback>): RedemptionCallback {
+    const message = { ...baseRedemptionCallback } as RedemptionCallback;
+    message.epochUnbondingRecordIds = [];
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = object.hostZoneId;
+    } else {
+      message.hostZoneId = "";
+    }
+    if (object.epochUnbondingRecordIds !== undefined && object.epochUnbondingRecordIds !== null) {
+      for (const e of object.epochUnbondingRecordIds) {
+        message.epochUnbondingRecordIds.push(e);
+      }
+    }
     return message;
   },
 };
 
-function createBaseRebalancing(): Rebalancing {
-  return { srcValidator: "", dstValidator: "", amt: Long.UZERO };
-}
+const baseRebalancing: object = { srcValidator: "", dstValidator: "", amt: Long.UZERO };
 
 export const Rebalancing = {
   encode(message: Rebalancing, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -524,7 +604,7 @@ export const Rebalancing = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Rebalancing {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseRebalancing();
+    const message = { ...baseRebalancing } as Rebalancing;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -546,11 +626,23 @@ export const Rebalancing = {
   },
 
   fromJSON(object: any): Rebalancing {
-    return {
-      srcValidator: isSet(object.srcValidator) ? String(object.srcValidator) : "",
-      dstValidator: isSet(object.dstValidator) ? String(object.dstValidator) : "",
-      amt: isSet(object.amt) ? Long.fromValue(object.amt) : Long.UZERO,
-    };
+    const message = { ...baseRebalancing } as Rebalancing;
+    if (object.srcValidator !== undefined && object.srcValidator !== null) {
+      message.srcValidator = String(object.srcValidator);
+    } else {
+      message.srcValidator = "";
+    }
+    if (object.dstValidator !== undefined && object.dstValidator !== null) {
+      message.dstValidator = String(object.dstValidator);
+    } else {
+      message.dstValidator = "";
+    }
+    if (object.amt !== undefined && object.amt !== null) {
+      message.amt = Long.fromString(object.amt);
+    } else {
+      message.amt = Long.UZERO;
+    }
+    return message;
   },
 
   toJSON(message: Rebalancing): unknown {
@@ -561,22 +653,28 @@ export const Rebalancing = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Rebalancing>, I>>(base?: I): Rebalancing {
-    return Rebalancing.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<Rebalancing>, I>>(object: I): Rebalancing {
-    const message = createBaseRebalancing();
-    message.srcValidator = object.srcValidator ?? "";
-    message.dstValidator = object.dstValidator ?? "";
-    message.amt = (object.amt !== undefined && object.amt !== null) ? Long.fromValue(object.amt) : Long.UZERO;
+  fromPartial(object: DeepPartial<Rebalancing>): Rebalancing {
+    const message = { ...baseRebalancing } as Rebalancing;
+    if (object.srcValidator !== undefined && object.srcValidator !== null) {
+      message.srcValidator = object.srcValidator;
+    } else {
+      message.srcValidator = "";
+    }
+    if (object.dstValidator !== undefined && object.dstValidator !== null) {
+      message.dstValidator = object.dstValidator;
+    } else {
+      message.dstValidator = "";
+    }
+    if (object.amt !== undefined && object.amt !== null) {
+      message.amt = object.amt as Long;
+    } else {
+      message.amt = Long.UZERO;
+    }
     return message;
   },
 };
 
-function createBaseRebalanceCallback(): RebalanceCallback {
-  return { hostZoneId: "", rebalancings: [] };
-}
+const baseRebalanceCallback: object = { hostZoneId: "" };
 
 export const RebalanceCallback = {
   encode(message: RebalanceCallback, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -592,7 +690,8 @@ export const RebalanceCallback = {
   decode(input: _m0.Reader | Uint8Array, length?: number): RebalanceCallback {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseRebalanceCallback();
+    const message = { ...baseRebalanceCallback } as RebalanceCallback;
+    message.rebalancings = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -611,54 +710,61 @@ export const RebalanceCallback = {
   },
 
   fromJSON(object: any): RebalanceCallback {
-    return {
-      hostZoneId: isSet(object.hostZoneId) ? String(object.hostZoneId) : "",
-      rebalancings: Array.isArray(object?.rebalancings)
-        ? object.rebalancings.map((e: any) => Rebalancing.fromJSON(e))
-        : [],
-    };
+    const message = { ...baseRebalanceCallback } as RebalanceCallback;
+    message.rebalancings = [];
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = String(object.hostZoneId);
+    } else {
+      message.hostZoneId = "";
+    }
+    if (object.rebalancings !== undefined && object.rebalancings !== null) {
+      for (const e of object.rebalancings) {
+        message.rebalancings.push(Rebalancing.fromJSON(e));
+      }
+    }
+    return message;
   },
 
   toJSON(message: RebalanceCallback): unknown {
     const obj: any = {};
     message.hostZoneId !== undefined && (obj.hostZoneId = message.hostZoneId);
     if (message.rebalancings) {
-      obj.rebalancings = message.rebalancings.map((e) => e ? Rebalancing.toJSON(e) : undefined);
+      obj.rebalancings = message.rebalancings.map((e) => (e ? Rebalancing.toJSON(e) : undefined));
     } else {
       obj.rebalancings = [];
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<RebalanceCallback>, I>>(base?: I): RebalanceCallback {
-    return RebalanceCallback.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<RebalanceCallback>, I>>(object: I): RebalanceCallback {
-    const message = createBaseRebalanceCallback();
-    message.hostZoneId = object.hostZoneId ?? "";
-    message.rebalancings = object.rebalancings?.map((e) => Rebalancing.fromPartial(e)) || [];
+  fromPartial(object: DeepPartial<RebalanceCallback>): RebalanceCallback {
+    const message = { ...baseRebalanceCallback } as RebalanceCallback;
+    message.rebalancings = [];
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = object.hostZoneId;
+    } else {
+      message.hostZoneId = "";
+    }
+    if (object.rebalancings !== undefined && object.rebalancings !== null) {
+      for (const e of object.rebalancings) {
+        message.rebalancings.push(Rebalancing.fromPartial(e));
+      }
+    }
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
 }

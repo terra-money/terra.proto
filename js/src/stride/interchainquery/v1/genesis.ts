@@ -29,20 +29,17 @@ export interface GenesisState {
   queries: Query[];
 }
 
-function createBaseQuery(): Query {
-  return {
-    id: "",
-    connectionId: "",
-    chainId: "",
-    queryType: "",
-    request: new Uint8Array(),
-    period: "",
-    lastHeight: "",
-    callbackId: "",
-    ttl: Long.UZERO,
-    height: Long.ZERO,
-  };
-}
+const baseQuery: object = {
+  id: "",
+  connectionId: "",
+  chainId: "",
+  queryType: "",
+  period: "",
+  lastHeight: "",
+  callbackId: "",
+  ttl: Long.UZERO,
+  height: Long.ZERO,
+};
 
 export const Query = {
   encode(message: Query, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -82,7 +79,8 @@ export const Query = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Query {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQuery();
+    const message = { ...baseQuery } as Query;
+    message.request = new Uint8Array();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -125,18 +123,57 @@ export const Query = {
   },
 
   fromJSON(object: any): Query {
-    return {
-      id: isSet(object.id) ? String(object.id) : "",
-      connectionId: isSet(object.connectionId) ? String(object.connectionId) : "",
-      chainId: isSet(object.chainId) ? String(object.chainId) : "",
-      queryType: isSet(object.queryType) ? String(object.queryType) : "",
-      request: isSet(object.request) ? bytesFromBase64(object.request) : new Uint8Array(),
-      period: isSet(object.period) ? String(object.period) : "",
-      lastHeight: isSet(object.lastHeight) ? String(object.lastHeight) : "",
-      callbackId: isSet(object.callbackId) ? String(object.callbackId) : "",
-      ttl: isSet(object.ttl) ? Long.fromValue(object.ttl) : Long.UZERO,
-      height: isSet(object.height) ? Long.fromValue(object.height) : Long.ZERO,
-    };
+    const message = { ...baseQuery } as Query;
+    message.request = new Uint8Array();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = String(object.id);
+    } else {
+      message.id = "";
+    }
+    if (object.connectionId !== undefined && object.connectionId !== null) {
+      message.connectionId = String(object.connectionId);
+    } else {
+      message.connectionId = "";
+    }
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = String(object.chainId);
+    } else {
+      message.chainId = "";
+    }
+    if (object.queryType !== undefined && object.queryType !== null) {
+      message.queryType = String(object.queryType);
+    } else {
+      message.queryType = "";
+    }
+    if (object.request !== undefined && object.request !== null) {
+      message.request = bytesFromBase64(object.request);
+    }
+    if (object.period !== undefined && object.period !== null) {
+      message.period = String(object.period);
+    } else {
+      message.period = "";
+    }
+    if (object.lastHeight !== undefined && object.lastHeight !== null) {
+      message.lastHeight = String(object.lastHeight);
+    } else {
+      message.lastHeight = "";
+    }
+    if (object.callbackId !== undefined && object.callbackId !== null) {
+      message.callbackId = String(object.callbackId);
+    } else {
+      message.callbackId = "";
+    }
+    if (object.ttl !== undefined && object.ttl !== null) {
+      message.ttl = Long.fromString(object.ttl);
+    } else {
+      message.ttl = Long.UZERO;
+    }
+    if (object.height !== undefined && object.height !== null) {
+      message.height = Long.fromString(object.height);
+    } else {
+      message.height = Long.ZERO;
+    }
+    return message;
   },
 
   toJSON(message: Query): unknown {
@@ -155,31 +192,63 @@ export const Query = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Query>, I>>(base?: I): Query {
-    return Query.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<Query>, I>>(object: I): Query {
-    const message = createBaseQuery();
-    message.id = object.id ?? "";
-    message.connectionId = object.connectionId ?? "";
-    message.chainId = object.chainId ?? "";
-    message.queryType = object.queryType ?? "";
-    message.request = object.request ?? new Uint8Array();
-    message.period = object.period ?? "";
-    message.lastHeight = object.lastHeight ?? "";
-    message.callbackId = object.callbackId ?? "";
-    message.ttl = (object.ttl !== undefined && object.ttl !== null) ? Long.fromValue(object.ttl) : Long.UZERO;
-    message.height = (object.height !== undefined && object.height !== null)
-      ? Long.fromValue(object.height)
-      : Long.ZERO;
+  fromPartial(object: DeepPartial<Query>): Query {
+    const message = { ...baseQuery } as Query;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    } else {
+      message.id = "";
+    }
+    if (object.connectionId !== undefined && object.connectionId !== null) {
+      message.connectionId = object.connectionId;
+    } else {
+      message.connectionId = "";
+    }
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = object.chainId;
+    } else {
+      message.chainId = "";
+    }
+    if (object.queryType !== undefined && object.queryType !== null) {
+      message.queryType = object.queryType;
+    } else {
+      message.queryType = "";
+    }
+    if (object.request !== undefined && object.request !== null) {
+      message.request = object.request;
+    } else {
+      message.request = new Uint8Array();
+    }
+    if (object.period !== undefined && object.period !== null) {
+      message.period = object.period;
+    } else {
+      message.period = "";
+    }
+    if (object.lastHeight !== undefined && object.lastHeight !== null) {
+      message.lastHeight = object.lastHeight;
+    } else {
+      message.lastHeight = "";
+    }
+    if (object.callbackId !== undefined && object.callbackId !== null) {
+      message.callbackId = object.callbackId;
+    } else {
+      message.callbackId = "";
+    }
+    if (object.ttl !== undefined && object.ttl !== null) {
+      message.ttl = object.ttl as Long;
+    } else {
+      message.ttl = Long.UZERO;
+    }
+    if (object.height !== undefined && object.height !== null) {
+      message.height = object.height as Long;
+    } else {
+      message.height = Long.ZERO;
+    }
     return message;
   },
 };
 
-function createBaseDataPoint(): DataPoint {
-  return { id: "", remoteHeight: "", localHeight: "", value: new Uint8Array() };
-}
+const baseDataPoint: object = { id: "", remoteHeight: "", localHeight: "" };
 
 export const DataPoint = {
   encode(message: DataPoint, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -201,7 +270,8 @@ export const DataPoint = {
   decode(input: _m0.Reader | Uint8Array, length?: number): DataPoint {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseDataPoint();
+    const message = { ...baseDataPoint } as DataPoint;
+    message.value = new Uint8Array();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -226,12 +296,27 @@ export const DataPoint = {
   },
 
   fromJSON(object: any): DataPoint {
-    return {
-      id: isSet(object.id) ? String(object.id) : "",
-      remoteHeight: isSet(object.remoteHeight) ? String(object.remoteHeight) : "",
-      localHeight: isSet(object.localHeight) ? String(object.localHeight) : "",
-      value: isSet(object.value) ? bytesFromBase64(object.value) : new Uint8Array(),
-    };
+    const message = { ...baseDataPoint } as DataPoint;
+    message.value = new Uint8Array();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = String(object.id);
+    } else {
+      message.id = "";
+    }
+    if (object.remoteHeight !== undefined && object.remoteHeight !== null) {
+      message.remoteHeight = String(object.remoteHeight);
+    } else {
+      message.remoteHeight = "";
+    }
+    if (object.localHeight !== undefined && object.localHeight !== null) {
+      message.localHeight = String(object.localHeight);
+    } else {
+      message.localHeight = "";
+    }
+    if (object.value !== undefined && object.value !== null) {
+      message.value = bytesFromBase64(object.value);
+    }
+    return message;
   },
 
   toJSON(message: DataPoint): unknown {
@@ -244,23 +329,33 @@ export const DataPoint = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<DataPoint>, I>>(base?: I): DataPoint {
-    return DataPoint.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<DataPoint>, I>>(object: I): DataPoint {
-    const message = createBaseDataPoint();
-    message.id = object.id ?? "";
-    message.remoteHeight = object.remoteHeight ?? "";
-    message.localHeight = object.localHeight ?? "";
-    message.value = object.value ?? new Uint8Array();
+  fromPartial(object: DeepPartial<DataPoint>): DataPoint {
+    const message = { ...baseDataPoint } as DataPoint;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    } else {
+      message.id = "";
+    }
+    if (object.remoteHeight !== undefined && object.remoteHeight !== null) {
+      message.remoteHeight = object.remoteHeight;
+    } else {
+      message.remoteHeight = "";
+    }
+    if (object.localHeight !== undefined && object.localHeight !== null) {
+      message.localHeight = object.localHeight;
+    } else {
+      message.localHeight = "";
+    }
+    if (object.value !== undefined && object.value !== null) {
+      message.value = object.value;
+    } else {
+      message.value = new Uint8Array();
+    }
     return message;
   },
 };
 
-function createBaseGenesisState(): GenesisState {
-  return { queries: [] };
-}
+const baseGenesisState: object = {};
 
 export const GenesisState = {
   encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -273,7 +368,8 @@ export const GenesisState = {
   decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGenesisState();
+    const message = { ...baseGenesisState } as GenesisState;
+    message.queries = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -289,91 +385,81 @@ export const GenesisState = {
   },
 
   fromJSON(object: any): GenesisState {
-    return { queries: Array.isArray(object?.queries) ? object.queries.map((e: any) => Query.fromJSON(e)) : [] };
+    const message = { ...baseGenesisState } as GenesisState;
+    message.queries = [];
+    if (object.queries !== undefined && object.queries !== null) {
+      for (const e of object.queries) {
+        message.queries.push(Query.fromJSON(e));
+      }
+    }
+    return message;
   },
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
     if (message.queries) {
-      obj.queries = message.queries.map((e) => e ? Query.toJSON(e) : undefined);
+      obj.queries = message.queries.map((e) => (e ? Query.toJSON(e) : undefined));
     } else {
       obj.queries = [];
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<GenesisState>, I>>(base?: I): GenesisState {
-    return GenesisState.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
-    const message = createBaseGenesisState();
-    message.queries = object.queries?.map((e) => Query.fromPartial(e)) || [];
+  fromPartial(object: DeepPartial<GenesisState>): GenesisState {
+    const message = { ...baseGenesisState } as GenesisState;
+    message.queries = [];
+    if (object.queries !== undefined && object.queries !== null) {
+      for (const e of object.queries) {
+        message.queries.push(Query.fromPartial(e));
+      }
+    }
     return message;
   },
 };
 
 declare var self: any | undefined;
 declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
+var globalThis: any = (() => {
+  if (typeof globalThis !== "undefined") return globalThis;
+  if (typeof self !== "undefined") return self;
+  if (typeof window !== "undefined") return window;
+  if (typeof global !== "undefined") return global;
   throw "Unable to locate global object";
 })();
 
+const atob: (b64: string) => string =
+  globalThis.atob || ((b64) => globalThis.Buffer.from(b64, "base64").toString("binary"));
 function bytesFromBase64(b64: string): Uint8Array {
-  if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
-  } else {
-    const bin = tsProtoGlobalThis.atob(b64);
-    const arr = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; ++i) {
-      arr[i] = bin.charCodeAt(i);
-    }
-    return arr;
+  const bin = atob(b64);
+  const arr = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; ++i) {
+    arr[i] = bin.charCodeAt(i);
   }
+  return arr;
 }
 
+const btoa: (bin: string) => string =
+  globalThis.btoa || ((bin) => globalThis.Buffer.from(bin, "binary").toString("base64"));
 function base64FromBytes(arr: Uint8Array): string {
-  if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
-  } else {
-    const bin: string[] = [];
-    arr.forEach((byte) => {
-      bin.push(String.fromCharCode(byte));
-    });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+  const bin: string[] = [];
+  for (const byte of arr) {
+    bin.push(String.fromCharCode(byte));
   }
+  return btoa(bin.join(""));
 }
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
 }

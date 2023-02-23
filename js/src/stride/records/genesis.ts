@@ -1,8 +1,8 @@
 /* eslint-disable */
-import { grpc } from "@improbable-eng/grpc-web";
-import { BrowserHeaders } from "browser-headers";
 import Long from "long";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
+import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "stride.records";
 
@@ -19,16 +19,14 @@ export interface UserRedemptionRecord {
 }
 
 /** Params defines the parameters for the module. */
-export interface Params {
-}
+export interface Params {}
 
 export interface RecordsPacketData {
   /** this line is used by starport scaffolding # ibc/packet/proto/field */
   noData?: NoData | undefined;
 }
 
-export interface NoData {
-}
+export interface NoData {}
 
 export interface DepositRecord {
   id: Long;
@@ -83,9 +81,8 @@ export function depositRecord_StatusToJSON(object: DepositRecord_Status): string
       return "DELEGATION_QUEUE";
     case DepositRecord_Status.DELEGATION_IN_PROGRESS:
       return "DELEGATION_IN_PROGRESS";
-    case DepositRecord_Status.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return "UNKNOWN";
   }
 }
 
@@ -116,9 +113,8 @@ export function depositRecord_SourceToJSON(object: DepositRecord_Source): string
       return "STRIDE";
     case DepositRecord_Source.WITHDRAWAL_ICA:
       return "WITHDRAWAL_ICA";
-    case DepositRecord_Source.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return "UNKNOWN";
   }
 }
 
@@ -180,9 +176,8 @@ export function hostZoneUnbonding_StatusToJSON(object: HostZoneUnbonding_Status)
       return "EXIT_TRANSFER_IN_PROGRESS";
     case HostZoneUnbonding_Status.CLAIMABLE:
       return "CLAIMABLE";
-    case HostZoneUnbonding_Status.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return "UNKNOWN";
   }
 }
 
@@ -206,18 +201,16 @@ export interface GenesisState {
   depositRecordCount: Long;
 }
 
-function createBaseUserRedemptionRecord(): UserRedemptionRecord {
-  return {
-    id: "",
-    sender: "",
-    receiver: "",
-    amount: Long.UZERO,
-    denom: "",
-    hostZoneId: "",
-    epochNumber: Long.UZERO,
-    claimIsPending: false,
-  };
-}
+const baseUserRedemptionRecord: object = {
+  id: "",
+  sender: "",
+  receiver: "",
+  amount: Long.UZERO,
+  denom: "",
+  hostZoneId: "",
+  epochNumber: Long.UZERO,
+  claimIsPending: false,
+};
 
 export const UserRedemptionRecord = {
   encode(message: UserRedemptionRecord, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -251,7 +244,7 @@ export const UserRedemptionRecord = {
   decode(input: _m0.Reader | Uint8Array, length?: number): UserRedemptionRecord {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUserRedemptionRecord();
+    const message = { ...baseUserRedemptionRecord } as UserRedemptionRecord;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -288,16 +281,48 @@ export const UserRedemptionRecord = {
   },
 
   fromJSON(object: any): UserRedemptionRecord {
-    return {
-      id: isSet(object.id) ? String(object.id) : "",
-      sender: isSet(object.sender) ? String(object.sender) : "",
-      receiver: isSet(object.receiver) ? String(object.receiver) : "",
-      amount: isSet(object.amount) ? Long.fromValue(object.amount) : Long.UZERO,
-      denom: isSet(object.denom) ? String(object.denom) : "",
-      hostZoneId: isSet(object.hostZoneId) ? String(object.hostZoneId) : "",
-      epochNumber: isSet(object.epochNumber) ? Long.fromValue(object.epochNumber) : Long.UZERO,
-      claimIsPending: isSet(object.claimIsPending) ? Boolean(object.claimIsPending) : false,
-    };
+    const message = { ...baseUserRedemptionRecord } as UserRedemptionRecord;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = String(object.id);
+    } else {
+      message.id = "";
+    }
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = String(object.sender);
+    } else {
+      message.sender = "";
+    }
+    if (object.receiver !== undefined && object.receiver !== null) {
+      message.receiver = String(object.receiver);
+    } else {
+      message.receiver = "";
+    }
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = Long.fromString(object.amount);
+    } else {
+      message.amount = Long.UZERO;
+    }
+    if (object.denom !== undefined && object.denom !== null) {
+      message.denom = String(object.denom);
+    } else {
+      message.denom = "";
+    }
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = String(object.hostZoneId);
+    } else {
+      message.hostZoneId = "";
+    }
+    if (object.epochNumber !== undefined && object.epochNumber !== null) {
+      message.epochNumber = Long.fromString(object.epochNumber);
+    } else {
+      message.epochNumber = Long.UZERO;
+    }
+    if (object.claimIsPending !== undefined && object.claimIsPending !== null) {
+      message.claimIsPending = Boolean(object.claimIsPending);
+    } else {
+      message.claimIsPending = false;
+    }
+    return message;
   },
 
   toJSON(message: UserRedemptionRecord): unknown {
@@ -313,31 +338,53 @@ export const UserRedemptionRecord = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<UserRedemptionRecord>, I>>(base?: I): UserRedemptionRecord {
-    return UserRedemptionRecord.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<UserRedemptionRecord>, I>>(object: I): UserRedemptionRecord {
-    const message = createBaseUserRedemptionRecord();
-    message.id = object.id ?? "";
-    message.sender = object.sender ?? "";
-    message.receiver = object.receiver ?? "";
-    message.amount = (object.amount !== undefined && object.amount !== null)
-      ? Long.fromValue(object.amount)
-      : Long.UZERO;
-    message.denom = object.denom ?? "";
-    message.hostZoneId = object.hostZoneId ?? "";
-    message.epochNumber = (object.epochNumber !== undefined && object.epochNumber !== null)
-      ? Long.fromValue(object.epochNumber)
-      : Long.UZERO;
-    message.claimIsPending = object.claimIsPending ?? false;
+  fromPartial(object: DeepPartial<UserRedemptionRecord>): UserRedemptionRecord {
+    const message = { ...baseUserRedemptionRecord } as UserRedemptionRecord;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    } else {
+      message.id = "";
+    }
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = object.sender;
+    } else {
+      message.sender = "";
+    }
+    if (object.receiver !== undefined && object.receiver !== null) {
+      message.receiver = object.receiver;
+    } else {
+      message.receiver = "";
+    }
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = object.amount as Long;
+    } else {
+      message.amount = Long.UZERO;
+    }
+    if (object.denom !== undefined && object.denom !== null) {
+      message.denom = object.denom;
+    } else {
+      message.denom = "";
+    }
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = object.hostZoneId;
+    } else {
+      message.hostZoneId = "";
+    }
+    if (object.epochNumber !== undefined && object.epochNumber !== null) {
+      message.epochNumber = object.epochNumber as Long;
+    } else {
+      message.epochNumber = Long.UZERO;
+    }
+    if (object.claimIsPending !== undefined && object.claimIsPending !== null) {
+      message.claimIsPending = object.claimIsPending;
+    } else {
+      message.claimIsPending = false;
+    }
     return message;
   },
 };
 
-function createBaseParams(): Params {
-  return {};
-}
+const baseParams: object = {};
 
 export const Params = {
   encode(_: Params, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -347,7 +394,7 @@ export const Params = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Params {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseParams();
+    const message = { ...baseParams } as Params;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -360,7 +407,8 @@ export const Params = {
   },
 
   fromJSON(_: any): Params {
-    return {};
+    const message = { ...baseParams } as Params;
+    return message;
   },
 
   toJSON(_: Params): unknown {
@@ -368,19 +416,13 @@ export const Params = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Params>, I>>(base?: I): Params {
-    return Params.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<Params>, I>>(_: I): Params {
-    const message = createBaseParams();
+  fromPartial(_: DeepPartial<Params>): Params {
+    const message = { ...baseParams } as Params;
     return message;
   },
 };
 
-function createBaseRecordsPacketData(): RecordsPacketData {
-  return { noData: undefined };
-}
+const baseRecordsPacketData: object = {};
 
 export const RecordsPacketData = {
   encode(message: RecordsPacketData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -393,7 +435,7 @@ export const RecordsPacketData = {
   decode(input: _m0.Reader | Uint8Array, length?: number): RecordsPacketData {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseRecordsPacketData();
+    const message = { ...baseRecordsPacketData } as RecordsPacketData;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -409,7 +451,13 @@ export const RecordsPacketData = {
   },
 
   fromJSON(object: any): RecordsPacketData {
-    return { noData: isSet(object.noData) ? NoData.fromJSON(object.noData) : undefined };
+    const message = { ...baseRecordsPacketData } as RecordsPacketData;
+    if (object.noData !== undefined && object.noData !== null) {
+      message.noData = NoData.fromJSON(object.noData);
+    } else {
+      message.noData = undefined;
+    }
+    return message;
   },
 
   toJSON(message: RecordsPacketData): unknown {
@@ -418,22 +466,18 @@ export const RecordsPacketData = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<RecordsPacketData>, I>>(base?: I): RecordsPacketData {
-    return RecordsPacketData.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<RecordsPacketData>, I>>(object: I): RecordsPacketData {
-    const message = createBaseRecordsPacketData();
-    message.noData = (object.noData !== undefined && object.noData !== null)
-      ? NoData.fromPartial(object.noData)
-      : undefined;
+  fromPartial(object: DeepPartial<RecordsPacketData>): RecordsPacketData {
+    const message = { ...baseRecordsPacketData } as RecordsPacketData;
+    if (object.noData !== undefined && object.noData !== null) {
+      message.noData = NoData.fromPartial(object.noData);
+    } else {
+      message.noData = undefined;
+    }
     return message;
   },
 };
 
-function createBaseNoData(): NoData {
-  return {};
-}
+const baseNoData: object = {};
 
 export const NoData = {
   encode(_: NoData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -443,7 +487,7 @@ export const NoData = {
   decode(input: _m0.Reader | Uint8Array, length?: number): NoData {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseNoData();
+    const message = { ...baseNoData } as NoData;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -456,7 +500,8 @@ export const NoData = {
   },
 
   fromJSON(_: any): NoData {
-    return {};
+    const message = { ...baseNoData } as NoData;
+    return message;
   },
 
   toJSON(_: NoData): unknown {
@@ -464,27 +509,21 @@ export const NoData = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<NoData>, I>>(base?: I): NoData {
-    return NoData.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<NoData>, I>>(_: I): NoData {
-    const message = createBaseNoData();
+  fromPartial(_: DeepPartial<NoData>): NoData {
+    const message = { ...baseNoData } as NoData;
     return message;
   },
 };
 
-function createBaseDepositRecord(): DepositRecord {
-  return {
-    id: Long.UZERO,
-    amount: Long.ZERO,
-    denom: "",
-    hostZoneId: "",
-    status: 0,
-    depositEpochNumber: Long.UZERO,
-    source: 0,
-  };
-}
+const baseDepositRecord: object = {
+  id: Long.UZERO,
+  amount: Long.ZERO,
+  denom: "",
+  hostZoneId: "",
+  status: 0,
+  depositEpochNumber: Long.UZERO,
+  source: 0,
+};
 
 export const DepositRecord = {
   encode(message: DepositRecord, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -515,7 +554,7 @@ export const DepositRecord = {
   decode(input: _m0.Reader | Uint8Array, length?: number): DepositRecord {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseDepositRecord();
+    const message = { ...baseDepositRecord } as DepositRecord;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -549,15 +588,43 @@ export const DepositRecord = {
   },
 
   fromJSON(object: any): DepositRecord {
-    return {
-      id: isSet(object.id) ? Long.fromValue(object.id) : Long.UZERO,
-      amount: isSet(object.amount) ? Long.fromValue(object.amount) : Long.ZERO,
-      denom: isSet(object.denom) ? String(object.denom) : "",
-      hostZoneId: isSet(object.hostZoneId) ? String(object.hostZoneId) : "",
-      status: isSet(object.status) ? depositRecord_StatusFromJSON(object.status) : 0,
-      depositEpochNumber: isSet(object.depositEpochNumber) ? Long.fromValue(object.depositEpochNumber) : Long.UZERO,
-      source: isSet(object.source) ? depositRecord_SourceFromJSON(object.source) : 0,
-    };
+    const message = { ...baseDepositRecord } as DepositRecord;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = Long.fromString(object.id);
+    } else {
+      message.id = Long.UZERO;
+    }
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = Long.fromString(object.amount);
+    } else {
+      message.amount = Long.ZERO;
+    }
+    if (object.denom !== undefined && object.denom !== null) {
+      message.denom = String(object.denom);
+    } else {
+      message.denom = "";
+    }
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = String(object.hostZoneId);
+    } else {
+      message.hostZoneId = "";
+    }
+    if (object.status !== undefined && object.status !== null) {
+      message.status = depositRecord_StatusFromJSON(object.status);
+    } else {
+      message.status = 0;
+    }
+    if (object.depositEpochNumber !== undefined && object.depositEpochNumber !== null) {
+      message.depositEpochNumber = Long.fromString(object.depositEpochNumber);
+    } else {
+      message.depositEpochNumber = Long.UZERO;
+    }
+    if (object.source !== undefined && object.source !== null) {
+      message.source = depositRecord_SourceFromJSON(object.source);
+    } else {
+      message.source = 0;
+    }
+    return message;
   },
 
   toJSON(message: DepositRecord): unknown {
@@ -573,38 +640,56 @@ export const DepositRecord = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<DepositRecord>, I>>(base?: I): DepositRecord {
-    return DepositRecord.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<DepositRecord>, I>>(object: I): DepositRecord {
-    const message = createBaseDepositRecord();
-    message.id = (object.id !== undefined && object.id !== null) ? Long.fromValue(object.id) : Long.UZERO;
-    message.amount = (object.amount !== undefined && object.amount !== null)
-      ? Long.fromValue(object.amount)
-      : Long.ZERO;
-    message.denom = object.denom ?? "";
-    message.hostZoneId = object.hostZoneId ?? "";
-    message.status = object.status ?? 0;
-    message.depositEpochNumber = (object.depositEpochNumber !== undefined && object.depositEpochNumber !== null)
-      ? Long.fromValue(object.depositEpochNumber)
-      : Long.UZERO;
-    message.source = object.source ?? 0;
+  fromPartial(object: DeepPartial<DepositRecord>): DepositRecord {
+    const message = { ...baseDepositRecord } as DepositRecord;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id as Long;
+    } else {
+      message.id = Long.UZERO;
+    }
+    if (object.amount !== undefined && object.amount !== null) {
+      message.amount = object.amount as Long;
+    } else {
+      message.amount = Long.ZERO;
+    }
+    if (object.denom !== undefined && object.denom !== null) {
+      message.denom = object.denom;
+    } else {
+      message.denom = "";
+    }
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = object.hostZoneId;
+    } else {
+      message.hostZoneId = "";
+    }
+    if (object.status !== undefined && object.status !== null) {
+      message.status = object.status;
+    } else {
+      message.status = 0;
+    }
+    if (object.depositEpochNumber !== undefined && object.depositEpochNumber !== null) {
+      message.depositEpochNumber = object.depositEpochNumber as Long;
+    } else {
+      message.depositEpochNumber = Long.UZERO;
+    }
+    if (object.source !== undefined && object.source !== null) {
+      message.source = object.source;
+    } else {
+      message.source = 0;
+    }
     return message;
   },
 };
 
-function createBaseHostZoneUnbonding(): HostZoneUnbonding {
-  return {
-    stTokenAmount: Long.UZERO,
-    nativeTokenAmount: Long.UZERO,
-    denom: "",
-    hostZoneId: "",
-    unbondingTime: Long.UZERO,
-    status: 0,
-    userRedemptionRecords: [],
-  };
-}
+const baseHostZoneUnbonding: object = {
+  stTokenAmount: Long.UZERO,
+  nativeTokenAmount: Long.UZERO,
+  denom: "",
+  hostZoneId: "",
+  unbondingTime: Long.UZERO,
+  status: 0,
+  userRedemptionRecords: "",
+};
 
 export const HostZoneUnbonding = {
   encode(message: HostZoneUnbonding, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -635,7 +720,8 @@ export const HostZoneUnbonding = {
   decode(input: _m0.Reader | Uint8Array, length?: number): HostZoneUnbonding {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseHostZoneUnbonding();
+    const message = { ...baseHostZoneUnbonding } as HostZoneUnbonding;
+    message.userRedemptionRecords = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -669,27 +755,56 @@ export const HostZoneUnbonding = {
   },
 
   fromJSON(object: any): HostZoneUnbonding {
-    return {
-      stTokenAmount: isSet(object.stTokenAmount) ? Long.fromValue(object.stTokenAmount) : Long.UZERO,
-      nativeTokenAmount: isSet(object.nativeTokenAmount) ? Long.fromValue(object.nativeTokenAmount) : Long.UZERO,
-      denom: isSet(object.denom) ? String(object.denom) : "",
-      hostZoneId: isSet(object.hostZoneId) ? String(object.hostZoneId) : "",
-      unbondingTime: isSet(object.unbondingTime) ? Long.fromValue(object.unbondingTime) : Long.UZERO,
-      status: isSet(object.status) ? hostZoneUnbonding_StatusFromJSON(object.status) : 0,
-      userRedemptionRecords: Array.isArray(object?.userRedemptionRecords)
-        ? object.userRedemptionRecords.map((e: any) => String(e))
-        : [],
-    };
+    const message = { ...baseHostZoneUnbonding } as HostZoneUnbonding;
+    message.userRedemptionRecords = [];
+    if (object.stTokenAmount !== undefined && object.stTokenAmount !== null) {
+      message.stTokenAmount = Long.fromString(object.stTokenAmount);
+    } else {
+      message.stTokenAmount = Long.UZERO;
+    }
+    if (object.nativeTokenAmount !== undefined && object.nativeTokenAmount !== null) {
+      message.nativeTokenAmount = Long.fromString(object.nativeTokenAmount);
+    } else {
+      message.nativeTokenAmount = Long.UZERO;
+    }
+    if (object.denom !== undefined && object.denom !== null) {
+      message.denom = String(object.denom);
+    } else {
+      message.denom = "";
+    }
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = String(object.hostZoneId);
+    } else {
+      message.hostZoneId = "";
+    }
+    if (object.unbondingTime !== undefined && object.unbondingTime !== null) {
+      message.unbondingTime = Long.fromString(object.unbondingTime);
+    } else {
+      message.unbondingTime = Long.UZERO;
+    }
+    if (object.status !== undefined && object.status !== null) {
+      message.status = hostZoneUnbonding_StatusFromJSON(object.status);
+    } else {
+      message.status = 0;
+    }
+    if (object.userRedemptionRecords !== undefined && object.userRedemptionRecords !== null) {
+      for (const e of object.userRedemptionRecords) {
+        message.userRedemptionRecords.push(String(e));
+      }
+    }
+    return message;
   },
 
   toJSON(message: HostZoneUnbonding): unknown {
     const obj: any = {};
-    message.stTokenAmount !== undefined && (obj.stTokenAmount = (message.stTokenAmount || Long.UZERO).toString());
+    message.stTokenAmount !== undefined &&
+      (obj.stTokenAmount = (message.stTokenAmount || Long.UZERO).toString());
     message.nativeTokenAmount !== undefined &&
       (obj.nativeTokenAmount = (message.nativeTokenAmount || Long.UZERO).toString());
     message.denom !== undefined && (obj.denom = message.denom);
     message.hostZoneId !== undefined && (obj.hostZoneId = message.hostZoneId);
-    message.unbondingTime !== undefined && (obj.unbondingTime = (message.unbondingTime || Long.UZERO).toString());
+    message.unbondingTime !== undefined &&
+      (obj.unbondingTime = (message.unbondingTime || Long.UZERO).toString());
     message.status !== undefined && (obj.status = hostZoneUnbonding_StatusToJSON(message.status));
     if (message.userRedemptionRecords) {
       obj.userRedemptionRecords = message.userRedemptionRecords.map((e) => e);
@@ -699,32 +814,49 @@ export const HostZoneUnbonding = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<HostZoneUnbonding>, I>>(base?: I): HostZoneUnbonding {
-    return HostZoneUnbonding.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<HostZoneUnbonding>, I>>(object: I): HostZoneUnbonding {
-    const message = createBaseHostZoneUnbonding();
-    message.stTokenAmount = (object.stTokenAmount !== undefined && object.stTokenAmount !== null)
-      ? Long.fromValue(object.stTokenAmount)
-      : Long.UZERO;
-    message.nativeTokenAmount = (object.nativeTokenAmount !== undefined && object.nativeTokenAmount !== null)
-      ? Long.fromValue(object.nativeTokenAmount)
-      : Long.UZERO;
-    message.denom = object.denom ?? "";
-    message.hostZoneId = object.hostZoneId ?? "";
-    message.unbondingTime = (object.unbondingTime !== undefined && object.unbondingTime !== null)
-      ? Long.fromValue(object.unbondingTime)
-      : Long.UZERO;
-    message.status = object.status ?? 0;
-    message.userRedemptionRecords = object.userRedemptionRecords?.map((e) => e) || [];
+  fromPartial(object: DeepPartial<HostZoneUnbonding>): HostZoneUnbonding {
+    const message = { ...baseHostZoneUnbonding } as HostZoneUnbonding;
+    message.userRedemptionRecords = [];
+    if (object.stTokenAmount !== undefined && object.stTokenAmount !== null) {
+      message.stTokenAmount = object.stTokenAmount as Long;
+    } else {
+      message.stTokenAmount = Long.UZERO;
+    }
+    if (object.nativeTokenAmount !== undefined && object.nativeTokenAmount !== null) {
+      message.nativeTokenAmount = object.nativeTokenAmount as Long;
+    } else {
+      message.nativeTokenAmount = Long.UZERO;
+    }
+    if (object.denom !== undefined && object.denom !== null) {
+      message.denom = object.denom;
+    } else {
+      message.denom = "";
+    }
+    if (object.hostZoneId !== undefined && object.hostZoneId !== null) {
+      message.hostZoneId = object.hostZoneId;
+    } else {
+      message.hostZoneId = "";
+    }
+    if (object.unbondingTime !== undefined && object.unbondingTime !== null) {
+      message.unbondingTime = object.unbondingTime as Long;
+    } else {
+      message.unbondingTime = Long.UZERO;
+    }
+    if (object.status !== undefined && object.status !== null) {
+      message.status = object.status;
+    } else {
+      message.status = 0;
+    }
+    if (object.userRedemptionRecords !== undefined && object.userRedemptionRecords !== null) {
+      for (const e of object.userRedemptionRecords) {
+        message.userRedemptionRecords.push(e);
+      }
+    }
     return message;
   },
 };
 
-function createBaseEpochUnbondingRecord(): EpochUnbondingRecord {
-  return { epochNumber: Long.UZERO, hostZoneUnbondings: [] };
-}
+const baseEpochUnbondingRecord: object = { epochNumber: Long.UZERO };
 
 export const EpochUnbondingRecord = {
   encode(message: EpochUnbondingRecord, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -740,7 +872,8 @@ export const EpochUnbondingRecord = {
   decode(input: _m0.Reader | Uint8Array, length?: number): EpochUnbondingRecord {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseEpochUnbondingRecord();
+    const message = { ...baseEpochUnbondingRecord } as EpochUnbondingRecord;
+    message.hostZoneUnbondings = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -759,50 +892,56 @@ export const EpochUnbondingRecord = {
   },
 
   fromJSON(object: any): EpochUnbondingRecord {
-    return {
-      epochNumber: isSet(object.epochNumber) ? Long.fromValue(object.epochNumber) : Long.UZERO,
-      hostZoneUnbondings: Array.isArray(object?.hostZoneUnbondings)
-        ? object.hostZoneUnbondings.map((e: any) => HostZoneUnbonding.fromJSON(e))
-        : [],
-    };
+    const message = { ...baseEpochUnbondingRecord } as EpochUnbondingRecord;
+    message.hostZoneUnbondings = [];
+    if (object.epochNumber !== undefined && object.epochNumber !== null) {
+      message.epochNumber = Long.fromString(object.epochNumber);
+    } else {
+      message.epochNumber = Long.UZERO;
+    }
+    if (object.hostZoneUnbondings !== undefined && object.hostZoneUnbondings !== null) {
+      for (const e of object.hostZoneUnbondings) {
+        message.hostZoneUnbondings.push(HostZoneUnbonding.fromJSON(e));
+      }
+    }
+    return message;
   },
 
   toJSON(message: EpochUnbondingRecord): unknown {
     const obj: any = {};
     message.epochNumber !== undefined && (obj.epochNumber = (message.epochNumber || Long.UZERO).toString());
     if (message.hostZoneUnbondings) {
-      obj.hostZoneUnbondings = message.hostZoneUnbondings.map((e) => e ? HostZoneUnbonding.toJSON(e) : undefined);
+      obj.hostZoneUnbondings = message.hostZoneUnbondings.map((e) =>
+        e ? HostZoneUnbonding.toJSON(e) : undefined,
+      );
     } else {
       obj.hostZoneUnbondings = [];
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<EpochUnbondingRecord>, I>>(base?: I): EpochUnbondingRecord {
-    return EpochUnbondingRecord.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<EpochUnbondingRecord>, I>>(object: I): EpochUnbondingRecord {
-    const message = createBaseEpochUnbondingRecord();
-    message.epochNumber = (object.epochNumber !== undefined && object.epochNumber !== null)
-      ? Long.fromValue(object.epochNumber)
-      : Long.UZERO;
-    message.hostZoneUnbondings = object.hostZoneUnbondings?.map((e) => HostZoneUnbonding.fromPartial(e)) || [];
+  fromPartial(object: DeepPartial<EpochUnbondingRecord>): EpochUnbondingRecord {
+    const message = { ...baseEpochUnbondingRecord } as EpochUnbondingRecord;
+    message.hostZoneUnbondings = [];
+    if (object.epochNumber !== undefined && object.epochNumber !== null) {
+      message.epochNumber = object.epochNumber as Long;
+    } else {
+      message.epochNumber = Long.UZERO;
+    }
+    if (object.hostZoneUnbondings !== undefined && object.hostZoneUnbondings !== null) {
+      for (const e of object.hostZoneUnbondings) {
+        message.hostZoneUnbondings.push(HostZoneUnbonding.fromPartial(e));
+      }
+    }
     return message;
   },
 };
 
-function createBaseGenesisState(): GenesisState {
-  return {
-    params: undefined,
-    portId: "",
-    userRedemptionRecordList: [],
-    userRedemptionRecordCount: Long.UZERO,
-    epochUnbondingRecordList: [],
-    depositRecordList: [],
-    depositRecordCount: Long.UZERO,
-  };
-}
+const baseGenesisState: object = {
+  portId: "",
+  userRedemptionRecordCount: Long.UZERO,
+  depositRecordCount: Long.UZERO,
+};
 
 export const GenesisState = {
   encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -833,7 +972,10 @@ export const GenesisState = {
   decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGenesisState();
+    const message = { ...baseGenesisState } as GenesisState;
+    message.userRedemptionRecordList = [];
+    message.epochUnbondingRecordList = [];
+    message.depositRecordList = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -867,23 +1009,46 @@ export const GenesisState = {
   },
 
   fromJSON(object: any): GenesisState {
-    return {
-      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
-      portId: isSet(object.portId) ? String(object.portId) : "",
-      userRedemptionRecordList: Array.isArray(object?.userRedemptionRecordList)
-        ? object.userRedemptionRecordList.map((e: any) => UserRedemptionRecord.fromJSON(e))
-        : [],
-      userRedemptionRecordCount: isSet(object.userRedemptionRecordCount)
-        ? Long.fromValue(object.userRedemptionRecordCount)
-        : Long.UZERO,
-      epochUnbondingRecordList: Array.isArray(object?.epochUnbondingRecordList)
-        ? object.epochUnbondingRecordList.map((e: any) => EpochUnbondingRecord.fromJSON(e))
-        : [],
-      depositRecordList: Array.isArray(object?.depositRecordList)
-        ? object.depositRecordList.map((e: any) => DepositRecord.fromJSON(e))
-        : [],
-      depositRecordCount: isSet(object.depositRecordCount) ? Long.fromValue(object.depositRecordCount) : Long.UZERO,
-    };
+    const message = { ...baseGenesisState } as GenesisState;
+    message.userRedemptionRecordList = [];
+    message.epochUnbondingRecordList = [];
+    message.depositRecordList = [];
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromJSON(object.params);
+    } else {
+      message.params = undefined;
+    }
+    if (object.portId !== undefined && object.portId !== null) {
+      message.portId = String(object.portId);
+    } else {
+      message.portId = "";
+    }
+    if (object.userRedemptionRecordList !== undefined && object.userRedemptionRecordList !== null) {
+      for (const e of object.userRedemptionRecordList) {
+        message.userRedemptionRecordList.push(UserRedemptionRecord.fromJSON(e));
+      }
+    }
+    if (object.userRedemptionRecordCount !== undefined && object.userRedemptionRecordCount !== null) {
+      message.userRedemptionRecordCount = Long.fromString(object.userRedemptionRecordCount);
+    } else {
+      message.userRedemptionRecordCount = Long.UZERO;
+    }
+    if (object.epochUnbondingRecordList !== undefined && object.epochUnbondingRecordList !== null) {
+      for (const e of object.epochUnbondingRecordList) {
+        message.epochUnbondingRecordList.push(EpochUnbondingRecord.fromJSON(e));
+      }
+    }
+    if (object.depositRecordList !== undefined && object.depositRecordList !== null) {
+      for (const e of object.depositRecordList) {
+        message.depositRecordList.push(DepositRecord.fromJSON(e));
+      }
+    }
+    if (object.depositRecordCount !== undefined && object.depositRecordCount !== null) {
+      message.depositRecordCount = Long.fromString(object.depositRecordCount);
+    } else {
+      message.depositRecordCount = Long.UZERO;
+    }
+    return message;
   },
 
   toJSON(message: GenesisState): unknown {
@@ -892,7 +1057,7 @@ export const GenesisState = {
     message.portId !== undefined && (obj.portId = message.portId);
     if (message.userRedemptionRecordList) {
       obj.userRedemptionRecordList = message.userRedemptionRecordList.map((e) =>
-        e ? UserRedemptionRecord.toJSON(e) : undefined
+        e ? UserRedemptionRecord.toJSON(e) : undefined,
       );
     } else {
       obj.userRedemptionRecordList = [];
@@ -901,13 +1066,13 @@ export const GenesisState = {
       (obj.userRedemptionRecordCount = (message.userRedemptionRecordCount || Long.UZERO).toString());
     if (message.epochUnbondingRecordList) {
       obj.epochUnbondingRecordList = message.epochUnbondingRecordList.map((e) =>
-        e ? EpochUnbondingRecord.toJSON(e) : undefined
+        e ? EpochUnbondingRecord.toJSON(e) : undefined,
       );
     } else {
       obj.epochUnbondingRecordList = [];
     }
     if (message.depositRecordList) {
-      obj.depositRecordList = message.depositRecordList.map((e) => e ? DepositRecord.toJSON(e) : undefined);
+      obj.depositRecordList = message.depositRecordList.map((e) => (e ? DepositRecord.toJSON(e) : undefined));
     } else {
       obj.depositRecordList = [];
     }
@@ -916,35 +1081,52 @@ export const GenesisState = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<GenesisState>, I>>(base?: I): GenesisState {
-    return GenesisState.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
-    const message = createBaseGenesisState();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
-    message.portId = object.portId ?? "";
-    message.userRedemptionRecordList =
-      object.userRedemptionRecordList?.map((e) => UserRedemptionRecord.fromPartial(e)) || [];
-    message.userRedemptionRecordCount =
-      (object.userRedemptionRecordCount !== undefined && object.userRedemptionRecordCount !== null)
-        ? Long.fromValue(object.userRedemptionRecordCount)
-        : Long.UZERO;
-    message.epochUnbondingRecordList =
-      object.epochUnbondingRecordList?.map((e) => EpochUnbondingRecord.fromPartial(e)) || [];
-    message.depositRecordList = object.depositRecordList?.map((e) => DepositRecord.fromPartial(e)) || [];
-    message.depositRecordCount = (object.depositRecordCount !== undefined && object.depositRecordCount !== null)
-      ? Long.fromValue(object.depositRecordCount)
-      : Long.UZERO;
+  fromPartial(object: DeepPartial<GenesisState>): GenesisState {
+    const message = { ...baseGenesisState } as GenesisState;
+    message.userRedemptionRecordList = [];
+    message.epochUnbondingRecordList = [];
+    message.depositRecordList = [];
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromPartial(object.params);
+    } else {
+      message.params = undefined;
+    }
+    if (object.portId !== undefined && object.portId !== null) {
+      message.portId = object.portId;
+    } else {
+      message.portId = "";
+    }
+    if (object.userRedemptionRecordList !== undefined && object.userRedemptionRecordList !== null) {
+      for (const e of object.userRedemptionRecordList) {
+        message.userRedemptionRecordList.push(UserRedemptionRecord.fromPartial(e));
+      }
+    }
+    if (object.userRedemptionRecordCount !== undefined && object.userRedemptionRecordCount !== null) {
+      message.userRedemptionRecordCount = object.userRedemptionRecordCount as Long;
+    } else {
+      message.userRedemptionRecordCount = Long.UZERO;
+    }
+    if (object.epochUnbondingRecordList !== undefined && object.epochUnbondingRecordList !== null) {
+      for (const e of object.epochUnbondingRecordList) {
+        message.epochUnbondingRecordList.push(EpochUnbondingRecord.fromPartial(e));
+      }
+    }
+    if (object.depositRecordList !== undefined && object.depositRecordList !== null) {
+      for (const e of object.depositRecordList) {
+        message.depositRecordList.push(DepositRecord.fromPartial(e));
+      }
+    }
+    if (object.depositRecordCount !== undefined && object.depositRecordCount !== null) {
+      message.depositRecordCount = object.depositRecordCount as Long;
+    } else {
+      message.depositRecordCount = Long.UZERO;
+    }
     return message;
   },
 };
 
 /** Msg defines the Msg service. */
-export interface Msg {
-}
+export interface Msg {}
 
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
@@ -954,7 +1136,9 @@ export class MsgClientImpl implements Msg {
   }
 }
 
-export const MsgDesc = { serviceName: "stride.records.Msg" };
+export const MsgDesc = {
+  serviceName: "stride.records.Msg",
+};
 
 interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
   requestStream: any;
@@ -978,7 +1162,6 @@ export class GrpcWebImpl {
 
     debug?: boolean;
     metadata?: grpc.Metadata;
-    upStreamRetryCodes?: number[];
   };
 
   constructor(
@@ -988,7 +1171,6 @@ export class GrpcWebImpl {
 
       debug?: boolean;
       metadata?: grpc.Metadata;
-      upStreamRetryCodes?: number[];
     },
   ) {
     this.host = host;
@@ -1001,9 +1183,10 @@ export class GrpcWebImpl {
     metadata: grpc.Metadata | undefined,
   ): Promise<any> {
     const request = { ..._request, ...methodDesc.requestType };
-    const maybeCombinedMetadata = metadata && this.options.metadata
-      ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
-      : metadata || this.options.metadata;
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
     return new Promise((resolve, reject) => {
       grpc.unary(methodDesc, {
         request,
@@ -1013,9 +1196,11 @@ export class GrpcWebImpl {
         debug: this.options.debug,
         onEnd: function (response) {
           if (response.status === grpc.Code.OK) {
-            resolve(response.message!.toObject());
+            resolve(response.message);
           } else {
-            const err = new GrpcWebError(response.statusMessage, response.status, response.trailers);
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
             reject(err);
           }
         },
@@ -1024,48 +1209,18 @@ export class GrpcWebImpl {
   }
 }
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  throw "Unable to locate global object";
-})();
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
-export class GrpcWebError extends tsProtoGlobalThis.Error {
-  constructor(message: string, public code: grpc.Code, public metadata: grpc.Metadata) {
-    super(message);
-  }
 }

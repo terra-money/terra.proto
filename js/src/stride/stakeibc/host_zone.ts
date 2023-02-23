@@ -1,8 +1,8 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal";
-import { ICAAccount } from "./ica_account";
-import { Validator } from "./validator";
+import { ICAAccount } from "../../stride/stakeibc/ica_account";
+import { Validator } from "../../stride/stakeibc/validator";
 
 export const protobufPackage = "stride.stakeibc";
 
@@ -35,27 +35,19 @@ export interface HostZone {
   address: string;
 }
 
-function createBaseHostZone(): HostZone {
-  return {
-    chainId: "",
-    connectionId: "",
-    bech32prefix: "",
-    transferChannelId: "",
-    validators: [],
-    blacklistedValidators: [],
-    withdrawalAccount: undefined,
-    feeAccount: undefined,
-    delegationAccount: undefined,
-    redemptionAccount: undefined,
-    ibcDenom: "",
-    hostDenom: "",
-    lastRedemptionRate: "",
-    redemptionRate: "",
-    unbondingFrequency: Long.UZERO,
-    stakedBal: Long.UZERO,
-    address: "",
-  };
-}
+const baseHostZone: object = {
+  chainId: "",
+  connectionId: "",
+  bech32prefix: "",
+  transferChannelId: "",
+  ibcDenom: "",
+  hostDenom: "",
+  lastRedemptionRate: "",
+  redemptionRate: "",
+  unbondingFrequency: Long.UZERO,
+  stakedBal: Long.UZERO,
+  address: "",
+};
 
 export const HostZone = {
   encode(message: HostZone, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -116,7 +108,9 @@ export const HostZone = {
   decode(input: _m0.Reader | Uint8Array, length?: number): HostZone {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseHostZone();
+    const message = { ...baseHostZone } as HostZone;
+    message.validators = [];
+    message.blacklistedValidators = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -180,27 +174,95 @@ export const HostZone = {
   },
 
   fromJSON(object: any): HostZone {
-    return {
-      chainId: isSet(object.chainId) ? String(object.chainId) : "",
-      connectionId: isSet(object.connectionId) ? String(object.connectionId) : "",
-      bech32prefix: isSet(object.bech32prefix) ? String(object.bech32prefix) : "",
-      transferChannelId: isSet(object.transferChannelId) ? String(object.transferChannelId) : "",
-      validators: Array.isArray(object?.validators) ? object.validators.map((e: any) => Validator.fromJSON(e)) : [],
-      blacklistedValidators: Array.isArray(object?.blacklistedValidators)
-        ? object.blacklistedValidators.map((e: any) => Validator.fromJSON(e))
-        : [],
-      withdrawalAccount: isSet(object.withdrawalAccount) ? ICAAccount.fromJSON(object.withdrawalAccount) : undefined,
-      feeAccount: isSet(object.feeAccount) ? ICAAccount.fromJSON(object.feeAccount) : undefined,
-      delegationAccount: isSet(object.delegationAccount) ? ICAAccount.fromJSON(object.delegationAccount) : undefined,
-      redemptionAccount: isSet(object.redemptionAccount) ? ICAAccount.fromJSON(object.redemptionAccount) : undefined,
-      ibcDenom: isSet(object.ibcDenom) ? String(object.ibcDenom) : "",
-      hostDenom: isSet(object.hostDenom) ? String(object.hostDenom) : "",
-      lastRedemptionRate: isSet(object.lastRedemptionRate) ? String(object.lastRedemptionRate) : "",
-      redemptionRate: isSet(object.redemptionRate) ? String(object.redemptionRate) : "",
-      unbondingFrequency: isSet(object.unbondingFrequency) ? Long.fromValue(object.unbondingFrequency) : Long.UZERO,
-      stakedBal: isSet(object.stakedBal) ? Long.fromValue(object.stakedBal) : Long.UZERO,
-      address: isSet(object.address) ? String(object.address) : "",
-    };
+    const message = { ...baseHostZone } as HostZone;
+    message.validators = [];
+    message.blacklistedValidators = [];
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = String(object.chainId);
+    } else {
+      message.chainId = "";
+    }
+    if (object.connectionId !== undefined && object.connectionId !== null) {
+      message.connectionId = String(object.connectionId);
+    } else {
+      message.connectionId = "";
+    }
+    if (object.bech32prefix !== undefined && object.bech32prefix !== null) {
+      message.bech32prefix = String(object.bech32prefix);
+    } else {
+      message.bech32prefix = "";
+    }
+    if (object.transferChannelId !== undefined && object.transferChannelId !== null) {
+      message.transferChannelId = String(object.transferChannelId);
+    } else {
+      message.transferChannelId = "";
+    }
+    if (object.validators !== undefined && object.validators !== null) {
+      for (const e of object.validators) {
+        message.validators.push(Validator.fromJSON(e));
+      }
+    }
+    if (object.blacklistedValidators !== undefined && object.blacklistedValidators !== null) {
+      for (const e of object.blacklistedValidators) {
+        message.blacklistedValidators.push(Validator.fromJSON(e));
+      }
+    }
+    if (object.withdrawalAccount !== undefined && object.withdrawalAccount !== null) {
+      message.withdrawalAccount = ICAAccount.fromJSON(object.withdrawalAccount);
+    } else {
+      message.withdrawalAccount = undefined;
+    }
+    if (object.feeAccount !== undefined && object.feeAccount !== null) {
+      message.feeAccount = ICAAccount.fromJSON(object.feeAccount);
+    } else {
+      message.feeAccount = undefined;
+    }
+    if (object.delegationAccount !== undefined && object.delegationAccount !== null) {
+      message.delegationAccount = ICAAccount.fromJSON(object.delegationAccount);
+    } else {
+      message.delegationAccount = undefined;
+    }
+    if (object.redemptionAccount !== undefined && object.redemptionAccount !== null) {
+      message.redemptionAccount = ICAAccount.fromJSON(object.redemptionAccount);
+    } else {
+      message.redemptionAccount = undefined;
+    }
+    if (object.ibcDenom !== undefined && object.ibcDenom !== null) {
+      message.ibcDenom = String(object.ibcDenom);
+    } else {
+      message.ibcDenom = "";
+    }
+    if (object.hostDenom !== undefined && object.hostDenom !== null) {
+      message.hostDenom = String(object.hostDenom);
+    } else {
+      message.hostDenom = "";
+    }
+    if (object.lastRedemptionRate !== undefined && object.lastRedemptionRate !== null) {
+      message.lastRedemptionRate = String(object.lastRedemptionRate);
+    } else {
+      message.lastRedemptionRate = "";
+    }
+    if (object.redemptionRate !== undefined && object.redemptionRate !== null) {
+      message.redemptionRate = String(object.redemptionRate);
+    } else {
+      message.redemptionRate = "";
+    }
+    if (object.unbondingFrequency !== undefined && object.unbondingFrequency !== null) {
+      message.unbondingFrequency = Long.fromString(object.unbondingFrequency);
+    } else {
+      message.unbondingFrequency = Long.UZERO;
+    }
+    if (object.stakedBal !== undefined && object.stakedBal !== null) {
+      message.stakedBal = Long.fromString(object.stakedBal);
+    } else {
+      message.stakedBal = Long.UZERO;
+    }
+    if (object.address !== undefined && object.address !== null) {
+      message.address = String(object.address);
+    } else {
+      message.address = "";
+    }
+    return message;
   },
 
   toJSON(message: HostZone): unknown {
@@ -210,23 +272,31 @@ export const HostZone = {
     message.bech32prefix !== undefined && (obj.bech32prefix = message.bech32prefix);
     message.transferChannelId !== undefined && (obj.transferChannelId = message.transferChannelId);
     if (message.validators) {
-      obj.validators = message.validators.map((e) => e ? Validator.toJSON(e) : undefined);
+      obj.validators = message.validators.map((e) => (e ? Validator.toJSON(e) : undefined));
     } else {
       obj.validators = [];
     }
     if (message.blacklistedValidators) {
-      obj.blacklistedValidators = message.blacklistedValidators.map((e) => e ? Validator.toJSON(e) : undefined);
+      obj.blacklistedValidators = message.blacklistedValidators.map((e) =>
+        e ? Validator.toJSON(e) : undefined,
+      );
     } else {
       obj.blacklistedValidators = [];
     }
     message.withdrawalAccount !== undefined &&
-      (obj.withdrawalAccount = message.withdrawalAccount ? ICAAccount.toJSON(message.withdrawalAccount) : undefined);
+      (obj.withdrawalAccount = message.withdrawalAccount
+        ? ICAAccount.toJSON(message.withdrawalAccount)
+        : undefined);
     message.feeAccount !== undefined &&
       (obj.feeAccount = message.feeAccount ? ICAAccount.toJSON(message.feeAccount) : undefined);
     message.delegationAccount !== undefined &&
-      (obj.delegationAccount = message.delegationAccount ? ICAAccount.toJSON(message.delegationAccount) : undefined);
+      (obj.delegationAccount = message.delegationAccount
+        ? ICAAccount.toJSON(message.delegationAccount)
+        : undefined);
     message.redemptionAccount !== undefined &&
-      (obj.redemptionAccount = message.redemptionAccount ? ICAAccount.toJSON(message.redemptionAccount) : undefined);
+      (obj.redemptionAccount = message.redemptionAccount
+        ? ICAAccount.toJSON(message.redemptionAccount)
+        : undefined);
     message.ibcDenom !== undefined && (obj.ibcDenom = message.ibcDenom);
     message.hostDenom !== undefined && (obj.hostDenom = message.hostDenom);
     message.lastRedemptionRate !== undefined && (obj.lastRedemptionRate = message.lastRedemptionRate);
@@ -238,62 +308,111 @@ export const HostZone = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<HostZone>, I>>(base?: I): HostZone {
-    return HostZone.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<HostZone>, I>>(object: I): HostZone {
-    const message = createBaseHostZone();
-    message.chainId = object.chainId ?? "";
-    message.connectionId = object.connectionId ?? "";
-    message.bech32prefix = object.bech32prefix ?? "";
-    message.transferChannelId = object.transferChannelId ?? "";
-    message.validators = object.validators?.map((e) => Validator.fromPartial(e)) || [];
-    message.blacklistedValidators = object.blacklistedValidators?.map((e) => Validator.fromPartial(e)) || [];
-    message.withdrawalAccount = (object.withdrawalAccount !== undefined && object.withdrawalAccount !== null)
-      ? ICAAccount.fromPartial(object.withdrawalAccount)
-      : undefined;
-    message.feeAccount = (object.feeAccount !== undefined && object.feeAccount !== null)
-      ? ICAAccount.fromPartial(object.feeAccount)
-      : undefined;
-    message.delegationAccount = (object.delegationAccount !== undefined && object.delegationAccount !== null)
-      ? ICAAccount.fromPartial(object.delegationAccount)
-      : undefined;
-    message.redemptionAccount = (object.redemptionAccount !== undefined && object.redemptionAccount !== null)
-      ? ICAAccount.fromPartial(object.redemptionAccount)
-      : undefined;
-    message.ibcDenom = object.ibcDenom ?? "";
-    message.hostDenom = object.hostDenom ?? "";
-    message.lastRedemptionRate = object.lastRedemptionRate ?? "";
-    message.redemptionRate = object.redemptionRate ?? "";
-    message.unbondingFrequency = (object.unbondingFrequency !== undefined && object.unbondingFrequency !== null)
-      ? Long.fromValue(object.unbondingFrequency)
-      : Long.UZERO;
-    message.stakedBal = (object.stakedBal !== undefined && object.stakedBal !== null)
-      ? Long.fromValue(object.stakedBal)
-      : Long.UZERO;
-    message.address = object.address ?? "";
+  fromPartial(object: DeepPartial<HostZone>): HostZone {
+    const message = { ...baseHostZone } as HostZone;
+    message.validators = [];
+    message.blacklistedValidators = [];
+    if (object.chainId !== undefined && object.chainId !== null) {
+      message.chainId = object.chainId;
+    } else {
+      message.chainId = "";
+    }
+    if (object.connectionId !== undefined && object.connectionId !== null) {
+      message.connectionId = object.connectionId;
+    } else {
+      message.connectionId = "";
+    }
+    if (object.bech32prefix !== undefined && object.bech32prefix !== null) {
+      message.bech32prefix = object.bech32prefix;
+    } else {
+      message.bech32prefix = "";
+    }
+    if (object.transferChannelId !== undefined && object.transferChannelId !== null) {
+      message.transferChannelId = object.transferChannelId;
+    } else {
+      message.transferChannelId = "";
+    }
+    if (object.validators !== undefined && object.validators !== null) {
+      for (const e of object.validators) {
+        message.validators.push(Validator.fromPartial(e));
+      }
+    }
+    if (object.blacklistedValidators !== undefined && object.blacklistedValidators !== null) {
+      for (const e of object.blacklistedValidators) {
+        message.blacklistedValidators.push(Validator.fromPartial(e));
+      }
+    }
+    if (object.withdrawalAccount !== undefined && object.withdrawalAccount !== null) {
+      message.withdrawalAccount = ICAAccount.fromPartial(object.withdrawalAccount);
+    } else {
+      message.withdrawalAccount = undefined;
+    }
+    if (object.feeAccount !== undefined && object.feeAccount !== null) {
+      message.feeAccount = ICAAccount.fromPartial(object.feeAccount);
+    } else {
+      message.feeAccount = undefined;
+    }
+    if (object.delegationAccount !== undefined && object.delegationAccount !== null) {
+      message.delegationAccount = ICAAccount.fromPartial(object.delegationAccount);
+    } else {
+      message.delegationAccount = undefined;
+    }
+    if (object.redemptionAccount !== undefined && object.redemptionAccount !== null) {
+      message.redemptionAccount = ICAAccount.fromPartial(object.redemptionAccount);
+    } else {
+      message.redemptionAccount = undefined;
+    }
+    if (object.ibcDenom !== undefined && object.ibcDenom !== null) {
+      message.ibcDenom = object.ibcDenom;
+    } else {
+      message.ibcDenom = "";
+    }
+    if (object.hostDenom !== undefined && object.hostDenom !== null) {
+      message.hostDenom = object.hostDenom;
+    } else {
+      message.hostDenom = "";
+    }
+    if (object.lastRedemptionRate !== undefined && object.lastRedemptionRate !== null) {
+      message.lastRedemptionRate = object.lastRedemptionRate;
+    } else {
+      message.lastRedemptionRate = "";
+    }
+    if (object.redemptionRate !== undefined && object.redemptionRate !== null) {
+      message.redemptionRate = object.redemptionRate;
+    } else {
+      message.redemptionRate = "";
+    }
+    if (object.unbondingFrequency !== undefined && object.unbondingFrequency !== null) {
+      message.unbondingFrequency = object.unbondingFrequency as Long;
+    } else {
+      message.unbondingFrequency = Long.UZERO;
+    }
+    if (object.stakedBal !== undefined && object.stakedBal !== null) {
+      message.stakedBal = object.stakedBal as Long;
+    } else {
+      message.stakedBal = Long.UZERO;
+    }
+    if (object.address !== undefined && object.address !== null) {
+      message.address = object.address;
+    } else {
+      message.address = "";
+    }
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
 }

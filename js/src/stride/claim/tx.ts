@@ -1,8 +1,8 @@
 /* eslint-disable */
-import { grpc } from "@improbable-eng/grpc-web";
-import { BrowserHeaders } from "browser-headers";
 import Long from "long";
+import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
+import { BrowserHeaders } from "browser-headers";
 import { Coin } from "../../cosmos/base/v1beta1/coin";
 
 export const protobufPackage = "stride.claim";
@@ -14,8 +14,7 @@ export interface MsgSetAirdropAllocations {
   weights: string[];
 }
 
-export interface MsgSetAirdropAllocationsResponse {
-}
+export interface MsgSetAirdropAllocationsResponse {}
 
 export interface MsgClaimFreeAmount {
   user: string;
@@ -33,20 +32,16 @@ export interface MsgCreateAirdrop {
   denom: string;
 }
 
-export interface MsgCreateAirdropResponse {
-}
+export interface MsgCreateAirdropResponse {}
 
 export interface MsgDeleteAirdrop {
   distributor: string;
   identifier: string;
 }
 
-export interface MsgDeleteAirdropResponse {
-}
+export interface MsgDeleteAirdropResponse {}
 
-function createBaseMsgSetAirdropAllocations(): MsgSetAirdropAllocations {
-  return { allocator: "", airdropIdentifier: "", users: [], weights: [] };
-}
+const baseMsgSetAirdropAllocations: object = { allocator: "", airdropIdentifier: "", users: "", weights: "" };
 
 export const MsgSetAirdropAllocations = {
   encode(message: MsgSetAirdropAllocations, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -68,7 +63,9 @@ export const MsgSetAirdropAllocations = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgSetAirdropAllocations {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgSetAirdropAllocations();
+    const message = { ...baseMsgSetAirdropAllocations } as MsgSetAirdropAllocations;
+    message.users = [];
+    message.weights = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -93,12 +90,30 @@ export const MsgSetAirdropAllocations = {
   },
 
   fromJSON(object: any): MsgSetAirdropAllocations {
-    return {
-      allocator: isSet(object.allocator) ? String(object.allocator) : "",
-      airdropIdentifier: isSet(object.airdropIdentifier) ? String(object.airdropIdentifier) : "",
-      users: Array.isArray(object?.users) ? object.users.map((e: any) => String(e)) : [],
-      weights: Array.isArray(object?.weights) ? object.weights.map((e: any) => String(e)) : [],
-    };
+    const message = { ...baseMsgSetAirdropAllocations } as MsgSetAirdropAllocations;
+    message.users = [];
+    message.weights = [];
+    if (object.allocator !== undefined && object.allocator !== null) {
+      message.allocator = String(object.allocator);
+    } else {
+      message.allocator = "";
+    }
+    if (object.airdropIdentifier !== undefined && object.airdropIdentifier !== null) {
+      message.airdropIdentifier = String(object.airdropIdentifier);
+    } else {
+      message.airdropIdentifier = "";
+    }
+    if (object.users !== undefined && object.users !== null) {
+      for (const e of object.users) {
+        message.users.push(String(e));
+      }
+    }
+    if (object.weights !== undefined && object.weights !== null) {
+      for (const e of object.weights) {
+        message.weights.push(String(e));
+      }
+    }
+    return message;
   },
 
   toJSON(message: MsgSetAirdropAllocations): unknown {
@@ -118,23 +133,35 @@ export const MsgSetAirdropAllocations = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgSetAirdropAllocations>, I>>(base?: I): MsgSetAirdropAllocations {
-    return MsgSetAirdropAllocations.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgSetAirdropAllocations>, I>>(object: I): MsgSetAirdropAllocations {
-    const message = createBaseMsgSetAirdropAllocations();
-    message.allocator = object.allocator ?? "";
-    message.airdropIdentifier = object.airdropIdentifier ?? "";
-    message.users = object.users?.map((e) => e) || [];
-    message.weights = object.weights?.map((e) => e) || [];
+  fromPartial(object: DeepPartial<MsgSetAirdropAllocations>): MsgSetAirdropAllocations {
+    const message = { ...baseMsgSetAirdropAllocations } as MsgSetAirdropAllocations;
+    message.users = [];
+    message.weights = [];
+    if (object.allocator !== undefined && object.allocator !== null) {
+      message.allocator = object.allocator;
+    } else {
+      message.allocator = "";
+    }
+    if (object.airdropIdentifier !== undefined && object.airdropIdentifier !== null) {
+      message.airdropIdentifier = object.airdropIdentifier;
+    } else {
+      message.airdropIdentifier = "";
+    }
+    if (object.users !== undefined && object.users !== null) {
+      for (const e of object.users) {
+        message.users.push(e);
+      }
+    }
+    if (object.weights !== undefined && object.weights !== null) {
+      for (const e of object.weights) {
+        message.weights.push(e);
+      }
+    }
     return message;
   },
 };
 
-function createBaseMsgSetAirdropAllocationsResponse(): MsgSetAirdropAllocationsResponse {
-  return {};
-}
+const baseMsgSetAirdropAllocationsResponse: object = {};
 
 export const MsgSetAirdropAllocationsResponse = {
   encode(_: MsgSetAirdropAllocationsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -144,7 +171,7 @@ export const MsgSetAirdropAllocationsResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgSetAirdropAllocationsResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgSetAirdropAllocationsResponse();
+    const message = { ...baseMsgSetAirdropAllocationsResponse } as MsgSetAirdropAllocationsResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -157,7 +184,8 @@ export const MsgSetAirdropAllocationsResponse = {
   },
 
   fromJSON(_: any): MsgSetAirdropAllocationsResponse {
-    return {};
+    const message = { ...baseMsgSetAirdropAllocationsResponse } as MsgSetAirdropAllocationsResponse;
+    return message;
   },
 
   toJSON(_: MsgSetAirdropAllocationsResponse): unknown {
@@ -165,23 +193,13 @@ export const MsgSetAirdropAllocationsResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgSetAirdropAllocationsResponse>, I>>(
-    base?: I,
-  ): MsgSetAirdropAllocationsResponse {
-    return MsgSetAirdropAllocationsResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgSetAirdropAllocationsResponse>, I>>(
-    _: I,
-  ): MsgSetAirdropAllocationsResponse {
-    const message = createBaseMsgSetAirdropAllocationsResponse();
+  fromPartial(_: DeepPartial<MsgSetAirdropAllocationsResponse>): MsgSetAirdropAllocationsResponse {
+    const message = { ...baseMsgSetAirdropAllocationsResponse } as MsgSetAirdropAllocationsResponse;
     return message;
   },
 };
 
-function createBaseMsgClaimFreeAmount(): MsgClaimFreeAmount {
-  return { user: "" };
-}
+const baseMsgClaimFreeAmount: object = { user: "" };
 
 export const MsgClaimFreeAmount = {
   encode(message: MsgClaimFreeAmount, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -194,7 +212,7 @@ export const MsgClaimFreeAmount = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgClaimFreeAmount {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgClaimFreeAmount();
+    const message = { ...baseMsgClaimFreeAmount } as MsgClaimFreeAmount;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -210,7 +228,13 @@ export const MsgClaimFreeAmount = {
   },
 
   fromJSON(object: any): MsgClaimFreeAmount {
-    return { user: isSet(object.user) ? String(object.user) : "" };
+    const message = { ...baseMsgClaimFreeAmount } as MsgClaimFreeAmount;
+    if (object.user !== undefined && object.user !== null) {
+      message.user = String(object.user);
+    } else {
+      message.user = "";
+    }
+    return message;
   },
 
   toJSON(message: MsgClaimFreeAmount): unknown {
@@ -219,20 +243,18 @@ export const MsgClaimFreeAmount = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgClaimFreeAmount>, I>>(base?: I): MsgClaimFreeAmount {
-    return MsgClaimFreeAmount.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgClaimFreeAmount>, I>>(object: I): MsgClaimFreeAmount {
-    const message = createBaseMsgClaimFreeAmount();
-    message.user = object.user ?? "";
+  fromPartial(object: DeepPartial<MsgClaimFreeAmount>): MsgClaimFreeAmount {
+    const message = { ...baseMsgClaimFreeAmount } as MsgClaimFreeAmount;
+    if (object.user !== undefined && object.user !== null) {
+      message.user = object.user;
+    } else {
+      message.user = "";
+    }
     return message;
   },
 };
 
-function createBaseMsgClaimFreeAmountResponse(): MsgClaimFreeAmountResponse {
-  return { claimedAmount: [] };
-}
+const baseMsgClaimFreeAmountResponse: object = {};
 
 export const MsgClaimFreeAmountResponse = {
   encode(message: MsgClaimFreeAmountResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -245,7 +267,8 @@ export const MsgClaimFreeAmountResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgClaimFreeAmountResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgClaimFreeAmountResponse();
+    const message = { ...baseMsgClaimFreeAmountResponse } as MsgClaimFreeAmountResponse;
+    message.claimedAmount = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -261,35 +284,45 @@ export const MsgClaimFreeAmountResponse = {
   },
 
   fromJSON(object: any): MsgClaimFreeAmountResponse {
-    return {
-      claimedAmount: Array.isArray(object?.claimedAmount) ? object.claimedAmount.map((e: any) => Coin.fromJSON(e)) : [],
-    };
+    const message = { ...baseMsgClaimFreeAmountResponse } as MsgClaimFreeAmountResponse;
+    message.claimedAmount = [];
+    if (object.claimedAmount !== undefined && object.claimedAmount !== null) {
+      for (const e of object.claimedAmount) {
+        message.claimedAmount.push(Coin.fromJSON(e));
+      }
+    }
+    return message;
   },
 
   toJSON(message: MsgClaimFreeAmountResponse): unknown {
     const obj: any = {};
     if (message.claimedAmount) {
-      obj.claimedAmount = message.claimedAmount.map((e) => e ? Coin.toJSON(e) : undefined);
+      obj.claimedAmount = message.claimedAmount.map((e) => (e ? Coin.toJSON(e) : undefined));
     } else {
       obj.claimedAmount = [];
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgClaimFreeAmountResponse>, I>>(base?: I): MsgClaimFreeAmountResponse {
-    return MsgClaimFreeAmountResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgClaimFreeAmountResponse>, I>>(object: I): MsgClaimFreeAmountResponse {
-    const message = createBaseMsgClaimFreeAmountResponse();
-    message.claimedAmount = object.claimedAmount?.map((e) => Coin.fromPartial(e)) || [];
+  fromPartial(object: DeepPartial<MsgClaimFreeAmountResponse>): MsgClaimFreeAmountResponse {
+    const message = { ...baseMsgClaimFreeAmountResponse } as MsgClaimFreeAmountResponse;
+    message.claimedAmount = [];
+    if (object.claimedAmount !== undefined && object.claimedAmount !== null) {
+      for (const e of object.claimedAmount) {
+        message.claimedAmount.push(Coin.fromPartial(e));
+      }
+    }
     return message;
   },
 };
 
-function createBaseMsgCreateAirdrop(): MsgCreateAirdrop {
-  return { distributor: "", identifier: "", startTime: Long.UZERO, duration: Long.UZERO, denom: "" };
-}
+const baseMsgCreateAirdrop: object = {
+  distributor: "",
+  identifier: "",
+  startTime: Long.UZERO,
+  duration: Long.UZERO,
+  denom: "",
+};
 
 export const MsgCreateAirdrop = {
   encode(message: MsgCreateAirdrop, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -314,7 +347,7 @@ export const MsgCreateAirdrop = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateAirdrop {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgCreateAirdrop();
+    const message = { ...baseMsgCreateAirdrop } as MsgCreateAirdrop;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -342,13 +375,33 @@ export const MsgCreateAirdrop = {
   },
 
   fromJSON(object: any): MsgCreateAirdrop {
-    return {
-      distributor: isSet(object.distributor) ? String(object.distributor) : "",
-      identifier: isSet(object.identifier) ? String(object.identifier) : "",
-      startTime: isSet(object.startTime) ? Long.fromValue(object.startTime) : Long.UZERO,
-      duration: isSet(object.duration) ? Long.fromValue(object.duration) : Long.UZERO,
-      denom: isSet(object.denom) ? String(object.denom) : "",
-    };
+    const message = { ...baseMsgCreateAirdrop } as MsgCreateAirdrop;
+    if (object.distributor !== undefined && object.distributor !== null) {
+      message.distributor = String(object.distributor);
+    } else {
+      message.distributor = "";
+    }
+    if (object.identifier !== undefined && object.identifier !== null) {
+      message.identifier = String(object.identifier);
+    } else {
+      message.identifier = "";
+    }
+    if (object.startTime !== undefined && object.startTime !== null) {
+      message.startTime = Long.fromString(object.startTime);
+    } else {
+      message.startTime = Long.UZERO;
+    }
+    if (object.duration !== undefined && object.duration !== null) {
+      message.duration = Long.fromString(object.duration);
+    } else {
+      message.duration = Long.UZERO;
+    }
+    if (object.denom !== undefined && object.denom !== null) {
+      message.denom = String(object.denom);
+    } else {
+      message.denom = "";
+    }
+    return message;
   },
 
   toJSON(message: MsgCreateAirdrop): unknown {
@@ -361,28 +414,38 @@ export const MsgCreateAirdrop = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgCreateAirdrop>, I>>(base?: I): MsgCreateAirdrop {
-    return MsgCreateAirdrop.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgCreateAirdrop>, I>>(object: I): MsgCreateAirdrop {
-    const message = createBaseMsgCreateAirdrop();
-    message.distributor = object.distributor ?? "";
-    message.identifier = object.identifier ?? "";
-    message.startTime = (object.startTime !== undefined && object.startTime !== null)
-      ? Long.fromValue(object.startTime)
-      : Long.UZERO;
-    message.duration = (object.duration !== undefined && object.duration !== null)
-      ? Long.fromValue(object.duration)
-      : Long.UZERO;
-    message.denom = object.denom ?? "";
+  fromPartial(object: DeepPartial<MsgCreateAirdrop>): MsgCreateAirdrop {
+    const message = { ...baseMsgCreateAirdrop } as MsgCreateAirdrop;
+    if (object.distributor !== undefined && object.distributor !== null) {
+      message.distributor = object.distributor;
+    } else {
+      message.distributor = "";
+    }
+    if (object.identifier !== undefined && object.identifier !== null) {
+      message.identifier = object.identifier;
+    } else {
+      message.identifier = "";
+    }
+    if (object.startTime !== undefined && object.startTime !== null) {
+      message.startTime = object.startTime as Long;
+    } else {
+      message.startTime = Long.UZERO;
+    }
+    if (object.duration !== undefined && object.duration !== null) {
+      message.duration = object.duration as Long;
+    } else {
+      message.duration = Long.UZERO;
+    }
+    if (object.denom !== undefined && object.denom !== null) {
+      message.denom = object.denom;
+    } else {
+      message.denom = "";
+    }
     return message;
   },
 };
 
-function createBaseMsgCreateAirdropResponse(): MsgCreateAirdropResponse {
-  return {};
-}
+const baseMsgCreateAirdropResponse: object = {};
 
 export const MsgCreateAirdropResponse = {
   encode(_: MsgCreateAirdropResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -392,7 +455,7 @@ export const MsgCreateAirdropResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateAirdropResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgCreateAirdropResponse();
+    const message = { ...baseMsgCreateAirdropResponse } as MsgCreateAirdropResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -405,7 +468,8 @@ export const MsgCreateAirdropResponse = {
   },
 
   fromJSON(_: any): MsgCreateAirdropResponse {
-    return {};
+    const message = { ...baseMsgCreateAirdropResponse } as MsgCreateAirdropResponse;
+    return message;
   },
 
   toJSON(_: MsgCreateAirdropResponse): unknown {
@@ -413,19 +477,13 @@ export const MsgCreateAirdropResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgCreateAirdropResponse>, I>>(base?: I): MsgCreateAirdropResponse {
-    return MsgCreateAirdropResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgCreateAirdropResponse>, I>>(_: I): MsgCreateAirdropResponse {
-    const message = createBaseMsgCreateAirdropResponse();
+  fromPartial(_: DeepPartial<MsgCreateAirdropResponse>): MsgCreateAirdropResponse {
+    const message = { ...baseMsgCreateAirdropResponse } as MsgCreateAirdropResponse;
     return message;
   },
 };
 
-function createBaseMsgDeleteAirdrop(): MsgDeleteAirdrop {
-  return { distributor: "", identifier: "" };
-}
+const baseMsgDeleteAirdrop: object = { distributor: "", identifier: "" };
 
 export const MsgDeleteAirdrop = {
   encode(message: MsgDeleteAirdrop, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -441,7 +499,7 @@ export const MsgDeleteAirdrop = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgDeleteAirdrop {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgDeleteAirdrop();
+    const message = { ...baseMsgDeleteAirdrop } as MsgDeleteAirdrop;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -460,10 +518,18 @@ export const MsgDeleteAirdrop = {
   },
 
   fromJSON(object: any): MsgDeleteAirdrop {
-    return {
-      distributor: isSet(object.distributor) ? String(object.distributor) : "",
-      identifier: isSet(object.identifier) ? String(object.identifier) : "",
-    };
+    const message = { ...baseMsgDeleteAirdrop } as MsgDeleteAirdrop;
+    if (object.distributor !== undefined && object.distributor !== null) {
+      message.distributor = String(object.distributor);
+    } else {
+      message.distributor = "";
+    }
+    if (object.identifier !== undefined && object.identifier !== null) {
+      message.identifier = String(object.identifier);
+    } else {
+      message.identifier = "";
+    }
+    return message;
   },
 
   toJSON(message: MsgDeleteAirdrop): unknown {
@@ -473,21 +539,23 @@ export const MsgDeleteAirdrop = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgDeleteAirdrop>, I>>(base?: I): MsgDeleteAirdrop {
-    return MsgDeleteAirdrop.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgDeleteAirdrop>, I>>(object: I): MsgDeleteAirdrop {
-    const message = createBaseMsgDeleteAirdrop();
-    message.distributor = object.distributor ?? "";
-    message.identifier = object.identifier ?? "";
+  fromPartial(object: DeepPartial<MsgDeleteAirdrop>): MsgDeleteAirdrop {
+    const message = { ...baseMsgDeleteAirdrop } as MsgDeleteAirdrop;
+    if (object.distributor !== undefined && object.distributor !== null) {
+      message.distributor = object.distributor;
+    } else {
+      message.distributor = "";
+    }
+    if (object.identifier !== undefined && object.identifier !== null) {
+      message.identifier = object.identifier;
+    } else {
+      message.identifier = "";
+    }
     return message;
   },
 };
 
-function createBaseMsgDeleteAirdropResponse(): MsgDeleteAirdropResponse {
-  return {};
-}
+const baseMsgDeleteAirdropResponse: object = {};
 
 export const MsgDeleteAirdropResponse = {
   encode(_: MsgDeleteAirdropResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -497,7 +565,7 @@ export const MsgDeleteAirdropResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgDeleteAirdropResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgDeleteAirdropResponse();
+    const message = { ...baseMsgDeleteAirdropResponse } as MsgDeleteAirdropResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -510,7 +578,8 @@ export const MsgDeleteAirdropResponse = {
   },
 
   fromJSON(_: any): MsgDeleteAirdropResponse {
-    return {};
+    const message = { ...baseMsgDeleteAirdropResponse } as MsgDeleteAirdropResponse;
+    return message;
   },
 
   toJSON(_: MsgDeleteAirdropResponse): unknown {
@@ -518,12 +587,8 @@ export const MsgDeleteAirdropResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgDeleteAirdropResponse>, I>>(base?: I): MsgDeleteAirdropResponse {
-    return MsgDeleteAirdropResponse.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgDeleteAirdropResponse>, I>>(_: I): MsgDeleteAirdropResponse {
-    const message = createBaseMsgDeleteAirdropResponse();
+  fromPartial(_: DeepPartial<MsgDeleteAirdropResponse>): MsgDeleteAirdropResponse {
+    const message = { ...baseMsgDeleteAirdropResponse } as MsgDeleteAirdropResponse;
     return message;
   },
 };
@@ -538,8 +603,14 @@ export interface Msg {
     request: DeepPartial<MsgClaimFreeAmount>,
     metadata?: grpc.Metadata,
   ): Promise<MsgClaimFreeAmountResponse>;
-  CreateAirdrop(request: DeepPartial<MsgCreateAirdrop>, metadata?: grpc.Metadata): Promise<MsgCreateAirdropResponse>;
-  DeleteAirdrop(request: DeepPartial<MsgDeleteAirdrop>, metadata?: grpc.Metadata): Promise<MsgDeleteAirdropResponse>;
+  CreateAirdrop(
+    request: DeepPartial<MsgCreateAirdrop>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgCreateAirdropResponse>;
+  DeleteAirdrop(
+    request: DeepPartial<MsgDeleteAirdrop>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgDeleteAirdropResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -557,7 +628,11 @@ export class MsgClientImpl implements Msg {
     request: DeepPartial<MsgSetAirdropAllocations>,
     metadata?: grpc.Metadata,
   ): Promise<MsgSetAirdropAllocationsResponse> {
-    return this.rpc.unary(MsgSetAirdropAllocationsDesc, MsgSetAirdropAllocations.fromPartial(request), metadata);
+    return this.rpc.unary(
+      MsgSetAirdropAllocationsDesc,
+      MsgSetAirdropAllocations.fromPartial(request),
+      metadata,
+    );
   }
 
   ClaimFreeAmount(
@@ -567,16 +642,24 @@ export class MsgClientImpl implements Msg {
     return this.rpc.unary(MsgClaimFreeAmountDesc, MsgClaimFreeAmount.fromPartial(request), metadata);
   }
 
-  CreateAirdrop(request: DeepPartial<MsgCreateAirdrop>, metadata?: grpc.Metadata): Promise<MsgCreateAirdropResponse> {
+  CreateAirdrop(
+    request: DeepPartial<MsgCreateAirdrop>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgCreateAirdropResponse> {
     return this.rpc.unary(MsgCreateAirdropDesc, MsgCreateAirdrop.fromPartial(request), metadata);
   }
 
-  DeleteAirdrop(request: DeepPartial<MsgDeleteAirdrop>, metadata?: grpc.Metadata): Promise<MsgDeleteAirdropResponse> {
+  DeleteAirdrop(
+    request: DeepPartial<MsgDeleteAirdrop>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgDeleteAirdropResponse> {
     return this.rpc.unary(MsgDeleteAirdropDesc, MsgDeleteAirdrop.fromPartial(request), metadata);
   }
 }
 
-export const MsgDesc = { serviceName: "stride.claim.Msg" };
+export const MsgDesc = {
+  serviceName: "stride.claim.Msg",
+};
 
 export const MsgSetAirdropAllocationsDesc: UnaryMethodDefinitionish = {
   methodName: "SetAirdropAllocations",
@@ -590,11 +673,10 @@ export const MsgSetAirdropAllocationsDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = MsgSetAirdropAllocationsResponse.decode(data);
       return {
-        ...value,
+        ...MsgSetAirdropAllocationsResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -613,11 +695,10 @@ export const MsgClaimFreeAmountDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = MsgClaimFreeAmountResponse.decode(data);
       return {
-        ...value,
+        ...MsgClaimFreeAmountResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -636,11 +717,10 @@ export const MsgCreateAirdropDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = MsgCreateAirdropResponse.decode(data);
       return {
-        ...value,
+        ...MsgCreateAirdropResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -659,11 +739,10 @@ export const MsgDeleteAirdropDesc: UnaryMethodDefinitionish = {
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
-      const value = MsgDeleteAirdropResponse.decode(data);
       return {
-        ...value,
+        ...MsgDeleteAirdropResponse.decode(data),
         toObject() {
-          return value;
+          return this;
         },
       };
     },
@@ -692,7 +771,6 @@ export class GrpcWebImpl {
 
     debug?: boolean;
     metadata?: grpc.Metadata;
-    upStreamRetryCodes?: number[];
   };
 
   constructor(
@@ -702,7 +780,6 @@ export class GrpcWebImpl {
 
       debug?: boolean;
       metadata?: grpc.Metadata;
-      upStreamRetryCodes?: number[];
     },
   ) {
     this.host = host;
@@ -715,9 +792,10 @@ export class GrpcWebImpl {
     metadata: grpc.Metadata | undefined,
   ): Promise<any> {
     const request = { ..._request, ...methodDesc.requestType };
-    const maybeCombinedMetadata = metadata && this.options.metadata
-      ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
-      : metadata || this.options.metadata;
+    const maybeCombinedMetadata =
+      metadata && this.options.metadata
+        ? new BrowserHeaders({ ...this.options?.metadata.headersMap, ...metadata?.headersMap })
+        : metadata || this.options.metadata;
     return new Promise((resolve, reject) => {
       grpc.unary(methodDesc, {
         request,
@@ -727,9 +805,11 @@ export class GrpcWebImpl {
         debug: this.options.debug,
         onEnd: function (response) {
           if (response.status === grpc.Code.OK) {
-            resolve(response.message!.toObject());
+            resolve(response.message);
           } else {
-            const err = new GrpcWebError(response.statusMessage, response.status, response.trailers);
+            const err = new Error(response.statusMessage) as any;
+            err.code = response.status;
+            err.metadata = response.trailers;
             reject(err);
           }
         },
@@ -738,48 +818,18 @@ export class GrpcWebImpl {
   }
 }
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  throw "Unable to locate global object";
-})();
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
-export class GrpcWebError extends tsProtoGlobalThis.Error {
-  constructor(message: string, public code: grpc.Code, public metadata: grpc.Metadata) {
-    super(message);
-  }
 }

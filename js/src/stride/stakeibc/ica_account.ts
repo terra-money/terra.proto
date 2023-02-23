@@ -1,7 +1,7 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal";
-import { Delegation } from "./delegation";
+import { Delegation } from "../../stride/stakeibc/delegation";
 
 export const protobufPackage = "stride.stakeibc";
 
@@ -44,9 +44,8 @@ export function iCAAccountTypeToJSON(object: ICAAccountType): string {
       return "WITHDRAWAL";
     case ICAAccountType.REDEMPTION:
       return "REDEMPTION";
-    case ICAAccountType.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return "UNKNOWN";
   }
 }
 
@@ -60,9 +59,7 @@ export interface ICAAccount {
   target: ICAAccountType;
 }
 
-function createBaseICAAccount(): ICAAccount {
-  return { address: "", delegations: [], target: 0 };
-}
+const baseICAAccount: object = { address: "", target: 0 };
 
 export const ICAAccount = {
   encode(message: ICAAccount, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -81,7 +78,8 @@ export const ICAAccount = {
   decode(input: _m0.Reader | Uint8Array, length?: number): ICAAccount {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseICAAccount();
+    const message = { ...baseICAAccount } as ICAAccount;
+    message.delegations = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -103,18 +101,31 @@ export const ICAAccount = {
   },
 
   fromJSON(object: any): ICAAccount {
-    return {
-      address: isSet(object.address) ? String(object.address) : "",
-      delegations: Array.isArray(object?.delegations) ? object.delegations.map((e: any) => Delegation.fromJSON(e)) : [],
-      target: isSet(object.target) ? iCAAccountTypeFromJSON(object.target) : 0,
-    };
+    const message = { ...baseICAAccount } as ICAAccount;
+    message.delegations = [];
+    if (object.address !== undefined && object.address !== null) {
+      message.address = String(object.address);
+    } else {
+      message.address = "";
+    }
+    if (object.delegations !== undefined && object.delegations !== null) {
+      for (const e of object.delegations) {
+        message.delegations.push(Delegation.fromJSON(e));
+      }
+    }
+    if (object.target !== undefined && object.target !== null) {
+      message.target = iCAAccountTypeFromJSON(object.target);
+    } else {
+      message.target = 0;
+    }
+    return message;
   },
 
   toJSON(message: ICAAccount): unknown {
     const obj: any = {};
     message.address !== undefined && (obj.address = message.address);
     if (message.delegations) {
-      obj.delegations = message.delegations.map((e) => e ? Delegation.toJSON(e) : undefined);
+      obj.delegations = message.delegations.map((e) => (e ? Delegation.toJSON(e) : undefined));
     } else {
       obj.delegations = [];
     }
@@ -122,36 +133,40 @@ export const ICAAccount = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ICAAccount>, I>>(base?: I): ICAAccount {
-    return ICAAccount.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<ICAAccount>, I>>(object: I): ICAAccount {
-    const message = createBaseICAAccount();
-    message.address = object.address ?? "";
-    message.delegations = object.delegations?.map((e) => Delegation.fromPartial(e)) || [];
-    message.target = object.target ?? 0;
+  fromPartial(object: DeepPartial<ICAAccount>): ICAAccount {
+    const message = { ...baseICAAccount } as ICAAccount;
+    message.delegations = [];
+    if (object.address !== undefined && object.address !== null) {
+      message.address = object.address;
+    } else {
+      message.address = "";
+    }
+    if (object.delegations !== undefined && object.delegations !== null) {
+      for (const e of object.delegations) {
+        message.delegations.push(Delegation.fromPartial(e));
+      }
+    }
+    if (object.target !== undefined && object.target !== null) {
+      message.target = object.target;
+    } else {
+      message.target = 0;
+    }
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
 }

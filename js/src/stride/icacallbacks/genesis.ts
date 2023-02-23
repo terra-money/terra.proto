@@ -1,8 +1,8 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal";
-import { CallbackData } from "./callback_data";
-import { Params } from "./params";
+import { Params } from "../../stride/icacallbacks/params";
+import { CallbackData } from "../../stride/icacallbacks/callback_data";
 
 export const protobufPackage = "stride.icacallbacks";
 
@@ -14,9 +14,7 @@ export interface GenesisState {
   callbackDataList: CallbackData[];
 }
 
-function createBaseGenesisState(): GenesisState {
-  return { params: undefined, portId: "", callbackDataList: [] };
-}
+const baseGenesisState: object = { portId: "" };
 
 export const GenesisState = {
   encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -35,7 +33,8 @@ export const GenesisState = {
   decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGenesisState();
+    const message = { ...baseGenesisState } as GenesisState;
+    message.callbackDataList = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -57,13 +56,24 @@ export const GenesisState = {
   },
 
   fromJSON(object: any): GenesisState {
-    return {
-      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
-      portId: isSet(object.portId) ? String(object.portId) : "",
-      callbackDataList: Array.isArray(object?.callbackDataList)
-        ? object.callbackDataList.map((e: any) => CallbackData.fromJSON(e))
-        : [],
-    };
+    const message = { ...baseGenesisState } as GenesisState;
+    message.callbackDataList = [];
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromJSON(object.params);
+    } else {
+      message.params = undefined;
+    }
+    if (object.portId !== undefined && object.portId !== null) {
+      message.portId = String(object.portId);
+    } else {
+      message.portId = "";
+    }
+    if (object.callbackDataList !== undefined && object.callbackDataList !== null) {
+      for (const e of object.callbackDataList) {
+        message.callbackDataList.push(CallbackData.fromJSON(e));
+      }
+    }
+    return message;
   },
 
   toJSON(message: GenesisState): unknown {
@@ -71,45 +81,47 @@ export const GenesisState = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     message.portId !== undefined && (obj.portId = message.portId);
     if (message.callbackDataList) {
-      obj.callbackDataList = message.callbackDataList.map((e) => e ? CallbackData.toJSON(e) : undefined);
+      obj.callbackDataList = message.callbackDataList.map((e) => (e ? CallbackData.toJSON(e) : undefined));
     } else {
       obj.callbackDataList = [];
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<GenesisState>, I>>(base?: I): GenesisState {
-    return GenesisState.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
-    const message = createBaseGenesisState();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
-    message.portId = object.portId ?? "";
-    message.callbackDataList = object.callbackDataList?.map((e) => CallbackData.fromPartial(e)) || [];
+  fromPartial(object: DeepPartial<GenesisState>): GenesisState {
+    const message = { ...baseGenesisState } as GenesisState;
+    message.callbackDataList = [];
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromPartial(object.params);
+    } else {
+      message.params = undefined;
+    }
+    if (object.portId !== undefined && object.portId !== null) {
+      message.portId = object.portId;
+    } else {
+      message.portId = "";
+    }
+    if (object.callbackDataList !== undefined && object.callbackDataList !== null) {
+      for (const e of object.callbackDataList) {
+        message.callbackDataList.push(CallbackData.fromPartial(e));
+      }
+    }
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
 }

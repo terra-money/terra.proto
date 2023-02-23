@@ -40,27 +40,24 @@ export interface Params_ZoneComAddressEntry {
   value: string;
 }
 
-function createBaseParams(): Params {
-  return {
-    rewardsInterval: Long.UZERO,
-    delegateInterval: Long.UZERO,
-    depositInterval: Long.UZERO,
-    redemptionRateInterval: Long.UZERO,
-    strideCommission: Long.UZERO,
-    zoneComAddress: {},
-    reinvestInterval: Long.UZERO,
-    validatorRebalancingThreshold: Long.UZERO,
-    icaTimeoutNanos: Long.UZERO,
-    bufferSize: Long.UZERO,
-    ibcTimeoutBlocks: Long.UZERO,
-    feeTransferTimeoutNanos: Long.UZERO,
-    maxStakeIcaCallsPerEpoch: Long.UZERO,
-    safetyMinRedemptionRateThreshold: Long.UZERO,
-    safetyMaxRedemptionRateThreshold: Long.UZERO,
-    ibcTransferTimeoutNanos: Long.UZERO,
-    safetyNumValidators: Long.UZERO,
-  };
-}
+const baseParams: object = {
+  rewardsInterval: Long.UZERO,
+  delegateInterval: Long.UZERO,
+  depositInterval: Long.UZERO,
+  redemptionRateInterval: Long.UZERO,
+  strideCommission: Long.UZERO,
+  reinvestInterval: Long.UZERO,
+  validatorRebalancingThreshold: Long.UZERO,
+  icaTimeoutNanos: Long.UZERO,
+  bufferSize: Long.UZERO,
+  ibcTimeoutBlocks: Long.UZERO,
+  feeTransferTimeoutNanos: Long.UZERO,
+  maxStakeIcaCallsPerEpoch: Long.UZERO,
+  safetyMinRedemptionRateThreshold: Long.UZERO,
+  safetyMaxRedemptionRateThreshold: Long.UZERO,
+  ibcTransferTimeoutNanos: Long.UZERO,
+  safetyNumValidators: Long.UZERO,
+};
 
 export const Params = {
   encode(message: Params, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -121,7 +118,8 @@ export const Params = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Params {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseParams();
+    const message = { ...baseParams } as Params;
+    message.zoneComAddress = {};
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -188,52 +186,110 @@ export const Params = {
   },
 
   fromJSON(object: any): Params {
-    return {
-      rewardsInterval: isSet(object.rewardsInterval) ? Long.fromValue(object.rewardsInterval) : Long.UZERO,
-      delegateInterval: isSet(object.delegateInterval) ? Long.fromValue(object.delegateInterval) : Long.UZERO,
-      depositInterval: isSet(object.depositInterval) ? Long.fromValue(object.depositInterval) : Long.UZERO,
-      redemptionRateInterval: isSet(object.redemptionRateInterval)
-        ? Long.fromValue(object.redemptionRateInterval)
-        : Long.UZERO,
-      strideCommission: isSet(object.strideCommission) ? Long.fromValue(object.strideCommission) : Long.UZERO,
-      zoneComAddress: isObject(object.zoneComAddress)
-        ? Object.entries(object.zoneComAddress).reduce<{ [key: string]: string }>((acc, [key, value]) => {
-          acc[key] = String(value);
-          return acc;
-        }, {})
-        : {},
-      reinvestInterval: isSet(object.reinvestInterval) ? Long.fromValue(object.reinvestInterval) : Long.UZERO,
-      validatorRebalancingThreshold: isSet(object.validatorRebalancingThreshold)
-        ? Long.fromValue(object.validatorRebalancingThreshold)
-        : Long.UZERO,
-      icaTimeoutNanos: isSet(object.icaTimeoutNanos) ? Long.fromValue(object.icaTimeoutNanos) : Long.UZERO,
-      bufferSize: isSet(object.bufferSize) ? Long.fromValue(object.bufferSize) : Long.UZERO,
-      ibcTimeoutBlocks: isSet(object.ibcTimeoutBlocks) ? Long.fromValue(object.ibcTimeoutBlocks) : Long.UZERO,
-      feeTransferTimeoutNanos: isSet(object.feeTransferTimeoutNanos)
-        ? Long.fromValue(object.feeTransferTimeoutNanos)
-        : Long.UZERO,
-      maxStakeIcaCallsPerEpoch: isSet(object.maxStakeIcaCallsPerEpoch)
-        ? Long.fromValue(object.maxStakeIcaCallsPerEpoch)
-        : Long.UZERO,
-      safetyMinRedemptionRateThreshold: isSet(object.safetyMinRedemptionRateThreshold)
-        ? Long.fromValue(object.safetyMinRedemptionRateThreshold)
-        : Long.UZERO,
-      safetyMaxRedemptionRateThreshold: isSet(object.safetyMaxRedemptionRateThreshold)
-        ? Long.fromValue(object.safetyMaxRedemptionRateThreshold)
-        : Long.UZERO,
-      ibcTransferTimeoutNanos: isSet(object.ibcTransferTimeoutNanos)
-        ? Long.fromValue(object.ibcTransferTimeoutNanos)
-        : Long.UZERO,
-      safetyNumValidators: isSet(object.safetyNumValidators) ? Long.fromValue(object.safetyNumValidators) : Long.UZERO,
-    };
+    const message = { ...baseParams } as Params;
+    message.zoneComAddress = {};
+    if (object.rewardsInterval !== undefined && object.rewardsInterval !== null) {
+      message.rewardsInterval = Long.fromString(object.rewardsInterval);
+    } else {
+      message.rewardsInterval = Long.UZERO;
+    }
+    if (object.delegateInterval !== undefined && object.delegateInterval !== null) {
+      message.delegateInterval = Long.fromString(object.delegateInterval);
+    } else {
+      message.delegateInterval = Long.UZERO;
+    }
+    if (object.depositInterval !== undefined && object.depositInterval !== null) {
+      message.depositInterval = Long.fromString(object.depositInterval);
+    } else {
+      message.depositInterval = Long.UZERO;
+    }
+    if (object.redemptionRateInterval !== undefined && object.redemptionRateInterval !== null) {
+      message.redemptionRateInterval = Long.fromString(object.redemptionRateInterval);
+    } else {
+      message.redemptionRateInterval = Long.UZERO;
+    }
+    if (object.strideCommission !== undefined && object.strideCommission !== null) {
+      message.strideCommission = Long.fromString(object.strideCommission);
+    } else {
+      message.strideCommission = Long.UZERO;
+    }
+    if (object.zoneComAddress !== undefined && object.zoneComAddress !== null) {
+      Object.entries(object.zoneComAddress).forEach(([key, value]) => {
+        message.zoneComAddress[key] = String(value);
+      });
+    }
+    if (object.reinvestInterval !== undefined && object.reinvestInterval !== null) {
+      message.reinvestInterval = Long.fromString(object.reinvestInterval);
+    } else {
+      message.reinvestInterval = Long.UZERO;
+    }
+    if (object.validatorRebalancingThreshold !== undefined && object.validatorRebalancingThreshold !== null) {
+      message.validatorRebalancingThreshold = Long.fromString(object.validatorRebalancingThreshold);
+    } else {
+      message.validatorRebalancingThreshold = Long.UZERO;
+    }
+    if (object.icaTimeoutNanos !== undefined && object.icaTimeoutNanos !== null) {
+      message.icaTimeoutNanos = Long.fromString(object.icaTimeoutNanos);
+    } else {
+      message.icaTimeoutNanos = Long.UZERO;
+    }
+    if (object.bufferSize !== undefined && object.bufferSize !== null) {
+      message.bufferSize = Long.fromString(object.bufferSize);
+    } else {
+      message.bufferSize = Long.UZERO;
+    }
+    if (object.ibcTimeoutBlocks !== undefined && object.ibcTimeoutBlocks !== null) {
+      message.ibcTimeoutBlocks = Long.fromString(object.ibcTimeoutBlocks);
+    } else {
+      message.ibcTimeoutBlocks = Long.UZERO;
+    }
+    if (object.feeTransferTimeoutNanos !== undefined && object.feeTransferTimeoutNanos !== null) {
+      message.feeTransferTimeoutNanos = Long.fromString(object.feeTransferTimeoutNanos);
+    } else {
+      message.feeTransferTimeoutNanos = Long.UZERO;
+    }
+    if (object.maxStakeIcaCallsPerEpoch !== undefined && object.maxStakeIcaCallsPerEpoch !== null) {
+      message.maxStakeIcaCallsPerEpoch = Long.fromString(object.maxStakeIcaCallsPerEpoch);
+    } else {
+      message.maxStakeIcaCallsPerEpoch = Long.UZERO;
+    }
+    if (
+      object.safetyMinRedemptionRateThreshold !== undefined &&
+      object.safetyMinRedemptionRateThreshold !== null
+    ) {
+      message.safetyMinRedemptionRateThreshold = Long.fromString(object.safetyMinRedemptionRateThreshold);
+    } else {
+      message.safetyMinRedemptionRateThreshold = Long.UZERO;
+    }
+    if (
+      object.safetyMaxRedemptionRateThreshold !== undefined &&
+      object.safetyMaxRedemptionRateThreshold !== null
+    ) {
+      message.safetyMaxRedemptionRateThreshold = Long.fromString(object.safetyMaxRedemptionRateThreshold);
+    } else {
+      message.safetyMaxRedemptionRateThreshold = Long.UZERO;
+    }
+    if (object.ibcTransferTimeoutNanos !== undefined && object.ibcTransferTimeoutNanos !== null) {
+      message.ibcTransferTimeoutNanos = Long.fromString(object.ibcTransferTimeoutNanos);
+    } else {
+      message.ibcTransferTimeoutNanos = Long.UZERO;
+    }
+    if (object.safetyNumValidators !== undefined && object.safetyNumValidators !== null) {
+      message.safetyNumValidators = Long.fromString(object.safetyNumValidators);
+    } else {
+      message.safetyNumValidators = Long.UZERO;
+    }
+    return message;
   },
 
   toJSON(message: Params): unknown {
     const obj: any = {};
-    message.rewardsInterval !== undefined && (obj.rewardsInterval = (message.rewardsInterval || Long.UZERO).toString());
+    message.rewardsInterval !== undefined &&
+      (obj.rewardsInterval = (message.rewardsInterval || Long.UZERO).toString());
     message.delegateInterval !== undefined &&
       (obj.delegateInterval = (message.delegateInterval || Long.UZERO).toString());
-    message.depositInterval !== undefined && (obj.depositInterval = (message.depositInterval || Long.UZERO).toString());
+    message.depositInterval !== undefined &&
+      (obj.depositInterval = (message.depositInterval || Long.UZERO).toString());
     message.redemptionRateInterval !== undefined &&
       (obj.redemptionRateInterval = (message.redemptionRateInterval || Long.UZERO).toString());
     message.strideCommission !== undefined &&
@@ -248,7 +304,8 @@ export const Params = {
       (obj.reinvestInterval = (message.reinvestInterval || Long.UZERO).toString());
     message.validatorRebalancingThreshold !== undefined &&
       (obj.validatorRebalancingThreshold = (message.validatorRebalancingThreshold || Long.UZERO).toString());
-    message.icaTimeoutNanos !== undefined && (obj.icaTimeoutNanos = (message.icaTimeoutNanos || Long.UZERO).toString());
+    message.icaTimeoutNanos !== undefined &&
+      (obj.icaTimeoutNanos = (message.icaTimeoutNanos || Long.UZERO).toString());
     message.bufferSize !== undefined && (obj.bufferSize = (message.bufferSize || Long.UZERO).toString());
     message.ibcTimeoutBlocks !== undefined &&
       (obj.ibcTimeoutBlocks = (message.ibcTimeoutBlocks || Long.UZERO).toString());
@@ -257,9 +314,13 @@ export const Params = {
     message.maxStakeIcaCallsPerEpoch !== undefined &&
       (obj.maxStakeIcaCallsPerEpoch = (message.maxStakeIcaCallsPerEpoch || Long.UZERO).toString());
     message.safetyMinRedemptionRateThreshold !== undefined &&
-      (obj.safetyMinRedemptionRateThreshold = (message.safetyMinRedemptionRateThreshold || Long.UZERO).toString());
+      (obj.safetyMinRedemptionRateThreshold = (
+        message.safetyMinRedemptionRateThreshold || Long.UZERO
+      ).toString());
     message.safetyMaxRedemptionRateThreshold !== undefined &&
-      (obj.safetyMaxRedemptionRateThreshold = (message.safetyMaxRedemptionRateThreshold || Long.UZERO).toString());
+      (obj.safetyMaxRedemptionRateThreshold = (
+        message.safetyMaxRedemptionRateThreshold || Long.UZERO
+      ).toString());
     message.ibcTransferTimeoutNanos !== undefined &&
       (obj.ibcTransferTimeoutNanos = (message.ibcTransferTimeoutNanos || Long.UZERO).toString());
     message.safetyNumValidators !== undefined &&
@@ -267,83 +328,107 @@ export const Params = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Params>, I>>(base?: I): Params {
-    return Params.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<Params>, I>>(object: I): Params {
-    const message = createBaseParams();
-    message.rewardsInterval = (object.rewardsInterval !== undefined && object.rewardsInterval !== null)
-      ? Long.fromValue(object.rewardsInterval)
-      : Long.UZERO;
-    message.delegateInterval = (object.delegateInterval !== undefined && object.delegateInterval !== null)
-      ? Long.fromValue(object.delegateInterval)
-      : Long.UZERO;
-    message.depositInterval = (object.depositInterval !== undefined && object.depositInterval !== null)
-      ? Long.fromValue(object.depositInterval)
-      : Long.UZERO;
-    message.redemptionRateInterval =
-      (object.redemptionRateInterval !== undefined && object.redemptionRateInterval !== null)
-        ? Long.fromValue(object.redemptionRateInterval)
-        : Long.UZERO;
-    message.strideCommission = (object.strideCommission !== undefined && object.strideCommission !== null)
-      ? Long.fromValue(object.strideCommission)
-      : Long.UZERO;
-    message.zoneComAddress = Object.entries(object.zoneComAddress ?? {}).reduce<{ [key: string]: string }>(
-      (acc, [key, value]) => {
+  fromPartial(object: DeepPartial<Params>): Params {
+    const message = { ...baseParams } as Params;
+    message.zoneComAddress = {};
+    if (object.rewardsInterval !== undefined && object.rewardsInterval !== null) {
+      message.rewardsInterval = object.rewardsInterval as Long;
+    } else {
+      message.rewardsInterval = Long.UZERO;
+    }
+    if (object.delegateInterval !== undefined && object.delegateInterval !== null) {
+      message.delegateInterval = object.delegateInterval as Long;
+    } else {
+      message.delegateInterval = Long.UZERO;
+    }
+    if (object.depositInterval !== undefined && object.depositInterval !== null) {
+      message.depositInterval = object.depositInterval as Long;
+    } else {
+      message.depositInterval = Long.UZERO;
+    }
+    if (object.redemptionRateInterval !== undefined && object.redemptionRateInterval !== null) {
+      message.redemptionRateInterval = object.redemptionRateInterval as Long;
+    } else {
+      message.redemptionRateInterval = Long.UZERO;
+    }
+    if (object.strideCommission !== undefined && object.strideCommission !== null) {
+      message.strideCommission = object.strideCommission as Long;
+    } else {
+      message.strideCommission = Long.UZERO;
+    }
+    if (object.zoneComAddress !== undefined && object.zoneComAddress !== null) {
+      Object.entries(object.zoneComAddress).forEach(([key, value]) => {
         if (value !== undefined) {
-          acc[key] = String(value);
+          message.zoneComAddress[key] = String(value);
         }
-        return acc;
-      },
-      {},
-    );
-    message.reinvestInterval = (object.reinvestInterval !== undefined && object.reinvestInterval !== null)
-      ? Long.fromValue(object.reinvestInterval)
-      : Long.UZERO;
-    message.validatorRebalancingThreshold =
-      (object.validatorRebalancingThreshold !== undefined && object.validatorRebalancingThreshold !== null)
-        ? Long.fromValue(object.validatorRebalancingThreshold)
-        : Long.UZERO;
-    message.icaTimeoutNanos = (object.icaTimeoutNanos !== undefined && object.icaTimeoutNanos !== null)
-      ? Long.fromValue(object.icaTimeoutNanos)
-      : Long.UZERO;
-    message.bufferSize = (object.bufferSize !== undefined && object.bufferSize !== null)
-      ? Long.fromValue(object.bufferSize)
-      : Long.UZERO;
-    message.ibcTimeoutBlocks = (object.ibcTimeoutBlocks !== undefined && object.ibcTimeoutBlocks !== null)
-      ? Long.fromValue(object.ibcTimeoutBlocks)
-      : Long.UZERO;
-    message.feeTransferTimeoutNanos =
-      (object.feeTransferTimeoutNanos !== undefined && object.feeTransferTimeoutNanos !== null)
-        ? Long.fromValue(object.feeTransferTimeoutNanos)
-        : Long.UZERO;
-    message.maxStakeIcaCallsPerEpoch =
-      (object.maxStakeIcaCallsPerEpoch !== undefined && object.maxStakeIcaCallsPerEpoch !== null)
-        ? Long.fromValue(object.maxStakeIcaCallsPerEpoch)
-        : Long.UZERO;
-    message.safetyMinRedemptionRateThreshold =
-      (object.safetyMinRedemptionRateThreshold !== undefined && object.safetyMinRedemptionRateThreshold !== null)
-        ? Long.fromValue(object.safetyMinRedemptionRateThreshold)
-        : Long.UZERO;
-    message.safetyMaxRedemptionRateThreshold =
-      (object.safetyMaxRedemptionRateThreshold !== undefined && object.safetyMaxRedemptionRateThreshold !== null)
-        ? Long.fromValue(object.safetyMaxRedemptionRateThreshold)
-        : Long.UZERO;
-    message.ibcTransferTimeoutNanos =
-      (object.ibcTransferTimeoutNanos !== undefined && object.ibcTransferTimeoutNanos !== null)
-        ? Long.fromValue(object.ibcTransferTimeoutNanos)
-        : Long.UZERO;
-    message.safetyNumValidators = (object.safetyNumValidators !== undefined && object.safetyNumValidators !== null)
-      ? Long.fromValue(object.safetyNumValidators)
-      : Long.UZERO;
+      });
+    }
+    if (object.reinvestInterval !== undefined && object.reinvestInterval !== null) {
+      message.reinvestInterval = object.reinvestInterval as Long;
+    } else {
+      message.reinvestInterval = Long.UZERO;
+    }
+    if (object.validatorRebalancingThreshold !== undefined && object.validatorRebalancingThreshold !== null) {
+      message.validatorRebalancingThreshold = object.validatorRebalancingThreshold as Long;
+    } else {
+      message.validatorRebalancingThreshold = Long.UZERO;
+    }
+    if (object.icaTimeoutNanos !== undefined && object.icaTimeoutNanos !== null) {
+      message.icaTimeoutNanos = object.icaTimeoutNanos as Long;
+    } else {
+      message.icaTimeoutNanos = Long.UZERO;
+    }
+    if (object.bufferSize !== undefined && object.bufferSize !== null) {
+      message.bufferSize = object.bufferSize as Long;
+    } else {
+      message.bufferSize = Long.UZERO;
+    }
+    if (object.ibcTimeoutBlocks !== undefined && object.ibcTimeoutBlocks !== null) {
+      message.ibcTimeoutBlocks = object.ibcTimeoutBlocks as Long;
+    } else {
+      message.ibcTimeoutBlocks = Long.UZERO;
+    }
+    if (object.feeTransferTimeoutNanos !== undefined && object.feeTransferTimeoutNanos !== null) {
+      message.feeTransferTimeoutNanos = object.feeTransferTimeoutNanos as Long;
+    } else {
+      message.feeTransferTimeoutNanos = Long.UZERO;
+    }
+    if (object.maxStakeIcaCallsPerEpoch !== undefined && object.maxStakeIcaCallsPerEpoch !== null) {
+      message.maxStakeIcaCallsPerEpoch = object.maxStakeIcaCallsPerEpoch as Long;
+    } else {
+      message.maxStakeIcaCallsPerEpoch = Long.UZERO;
+    }
+    if (
+      object.safetyMinRedemptionRateThreshold !== undefined &&
+      object.safetyMinRedemptionRateThreshold !== null
+    ) {
+      message.safetyMinRedemptionRateThreshold = object.safetyMinRedemptionRateThreshold as Long;
+    } else {
+      message.safetyMinRedemptionRateThreshold = Long.UZERO;
+    }
+    if (
+      object.safetyMaxRedemptionRateThreshold !== undefined &&
+      object.safetyMaxRedemptionRateThreshold !== null
+    ) {
+      message.safetyMaxRedemptionRateThreshold = object.safetyMaxRedemptionRateThreshold as Long;
+    } else {
+      message.safetyMaxRedemptionRateThreshold = Long.UZERO;
+    }
+    if (object.ibcTransferTimeoutNanos !== undefined && object.ibcTransferTimeoutNanos !== null) {
+      message.ibcTransferTimeoutNanos = object.ibcTransferTimeoutNanos as Long;
+    } else {
+      message.ibcTransferTimeoutNanos = Long.UZERO;
+    }
+    if (object.safetyNumValidators !== undefined && object.safetyNumValidators !== null) {
+      message.safetyNumValidators = object.safetyNumValidators as Long;
+    } else {
+      message.safetyNumValidators = Long.UZERO;
+    }
     return message;
   },
 };
 
-function createBaseParams_ZoneComAddressEntry(): Params_ZoneComAddressEntry {
-  return { key: "", value: "" };
-}
+const baseParams_ZoneComAddressEntry: object = { key: "", value: "" };
 
 export const Params_ZoneComAddressEntry = {
   encode(message: Params_ZoneComAddressEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -359,7 +444,7 @@ export const Params_ZoneComAddressEntry = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Params_ZoneComAddressEntry {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseParams_ZoneComAddressEntry();
+    const message = { ...baseParams_ZoneComAddressEntry } as Params_ZoneComAddressEntry;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -378,7 +463,18 @@ export const Params_ZoneComAddressEntry = {
   },
 
   fromJSON(object: any): Params_ZoneComAddressEntry {
-    return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object.value) ? String(object.value) : "" };
+    const message = { ...baseParams_ZoneComAddressEntry } as Params_ZoneComAddressEntry;
+    if (object.key !== undefined && object.key !== null) {
+      message.key = String(object.key);
+    } else {
+      message.key = "";
+    }
+    if (object.value !== undefined && object.value !== null) {
+      message.value = String(object.value);
+    } else {
+      message.value = "";
+    }
+    return message;
   },
 
   toJSON(message: Params_ZoneComAddressEntry): unknown {
@@ -388,39 +484,34 @@ export const Params_ZoneComAddressEntry = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Params_ZoneComAddressEntry>, I>>(base?: I): Params_ZoneComAddressEntry {
-    return Params_ZoneComAddressEntry.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<Params_ZoneComAddressEntry>, I>>(object: I): Params_ZoneComAddressEntry {
-    const message = createBaseParams_ZoneComAddressEntry();
-    message.key = object.key ?? "";
-    message.value = object.value ?? "";
+  fromPartial(object: DeepPartial<Params_ZoneComAddressEntry>): Params_ZoneComAddressEntry {
+    const message = { ...baseParams_ZoneComAddressEntry } as Params_ZoneComAddressEntry;
+    if (object.key !== undefined && object.key !== null) {
+      message.key = object.key;
+    } else {
+      message.key = "";
+    }
+    if (object.value !== undefined && object.value !== null) {
+      message.value = object.value;
+    } else {
+      message.value = "";
+    }
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isObject(value: any): boolean {
-  return typeof value === "object" && value !== null;
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
 }

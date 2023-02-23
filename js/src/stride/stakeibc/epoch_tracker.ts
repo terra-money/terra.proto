@@ -11,9 +11,12 @@ export interface EpochTracker {
   duration: Long;
 }
 
-function createBaseEpochTracker(): EpochTracker {
-  return { epochIdentifier: "", epochNumber: Long.UZERO, nextEpochStartTime: Long.UZERO, duration: Long.UZERO };
-}
+const baseEpochTracker: object = {
+  epochIdentifier: "",
+  epochNumber: Long.UZERO,
+  nextEpochStartTime: Long.UZERO,
+  duration: Long.UZERO,
+};
 
 export const EpochTracker = {
   encode(message: EpochTracker, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -35,7 +38,7 @@ export const EpochTracker = {
   decode(input: _m0.Reader | Uint8Array, length?: number): EpochTracker {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseEpochTracker();
+    const message = { ...baseEpochTracker } as EpochTracker;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -60,12 +63,28 @@ export const EpochTracker = {
   },
 
   fromJSON(object: any): EpochTracker {
-    return {
-      epochIdentifier: isSet(object.epochIdentifier) ? String(object.epochIdentifier) : "",
-      epochNumber: isSet(object.epochNumber) ? Long.fromValue(object.epochNumber) : Long.UZERO,
-      nextEpochStartTime: isSet(object.nextEpochStartTime) ? Long.fromValue(object.nextEpochStartTime) : Long.UZERO,
-      duration: isSet(object.duration) ? Long.fromValue(object.duration) : Long.UZERO,
-    };
+    const message = { ...baseEpochTracker } as EpochTracker;
+    if (object.epochIdentifier !== undefined && object.epochIdentifier !== null) {
+      message.epochIdentifier = String(object.epochIdentifier);
+    } else {
+      message.epochIdentifier = "";
+    }
+    if (object.epochNumber !== undefined && object.epochNumber !== null) {
+      message.epochNumber = Long.fromString(object.epochNumber);
+    } else {
+      message.epochNumber = Long.UZERO;
+    }
+    if (object.nextEpochStartTime !== undefined && object.nextEpochStartTime !== null) {
+      message.nextEpochStartTime = Long.fromString(object.nextEpochStartTime);
+    } else {
+      message.nextEpochStartTime = Long.UZERO;
+    }
+    if (object.duration !== undefined && object.duration !== null) {
+      message.duration = Long.fromString(object.duration);
+    } else {
+      message.duration = Long.UZERO;
+    }
+    return message;
   },
 
   toJSON(message: EpochTracker): unknown {
@@ -78,43 +97,44 @@ export const EpochTracker = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<EpochTracker>, I>>(base?: I): EpochTracker {
-    return EpochTracker.fromPartial(base ?? {});
-  },
-
-  fromPartial<I extends Exact<DeepPartial<EpochTracker>, I>>(object: I): EpochTracker {
-    const message = createBaseEpochTracker();
-    message.epochIdentifier = object.epochIdentifier ?? "";
-    message.epochNumber = (object.epochNumber !== undefined && object.epochNumber !== null)
-      ? Long.fromValue(object.epochNumber)
-      : Long.UZERO;
-    message.nextEpochStartTime = (object.nextEpochStartTime !== undefined && object.nextEpochStartTime !== null)
-      ? Long.fromValue(object.nextEpochStartTime)
-      : Long.UZERO;
-    message.duration = (object.duration !== undefined && object.duration !== null)
-      ? Long.fromValue(object.duration)
-      : Long.UZERO;
+  fromPartial(object: DeepPartial<EpochTracker>): EpochTracker {
+    const message = { ...baseEpochTracker } as EpochTracker;
+    if (object.epochIdentifier !== undefined && object.epochIdentifier !== null) {
+      message.epochIdentifier = object.epochIdentifier;
+    } else {
+      message.epochIdentifier = "";
+    }
+    if (object.epochNumber !== undefined && object.epochNumber !== null) {
+      message.epochNumber = object.epochNumber as Long;
+    } else {
+      message.epochNumber = Long.UZERO;
+    }
+    if (object.nextEpochStartTime !== undefined && object.nextEpochStartTime !== null) {
+      message.nextEpochStartTime = object.nextEpochStartTime as Long;
+    } else {
+      message.nextEpochStartTime = Long.UZERO;
+    }
+    if (object.duration !== undefined && object.duration !== null) {
+      message.duration = object.duration as Long;
+    } else {
+      message.duration = Long.UZERO;
+    }
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends Array<infer U> ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined | Long;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 if (_m0.util.Long !== Long) {
   _m0.util.Long = Long as any;
   _m0.configure();
-}
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
 }
