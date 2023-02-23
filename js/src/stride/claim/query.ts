@@ -52,6 +52,7 @@ export interface QueryClaimableForActionResponse {
 export interface QueryTotalClaimableRequest {
   airdropIdentifier: string;
   address: string;
+  includeClaimed: boolean;
 }
 
 export interface QueryTotalClaimableResponse {
@@ -574,7 +575,7 @@ export const QueryClaimableForActionResponse = {
   },
 };
 
-const baseQueryTotalClaimableRequest: object = { airdropIdentifier: "", address: "" };
+const baseQueryTotalClaimableRequest: object = { airdropIdentifier: "", address: "", includeClaimed: false };
 
 export const QueryTotalClaimableRequest = {
   encode(message: QueryTotalClaimableRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -583,6 +584,9 @@ export const QueryTotalClaimableRequest = {
     }
     if (message.address !== "") {
       writer.uint32(18).string(message.address);
+    }
+    if (message.includeClaimed === true) {
+      writer.uint32(24).bool(message.includeClaimed);
     }
     return writer;
   },
@@ -599,6 +603,9 @@ export const QueryTotalClaimableRequest = {
           break;
         case 2:
           message.address = reader.string();
+          break;
+        case 3:
+          message.includeClaimed = reader.bool();
           break;
         default:
           reader.skipType(tag & 7);
@@ -620,6 +627,11 @@ export const QueryTotalClaimableRequest = {
     } else {
       message.address = "";
     }
+    if (object.includeClaimed !== undefined && object.includeClaimed !== null) {
+      message.includeClaimed = Boolean(object.includeClaimed);
+    } else {
+      message.includeClaimed = false;
+    }
     return message;
   },
 
@@ -627,6 +639,7 @@ export const QueryTotalClaimableRequest = {
     const obj: any = {};
     message.airdropIdentifier !== undefined && (obj.airdropIdentifier = message.airdropIdentifier);
     message.address !== undefined && (obj.address = message.address);
+    message.includeClaimed !== undefined && (obj.includeClaimed = message.includeClaimed);
     return obj;
   },
 
@@ -641,6 +654,11 @@ export const QueryTotalClaimableRequest = {
       message.address = object.address;
     } else {
       message.address = "";
+    }
+    if (object.includeClaimed !== undefined && object.includeClaimed !== null) {
+      message.includeClaimed = object.includeClaimed;
+    } else {
+      message.includeClaimed = false;
     }
     return message;
   },

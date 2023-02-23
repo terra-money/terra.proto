@@ -1,7 +1,6 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal";
-import { Delegation } from "../../stride/stakeibc/delegation";
 
 export const protobufPackage = "stride.stakeibc";
 
@@ -49,13 +48,8 @@ export function iCAAccountTypeToJSON(object: ICAAccountType): string {
   }
 }
 
-/**
- * TODO(TEST-XX): Update these fields to be more useful (e.g. balances should be
- * coins, maybe store port name directly)
- */
 export interface ICAAccount {
   address: string;
-  delegations: Delegation[];
   target: ICAAccountType;
 }
 
@@ -65,9 +59,6 @@ export const ICAAccount = {
   encode(message: ICAAccount, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.address !== "") {
       writer.uint32(10).string(message.address);
-    }
-    for (const v of message.delegations) {
-      Delegation.encode(v!, writer.uint32(18).fork()).ldelim();
     }
     if (message.target !== 0) {
       writer.uint32(24).int32(message.target);
@@ -79,15 +70,11 @@ export const ICAAccount = {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseICAAccount } as ICAAccount;
-    message.delegations = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
           message.address = reader.string();
-          break;
-        case 2:
-          message.delegations.push(Delegation.decode(reader, reader.uint32()));
           break;
         case 3:
           message.target = reader.int32() as any;
@@ -102,16 +89,10 @@ export const ICAAccount = {
 
   fromJSON(object: any): ICAAccount {
     const message = { ...baseICAAccount } as ICAAccount;
-    message.delegations = [];
     if (object.address !== undefined && object.address !== null) {
       message.address = String(object.address);
     } else {
       message.address = "";
-    }
-    if (object.delegations !== undefined && object.delegations !== null) {
-      for (const e of object.delegations) {
-        message.delegations.push(Delegation.fromJSON(e));
-      }
     }
     if (object.target !== undefined && object.target !== null) {
       message.target = iCAAccountTypeFromJSON(object.target);
@@ -124,27 +105,16 @@ export const ICAAccount = {
   toJSON(message: ICAAccount): unknown {
     const obj: any = {};
     message.address !== undefined && (obj.address = message.address);
-    if (message.delegations) {
-      obj.delegations = message.delegations.map((e) => (e ? Delegation.toJSON(e) : undefined));
-    } else {
-      obj.delegations = [];
-    }
     message.target !== undefined && (obj.target = iCAAccountTypeToJSON(message.target));
     return obj;
   },
 
   fromPartial(object: DeepPartial<ICAAccount>): ICAAccount {
     const message = { ...baseICAAccount } as ICAAccount;
-    message.delegations = [];
     if (object.address !== undefined && object.address !== null) {
       message.address = object.address;
     } else {
       message.address = "";
-    }
-    if (object.delegations !== undefined && object.delegations !== null) {
-      for (const e of object.delegations) {
-        message.delegations.push(Delegation.fromPartial(e));
-      }
     }
     if (object.target !== undefined && object.target !== null) {
       message.target = object.target;

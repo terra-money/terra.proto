@@ -33,6 +33,7 @@ export interface Params {
   safetyMaxRedemptionRateThreshold: Long;
   ibcTransferTimeoutNanos: Long;
   safetyNumValidators: Long;
+  safetyMaxSlashPercent: Long;
 }
 
 export interface Params_ZoneComAddressEntry {
@@ -57,6 +58,7 @@ const baseParams: object = {
   safetyMaxRedemptionRateThreshold: Long.UZERO,
   ibcTransferTimeoutNanos: Long.UZERO,
   safetyNumValidators: Long.UZERO,
+  safetyMaxSlashPercent: Long.UZERO,
 };
 
 export const Params = {
@@ -111,6 +113,9 @@ export const Params = {
     }
     if (!message.safetyNumValidators.isZero()) {
       writer.uint32(136).uint64(message.safetyNumValidators);
+    }
+    if (!message.safetyMaxSlashPercent.isZero()) {
+      writer.uint32(144).uint64(message.safetyMaxSlashPercent);
     }
     return writer;
   },
@@ -176,6 +181,9 @@ export const Params = {
           break;
         case 17:
           message.safetyNumValidators = reader.uint64() as Long;
+          break;
+        case 18:
+          message.safetyMaxSlashPercent = reader.uint64() as Long;
           break;
         default:
           reader.skipType(tag & 7);
@@ -279,6 +287,11 @@ export const Params = {
     } else {
       message.safetyNumValidators = Long.UZERO;
     }
+    if (object.safetyMaxSlashPercent !== undefined && object.safetyMaxSlashPercent !== null) {
+      message.safetyMaxSlashPercent = Long.fromString(object.safetyMaxSlashPercent);
+    } else {
+      message.safetyMaxSlashPercent = Long.UZERO;
+    }
     return message;
   },
 
@@ -325,6 +338,8 @@ export const Params = {
       (obj.ibcTransferTimeoutNanos = (message.ibcTransferTimeoutNanos || Long.UZERO).toString());
     message.safetyNumValidators !== undefined &&
       (obj.safetyNumValidators = (message.safetyNumValidators || Long.UZERO).toString());
+    message.safetyMaxSlashPercent !== undefined &&
+      (obj.safetyMaxSlashPercent = (message.safetyMaxSlashPercent || Long.UZERO).toString());
     return obj;
   },
 
@@ -423,6 +438,11 @@ export const Params = {
       message.safetyNumValidators = object.safetyNumValidators as Long;
     } else {
       message.safetyNumValidators = Long.UZERO;
+    }
+    if (object.safetyMaxSlashPercent !== undefined && object.safetyMaxSlashPercent !== null) {
+      message.safetyMaxSlashPercent = object.safetyMaxSlashPercent as Long;
+    } else {
+      message.safetyMaxSlashPercent = Long.UZERO;
     }
     return message;
   },

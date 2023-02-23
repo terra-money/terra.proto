@@ -11,7 +11,7 @@ export interface UserRedemptionRecord {
   id: string;
   sender: string;
   receiver: string;
-  amount: Long;
+  amount: string;
   denom: string;
   hostZoneId: string;
   epochNumber: Long;
@@ -30,7 +30,7 @@ export interface NoData {}
 
 export interface DepositRecord {
   id: Long;
-  amount: Long;
+  amount: string;
   denom: string;
   hostZoneId: string;
   status: DepositRecord_Status;
@@ -119,8 +119,8 @@ export function depositRecord_SourceToJSON(object: DepositRecord_Source): string
 }
 
 export interface HostZoneUnbonding {
-  stTokenAmount: Long;
-  nativeTokenAmount: Long;
+  stTokenAmount: string;
+  nativeTokenAmount: string;
   denom: string;
   hostZoneId: string;
   unbondingTime: Long;
@@ -205,7 +205,7 @@ const baseUserRedemptionRecord: object = {
   id: "",
   sender: "",
   receiver: "",
-  amount: Long.UZERO,
+  amount: "",
   denom: "",
   hostZoneId: "",
   epochNumber: Long.UZERO,
@@ -223,8 +223,8 @@ export const UserRedemptionRecord = {
     if (message.receiver !== "") {
       writer.uint32(26).string(message.receiver);
     }
-    if (!message.amount.isZero()) {
-      writer.uint32(32).uint64(message.amount);
+    if (message.amount !== "") {
+      writer.uint32(34).string(message.amount);
     }
     if (message.denom !== "") {
       writer.uint32(42).string(message.denom);
@@ -258,7 +258,7 @@ export const UserRedemptionRecord = {
           message.receiver = reader.string();
           break;
         case 4:
-          message.amount = reader.uint64() as Long;
+          message.amount = reader.string();
           break;
         case 5:
           message.denom = reader.string();
@@ -298,9 +298,9 @@ export const UserRedemptionRecord = {
       message.receiver = "";
     }
     if (object.amount !== undefined && object.amount !== null) {
-      message.amount = Long.fromString(object.amount);
+      message.amount = String(object.amount);
     } else {
-      message.amount = Long.UZERO;
+      message.amount = "";
     }
     if (object.denom !== undefined && object.denom !== null) {
       message.denom = String(object.denom);
@@ -330,7 +330,7 @@ export const UserRedemptionRecord = {
     message.id !== undefined && (obj.id = message.id);
     message.sender !== undefined && (obj.sender = message.sender);
     message.receiver !== undefined && (obj.receiver = message.receiver);
-    message.amount !== undefined && (obj.amount = (message.amount || Long.UZERO).toString());
+    message.amount !== undefined && (obj.amount = message.amount);
     message.denom !== undefined && (obj.denom = message.denom);
     message.hostZoneId !== undefined && (obj.hostZoneId = message.hostZoneId);
     message.epochNumber !== undefined && (obj.epochNumber = (message.epochNumber || Long.UZERO).toString());
@@ -356,9 +356,9 @@ export const UserRedemptionRecord = {
       message.receiver = "";
     }
     if (object.amount !== undefined && object.amount !== null) {
-      message.amount = object.amount as Long;
+      message.amount = object.amount;
     } else {
-      message.amount = Long.UZERO;
+      message.amount = "";
     }
     if (object.denom !== undefined && object.denom !== null) {
       message.denom = object.denom;
@@ -517,7 +517,7 @@ export const NoData = {
 
 const baseDepositRecord: object = {
   id: Long.UZERO,
-  amount: Long.ZERO,
+  amount: "",
   denom: "",
   hostZoneId: "",
   status: 0,
@@ -530,8 +530,8 @@ export const DepositRecord = {
     if (!message.id.isZero()) {
       writer.uint32(8).uint64(message.id);
     }
-    if (!message.amount.isZero()) {
-      writer.uint32(16).int64(message.amount);
+    if (message.amount !== "") {
+      writer.uint32(18).string(message.amount);
     }
     if (message.denom !== "") {
       writer.uint32(26).string(message.denom);
@@ -562,7 +562,7 @@ export const DepositRecord = {
           message.id = reader.uint64() as Long;
           break;
         case 2:
-          message.amount = reader.int64() as Long;
+          message.amount = reader.string();
           break;
         case 3:
           message.denom = reader.string();
@@ -595,9 +595,9 @@ export const DepositRecord = {
       message.id = Long.UZERO;
     }
     if (object.amount !== undefined && object.amount !== null) {
-      message.amount = Long.fromString(object.amount);
+      message.amount = String(object.amount);
     } else {
-      message.amount = Long.ZERO;
+      message.amount = "";
     }
     if (object.denom !== undefined && object.denom !== null) {
       message.denom = String(object.denom);
@@ -630,7 +630,7 @@ export const DepositRecord = {
   toJSON(message: DepositRecord): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = (message.id || Long.UZERO).toString());
-    message.amount !== undefined && (obj.amount = (message.amount || Long.ZERO).toString());
+    message.amount !== undefined && (obj.amount = message.amount);
     message.denom !== undefined && (obj.denom = message.denom);
     message.hostZoneId !== undefined && (obj.hostZoneId = message.hostZoneId);
     message.status !== undefined && (obj.status = depositRecord_StatusToJSON(message.status));
@@ -648,9 +648,9 @@ export const DepositRecord = {
       message.id = Long.UZERO;
     }
     if (object.amount !== undefined && object.amount !== null) {
-      message.amount = object.amount as Long;
+      message.amount = object.amount;
     } else {
-      message.amount = Long.ZERO;
+      message.amount = "";
     }
     if (object.denom !== undefined && object.denom !== null) {
       message.denom = object.denom;
@@ -682,8 +682,8 @@ export const DepositRecord = {
 };
 
 const baseHostZoneUnbonding: object = {
-  stTokenAmount: Long.UZERO,
-  nativeTokenAmount: Long.UZERO,
+  stTokenAmount: "",
+  nativeTokenAmount: "",
   denom: "",
   hostZoneId: "",
   unbondingTime: Long.UZERO,
@@ -693,11 +693,11 @@ const baseHostZoneUnbonding: object = {
 
 export const HostZoneUnbonding = {
   encode(message: HostZoneUnbonding, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (!message.stTokenAmount.isZero()) {
-      writer.uint32(8).uint64(message.stTokenAmount);
+    if (message.stTokenAmount !== "") {
+      writer.uint32(10).string(message.stTokenAmount);
     }
-    if (!message.nativeTokenAmount.isZero()) {
-      writer.uint32(16).uint64(message.nativeTokenAmount);
+    if (message.nativeTokenAmount !== "") {
+      writer.uint32(18).string(message.nativeTokenAmount);
     }
     if (message.denom !== "") {
       writer.uint32(26).string(message.denom);
@@ -726,10 +726,10 @@ export const HostZoneUnbonding = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.stTokenAmount = reader.uint64() as Long;
+          message.stTokenAmount = reader.string();
           break;
         case 2:
-          message.nativeTokenAmount = reader.uint64() as Long;
+          message.nativeTokenAmount = reader.string();
           break;
         case 3:
           message.denom = reader.string();
@@ -758,14 +758,14 @@ export const HostZoneUnbonding = {
     const message = { ...baseHostZoneUnbonding } as HostZoneUnbonding;
     message.userRedemptionRecords = [];
     if (object.stTokenAmount !== undefined && object.stTokenAmount !== null) {
-      message.stTokenAmount = Long.fromString(object.stTokenAmount);
+      message.stTokenAmount = String(object.stTokenAmount);
     } else {
-      message.stTokenAmount = Long.UZERO;
+      message.stTokenAmount = "";
     }
     if (object.nativeTokenAmount !== undefined && object.nativeTokenAmount !== null) {
-      message.nativeTokenAmount = Long.fromString(object.nativeTokenAmount);
+      message.nativeTokenAmount = String(object.nativeTokenAmount);
     } else {
-      message.nativeTokenAmount = Long.UZERO;
+      message.nativeTokenAmount = "";
     }
     if (object.denom !== undefined && object.denom !== null) {
       message.denom = String(object.denom);
@@ -797,10 +797,8 @@ export const HostZoneUnbonding = {
 
   toJSON(message: HostZoneUnbonding): unknown {
     const obj: any = {};
-    message.stTokenAmount !== undefined &&
-      (obj.stTokenAmount = (message.stTokenAmount || Long.UZERO).toString());
-    message.nativeTokenAmount !== undefined &&
-      (obj.nativeTokenAmount = (message.nativeTokenAmount || Long.UZERO).toString());
+    message.stTokenAmount !== undefined && (obj.stTokenAmount = message.stTokenAmount);
+    message.nativeTokenAmount !== undefined && (obj.nativeTokenAmount = message.nativeTokenAmount);
     message.denom !== undefined && (obj.denom = message.denom);
     message.hostZoneId !== undefined && (obj.hostZoneId = message.hostZoneId);
     message.unbondingTime !== undefined &&
@@ -818,14 +816,14 @@ export const HostZoneUnbonding = {
     const message = { ...baseHostZoneUnbonding } as HostZoneUnbonding;
     message.userRedemptionRecords = [];
     if (object.stTokenAmount !== undefined && object.stTokenAmount !== null) {
-      message.stTokenAmount = object.stTokenAmount as Long;
+      message.stTokenAmount = object.stTokenAmount;
     } else {
-      message.stTokenAmount = Long.UZERO;
+      message.stTokenAmount = "";
     }
     if (object.nativeTokenAmount !== undefined && object.nativeTokenAmount !== null) {
-      message.nativeTokenAmount = object.nativeTokenAmount as Long;
+      message.nativeTokenAmount = object.nativeTokenAmount;
     } else {
-      message.nativeTokenAmount = Long.UZERO;
+      message.nativeTokenAmount = "";
     }
     if (object.denom !== undefined && object.denom !== null) {
       message.denom = object.denom;

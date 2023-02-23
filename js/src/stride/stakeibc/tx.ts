@@ -13,7 +13,7 @@ export const protobufPackage = "stride.stakeibc";
 
 export interface MsgLiquidStake {
   creator: string;
-  amount: Long;
+  amount: string;
   /** TODO(TEST-86): Update Denom -> HostDenom */
   hostDenom: string;
 }
@@ -23,7 +23,7 @@ export interface MsgLiquidStakeResponse {}
 export interface MsgClearBalance {
   creator: string;
   chainId: string;
-  amount: Long;
+  amount: string;
   channel: string;
 }
 
@@ -31,7 +31,7 @@ export interface MsgClearBalanceResponse {}
 
 export interface MsgRedeemStake {
   creator: string;
-  amount: Long;
+  amount: string;
   hostZone: string;
   receiver: string;
 }
@@ -117,15 +117,15 @@ export interface MsgUpdateValidatorSharesExchRate {
 
 export interface MsgUpdateValidatorSharesExchRateResponse {}
 
-const baseMsgLiquidStake: object = { creator: "", amount: Long.UZERO, hostDenom: "" };
+const baseMsgLiquidStake: object = { creator: "", amount: "", hostDenom: "" };
 
 export const MsgLiquidStake = {
   encode(message: MsgLiquidStake, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.creator !== "") {
       writer.uint32(10).string(message.creator);
     }
-    if (!message.amount.isZero()) {
-      writer.uint32(16).uint64(message.amount);
+    if (message.amount !== "") {
+      writer.uint32(18).string(message.amount);
     }
     if (message.hostDenom !== "") {
       writer.uint32(26).string(message.hostDenom);
@@ -144,7 +144,7 @@ export const MsgLiquidStake = {
           message.creator = reader.string();
           break;
         case 2:
-          message.amount = reader.uint64() as Long;
+          message.amount = reader.string();
           break;
         case 3:
           message.hostDenom = reader.string();
@@ -165,9 +165,9 @@ export const MsgLiquidStake = {
       message.creator = "";
     }
     if (object.amount !== undefined && object.amount !== null) {
-      message.amount = Long.fromString(object.amount);
+      message.amount = String(object.amount);
     } else {
-      message.amount = Long.UZERO;
+      message.amount = "";
     }
     if (object.hostDenom !== undefined && object.hostDenom !== null) {
       message.hostDenom = String(object.hostDenom);
@@ -180,7 +180,7 @@ export const MsgLiquidStake = {
   toJSON(message: MsgLiquidStake): unknown {
     const obj: any = {};
     message.creator !== undefined && (obj.creator = message.creator);
-    message.amount !== undefined && (obj.amount = (message.amount || Long.UZERO).toString());
+    message.amount !== undefined && (obj.amount = message.amount);
     message.hostDenom !== undefined && (obj.hostDenom = message.hostDenom);
     return obj;
   },
@@ -193,9 +193,9 @@ export const MsgLiquidStake = {
       message.creator = "";
     }
     if (object.amount !== undefined && object.amount !== null) {
-      message.amount = object.amount as Long;
+      message.amount = object.amount;
     } else {
-      message.amount = Long.UZERO;
+      message.amount = "";
     }
     if (object.hostDenom !== undefined && object.hostDenom !== null) {
       message.hostDenom = object.hostDenom;
@@ -244,7 +244,7 @@ export const MsgLiquidStakeResponse = {
   },
 };
 
-const baseMsgClearBalance: object = { creator: "", chainId: "", amount: Long.UZERO, channel: "" };
+const baseMsgClearBalance: object = { creator: "", chainId: "", amount: "", channel: "" };
 
 export const MsgClearBalance = {
   encode(message: MsgClearBalance, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -254,8 +254,8 @@ export const MsgClearBalance = {
     if (message.chainId !== "") {
       writer.uint32(18).string(message.chainId);
     }
-    if (!message.amount.isZero()) {
-      writer.uint32(24).uint64(message.amount);
+    if (message.amount !== "") {
+      writer.uint32(26).string(message.amount);
     }
     if (message.channel !== "") {
       writer.uint32(34).string(message.channel);
@@ -277,7 +277,7 @@ export const MsgClearBalance = {
           message.chainId = reader.string();
           break;
         case 3:
-          message.amount = reader.uint64() as Long;
+          message.amount = reader.string();
           break;
         case 4:
           message.channel = reader.string();
@@ -303,9 +303,9 @@ export const MsgClearBalance = {
       message.chainId = "";
     }
     if (object.amount !== undefined && object.amount !== null) {
-      message.amount = Long.fromString(object.amount);
+      message.amount = String(object.amount);
     } else {
-      message.amount = Long.UZERO;
+      message.amount = "";
     }
     if (object.channel !== undefined && object.channel !== null) {
       message.channel = String(object.channel);
@@ -319,7 +319,7 @@ export const MsgClearBalance = {
     const obj: any = {};
     message.creator !== undefined && (obj.creator = message.creator);
     message.chainId !== undefined && (obj.chainId = message.chainId);
-    message.amount !== undefined && (obj.amount = (message.amount || Long.UZERO).toString());
+    message.amount !== undefined && (obj.amount = message.amount);
     message.channel !== undefined && (obj.channel = message.channel);
     return obj;
   },
@@ -337,9 +337,9 @@ export const MsgClearBalance = {
       message.chainId = "";
     }
     if (object.amount !== undefined && object.amount !== null) {
-      message.amount = object.amount as Long;
+      message.amount = object.amount;
     } else {
-      message.amount = Long.UZERO;
+      message.amount = "";
     }
     if (object.channel !== undefined && object.channel !== null) {
       message.channel = object.channel;
@@ -388,15 +388,15 @@ export const MsgClearBalanceResponse = {
   },
 };
 
-const baseMsgRedeemStake: object = { creator: "", amount: Long.UZERO, hostZone: "", receiver: "" };
+const baseMsgRedeemStake: object = { creator: "", amount: "", hostZone: "", receiver: "" };
 
 export const MsgRedeemStake = {
   encode(message: MsgRedeemStake, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.creator !== "") {
       writer.uint32(10).string(message.creator);
     }
-    if (!message.amount.isZero()) {
-      writer.uint32(16).uint64(message.amount);
+    if (message.amount !== "") {
+      writer.uint32(18).string(message.amount);
     }
     if (message.hostZone !== "") {
       writer.uint32(26).string(message.hostZone);
@@ -418,7 +418,7 @@ export const MsgRedeemStake = {
           message.creator = reader.string();
           break;
         case 2:
-          message.amount = reader.uint64() as Long;
+          message.amount = reader.string();
           break;
         case 3:
           message.hostZone = reader.string();
@@ -442,9 +442,9 @@ export const MsgRedeemStake = {
       message.creator = "";
     }
     if (object.amount !== undefined && object.amount !== null) {
-      message.amount = Long.fromString(object.amount);
+      message.amount = String(object.amount);
     } else {
-      message.amount = Long.UZERO;
+      message.amount = "";
     }
     if (object.hostZone !== undefined && object.hostZone !== null) {
       message.hostZone = String(object.hostZone);
@@ -462,7 +462,7 @@ export const MsgRedeemStake = {
   toJSON(message: MsgRedeemStake): unknown {
     const obj: any = {};
     message.creator !== undefined && (obj.creator = message.creator);
-    message.amount !== undefined && (obj.amount = (message.amount || Long.UZERO).toString());
+    message.amount !== undefined && (obj.amount = message.amount);
     message.hostZone !== undefined && (obj.hostZone = message.hostZone);
     message.receiver !== undefined && (obj.receiver = message.receiver);
     return obj;
@@ -476,9 +476,9 @@ export const MsgRedeemStake = {
       message.creator = "";
     }
     if (object.amount !== undefined && object.amount !== null) {
-      message.amount = object.amount as Long;
+      message.amount = object.amount;
     } else {
-      message.amount = Long.UZERO;
+      message.amount = "";
     }
     if (object.hostZone !== undefined && object.hostZone !== null) {
       message.hostZone = object.hostZone;

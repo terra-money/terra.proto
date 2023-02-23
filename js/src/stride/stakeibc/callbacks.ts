@@ -8,7 +8,7 @@ export const protobufPackage = "stride.stakeibc";
 /** ---------------------- Delegation Callbacks ---------------------- // */
 export interface SplitDelegation {
   validator: string;
-  amount: Long;
+  amount: string;
 }
 
 export interface DelegateCallback {
@@ -45,7 +45,7 @@ export interface RedemptionCallback {
 export interface Rebalancing {
   srcValidator: string;
   dstValidator: string;
-  amt: Long;
+  amt: string;
 }
 
 export interface RebalanceCallback {
@@ -53,15 +53,15 @@ export interface RebalanceCallback {
   rebalancings: Rebalancing[];
 }
 
-const baseSplitDelegation: object = { validator: "", amount: Long.UZERO };
+const baseSplitDelegation: object = { validator: "", amount: "" };
 
 export const SplitDelegation = {
   encode(message: SplitDelegation, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.validator !== "") {
       writer.uint32(10).string(message.validator);
     }
-    if (!message.amount.isZero()) {
-      writer.uint32(16).uint64(message.amount);
+    if (message.amount !== "") {
+      writer.uint32(18).string(message.amount);
     }
     return writer;
   },
@@ -77,7 +77,7 @@ export const SplitDelegation = {
           message.validator = reader.string();
           break;
         case 2:
-          message.amount = reader.uint64() as Long;
+          message.amount = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -95,9 +95,9 @@ export const SplitDelegation = {
       message.validator = "";
     }
     if (object.amount !== undefined && object.amount !== null) {
-      message.amount = Long.fromString(object.amount);
+      message.amount = String(object.amount);
     } else {
-      message.amount = Long.UZERO;
+      message.amount = "";
     }
     return message;
   },
@@ -105,7 +105,7 @@ export const SplitDelegation = {
   toJSON(message: SplitDelegation): unknown {
     const obj: any = {};
     message.validator !== undefined && (obj.validator = message.validator);
-    message.amount !== undefined && (obj.amount = (message.amount || Long.UZERO).toString());
+    message.amount !== undefined && (obj.amount = message.amount);
     return obj;
   },
 
@@ -117,9 +117,9 @@ export const SplitDelegation = {
       message.validator = "";
     }
     if (object.amount !== undefined && object.amount !== null) {
-      message.amount = object.amount as Long;
+      message.amount = object.amount;
     } else {
-      message.amount = Long.UZERO;
+      message.amount = "";
     }
     return message;
   },
@@ -585,7 +585,7 @@ export const RedemptionCallback = {
   },
 };
 
-const baseRebalancing: object = { srcValidator: "", dstValidator: "", amt: Long.UZERO };
+const baseRebalancing: object = { srcValidator: "", dstValidator: "", amt: "" };
 
 export const Rebalancing = {
   encode(message: Rebalancing, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -595,8 +595,8 @@ export const Rebalancing = {
     if (message.dstValidator !== "") {
       writer.uint32(18).string(message.dstValidator);
     }
-    if (!message.amt.isZero()) {
-      writer.uint32(24).uint64(message.amt);
+    if (message.amt !== "") {
+      writer.uint32(26).string(message.amt);
     }
     return writer;
   },
@@ -615,7 +615,7 @@ export const Rebalancing = {
           message.dstValidator = reader.string();
           break;
         case 3:
-          message.amt = reader.uint64() as Long;
+          message.amt = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -638,9 +638,9 @@ export const Rebalancing = {
       message.dstValidator = "";
     }
     if (object.amt !== undefined && object.amt !== null) {
-      message.amt = Long.fromString(object.amt);
+      message.amt = String(object.amt);
     } else {
-      message.amt = Long.UZERO;
+      message.amt = "";
     }
     return message;
   },
@@ -649,7 +649,7 @@ export const Rebalancing = {
     const obj: any = {};
     message.srcValidator !== undefined && (obj.srcValidator = message.srcValidator);
     message.dstValidator !== undefined && (obj.dstValidator = message.dstValidator);
-    message.amt !== undefined && (obj.amt = (message.amt || Long.UZERO).toString());
+    message.amt !== undefined && (obj.amt = message.amt);
     return obj;
   },
 
@@ -666,9 +666,9 @@ export const Rebalancing = {
       message.dstValidator = "";
     }
     if (object.amt !== undefined && object.amt !== null) {
-      message.amt = object.amt as Long;
+      message.amt = object.amt;
     } else {
-      message.amt = Long.UZERO;
+      message.amt = "";
     }
     return message;
   },

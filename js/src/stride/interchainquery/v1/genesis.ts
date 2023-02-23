@@ -10,11 +10,9 @@ export interface Query {
   chainId: string;
   queryType: string;
   request: Uint8Array;
-  period: string;
-  lastHeight: string;
   callbackId: string;
   ttl: Long;
-  height: Long;
+  requestSent: boolean;
 }
 
 export interface DataPoint {
@@ -34,11 +32,9 @@ const baseQuery: object = {
   connectionId: "",
   chainId: "",
   queryType: "",
-  period: "",
-  lastHeight: "",
   callbackId: "",
   ttl: Long.UZERO,
-  height: Long.ZERO,
+  requestSent: false,
 };
 
 export const Query = {
@@ -58,20 +54,14 @@ export const Query = {
     if (message.request.length !== 0) {
       writer.uint32(42).bytes(message.request);
     }
-    if (message.period !== "") {
-      writer.uint32(50).string(message.period);
-    }
-    if (message.lastHeight !== "") {
-      writer.uint32(58).string(message.lastHeight);
-    }
     if (message.callbackId !== "") {
       writer.uint32(66).string(message.callbackId);
     }
     if (!message.ttl.isZero()) {
       writer.uint32(72).uint64(message.ttl);
     }
-    if (!message.height.isZero()) {
-      writer.uint32(80).int64(message.height);
+    if (message.requestSent === true) {
+      writer.uint32(88).bool(message.requestSent);
     }
     return writer;
   },
@@ -99,20 +89,14 @@ export const Query = {
         case 5:
           message.request = reader.bytes();
           break;
-        case 6:
-          message.period = reader.string();
-          break;
-        case 7:
-          message.lastHeight = reader.string();
-          break;
         case 8:
           message.callbackId = reader.string();
           break;
         case 9:
           message.ttl = reader.uint64() as Long;
           break;
-        case 10:
-          message.height = reader.int64() as Long;
+        case 11:
+          message.requestSent = reader.bool();
           break;
         default:
           reader.skipType(tag & 7);
@@ -148,16 +132,6 @@ export const Query = {
     if (object.request !== undefined && object.request !== null) {
       message.request = bytesFromBase64(object.request);
     }
-    if (object.period !== undefined && object.period !== null) {
-      message.period = String(object.period);
-    } else {
-      message.period = "";
-    }
-    if (object.lastHeight !== undefined && object.lastHeight !== null) {
-      message.lastHeight = String(object.lastHeight);
-    } else {
-      message.lastHeight = "";
-    }
     if (object.callbackId !== undefined && object.callbackId !== null) {
       message.callbackId = String(object.callbackId);
     } else {
@@ -168,10 +142,10 @@ export const Query = {
     } else {
       message.ttl = Long.UZERO;
     }
-    if (object.height !== undefined && object.height !== null) {
-      message.height = Long.fromString(object.height);
+    if (object.requestSent !== undefined && object.requestSent !== null) {
+      message.requestSent = Boolean(object.requestSent);
     } else {
-      message.height = Long.ZERO;
+      message.requestSent = false;
     }
     return message;
   },
@@ -184,11 +158,9 @@ export const Query = {
     message.queryType !== undefined && (obj.queryType = message.queryType);
     message.request !== undefined &&
       (obj.request = base64FromBytes(message.request !== undefined ? message.request : new Uint8Array()));
-    message.period !== undefined && (obj.period = message.period);
-    message.lastHeight !== undefined && (obj.lastHeight = message.lastHeight);
     message.callbackId !== undefined && (obj.callbackId = message.callbackId);
     message.ttl !== undefined && (obj.ttl = (message.ttl || Long.UZERO).toString());
-    message.height !== undefined && (obj.height = (message.height || Long.ZERO).toString());
+    message.requestSent !== undefined && (obj.requestSent = message.requestSent);
     return obj;
   },
 
@@ -219,16 +191,6 @@ export const Query = {
     } else {
       message.request = new Uint8Array();
     }
-    if (object.period !== undefined && object.period !== null) {
-      message.period = object.period;
-    } else {
-      message.period = "";
-    }
-    if (object.lastHeight !== undefined && object.lastHeight !== null) {
-      message.lastHeight = object.lastHeight;
-    } else {
-      message.lastHeight = "";
-    }
     if (object.callbackId !== undefined && object.callbackId !== null) {
       message.callbackId = object.callbackId;
     } else {
@@ -239,10 +201,10 @@ export const Query = {
     } else {
       message.ttl = Long.UZERO;
     }
-    if (object.height !== undefined && object.height !== null) {
-      message.height = object.height as Long;
+    if (object.requestSent !== undefined && object.requestSent !== null) {
+      message.requestSent = object.requestSent;
     } else {
-      message.height = Long.ZERO;
+      message.requestSent = false;
     }
     return message;
   },

@@ -8,7 +8,7 @@ import "stride/claim/claim.proto";
 import "stride/claim/params.proto";
 import "stride/vesting/vesting.proto";
 
-option go_package = "github.com/Stride-Labs/stride/v3/x/claim/types";
+option go_package = "github.com/Stride-Labs/stride/v5/x/claim/types";
 
 // Query defines the gRPC querier service.
 service Query {
@@ -94,6 +94,7 @@ message QueryTotalClaimableRequest {
   string airdrop_identifier = 1
       [ (gogoproto.moretags) = "yaml:\"airdrop_identifier\"" ];
   string address = 2 [ (gogoproto.moretags) = "yaml:\"address\"" ];
+  bool include_claimed = 3;
 }
 
 message QueryTotalClaimableResponse {

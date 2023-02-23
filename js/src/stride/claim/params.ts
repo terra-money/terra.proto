@@ -22,7 +22,7 @@ export interface Airdrop {
   /** airdrop distribution account */
   distributorAddress: string;
   /** ustrd tokens claimed so far in the current period */
-  claimedSoFar: Long;
+  claimedSoFar: string;
 }
 
 const baseParams: object = {};
@@ -91,7 +91,7 @@ const baseAirdrop: object = {
   airdropIdentifier: "",
   claimDenom: "",
   distributorAddress: "",
-  claimedSoFar: Long.ZERO,
+  claimedSoFar: "",
 };
 
 export const Airdrop = {
@@ -111,8 +111,8 @@ export const Airdrop = {
     if (message.distributorAddress !== "") {
       writer.uint32(42).string(message.distributorAddress);
     }
-    if (!message.claimedSoFar.isZero()) {
-      writer.uint32(48).int64(message.claimedSoFar);
+    if (message.claimedSoFar !== "") {
+      writer.uint32(50).string(message.claimedSoFar);
     }
     return writer;
   },
@@ -140,7 +140,7 @@ export const Airdrop = {
           message.distributorAddress = reader.string();
           break;
         case 6:
-          message.claimedSoFar = reader.int64() as Long;
+          message.claimedSoFar = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -178,9 +178,9 @@ export const Airdrop = {
       message.distributorAddress = "";
     }
     if (object.claimedSoFar !== undefined && object.claimedSoFar !== null) {
-      message.claimedSoFar = Long.fromString(object.claimedSoFar);
+      message.claimedSoFar = String(object.claimedSoFar);
     } else {
-      message.claimedSoFar = Long.ZERO;
+      message.claimedSoFar = "";
     }
     return message;
   },
@@ -193,7 +193,7 @@ export const Airdrop = {
       (obj.airdropDuration = message.airdropDuration ? Duration.toJSON(message.airdropDuration) : undefined);
     message.claimDenom !== undefined && (obj.claimDenom = message.claimDenom);
     message.distributorAddress !== undefined && (obj.distributorAddress = message.distributorAddress);
-    message.claimedSoFar !== undefined && (obj.claimedSoFar = (message.claimedSoFar || Long.ZERO).toString());
+    message.claimedSoFar !== undefined && (obj.claimedSoFar = message.claimedSoFar);
     return obj;
   },
 
@@ -225,9 +225,9 @@ export const Airdrop = {
       message.distributorAddress = "";
     }
     if (object.claimedSoFar !== undefined && object.claimedSoFar !== null) {
-      message.claimedSoFar = object.claimedSoFar as Long;
+      message.claimedSoFar = object.claimedSoFar;
     } else {
-      message.claimedSoFar = Long.ZERO;
+      message.claimedSoFar = "";
     }
     return message;
   },

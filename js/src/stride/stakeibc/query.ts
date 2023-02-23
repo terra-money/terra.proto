@@ -3,7 +3,6 @@ import Long from "long";
 import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Params } from "../../stride/stakeibc/params";
-import { ICAAccount } from "../../stride/stakeibc/ica_account";
 import { HostZone } from "../../stride/stakeibc/host_zone";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
 import { EpochTracker } from "../../stride/stakeibc/epoch_tracker";
@@ -46,12 +45,6 @@ export interface QueryGetValidatorsResponse {
   validators: Validator[];
 }
 
-export interface QueryGetICAAccountRequest {}
-
-export interface QueryGetICAAccountResponse {
-  icaAccount?: ICAAccount;
-}
-
 export interface QueryGetHostZoneRequest {
   chainId: string;
 }
@@ -85,13 +78,19 @@ export interface QueryGetEpochTrackerResponse {
   epochTracker?: EpochTracker;
 }
 
-export interface QueryAllEpochTrackerRequest {
-  pagination?: PageRequest;
-}
+export interface QueryAllEpochTrackerRequest {}
 
 export interface QueryAllEpochTrackerResponse {
   epochTracker: EpochTracker[];
-  pagination?: PageResponse;
+}
+
+export interface QueryGetNextPacketSequenceRequest {
+  channelId: string;
+  portId: string;
+}
+
+export interface QueryGetNextPacketSequenceResponse {
+  sequence: Long;
 }
 
 const baseQueryInterchainAccountFromAddressRequest: object = { owner: "", connectionId: "" };
@@ -449,100 +448,6 @@ export const QueryGetValidatorsResponse = {
       for (const e of object.validators) {
         message.validators.push(Validator.fromPartial(e));
       }
-    }
-    return message;
-  },
-};
-
-const baseQueryGetICAAccountRequest: object = {};
-
-export const QueryGetICAAccountRequest = {
-  encode(_: QueryGetICAAccountRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetICAAccountRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseQueryGetICAAccountRequest } as QueryGetICAAccountRequest;
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(_: any): QueryGetICAAccountRequest {
-    const message = { ...baseQueryGetICAAccountRequest } as QueryGetICAAccountRequest;
-    return message;
-  },
-
-  toJSON(_: QueryGetICAAccountRequest): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  fromPartial(_: DeepPartial<QueryGetICAAccountRequest>): QueryGetICAAccountRequest {
-    const message = { ...baseQueryGetICAAccountRequest } as QueryGetICAAccountRequest;
-    return message;
-  },
-};
-
-const baseQueryGetICAAccountResponse: object = {};
-
-export const QueryGetICAAccountResponse = {
-  encode(message: QueryGetICAAccountResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.icaAccount !== undefined) {
-      ICAAccount.encode(message.icaAccount, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetICAAccountResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseQueryGetICAAccountResponse } as QueryGetICAAccountResponse;
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.icaAccount = ICAAccount.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): QueryGetICAAccountResponse {
-    const message = { ...baseQueryGetICAAccountResponse } as QueryGetICAAccountResponse;
-    if (object.icaAccount !== undefined && object.icaAccount !== null) {
-      message.icaAccount = ICAAccount.fromJSON(object.icaAccount);
-    } else {
-      message.icaAccount = undefined;
-    }
-    return message;
-  },
-
-  toJSON(message: QueryGetICAAccountResponse): unknown {
-    const obj: any = {};
-    message.icaAccount !== undefined &&
-      (obj.icaAccount = message.icaAccount ? ICAAccount.toJSON(message.icaAccount) : undefined);
-    return obj;
-  },
-
-  fromPartial(object: DeepPartial<QueryGetICAAccountResponse>): QueryGetICAAccountResponse {
-    const message = { ...baseQueryGetICAAccountResponse } as QueryGetICAAccountResponse;
-    if (object.icaAccount !== undefined && object.icaAccount !== null) {
-      message.icaAccount = ICAAccount.fromPartial(object.icaAccount);
-    } else {
-      message.icaAccount = undefined;
     }
     return message;
   },
@@ -1019,10 +924,7 @@ export const QueryGetEpochTrackerResponse = {
 const baseQueryAllEpochTrackerRequest: object = {};
 
 export const QueryAllEpochTrackerRequest = {
-  encode(message: QueryAllEpochTrackerRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.pagination !== undefined) {
-      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
-    }
+  encode(_: QueryAllEpochTrackerRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
@@ -1033,9 +935,6 @@ export const QueryAllEpochTrackerRequest = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        case 1:
-          message.pagination = PageRequest.decode(reader, reader.uint32());
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1044,30 +943,18 @@ export const QueryAllEpochTrackerRequest = {
     return message;
   },
 
-  fromJSON(object: any): QueryAllEpochTrackerRequest {
+  fromJSON(_: any): QueryAllEpochTrackerRequest {
     const message = { ...baseQueryAllEpochTrackerRequest } as QueryAllEpochTrackerRequest;
-    if (object.pagination !== undefined && object.pagination !== null) {
-      message.pagination = PageRequest.fromJSON(object.pagination);
-    } else {
-      message.pagination = undefined;
-    }
     return message;
   },
 
-  toJSON(message: QueryAllEpochTrackerRequest): unknown {
+  toJSON(_: QueryAllEpochTrackerRequest): unknown {
     const obj: any = {};
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
 
-  fromPartial(object: DeepPartial<QueryAllEpochTrackerRequest>): QueryAllEpochTrackerRequest {
+  fromPartial(_: DeepPartial<QueryAllEpochTrackerRequest>): QueryAllEpochTrackerRequest {
     const message = { ...baseQueryAllEpochTrackerRequest } as QueryAllEpochTrackerRequest;
-    if (object.pagination !== undefined && object.pagination !== null) {
-      message.pagination = PageRequest.fromPartial(object.pagination);
-    } else {
-      message.pagination = undefined;
-    }
     return message;
   },
 };
@@ -1078,9 +965,6 @@ export const QueryAllEpochTrackerResponse = {
   encode(message: QueryAllEpochTrackerResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.epochTracker) {
       EpochTracker.encode(v!, writer.uint32(10).fork()).ldelim();
-    }
-    if (message.pagination !== undefined) {
-      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -1095,9 +979,6 @@ export const QueryAllEpochTrackerResponse = {
       switch (tag >>> 3) {
         case 1:
           message.epochTracker.push(EpochTracker.decode(reader, reader.uint32()));
-          break;
-        case 2:
-          message.pagination = PageResponse.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -1115,11 +996,6 @@ export const QueryAllEpochTrackerResponse = {
         message.epochTracker.push(EpochTracker.fromJSON(e));
       }
     }
-    if (object.pagination !== undefined && object.pagination !== null) {
-      message.pagination = PageResponse.fromJSON(object.pagination);
-    } else {
-      message.pagination = undefined;
-    }
     return message;
   },
 
@@ -1130,8 +1006,6 @@ export const QueryAllEpochTrackerResponse = {
     } else {
       obj.epochTracker = [];
     }
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
 
@@ -1143,10 +1017,132 @@ export const QueryAllEpochTrackerResponse = {
         message.epochTracker.push(EpochTracker.fromPartial(e));
       }
     }
-    if (object.pagination !== undefined && object.pagination !== null) {
-      message.pagination = PageResponse.fromPartial(object.pagination);
+    return message;
+  },
+};
+
+const baseQueryGetNextPacketSequenceRequest: object = { channelId: "", portId: "" };
+
+export const QueryGetNextPacketSequenceRequest = {
+  encode(message: QueryGetNextPacketSequenceRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.channelId !== "") {
+      writer.uint32(10).string(message.channelId);
+    }
+    if (message.portId !== "") {
+      writer.uint32(18).string(message.portId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetNextPacketSequenceRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryGetNextPacketSequenceRequest } as QueryGetNextPacketSequenceRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.channelId = reader.string();
+          break;
+        case 2:
+          message.portId = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetNextPacketSequenceRequest {
+    const message = { ...baseQueryGetNextPacketSequenceRequest } as QueryGetNextPacketSequenceRequest;
+    if (object.channelId !== undefined && object.channelId !== null) {
+      message.channelId = String(object.channelId);
     } else {
-      message.pagination = undefined;
+      message.channelId = "";
+    }
+    if (object.portId !== undefined && object.portId !== null) {
+      message.portId = String(object.portId);
+    } else {
+      message.portId = "";
+    }
+    return message;
+  },
+
+  toJSON(message: QueryGetNextPacketSequenceRequest): unknown {
+    const obj: any = {};
+    message.channelId !== undefined && (obj.channelId = message.channelId);
+    message.portId !== undefined && (obj.portId = message.portId);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryGetNextPacketSequenceRequest>): QueryGetNextPacketSequenceRequest {
+    const message = { ...baseQueryGetNextPacketSequenceRequest } as QueryGetNextPacketSequenceRequest;
+    if (object.channelId !== undefined && object.channelId !== null) {
+      message.channelId = object.channelId;
+    } else {
+      message.channelId = "";
+    }
+    if (object.portId !== undefined && object.portId !== null) {
+      message.portId = object.portId;
+    } else {
+      message.portId = "";
+    }
+    return message;
+  },
+};
+
+const baseQueryGetNextPacketSequenceResponse: object = { sequence: Long.UZERO };
+
+export const QueryGetNextPacketSequenceResponse = {
+  encode(message: QueryGetNextPacketSequenceResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (!message.sequence.isZero()) {
+      writer.uint32(8).uint64(message.sequence);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetNextPacketSequenceResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryGetNextPacketSequenceResponse } as QueryGetNextPacketSequenceResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.sequence = reader.uint64() as Long;
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetNextPacketSequenceResponse {
+    const message = { ...baseQueryGetNextPacketSequenceResponse } as QueryGetNextPacketSequenceResponse;
+    if (object.sequence !== undefined && object.sequence !== null) {
+      message.sequence = Long.fromString(object.sequence);
+    } else {
+      message.sequence = Long.UZERO;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryGetNextPacketSequenceResponse): unknown {
+    const obj: any = {};
+    message.sequence !== undefined && (obj.sequence = (message.sequence || Long.UZERO).toString());
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryGetNextPacketSequenceResponse>): QueryGetNextPacketSequenceResponse {
+    const message = { ...baseQueryGetNextPacketSequenceResponse } as QueryGetNextPacketSequenceResponse;
+    if (object.sequence !== undefined && object.sequence !== null) {
+      message.sequence = object.sequence as Long;
+    } else {
+      message.sequence = Long.UZERO;
     }
     return message;
   },
@@ -1161,11 +1157,6 @@ export interface Query {
     request: DeepPartial<QueryGetValidatorsRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryGetValidatorsResponse>;
-  /** Queries a ICAAccount by index. */
-  ICAAccount(
-    request: DeepPartial<QueryGetICAAccountRequest>,
-    metadata?: grpc.Metadata,
-  ): Promise<QueryGetICAAccountResponse>;
   /** Queries a HostZone by id. */
   HostZone(
     request: DeepPartial<QueryGetHostZoneRequest>,
@@ -1199,6 +1190,11 @@ export interface Query {
     request: DeepPartial<QueryAllEpochTrackerRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryAllEpochTrackerResponse>;
+  /** Queries the next packet sequence for one for a given channel */
+  NextPacketSequence(
+    request: DeepPartial<QueryGetNextPacketSequenceRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryGetNextPacketSequenceResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -1208,13 +1204,13 @@ export class QueryClientImpl implements Query {
     this.rpc = rpc;
     this.Params = this.Params.bind(this);
     this.Validators = this.Validators.bind(this);
-    this.ICAAccount = this.ICAAccount.bind(this);
     this.HostZone = this.HostZone.bind(this);
     this.HostZoneAll = this.HostZoneAll.bind(this);
     this.ModuleAddress = this.ModuleAddress.bind(this);
     this.InterchainAccountFromAddress = this.InterchainAccountFromAddress.bind(this);
     this.EpochTracker = this.EpochTracker.bind(this);
     this.EpochTrackerAll = this.EpochTrackerAll.bind(this);
+    this.NextPacketSequence = this.NextPacketSequence.bind(this);
   }
 
   Params(request: DeepPartial<QueryParamsRequest>, metadata?: grpc.Metadata): Promise<QueryParamsResponse> {
@@ -1226,13 +1222,6 @@ export class QueryClientImpl implements Query {
     metadata?: grpc.Metadata,
   ): Promise<QueryGetValidatorsResponse> {
     return this.rpc.unary(QueryValidatorsDesc, QueryGetValidatorsRequest.fromPartial(request), metadata);
-  }
-
-  ICAAccount(
-    request: DeepPartial<QueryGetICAAccountRequest>,
-    metadata?: grpc.Metadata,
-  ): Promise<QueryGetICAAccountResponse> {
-    return this.rpc.unary(QueryICAAccountDesc, QueryGetICAAccountRequest.fromPartial(request), metadata);
   }
 
   HostZone(
@@ -1284,6 +1273,17 @@ export class QueryClientImpl implements Query {
       metadata,
     );
   }
+
+  NextPacketSequence(
+    request: DeepPartial<QueryGetNextPacketSequenceRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryGetNextPacketSequenceResponse> {
+    return this.rpc.unary(
+      QueryNextPacketSequenceDesc,
+      QueryGetNextPacketSequenceRequest.fromPartial(request),
+      metadata,
+    );
+  }
 }
 
 export const QueryDesc = {
@@ -1326,28 +1326,6 @@ export const QueryValidatorsDesc: UnaryMethodDefinitionish = {
     deserializeBinary(data: Uint8Array) {
       return {
         ...QueryGetValidatorsResponse.decode(data),
-        toObject() {
-          return this;
-        },
-      };
-    },
-  } as any,
-};
-
-export const QueryICAAccountDesc: UnaryMethodDefinitionish = {
-  methodName: "ICAAccount",
-  service: QueryDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return QueryGetICAAccountRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      return {
-        ...QueryGetICAAccountResponse.decode(data),
         toObject() {
           return this;
         },
@@ -1480,6 +1458,28 @@ export const QueryEpochTrackerAllDesc: UnaryMethodDefinitionish = {
     deserializeBinary(data: Uint8Array) {
       return {
         ...QueryAllEpochTrackerResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryNextPacketSequenceDesc: UnaryMethodDefinitionish = {
+  methodName: "NextPacketSequence",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryGetNextPacketSequenceRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryGetNextPacketSequenceResponse.decode(data),
         toObject() {
           return this;
         },

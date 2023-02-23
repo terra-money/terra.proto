@@ -31,7 +31,7 @@ export interface HostZone {
   /** stores how many days we should wait before issuing unbondings */
   unbondingFrequency: Long;
   /** TODO(TEST-101) int to dec */
-  stakedBal: Long;
+  stakedBal: string;
   address: string;
 }
 
@@ -45,7 +45,7 @@ const baseHostZone: object = {
   lastRedemptionRate: "",
   redemptionRate: "",
   unbondingFrequency: Long.UZERO,
-  stakedBal: Long.UZERO,
+  stakedBal: "",
   address: "",
 };
 
@@ -96,8 +96,8 @@ export const HostZone = {
     if (!message.unbondingFrequency.isZero()) {
       writer.uint32(112).uint64(message.unbondingFrequency);
     }
-    if (!message.stakedBal.isZero()) {
-      writer.uint32(104).uint64(message.stakedBal);
+    if (message.stakedBal !== "") {
+      writer.uint32(106).string(message.stakedBal);
     }
     if (message.address !== "") {
       writer.uint32(146).string(message.address);
@@ -160,7 +160,7 @@ export const HostZone = {
           message.unbondingFrequency = reader.uint64() as Long;
           break;
         case 13:
-          message.stakedBal = reader.uint64() as Long;
+          message.stakedBal = reader.string();
           break;
         case 18:
           message.address = reader.string();
@@ -253,9 +253,9 @@ export const HostZone = {
       message.unbondingFrequency = Long.UZERO;
     }
     if (object.stakedBal !== undefined && object.stakedBal !== null) {
-      message.stakedBal = Long.fromString(object.stakedBal);
+      message.stakedBal = String(object.stakedBal);
     } else {
-      message.stakedBal = Long.UZERO;
+      message.stakedBal = "";
     }
     if (object.address !== undefined && object.address !== null) {
       message.address = String(object.address);
@@ -303,7 +303,7 @@ export const HostZone = {
     message.redemptionRate !== undefined && (obj.redemptionRate = message.redemptionRate);
     message.unbondingFrequency !== undefined &&
       (obj.unbondingFrequency = (message.unbondingFrequency || Long.UZERO).toString());
-    message.stakedBal !== undefined && (obj.stakedBal = (message.stakedBal || Long.UZERO).toString());
+    message.stakedBal !== undefined && (obj.stakedBal = message.stakedBal);
     message.address !== undefined && (obj.address = message.address);
     return obj;
   },
@@ -388,9 +388,9 @@ export const HostZone = {
       message.unbondingFrequency = Long.UZERO;
     }
     if (object.stakedBal !== undefined && object.stakedBal !== null) {
-      message.stakedBal = object.stakedBal as Long;
+      message.stakedBal = object.stakedBal;
     } else {
-      message.stakedBal = Long.UZERO;
+      message.stakedBal = "";
     }
     if (object.address !== undefined && object.address !== null) {
       message.address = object.address;

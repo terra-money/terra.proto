@@ -14,7 +14,7 @@ export interface Validator {
   address: string;
   status: Validator_ValidatorStatus;
   commissionRate: Long;
-  delegationAmt: Long;
+  delegationAmt: string;
   weight: Long;
   internalExchangeRate?: ValidatorExchangeRate;
 }
@@ -129,7 +129,7 @@ const baseValidator: object = {
   address: "",
   status: 0,
   commissionRate: Long.UZERO,
-  delegationAmt: Long.UZERO,
+  delegationAmt: "",
   weight: Long.UZERO,
 };
 
@@ -147,8 +147,8 @@ export const Validator = {
     if (!message.commissionRate.isZero()) {
       writer.uint32(32).uint64(message.commissionRate);
     }
-    if (!message.delegationAmt.isZero()) {
-      writer.uint32(40).uint64(message.delegationAmt);
+    if (message.delegationAmt !== "") {
+      writer.uint32(42).string(message.delegationAmt);
     }
     if (!message.weight.isZero()) {
       writer.uint32(48).uint64(message.weight);
@@ -179,7 +179,7 @@ export const Validator = {
           message.commissionRate = reader.uint64() as Long;
           break;
         case 5:
-          message.delegationAmt = reader.uint64() as Long;
+          message.delegationAmt = reader.string();
           break;
         case 6:
           message.weight = reader.uint64() as Long;
@@ -218,9 +218,9 @@ export const Validator = {
       message.commissionRate = Long.UZERO;
     }
     if (object.delegationAmt !== undefined && object.delegationAmt !== null) {
-      message.delegationAmt = Long.fromString(object.delegationAmt);
+      message.delegationAmt = String(object.delegationAmt);
     } else {
-      message.delegationAmt = Long.UZERO;
+      message.delegationAmt = "";
     }
     if (object.weight !== undefined && object.weight !== null) {
       message.weight = Long.fromString(object.weight);
@@ -242,8 +242,7 @@ export const Validator = {
     message.status !== undefined && (obj.status = validator_ValidatorStatusToJSON(message.status));
     message.commissionRate !== undefined &&
       (obj.commissionRate = (message.commissionRate || Long.UZERO).toString());
-    message.delegationAmt !== undefined &&
-      (obj.delegationAmt = (message.delegationAmt || Long.UZERO).toString());
+    message.delegationAmt !== undefined && (obj.delegationAmt = message.delegationAmt);
     message.weight !== undefined && (obj.weight = (message.weight || Long.UZERO).toString());
     message.internalExchangeRate !== undefined &&
       (obj.internalExchangeRate = message.internalExchangeRate
@@ -275,9 +274,9 @@ export const Validator = {
       message.commissionRate = Long.UZERO;
     }
     if (object.delegationAmt !== undefined && object.delegationAmt !== null) {
-      message.delegationAmt = object.delegationAmt as Long;
+      message.delegationAmt = object.delegationAmt;
     } else {
-      message.delegationAmt = Long.UZERO;
+      message.delegationAmt = "";
     }
     if (object.weight !== undefined && object.weight !== null) {
       message.weight = object.weight as Long;
