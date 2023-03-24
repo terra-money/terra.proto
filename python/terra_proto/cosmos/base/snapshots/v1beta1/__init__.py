@@ -5,7 +5,6 @@ from dataclasses import dataclass
 from typing import List
 
 import betterproto
-from betterproto.grpc.grpclib_server import ServiceBase
 
 
 @dataclass(eq=False, repr=False)
@@ -28,7 +27,10 @@ class Metadata(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class SnapshotItem(betterproto.Message):
-    """SnapshotItem is an item contained in a rootmulti.Store snapshot."""
+    """
+    SnapshotItem is an item contained in a rootmulti.Store snapshot. Since:
+    cosmos-sdk 0.46
+    """
 
     store: "SnapshotStoreItem" = betterproto.message_field(1, group="item")
     iavl: "SnapshotIavlItem" = betterproto.message_field(2, group="item")
@@ -36,31 +38,38 @@ class SnapshotItem(betterproto.Message):
     extension_payload: "SnapshotExtensionPayload" = betterproto.message_field(
         4, group="item"
     )
+    kv: "SnapshotKvItem" = betterproto.message_field(5, group="item")
+    schema: "SnapshotSchema" = betterproto.message_field(6, group="item")
 
 
 @dataclass(eq=False, repr=False)
 class SnapshotStoreItem(betterproto.Message):
-    """SnapshotStoreItem contains metadata about a snapshotted store."""
+    """
+    SnapshotStoreItem contains metadata about a snapshotted store. Since:
+    cosmos-sdk 0.46
+    """
 
     name: str = betterproto.string_field(1)
 
 
 @dataclass(eq=False, repr=False)
 class SnapshotIavlItem(betterproto.Message):
-    """SnapshotIAVLItem is an exported IAVL node."""
+    """SnapshotIAVLItem is an exported IAVL node. Since: cosmos-sdk 0.46"""
 
     key: bytes = betterproto.bytes_field(1)
     value: bytes = betterproto.bytes_field(2)
-    # version is block height
     version: int = betterproto.int64_field(3)
-    # height is depth of the tree.
+    """version is block height"""
+
     height: int = betterproto.int32_field(4)
+    """height is depth of the tree."""
 
 
 @dataclass(eq=False, repr=False)
 class SnapshotExtensionMeta(betterproto.Message):
     """
     SnapshotExtensionMeta contains metadata about an external snapshotter.
+    Since: cosmos-sdk 0.46
     """
 
     name: str = betterproto.string_field(1)
@@ -71,6 +80,24 @@ class SnapshotExtensionMeta(betterproto.Message):
 class SnapshotExtensionPayload(betterproto.Message):
     """
     SnapshotExtensionPayload contains payloads of an external snapshotter.
+    Since: cosmos-sdk 0.46
     """
 
     payload: bytes = betterproto.bytes_field(1)
+
+
+@dataclass(eq=False, repr=False)
+class SnapshotKvItem(betterproto.Message):
+    """SnapshotKVItem is an exported Key/Value Pair Since: cosmos-sdk 0.46"""
+
+    key: bytes = betterproto.bytes_field(1)
+    value: bytes = betterproto.bytes_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class SnapshotSchema(betterproto.Message):
+    """
+    SnapshotSchema is an exported schema of smt store Since: cosmos-sdk 0.46
+    """
+
+    keys: List[bytes] = betterproto.bytes_field(1)

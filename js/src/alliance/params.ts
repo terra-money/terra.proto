@@ -4,7 +4,7 @@ import _m0 from "protobufjs/minimal";
 import { Duration } from "../google/protobuf/duration";
 import { Timestamp } from "../google/protobuf/timestamp";
 
-export const protobufPackage = "alliance";
+export const protobufPackage = "alliance.alliance";
 
 export interface Params {
   rewardDelayTime?: Duration;

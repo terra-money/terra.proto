@@ -5,7 +5,12 @@ import { Duration } from "../google/protobuf/duration";
 import { Timestamp } from "../google/protobuf/timestamp";
 import { RewardHistory } from "../alliance/params";
 
-export const protobufPackage = "alliance";
+export const protobufPackage = "alliance.alliance";
+
+export interface RewardWeightRange {
+  min: string;
+  max: string;
+}
 
 /** key: denom value: AllianceAsset */
 export interface AllianceAsset {
@@ -28,12 +33,88 @@ export interface AllianceAsset {
   rewardChangeRate: string;
   rewardChangeInterval?: Duration;
   lastRewardChangeTime?: Date;
+  /** set a bound of weight range to limit how much reward weights can scale. */
+  rewardWeightRange?: RewardWeightRange;
+  /** flag to check if an asset has completed the initialization process after the reward delay */
+  isInitialized: boolean;
 }
 
 export interface RewardWeightChangeSnapshot {
   prevRewardWeight: string;
   rewardHistories: RewardHistory[];
 }
+
+const baseRewardWeightRange: object = { min: "", max: "" };
+
+export const RewardWeightRange = {
+  encode(message: RewardWeightRange, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.min !== "") {
+      writer.uint32(10).string(message.min);
+    }
+    if (message.max !== "") {
+      writer.uint32(18).string(message.max);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): RewardWeightRange {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseRewardWeightRange } as RewardWeightRange;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.min = reader.string();
+          break;
+        case 2:
+          message.max = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): RewardWeightRange {
+    const message = { ...baseRewardWeightRange } as RewardWeightRange;
+    if (object.min !== undefined && object.min !== null) {
+      message.min = String(object.min);
+    } else {
+      message.min = "";
+    }
+    if (object.max !== undefined && object.max !== null) {
+      message.max = String(object.max);
+    } else {
+      message.max = "";
+    }
+    return message;
+  },
+
+  toJSON(message: RewardWeightRange): unknown {
+    const obj: any = {};
+    message.min !== undefined && (obj.min = message.min);
+    message.max !== undefined && (obj.max = message.max);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<RewardWeightRange>): RewardWeightRange {
+    const message = { ...baseRewardWeightRange } as RewardWeightRange;
+    if (object.min !== undefined && object.min !== null) {
+      message.min = object.min;
+    } else {
+      message.min = "";
+    }
+    if (object.max !== undefined && object.max !== null) {
+      message.max = object.max;
+    } else {
+      message.max = "";
+    }
+    return message;
+  },
+};
 
 const baseAllianceAsset: object = {
   denom: "",
@@ -42,6 +123,7 @@ const baseAllianceAsset: object = {
   totalTokens: "",
   totalValidatorShares: "",
   rewardChangeRate: "",
+  isInitialized: false,
 };
 
 export const AllianceAsset = {
@@ -72,6 +154,12 @@ export const AllianceAsset = {
     }
     if (message.lastRewardChangeTime !== undefined) {
       Timestamp.encode(toTimestamp(message.lastRewardChangeTime), writer.uint32(74).fork()).ldelim();
+    }
+    if (message.rewardWeightRange !== undefined) {
+      RewardWeightRange.encode(message.rewardWeightRange, writer.uint32(82).fork()).ldelim();
+    }
+    if (message.isInitialized === true) {
+      writer.uint32(88).bool(message.isInitialized);
     }
     return writer;
   },
@@ -109,6 +197,12 @@ export const AllianceAsset = {
           break;
         case 9:
           message.lastRewardChangeTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 10:
+          message.rewardWeightRange = RewardWeightRange.decode(reader, reader.uint32());
+          break;
+        case 11:
+          message.isInitialized = reader.bool();
           break;
         default:
           reader.skipType(tag & 7);
@@ -165,6 +259,16 @@ export const AllianceAsset = {
     } else {
       message.lastRewardChangeTime = undefined;
     }
+    if (object.rewardWeightRange !== undefined && object.rewardWeightRange !== null) {
+      message.rewardWeightRange = RewardWeightRange.fromJSON(object.rewardWeightRange);
+    } else {
+      message.rewardWeightRange = undefined;
+    }
+    if (object.isInitialized !== undefined && object.isInitialized !== null) {
+      message.isInitialized = Boolean(object.isInitialized);
+    } else {
+      message.isInitialized = false;
+    }
     return message;
   },
 
@@ -183,6 +287,11 @@ export const AllianceAsset = {
         : undefined);
     message.lastRewardChangeTime !== undefined &&
       (obj.lastRewardChangeTime = message.lastRewardChangeTime.toISOString());
+    message.rewardWeightRange !== undefined &&
+      (obj.rewardWeightRange = message.rewardWeightRange
+        ? RewardWeightRange.toJSON(message.rewardWeightRange)
+        : undefined);
+    message.isInitialized !== undefined && (obj.isInitialized = message.isInitialized);
     return obj;
   },
 
@@ -232,6 +341,16 @@ export const AllianceAsset = {
       message.lastRewardChangeTime = object.lastRewardChangeTime;
     } else {
       message.lastRewardChangeTime = undefined;
+    }
+    if (object.rewardWeightRange !== undefined && object.rewardWeightRange !== null) {
+      message.rewardWeightRange = RewardWeightRange.fromPartial(object.rewardWeightRange);
+    } else {
+      message.rewardWeightRange = undefined;
+    }
+    if (object.isInitialized !== undefined && object.isInitialized !== null) {
+      message.isInitialized = object.isInitialized;
+    } else {
+      message.isInitialized = false;
     }
     return message;
   },

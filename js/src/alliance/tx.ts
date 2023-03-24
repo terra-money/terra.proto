@@ -5,7 +5,7 @@ import _m0 from "protobufjs/minimal";
 import { Coin } from "../cosmos/base/v1beta1/coin";
 import { BrowserHeaders } from "browser-headers";
 
-export const protobufPackage = "alliance";
+export const protobufPackage = "alliance.alliance";
 
 export interface MsgDelegate {
   delegatorAddress: string;
@@ -611,7 +611,7 @@ export class MsgClientImpl implements Msg {
 }
 
 export const MsgDesc = {
-  serviceName: "alliance.Msg",
+  serviceName: "alliance.alliance.Msg",
 };
 
 export const MsgDelegateDesc: UnaryMethodDefinitionish = {

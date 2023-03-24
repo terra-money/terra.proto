@@ -18,9 +18,11 @@ export interface FungibleTokenPacketData {
   sender: string;
   /** the recipient address on the destination chain */
   receiver: string;
+  /** optional memo */
+  memo: string;
 }
 
-const baseFungibleTokenPacketData: object = { denom: "", amount: "", sender: "", receiver: "" };
+const baseFungibleTokenPacketData: object = { denom: "", amount: "", sender: "", receiver: "", memo: "" };
 
 export const FungibleTokenPacketData = {
   encode(message: FungibleTokenPacketData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -35,6 +37,9 @@ export const FungibleTokenPacketData = {
     }
     if (message.receiver !== "") {
       writer.uint32(34).string(message.receiver);
+    }
+    if (message.memo !== "") {
+      writer.uint32(42).string(message.memo);
     }
     return writer;
   },
@@ -57,6 +62,9 @@ export const FungibleTokenPacketData = {
           break;
         case 4:
           message.receiver = reader.string();
+          break;
+        case 5:
+          message.memo = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -88,6 +96,11 @@ export const FungibleTokenPacketData = {
     } else {
       message.receiver = "";
     }
+    if (object.memo !== undefined && object.memo !== null) {
+      message.memo = String(object.memo);
+    } else {
+      message.memo = "";
+    }
     return message;
   },
 
@@ -97,6 +110,7 @@ export const FungibleTokenPacketData = {
     message.amount !== undefined && (obj.amount = message.amount);
     message.sender !== undefined && (obj.sender = message.sender);
     message.receiver !== undefined && (obj.receiver = message.receiver);
+    message.memo !== undefined && (obj.memo = message.memo);
     return obj;
   },
 
@@ -121,6 +135,11 @@ export const FungibleTokenPacketData = {
       message.receiver = object.receiver;
     } else {
       message.receiver = "";
+    }
+    if (object.memo !== undefined && object.memo !== null) {
+      message.memo = object.memo;
+    } else {
+      message.memo = "";
     }
     return message;
   },

@@ -12,14 +12,20 @@ OUT_DIR="./terra_proto"
 
 mkdir -p "$OUT_DIR"
 
-echo "Processing terrad proto files ..."
-
-ALLIANCED_DIR="../allianced/proto"
-TERRAD_THIRD_PARTY_DIR="../terrad/third_party/proto"
-
+echo "Processing proto files ..."
+COSMOS_SDK_DIR="../cosmos-sdk/proto"
+COSMOS_SDK_THIRD_PARTY_DIR="../cosmos-sdk/third_party/proto"
+IBC_DIR="../ibc-go/proto"
+WASMD_DIR="../wasmd/proto"
+ALLIANCE_DIR="../alliance/proto"
+THIRD_PARTY="../third_party"
 
 protoc \
-  --proto_path=${TERRAD_THIRD_PARTY_DIR} \
-  --proto_path=${ALLIANCED_DIR} \
   --python_betterproto_out="${OUT_DIR}" \
-  $(find ${TERRAD_THIRD_PARTY_DIR} ${ALLIANCED_DIR} -path -prune -o -name '*.proto' -print0 | xargs -0)
+  --proto_path="$COSMOS_SDK_DIR" \
+  --proto_path="$COSMOS_SDK_THIRD_PARTY_DIR" \
+  --proto_path="$IBC_DIR" \
+  --proto_path="$WASMD_DIR" \
+  --proto_path="$ALLIANCE_DIR" \
+  --proto_path="$THIRD_PARTY" \
+  $(find ${COSMOS_SDK_DIR} ${COSMOS_SDK_THIRD_PARTY_DIR} ${WASMD_DIR} ${IBC_DIR} ${ALLIANCE_DIR} ${THIRD_PARTY} -path -prune -o -name '*.proto' -print0 | xargs -0)

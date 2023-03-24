@@ -21,6 +21,35 @@ export interface QueryParamsResponse {
   param?: ParamChange;
 }
 
+/**
+ * QuerySubspacesRequest defines a request type for querying for all registered
+ * subspaces and all keys for a subspace.
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface QuerySubspacesRequest {}
+
+/**
+ * QuerySubspacesResponse defines the response types for querying for all
+ * registered subspaces and all keys for a subspace.
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface QuerySubspacesResponse {
+  subspaces: Subspace[];
+}
+
+/**
+ * Subspace defines a parameter subspace name and all the keys that exist for
+ * the subspace.
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface Subspace {
+  subspace: string;
+  keys: string[];
+}
+
 const baseQueryParamsRequest: object = { subspace: "", key: "" };
 
 export const QueryParamsRequest = {
@@ -149,6 +178,185 @@ export const QueryParamsResponse = {
   },
 };
 
+const baseQuerySubspacesRequest: object = {};
+
+export const QuerySubspacesRequest = {
+  encode(_: QuerySubspacesRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QuerySubspacesRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQuerySubspacesRequest } as QuerySubspacesRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QuerySubspacesRequest {
+    const message = { ...baseQuerySubspacesRequest } as QuerySubspacesRequest;
+    return message;
+  },
+
+  toJSON(_: QuerySubspacesRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(_: DeepPartial<QuerySubspacesRequest>): QuerySubspacesRequest {
+    const message = { ...baseQuerySubspacesRequest } as QuerySubspacesRequest;
+    return message;
+  },
+};
+
+const baseQuerySubspacesResponse: object = {};
+
+export const QuerySubspacesResponse = {
+  encode(message: QuerySubspacesResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.subspaces) {
+      Subspace.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QuerySubspacesResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQuerySubspacesResponse } as QuerySubspacesResponse;
+    message.subspaces = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.subspaces.push(Subspace.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QuerySubspacesResponse {
+    const message = { ...baseQuerySubspacesResponse } as QuerySubspacesResponse;
+    message.subspaces = [];
+    if (object.subspaces !== undefined && object.subspaces !== null) {
+      for (const e of object.subspaces) {
+        message.subspaces.push(Subspace.fromJSON(e));
+      }
+    }
+    return message;
+  },
+
+  toJSON(message: QuerySubspacesResponse): unknown {
+    const obj: any = {};
+    if (message.subspaces) {
+      obj.subspaces = message.subspaces.map((e) => (e ? Subspace.toJSON(e) : undefined));
+    } else {
+      obj.subspaces = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QuerySubspacesResponse>): QuerySubspacesResponse {
+    const message = { ...baseQuerySubspacesResponse } as QuerySubspacesResponse;
+    message.subspaces = [];
+    if (object.subspaces !== undefined && object.subspaces !== null) {
+      for (const e of object.subspaces) {
+        message.subspaces.push(Subspace.fromPartial(e));
+      }
+    }
+    return message;
+  },
+};
+
+const baseSubspace: object = { subspace: "", keys: "" };
+
+export const Subspace = {
+  encode(message: Subspace, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.subspace !== "") {
+      writer.uint32(10).string(message.subspace);
+    }
+    for (const v of message.keys) {
+      writer.uint32(18).string(v!);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Subspace {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseSubspace } as Subspace;
+    message.keys = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.subspace = reader.string();
+          break;
+        case 2:
+          message.keys.push(reader.string());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Subspace {
+    const message = { ...baseSubspace } as Subspace;
+    message.keys = [];
+    if (object.subspace !== undefined && object.subspace !== null) {
+      message.subspace = String(object.subspace);
+    } else {
+      message.subspace = "";
+    }
+    if (object.keys !== undefined && object.keys !== null) {
+      for (const e of object.keys) {
+        message.keys.push(String(e));
+      }
+    }
+    return message;
+  },
+
+  toJSON(message: Subspace): unknown {
+    const obj: any = {};
+    message.subspace !== undefined && (obj.subspace = message.subspace);
+    if (message.keys) {
+      obj.keys = message.keys.map((e) => e);
+    } else {
+      obj.keys = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<Subspace>): Subspace {
+    const message = { ...baseSubspace } as Subspace;
+    message.keys = [];
+    if (object.subspace !== undefined && object.subspace !== null) {
+      message.subspace = object.subspace;
+    } else {
+      message.subspace = "";
+    }
+    if (object.keys !== undefined && object.keys !== null) {
+      for (const e of object.keys) {
+        message.keys.push(e);
+      }
+    }
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /**
@@ -156,6 +364,15 @@ export interface Query {
    * key.
    */
   Params(request: DeepPartial<QueryParamsRequest>, metadata?: grpc.Metadata): Promise<QueryParamsResponse>;
+  /**
+   * Subspaces queries for all registered subspaces and all keys for a subspace.
+   *
+   * Since: cosmos-sdk 0.46
+   */
+  Subspaces(
+    request: DeepPartial<QuerySubspacesRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QuerySubspacesResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -164,10 +381,18 @@ export class QueryClientImpl implements Query {
   constructor(rpc: Rpc) {
     this.rpc = rpc;
     this.Params = this.Params.bind(this);
+    this.Subspaces = this.Subspaces.bind(this);
   }
 
   Params(request: DeepPartial<QueryParamsRequest>, metadata?: grpc.Metadata): Promise<QueryParamsResponse> {
     return this.rpc.unary(QueryParamsDesc, QueryParamsRequest.fromPartial(request), metadata);
+  }
+
+  Subspaces(
+    request: DeepPartial<QuerySubspacesRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QuerySubspacesResponse> {
+    return this.rpc.unary(QuerySubspacesDesc, QuerySubspacesRequest.fromPartial(request), metadata);
   }
 }
 
@@ -189,6 +414,28 @@ export const QueryParamsDesc: UnaryMethodDefinitionish = {
     deserializeBinary(data: Uint8Array) {
       return {
         ...QueryParamsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QuerySubspacesDesc: UnaryMethodDefinitionish = {
+  methodName: "Subspaces",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QuerySubspacesRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QuerySubspacesResponse.decode(data),
         toObject() {
           return this;
         },

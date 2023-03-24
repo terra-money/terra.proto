@@ -18,6 +18,20 @@ export interface StoreCodeProposal {
   wasmByteCode: Uint8Array;
   /** InstantiatePermission to apply on contract creation, optional */
   instantiatePermission?: AccessConfig;
+  /** UnpinCode code on upload, optional */
+  unpinCode: boolean;
+  /** Source is the URL where the code is hosted */
+  source: string;
+  /**
+   * Builder is the docker image used to build the code deterministically, used
+   * for smart contract verification
+   */
+  builder: string;
+  /**
+   * CodeHash is the SHA256 sum of the code outputted by builder, used for smart
+   * contract verification
+   */
+  codeHash: Uint8Array;
 }
 
 /**
@@ -166,7 +180,53 @@ export interface UpdateInstantiateConfigProposal {
   accessConfigUpdates: AccessConfigUpdate[];
 }
 
-const baseStoreCodeProposal: object = { title: "", description: "", runAs: "" };
+/**
+ * StoreAndInstantiateContractProposal gov proposal content type to store
+ * and instantiate the contract.
+ */
+export interface StoreAndInstantiateContractProposal {
+  /** Title is a short summary */
+  title: string;
+  /** Description is a human readable text */
+  description: string;
+  /** RunAs is the address that is passed to the contract's environment as sender */
+  runAs: string;
+  /** WASMByteCode can be raw or gzip compressed */
+  wasmByteCode: Uint8Array;
+  /** InstantiatePermission to apply on contract creation, optional */
+  instantiatePermission?: AccessConfig;
+  /** UnpinCode code on upload, optional */
+  unpinCode: boolean;
+  /** Admin is an optional address that can execute migrations */
+  admin: string;
+  /** Label is optional metadata to be stored with a constract instance. */
+  label: string;
+  /** Msg json encoded message to be passed to the contract on instantiation */
+  msg: Uint8Array;
+  /** Funds coins that are transferred to the contract on instantiation */
+  funds: Coin[];
+  /** Source is the URL where the code is hosted */
+  source: string;
+  /**
+   * Builder is the docker image used to build the code deterministically, used
+   * for smart contract verification
+   */
+  builder: string;
+  /**
+   * CodeHash is the SHA256 sum of the code outputted by builder, used for smart
+   * contract verification
+   */
+  codeHash: Uint8Array;
+}
+
+const baseStoreCodeProposal: object = {
+  title: "",
+  description: "",
+  runAs: "",
+  unpinCode: false,
+  source: "",
+  builder: "",
+};
 
 export const StoreCodeProposal = {
   encode(message: StoreCodeProposal, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -185,6 +245,18 @@ export const StoreCodeProposal = {
     if (message.instantiatePermission !== undefined) {
       AccessConfig.encode(message.instantiatePermission, writer.uint32(58).fork()).ldelim();
     }
+    if (message.unpinCode === true) {
+      writer.uint32(64).bool(message.unpinCode);
+    }
+    if (message.source !== "") {
+      writer.uint32(74).string(message.source);
+    }
+    if (message.builder !== "") {
+      writer.uint32(82).string(message.builder);
+    }
+    if (message.codeHash.length !== 0) {
+      writer.uint32(90).bytes(message.codeHash);
+    }
     return writer;
   },
 
@@ -193,6 +265,7 @@ export const StoreCodeProposal = {
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseStoreCodeProposal } as StoreCodeProposal;
     message.wasmByteCode = new Uint8Array();
+    message.codeHash = new Uint8Array();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -211,6 +284,18 @@ export const StoreCodeProposal = {
         case 7:
           message.instantiatePermission = AccessConfig.decode(reader, reader.uint32());
           break;
+        case 8:
+          message.unpinCode = reader.bool();
+          break;
+        case 9:
+          message.source = reader.string();
+          break;
+        case 10:
+          message.builder = reader.string();
+          break;
+        case 11:
+          message.codeHash = reader.bytes();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -222,6 +307,7 @@ export const StoreCodeProposal = {
   fromJSON(object: any): StoreCodeProposal {
     const message = { ...baseStoreCodeProposal } as StoreCodeProposal;
     message.wasmByteCode = new Uint8Array();
+    message.codeHash = new Uint8Array();
     if (object.title !== undefined && object.title !== null) {
       message.title = String(object.title);
     } else {
@@ -245,6 +331,24 @@ export const StoreCodeProposal = {
     } else {
       message.instantiatePermission = undefined;
     }
+    if (object.unpinCode !== undefined && object.unpinCode !== null) {
+      message.unpinCode = Boolean(object.unpinCode);
+    } else {
+      message.unpinCode = false;
+    }
+    if (object.source !== undefined && object.source !== null) {
+      message.source = String(object.source);
+    } else {
+      message.source = "";
+    }
+    if (object.builder !== undefined && object.builder !== null) {
+      message.builder = String(object.builder);
+    } else {
+      message.builder = "";
+    }
+    if (object.codeHash !== undefined && object.codeHash !== null) {
+      message.codeHash = bytesFromBase64(object.codeHash);
+    }
     return message;
   },
 
@@ -261,6 +365,11 @@ export const StoreCodeProposal = {
       (obj.instantiatePermission = message.instantiatePermission
         ? AccessConfig.toJSON(message.instantiatePermission)
         : undefined);
+    message.unpinCode !== undefined && (obj.unpinCode = message.unpinCode);
+    message.source !== undefined && (obj.source = message.source);
+    message.builder !== undefined && (obj.builder = message.builder);
+    message.codeHash !== undefined &&
+      (obj.codeHash = base64FromBytes(message.codeHash !== undefined ? message.codeHash : new Uint8Array()));
     return obj;
   },
 
@@ -290,6 +399,26 @@ export const StoreCodeProposal = {
       message.instantiatePermission = AccessConfig.fromPartial(object.instantiatePermission);
     } else {
       message.instantiatePermission = undefined;
+    }
+    if (object.unpinCode !== undefined && object.unpinCode !== null) {
+      message.unpinCode = object.unpinCode;
+    } else {
+      message.unpinCode = false;
+    }
+    if (object.source !== undefined && object.source !== null) {
+      message.source = object.source;
+    } else {
+      message.source = "";
+    }
+    if (object.builder !== undefined && object.builder !== null) {
+      message.builder = object.builder;
+    } else {
+      message.builder = "";
+    }
+    if (object.codeHash !== undefined && object.codeHash !== null) {
+      message.codeHash = object.codeHash;
+    } else {
+      message.codeHash = new Uint8Array();
     }
     return message;
   },
@@ -1436,6 +1565,289 @@ export const UpdateInstantiateConfigProposal = {
       for (const e of object.accessConfigUpdates) {
         message.accessConfigUpdates.push(AccessConfigUpdate.fromPartial(e));
       }
+    }
+    return message;
+  },
+};
+
+const baseStoreAndInstantiateContractProposal: object = {
+  title: "",
+  description: "",
+  runAs: "",
+  unpinCode: false,
+  admin: "",
+  label: "",
+  source: "",
+  builder: "",
+};
+
+export const StoreAndInstantiateContractProposal = {
+  encode(message: StoreAndInstantiateContractProposal, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.title !== "") {
+      writer.uint32(10).string(message.title);
+    }
+    if (message.description !== "") {
+      writer.uint32(18).string(message.description);
+    }
+    if (message.runAs !== "") {
+      writer.uint32(26).string(message.runAs);
+    }
+    if (message.wasmByteCode.length !== 0) {
+      writer.uint32(34).bytes(message.wasmByteCode);
+    }
+    if (message.instantiatePermission !== undefined) {
+      AccessConfig.encode(message.instantiatePermission, writer.uint32(42).fork()).ldelim();
+    }
+    if (message.unpinCode === true) {
+      writer.uint32(48).bool(message.unpinCode);
+    }
+    if (message.admin !== "") {
+      writer.uint32(58).string(message.admin);
+    }
+    if (message.label !== "") {
+      writer.uint32(66).string(message.label);
+    }
+    if (message.msg.length !== 0) {
+      writer.uint32(74).bytes(message.msg);
+    }
+    for (const v of message.funds) {
+      Coin.encode(v!, writer.uint32(82).fork()).ldelim();
+    }
+    if (message.source !== "") {
+      writer.uint32(90).string(message.source);
+    }
+    if (message.builder !== "") {
+      writer.uint32(98).string(message.builder);
+    }
+    if (message.codeHash.length !== 0) {
+      writer.uint32(106).bytes(message.codeHash);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): StoreAndInstantiateContractProposal {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseStoreAndInstantiateContractProposal } as StoreAndInstantiateContractProposal;
+    message.funds = [];
+    message.wasmByteCode = new Uint8Array();
+    message.msg = new Uint8Array();
+    message.codeHash = new Uint8Array();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.title = reader.string();
+          break;
+        case 2:
+          message.description = reader.string();
+          break;
+        case 3:
+          message.runAs = reader.string();
+          break;
+        case 4:
+          message.wasmByteCode = reader.bytes();
+          break;
+        case 5:
+          message.instantiatePermission = AccessConfig.decode(reader, reader.uint32());
+          break;
+        case 6:
+          message.unpinCode = reader.bool();
+          break;
+        case 7:
+          message.admin = reader.string();
+          break;
+        case 8:
+          message.label = reader.string();
+          break;
+        case 9:
+          message.msg = reader.bytes();
+          break;
+        case 10:
+          message.funds.push(Coin.decode(reader, reader.uint32()));
+          break;
+        case 11:
+          message.source = reader.string();
+          break;
+        case 12:
+          message.builder = reader.string();
+          break;
+        case 13:
+          message.codeHash = reader.bytes();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): StoreAndInstantiateContractProposal {
+    const message = { ...baseStoreAndInstantiateContractProposal } as StoreAndInstantiateContractProposal;
+    message.funds = [];
+    message.wasmByteCode = new Uint8Array();
+    message.msg = new Uint8Array();
+    message.codeHash = new Uint8Array();
+    if (object.title !== undefined && object.title !== null) {
+      message.title = String(object.title);
+    } else {
+      message.title = "";
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = String(object.description);
+    } else {
+      message.description = "";
+    }
+    if (object.runAs !== undefined && object.runAs !== null) {
+      message.runAs = String(object.runAs);
+    } else {
+      message.runAs = "";
+    }
+    if (object.wasmByteCode !== undefined && object.wasmByteCode !== null) {
+      message.wasmByteCode = bytesFromBase64(object.wasmByteCode);
+    }
+    if (object.instantiatePermission !== undefined && object.instantiatePermission !== null) {
+      message.instantiatePermission = AccessConfig.fromJSON(object.instantiatePermission);
+    } else {
+      message.instantiatePermission = undefined;
+    }
+    if (object.unpinCode !== undefined && object.unpinCode !== null) {
+      message.unpinCode = Boolean(object.unpinCode);
+    } else {
+      message.unpinCode = false;
+    }
+    if (object.admin !== undefined && object.admin !== null) {
+      message.admin = String(object.admin);
+    } else {
+      message.admin = "";
+    }
+    if (object.label !== undefined && object.label !== null) {
+      message.label = String(object.label);
+    } else {
+      message.label = "";
+    }
+    if (object.msg !== undefined && object.msg !== null) {
+      message.msg = bytesFromBase64(object.msg);
+    }
+    if (object.funds !== undefined && object.funds !== null) {
+      for (const e of object.funds) {
+        message.funds.push(Coin.fromJSON(e));
+      }
+    }
+    if (object.source !== undefined && object.source !== null) {
+      message.source = String(object.source);
+    } else {
+      message.source = "";
+    }
+    if (object.builder !== undefined && object.builder !== null) {
+      message.builder = String(object.builder);
+    } else {
+      message.builder = "";
+    }
+    if (object.codeHash !== undefined && object.codeHash !== null) {
+      message.codeHash = bytesFromBase64(object.codeHash);
+    }
+    return message;
+  },
+
+  toJSON(message: StoreAndInstantiateContractProposal): unknown {
+    const obj: any = {};
+    message.title !== undefined && (obj.title = message.title);
+    message.description !== undefined && (obj.description = message.description);
+    message.runAs !== undefined && (obj.runAs = message.runAs);
+    message.wasmByteCode !== undefined &&
+      (obj.wasmByteCode = base64FromBytes(
+        message.wasmByteCode !== undefined ? message.wasmByteCode : new Uint8Array(),
+      ));
+    message.instantiatePermission !== undefined &&
+      (obj.instantiatePermission = message.instantiatePermission
+        ? AccessConfig.toJSON(message.instantiatePermission)
+        : undefined);
+    message.unpinCode !== undefined && (obj.unpinCode = message.unpinCode);
+    message.admin !== undefined && (obj.admin = message.admin);
+    message.label !== undefined && (obj.label = message.label);
+    message.msg !== undefined &&
+      (obj.msg = base64FromBytes(message.msg !== undefined ? message.msg : new Uint8Array()));
+    if (message.funds) {
+      obj.funds = message.funds.map((e) => (e ? Coin.toJSON(e) : undefined));
+    } else {
+      obj.funds = [];
+    }
+    message.source !== undefined && (obj.source = message.source);
+    message.builder !== undefined && (obj.builder = message.builder);
+    message.codeHash !== undefined &&
+      (obj.codeHash = base64FromBytes(message.codeHash !== undefined ? message.codeHash : new Uint8Array()));
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<StoreAndInstantiateContractProposal>): StoreAndInstantiateContractProposal {
+    const message = { ...baseStoreAndInstantiateContractProposal } as StoreAndInstantiateContractProposal;
+    message.funds = [];
+    if (object.title !== undefined && object.title !== null) {
+      message.title = object.title;
+    } else {
+      message.title = "";
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = object.description;
+    } else {
+      message.description = "";
+    }
+    if (object.runAs !== undefined && object.runAs !== null) {
+      message.runAs = object.runAs;
+    } else {
+      message.runAs = "";
+    }
+    if (object.wasmByteCode !== undefined && object.wasmByteCode !== null) {
+      message.wasmByteCode = object.wasmByteCode;
+    } else {
+      message.wasmByteCode = new Uint8Array();
+    }
+    if (object.instantiatePermission !== undefined && object.instantiatePermission !== null) {
+      message.instantiatePermission = AccessConfig.fromPartial(object.instantiatePermission);
+    } else {
+      message.instantiatePermission = undefined;
+    }
+    if (object.unpinCode !== undefined && object.unpinCode !== null) {
+      message.unpinCode = object.unpinCode;
+    } else {
+      message.unpinCode = false;
+    }
+    if (object.admin !== undefined && object.admin !== null) {
+      message.admin = object.admin;
+    } else {
+      message.admin = "";
+    }
+    if (object.label !== undefined && object.label !== null) {
+      message.label = object.label;
+    } else {
+      message.label = "";
+    }
+    if (object.msg !== undefined && object.msg !== null) {
+      message.msg = object.msg;
+    } else {
+      message.msg = new Uint8Array();
+    }
+    if (object.funds !== undefined && object.funds !== null) {
+      for (const e of object.funds) {
+        message.funds.push(Coin.fromPartial(e));
+      }
+    }
+    if (object.source !== undefined && object.source !== null) {
+      message.source = object.source;
+    } else {
+      message.source = "";
+    }
+    if (object.builder !== undefined && object.builder !== null) {
+      message.builder = object.builder;
+    } else {
+      message.builder = "";
+    }
+    if (object.codeHash !== undefined && object.codeHash !== null) {
+      message.codeHash = object.codeHash;
+    } else {
+      message.codeHash = new Uint8Array();
     }
     return message;
   },

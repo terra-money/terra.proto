@@ -6,8 +6,8 @@ export const protobufPackage = "ibc.applications.fee.v1";
 
 /** IncentivizedAcknowledgement is the acknowledgement format to be used by applications wrapped in the fee middleware */
 export interface IncentivizedAcknowledgement {
-  /** the underlying app acknowledgement result bytes */
-  result: Uint8Array;
+  /** the underlying app acknowledgement bytes */
+  appAcknowledgement: Uint8Array;
   /** the relayer address which submits the recv packet message */
   forwardRelayerAddress: string;
   /** success flag of the base application callback */
@@ -18,8 +18,8 @@ const baseIncentivizedAcknowledgement: object = { forwardRelayerAddress: "", und
 
 export const IncentivizedAcknowledgement = {
   encode(message: IncentivizedAcknowledgement, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.result.length !== 0) {
-      writer.uint32(10).bytes(message.result);
+    if (message.appAcknowledgement.length !== 0) {
+      writer.uint32(10).bytes(message.appAcknowledgement);
     }
     if (message.forwardRelayerAddress !== "") {
       writer.uint32(18).string(message.forwardRelayerAddress);
@@ -34,12 +34,12 @@ export const IncentivizedAcknowledgement = {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseIncentivizedAcknowledgement } as IncentivizedAcknowledgement;
-    message.result = new Uint8Array();
+    message.appAcknowledgement = new Uint8Array();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.result = reader.bytes();
+          message.appAcknowledgement = reader.bytes();
           break;
         case 2:
           message.forwardRelayerAddress = reader.string();
@@ -57,9 +57,9 @@ export const IncentivizedAcknowledgement = {
 
   fromJSON(object: any): IncentivizedAcknowledgement {
     const message = { ...baseIncentivizedAcknowledgement } as IncentivizedAcknowledgement;
-    message.result = new Uint8Array();
-    if (object.result !== undefined && object.result !== null) {
-      message.result = bytesFromBase64(object.result);
+    message.appAcknowledgement = new Uint8Array();
+    if (object.appAcknowledgement !== undefined && object.appAcknowledgement !== null) {
+      message.appAcknowledgement = bytesFromBase64(object.appAcknowledgement);
     }
     if (object.forwardRelayerAddress !== undefined && object.forwardRelayerAddress !== null) {
       message.forwardRelayerAddress = String(object.forwardRelayerAddress);
@@ -76,8 +76,10 @@ export const IncentivizedAcknowledgement = {
 
   toJSON(message: IncentivizedAcknowledgement): unknown {
     const obj: any = {};
-    message.result !== undefined &&
-      (obj.result = base64FromBytes(message.result !== undefined ? message.result : new Uint8Array()));
+    message.appAcknowledgement !== undefined &&
+      (obj.appAcknowledgement = base64FromBytes(
+        message.appAcknowledgement !== undefined ? message.appAcknowledgement : new Uint8Array(),
+      ));
     message.forwardRelayerAddress !== undefined &&
       (obj.forwardRelayerAddress = message.forwardRelayerAddress);
     message.underlyingAppSuccess !== undefined && (obj.underlyingAppSuccess = message.underlyingAppSuccess);
@@ -86,10 +88,10 @@ export const IncentivizedAcknowledgement = {
 
   fromPartial(object: DeepPartial<IncentivizedAcknowledgement>): IncentivizedAcknowledgement {
     const message = { ...baseIncentivizedAcknowledgement } as IncentivizedAcknowledgement;
-    if (object.result !== undefined && object.result !== null) {
-      message.result = object.result;
+    if (object.appAcknowledgement !== undefined && object.appAcknowledgement !== null) {
+      message.appAcknowledgement = object.appAcknowledgement;
     } else {
-      message.result = new Uint8Array();
+      message.appAcknowledgement = new Uint8Array();
     }
     if (object.forwardRelayerAddress !== undefined && object.forwardRelayerAddress !== null) {
       message.forwardRelayerAddress = object.forwardRelayerAddress;

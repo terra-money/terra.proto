@@ -6,10 +6,10 @@ import { Params } from "../alliance/params";
 import { PageRequest, PageResponse } from "../cosmos/base/query/v1beta1/pagination";
 import { AllianceAsset } from "../alliance/alliance";
 import { Delegation } from "../alliance/delegations";
-import { Coin } from "../cosmos/base/v1beta1/coin";
+import { Coin, DecCoin } from "../cosmos/base/v1beta1/coin";
 import { BrowserHeaders } from "browser-headers";
 
-export const protobufPackage = "alliance";
+export const protobufPackage = "alliance.alliance";
 
 /** Params */
 export interface QueryParamsRequest {}
@@ -39,6 +39,18 @@ export interface QueryAllianceResponse {
 
 export interface QueryIBCAllianceRequest {
   hash: string;
+}
+
+export interface QueryAllianceValidatorRequest {
+  validatorAddr: string;
+}
+
+export interface QueryAllAllianceValidatorsRequest {
+  pagination?: PageRequest;
+}
+
+export interface QueryAllAlliancesDelegationsRequest {
+  pagination?: PageRequest;
 }
 
 /** AlliancesDelegation */
@@ -104,6 +116,18 @@ export interface QueryIBCAllianceDelegationRewardsRequest {
 
 export interface QueryAllianceDelegationRewardsResponse {
   rewards: Coin[];
+}
+
+export interface QueryAllianceValidatorResponse {
+  validatorAddr: string;
+  totalDelegationShares: DecCoin[];
+  validatorShares: DecCoin[];
+  totalStaked: DecCoin[];
+}
+
+export interface QueryAllianceValidatorsResponse {
+  validators: QueryAllianceValidatorResponse[];
+  pagination?: PageResponse;
 }
 
 const baseQueryParamsRequest: object = {};
@@ -496,6 +520,173 @@ export const QueryIBCAllianceRequest = {
       message.hash = object.hash;
     } else {
       message.hash = "";
+    }
+    return message;
+  },
+};
+
+const baseQueryAllianceValidatorRequest: object = { validatorAddr: "" };
+
+export const QueryAllianceValidatorRequest = {
+  encode(message: QueryAllianceValidatorRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.validatorAddr !== "") {
+      writer.uint32(10).string(message.validatorAddr);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllianceValidatorRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryAllianceValidatorRequest } as QueryAllianceValidatorRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.validatorAddr = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllianceValidatorRequest {
+    const message = { ...baseQueryAllianceValidatorRequest } as QueryAllianceValidatorRequest;
+    if (object.validatorAddr !== undefined && object.validatorAddr !== null) {
+      message.validatorAddr = String(object.validatorAddr);
+    } else {
+      message.validatorAddr = "";
+    }
+    return message;
+  },
+
+  toJSON(message: QueryAllianceValidatorRequest): unknown {
+    const obj: any = {};
+    message.validatorAddr !== undefined && (obj.validatorAddr = message.validatorAddr);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryAllianceValidatorRequest>): QueryAllianceValidatorRequest {
+    const message = { ...baseQueryAllianceValidatorRequest } as QueryAllianceValidatorRequest;
+    if (object.validatorAddr !== undefined && object.validatorAddr !== null) {
+      message.validatorAddr = object.validatorAddr;
+    } else {
+      message.validatorAddr = "";
+    }
+    return message;
+  },
+};
+
+const baseQueryAllAllianceValidatorsRequest: object = {};
+
+export const QueryAllAllianceValidatorsRequest = {
+  encode(message: QueryAllAllianceValidatorsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllAllianceValidatorsRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryAllAllianceValidatorsRequest } as QueryAllAllianceValidatorsRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllAllianceValidatorsRequest {
+    const message = { ...baseQueryAllAllianceValidatorsRequest } as QueryAllAllianceValidatorsRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryAllAllianceValidatorsRequest): unknown {
+    const obj: any = {};
+    message.pagination !== undefined &&
+      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryAllAllianceValidatorsRequest>): QueryAllAllianceValidatorsRequest {
+    const message = { ...baseQueryAllAllianceValidatorsRequest } as QueryAllAllianceValidatorsRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+};
+
+const baseQueryAllAlliancesDelegationsRequest: object = {};
+
+export const QueryAllAlliancesDelegationsRequest = {
+  encode(message: QueryAllAlliancesDelegationsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllAlliancesDelegationsRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryAllAlliancesDelegationsRequest } as QueryAllAlliancesDelegationsRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllAlliancesDelegationsRequest {
+    const message = { ...baseQueryAllAlliancesDelegationsRequest } as QueryAllAlliancesDelegationsRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryAllAlliancesDelegationsRequest): unknown {
+    const obj: any = {};
+    message.pagination !== undefined &&
+      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryAllAlliancesDelegationsRequest>): QueryAllAlliancesDelegationsRequest {
+    const message = { ...baseQueryAllAlliancesDelegationsRequest } as QueryAllAlliancesDelegationsRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
     }
     return message;
   },
@@ -1406,6 +1597,217 @@ export const QueryAllianceDelegationRewardsResponse = {
   },
 };
 
+const baseQueryAllianceValidatorResponse: object = { validatorAddr: "" };
+
+export const QueryAllianceValidatorResponse = {
+  encode(message: QueryAllianceValidatorResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.validatorAddr !== "") {
+      writer.uint32(10).string(message.validatorAddr);
+    }
+    for (const v of message.totalDelegationShares) {
+      DecCoin.encode(v!, writer.uint32(18).fork()).ldelim();
+    }
+    for (const v of message.validatorShares) {
+      DecCoin.encode(v!, writer.uint32(26).fork()).ldelim();
+    }
+    for (const v of message.totalStaked) {
+      DecCoin.encode(v!, writer.uint32(34).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllianceValidatorResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryAllianceValidatorResponse } as QueryAllianceValidatorResponse;
+    message.totalDelegationShares = [];
+    message.validatorShares = [];
+    message.totalStaked = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.validatorAddr = reader.string();
+          break;
+        case 2:
+          message.totalDelegationShares.push(DecCoin.decode(reader, reader.uint32()));
+          break;
+        case 3:
+          message.validatorShares.push(DecCoin.decode(reader, reader.uint32()));
+          break;
+        case 4:
+          message.totalStaked.push(DecCoin.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllianceValidatorResponse {
+    const message = { ...baseQueryAllianceValidatorResponse } as QueryAllianceValidatorResponse;
+    message.totalDelegationShares = [];
+    message.validatorShares = [];
+    message.totalStaked = [];
+    if (object.validatorAddr !== undefined && object.validatorAddr !== null) {
+      message.validatorAddr = String(object.validatorAddr);
+    } else {
+      message.validatorAddr = "";
+    }
+    if (object.totalDelegationShares !== undefined && object.totalDelegationShares !== null) {
+      for (const e of object.totalDelegationShares) {
+        message.totalDelegationShares.push(DecCoin.fromJSON(e));
+      }
+    }
+    if (object.validatorShares !== undefined && object.validatorShares !== null) {
+      for (const e of object.validatorShares) {
+        message.validatorShares.push(DecCoin.fromJSON(e));
+      }
+    }
+    if (object.totalStaked !== undefined && object.totalStaked !== null) {
+      for (const e of object.totalStaked) {
+        message.totalStaked.push(DecCoin.fromJSON(e));
+      }
+    }
+    return message;
+  },
+
+  toJSON(message: QueryAllianceValidatorResponse): unknown {
+    const obj: any = {};
+    message.validatorAddr !== undefined && (obj.validatorAddr = message.validatorAddr);
+    if (message.totalDelegationShares) {
+      obj.totalDelegationShares = message.totalDelegationShares.map((e) =>
+        e ? DecCoin.toJSON(e) : undefined,
+      );
+    } else {
+      obj.totalDelegationShares = [];
+    }
+    if (message.validatorShares) {
+      obj.validatorShares = message.validatorShares.map((e) => (e ? DecCoin.toJSON(e) : undefined));
+    } else {
+      obj.validatorShares = [];
+    }
+    if (message.totalStaked) {
+      obj.totalStaked = message.totalStaked.map((e) => (e ? DecCoin.toJSON(e) : undefined));
+    } else {
+      obj.totalStaked = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryAllianceValidatorResponse>): QueryAllianceValidatorResponse {
+    const message = { ...baseQueryAllianceValidatorResponse } as QueryAllianceValidatorResponse;
+    message.totalDelegationShares = [];
+    message.validatorShares = [];
+    message.totalStaked = [];
+    if (object.validatorAddr !== undefined && object.validatorAddr !== null) {
+      message.validatorAddr = object.validatorAddr;
+    } else {
+      message.validatorAddr = "";
+    }
+    if (object.totalDelegationShares !== undefined && object.totalDelegationShares !== null) {
+      for (const e of object.totalDelegationShares) {
+        message.totalDelegationShares.push(DecCoin.fromPartial(e));
+      }
+    }
+    if (object.validatorShares !== undefined && object.validatorShares !== null) {
+      for (const e of object.validatorShares) {
+        message.validatorShares.push(DecCoin.fromPartial(e));
+      }
+    }
+    if (object.totalStaked !== undefined && object.totalStaked !== null) {
+      for (const e of object.totalStaked) {
+        message.totalStaked.push(DecCoin.fromPartial(e));
+      }
+    }
+    return message;
+  },
+};
+
+const baseQueryAllianceValidatorsResponse: object = {};
+
+export const QueryAllianceValidatorsResponse = {
+  encode(message: QueryAllianceValidatorsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.validators) {
+      QueryAllianceValidatorResponse.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllianceValidatorsResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryAllianceValidatorsResponse } as QueryAllianceValidatorsResponse;
+    message.validators = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.validators.push(QueryAllianceValidatorResponse.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllianceValidatorsResponse {
+    const message = { ...baseQueryAllianceValidatorsResponse } as QueryAllianceValidatorsResponse;
+    message.validators = [];
+    if (object.validators !== undefined && object.validators !== null) {
+      for (const e of object.validators) {
+        message.validators.push(QueryAllianceValidatorResponse.fromJSON(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryAllianceValidatorsResponse): unknown {
+    const obj: any = {};
+    if (message.validators) {
+      obj.validators = message.validators.map((e) =>
+        e ? QueryAllianceValidatorResponse.toJSON(e) : undefined,
+      );
+    } else {
+      obj.validators = [];
+    }
+    message.pagination !== undefined &&
+      (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryAllianceValidatorsResponse>): QueryAllianceValidatorsResponse {
+    const message = { ...baseQueryAllianceValidatorsResponse } as QueryAllianceValidatorsResponse;
+    message.validators = [];
+    if (object.validators !== undefined && object.validators !== null) {
+      for (const e of object.validators) {
+        message.validators.push(QueryAllianceValidatorResponse.fromPartial(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+};
+
 export interface Query {
   Params(request: DeepPartial<QueryParamsRequest>, metadata?: grpc.Metadata): Promise<QueryParamsResponse>;
   /** Query paginated alliances */
@@ -1413,16 +1815,26 @@ export interface Query {
     request: DeepPartial<QueryAlliancesRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryAlliancesResponse>;
-  /** Query a specific alliance by denom */
-  Alliance(
-    request: DeepPartial<QueryAllianceRequest>,
-    metadata?: grpc.Metadata,
-  ): Promise<QueryAllianceResponse>;
   /** Query a specific alliance by ibc hash */
   IBCAlliance(
     request: DeepPartial<QueryIBCAllianceRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryAllianceResponse>;
+  /** Query all paginated alliance delegations */
+  AllAlliancesDelegations(
+    request: DeepPartial<QueryAllAlliancesDelegationsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAlliancesDelegationsResponse>;
+  /** Query alliance validator */
+  AllianceValidator(
+    request: DeepPartial<QueryAllianceValidatorRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAllianceValidatorResponse>;
+  /** Query all paginated alliance validators */
+  AllAllianceValidators(
+    request: DeepPartial<QueryAllAllianceValidatorsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAllianceValidatorsResponse>;
   /** Query all paginated alliance delegations for a delegator addr */
   AlliancesDelegation(
     request: DeepPartial<QueryAlliancesDelegationsRequest>,
@@ -1453,6 +1865,11 @@ export interface Query {
     request: DeepPartial<QueryIBCAllianceDelegationRewardsRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryAllianceDelegationRewardsResponse>;
+  /** Query a specific alliance by denom */
+  Alliance(
+    request: DeepPartial<QueryAllianceRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAllianceResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -1462,14 +1879,17 @@ export class QueryClientImpl implements Query {
     this.rpc = rpc;
     this.Params = this.Params.bind(this);
     this.Alliances = this.Alliances.bind(this);
-    this.Alliance = this.Alliance.bind(this);
     this.IBCAlliance = this.IBCAlliance.bind(this);
+    this.AllAlliancesDelegations = this.AllAlliancesDelegations.bind(this);
+    this.AllianceValidator = this.AllianceValidator.bind(this);
+    this.AllAllianceValidators = this.AllAllianceValidators.bind(this);
     this.AlliancesDelegation = this.AlliancesDelegation.bind(this);
     this.AlliancesDelegationByValidator = this.AlliancesDelegationByValidator.bind(this);
     this.AllianceDelegation = this.AllianceDelegation.bind(this);
     this.IBCAllianceDelegation = this.IBCAllianceDelegation.bind(this);
     this.AllianceDelegationRewards = this.AllianceDelegationRewards.bind(this);
     this.IBCAllianceDelegationRewards = this.IBCAllianceDelegationRewards.bind(this);
+    this.Alliance = this.Alliance.bind(this);
   }
 
   Params(request: DeepPartial<QueryParamsRequest>, metadata?: grpc.Metadata): Promise<QueryParamsResponse> {
@@ -1483,18 +1903,44 @@ export class QueryClientImpl implements Query {
     return this.rpc.unary(QueryAlliancesDesc, QueryAlliancesRequest.fromPartial(request), metadata);
   }
 
-  Alliance(
-    request: DeepPartial<QueryAllianceRequest>,
-    metadata?: grpc.Metadata,
-  ): Promise<QueryAllianceResponse> {
-    return this.rpc.unary(QueryAllianceDesc, QueryAllianceRequest.fromPartial(request), metadata);
-  }
-
   IBCAlliance(
     request: DeepPartial<QueryIBCAllianceRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryAllianceResponse> {
     return this.rpc.unary(QueryIBCAllianceDesc, QueryIBCAllianceRequest.fromPartial(request), metadata);
+  }
+
+  AllAlliancesDelegations(
+    request: DeepPartial<QueryAllAlliancesDelegationsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAlliancesDelegationsResponse> {
+    return this.rpc.unary(
+      QueryAllAlliancesDelegationsDesc,
+      QueryAllAlliancesDelegationsRequest.fromPartial(request),
+      metadata,
+    );
+  }
+
+  AllianceValidator(
+    request: DeepPartial<QueryAllianceValidatorRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAllianceValidatorResponse> {
+    return this.rpc.unary(
+      QueryAllianceValidatorDesc,
+      QueryAllianceValidatorRequest.fromPartial(request),
+      metadata,
+    );
+  }
+
+  AllAllianceValidators(
+    request: DeepPartial<QueryAllAllianceValidatorsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAllianceValidatorsResponse> {
+    return this.rpc.unary(
+      QueryAllAllianceValidatorsDesc,
+      QueryAllAllianceValidatorsRequest.fromPartial(request),
+      metadata,
+    );
   }
 
   AlliancesDelegation(
@@ -1562,10 +2008,17 @@ export class QueryClientImpl implements Query {
       metadata,
     );
   }
+
+  Alliance(
+    request: DeepPartial<QueryAllianceRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAllianceResponse> {
+    return this.rpc.unary(QueryAllianceDesc, QueryAllianceRequest.fromPartial(request), metadata);
+  }
 }
 
 export const QueryDesc = {
-  serviceName: "alliance.Query",
+  serviceName: "alliance.alliance.Query",
 };
 
 export const QueryParamsDesc: UnaryMethodDefinitionish = {
@@ -1612,28 +2065,6 @@ export const QueryAlliancesDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const QueryAllianceDesc: UnaryMethodDefinitionish = {
-  methodName: "Alliance",
-  service: QueryDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return QueryAllianceRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      return {
-        ...QueryAllianceResponse.decode(data),
-        toObject() {
-          return this;
-        },
-      };
-    },
-  } as any,
-};
-
 export const QueryIBCAllianceDesc: UnaryMethodDefinitionish = {
   methodName: "IBCAlliance",
   service: QueryDesc,
@@ -1648,6 +2079,72 @@ export const QueryIBCAllianceDesc: UnaryMethodDefinitionish = {
     deserializeBinary(data: Uint8Array) {
       return {
         ...QueryAllianceResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryAllAlliancesDelegationsDesc: UnaryMethodDefinitionish = {
+  methodName: "AllAlliancesDelegations",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryAllAlliancesDelegationsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryAlliancesDelegationsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryAllianceValidatorDesc: UnaryMethodDefinitionish = {
+  methodName: "AllianceValidator",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryAllianceValidatorRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryAllianceValidatorResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryAllAllianceValidatorsDesc: UnaryMethodDefinitionish = {
+  methodName: "AllAllianceValidators",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryAllAllianceValidatorsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryAllianceValidatorsResponse.decode(data),
         toObject() {
           return this;
         },
@@ -1780,6 +2277,28 @@ export const QueryIBCAllianceDelegationRewardsDesc: UnaryMethodDefinitionish = {
     deserializeBinary(data: Uint8Array) {
       return {
         ...QueryAllianceDelegationRewardsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryAllianceDesc: UnaryMethodDefinitionish = {
+  methodName: "Alliance",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryAllianceRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryAllianceResponse.decode(data),
         toObject() {
           return this;
         },
