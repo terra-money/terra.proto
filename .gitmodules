@@ -1,7 +1,20 @@
-[submodule "terrad"]
-	path = terrad
-	url = git@github.com:terra-money/core.git
-[submodule "allianced"]
-	path = allianced
-	url = git@github.com:terra-money/alliance.git
-	branch = v0.0.1-beta1/v0.45-sdk
+[submodule "cosmos-sdk"]
+	path = cosmos-sdk
+	url = https://github.com/cosmos/cosmos-sdk.git
+	branch = release/v0.46.x
+[submodule "ibc-go"]
+	path = ibc-go
+	url = https://github.com/cosmos/ibc-go.git
+	branch = release/v6.1.x
+[submodule "alliance"]
+	path = alliance
+	url = https://github.com/terra-money/alliance.git
+	branch = release/v0.1.x
+[submodule "terra"]
+	path = terra
+	url = https://github.com/terra-money/core
+	branch = upgrade/cosmos46
+[submodule "wasmd"]
+	path = wasmd
+	url = https://github.com/notional-labs/wasmd
+	branch = release/v0.30.0-sdk-v0.46.x

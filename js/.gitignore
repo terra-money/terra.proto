@@ -13,3 +13,5 @@ node_modules
 /tendermint/
 /alliance/
 /stride/
+
+/.temp/

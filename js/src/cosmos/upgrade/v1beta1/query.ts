@@ -91,6 +91,22 @@ export interface QueryModuleVersionsResponse {
   moduleVersions: ModuleVersion[];
 }
 
+/**
+ * QueryAuthorityRequest is the request type for Query/Authority
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface QueryAuthorityRequest {}
+
+/**
+ * QueryAuthorityResponse is the response type for Query/Authority
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface QueryAuthorityResponse {
+  address: string;
+}
+
 const baseQueryCurrentPlanRequest: object = {};
 
 export const QueryCurrentPlanRequest = {
@@ -524,6 +540,99 @@ export const QueryModuleVersionsResponse = {
   },
 };
 
+const baseQueryAuthorityRequest: object = {};
+
+export const QueryAuthorityRequest = {
+  encode(_: QueryAuthorityRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAuthorityRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryAuthorityRequest } as QueryAuthorityRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryAuthorityRequest {
+    const message = { ...baseQueryAuthorityRequest } as QueryAuthorityRequest;
+    return message;
+  },
+
+  toJSON(_: QueryAuthorityRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(_: DeepPartial<QueryAuthorityRequest>): QueryAuthorityRequest {
+    const message = { ...baseQueryAuthorityRequest } as QueryAuthorityRequest;
+    return message;
+  },
+};
+
+const baseQueryAuthorityResponse: object = { address: "" };
+
+export const QueryAuthorityResponse = {
+  encode(message: QueryAuthorityResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.address !== "") {
+      writer.uint32(10).string(message.address);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAuthorityResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryAuthorityResponse } as QueryAuthorityResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.address = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAuthorityResponse {
+    const message = { ...baseQueryAuthorityResponse } as QueryAuthorityResponse;
+    if (object.address !== undefined && object.address !== null) {
+      message.address = String(object.address);
+    } else {
+      message.address = "";
+    }
+    return message;
+  },
+
+  toJSON(message: QueryAuthorityResponse): unknown {
+    const obj: any = {};
+    message.address !== undefined && (obj.address = message.address);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryAuthorityResponse>): QueryAuthorityResponse {
+    const message = { ...baseQueryAuthorityResponse } as QueryAuthorityResponse;
+    if (object.address !== undefined && object.address !== null) {
+      message.address = object.address;
+    } else {
+      message.address = "";
+    }
+    return message;
+  },
+};
+
 /** Query defines the gRPC upgrade querier service. */
 export interface Query {
   /** CurrentPlan queries the current upgrade plan. */
@@ -559,6 +668,15 @@ export interface Query {
     request: DeepPartial<QueryModuleVersionsRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryModuleVersionsResponse>;
+  /**
+   * Returns the account with authority to conduct upgrades
+   *
+   * Since: cosmos-sdk 0.46
+   */
+  Authority(
+    request: DeepPartial<QueryAuthorityRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAuthorityResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -570,6 +688,7 @@ export class QueryClientImpl implements Query {
     this.AppliedPlan = this.AppliedPlan.bind(this);
     this.UpgradedConsensusState = this.UpgradedConsensusState.bind(this);
     this.ModuleVersions = this.ModuleVersions.bind(this);
+    this.Authority = this.Authority.bind(this);
   }
 
   CurrentPlan(
@@ -602,6 +721,13 @@ export class QueryClientImpl implements Query {
     metadata?: grpc.Metadata,
   ): Promise<QueryModuleVersionsResponse> {
     return this.rpc.unary(QueryModuleVersionsDesc, QueryModuleVersionsRequest.fromPartial(request), metadata);
+  }
+
+  Authority(
+    request: DeepPartial<QueryAuthorityRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryAuthorityResponse> {
+    return this.rpc.unary(QueryAuthorityDesc, QueryAuthorityRequest.fromPartial(request), metadata);
   }
 }
 
@@ -689,6 +815,28 @@ export const QueryModuleVersionsDesc: UnaryMethodDefinitionish = {
     deserializeBinary(data: Uint8Array) {
       return {
         ...QueryModuleVersionsResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryAuthorityDesc: UnaryMethodDefinitionish = {
+  methodName: "Authority",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryAuthorityRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryAuthorityResponse.decode(data),
         toObject() {
           return this;
         },

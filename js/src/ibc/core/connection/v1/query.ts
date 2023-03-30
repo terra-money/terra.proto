@@ -2,7 +2,7 @@
 import Long from "long";
 import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
-import { ConnectionEnd, IdentifiedConnection } from "../../../../ibc/core/connection/v1/connection";
+import { ConnectionEnd, Params, IdentifiedConnection } from "../../../../ibc/core/connection/v1/connection";
 import { Height, IdentifiedClientState } from "../../../../ibc/core/client/v1/client";
 import { PageRequest, PageResponse } from "../../../../cosmos/base/query/v1beta1/pagination";
 import { Any } from "../../../../google/protobuf/any";
@@ -122,6 +122,15 @@ export interface QueryConnectionConsensusStateResponse {
   proof: Uint8Array;
   /** height at which the proof was retrieved */
   proofHeight?: Height;
+}
+
+/** QueryConnectionParamsRequest is the request type for the Query/ConnectionParams RPC method. */
+export interface QueryConnectionParamsRequest {}
+
+/** QueryConnectionParamsResponse is the response type for the Query/ConnectionParams RPC method. */
+export interface QueryConnectionParamsResponse {
+  /** params defines the parameters of the module. */
+  params?: Params;
 }
 
 const baseQueryConnectionRequest: object = { connectionId: "" };
@@ -940,6 +949,99 @@ export const QueryConnectionConsensusStateResponse = {
   },
 };
 
+const baseQueryConnectionParamsRequest: object = {};
+
+export const QueryConnectionParamsRequest = {
+  encode(_: QueryConnectionParamsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryConnectionParamsRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryConnectionParamsRequest } as QueryConnectionParamsRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryConnectionParamsRequest {
+    const message = { ...baseQueryConnectionParamsRequest } as QueryConnectionParamsRequest;
+    return message;
+  },
+
+  toJSON(_: QueryConnectionParamsRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(_: DeepPartial<QueryConnectionParamsRequest>): QueryConnectionParamsRequest {
+    const message = { ...baseQueryConnectionParamsRequest } as QueryConnectionParamsRequest;
+    return message;
+  },
+};
+
+const baseQueryConnectionParamsResponse: object = {};
+
+export const QueryConnectionParamsResponse = {
+  encode(message: QueryConnectionParamsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.params !== undefined) {
+      Params.encode(message.params, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryConnectionParamsResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryConnectionParamsResponse } as QueryConnectionParamsResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.params = Params.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryConnectionParamsResponse {
+    const message = { ...baseQueryConnectionParamsResponse } as QueryConnectionParamsResponse;
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromJSON(object.params);
+    } else {
+      message.params = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryConnectionParamsResponse): unknown {
+    const obj: any = {};
+    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryConnectionParamsResponse>): QueryConnectionParamsResponse {
+    const message = { ...baseQueryConnectionParamsResponse } as QueryConnectionParamsResponse;
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromPartial(object.params);
+    } else {
+      message.params = undefined;
+    }
+    return message;
+  },
+};
+
 /** Query provides defines the gRPC querier service */
 export interface Query {
   /** Connection queries an IBC connection end. */
@@ -976,6 +1078,11 @@ export interface Query {
     request: DeepPartial<QueryConnectionConsensusStateRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryConnectionConsensusStateResponse>;
+  /** ConnectionParams queries all parameters of the ibc connection submodule. */
+  ConnectionParams(
+    request: DeepPartial<QueryConnectionParamsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryConnectionParamsResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -988,6 +1095,7 @@ export class QueryClientImpl implements Query {
     this.ClientConnections = this.ClientConnections.bind(this);
     this.ConnectionClientState = this.ConnectionClientState.bind(this);
     this.ConnectionConsensusState = this.ConnectionConsensusState.bind(this);
+    this.ConnectionParams = this.ConnectionParams.bind(this);
   }
 
   Connection(
@@ -1033,6 +1141,17 @@ export class QueryClientImpl implements Query {
     return this.rpc.unary(
       QueryConnectionConsensusStateDesc,
       QueryConnectionConsensusStateRequest.fromPartial(request),
+      metadata,
+    );
+  }
+
+  ConnectionParams(
+    request: DeepPartial<QueryConnectionParamsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<QueryConnectionParamsResponse> {
+    return this.rpc.unary(
+      QueryConnectionParamsDesc,
+      QueryConnectionParamsRequest.fromPartial(request),
       metadata,
     );
   }
@@ -1144,6 +1263,28 @@ export const QueryConnectionConsensusStateDesc: UnaryMethodDefinitionish = {
     deserializeBinary(data: Uint8Array) {
       return {
         ...QueryConnectionConsensusStateResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryConnectionParamsDesc: UnaryMethodDefinitionish = {
+  methodName: "ConnectionParams",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryConnectionParamsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryConnectionParamsResponse.decode(data),
         toObject() {
           return this;
         },

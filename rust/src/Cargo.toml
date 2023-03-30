@@ -1,0 +1,25 @@
+[package]
+name = "terra_proto_generator"
+version = "0.1.0"
+authors = ["Terra Money Core <core@terra.money>"]
+edition = "2021"
+publish = false
+homepage = "https://terra.money"
+repository = "https://github.com/terra-money/terra.proto"
+license = "Apache-2.0"
+keywords = ["terra-money", "alliance", "cosmos-sdk", "proto", "blockchain"]
+
+[dependencies]
+prost = "0.11"
+prost-build = "0.11"
+tonic = "0.8"
+tonic-build = "0.8"
+regex = "1"
+walkdir = "2"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+getrandom = { version = "0.2", features = ["js"] }
+
+[[bin]]
+path = "main.rs"
+name = "terra_proto_generator"

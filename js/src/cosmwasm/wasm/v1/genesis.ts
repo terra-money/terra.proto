@@ -1,7 +1,13 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal";
-import { Params, CodeInfo, ContractInfo, Model } from "../../../cosmwasm/wasm/v1/types";
+import {
+  Params,
+  CodeInfo,
+  ContractInfo,
+  Model,
+  ContractCodeHistoryEntry,
+} from "../../../cosmwasm/wasm/v1/types";
 import { MsgStoreCode, MsgInstantiateContract, MsgExecuteContract } from "../../../cosmwasm/wasm/v1/tx";
 
 export const protobufPackage = "cosmwasm.wasm.v1";
@@ -22,6 +28,10 @@ export interface GenesisState {
 export interface GenesisState_GenMsgs {
   storeCode?: MsgStoreCode | undefined;
   instantiateContract?: MsgInstantiateContract | undefined;
+  /**
+   * MsgInstantiateContract2 intentionally not supported
+   * see https://github.com/CosmWasm/wasmd/issues/987
+   */
   executeContract?: MsgExecuteContract | undefined;
 }
 
@@ -39,6 +49,7 @@ export interface Contract {
   contractAddress: string;
   contractInfo?: ContractInfo;
   contractState: Model[];
+  contractCodeHistory: ContractCodeHistoryEntry[];
 }
 
 /** Sequence key and value of an id generation counter */
@@ -417,6 +428,9 @@ export const Contract = {
     for (const v of message.contractState) {
       Model.encode(v!, writer.uint32(26).fork()).ldelim();
     }
+    for (const v of message.contractCodeHistory) {
+      ContractCodeHistoryEntry.encode(v!, writer.uint32(34).fork()).ldelim();
+    }
     return writer;
   },
 
@@ -425,6 +439,7 @@ export const Contract = {
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseContract } as Contract;
     message.contractState = [];
+    message.contractCodeHistory = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -437,6 +452,9 @@ export const Contract = {
         case 3:
           message.contractState.push(Model.decode(reader, reader.uint32()));
           break;
+        case 4:
+          message.contractCodeHistory.push(ContractCodeHistoryEntry.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -448,6 +466,7 @@ export const Contract = {
   fromJSON(object: any): Contract {
     const message = { ...baseContract } as Contract;
     message.contractState = [];
+    message.contractCodeHistory = [];
     if (object.contractAddress !== undefined && object.contractAddress !== null) {
       message.contractAddress = String(object.contractAddress);
     } else {
@@ -463,6 +482,11 @@ export const Contract = {
         message.contractState.push(Model.fromJSON(e));
       }
     }
+    if (object.contractCodeHistory !== undefined && object.contractCodeHistory !== null) {
+      for (const e of object.contractCodeHistory) {
+        message.contractCodeHistory.push(ContractCodeHistoryEntry.fromJSON(e));
+      }
+    }
     return message;
   },
 
@@ -476,12 +500,20 @@ export const Contract = {
     } else {
       obj.contractState = [];
     }
+    if (message.contractCodeHistory) {
+      obj.contractCodeHistory = message.contractCodeHistory.map((e) =>
+        e ? ContractCodeHistoryEntry.toJSON(e) : undefined,
+      );
+    } else {
+      obj.contractCodeHistory = [];
+    }
     return obj;
   },
 
   fromPartial(object: DeepPartial<Contract>): Contract {
     const message = { ...baseContract } as Contract;
     message.contractState = [];
+    message.contractCodeHistory = [];
     if (object.contractAddress !== undefined && object.contractAddress !== null) {
       message.contractAddress = object.contractAddress;
     } else {
@@ -495,6 +527,11 @@ export const Contract = {
     if (object.contractState !== undefined && object.contractState !== null) {
       for (const e of object.contractState) {
         message.contractState.push(Model.fromPartial(e));
+      }
+    }
+    if (object.contractCodeHistory !== undefined && object.contractCodeHistory !== null) {
+      for (const e of object.contractCodeHistory) {
+        message.contractCodeHistory.push(ContractCodeHistoryEntry.fromPartial(e));
       }
     }
     return message;

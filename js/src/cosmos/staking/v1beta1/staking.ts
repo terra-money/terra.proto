@@ -135,7 +135,11 @@ export interface Validator {
   unbondingTime?: Date;
   /** commission defines the commission parameters. */
   commission?: Commission;
-  /** min_self_delegation is the validator's self declared minimum self delegation. */
+  /**
+   * min_self_delegation is the validator's self declared minimum self delegation.
+   *
+   * Since: cosmos-sdk 0.46
+   */
   minSelfDelegation: string;
 }
 
@@ -254,6 +258,8 @@ export interface Params {
   historicalEntries: number;
   /** bond_denom defines the bondable coin denomination. */
   bondDenom: string;
+  /** min_commission_rate is the chain-wide minimum commission rate that a validator can charge their delegators */
+  minCommissionRate: string;
 }
 
 /**
@@ -1756,7 +1762,13 @@ export const Redelegation = {
   },
 };
 
-const baseParams: object = { maxValidators: 0, maxEntries: 0, historicalEntries: 0, bondDenom: "" };
+const baseParams: object = {
+  maxValidators: 0,
+  maxEntries: 0,
+  historicalEntries: 0,
+  bondDenom: "",
+  minCommissionRate: "",
+};
 
 export const Params = {
   encode(message: Params, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -1774,6 +1786,9 @@ export const Params = {
     }
     if (message.bondDenom !== "") {
       writer.uint32(42).string(message.bondDenom);
+    }
+    if (message.minCommissionRate !== "") {
+      writer.uint32(50).string(message.minCommissionRate);
     }
     return writer;
   },
@@ -1799,6 +1814,9 @@ export const Params = {
           break;
         case 5:
           message.bondDenom = reader.string();
+          break;
+        case 6:
+          message.minCommissionRate = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1835,6 +1853,11 @@ export const Params = {
     } else {
       message.bondDenom = "";
     }
+    if (object.minCommissionRate !== undefined && object.minCommissionRate !== null) {
+      message.minCommissionRate = String(object.minCommissionRate);
+    } else {
+      message.minCommissionRate = "";
+    }
     return message;
   },
 
@@ -1846,6 +1869,7 @@ export const Params = {
     message.maxEntries !== undefined && (obj.maxEntries = message.maxEntries);
     message.historicalEntries !== undefined && (obj.historicalEntries = message.historicalEntries);
     message.bondDenom !== undefined && (obj.bondDenom = message.bondDenom);
+    message.minCommissionRate !== undefined && (obj.minCommissionRate = message.minCommissionRate);
     return obj;
   },
 
@@ -1875,6 +1899,11 @@ export const Params = {
       message.bondDenom = object.bondDenom;
     } else {
       message.bondDenom = "";
+    }
+    if (object.minCommissionRate !== undefined && object.minCommissionRate !== null) {
+      message.minCommissionRate = object.minCommissionRate;
+    } else {
+      message.minCommissionRate = "";
     }
     return message;
   },

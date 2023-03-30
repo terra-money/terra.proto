@@ -6,7 +6,7 @@ import { RewardWeightChangeSnapshot, AllianceAsset } from "../alliance/alliance"
 import { Params } from "../alliance/params";
 import { Timestamp } from "../google/protobuf/timestamp";
 
-export const protobufPackage = "alliance";
+export const protobufPackage = "alliance.alliance";
 
 export interface ValidatorInfoState {
   validatorAddress: string;

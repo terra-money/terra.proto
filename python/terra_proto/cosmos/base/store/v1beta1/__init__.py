@@ -5,7 +5,56 @@ from dataclasses import dataclass
 from typing import List
 
 import betterproto
-from betterproto.grpc.grpclib_server import ServiceBase
+
+from .....tendermint import abci as ____tendermint_abci__
+
+
+@dataclass(eq=False, repr=False)
+class StoreKvPair(betterproto.Message):
+    """
+    StoreKVPair is a KVStore KVPair used for listening to state changes (Sets
+    and Deletes) It optionally includes the StoreKey for the originating
+    KVStore and a Boolean flag to distinguish between Sets and Deletes Since:
+    cosmos-sdk 0.43
+    """
+
+    store_key: str = betterproto.string_field(1)
+    delete: bool = betterproto.bool_field(2)
+    key: bytes = betterproto.bytes_field(3)
+    value: bytes = betterproto.bytes_field(4)
+
+
+@dataclass(eq=False, repr=False)
+class BlockMetadata(betterproto.Message):
+    """
+    BlockMetadata contains all the abci event data of a block the file streamer
+    dump them into files together with the state changes.
+    """
+
+    request_begin_block: "____tendermint_abci__.RequestBeginBlock" = (
+        betterproto.message_field(1)
+    )
+    response_begin_block: "____tendermint_abci__.ResponseBeginBlock" = (
+        betterproto.message_field(2)
+    )
+    deliver_txs: List["BlockMetadataDeliverTx"] = betterproto.message_field(3)
+    request_end_block: "____tendermint_abci__.RequestEndBlock" = (
+        betterproto.message_field(4)
+    )
+    response_end_block: "____tendermint_abci__.ResponseEndBlock" = (
+        betterproto.message_field(5)
+    )
+    response_commit: "____tendermint_abci__.ResponseCommit" = betterproto.message_field(
+        6
+    )
+
+
+@dataclass(eq=False, repr=False)
+class BlockMetadataDeliverTx(betterproto.Message):
+    """DeliverTx encapulate deliver tx request and response."""
+
+    request: "____tendermint_abci__.RequestDeliverTx" = betterproto.message_field(1)
+    response: "____tendermint_abci__.ResponseDeliverTx" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -39,18 +88,3 @@ class CommitId(betterproto.Message):
 
     version: int = betterproto.int64_field(1)
     hash: bytes = betterproto.bytes_field(2)
-
-
-@dataclass(eq=False, repr=False)
-class StoreKvPair(betterproto.Message):
-    """
-    StoreKVPair is a KVStore KVPair used for listening to state changes (Sets
-    and Deletes) It optionally includes the StoreKey for the originating
-    KVStore and a Boolean flag to distinguish between Sets and Deletes Since:
-    cosmos-sdk 0.43
-    """
-
-    store_key: str = betterproto.string_field(1)
-    delete: bool = betterproto.bool_field(2)
-    key: bytes = betterproto.bytes_field(3)
-    value: bytes = betterproto.bytes_field(4)

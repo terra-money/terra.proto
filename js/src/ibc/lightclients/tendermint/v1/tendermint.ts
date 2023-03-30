@@ -7,7 +7,7 @@ import { MerkleRoot } from "../../../../ibc/core/commitment/v1/commitment";
 import { SignedHeader } from "../../../../tendermint/types/types";
 import { ValidatorSet } from "../../../../tendermint/types/validator";
 import { Timestamp } from "../../../../google/protobuf/timestamp";
-import { ProofSpec } from "../../../../confio/proofs";
+import { ProofSpec } from "../../../../proofs";
 
 export const protobufPackage = "ibc.lightclients.tendermint.v1";
 
@@ -44,13 +44,15 @@ export interface ClientState {
    */
   upgradePath: string[];
   /**
-   * This flag, when set to true, will allow governance to recover a client
-   * which has expired
+   * allow_update_after_expiry is deprecated
+   *
+   * @deprecated
    */
   allowUpdateAfterExpiry: boolean;
   /**
-   * This flag, when set to true, will allow governance to unfreeze a client
-   * whose chain has experienced a misbehaviour event
+   * allow_update_after_misbehaviour is deprecated
+   *
+   * @deprecated
    */
   allowUpdateAfterMisbehaviour: boolean;
 }

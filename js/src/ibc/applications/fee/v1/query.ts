@@ -94,18 +94,32 @@ export interface QueryTotalTimeoutFeesResponse {
   timeoutFees: Coin[];
 }
 
-/** QueryCounterpartyAddressRequest defines the request type for the CounterpartyAddress rpc */
-export interface QueryCounterpartyAddressRequest {
+/** QueryPayeeRequest defines the request type for the Payee rpc */
+export interface QueryPayeeRequest {
+  /** unique channel identifier */
+  channelId: string;
+  /** the relayer address to which the distribution address is registered */
+  relayer: string;
+}
+
+/** QueryPayeeResponse defines the response type for the Payee rpc */
+export interface QueryPayeeResponse {
+  /** the payee address to which packet fees are paid out */
+  payeeAddress: string;
+}
+
+/** QueryCounterpartyPayeeRequest defines the request type for the CounterpartyPayee rpc */
+export interface QueryCounterpartyPayeeRequest {
   /** unique channel identifier */
   channelId: string;
   /** the relayer address to which the counterparty is registered */
-  relayerAddress: string;
+  relayer: string;
 }
 
-/** QueryCounterpartyAddressResponse defines the response type for the CounterpartyAddress rpc */
-export interface QueryCounterpartyAddressResponse {
-  /** the counterparty address used to compensate forward relaying */
-  counterpartyAddress: string;
+/** QueryCounterpartyPayeeResponse defines the response type for the CounterpartyPayee rpc */
+export interface QueryCounterpartyPayeeResponse {
+  /** the counterparty payee address used to compensate forward relaying */
+  counterpartyPayee: string;
 }
 
 /** QueryFeeEnabledChannelsRequest defines the request type for the FeeEnabledChannels rpc */
@@ -955,23 +969,23 @@ export const QueryTotalTimeoutFeesResponse = {
   },
 };
 
-const baseQueryCounterpartyAddressRequest: object = { channelId: "", relayerAddress: "" };
+const baseQueryPayeeRequest: object = { channelId: "", relayer: "" };
 
-export const QueryCounterpartyAddressRequest = {
-  encode(message: QueryCounterpartyAddressRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const QueryPayeeRequest = {
+  encode(message: QueryPayeeRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.channelId !== "") {
       writer.uint32(10).string(message.channelId);
     }
-    if (message.relayerAddress !== "") {
-      writer.uint32(18).string(message.relayerAddress);
+    if (message.relayer !== "") {
+      writer.uint32(18).string(message.relayer);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryCounterpartyAddressRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryPayeeRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseQueryCounterpartyAddressRequest } as QueryCounterpartyAddressRequest;
+    const message = { ...baseQueryPayeeRequest } as QueryPayeeRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -979,7 +993,7 @@ export const QueryCounterpartyAddressRequest = {
           message.channelId = reader.string();
           break;
         case 2:
-          message.relayerAddress = reader.string();
+          message.relayer = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -989,63 +1003,63 @@ export const QueryCounterpartyAddressRequest = {
     return message;
   },
 
-  fromJSON(object: any): QueryCounterpartyAddressRequest {
-    const message = { ...baseQueryCounterpartyAddressRequest } as QueryCounterpartyAddressRequest;
+  fromJSON(object: any): QueryPayeeRequest {
+    const message = { ...baseQueryPayeeRequest } as QueryPayeeRequest;
     if (object.channelId !== undefined && object.channelId !== null) {
       message.channelId = String(object.channelId);
     } else {
       message.channelId = "";
     }
-    if (object.relayerAddress !== undefined && object.relayerAddress !== null) {
-      message.relayerAddress = String(object.relayerAddress);
+    if (object.relayer !== undefined && object.relayer !== null) {
+      message.relayer = String(object.relayer);
     } else {
-      message.relayerAddress = "";
+      message.relayer = "";
     }
     return message;
   },
 
-  toJSON(message: QueryCounterpartyAddressRequest): unknown {
+  toJSON(message: QueryPayeeRequest): unknown {
     const obj: any = {};
     message.channelId !== undefined && (obj.channelId = message.channelId);
-    message.relayerAddress !== undefined && (obj.relayerAddress = message.relayerAddress);
+    message.relayer !== undefined && (obj.relayer = message.relayer);
     return obj;
   },
 
-  fromPartial(object: DeepPartial<QueryCounterpartyAddressRequest>): QueryCounterpartyAddressRequest {
-    const message = { ...baseQueryCounterpartyAddressRequest } as QueryCounterpartyAddressRequest;
+  fromPartial(object: DeepPartial<QueryPayeeRequest>): QueryPayeeRequest {
+    const message = { ...baseQueryPayeeRequest } as QueryPayeeRequest;
     if (object.channelId !== undefined && object.channelId !== null) {
       message.channelId = object.channelId;
     } else {
       message.channelId = "";
     }
-    if (object.relayerAddress !== undefined && object.relayerAddress !== null) {
-      message.relayerAddress = object.relayerAddress;
+    if (object.relayer !== undefined && object.relayer !== null) {
+      message.relayer = object.relayer;
     } else {
-      message.relayerAddress = "";
+      message.relayer = "";
     }
     return message;
   },
 };
 
-const baseQueryCounterpartyAddressResponse: object = { counterpartyAddress: "" };
+const baseQueryPayeeResponse: object = { payeeAddress: "" };
 
-export const QueryCounterpartyAddressResponse = {
-  encode(message: QueryCounterpartyAddressResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.counterpartyAddress !== "") {
-      writer.uint32(10).string(message.counterpartyAddress);
+export const QueryPayeeResponse = {
+  encode(message: QueryPayeeResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.payeeAddress !== "") {
+      writer.uint32(10).string(message.payeeAddress);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryCounterpartyAddressResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryPayeeResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseQueryCounterpartyAddressResponse } as QueryCounterpartyAddressResponse;
+    const message = { ...baseQueryPayeeResponse } as QueryPayeeResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.counterpartyAddress = reader.string();
+          message.payeeAddress = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1055,28 +1069,155 @@ export const QueryCounterpartyAddressResponse = {
     return message;
   },
 
-  fromJSON(object: any): QueryCounterpartyAddressResponse {
-    const message = { ...baseQueryCounterpartyAddressResponse } as QueryCounterpartyAddressResponse;
-    if (object.counterpartyAddress !== undefined && object.counterpartyAddress !== null) {
-      message.counterpartyAddress = String(object.counterpartyAddress);
+  fromJSON(object: any): QueryPayeeResponse {
+    const message = { ...baseQueryPayeeResponse } as QueryPayeeResponse;
+    if (object.payeeAddress !== undefined && object.payeeAddress !== null) {
+      message.payeeAddress = String(object.payeeAddress);
     } else {
-      message.counterpartyAddress = "";
+      message.payeeAddress = "";
     }
     return message;
   },
 
-  toJSON(message: QueryCounterpartyAddressResponse): unknown {
+  toJSON(message: QueryPayeeResponse): unknown {
     const obj: any = {};
-    message.counterpartyAddress !== undefined && (obj.counterpartyAddress = message.counterpartyAddress);
+    message.payeeAddress !== undefined && (obj.payeeAddress = message.payeeAddress);
     return obj;
   },
 
-  fromPartial(object: DeepPartial<QueryCounterpartyAddressResponse>): QueryCounterpartyAddressResponse {
-    const message = { ...baseQueryCounterpartyAddressResponse } as QueryCounterpartyAddressResponse;
-    if (object.counterpartyAddress !== undefined && object.counterpartyAddress !== null) {
-      message.counterpartyAddress = object.counterpartyAddress;
+  fromPartial(object: DeepPartial<QueryPayeeResponse>): QueryPayeeResponse {
+    const message = { ...baseQueryPayeeResponse } as QueryPayeeResponse;
+    if (object.payeeAddress !== undefined && object.payeeAddress !== null) {
+      message.payeeAddress = object.payeeAddress;
     } else {
-      message.counterpartyAddress = "";
+      message.payeeAddress = "";
+    }
+    return message;
+  },
+};
+
+const baseQueryCounterpartyPayeeRequest: object = { channelId: "", relayer: "" };
+
+export const QueryCounterpartyPayeeRequest = {
+  encode(message: QueryCounterpartyPayeeRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.channelId !== "") {
+      writer.uint32(10).string(message.channelId);
+    }
+    if (message.relayer !== "") {
+      writer.uint32(18).string(message.relayer);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryCounterpartyPayeeRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryCounterpartyPayeeRequest } as QueryCounterpartyPayeeRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.channelId = reader.string();
+          break;
+        case 2:
+          message.relayer = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryCounterpartyPayeeRequest {
+    const message = { ...baseQueryCounterpartyPayeeRequest } as QueryCounterpartyPayeeRequest;
+    if (object.channelId !== undefined && object.channelId !== null) {
+      message.channelId = String(object.channelId);
+    } else {
+      message.channelId = "";
+    }
+    if (object.relayer !== undefined && object.relayer !== null) {
+      message.relayer = String(object.relayer);
+    } else {
+      message.relayer = "";
+    }
+    return message;
+  },
+
+  toJSON(message: QueryCounterpartyPayeeRequest): unknown {
+    const obj: any = {};
+    message.channelId !== undefined && (obj.channelId = message.channelId);
+    message.relayer !== undefined && (obj.relayer = message.relayer);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryCounterpartyPayeeRequest>): QueryCounterpartyPayeeRequest {
+    const message = { ...baseQueryCounterpartyPayeeRequest } as QueryCounterpartyPayeeRequest;
+    if (object.channelId !== undefined && object.channelId !== null) {
+      message.channelId = object.channelId;
+    } else {
+      message.channelId = "";
+    }
+    if (object.relayer !== undefined && object.relayer !== null) {
+      message.relayer = object.relayer;
+    } else {
+      message.relayer = "";
+    }
+    return message;
+  },
+};
+
+const baseQueryCounterpartyPayeeResponse: object = { counterpartyPayee: "" };
+
+export const QueryCounterpartyPayeeResponse = {
+  encode(message: QueryCounterpartyPayeeResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.counterpartyPayee !== "") {
+      writer.uint32(10).string(message.counterpartyPayee);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryCounterpartyPayeeResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryCounterpartyPayeeResponse } as QueryCounterpartyPayeeResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.counterpartyPayee = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryCounterpartyPayeeResponse {
+    const message = { ...baseQueryCounterpartyPayeeResponse } as QueryCounterpartyPayeeResponse;
+    if (object.counterpartyPayee !== undefined && object.counterpartyPayee !== null) {
+      message.counterpartyPayee = String(object.counterpartyPayee);
+    } else {
+      message.counterpartyPayee = "";
+    }
+    return message;
+  },
+
+  toJSON(message: QueryCounterpartyPayeeResponse): unknown {
+    const obj: any = {};
+    message.counterpartyPayee !== undefined && (obj.counterpartyPayee = message.counterpartyPayee);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryCounterpartyPayeeResponse>): QueryCounterpartyPayeeResponse {
+    const message = { ...baseQueryCounterpartyPayeeResponse } as QueryCounterpartyPayeeResponse;
+    if (object.counterpartyPayee !== undefined && object.counterpartyPayee !== null) {
+      message.counterpartyPayee = object.counterpartyPayee;
+    } else {
+      message.counterpartyPayee = "";
     }
     return message;
   },
@@ -1378,11 +1519,13 @@ export interface Query {
     request: DeepPartial<QueryTotalTimeoutFeesRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryTotalTimeoutFeesResponse>;
-  /** CounterpartyAddress returns the registered counterparty address for forward relaying */
-  CounterpartyAddress(
-    request: DeepPartial<QueryCounterpartyAddressRequest>,
+  /** Payee returns the registered payee address for a specific channel given the relayer address */
+  Payee(request: DeepPartial<QueryPayeeRequest>, metadata?: grpc.Metadata): Promise<QueryPayeeResponse>;
+  /** CounterpartyPayee returns the registered counterparty payee for forward relaying */
+  CounterpartyPayee(
+    request: DeepPartial<QueryCounterpartyPayeeRequest>,
     metadata?: grpc.Metadata,
-  ): Promise<QueryCounterpartyAddressResponse>;
+  ): Promise<QueryCounterpartyPayeeResponse>;
   /** FeeEnabledChannels returns a list of all fee enabled channels */
   FeeEnabledChannels(
     request: DeepPartial<QueryFeeEnabledChannelsRequest>,
@@ -1406,7 +1549,8 @@ export class QueryClientImpl implements Query {
     this.TotalRecvFees = this.TotalRecvFees.bind(this);
     this.TotalAckFees = this.TotalAckFees.bind(this);
     this.TotalTimeoutFees = this.TotalTimeoutFees.bind(this);
-    this.CounterpartyAddress = this.CounterpartyAddress.bind(this);
+    this.Payee = this.Payee.bind(this);
+    this.CounterpartyPayee = this.CounterpartyPayee.bind(this);
     this.FeeEnabledChannels = this.FeeEnabledChannels.bind(this);
     this.FeeEnabledChannel = this.FeeEnabledChannel.bind(this);
   }
@@ -1469,13 +1613,17 @@ export class QueryClientImpl implements Query {
     );
   }
 
-  CounterpartyAddress(
-    request: DeepPartial<QueryCounterpartyAddressRequest>,
+  Payee(request: DeepPartial<QueryPayeeRequest>, metadata?: grpc.Metadata): Promise<QueryPayeeResponse> {
+    return this.rpc.unary(QueryPayeeDesc, QueryPayeeRequest.fromPartial(request), metadata);
+  }
+
+  CounterpartyPayee(
+    request: DeepPartial<QueryCounterpartyPayeeRequest>,
     metadata?: grpc.Metadata,
-  ): Promise<QueryCounterpartyAddressResponse> {
+  ): Promise<QueryCounterpartyPayeeResponse> {
     return this.rpc.unary(
-      QueryCounterpartyAddressDesc,
-      QueryCounterpartyAddressRequest.fromPartial(request),
+      QueryCounterpartyPayeeDesc,
+      QueryCounterpartyPayeeRequest.fromPartial(request),
       metadata,
     );
   }
@@ -1639,20 +1787,42 @@ export const QueryTotalTimeoutFeesDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const QueryCounterpartyAddressDesc: UnaryMethodDefinitionish = {
-  methodName: "CounterpartyAddress",
+export const QueryPayeeDesc: UnaryMethodDefinitionish = {
+  methodName: "Payee",
   service: QueryDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
     serializeBinary() {
-      return QueryCounterpartyAddressRequest.encode(this).finish();
+      return QueryPayeeRequest.encode(this).finish();
     },
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
       return {
-        ...QueryCounterpartyAddressResponse.decode(data),
+        ...QueryPayeeResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryCounterpartyPayeeDesc: UnaryMethodDefinitionish = {
+  methodName: "CounterpartyPayee",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return QueryCounterpartyPayeeRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...QueryCounterpartyPayeeResponse.decode(data),
         toObject() {
           return this;
         },

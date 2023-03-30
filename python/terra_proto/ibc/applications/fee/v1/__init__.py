@@ -2,23 +2,76 @@
 # sources: ibc/applications/fee/v1/ack.proto, ibc/applications/fee/v1/fee.proto, ibc/applications/fee/v1/genesis.proto, ibc/applications/fee/v1/metadata.proto, ibc/applications/fee/v1/query.proto, ibc/applications/fee/v1/tx.proto
 # plugin: python-betterproto
 from dataclasses import dataclass
-from typing import Dict, List, Optional
+from typing import (
+    TYPE_CHECKING,
+    Dict,
+    List,
+    Optional,
+)
 
 import betterproto
-from betterproto.grpc.grpclib_server import ServiceBase
 import grpclib
+from betterproto.grpc.grpclib_server import ServiceBase
+
+from .....cosmos.base import v1beta1 as ____cosmos_base_v1_beta1__
+from .....cosmos.base.query import v1beta1 as ____cosmos_base_query_v1_beta1__
+from ....core.channel import v1 as ___core_channel_v1__
+
+
+if TYPE_CHECKING:
+    import grpclib.server
+    from betterproto.grpc.grpclib_client import MetadataLike
+    from grpclib.metadata import Deadline
+
+
+@dataclass(eq=False, repr=False)
+class Metadata(betterproto.Message):
+    """
+    Metadata defines the ICS29 channel specific metadata encoded into the
+    channel version bytestring See ICS004:
+    https://github.com/cosmos/ibc/tree/master/spec/core/ics-004-channel-and-
+    packet-semantics#Versioning
+    """
+
+    fee_version: str = betterproto.string_field(1)
+    """fee_version defines the ICS29 fee version"""
+
+    app_version: str = betterproto.string_field(2)
+    """
+    app_version defines the underlying application version, which may or may
+    not be a JSON encoded bytestring
+    """
+
+
+@dataclass(eq=False, repr=False)
+class IncentivizedAcknowledgement(betterproto.Message):
+    """
+    IncentivizedAcknowledgement is the acknowledgement format to be used by
+    applications wrapped in the fee middleware
+    """
+
+    app_acknowledgement: bytes = betterproto.bytes_field(1)
+    """the underlying app acknowledgement bytes"""
+
+    forward_relayer_address: str = betterproto.string_field(2)
+    """the relayer address which submits the recv packet message"""
+
+    underlying_app_success: bool = betterproto.bool_field(3)
+    """success flag of the base application callback"""
 
 
 @dataclass(eq=False, repr=False)
 class Fee(betterproto.Message):
     """Fee defines the ICS29 receive, acknowledgement and timeout fees"""
 
-    # the packet receive fee
     recv_fee: List["____cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(1)
-    # the packet acknowledgement fee
+    """the packet receive fee"""
+
     ack_fee: List["____cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(2)
-    # the packet timeout fee
+    """the packet acknowledgement fee"""
+
     timeout_fee: List["____cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(3)
+    """the packet timeout fee"""
 
 
 @dataclass(eq=False, repr=False)
@@ -28,21 +81,25 @@ class PacketFee(betterproto.Message):
     permitted relayers
     """
 
-    # fee encapsulates the recv, ack and timeout fees associated with an IBC
-    # packet
     fee: "Fee" = betterproto.message_field(1)
-    # the refund address for unspent fees
+    """
+    fee encapsulates the recv, ack and timeout fees associated with an IBC
+    packet
+    """
+
     refund_address: str = betterproto.string_field(2)
-    # optional list of relayers permitted to receive fees
+    """the refund address for unspent fees"""
+
     relayers: List[str] = betterproto.string_field(3)
+    """optional list of relayers permitted to receive fees"""
 
 
 @dataclass(eq=False, repr=False)
 class PacketFees(betterproto.Message):
     """PacketFees contains a list of type PacketFee"""
 
-    # list of packet fees
     packet_fees: List["PacketFee"] = betterproto.message_field(1)
+    """list of packet fees"""
 
 
 @dataclass(eq=False, repr=False)
@@ -52,32 +109,67 @@ class IdentifiedPacketFees(betterproto.Message):
     PacketId
     """
 
-    # unique packet identifier comprised of the channel ID, port ID and sequence
     packet_id: "___core_channel_v1__.PacketId" = betterproto.message_field(1)
-    # list of packet fees
+    """
+    unique packet identifier comprised of the channel ID, port ID and sequence
+    """
+
     packet_fees: List["PacketFee"] = betterproto.message_field(2)
+    """list of packet fees"""
 
 
 @dataclass(eq=False, repr=False)
-class MsgRegisterCounterpartyAddress(betterproto.Message):
-    """
-    MsgRegisterCounterpartyAddress defines the request type for the
-    RegisterCounterpartyAddress rpc
-    """
+class MsgRegisterPayee(betterproto.Message):
+    """MsgRegisterPayee defines the request type for the RegisterPayee rpc"""
 
-    # the relayer address
-    address: str = betterproto.string_field(1)
-    # the counterparty relayer address
-    counterparty_address: str = betterproto.string_field(2)
-    # unique channel identifier
-    channel_id: str = betterproto.string_field(3)
+    port_id: str = betterproto.string_field(1)
+    """unique port identifier"""
+
+    channel_id: str = betterproto.string_field(2)
+    """unique channel identifier"""
+
+    relayer: str = betterproto.string_field(3)
+    """the relayer address"""
+
+    payee: str = betterproto.string_field(4)
+    """the payee address"""
 
 
 @dataclass(eq=False, repr=False)
-class MsgRegisterCounterpartyAddressResponse(betterproto.Message):
+class MsgRegisterPayeeResponse(betterproto.Message):
     """
-    MsgRegisterCounterpartyAddressResponse defines the response type for the
-    RegisterCounterpartyAddress rpc
+    MsgRegisterPayeeResponse defines the response type for the RegisterPayee
+    rpc
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgRegisterCounterpartyPayee(betterproto.Message):
+    """
+    MsgRegisterCounterpartyPayee defines the request type for the
+    RegisterCounterpartyPayee rpc
+    """
+
+    port_id: str = betterproto.string_field(1)
+    """unique port identifier"""
+
+    channel_id: str = betterproto.string_field(2)
+    """unique channel identifier"""
+
+    relayer: str = betterproto.string_field(3)
+    """the relayer address"""
+
+    counterparty_payee: str = betterproto.string_field(4)
+    """the counterparty payee address"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgRegisterCounterpartyPayeeResponse(betterproto.Message):
+    """
+    MsgRegisterCounterpartyPayeeResponse defines the response type for the
+    RegisterCounterpartyPayee rpc
     """
 
     pass
@@ -91,17 +183,23 @@ class MsgPayPacketFee(betterproto.Message):
     combined with the Msg that will be paid for
     """
 
-    # fee encapsulates the recv, ack and timeout fees associated with an IBC
-    # packet
     fee: "Fee" = betterproto.message_field(1)
-    # the source port unique identifier
+    """
+    fee encapsulates the recv, ack and timeout fees associated with an IBC
+    packet
+    """
+
     source_port_id: str = betterproto.string_field(2)
-    # the source channel unique identifer
+    """the source port unique identifier"""
+
     source_channel_id: str = betterproto.string_field(3)
-    # account address to refund fee if necessary
+    """the source channel unique identifer"""
+
     signer: str = betterproto.string_field(4)
-    # optional list of relayers permitted to the receive packet fees
+    """account address to refund fee if necessary"""
+
     relayers: List[str] = betterproto.string_field(5)
+    """optional list of relayers permitted to the receive packet fees"""
 
 
 @dataclass(eq=False, repr=False)
@@ -121,10 +219,13 @@ class MsgPayPacketFeeAsync(betterproto.Message):
     of the next sequence send)
     """
 
-    # unique packet identifier comprised of the channel ID, port ID and sequence
     packet_id: "___core_channel_v1__.PacketId" = betterproto.message_field(1)
-    # the packet fee associated with a particular IBC packet
+    """
+    unique packet identifier comprised of the channel ID, port ID and sequence
+    """
+
     packet_fee: "PacketFee" = betterproto.message_field(2)
+    """the packet fee associated with a particular IBC packet"""
 
 
 @dataclass(eq=False, repr=False)
@@ -138,32 +239,25 @@ class MsgPayPacketFeeAsyncResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class IncentivizedAcknowledgement(betterproto.Message):
-    """
-    IncentivizedAcknowledgement is the acknowledgement format to be used by
-    applications wrapped in the fee middleware
-    """
-
-    # the underlying app acknowledgement result bytes
-    result: bytes = betterproto.bytes_field(1)
-    # the relayer address which submits the recv packet message
-    forward_relayer_address: str = betterproto.string_field(2)
-    # success flag of the base application callback
-    underlying_app_success: bool = betterproto.bool_field(3)
-
-
-@dataclass(eq=False, repr=False)
 class GenesisState(betterproto.Message):
     """GenesisState defines the ICS29 fee middleware genesis state"""
 
-    # list of identified packet fees
     identified_fees: List["IdentifiedPacketFees"] = betterproto.message_field(1)
-    # list of fee enabled channels
+    """list of identified packet fees"""
+
     fee_enabled_channels: List["FeeEnabledChannel"] = betterproto.message_field(2)
-    # list of registered relayer addresses
-    registered_relayers: List["RegisteredRelayerAddress"] = betterproto.message_field(3)
-    # list of forward relayer addresses
-    forward_relayers: List["ForwardRelayerAddress"] = betterproto.message_field(4)
+    """list of fee enabled channels"""
+
+    registered_payees: List["RegisteredPayee"] = betterproto.message_field(3)
+    """list of registered payees"""
+
+    registered_counterparty_payees: List[
+        "RegisteredCounterpartyPayee"
+    ] = betterproto.message_field(4)
+    """list of registered counterparty payees"""
+
+    forward_relayers: List["ForwardRelayerAddress"] = betterproto.message_field(5)
+    """list of forward relayer addresses"""
 
 
 @dataclass(eq=False, repr=False)
@@ -172,25 +266,45 @@ class FeeEnabledChannel(betterproto.Message):
     FeeEnabledChannel contains the PortID & ChannelID for a fee enabled channel
     """
 
-    # unique port identifier
     port_id: str = betterproto.string_field(1)
-    # unique channel identifier
+    """unique port identifier"""
+
     channel_id: str = betterproto.string_field(2)
+    """unique channel identifier"""
 
 
 @dataclass(eq=False, repr=False)
-class RegisteredRelayerAddress(betterproto.Message):
+class RegisteredPayee(betterproto.Message):
     """
-    RegisteredRelayerAddress contains the address and counterparty address for
-    a specific relayer (for distributing fees)
+    RegisteredPayee contains the relayer address and payee address for a
+    specific channel
     """
 
-    # the relayer address
-    address: str = betterproto.string_field(1)
-    # the counterparty relayer address
-    counterparty_address: str = betterproto.string_field(2)
-    # unique channel identifier
-    channel_id: str = betterproto.string_field(3)
+    channel_id: str = betterproto.string_field(1)
+    """unique channel identifier"""
+
+    relayer: str = betterproto.string_field(2)
+    """the relayer address"""
+
+    payee: str = betterproto.string_field(3)
+    """the payee address"""
+
+
+@dataclass(eq=False, repr=False)
+class RegisteredCounterpartyPayee(betterproto.Message):
+    """
+    RegisteredCounterpartyPayee contains the relayer address and counterparty
+    payee address for a specific channel (used for recv fee distribution)
+    """
+
+    channel_id: str = betterproto.string_field(1)
+    """unique channel identifier"""
+
+    relayer: str = betterproto.string_field(2)
+    """the relayer address"""
+
+    counterparty_payee: str = betterproto.string_field(3)
+    """the counterparty payee address"""
 
 
 @dataclass(eq=False, repr=False)
@@ -200,10 +314,13 @@ class ForwardRelayerAddress(betterproto.Message):
     used for async acknowledgements
     """
 
-    # the forward relayer address
     address: str = betterproto.string_field(1)
-    # unique packet identifer comprised of the channel ID, port ID and sequence
+    """the forward relayer address"""
+
     packet_id: "___core_channel_v1__.PacketId" = betterproto.message_field(2)
+    """
+    unique packet identifer comprised of the channel ID, port ID and sequence
+    """
 
 
 @dataclass(eq=False, repr=False)
@@ -213,12 +330,13 @@ class QueryIncentivizedPacketsRequest(betterproto.Message):
     IncentivizedPackets rpc
     """
 
-    # pagination defines an optional pagination for the request.
     pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = (
         betterproto.message_field(1)
     )
-    # block height at which to query
+    """pagination defines an optional pagination for the request."""
+
     query_height: int = betterproto.uint64_field(2)
+    """block height at which to query"""
 
 
 @dataclass(eq=False, repr=False)
@@ -228,8 +346,8 @@ class QueryIncentivizedPacketsResponse(betterproto.Message):
     IncentivizedPackets rpc
     """
 
-    # list of identified fees for incentivized packets
     incentivized_packets: List["IdentifiedPacketFees"] = betterproto.message_field(1)
+    """list of identified fees for incentivized packets"""
 
 
 @dataclass(eq=False, repr=False)
@@ -239,10 +357,13 @@ class QueryIncentivizedPacketRequest(betterproto.Message):
     IncentivizedPacket rpc
     """
 
-    # unique packet identifier comprised of channel ID, port ID and sequence
     packet_id: "___core_channel_v1__.PacketId" = betterproto.message_field(1)
-    # block height at which to query
+    """
+    unique packet identifier comprised of channel ID, port ID and sequence
+    """
+
     query_height: int = betterproto.uint64_field(2)
+    """block height at which to query"""
 
 
 @dataclass(eq=False, repr=False)
@@ -252,8 +373,8 @@ class QueryIncentivizedPacketResponse(betterproto.Message):
     IncentivizedPacket rpc
     """
 
-    # the identified fees for the incentivized packet
     incentivized_packet: "IdentifiedPacketFees" = betterproto.message_field(1)
+    """the identified fees for the incentivized packet"""
 
 
 @dataclass(eq=False, repr=False)
@@ -263,14 +384,15 @@ class QueryIncentivizedPacketsForChannelRequest(betterproto.Message):
     querying for all incentivized packets for a specific channel
     """
 
-    # pagination defines an optional pagination for the request.
     pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = (
         betterproto.message_field(1)
     )
+    """pagination defines an optional pagination for the request."""
+
     port_id: str = betterproto.string_field(2)
     channel_id: str = betterproto.string_field(3)
-    # Height to query at
     query_height: int = betterproto.uint64_field(4)
+    """Height to query at"""
 
 
 @dataclass(eq=False, repr=False)
@@ -280,8 +402,8 @@ class QueryIncentivizedPacketsForChannelResponse(betterproto.Message):
     incentivized packets RPC
     """
 
-    # Map of all incentivized_packets
     incentivized_packets: List["IdentifiedPacketFees"] = betterproto.message_field(1)
+    """Map of all incentivized_packets"""
 
 
 @dataclass(eq=False, repr=False)
@@ -291,8 +413,8 @@ class QueryTotalRecvFeesRequest(betterproto.Message):
     rpc
     """
 
-    # the packet identifier for the associated fees
     packet_id: "___core_channel_v1__.PacketId" = betterproto.message_field(1)
+    """the packet identifier for the associated fees"""
 
 
 @dataclass(eq=False, repr=False)
@@ -302,8 +424,8 @@ class QueryTotalRecvFeesResponse(betterproto.Message):
     rpc
     """
 
-    # the total packet receive fees
     recv_fees: List["____cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(1)
+    """the total packet receive fees"""
 
 
 @dataclass(eq=False, repr=False)
@@ -312,8 +434,8 @@ class QueryTotalAckFeesRequest(betterproto.Message):
     QueryTotalAckFeesRequest defines the request type for the TotalAckFees rpc
     """
 
-    # the packet identifier for the associated fees
     packet_id: "___core_channel_v1__.PacketId" = betterproto.message_field(1)
+    """the packet identifier for the associated fees"""
 
 
 @dataclass(eq=False, repr=False)
@@ -323,8 +445,8 @@ class QueryTotalAckFeesResponse(betterproto.Message):
     rpc
     """
 
-    # the total packet acknowledgement fees
     ack_fees: List["____cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(1)
+    """the total packet acknowledgement fees"""
 
 
 @dataclass(eq=False, repr=False)
@@ -334,8 +456,8 @@ class QueryTotalTimeoutFeesRequest(betterproto.Message):
     TotalTimeoutFees rpc
     """
 
-    # the packet identifier for the associated fees
     packet_id: "___core_channel_v1__.PacketId" = betterproto.message_field(1)
+    """the packet identifier for the associated fees"""
 
 
 @dataclass(eq=False, repr=False)
@@ -345,32 +467,52 @@ class QueryTotalTimeoutFeesResponse(betterproto.Message):
     TotalTimeoutFees rpc
     """
 
-    # the total packet timeout fees
     timeout_fees: List["____cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(1)
+    """the total packet timeout fees"""
 
 
 @dataclass(eq=False, repr=False)
-class QueryCounterpartyAddressRequest(betterproto.Message):
-    """
-    QueryCounterpartyAddressRequest defines the request type for the
-    CounterpartyAddress rpc
-    """
+class QueryPayeeRequest(betterproto.Message):
+    """QueryPayeeRequest defines the request type for the Payee rpc"""
 
-    # unique channel identifier
     channel_id: str = betterproto.string_field(1)
-    # the relayer address to which the counterparty is registered
-    relayer_address: str = betterproto.string_field(2)
+    """unique channel identifier"""
+
+    relayer: str = betterproto.string_field(2)
+    """the relayer address to which the distribution address is registered"""
 
 
 @dataclass(eq=False, repr=False)
-class QueryCounterpartyAddressResponse(betterproto.Message):
+class QueryPayeeResponse(betterproto.Message):
+    """QueryPayeeResponse defines the response type for the Payee rpc"""
+
+    payee_address: str = betterproto.string_field(1)
+    """the payee address to which packet fees are paid out"""
+
+
+@dataclass(eq=False, repr=False)
+class QueryCounterpartyPayeeRequest(betterproto.Message):
     """
-    QueryCounterpartyAddressResponse defines the response type for the
-    CounterpartyAddress rpc
+    QueryCounterpartyPayeeRequest defines the request type for the
+    CounterpartyPayee rpc
     """
 
-    # the counterparty address used to compensate forward relaying
-    counterparty_address: str = betterproto.string_field(1)
+    channel_id: str = betterproto.string_field(1)
+    """unique channel identifier"""
+
+    relayer: str = betterproto.string_field(2)
+    """the relayer address to which the counterparty is registered"""
+
+
+@dataclass(eq=False, repr=False)
+class QueryCounterpartyPayeeResponse(betterproto.Message):
+    """
+    QueryCounterpartyPayeeResponse defines the response type for the
+    CounterpartyPayee rpc
+    """
+
+    counterparty_payee: str = betterproto.string_field(1)
+    """the counterparty payee address used to compensate forward relaying"""
 
 
 @dataclass(eq=False, repr=False)
@@ -380,12 +522,13 @@ class QueryFeeEnabledChannelsRequest(betterproto.Message):
     FeeEnabledChannels rpc
     """
 
-    # pagination defines an optional pagination for the request.
     pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = (
         betterproto.message_field(1)
     )
-    # block height at which to query
+    """pagination defines an optional pagination for the request."""
+
     query_height: int = betterproto.uint64_field(2)
+    """block height at which to query"""
 
 
 @dataclass(eq=False, repr=False)
@@ -395,8 +538,8 @@ class QueryFeeEnabledChannelsResponse(betterproto.Message):
     FeeEnabledChannels rpc
     """
 
-    # list of fee enabled channels
     fee_enabled_channels: List["FeeEnabledChannel"] = betterproto.message_field(1)
+    """list of fee enabled channels"""
 
 
 @dataclass(eq=False, repr=False)
@@ -406,10 +549,11 @@ class QueryFeeEnabledChannelRequest(betterproto.Message):
     FeeEnabledChannel rpc
     """
 
-    # unique port identifier
     port_id: str = betterproto.string_field(1)
-    # unique channel identifier
+    """unique port identifier"""
+
     channel_id: str = betterproto.string_field(2)
+    """unique channel identifier"""
 
 
 @dataclass(eq=False, repr=False)
@@ -419,302 +563,317 @@ class QueryFeeEnabledChannelResponse(betterproto.Message):
     FeeEnabledChannel rpc
     """
 
-    # boolean flag representing the fee enabled channel status
     fee_enabled: bool = betterproto.bool_field(1)
-
-
-@dataclass(eq=False, repr=False)
-class Metadata(betterproto.Message):
-    """
-    Metadata defines the ICS29 channel specific metadata encoded into the
-    channel version bytestring See ICS004:
-    https://github.com/cosmos/ibc/tree/master/spec/core/ics-004-channel-and-
-    packet-semantics#Versioning
-    """
-
-    # fee_version defines the ICS29 fee version
-    fee_version: str = betterproto.string_field(1)
-    # app_version defines the underlying application version, which may or may
-    # not be a JSON encoded bytestring
-    app_version: str = betterproto.string_field(2)
+    """boolean flag representing the fee enabled channel status"""
 
 
 class MsgStub(betterproto.ServiceStub):
-    async def register_counterparty_address(
-        self, *, address: str = "", counterparty_address: str = "", channel_id: str = ""
-    ) -> "MsgRegisterCounterpartyAddressResponse":
-
-        request = MsgRegisterCounterpartyAddress()
-        request.address = address
-        request.counterparty_address = counterparty_address
-        request.channel_id = channel_id
-
+    async def register_payee(
+        self,
+        msg_register_payee: "MsgRegisterPayee",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "MsgRegisterPayeeResponse":
         return await self._unary_unary(
-            "/ibc.applications.fee.v1.Msg/RegisterCounterpartyAddress",
-            request,
-            MsgRegisterCounterpartyAddressResponse,
+            "/ibc.applications.fee.v1.Msg/RegisterPayee",
+            msg_register_payee,
+            MsgRegisterPayeeResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def register_counterparty_payee(
+        self,
+        msg_register_counterparty_payee: "MsgRegisterCounterpartyPayee",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "MsgRegisterCounterpartyPayeeResponse":
+        return await self._unary_unary(
+            "/ibc.applications.fee.v1.Msg/RegisterCounterpartyPayee",
+            msg_register_counterparty_payee,
+            MsgRegisterCounterpartyPayeeResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
         )
 
     async def pay_packet_fee(
         self,
+        msg_pay_packet_fee: "MsgPayPacketFee",
         *,
-        fee: "Fee" = None,
-        source_port_id: str = "",
-        source_channel_id: str = "",
-        signer: str = "",
-        relayers: Optional[List[str]] = None
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
     ) -> "MsgPayPacketFeeResponse":
-        relayers = relayers or []
-
-        request = MsgPayPacketFee()
-        if fee is not None:
-            request.fee = fee
-        request.source_port_id = source_port_id
-        request.source_channel_id = source_channel_id
-        request.signer = signer
-        request.relayers = relayers
-
         return await self._unary_unary(
             "/ibc.applications.fee.v1.Msg/PayPacketFee",
-            request,
+            msg_pay_packet_fee,
             MsgPayPacketFeeResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
         )
 
     async def pay_packet_fee_async(
         self,
+        msg_pay_packet_fee_async: "MsgPayPacketFeeAsync",
         *,
-        packet_id: "___core_channel_v1__.PacketId" = None,
-        packet_fee: "PacketFee" = None
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
     ) -> "MsgPayPacketFeeAsyncResponse":
-
-        request = MsgPayPacketFeeAsync()
-        if packet_id is not None:
-            request.packet_id = packet_id
-        if packet_fee is not None:
-            request.packet_fee = packet_fee
-
         return await self._unary_unary(
             "/ibc.applications.fee.v1.Msg/PayPacketFeeAsync",
-            request,
+            msg_pay_packet_fee_async,
             MsgPayPacketFeeAsyncResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
         )
 
 
 class QueryStub(betterproto.ServiceStub):
     async def incentivized_packets(
         self,
+        query_incentivized_packets_request: "QueryIncentivizedPacketsRequest",
         *,
-        pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = None,
-        query_height: int = 0
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
     ) -> "QueryIncentivizedPacketsResponse":
-
-        request = QueryIncentivizedPacketsRequest()
-        if pagination is not None:
-            request.pagination = pagination
-        request.query_height = query_height
-
         return await self._unary_unary(
             "/ibc.applications.fee.v1.Query/IncentivizedPackets",
-            request,
+            query_incentivized_packets_request,
             QueryIncentivizedPacketsResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
         )
 
     async def incentivized_packet(
         self,
+        query_incentivized_packet_request: "QueryIncentivizedPacketRequest",
         *,
-        packet_id: "___core_channel_v1__.PacketId" = None,
-        query_height: int = 0
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
     ) -> "QueryIncentivizedPacketResponse":
-
-        request = QueryIncentivizedPacketRequest()
-        if packet_id is not None:
-            request.packet_id = packet_id
-        request.query_height = query_height
-
         return await self._unary_unary(
             "/ibc.applications.fee.v1.Query/IncentivizedPacket",
-            request,
+            query_incentivized_packet_request,
             QueryIncentivizedPacketResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
         )
 
     async def incentivized_packets_for_channel(
         self,
+        query_incentivized_packets_for_channel_request: "QueryIncentivizedPacketsForChannelRequest",
         *,
-        pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = None,
-        port_id: str = "",
-        channel_id: str = "",
-        query_height: int = 0
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
     ) -> "QueryIncentivizedPacketsForChannelResponse":
-
-        request = QueryIncentivizedPacketsForChannelRequest()
-        if pagination is not None:
-            request.pagination = pagination
-        request.port_id = port_id
-        request.channel_id = channel_id
-        request.query_height = query_height
-
         return await self._unary_unary(
             "/ibc.applications.fee.v1.Query/IncentivizedPacketsForChannel",
-            request,
+            query_incentivized_packets_for_channel_request,
             QueryIncentivizedPacketsForChannelResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
         )
 
     async def total_recv_fees(
-        self, *, packet_id: "___core_channel_v1__.PacketId" = None
+        self,
+        query_total_recv_fees_request: "QueryTotalRecvFeesRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
     ) -> "QueryTotalRecvFeesResponse":
-
-        request = QueryTotalRecvFeesRequest()
-        if packet_id is not None:
-            request.packet_id = packet_id
-
         return await self._unary_unary(
             "/ibc.applications.fee.v1.Query/TotalRecvFees",
-            request,
+            query_total_recv_fees_request,
             QueryTotalRecvFeesResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
         )
 
     async def total_ack_fees(
-        self, *, packet_id: "___core_channel_v1__.PacketId" = None
+        self,
+        query_total_ack_fees_request: "QueryTotalAckFeesRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
     ) -> "QueryTotalAckFeesResponse":
-
-        request = QueryTotalAckFeesRequest()
-        if packet_id is not None:
-            request.packet_id = packet_id
-
         return await self._unary_unary(
             "/ibc.applications.fee.v1.Query/TotalAckFees",
-            request,
+            query_total_ack_fees_request,
             QueryTotalAckFeesResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
         )
 
     async def total_timeout_fees(
-        self, *, packet_id: "___core_channel_v1__.PacketId" = None
+        self,
+        query_total_timeout_fees_request: "QueryTotalTimeoutFeesRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
     ) -> "QueryTotalTimeoutFeesResponse":
-
-        request = QueryTotalTimeoutFeesRequest()
-        if packet_id is not None:
-            request.packet_id = packet_id
-
         return await self._unary_unary(
             "/ibc.applications.fee.v1.Query/TotalTimeoutFees",
-            request,
+            query_total_timeout_fees_request,
             QueryTotalTimeoutFeesResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
         )
 
-    async def counterparty_address(
-        self, *, channel_id: str = "", relayer_address: str = ""
-    ) -> "QueryCounterpartyAddressResponse":
-
-        request = QueryCounterpartyAddressRequest()
-        request.channel_id = channel_id
-        request.relayer_address = relayer_address
-
+    async def payee(
+        self,
+        query_payee_request: "QueryPayeeRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "QueryPayeeResponse":
         return await self._unary_unary(
-            "/ibc.applications.fee.v1.Query/CounterpartyAddress",
-            request,
-            QueryCounterpartyAddressResponse,
+            "/ibc.applications.fee.v1.Query/Payee",
+            query_payee_request,
+            QueryPayeeResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def counterparty_payee(
+        self,
+        query_counterparty_payee_request: "QueryCounterpartyPayeeRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "QueryCounterpartyPayeeResponse":
+        return await self._unary_unary(
+            "/ibc.applications.fee.v1.Query/CounterpartyPayee",
+            query_counterparty_payee_request,
+            QueryCounterpartyPayeeResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
         )
 
     async def fee_enabled_channels(
         self,
+        query_fee_enabled_channels_request: "QueryFeeEnabledChannelsRequest",
         *,
-        pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = None,
-        query_height: int = 0
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
     ) -> "QueryFeeEnabledChannelsResponse":
-
-        request = QueryFeeEnabledChannelsRequest()
-        if pagination is not None:
-            request.pagination = pagination
-        request.query_height = query_height
-
         return await self._unary_unary(
             "/ibc.applications.fee.v1.Query/FeeEnabledChannels",
-            request,
+            query_fee_enabled_channels_request,
             QueryFeeEnabledChannelsResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
         )
 
     async def fee_enabled_channel(
-        self, *, port_id: str = "", channel_id: str = ""
+        self,
+        query_fee_enabled_channel_request: "QueryFeeEnabledChannelRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
     ) -> "QueryFeeEnabledChannelResponse":
-
-        request = QueryFeeEnabledChannelRequest()
-        request.port_id = port_id
-        request.channel_id = channel_id
-
         return await self._unary_unary(
             "/ibc.applications.fee.v1.Query/FeeEnabledChannel",
-            request,
+            query_fee_enabled_channel_request,
             QueryFeeEnabledChannelResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
         )
 
 
 class MsgBase(ServiceBase):
-    async def register_counterparty_address(
-        self, address: str, counterparty_address: str, channel_id: str
-    ) -> "MsgRegisterCounterpartyAddressResponse":
+    async def register_payee(
+        self, msg_register_payee: "MsgRegisterPayee"
+    ) -> "MsgRegisterPayeeResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def register_counterparty_payee(
+        self, msg_register_counterparty_payee: "MsgRegisterCounterpartyPayee"
+    ) -> "MsgRegisterCounterpartyPayeeResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def pay_packet_fee(
-        self,
-        fee: "Fee",
-        source_port_id: str,
-        source_channel_id: str,
-        signer: str,
-        relayers: Optional[List[str]],
+        self, msg_pay_packet_fee: "MsgPayPacketFee"
     ) -> "MsgPayPacketFeeResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def pay_packet_fee_async(
-        self, packet_id: "___core_channel_v1__.PacketId", packet_fee: "PacketFee"
+        self, msg_pay_packet_fee_async: "MsgPayPacketFeeAsync"
     ) -> "MsgPayPacketFeeAsyncResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def __rpc_register_counterparty_address(
-        self, stream: grpclib.server.Stream
+    async def __rpc_register_payee(
+        self,
+        stream: "grpclib.server.Stream[MsgRegisterPayee, MsgRegisterPayeeResponse]",
     ) -> None:
         request = await stream.recv_message()
-
-        request_kwargs = {
-            "address": request.address,
-            "counterparty_address": request.counterparty_address,
-            "channel_id": request.channel_id,
-        }
-
-        response = await self.register_counterparty_address(**request_kwargs)
+        response = await self.register_payee(request)
         await stream.send_message(response)
 
-    async def __rpc_pay_packet_fee(self, stream: grpclib.server.Stream) -> None:
+    async def __rpc_register_counterparty_payee(
+        self,
+        stream: "grpclib.server.Stream[MsgRegisterCounterpartyPayee, MsgRegisterCounterpartyPayeeResponse]",
+    ) -> None:
         request = await stream.recv_message()
-
-        request_kwargs = {
-            "fee": request.fee,
-            "source_port_id": request.source_port_id,
-            "source_channel_id": request.source_channel_id,
-            "signer": request.signer,
-            "relayers": request.relayers,
-        }
-
-        response = await self.pay_packet_fee(**request_kwargs)
+        response = await self.register_counterparty_payee(request)
         await stream.send_message(response)
 
-    async def __rpc_pay_packet_fee_async(self, stream: grpclib.server.Stream) -> None:
+    async def __rpc_pay_packet_fee(
+        self, stream: "grpclib.server.Stream[MsgPayPacketFee, MsgPayPacketFeeResponse]"
+    ) -> None:
         request = await stream.recv_message()
+        response = await self.pay_packet_fee(request)
+        await stream.send_message(response)
 
-        request_kwargs = {
-            "packet_id": request.packet_id,
-            "packet_fee": request.packet_fee,
-        }
-
-        response = await self.pay_packet_fee_async(**request_kwargs)
+    async def __rpc_pay_packet_fee_async(
+        self,
+        stream: "grpclib.server.Stream[MsgPayPacketFeeAsync, MsgPayPacketFeeAsyncResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.pay_packet_fee_async(request)
         await stream.send_message(response)
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            "/ibc.applications.fee.v1.Msg/RegisterCounterpartyAddress": grpclib.const.Handler(
-                self.__rpc_register_counterparty_address,
+            "/ibc.applications.fee.v1.Msg/RegisterPayee": grpclib.const.Handler(
+                self.__rpc_register_payee,
                 grpclib.const.Cardinality.UNARY_UNARY,
-                MsgRegisterCounterpartyAddress,
-                MsgRegisterCounterpartyAddressResponse,
+                MsgRegisterPayee,
+                MsgRegisterPayeeResponse,
+            ),
+            "/ibc.applications.fee.v1.Msg/RegisterCounterpartyPayee": grpclib.const.Handler(
+                self.__rpc_register_counterparty_payee,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgRegisterCounterpartyPayee,
+                MsgRegisterCounterpartyPayeeResponse,
             ),
             "/ibc.applications.fee.v1.Msg/PayPacketFee": grpclib.const.Handler(
                 self.__rpc_pay_packet_fee,
@@ -733,156 +892,133 @@ class MsgBase(ServiceBase):
 
 class QueryBase(ServiceBase):
     async def incentivized_packets(
-        self,
-        pagination: "____cosmos_base_query_v1_beta1__.PageRequest",
-        query_height: int,
+        self, query_incentivized_packets_request: "QueryIncentivizedPacketsRequest"
     ) -> "QueryIncentivizedPacketsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def incentivized_packet(
-        self, packet_id: "___core_channel_v1__.PacketId", query_height: int
+        self, query_incentivized_packet_request: "QueryIncentivizedPacketRequest"
     ) -> "QueryIncentivizedPacketResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def incentivized_packets_for_channel(
         self,
-        pagination: "____cosmos_base_query_v1_beta1__.PageRequest",
-        port_id: str,
-        channel_id: str,
-        query_height: int,
+        query_incentivized_packets_for_channel_request: "QueryIncentivizedPacketsForChannelRequest",
     ) -> "QueryIncentivizedPacketsForChannelResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def total_recv_fees(
-        self, packet_id: "___core_channel_v1__.PacketId"
+        self, query_total_recv_fees_request: "QueryTotalRecvFeesRequest"
     ) -> "QueryTotalRecvFeesResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def total_ack_fees(
-        self, packet_id: "___core_channel_v1__.PacketId"
+        self, query_total_ack_fees_request: "QueryTotalAckFeesRequest"
     ) -> "QueryTotalAckFeesResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def total_timeout_fees(
-        self, packet_id: "___core_channel_v1__.PacketId"
+        self, query_total_timeout_fees_request: "QueryTotalTimeoutFeesRequest"
     ) -> "QueryTotalTimeoutFeesResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def counterparty_address(
-        self, channel_id: str, relayer_address: str
-    ) -> "QueryCounterpartyAddressResponse":
+    async def payee(
+        self, query_payee_request: "QueryPayeeRequest"
+    ) -> "QueryPayeeResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def counterparty_payee(
+        self, query_counterparty_payee_request: "QueryCounterpartyPayeeRequest"
+    ) -> "QueryCounterpartyPayeeResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def fee_enabled_channels(
-        self,
-        pagination: "____cosmos_base_query_v1_beta1__.PageRequest",
-        query_height: int,
+        self, query_fee_enabled_channels_request: "QueryFeeEnabledChannelsRequest"
     ) -> "QueryFeeEnabledChannelsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def fee_enabled_channel(
-        self, port_id: str, channel_id: str
+        self, query_fee_enabled_channel_request: "QueryFeeEnabledChannelRequest"
     ) -> "QueryFeeEnabledChannelResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def __rpc_incentivized_packets(self, stream: grpclib.server.Stream) -> None:
+    async def __rpc_incentivized_packets(
+        self,
+        stream: "grpclib.server.Stream[QueryIncentivizedPacketsRequest, QueryIncentivizedPacketsResponse]",
+    ) -> None:
         request = await stream.recv_message()
-
-        request_kwargs = {
-            "pagination": request.pagination,
-            "query_height": request.query_height,
-        }
-
-        response = await self.incentivized_packets(**request_kwargs)
+        response = await self.incentivized_packets(request)
         await stream.send_message(response)
 
-    async def __rpc_incentivized_packet(self, stream: grpclib.server.Stream) -> None:
+    async def __rpc_incentivized_packet(
+        self,
+        stream: "grpclib.server.Stream[QueryIncentivizedPacketRequest, QueryIncentivizedPacketResponse]",
+    ) -> None:
         request = await stream.recv_message()
-
-        request_kwargs = {
-            "packet_id": request.packet_id,
-            "query_height": request.query_height,
-        }
-
-        response = await self.incentivized_packet(**request_kwargs)
+        response = await self.incentivized_packet(request)
         await stream.send_message(response)
 
     async def __rpc_incentivized_packets_for_channel(
-        self, stream: grpclib.server.Stream
+        self,
+        stream: "grpclib.server.Stream[QueryIncentivizedPacketsForChannelRequest, QueryIncentivizedPacketsForChannelResponse]",
     ) -> None:
         request = await stream.recv_message()
-
-        request_kwargs = {
-            "pagination": request.pagination,
-            "port_id": request.port_id,
-            "channel_id": request.channel_id,
-            "query_height": request.query_height,
-        }
-
-        response = await self.incentivized_packets_for_channel(**request_kwargs)
+        response = await self.incentivized_packets_for_channel(request)
         await stream.send_message(response)
 
-    async def __rpc_total_recv_fees(self, stream: grpclib.server.Stream) -> None:
+    async def __rpc_total_recv_fees(
+        self,
+        stream: "grpclib.server.Stream[QueryTotalRecvFeesRequest, QueryTotalRecvFeesResponse]",
+    ) -> None:
         request = await stream.recv_message()
-
-        request_kwargs = {
-            "packet_id": request.packet_id,
-        }
-
-        response = await self.total_recv_fees(**request_kwargs)
+        response = await self.total_recv_fees(request)
         await stream.send_message(response)
 
-    async def __rpc_total_ack_fees(self, stream: grpclib.server.Stream) -> None:
+    async def __rpc_total_ack_fees(
+        self,
+        stream: "grpclib.server.Stream[QueryTotalAckFeesRequest, QueryTotalAckFeesResponse]",
+    ) -> None:
         request = await stream.recv_message()
-
-        request_kwargs = {
-            "packet_id": request.packet_id,
-        }
-
-        response = await self.total_ack_fees(**request_kwargs)
+        response = await self.total_ack_fees(request)
         await stream.send_message(response)
 
-    async def __rpc_total_timeout_fees(self, stream: grpclib.server.Stream) -> None:
+    async def __rpc_total_timeout_fees(
+        self,
+        stream: "grpclib.server.Stream[QueryTotalTimeoutFeesRequest, QueryTotalTimeoutFeesResponse]",
+    ) -> None:
         request = await stream.recv_message()
-
-        request_kwargs = {
-            "packet_id": request.packet_id,
-        }
-
-        response = await self.total_timeout_fees(**request_kwargs)
+        response = await self.total_timeout_fees(request)
         await stream.send_message(response)
 
-    async def __rpc_counterparty_address(self, stream: grpclib.server.Stream) -> None:
+    async def __rpc_payee(
+        self, stream: "grpclib.server.Stream[QueryPayeeRequest, QueryPayeeResponse]"
+    ) -> None:
         request = await stream.recv_message()
-
-        request_kwargs = {
-            "channel_id": request.channel_id,
-            "relayer_address": request.relayer_address,
-        }
-
-        response = await self.counterparty_address(**request_kwargs)
+        response = await self.payee(request)
         await stream.send_message(response)
 
-    async def __rpc_fee_enabled_channels(self, stream: grpclib.server.Stream) -> None:
+    async def __rpc_counterparty_payee(
+        self,
+        stream: "grpclib.server.Stream[QueryCounterpartyPayeeRequest, QueryCounterpartyPayeeResponse]",
+    ) -> None:
         request = await stream.recv_message()
-
-        request_kwargs = {
-            "pagination": request.pagination,
-            "query_height": request.query_height,
-        }
-
-        response = await self.fee_enabled_channels(**request_kwargs)
+        response = await self.counterparty_payee(request)
         await stream.send_message(response)
 
-    async def __rpc_fee_enabled_channel(self, stream: grpclib.server.Stream) -> None:
+    async def __rpc_fee_enabled_channels(
+        self,
+        stream: "grpclib.server.Stream[QueryFeeEnabledChannelsRequest, QueryFeeEnabledChannelsResponse]",
+    ) -> None:
         request = await stream.recv_message()
+        response = await self.fee_enabled_channels(request)
+        await stream.send_message(response)
 
-        request_kwargs = {
-            "port_id": request.port_id,
-            "channel_id": request.channel_id,
-        }
-
-        response = await self.fee_enabled_channel(**request_kwargs)
+    async def __rpc_fee_enabled_channel(
+        self,
+        stream: "grpclib.server.Stream[QueryFeeEnabledChannelRequest, QueryFeeEnabledChannelResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.fee_enabled_channel(request)
         await stream.send_message(response)
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
@@ -923,11 +1059,17 @@ class QueryBase(ServiceBase):
                 QueryTotalTimeoutFeesRequest,
                 QueryTotalTimeoutFeesResponse,
             ),
-            "/ibc.applications.fee.v1.Query/CounterpartyAddress": grpclib.const.Handler(
-                self.__rpc_counterparty_address,
+            "/ibc.applications.fee.v1.Query/Payee": grpclib.const.Handler(
+                self.__rpc_payee,
                 grpclib.const.Cardinality.UNARY_UNARY,
-                QueryCounterpartyAddressRequest,
-                QueryCounterpartyAddressResponse,
+                QueryPayeeRequest,
+                QueryPayeeResponse,
+            ),
+            "/ibc.applications.fee.v1.Query/CounterpartyPayee": grpclib.const.Handler(
+                self.__rpc_counterparty_payee,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                QueryCounterpartyPayeeRequest,
+                QueryCounterpartyPayeeResponse,
             ),
             "/ibc.applications.fee.v1.Query/FeeEnabledChannels": grpclib.const.Handler(
                 self.__rpc_fee_enabled_channels,
@@ -942,8 +1084,3 @@ class QueryBase(ServiceBase):
                 QueryFeeEnabledChannelResponse,
             ),
         }
-
-
-from .....cosmos.base import v1beta1 as ____cosmos_base_v1_beta1__
-from .....cosmos.base.query import v1beta1 as ____cosmos_base_query_v1_beta1__
-from ....core.channel import v1 as ___core_channel_v1__

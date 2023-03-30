@@ -4,7 +4,7 @@ import _m0 from "protobufjs/minimal";
 import { Coin, DecCoin } from "../cosmos/base/v1beta1/coin";
 import { RewardHistory } from "../alliance/params";
 
-export const protobufPackage = "alliance";
+export const protobufPackage = "alliance.alliance";
 
 export interface Delegation {
   /** delegator_address is the bech32-encoded address of the delegator. */

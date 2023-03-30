@@ -1,7 +1,7 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal";
-import { CommitmentProof } from "../../../../confio/proofs";
+import { CommitmentProof } from "../../../../proofs";
 
 export const protobufPackage = "ibc.core.commitment.v1";
 

@@ -63,6 +63,7 @@ export interface MsgChannelOpenInit {
 /** MsgChannelOpenInitResponse defines the Msg/ChannelOpenInit response type. */
 export interface MsgChannelOpenInitResponse {
   channelId: string;
+  version: string;
 }
 
 /**
@@ -73,8 +74,9 @@ export interface MsgChannelOpenInitResponse {
 export interface MsgChannelOpenTry {
   portId: string;
   /**
-   * in the case of crossing hello's, when both chains call OpenInit, we need
-   * the channel identifier of the previous channel in state INIT
+   * Deprecated: this field is unused. Crossing hello's are no longer supported in core IBC.
+   *
+   * @deprecated
    */
   previousChannelId: string;
   /** NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC. */
@@ -86,7 +88,9 @@ export interface MsgChannelOpenTry {
 }
 
 /** MsgChannelOpenTryResponse defines the Msg/ChannelOpenTry response type. */
-export interface MsgChannelOpenTryResponse {}
+export interface MsgChannelOpenTryResponse {
+  version: string;
+}
 
 /**
  * MsgChannelOpenAck defines a msg sent by a Relayer to Chain A to acknowledge
@@ -300,12 +304,15 @@ export const MsgChannelOpenInit = {
   },
 };
 
-const baseMsgChannelOpenInitResponse: object = { channelId: "" };
+const baseMsgChannelOpenInitResponse: object = { channelId: "", version: "" };
 
 export const MsgChannelOpenInitResponse = {
   encode(message: MsgChannelOpenInitResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.channelId !== "") {
       writer.uint32(10).string(message.channelId);
+    }
+    if (message.version !== "") {
+      writer.uint32(18).string(message.version);
     }
     return writer;
   },
@@ -319,6 +326,9 @@ export const MsgChannelOpenInitResponse = {
       switch (tag >>> 3) {
         case 1:
           message.channelId = reader.string();
+          break;
+        case 2:
+          message.version = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -335,12 +345,18 @@ export const MsgChannelOpenInitResponse = {
     } else {
       message.channelId = "";
     }
+    if (object.version !== undefined && object.version !== null) {
+      message.version = String(object.version);
+    } else {
+      message.version = "";
+    }
     return message;
   },
 
   toJSON(message: MsgChannelOpenInitResponse): unknown {
     const obj: any = {};
     message.channelId !== undefined && (obj.channelId = message.channelId);
+    message.version !== undefined && (obj.version = message.version);
     return obj;
   },
 
@@ -350,6 +366,11 @@ export const MsgChannelOpenInitResponse = {
       message.channelId = object.channelId;
     } else {
       message.channelId = "";
+    }
+    if (object.version !== undefined && object.version !== null) {
+      message.version = object.version;
+    } else {
+      message.version = "";
     }
     return message;
   },
@@ -522,10 +543,13 @@ export const MsgChannelOpenTry = {
   },
 };
 
-const baseMsgChannelOpenTryResponse: object = {};
+const baseMsgChannelOpenTryResponse: object = { version: "" };
 
 export const MsgChannelOpenTryResponse = {
-  encode(_: MsgChannelOpenTryResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(message: MsgChannelOpenTryResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.version !== "") {
+      writer.uint32(10).string(message.version);
+    }
     return writer;
   },
 
@@ -536,6 +560,9 @@ export const MsgChannelOpenTryResponse = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          message.version = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -544,18 +571,29 @@ export const MsgChannelOpenTryResponse = {
     return message;
   },
 
-  fromJSON(_: any): MsgChannelOpenTryResponse {
+  fromJSON(object: any): MsgChannelOpenTryResponse {
     const message = { ...baseMsgChannelOpenTryResponse } as MsgChannelOpenTryResponse;
+    if (object.version !== undefined && object.version !== null) {
+      message.version = String(object.version);
+    } else {
+      message.version = "";
+    }
     return message;
   },
 
-  toJSON(_: MsgChannelOpenTryResponse): unknown {
+  toJSON(message: MsgChannelOpenTryResponse): unknown {
     const obj: any = {};
+    message.version !== undefined && (obj.version = message.version);
     return obj;
   },
 
-  fromPartial(_: DeepPartial<MsgChannelOpenTryResponse>): MsgChannelOpenTryResponse {
+  fromPartial(object: DeepPartial<MsgChannelOpenTryResponse>): MsgChannelOpenTryResponse {
     const message = { ...baseMsgChannelOpenTryResponse } as MsgChannelOpenTryResponse;
+    if (object.version !== undefined && object.version !== null) {
+      message.version = object.version;
+    } else {
+      message.version = "";
+    }
     return message;
   },
 };

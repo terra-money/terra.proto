@@ -2,11 +2,25 @@
 # sources: cosmos/vesting/v1beta1/tx.proto, cosmos/vesting/v1beta1/vesting.proto
 # plugin: python-betterproto
 from dataclasses import dataclass
-from typing import Dict, List, Optional
+from typing import (
+    TYPE_CHECKING,
+    Dict,
+    List,
+    Optional,
+)
 
 import betterproto
-from betterproto.grpc.grpclib_server import ServiceBase
 import grpclib
+from betterproto.grpc.grpclib_server import ServiceBase
+
+from ...auth import v1beta1 as __auth_v1_beta1__
+from ...base import v1beta1 as __base_v1_beta1__
+
+
+if TYPE_CHECKING:
+    import grpclib.server
+    from betterproto.grpc.grpclib_client import MetadataLike
+    from grpclib.metadata import Deadline
 
 
 @dataclass(eq=False, repr=False)
@@ -21,6 +35,7 @@ class BaseVestingAccount(betterproto.Message):
     delegated_free: List["__base_v1_beta1__.Coin"] = betterproto.message_field(3)
     delegated_vesting: List["__base_v1_beta1__.Coin"] = betterproto.message_field(4)
     end_time: int = betterproto.int64_field(5)
+    """Vesting end time, as unix timestamp (in seconds)."""
 
 
 @dataclass(eq=False, repr=False)
@@ -32,6 +47,7 @@ class ContinuousVestingAccount(betterproto.Message):
 
     base_vesting_account: "BaseVestingAccount" = betterproto.message_field(1)
     start_time: int = betterproto.int64_field(2)
+    """Vesting start time, as unix timestamp (in seconds)."""
 
 
 @dataclass(eq=False, repr=False)
@@ -50,6 +66,8 @@ class Period(betterproto.Message):
     """Period defines a length of time and amount of coins that will vest."""
 
     length: int = betterproto.int64_field(1)
+    """Period duration in seconds."""
+
     amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(2)
 
 
@@ -88,6 +106,8 @@ class MsgCreateVestingAccount(betterproto.Message):
     to_address: str = betterproto.string_field(2)
     amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(3)
     end_time: int = betterproto.int64_field(4)
+    """end of vesting as unix time (in seconds)."""
+
     delayed: bool = betterproto.bool_field(5)
 
 
@@ -102,43 +122,47 @@ class MsgCreateVestingAccountResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class MsgCreatePeriodicVestingAccount(betterproto.Message):
+class MsgCreatePermanentLockedAccount(betterproto.Message):
     """
-    MsgCreatePeriodicVestingAccount defines a message that enables creating a
-    vesting account.
+    MsgCreatePermanentLockedAccount defines a message that enables creating a
+    permanent locked account. Since: cosmos-sdk 0.46
     """
 
     from_address: str = betterproto.string_field(1)
     to_address: str = betterproto.string_field(2)
-    start_time: int = betterproto.int64_field(3)
-    vesting_periods: List["Period"] = betterproto.message_field(4)
+    amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class MsgCreatePeriodicVestingAccountResponse(betterproto.Message):
+class MsgCreatePermanentLockedAccountResponse(betterproto.Message):
     """
-    MsgCreatePeriodicVestingAccountResponse defines the
-    Msg/CreatePeriodicVestingAccount response type.
+    MsgCreatePermanentLockedAccountResponse defines the
+    Msg/CreatePermanentLockedAccount response type. Since: cosmos-sdk 0.46
     """
 
     pass
 
 
 @dataclass(eq=False, repr=False)
-class MsgDonateAllVestingTokens(betterproto.Message):
+class MsgCreatePeriodicVestingAccount(betterproto.Message):
     """
-    MsgDonateAllVestingTokens defines a message that enables donating all
-    vesting token to community pool.
+    MsgCreateVestingAccount defines a message that enables creating a vesting
+    account. Since: cosmos-sdk 0.46
     """
 
     from_address: str = betterproto.string_field(1)
+    to_address: str = betterproto.string_field(2)
+    start_time: int = betterproto.int64_field(3)
+    """start of vesting as unix time (in seconds)."""
+
+    vesting_periods: List["Period"] = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)
-class MsgDonateAllVestingTokensResponse(betterproto.Message):
+class MsgCreatePeriodicVestingAccountResponse(betterproto.Message):
     """
-    MsgDonateAllVestingTokensResponse defines the Msg/MsgDonateAllVestingTokens
-    response type.
+    MsgCreateVestingAccountResponse defines the
+    Msg/CreatePeriodicVestingAccount response type. Since: cosmos-sdk 0.46
     """
 
     pass
@@ -147,130 +171,94 @@ class MsgDonateAllVestingTokensResponse(betterproto.Message):
 class MsgStub(betterproto.ServiceStub):
     async def create_vesting_account(
         self,
+        msg_create_vesting_account: "MsgCreateVestingAccount",
         *,
-        from_address: str = "",
-        to_address: str = "",
-        amount: Optional[List["__base_v1_beta1__.Coin"]] = None,
-        end_time: int = 0,
-        delayed: bool = False
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
     ) -> "MsgCreateVestingAccountResponse":
-        amount = amount or []
-
-        request = MsgCreateVestingAccount()
-        request.from_address = from_address
-        request.to_address = to_address
-        if amount is not None:
-            request.amount = amount
-        request.end_time = end_time
-        request.delayed = delayed
-
         return await self._unary_unary(
             "/cosmos.vesting.v1beta1.Msg/CreateVestingAccount",
-            request,
+            msg_create_vesting_account,
             MsgCreateVestingAccountResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def create_permanent_locked_account(
+        self,
+        msg_create_permanent_locked_account: "MsgCreatePermanentLockedAccount",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "MsgCreatePermanentLockedAccountResponse":
+        return await self._unary_unary(
+            "/cosmos.vesting.v1beta1.Msg/CreatePermanentLockedAccount",
+            msg_create_permanent_locked_account,
+            MsgCreatePermanentLockedAccountResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
         )
 
     async def create_periodic_vesting_account(
         self,
+        msg_create_periodic_vesting_account: "MsgCreatePeriodicVestingAccount",
         *,
-        from_address: str = "",
-        to_address: str = "",
-        start_time: int = 0,
-        vesting_periods: Optional[List["Period"]] = None
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
     ) -> "MsgCreatePeriodicVestingAccountResponse":
-        vesting_periods = vesting_periods or []
-
-        request = MsgCreatePeriodicVestingAccount()
-        request.from_address = from_address
-        request.to_address = to_address
-        request.start_time = start_time
-        if vesting_periods is not None:
-            request.vesting_periods = vesting_periods
-
         return await self._unary_unary(
             "/cosmos.vesting.v1beta1.Msg/CreatePeriodicVestingAccount",
-            request,
+            msg_create_periodic_vesting_account,
             MsgCreatePeriodicVestingAccountResponse,
-        )
-
-    async def donate_all_vesting_tokens(
-        self, *, from_address: str = ""
-    ) -> "MsgDonateAllVestingTokensResponse":
-
-        request = MsgDonateAllVestingTokens()
-        request.from_address = from_address
-
-        return await self._unary_unary(
-            "/cosmos.vesting.v1beta1.Msg/DonateAllVestingTokens",
-            request,
-            MsgDonateAllVestingTokensResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
         )
 
 
 class MsgBase(ServiceBase):
     async def create_vesting_account(
-        self,
-        from_address: str,
-        to_address: str,
-        amount: Optional[List["__base_v1_beta1__.Coin"]],
-        end_time: int,
-        delayed: bool,
+        self, msg_create_vesting_account: "MsgCreateVestingAccount"
     ) -> "MsgCreateVestingAccountResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def create_permanent_locked_account(
+        self, msg_create_permanent_locked_account: "MsgCreatePermanentLockedAccount"
+    ) -> "MsgCreatePermanentLockedAccountResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
     async def create_periodic_vesting_account(
-        self,
-        from_address: str,
-        to_address: str,
-        start_time: int,
-        vesting_periods: Optional[List["Period"]],
+        self, msg_create_periodic_vesting_account: "MsgCreatePeriodicVestingAccount"
     ) -> "MsgCreatePeriodicVestingAccountResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def donate_all_vesting_tokens(
-        self, from_address: str
-    ) -> "MsgDonateAllVestingTokensResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def __rpc_create_vesting_account(self, stream: grpclib.server.Stream) -> None:
+    async def __rpc_create_vesting_account(
+        self,
+        stream: "grpclib.server.Stream[MsgCreateVestingAccount, MsgCreateVestingAccountResponse]",
+    ) -> None:
         request = await stream.recv_message()
+        response = await self.create_vesting_account(request)
+        await stream.send_message(response)
 
-        request_kwargs = {
-            "from_address": request.from_address,
-            "to_address": request.to_address,
-            "amount": request.amount,
-            "end_time": request.end_time,
-            "delayed": request.delayed,
-        }
-
-        response = await self.create_vesting_account(**request_kwargs)
+    async def __rpc_create_permanent_locked_account(
+        self,
+        stream: "grpclib.server.Stream[MsgCreatePermanentLockedAccount, MsgCreatePermanentLockedAccountResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.create_permanent_locked_account(request)
         await stream.send_message(response)
 
     async def __rpc_create_periodic_vesting_account(
-        self, stream: grpclib.server.Stream
+        self,
+        stream: "grpclib.server.Stream[MsgCreatePeriodicVestingAccount, MsgCreatePeriodicVestingAccountResponse]",
     ) -> None:
         request = await stream.recv_message()
-
-        request_kwargs = {
-            "from_address": request.from_address,
-            "to_address": request.to_address,
-            "start_time": request.start_time,
-            "vesting_periods": request.vesting_periods,
-        }
-
-        response = await self.create_periodic_vesting_account(**request_kwargs)
-        await stream.send_message(response)
-
-    async def __rpc_donate_all_vesting_tokens(
-        self, stream: grpclib.server.Stream
-    ) -> None:
-        request = await stream.recv_message()
-
-        request_kwargs = {
-            "from_address": request.from_address,
-        }
-
-        response = await self.donate_all_vesting_tokens(**request_kwargs)
+        response = await self.create_periodic_vesting_account(request)
         await stream.send_message(response)
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
@@ -281,20 +269,16 @@ class MsgBase(ServiceBase):
                 MsgCreateVestingAccount,
                 MsgCreateVestingAccountResponse,
             ),
+            "/cosmos.vesting.v1beta1.Msg/CreatePermanentLockedAccount": grpclib.const.Handler(
+                self.__rpc_create_permanent_locked_account,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgCreatePermanentLockedAccount,
+                MsgCreatePermanentLockedAccountResponse,
+            ),
             "/cosmos.vesting.v1beta1.Msg/CreatePeriodicVestingAccount": grpclib.const.Handler(
                 self.__rpc_create_periodic_vesting_account,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgCreatePeriodicVestingAccount,
                 MsgCreatePeriodicVestingAccountResponse,
             ),
-            "/cosmos.vesting.v1beta1.Msg/DonateAllVestingTokens": grpclib.const.Handler(
-                self.__rpc_donate_all_vesting_tokens,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgDonateAllVestingTokens,
-                MsgDonateAllVestingTokensResponse,
-            ),
         }
-
-
-from ...auth import v1beta1 as __auth_v1_beta1__
-from ...base import v1beta1 as __base_v1_beta1__
