@@ -167,6 +167,24 @@ class MsgCreatePeriodicVestingAccountResponse(betterproto.Message):
 
     pass
 
+@dataclass(eq=False, repr=False)
+class MsgDonateAllVestingTokens(betterproto.Message):
+    """
+    MsgDonateAllVestingTokens defines a message that enables donating all
+    vesting token to community pool.
+    """
+
+    from_address: str = betterproto.string_field(1)
+
+
+@dataclass(eq=False, repr=False)
+class MsgDonateAllVestingTokensResponse(betterproto.Message):
+    """
+    MsgDonateAllVestingTokensResponse defines the Msg/MsgDonateAllVestingTokens
+    response type.
+    """
+
+    pass
 
 class MsgStub(betterproto.ServiceStub):
     async def create_vesting_account(
