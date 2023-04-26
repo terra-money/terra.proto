@@ -13,5 +13,9 @@ node_modules
 /tendermint/
 /alliance/
 /stride/
+/cosmwasm/
+/proofs.d.ts
+/proofs.js
+/proofs.js.map
 
 /.temp/

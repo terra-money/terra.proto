@@ -1,7 +1,7 @@
 [submodule "cosmos-sdk"]
 	path = cosmos-sdk
-	url = https://github.com/cosmos/cosmos-sdk.git
-	branch = release/v0.46.x
+	url = https://github.com/terra-money/cosmos-sdk.git
+	branch = release/v0.46.11-terra.rc.5
 [submodule "ibc-go"]
 	path = ibc-go
 	url = https://github.com/cosmos/ibc-go.git

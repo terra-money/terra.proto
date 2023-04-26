@@ -16,7 +16,6 @@ export interface MsgCreateVestingAccount {
   fromAddress: string;
   toAddress: string;
   amount: Coin[];
-  /** end of vesting as unix time (in seconds). */
   endTime: Long;
   delayed: boolean;
 }
@@ -44,7 +43,7 @@ export interface MsgCreatePermanentLockedAccount {
 export interface MsgCreatePermanentLockedAccountResponse {}
 
 /**
- * MsgCreateVestingAccount defines a message that enables creating a vesting
+ * MsgCreatePeriodicVestingAccount defines a message that enables creating a vesting
  * account.
  *
  * Since: cosmos-sdk 0.46
@@ -52,18 +51,31 @@ export interface MsgCreatePermanentLockedAccountResponse {}
 export interface MsgCreatePeriodicVestingAccount {
   fromAddress: string;
   toAddress: string;
-  /** start of vesting as unix time (in seconds). */
   startTime: Long;
   vestingPeriods: Period[];
 }
 
 /**
- * MsgCreateVestingAccountResponse defines the Msg/CreatePeriodicVestingAccount
+ * MsgCreatePeriodicVestingAccountResponse defines the Msg/CreatePeriodicVestingAccount
  * response type.
  *
  * Since: cosmos-sdk 0.46
  */
 export interface MsgCreatePeriodicVestingAccountResponse {}
+
+/**
+ * MsgDonateAllVestingTokens defines a message that enables donating all vesting
+ * token to community pool.
+ */
+export interface MsgDonateAllVestingTokens {
+  fromAddress: string;
+}
+
+/**
+ * MsgDonateAllVestingTokensResponse defines the Msg/MsgDonateAllVestingTokens
+ * response type.
+ */
+export interface MsgDonateAllVestingTokensResponse {}
 
 const baseMsgCreateVestingAccount: object = {
   fromAddress: "",
@@ -539,6 +551,99 @@ export const MsgCreatePeriodicVestingAccountResponse = {
   },
 };
 
+const baseMsgDonateAllVestingTokens: object = { fromAddress: "" };
+
+export const MsgDonateAllVestingTokens = {
+  encode(message: MsgDonateAllVestingTokens, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.fromAddress !== "") {
+      writer.uint32(10).string(message.fromAddress);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgDonateAllVestingTokens {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgDonateAllVestingTokens } as MsgDonateAllVestingTokens;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.fromAddress = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgDonateAllVestingTokens {
+    const message = { ...baseMsgDonateAllVestingTokens } as MsgDonateAllVestingTokens;
+    if (object.fromAddress !== undefined && object.fromAddress !== null) {
+      message.fromAddress = String(object.fromAddress);
+    } else {
+      message.fromAddress = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgDonateAllVestingTokens): unknown {
+    const obj: any = {};
+    message.fromAddress !== undefined && (obj.fromAddress = message.fromAddress);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<MsgDonateAllVestingTokens>): MsgDonateAllVestingTokens {
+    const message = { ...baseMsgDonateAllVestingTokens } as MsgDonateAllVestingTokens;
+    if (object.fromAddress !== undefined && object.fromAddress !== null) {
+      message.fromAddress = object.fromAddress;
+    } else {
+      message.fromAddress = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgDonateAllVestingTokensResponse: object = {};
+
+export const MsgDonateAllVestingTokensResponse = {
+  encode(_: MsgDonateAllVestingTokensResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgDonateAllVestingTokensResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgDonateAllVestingTokensResponse } as MsgDonateAllVestingTokensResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgDonateAllVestingTokensResponse {
+    const message = { ...baseMsgDonateAllVestingTokensResponse } as MsgDonateAllVestingTokensResponse;
+    return message;
+  },
+
+  toJSON(_: MsgDonateAllVestingTokensResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(_: DeepPartial<MsgDonateAllVestingTokensResponse>): MsgDonateAllVestingTokensResponse {
+    const message = { ...baseMsgDonateAllVestingTokensResponse } as MsgDonateAllVestingTokensResponse;
+    return message;
+  },
+};
+
 /** Msg defines the bank Msg service. */
 export interface Msg {
   /**
@@ -569,6 +674,14 @@ export interface Msg {
     request: DeepPartial<MsgCreatePeriodicVestingAccount>,
     metadata?: grpc.Metadata,
   ): Promise<MsgCreatePeriodicVestingAccountResponse>;
+  /**
+   * DonateAllVestingTokens defines a method that enables donating all vesting
+   * tokens to community pool
+   */
+  DonateAllVestingTokens(
+    request: DeepPartial<MsgDonateAllVestingTokens>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgDonateAllVestingTokensResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -579,6 +692,7 @@ export class MsgClientImpl implements Msg {
     this.CreateVestingAccount = this.CreateVestingAccount.bind(this);
     this.CreatePermanentLockedAccount = this.CreatePermanentLockedAccount.bind(this);
     this.CreatePeriodicVestingAccount = this.CreatePeriodicVestingAccount.bind(this);
+    this.DonateAllVestingTokens = this.DonateAllVestingTokens.bind(this);
   }
 
   CreateVestingAccount(
@@ -610,6 +724,17 @@ export class MsgClientImpl implements Msg {
     return this.rpc.unary(
       MsgCreatePeriodicVestingAccountDesc,
       MsgCreatePeriodicVestingAccount.fromPartial(request),
+      metadata,
+    );
+  }
+
+  DonateAllVestingTokens(
+    request: DeepPartial<MsgDonateAllVestingTokens>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgDonateAllVestingTokensResponse> {
+    return this.rpc.unary(
+      MsgDonateAllVestingTokensDesc,
+      MsgDonateAllVestingTokens.fromPartial(request),
       metadata,
     );
   }
@@ -677,6 +802,28 @@ export const MsgCreatePeriodicVestingAccountDesc: UnaryMethodDefinitionish = {
     deserializeBinary(data: Uint8Array) {
       return {
         ...MsgCreatePeriodicVestingAccountResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgDonateAllVestingTokensDesc: UnaryMethodDefinitionish = {
+  methodName: "DonateAllVestingTokens",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgDonateAllVestingTokens.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgDonateAllVestingTokensResponse.decode(data),
         toObject() {
           return this;
         },
