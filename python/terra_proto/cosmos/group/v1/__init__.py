@@ -1197,31 +1197,6 @@ class QueryTallyResultResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class QueryGroupsRequest(betterproto.Message):
-    """
-    QueryGroupsRequest is the Query/Groups request type.  Since: cosmos-sdk
-    0.47.1
-    """
-
-    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
-    """pagination defines an optional pagination for the request."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryGroupsResponse(betterproto.Message):
-    """
-    QueryGroupsResponse is the Query/Groups response type.  Since: cosmos-sdk
-    0.47.1
-    """
-
-    groups: List["GroupInfo"] = betterproto.message_field(1)
-    """`groups` is all the groups present in state."""
-
-    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
-    """pagination defines the pagination in the response."""
-
-
-@dataclass(eq=False, repr=False)
 class GenesisState(betterproto.Message):
     """GenesisState defines the group module's genesis state."""
 
@@ -1721,23 +1696,6 @@ class QueryStub(betterproto.ServiceStub):
             metadata=metadata,
         )
 
-    async def groups(
-        self,
-        query_groups_request: "QueryGroupsRequest",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "QueryGroupsResponse":
-        return await self._unary_unary(
-            "/cosmos.group.v1.Query/Groups",
-            query_groups_request,
-            QueryGroupsResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
-
 
 class MsgBase(ServiceBase):
     async def create_group(
@@ -2071,11 +2029,6 @@ class QueryBase(ServiceBase):
     ) -> "QueryTallyResultResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def groups(
-        self, query_groups_request: "QueryGroupsRequest"
-    ) -> "QueryGroupsResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
     async def __rpc_group_info(
         self,
         stream: "grpclib.server.Stream[QueryGroupInfoRequest, QueryGroupInfoResponse]",
@@ -2180,13 +2133,6 @@ class QueryBase(ServiceBase):
         response = await self.tally_result(request)
         await stream.send_message(response)
 
-    async def __rpc_groups(
-        self, stream: "grpclib.server.Stream[QueryGroupsRequest, QueryGroupsResponse]"
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.groups(request)
-        await stream.send_message(response)
-
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
             "/cosmos.group.v1.Query/GroupInfo": grpclib.const.Handler(
@@ -2266,11 +2212,5 @@ class QueryBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryTallyResultRequest,
                 QueryTallyResultResponse,
-            ),
-            "/cosmos.group.v1.Query/Groups": grpclib.const.Handler(
-                self.__rpc_groups,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                QueryGroupsRequest,
-                QueryGroupsResponse,
             ),
         }
