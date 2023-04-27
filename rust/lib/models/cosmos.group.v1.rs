@@ -1959,29 +1959,6 @@ pub struct QueryTallyResultResponse {
     #[prost(message, optional, tag = "1")]
     pub tally: ::core::option::Option<TallyResult>,
 }
-/// QueryGroupsRequest is the Query/Groups request type.
-///
-/// Since: cosmos-sdk 0.47.1
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryGroupsRequest {
-    /// pagination defines an optional pagination for the request.
-    #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
-}
-/// QueryGroupsResponse is the Query/Groups response type.
-///
-/// Since: cosmos-sdk 0.47.1
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryGroupsResponse {
-    /// `groups` is all the groups present in state.
-    #[prost(message, repeated, tag = "1")]
-    pub groups: ::prost::alloc::vec::Vec<GroupInfo>,
-    /// pagination defines the pagination in the response.
-    #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
-}
 /// Generated client implementations.
 #[cfg(feature = "grpc")]
 #[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
@@ -2266,23 +2243,6 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static("/cosmos.group.v1.Query/TallyResult");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        /// Groups queries all groups in state.
-        ///
-        /// Since: cosmos-sdk 0.47.1
-        pub async fn groups(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryGroupsRequest>,
-        ) -> Result<tonic::Response<super::QueryGroupsResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/cosmos.group.v1.Query/Groups");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
     }
 }
 /// Generated server implementations.
@@ -2363,13 +2323,6 @@ pub mod query_server {
             &self,
             request: tonic::Request<super::QueryTallyResultRequest>,
         ) -> Result<tonic::Response<super::QueryTallyResultResponse>, tonic::Status>;
-        /// Groups queries all groups in state.
-        ///
-        /// Since: cosmos-sdk 0.47.1
-        async fn groups(
-            &self,
-            request: tonic::Request<super::QueryGroupsRequest>,
-        ) -> Result<tonic::Response<super::QueryGroupsResponse>, tonic::Status>;
     }
     /// Query is the cosmos.group.v1 Query service.
     #[derive(Debug)]
@@ -2841,37 +2794,6 @@ pub mod query_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = TallyResultSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/cosmos.group.v1.Query/Groups" => {
-                    #[allow(non_camel_case_types)]
-                    struct GroupsSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryGroupsRequest> for GroupsSvc<T> {
-                        type Response = super::QueryGroupsResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryGroupsRequest>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).groups(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = GroupsSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,

@@ -11,7 +11,6 @@ pub struct BaseVestingAccount {
     pub delegated_free: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
     #[prost(message, repeated, tag = "4")]
     pub delegated_vesting: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
-    /// Vesting end time, as unix timestamp (in seconds).
     #[prost(int64, tag = "5")]
     pub end_time: i64,
 }
@@ -22,7 +21,6 @@ pub struct BaseVestingAccount {
 pub struct ContinuousVestingAccount {
     #[prost(message, optional, tag = "1")]
     pub base_vesting_account: ::core::option::Option<BaseVestingAccount>,
-    /// Vesting start time, as unix timestamp (in seconds).
     #[prost(int64, tag = "2")]
     pub start_time: i64,
 }
@@ -39,7 +37,6 @@ pub struct DelayedVestingAccount {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Period {
-    /// Period duration in seconds.
     #[prost(int64, tag = "1")]
     pub length: i64,
     #[prost(message, repeated, tag = "2")]
@@ -79,7 +76,6 @@ pub struct MsgCreateVestingAccount {
     pub to_address: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "3")]
     pub amount: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
-    /// end of vesting as unix time (in seconds).
     #[prost(int64, tag = "4")]
     pub end_time: i64,
     #[prost(bool, tag = "5")]
@@ -109,7 +105,7 @@ pub struct MsgCreatePermanentLockedAccount {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgCreatePermanentLockedAccountResponse {}
-/// MsgCreateVestingAccount defines a message that enables creating a vesting
+/// MsgCreatePeriodicVestingAccount defines a message that enables creating a vesting
 /// account.
 ///
 /// Since: cosmos-sdk 0.46
@@ -120,19 +116,31 @@ pub struct MsgCreatePeriodicVestingAccount {
     pub from_address: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
     pub to_address: ::prost::alloc::string::String,
-    /// start of vesting as unix time (in seconds).
     #[prost(int64, tag = "3")]
     pub start_time: i64,
     #[prost(message, repeated, tag = "4")]
     pub vesting_periods: ::prost::alloc::vec::Vec<Period>,
 }
-/// MsgCreateVestingAccountResponse defines the Msg/CreatePeriodicVestingAccount
+/// MsgCreatePeriodicVestingAccountResponse defines the Msg/CreatePeriodicVestingAccount
 /// response type.
 ///
 /// Since: cosmos-sdk 0.46
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgCreatePeriodicVestingAccountResponse {}
+/// MsgDonateAllVestingTokens defines a message that enables donating all vesting
+/// token to community pool.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgDonateAllVestingTokens {
+    #[prost(string, tag = "1")]
+    pub from_address: ::prost::alloc::string::String,
+}
+/// MsgDonateAllVestingTokensResponse defines the Msg/MsgDonateAllVestingTokens
+/// response type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgDonateAllVestingTokensResponse {}
 /// Generated client implementations.
 #[cfg(feature = "grpc")]
 #[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
@@ -264,6 +272,25 @@ pub mod msg_client {
             );
             self.inner.unary(request.into_request(), path, codec).await
         }
+        /// DonateAllVestingTokens defines a method that enables donating all vesting
+        /// tokens to community pool
+        pub async fn donate_all_vesting_tokens(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgDonateAllVestingTokens>,
+        ) -> Result<tonic::Response<super::MsgDonateAllVestingTokensResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.vesting.v1beta1.Msg/DonateAllVestingTokens",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -297,6 +324,12 @@ pub mod msg_server {
             &self,
             request: tonic::Request<super::MsgCreatePeriodicVestingAccount>,
         ) -> Result<tonic::Response<super::MsgCreatePeriodicVestingAccountResponse>, tonic::Status>;
+        /// DonateAllVestingTokens defines a method that enables donating all vesting
+        /// tokens to community pool
+        async fn donate_all_vesting_tokens(
+            &self,
+            request: tonic::Request<super::MsgDonateAllVestingTokens>,
+        ) -> Result<tonic::Response<super::MsgDonateAllVestingTokensResponse>, tonic::Status>;
     }
     /// Msg defines the bank Msg service.
     #[derive(Debug)]
@@ -445,6 +478,40 @@ pub mod msg_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = CreatePeriodicVestingAccountSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmos.vesting.v1beta1.Msg/DonateAllVestingTokens" => {
+                    #[allow(non_camel_case_types)]
+                    struct DonateAllVestingTokensSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgDonateAllVestingTokens>
+                        for DonateAllVestingTokensSvc<T>
+                    {
+                        type Response = super::MsgDonateAllVestingTokensResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgDonateAllVestingTokens>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut =
+                                async move { (*inner).donate_all_vesting_tokens(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = DonateAllVestingTokensSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,
