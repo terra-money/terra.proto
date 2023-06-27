@@ -1,6 +1,6 @@
 {
   "name": "@terra-money/terra.proto",
-  "version": "3.0.1",
+  "version": "3.0.5",
   "description": "JS and TS types relating to Protocol Buffers used by Terra project",
   "contributors": [
     "Yun Yeo <YunSuk-Yeo@users.noreply.github.com>"
@@ -14,7 +14,6 @@
     "access": "public"
   },
   "files": [
-    "stride/",
     "alliance/",
     "confio/",
     "cosmos/",
@@ -24,7 +23,11 @@
     "google/",
     "ibc/",
     "tendermint/",
-    "*.md"
+    "*.md",
+    "stride/",
+    "proofs.d.ts",
+    "proofs.js",
+    "proofs.js.map"
   ],
   "scripts": {
     "format": "prettier --write --loglevel warn \"./src/**/*.ts\"",
