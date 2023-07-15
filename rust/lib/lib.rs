@@ -234,6 +234,12 @@ pub mod cosmwasm {
             include!("models/cosmwasm.wasm.v1.rs");
         }
     }
+    /// Messages and services handling CosmWasm.
+    pub mod tokenfactory {
+        pub mod v1beta1 {
+            include!("models/cosmwasm.tokenfactory.v1beta1.rs");
+        }
+    }
 }
 
 /// IBC protobuf definitions.

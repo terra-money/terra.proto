@@ -844,7 +844,7 @@ dependencies = [
 
 [[package]]
 name = "terra-proto-rs"
-version = "3.0.2"
+version = "3.0.3"
 dependencies = [
  "getrandom",
  "prost",

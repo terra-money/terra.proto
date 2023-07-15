@@ -73,6 +73,17 @@ pub struct Airdrop {
     #[prost(string, tag = "6")]
     pub claimed_so_far: ::prost::alloc::string::String,
 }
+/// GenesisState defines the claim module's genesis state.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenesisState {
+    /// params defines all the parameters of the module.
+    #[prost(message, optional, tag = "1")]
+    pub params: ::core::option::Option<Params>,
+    /// list of claim records, one for every airdrop recipient
+    #[prost(message, repeated, tag = "2")]
+    pub claim_records: ::prost::alloc::vec::Vec<ClaimRecord>,
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgSetAirdropAllocations {
@@ -1069,15 +1080,4 @@ pub mod query_server {
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
         const NAME: &'static str = "stride.claim.Query";
     }
-}
-/// GenesisState defines the claim module's genesis state.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenesisState {
-    /// params defines all the parameters of the module.
-    #[prost(message, optional, tag = "1")]
-    pub params: ::core::option::Option<Params>,
-    /// list of claim records, one for every airdrop recipient
-    #[prost(message, repeated, tag = "2")]
-    pub claim_records: ::prost::alloc::vec::Vec<ClaimRecord>,
 }

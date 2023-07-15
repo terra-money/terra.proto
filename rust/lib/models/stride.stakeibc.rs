@@ -1,24 +1,5 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StakeibcPacketData {
-    #[prost(oneof = "stakeibc_packet_data::Packet", tags = "1")]
-    pub packet: ::core::option::Option<stakeibc_packet_data::Packet>,
-}
-/// Nested message and enum types in `StakeibcPacketData`.
-pub mod stakeibc_packet_data {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Packet {
-        /// this line is used by starport scaffolding # ibc/packet/proto/field
-        #[prost(message, tag = "1")]
-        NoData(super::NoData),
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct NoData {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ValidatorExchangeRate {
     #[prost(string, tag = "1")]
     pub internal_tokens_to_shares_rate: ::prost::alloc::string::String,
@@ -71,6 +52,22 @@ pub mod validator {
             }
         }
     }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AddValidatorProposal {
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub host_zone: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub validator_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub validator_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub deposit: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -157,6 +154,82 @@ pub struct HostZone {
     #[prost(string, tag = "18")]
     pub address: ::prost::alloc::string::String,
 }
+/// ---------------------- Delegation Callbacks ---------------------- //
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SplitDelegation {
+    #[prost(string, tag = "1")]
+    pub validator: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub amount: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DelegateCallback {
+    #[prost(string, tag = "1")]
+    pub host_zone_id: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "2")]
+    pub deposit_record_id: u64,
+    #[prost(message, repeated, tag = "3")]
+    pub split_delegations: ::prost::alloc::vec::Vec<SplitDelegation>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ClaimCallback {
+    #[prost(string, tag = "1")]
+    pub user_redemption_record_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub chain_id: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "3")]
+    pub epoch_number: u64,
+}
+/// ---------------------- Reinvest Callback ---------------------- //
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ReinvestCallback {
+    #[prost(message, optional, tag = "1")]
+    pub reinvest_amount: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+    #[prost(string, tag = "3")]
+    pub host_zone_id: ::prost::alloc::string::String,
+}
+/// ---------------------- Undelegation Callbacks ---------------------- //
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UndelegateCallback {
+    #[prost(string, tag = "1")]
+    pub host_zone_id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub split_delegations: ::prost::alloc::vec::Vec<SplitDelegation>,
+    #[prost(uint64, repeated, tag = "3")]
+    pub epoch_unbonding_record_ids: ::prost::alloc::vec::Vec<u64>,
+}
+/// ---------------------- Redemption Callbacks ---------------------- //
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RedemptionCallback {
+    #[prost(string, tag = "1")]
+    pub host_zone_id: ::prost::alloc::string::String,
+    #[prost(uint64, repeated, tag = "2")]
+    pub epoch_unbonding_record_ids: ::prost::alloc::vec::Vec<u64>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Rebalancing {
+    #[prost(string, tag = "1")]
+    pub src_validator: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub dst_validator: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub amt: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RebalanceCallback {
+    #[prost(string, tag = "1")]
+    pub host_zone_id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub rebalancings: ::prost::alloc::vec::Vec<Rebalancing>,
+}
 /// Params defines the parameters for the module.
 /// next id: 18
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -207,20 +280,808 @@ pub struct Params {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AddValidatorProposal {
+pub struct EpochTracker {
     #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub host_zone: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub validator_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub validator_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub deposit: ::prost::alloc::string::String,
+    pub epoch_identifier: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "2")]
+    pub epoch_number: u64,
+    #[prost(uint64, tag = "3")]
+    pub next_epoch_start_time: u64,
+    #[prost(uint64, tag = "4")]
+    pub duration: u64,
 }
+/// QueryInterchainAccountFromAddressRequest is the request type for the
+/// Query/InterchainAccountAddress RPC
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryInterchainAccountFromAddressRequest {
+    #[prost(string, tag = "1")]
+    pub owner: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub connection_id: ::prost::alloc::string::String,
+}
+/// QueryInterchainAccountFromAddressResponse the response type for the
+/// Query/InterchainAccountAddress RPC
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryInterchainAccountFromAddressResponse {
+    #[prost(string, tag = "1")]
+    pub interchain_account_address: ::prost::alloc::string::String,
+}
+/// QueryParamsRequest is request type for the Query/Params RPC method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryParamsRequest {}
+/// QueryParamsResponse is response type for the Query/Params RPC method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryParamsResponse {
+    /// params holds all the parameters of this module.
+    #[prost(message, optional, tag = "1")]
+    pub params: ::core::option::Option<Params>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryGetValidatorsRequest {
+    #[prost(string, tag = "1")]
+    pub chain_id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryGetValidatorsResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub validators: ::prost::alloc::vec::Vec<Validator>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryGetHostZoneRequest {
+    #[prost(string, tag = "1")]
+    pub chain_id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryGetHostZoneResponse {
+    #[prost(message, optional, tag = "1")]
+    pub host_zone: ::core::option::Option<HostZone>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryAllHostZoneRequest {
+    #[prost(message, optional, tag = "1")]
+    pub pagination: ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageRequest>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryAllHostZoneResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub host_zone: ::prost::alloc::vec::Vec<HostZone>,
+    #[prost(message, optional, tag = "2")]
+    pub pagination:
+        ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageResponse>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryModuleAddressRequest {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryModuleAddressResponse {
+    #[prost(string, tag = "1")]
+    pub addr: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryGetEpochTrackerRequest {
+    #[prost(string, tag = "1")]
+    pub epoch_identifier: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryGetEpochTrackerResponse {
+    #[prost(message, optional, tag = "1")]
+    pub epoch_tracker: ::core::option::Option<EpochTracker>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryAllEpochTrackerRequest {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryAllEpochTrackerResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub epoch_tracker: ::prost::alloc::vec::Vec<EpochTracker>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryGetNextPacketSequenceRequest {
+    #[prost(string, tag = "1")]
+    pub channel_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub port_id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryGetNextPacketSequenceResponse {
+    #[prost(uint64, tag = "1")]
+    pub sequence: u64,
+}
+/// Generated client implementations.
+#[cfg(feature = "grpc")]
+#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
+pub mod query_client {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Query defines the gRPC querier service.
+    #[derive(Debug, Clone)]
+    pub struct QueryClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    #[cfg(feature = "grpc-transport")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "grpc-transport")))]
+    impl QueryClient<tonic::transport::Channel> {
+        /// Attempt to create a new client by connecting to a given endpoint.
+        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
+        where
+            D: std::convert::TryInto<tonic::transport::Endpoint>,
+            D::Error: Into<StdError>,
+        {
+            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
+            Ok(Self::new(conn))
+        }
+    }
+    impl<T> QueryClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> QueryClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            QueryClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Parameters queries the parameters of the module.
+        pub async fn params(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryParamsRequest>,
+        ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/stride.stakeibc.Query/Params");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// Queries a Validator by host zone.
+        pub async fn validators(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryGetValidatorsRequest>,
+        ) -> Result<tonic::Response<super::QueryGetValidatorsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/stride.stakeibc.Query/Validators");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// Queries a HostZone by id.
+        pub async fn host_zone(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryGetHostZoneRequest>,
+        ) -> Result<tonic::Response<super::QueryGetHostZoneResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/stride.stakeibc.Query/HostZone");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// Queries a list of HostZone items.
+        pub async fn host_zone_all(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryAllHostZoneRequest>,
+        ) -> Result<tonic::Response<super::QueryAllHostZoneResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/stride.stakeibc.Query/HostZoneAll");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// Queries a list of ModuleAddress items.
+        pub async fn module_address(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryModuleAddressRequest>,
+        ) -> Result<tonic::Response<super::QueryModuleAddressResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/stride.stakeibc.Query/ModuleAddress");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// QueryInterchainAccountFromAddress returns the interchain account for given
+        /// owner address on a given connection pair
+        pub async fn interchain_account_from_address(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryInterchainAccountFromAddressRequest>,
+        ) -> Result<tonic::Response<super::QueryInterchainAccountFromAddressResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/stride.stakeibc.Query/InterchainAccountFromAddress",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// Queries a EpochTracker by index.
+        pub async fn epoch_tracker(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryGetEpochTrackerRequest>,
+        ) -> Result<tonic::Response<super::QueryGetEpochTrackerResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/stride.stakeibc.Query/EpochTracker");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// Queries a list of EpochTracker items.
+        pub async fn epoch_tracker_all(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryAllEpochTrackerRequest>,
+        ) -> Result<tonic::Response<super::QueryAllEpochTrackerResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/stride.stakeibc.Query/EpochTrackerAll");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// Queries the next packet sequence for one for a given channel
+        pub async fn next_packet_sequence(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryGetNextPacketSequenceRequest>,
+        ) -> Result<tonic::Response<super::QueryGetNextPacketSequenceResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/stride.stakeibc.Query/NextPacketSequence");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+    }
+}
+/// Generated server implementations.
+#[cfg(feature = "grpc")]
+#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
+pub mod query_server {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    /// Generated trait containing gRPC methods that should be implemented for use with QueryServer.
+    #[async_trait]
+    pub trait Query: Send + Sync + 'static {
+        /// Parameters queries the parameters of the module.
+        async fn params(
+            &self,
+            request: tonic::Request<super::QueryParamsRequest>,
+        ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>;
+        /// Queries a Validator by host zone.
+        async fn validators(
+            &self,
+            request: tonic::Request<super::QueryGetValidatorsRequest>,
+        ) -> Result<tonic::Response<super::QueryGetValidatorsResponse>, tonic::Status>;
+        /// Queries a HostZone by id.
+        async fn host_zone(
+            &self,
+            request: tonic::Request<super::QueryGetHostZoneRequest>,
+        ) -> Result<tonic::Response<super::QueryGetHostZoneResponse>, tonic::Status>;
+        /// Queries a list of HostZone items.
+        async fn host_zone_all(
+            &self,
+            request: tonic::Request<super::QueryAllHostZoneRequest>,
+        ) -> Result<tonic::Response<super::QueryAllHostZoneResponse>, tonic::Status>;
+        /// Queries a list of ModuleAddress items.
+        async fn module_address(
+            &self,
+            request: tonic::Request<super::QueryModuleAddressRequest>,
+        ) -> Result<tonic::Response<super::QueryModuleAddressResponse>, tonic::Status>;
+        /// QueryInterchainAccountFromAddress returns the interchain account for given
+        /// owner address on a given connection pair
+        async fn interchain_account_from_address(
+            &self,
+            request: tonic::Request<super::QueryInterchainAccountFromAddressRequest>,
+        ) -> Result<tonic::Response<super::QueryInterchainAccountFromAddressResponse>, tonic::Status>;
+        /// Queries a EpochTracker by index.
+        async fn epoch_tracker(
+            &self,
+            request: tonic::Request<super::QueryGetEpochTrackerRequest>,
+        ) -> Result<tonic::Response<super::QueryGetEpochTrackerResponse>, tonic::Status>;
+        /// Queries a list of EpochTracker items.
+        async fn epoch_tracker_all(
+            &self,
+            request: tonic::Request<super::QueryAllEpochTrackerRequest>,
+        ) -> Result<tonic::Response<super::QueryAllEpochTrackerResponse>, tonic::Status>;
+        /// Queries the next packet sequence for one for a given channel
+        async fn next_packet_sequence(
+            &self,
+            request: tonic::Request<super::QueryGetNextPacketSequenceRequest>,
+        ) -> Result<tonic::Response<super::QueryGetNextPacketSequenceResponse>, tonic::Status>;
+    }
+    /// Query defines the gRPC querier service.
+    #[derive(Debug)]
+    pub struct QueryServer<T: Query> {
+        inner: _Inner<T>,
+        accept_compression_encodings: EnabledCompressionEncodings,
+        send_compression_encodings: EnabledCompressionEncodings,
+    }
+    struct _Inner<T>(Arc<T>);
+    impl<T: Query> QueryServer<T> {
+        pub fn new(inner: T) -> Self {
+            Self::from_arc(Arc::new(inner))
+        }
+        pub fn from_arc(inner: Arc<T>) -> Self {
+            let inner = _Inner(inner);
+            Self {
+                inner,
+                accept_compression_encodings: Default::default(),
+                send_compression_encodings: Default::default(),
+            }
+        }
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> InterceptedService<Self, F>
+        where
+            F: tonic::service::Interceptor,
+        {
+            InterceptedService::new(Self::new(inner), interceptor)
+        }
+        /// Enable decompressing requests with the given encoding.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.accept_compression_encodings.enable(encoding);
+            self
+        }
+        /// Compress responses with the given encoding, if the client supports it.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.send_compression_encodings.enable(encoding);
+            self
+        }
+    }
+    impl<T, B> tonic::codegen::Service<http::Request<B>> for QueryServer<T>
+    where
+        T: Query,
+        B: Body + Send + 'static,
+        B::Error: Into<StdError> + Send + 'static,
+    {
+        type Response = http::Response<tonic::body::BoxBody>;
+        type Error = std::convert::Infallible;
+        type Future = BoxFuture<Self::Response, Self::Error>;
+        fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
+            Poll::Ready(Ok(()))
+        }
+        fn call(&mut self, req: http::Request<B>) -> Self::Future {
+            let inner = self.inner.clone();
+            match req.uri().path() {
+                "/stride.stakeibc.Query/Params" => {
+                    #[allow(non_camel_case_types)]
+                    struct ParamsSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryParamsRequest> for ParamsSvc<T> {
+                        type Response = super::QueryParamsResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryParamsRequest>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).params(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = ParamsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/stride.stakeibc.Query/Validators" => {
+                    #[allow(non_camel_case_types)]
+                    struct ValidatorsSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryGetValidatorsRequest> for ValidatorsSvc<T> {
+                        type Response = super::QueryGetValidatorsResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryGetValidatorsRequest>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).validators(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = ValidatorsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/stride.stakeibc.Query/HostZone" => {
+                    #[allow(non_camel_case_types)]
+                    struct HostZoneSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryGetHostZoneRequest> for HostZoneSvc<T> {
+                        type Response = super::QueryGetHostZoneResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryGetHostZoneRequest>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).host_zone(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = HostZoneSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/stride.stakeibc.Query/HostZoneAll" => {
+                    #[allow(non_camel_case_types)]
+                    struct HostZoneAllSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryAllHostZoneRequest> for HostZoneAllSvc<T> {
+                        type Response = super::QueryAllHostZoneResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryAllHostZoneRequest>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).host_zone_all(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = HostZoneAllSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/stride.stakeibc.Query/ModuleAddress" => {
+                    #[allow(non_camel_case_types)]
+                    struct ModuleAddressSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryModuleAddressRequest>
+                        for ModuleAddressSvc<T>
+                    {
+                        type Response = super::QueryModuleAddressResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryModuleAddressRequest>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).module_address(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = ModuleAddressSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/stride.stakeibc.Query/InterchainAccountFromAddress" => {
+                    #[allow(non_camel_case_types)]
+                    struct InterchainAccountFromAddressSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query>
+                        tonic::server::UnaryService<super::QueryInterchainAccountFromAddressRequest>
+                        for InterchainAccountFromAddressSvc<T>
+                    {
+                        type Response = super::QueryInterchainAccountFromAddressResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<
+                                super::QueryInterchainAccountFromAddressRequest,
+                            >,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move {
+                                (*inner).interchain_account_from_address(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = InterchainAccountFromAddressSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/stride.stakeibc.Query/EpochTracker" => {
+                    #[allow(non_camel_case_types)]
+                    struct EpochTrackerSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryGetEpochTrackerRequest>
+                        for EpochTrackerSvc<T>
+                    {
+                        type Response = super::QueryGetEpochTrackerResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryGetEpochTrackerRequest>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).epoch_tracker(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = EpochTrackerSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/stride.stakeibc.Query/EpochTrackerAll" => {
+                    #[allow(non_camel_case_types)]
+                    struct EpochTrackerAllSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryAllEpochTrackerRequest>
+                        for EpochTrackerAllSvc<T>
+                    {
+                        type Response = super::QueryAllEpochTrackerResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryAllEpochTrackerRequest>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).epoch_tracker_all(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = EpochTrackerAllSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/stride.stakeibc.Query/NextPacketSequence" => {
+                    #[allow(non_camel_case_types)]
+                    struct NextPacketSequenceSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query>
+                        tonic::server::UnaryService<super::QueryGetNextPacketSequenceRequest>
+                        for NextPacketSequenceSvc<T>
+                    {
+                        type Response = super::QueryGetNextPacketSequenceResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryGetNextPacketSequenceRequest>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).next_packet_sequence(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = NextPacketSequenceSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                _ => Box::pin(async move {
+                    Ok(http::Response::builder()
+                        .status(200)
+                        .header("grpc-status", "12")
+                        .header("content-type", "application/grpc")
+                        .body(empty_body())
+                        .unwrap())
+                }),
+            }
+        }
+    }
+    impl<T: Query> Clone for QueryServer<T> {
+        fn clone(&self) -> Self {
+            let inner = self.inner.clone();
+            Self {
+                inner,
+                accept_compression_encodings: self.accept_compression_encodings,
+                send_compression_encodings: self.send_compression_encodings,
+            }
+        }
+    }
+    impl<T: Query> Clone for _Inner<T> {
+        fn clone(&self) -> Self {
+            Self(self.0.clone())
+        }
+    }
+    impl<T: std::fmt::Debug> std::fmt::Debug for _Inner<T> {
+        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+            write!(f, "{:?}", self.0)
+        }
+    }
+    impl<T: Query> tonic::server::NamedService for QueryServer<T> {
+        const NAME: &'static str = "stride.stakeibc.Query";
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StakeibcPacketData {
+    #[prost(oneof = "stakeibc_packet_data::Packet", tags = "1")]
+    pub packet: ::core::option::Option<stakeibc_packet_data::Packet>,
+}
+/// Nested message and enum types in `StakeibcPacketData`.
+pub mod stakeibc_packet_data {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Packet {
+        /// this line is used by starport scaffolding # ibc/packet/proto/field
+        #[prost(message, tag = "1")]
+        NoData(super::NoData),
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct NoData {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgLiquidStake {
@@ -1132,867 +1993,6 @@ pub mod msg_server {
     impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
         const NAME: &'static str = "stride.stakeibc.Msg";
     }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EpochTracker {
-    #[prost(string, tag = "1")]
-    pub epoch_identifier: ::prost::alloc::string::String,
-    #[prost(uint64, tag = "2")]
-    pub epoch_number: u64,
-    #[prost(uint64, tag = "3")]
-    pub next_epoch_start_time: u64,
-    #[prost(uint64, tag = "4")]
-    pub duration: u64,
-}
-/// QueryInterchainAccountFromAddressRequest is the request type for the
-/// Query/InterchainAccountAddress RPC
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryInterchainAccountFromAddressRequest {
-    #[prost(string, tag = "1")]
-    pub owner: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub connection_id: ::prost::alloc::string::String,
-}
-/// QueryInterchainAccountFromAddressResponse the response type for the
-/// Query/InterchainAccountAddress RPC
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryInterchainAccountFromAddressResponse {
-    #[prost(string, tag = "1")]
-    pub interchain_account_address: ::prost::alloc::string::String,
-}
-/// QueryParamsRequest is request type for the Query/Params RPC method.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryParamsRequest {}
-/// QueryParamsResponse is response type for the Query/Params RPC method.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryParamsResponse {
-    /// params holds all the parameters of this module.
-    #[prost(message, optional, tag = "1")]
-    pub params: ::core::option::Option<Params>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryGetValidatorsRequest {
-    #[prost(string, tag = "1")]
-    pub chain_id: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryGetValidatorsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub validators: ::prost::alloc::vec::Vec<Validator>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryGetHostZoneRequest {
-    #[prost(string, tag = "1")]
-    pub chain_id: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryGetHostZoneResponse {
-    #[prost(message, optional, tag = "1")]
-    pub host_zone: ::core::option::Option<HostZone>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryAllHostZoneRequest {
-    #[prost(message, optional, tag = "1")]
-    pub pagination: ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageRequest>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryAllHostZoneResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub host_zone: ::prost::alloc::vec::Vec<HostZone>,
-    #[prost(message, optional, tag = "2")]
-    pub pagination:
-        ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageResponse>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryModuleAddressRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryModuleAddressResponse {
-    #[prost(string, tag = "1")]
-    pub addr: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryGetEpochTrackerRequest {
-    #[prost(string, tag = "1")]
-    pub epoch_identifier: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryGetEpochTrackerResponse {
-    #[prost(message, optional, tag = "1")]
-    pub epoch_tracker: ::core::option::Option<EpochTracker>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryAllEpochTrackerRequest {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryAllEpochTrackerResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub epoch_tracker: ::prost::alloc::vec::Vec<EpochTracker>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryGetNextPacketSequenceRequest {
-    #[prost(string, tag = "1")]
-    pub channel_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub port_id: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryGetNextPacketSequenceResponse {
-    #[prost(uint64, tag = "1")]
-    pub sequence: u64,
-}
-/// Generated client implementations.
-#[cfg(feature = "grpc")]
-#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod query_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
-    use tonic::codegen::*;
-    /// Query defines the gRPC querier service.
-    #[derive(Debug, Clone)]
-    pub struct QueryClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    #[cfg(feature = "grpc-transport")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "grpc-transport")))]
-    impl QueryClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: std::convert::TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
-    impl<T> QueryClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> QueryClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
-        {
-            QueryClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Parameters queries the parameters of the module.
-        pub async fn params(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryParamsRequest>,
-        ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/stride.stakeibc.Query/Params");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// Queries a Validator by host zone.
-        pub async fn validators(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryGetValidatorsRequest>,
-        ) -> Result<tonic::Response<super::QueryGetValidatorsResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/stride.stakeibc.Query/Validators");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// Queries a HostZone by id.
-        pub async fn host_zone(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryGetHostZoneRequest>,
-        ) -> Result<tonic::Response<super::QueryGetHostZoneResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/stride.stakeibc.Query/HostZone");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// Queries a list of HostZone items.
-        pub async fn host_zone_all(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryAllHostZoneRequest>,
-        ) -> Result<tonic::Response<super::QueryAllHostZoneResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/stride.stakeibc.Query/HostZoneAll");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// Queries a list of ModuleAddress items.
-        pub async fn module_address(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryModuleAddressRequest>,
-        ) -> Result<tonic::Response<super::QueryModuleAddressResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/stride.stakeibc.Query/ModuleAddress");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// QueryInterchainAccountFromAddress returns the interchain account for given
-        /// owner address on a given connection pair
-        pub async fn interchain_account_from_address(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryInterchainAccountFromAddressRequest>,
-        ) -> Result<tonic::Response<super::QueryInterchainAccountFromAddressResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/stride.stakeibc.Query/InterchainAccountFromAddress",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// Queries a EpochTracker by index.
-        pub async fn epoch_tracker(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryGetEpochTrackerRequest>,
-        ) -> Result<tonic::Response<super::QueryGetEpochTrackerResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/stride.stakeibc.Query/EpochTracker");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// Queries a list of EpochTracker items.
-        pub async fn epoch_tracker_all(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryAllEpochTrackerRequest>,
-        ) -> Result<tonic::Response<super::QueryAllEpochTrackerResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/stride.stakeibc.Query/EpochTrackerAll");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// Queries the next packet sequence for one for a given channel
-        pub async fn next_packet_sequence(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryGetNextPacketSequenceRequest>,
-        ) -> Result<tonic::Response<super::QueryGetNextPacketSequenceResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/stride.stakeibc.Query/NextPacketSequence");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-    }
-}
-/// Generated server implementations.
-#[cfg(feature = "grpc")]
-#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod query_server {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    /// Generated trait containing gRPC methods that should be implemented for use with QueryServer.
-    #[async_trait]
-    pub trait Query: Send + Sync + 'static {
-        /// Parameters queries the parameters of the module.
-        async fn params(
-            &self,
-            request: tonic::Request<super::QueryParamsRequest>,
-        ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>;
-        /// Queries a Validator by host zone.
-        async fn validators(
-            &self,
-            request: tonic::Request<super::QueryGetValidatorsRequest>,
-        ) -> Result<tonic::Response<super::QueryGetValidatorsResponse>, tonic::Status>;
-        /// Queries a HostZone by id.
-        async fn host_zone(
-            &self,
-            request: tonic::Request<super::QueryGetHostZoneRequest>,
-        ) -> Result<tonic::Response<super::QueryGetHostZoneResponse>, tonic::Status>;
-        /// Queries a list of HostZone items.
-        async fn host_zone_all(
-            &self,
-            request: tonic::Request<super::QueryAllHostZoneRequest>,
-        ) -> Result<tonic::Response<super::QueryAllHostZoneResponse>, tonic::Status>;
-        /// Queries a list of ModuleAddress items.
-        async fn module_address(
-            &self,
-            request: tonic::Request<super::QueryModuleAddressRequest>,
-        ) -> Result<tonic::Response<super::QueryModuleAddressResponse>, tonic::Status>;
-        /// QueryInterchainAccountFromAddress returns the interchain account for given
-        /// owner address on a given connection pair
-        async fn interchain_account_from_address(
-            &self,
-            request: tonic::Request<super::QueryInterchainAccountFromAddressRequest>,
-        ) -> Result<tonic::Response<super::QueryInterchainAccountFromAddressResponse>, tonic::Status>;
-        /// Queries a EpochTracker by index.
-        async fn epoch_tracker(
-            &self,
-            request: tonic::Request<super::QueryGetEpochTrackerRequest>,
-        ) -> Result<tonic::Response<super::QueryGetEpochTrackerResponse>, tonic::Status>;
-        /// Queries a list of EpochTracker items.
-        async fn epoch_tracker_all(
-            &self,
-            request: tonic::Request<super::QueryAllEpochTrackerRequest>,
-        ) -> Result<tonic::Response<super::QueryAllEpochTrackerResponse>, tonic::Status>;
-        /// Queries the next packet sequence for one for a given channel
-        async fn next_packet_sequence(
-            &self,
-            request: tonic::Request<super::QueryGetNextPacketSequenceRequest>,
-        ) -> Result<tonic::Response<super::QueryGetNextPacketSequenceResponse>, tonic::Status>;
-    }
-    /// Query defines the gRPC querier service.
-    #[derive(Debug)]
-    pub struct QueryServer<T: Query> {
-        inner: _Inner<T>,
-        accept_compression_encodings: EnabledCompressionEncodings,
-        send_compression_encodings: EnabledCompressionEncodings,
-    }
-    struct _Inner<T>(Arc<T>);
-    impl<T: Query> QueryServer<T> {
-        pub fn new(inner: T) -> Self {
-            Self::from_arc(Arc::new(inner))
-        }
-        pub fn from_arc(inner: Arc<T>) -> Self {
-            let inner = _Inner(inner);
-            Self {
-                inner,
-                accept_compression_encodings: Default::default(),
-                send_compression_encodings: Default::default(),
-            }
-        }
-        pub fn with_interceptor<F>(inner: T, interceptor: F) -> InterceptedService<Self, F>
-        where
-            F: tonic::service::Interceptor,
-        {
-            InterceptedService::new(Self::new(inner), interceptor)
-        }
-        /// Enable decompressing requests with the given encoding.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.accept_compression_encodings.enable(encoding);
-            self
-        }
-        /// Compress responses with the given encoding, if the client supports it.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.send_compression_encodings.enable(encoding);
-            self
-        }
-    }
-    impl<T, B> tonic::codegen::Service<http::Request<B>> for QueryServer<T>
-    where
-        T: Query,
-        B: Body + Send + 'static,
-        B::Error: Into<StdError> + Send + 'static,
-    {
-        type Response = http::Response<tonic::body::BoxBody>;
-        type Error = std::convert::Infallible;
-        type Future = BoxFuture<Self::Response, Self::Error>;
-        fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
-            Poll::Ready(Ok(()))
-        }
-        fn call(&mut self, req: http::Request<B>) -> Self::Future {
-            let inner = self.inner.clone();
-            match req.uri().path() {
-                "/stride.stakeibc.Query/Params" => {
-                    #[allow(non_camel_case_types)]
-                    struct ParamsSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryParamsRequest> for ParamsSvc<T> {
-                        type Response = super::QueryParamsResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryParamsRequest>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).params(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = ParamsSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/stride.stakeibc.Query/Validators" => {
-                    #[allow(non_camel_case_types)]
-                    struct ValidatorsSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryGetValidatorsRequest> for ValidatorsSvc<T> {
-                        type Response = super::QueryGetValidatorsResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryGetValidatorsRequest>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).validators(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = ValidatorsSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/stride.stakeibc.Query/HostZone" => {
-                    #[allow(non_camel_case_types)]
-                    struct HostZoneSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryGetHostZoneRequest> for HostZoneSvc<T> {
-                        type Response = super::QueryGetHostZoneResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryGetHostZoneRequest>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).host_zone(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = HostZoneSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/stride.stakeibc.Query/HostZoneAll" => {
-                    #[allow(non_camel_case_types)]
-                    struct HostZoneAllSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryAllHostZoneRequest> for HostZoneAllSvc<T> {
-                        type Response = super::QueryAllHostZoneResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryAllHostZoneRequest>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).host_zone_all(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = HostZoneAllSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/stride.stakeibc.Query/ModuleAddress" => {
-                    #[allow(non_camel_case_types)]
-                    struct ModuleAddressSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryModuleAddressRequest>
-                        for ModuleAddressSvc<T>
-                    {
-                        type Response = super::QueryModuleAddressResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryModuleAddressRequest>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).module_address(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = ModuleAddressSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/stride.stakeibc.Query/InterchainAccountFromAddress" => {
-                    #[allow(non_camel_case_types)]
-                    struct InterchainAccountFromAddressSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query>
-                        tonic::server::UnaryService<super::QueryInterchainAccountFromAddressRequest>
-                        for InterchainAccountFromAddressSvc<T>
-                    {
-                        type Response = super::QueryInterchainAccountFromAddressResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<
-                                super::QueryInterchainAccountFromAddressRequest,
-                            >,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move {
-                                (*inner).interchain_account_from_address(request).await
-                            };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = InterchainAccountFromAddressSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/stride.stakeibc.Query/EpochTracker" => {
-                    #[allow(non_camel_case_types)]
-                    struct EpochTrackerSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryGetEpochTrackerRequest>
-                        for EpochTrackerSvc<T>
-                    {
-                        type Response = super::QueryGetEpochTrackerResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryGetEpochTrackerRequest>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).epoch_tracker(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = EpochTrackerSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/stride.stakeibc.Query/EpochTrackerAll" => {
-                    #[allow(non_camel_case_types)]
-                    struct EpochTrackerAllSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryAllEpochTrackerRequest>
-                        for EpochTrackerAllSvc<T>
-                    {
-                        type Response = super::QueryAllEpochTrackerResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryAllEpochTrackerRequest>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).epoch_tracker_all(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = EpochTrackerAllSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/stride.stakeibc.Query/NextPacketSequence" => {
-                    #[allow(non_camel_case_types)]
-                    struct NextPacketSequenceSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query>
-                        tonic::server::UnaryService<super::QueryGetNextPacketSequenceRequest>
-                        for NextPacketSequenceSvc<T>
-                    {
-                        type Response = super::QueryGetNextPacketSequenceResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryGetNextPacketSequenceRequest>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).next_packet_sequence(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = NextPacketSequenceSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                _ => Box::pin(async move {
-                    Ok(http::Response::builder()
-                        .status(200)
-                        .header("grpc-status", "12")
-                        .header("content-type", "application/grpc")
-                        .body(empty_body())
-                        .unwrap())
-                }),
-            }
-        }
-    }
-    impl<T: Query> Clone for QueryServer<T> {
-        fn clone(&self) -> Self {
-            let inner = self.inner.clone();
-            Self {
-                inner,
-                accept_compression_encodings: self.accept_compression_encodings,
-                send_compression_encodings: self.send_compression_encodings,
-            }
-        }
-    }
-    impl<T: Query> Clone for _Inner<T> {
-        fn clone(&self) -> Self {
-            Self(self.0.clone())
-        }
-    }
-    impl<T: std::fmt::Debug> std::fmt::Debug for _Inner<T> {
-        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-            write!(f, "{:?}", self.0)
-        }
-    }
-    impl<T: Query> tonic::server::NamedService for QueryServer<T> {
-        const NAME: &'static str = "stride.stakeibc.Query";
-    }
-}
-/// ---------------------- Delegation Callbacks ---------------------- //
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SplitDelegation {
-    #[prost(string, tag = "1")]
-    pub validator: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub amount: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DelegateCallback {
-    #[prost(string, tag = "1")]
-    pub host_zone_id: ::prost::alloc::string::String,
-    #[prost(uint64, tag = "2")]
-    pub deposit_record_id: u64,
-    #[prost(message, repeated, tag = "3")]
-    pub split_delegations: ::prost::alloc::vec::Vec<SplitDelegation>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ClaimCallback {
-    #[prost(string, tag = "1")]
-    pub user_redemption_record_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub chain_id: ::prost::alloc::string::String,
-    #[prost(uint64, tag = "3")]
-    pub epoch_number: u64,
-}
-/// ---------------------- Reinvest Callback ---------------------- //
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ReinvestCallback {
-    #[prost(message, optional, tag = "1")]
-    pub reinvest_amount: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-    #[prost(string, tag = "3")]
-    pub host_zone_id: ::prost::alloc::string::String,
-}
-/// ---------------------- Undelegation Callbacks ---------------------- //
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UndelegateCallback {
-    #[prost(string, tag = "1")]
-    pub host_zone_id: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub split_delegations: ::prost::alloc::vec::Vec<SplitDelegation>,
-    #[prost(uint64, repeated, tag = "3")]
-    pub epoch_unbonding_record_ids: ::prost::alloc::vec::Vec<u64>,
-}
-/// ---------------------- Redemption Callbacks ---------------------- //
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RedemptionCallback {
-    #[prost(string, tag = "1")]
-    pub host_zone_id: ::prost::alloc::string::String,
-    #[prost(uint64, repeated, tag = "2")]
-    pub epoch_unbonding_record_ids: ::prost::alloc::vec::Vec<u64>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Rebalancing {
-    #[prost(string, tag = "1")]
-    pub src_validator: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub dst_validator: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub amt: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RebalanceCallback {
-    #[prost(string, tag = "1")]
-    pub host_zone_id: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub rebalancings: ::prost::alloc::vec::Vec<Rebalancing>,
 }
 /// GenesisState defines the stakeibc module's genesis state.
 #[allow(clippy::derive_partial_eq_without_eq)]

@@ -6,5 +6,5 @@ Clients used to interact with Terra Blockchain from Rust. It can be used directl
 
 Add terra-proto-rs into the Cargo.toml from your smart contract with default-features to false that way you avoid importing libraries that will make your smart contract fail:
 ```Cargo.toml
-terra-proto-rs = {version = "3.0.1", default-features = false}
+terra-proto-rs = {version = "3.0.3", default-features = false}
 ```

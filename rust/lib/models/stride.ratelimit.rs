@@ -134,6 +134,17 @@ pub struct ResetRateLimitProposal {
     #[prost(string, tag = "5")]
     pub deposit: ::prost::alloc::string::String,
 }
+/// GenesisState defines the ratelimit module's genesis state.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenesisState {
+    /// params defines all the parameters of the module.
+    #[prost(message, optional, tag = "1")]
+    pub params: ::core::option::Option<Params>,
+    /// list of rate limits
+    #[prost(message, repeated, tag = "2")]
+    pub rate_limits: ::prost::alloc::vec::Vec<RateLimit>,
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAllRateLimitsRequest {}
@@ -566,15 +577,4 @@ pub mod query_server {
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
         const NAME: &'static str = "stride.ratelimit.Query";
     }
-}
-/// GenesisState defines the ratelimit module's genesis state.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenesisState {
-    /// params defines all the parameters of the module.
-    #[prost(message, optional, tag = "1")]
-    pub params: ::core::option::Option<Params>,
-    /// list of rate limits
-    #[prost(message, repeated, tag = "2")]
-    pub rate_limits: ::prost::alloc::vec::Vec<RateLimit>,
 }
