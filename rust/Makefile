@@ -13,6 +13,6 @@ build:
 	cargo build
 
 publish:
-	cargo publish -p terra_proto_client
+	cargo publish -p terra-proto-rs
 
 .PHONY: all proto-gen format init build publish

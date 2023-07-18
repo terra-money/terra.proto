@@ -338,628 +338,6 @@ impl BondStatus {
         }
     }
 }
-/// MsgCreateValidator defines a SDK message for creating a new validator.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgCreateValidator {
-    #[prost(message, optional, tag = "1")]
-    pub description: ::core::option::Option<Description>,
-    #[prost(message, optional, tag = "2")]
-    pub commission: ::core::option::Option<CommissionRates>,
-    #[prost(string, tag = "3")]
-    pub min_self_delegation: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub delegator_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub validator_address: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "6")]
-    pub pubkey: ::core::option::Option<::prost_types::Any>,
-    #[prost(message, optional, tag = "7")]
-    pub value: ::core::option::Option<super::super::base::v1beta1::Coin>,
-}
-/// MsgCreateValidatorResponse defines the Msg/CreateValidator response type.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgCreateValidatorResponse {}
-/// MsgEditValidator defines a SDK message for editing an existing validator.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgEditValidator {
-    #[prost(message, optional, tag = "1")]
-    pub description: ::core::option::Option<Description>,
-    #[prost(string, tag = "2")]
-    pub validator_address: ::prost::alloc::string::String,
-    /// We pass a reference to the new commission rate and min self delegation as
-    /// it's not mandatory to update. If not updated, the deserialized rate will be
-    /// zero with no way to distinguish if an update was intended.
-    /// REF: #2373
-    #[prost(string, tag = "3")]
-    pub commission_rate: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub min_self_delegation: ::prost::alloc::string::String,
-}
-/// MsgEditValidatorResponse defines the Msg/EditValidator response type.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgEditValidatorResponse {}
-/// MsgDelegate defines a SDK message for performing a delegation of coins
-/// from a delegator to a validator.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgDelegate {
-    #[prost(string, tag = "1")]
-    pub delegator_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator_address: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub amount: ::core::option::Option<super::super::base::v1beta1::Coin>,
-}
-/// MsgDelegateResponse defines the Msg/Delegate response type.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgDelegateResponse {}
-/// MsgBeginRedelegate defines a SDK message for performing a redelegation
-/// of coins from a delegator and source validator to a destination validator.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgBeginRedelegate {
-    #[prost(string, tag = "1")]
-    pub delegator_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator_src_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub validator_dst_address: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub amount: ::core::option::Option<super::super::base::v1beta1::Coin>,
-}
-/// MsgBeginRedelegateResponse defines the Msg/BeginRedelegate response type.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgBeginRedelegateResponse {
-    #[prost(message, optional, tag = "1")]
-    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-/// MsgUndelegate defines a SDK message for performing an undelegation from a
-/// delegate and a validator.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgUndelegate {
-    #[prost(string, tag = "1")]
-    pub delegator_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator_address: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub amount: ::core::option::Option<super::super::base::v1beta1::Coin>,
-}
-/// MsgUndelegateResponse defines the Msg/Undelegate response type.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgUndelegateResponse {
-    #[prost(message, optional, tag = "1")]
-    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-/// MsgCancelUnbondingDelegation defines the SDK message for performing a cancel unbonding delegation for delegator
-///
-/// Since: cosmos-sdk 0.46
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgCancelUnbondingDelegation {
-    #[prost(string, tag = "1")]
-    pub delegator_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator_address: ::prost::alloc::string::String,
-    /// amount is always less than or equal to unbonding delegation entry balance
-    #[prost(message, optional, tag = "3")]
-    pub amount: ::core::option::Option<super::super::base::v1beta1::Coin>,
-    /// creation_height is the height which the unbonding took place.
-    #[prost(int64, tag = "4")]
-    pub creation_height: i64,
-}
-/// MsgCancelUnbondingDelegationResponse
-///
-/// Since: cosmos-sdk 0.46
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgCancelUnbondingDelegationResponse {}
-/// Generated client implementations.
-#[cfg(feature = "grpc")]
-#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod msg_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
-    use tonic::codegen::*;
-    /// Msg defines the staking Msg service.
-    #[derive(Debug, Clone)]
-    pub struct MsgClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    #[cfg(feature = "grpc-transport")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "grpc-transport")))]
-    impl MsgClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: std::convert::TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
-    impl<T> MsgClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
-        {
-            MsgClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// CreateValidator defines a method for creating a new validator.
-        pub async fn create_validator(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgCreateValidator>,
-        ) -> Result<tonic::Response<super::MsgCreateValidatorResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/cosmos.staking.v1beta1.Msg/CreateValidator");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// EditValidator defines a method for editing an existing validator.
-        pub async fn edit_validator(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgEditValidator>,
-        ) -> Result<tonic::Response<super::MsgEditValidatorResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/cosmos.staking.v1beta1.Msg/EditValidator");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// Delegate defines a method for performing a delegation of coins
-        /// from a delegator to a validator.
-        pub async fn delegate(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgDelegate>,
-        ) -> Result<tonic::Response<super::MsgDelegateResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/cosmos.staking.v1beta1.Msg/Delegate");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// BeginRedelegate defines a method for performing a redelegation
-        /// of coins from a delegator and source validator to a destination validator.
-        pub async fn begin_redelegate(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgBeginRedelegate>,
-        ) -> Result<tonic::Response<super::MsgBeginRedelegateResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/cosmos.staking.v1beta1.Msg/BeginRedelegate");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// Undelegate defines a method for performing an undelegation from a
-        /// delegate and a validator.
-        pub async fn undelegate(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgUndelegate>,
-        ) -> Result<tonic::Response<super::MsgUndelegateResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/cosmos.staking.v1beta1.Msg/Undelegate");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// CancelUnbondingDelegation defines a method for performing canceling the unbonding delegation
-        /// and delegate back to previous validator.
-        ///
-        /// Since: cosmos-sdk 0.46
-        pub async fn cancel_unbonding_delegation(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgCancelUnbondingDelegation>,
-        ) -> Result<tonic::Response<super::MsgCancelUnbondingDelegationResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.staking.v1beta1.Msg/CancelUnbondingDelegation",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-    }
-}
-/// Generated server implementations.
-#[cfg(feature = "grpc")]
-#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod msg_server {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    /// Generated trait containing gRPC methods that should be implemented for use with MsgServer.
-    #[async_trait]
-    pub trait Msg: Send + Sync + 'static {
-        /// CreateValidator defines a method for creating a new validator.
-        async fn create_validator(
-            &self,
-            request: tonic::Request<super::MsgCreateValidator>,
-        ) -> Result<tonic::Response<super::MsgCreateValidatorResponse>, tonic::Status>;
-        /// EditValidator defines a method for editing an existing validator.
-        async fn edit_validator(
-            &self,
-            request: tonic::Request<super::MsgEditValidator>,
-        ) -> Result<tonic::Response<super::MsgEditValidatorResponse>, tonic::Status>;
-        /// Delegate defines a method for performing a delegation of coins
-        /// from a delegator to a validator.
-        async fn delegate(
-            &self,
-            request: tonic::Request<super::MsgDelegate>,
-        ) -> Result<tonic::Response<super::MsgDelegateResponse>, tonic::Status>;
-        /// BeginRedelegate defines a method for performing a redelegation
-        /// of coins from a delegator and source validator to a destination validator.
-        async fn begin_redelegate(
-            &self,
-            request: tonic::Request<super::MsgBeginRedelegate>,
-        ) -> Result<tonic::Response<super::MsgBeginRedelegateResponse>, tonic::Status>;
-        /// Undelegate defines a method for performing an undelegation from a
-        /// delegate and a validator.
-        async fn undelegate(
-            &self,
-            request: tonic::Request<super::MsgUndelegate>,
-        ) -> Result<tonic::Response<super::MsgUndelegateResponse>, tonic::Status>;
-        /// CancelUnbondingDelegation defines a method for performing canceling the unbonding delegation
-        /// and delegate back to previous validator.
-        ///
-        /// Since: cosmos-sdk 0.46
-        async fn cancel_unbonding_delegation(
-            &self,
-            request: tonic::Request<super::MsgCancelUnbondingDelegation>,
-        ) -> Result<tonic::Response<super::MsgCancelUnbondingDelegationResponse>, tonic::Status>;
-    }
-    /// Msg defines the staking Msg service.
-    #[derive(Debug)]
-    pub struct MsgServer<T: Msg> {
-        inner: _Inner<T>,
-        accept_compression_encodings: EnabledCompressionEncodings,
-        send_compression_encodings: EnabledCompressionEncodings,
-    }
-    struct _Inner<T>(Arc<T>);
-    impl<T: Msg> MsgServer<T> {
-        pub fn new(inner: T) -> Self {
-            Self::from_arc(Arc::new(inner))
-        }
-        pub fn from_arc(inner: Arc<T>) -> Self {
-            let inner = _Inner(inner);
-            Self {
-                inner,
-                accept_compression_encodings: Default::default(),
-                send_compression_encodings: Default::default(),
-            }
-        }
-        pub fn with_interceptor<F>(inner: T, interceptor: F) -> InterceptedService<Self, F>
-        where
-            F: tonic::service::Interceptor,
-        {
-            InterceptedService::new(Self::new(inner), interceptor)
-        }
-        /// Enable decompressing requests with the given encoding.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.accept_compression_encodings.enable(encoding);
-            self
-        }
-        /// Compress responses with the given encoding, if the client supports it.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.send_compression_encodings.enable(encoding);
-            self
-        }
-    }
-    impl<T, B> tonic::codegen::Service<http::Request<B>> for MsgServer<T>
-    where
-        T: Msg,
-        B: Body + Send + 'static,
-        B::Error: Into<StdError> + Send + 'static,
-    {
-        type Response = http::Response<tonic::body::BoxBody>;
-        type Error = std::convert::Infallible;
-        type Future = BoxFuture<Self::Response, Self::Error>;
-        fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
-            Poll::Ready(Ok(()))
-        }
-        fn call(&mut self, req: http::Request<B>) -> Self::Future {
-            let inner = self.inner.clone();
-            match req.uri().path() {
-                "/cosmos.staking.v1beta1.Msg/CreateValidator" => {
-                    #[allow(non_camel_case_types)]
-                    struct CreateValidatorSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgCreateValidator> for CreateValidatorSvc<T> {
-                        type Response = super::MsgCreateValidatorResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgCreateValidator>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).create_validator(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = CreateValidatorSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/cosmos.staking.v1beta1.Msg/EditValidator" => {
-                    #[allow(non_camel_case_types)]
-                    struct EditValidatorSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgEditValidator> for EditValidatorSvc<T> {
-                        type Response = super::MsgEditValidatorResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgEditValidator>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).edit_validator(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = EditValidatorSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/cosmos.staking.v1beta1.Msg/Delegate" => {
-                    #[allow(non_camel_case_types)]
-                    struct DelegateSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgDelegate> for DelegateSvc<T> {
-                        type Response = super::MsgDelegateResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgDelegate>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).delegate(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = DelegateSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/cosmos.staking.v1beta1.Msg/BeginRedelegate" => {
-                    #[allow(non_camel_case_types)]
-                    struct BeginRedelegateSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgBeginRedelegate> for BeginRedelegateSvc<T> {
-                        type Response = super::MsgBeginRedelegateResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgBeginRedelegate>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).begin_redelegate(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = BeginRedelegateSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/cosmos.staking.v1beta1.Msg/Undelegate" => {
-                    #[allow(non_camel_case_types)]
-                    struct UndelegateSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgUndelegate> for UndelegateSvc<T> {
-                        type Response = super::MsgUndelegateResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgUndelegate>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).undelegate(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = UndelegateSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/cosmos.staking.v1beta1.Msg/CancelUnbondingDelegation" => {
-                    #[allow(non_camel_case_types)]
-                    struct CancelUnbondingDelegationSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgCancelUnbondingDelegation>
-                        for CancelUnbondingDelegationSvc<T>
-                    {
-                        type Response = super::MsgCancelUnbondingDelegationResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgCancelUnbondingDelegation>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut =
-                                async move { (*inner).cancel_unbonding_delegation(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = CancelUnbondingDelegationSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                _ => Box::pin(async move {
-                    Ok(http::Response::builder()
-                        .status(200)
-                        .header("grpc-status", "12")
-                        .header("content-type", "application/grpc")
-                        .body(empty_body())
-                        .unwrap())
-                }),
-            }
-        }
-    }
-    impl<T: Msg> Clone for MsgServer<T> {
-        fn clone(&self) -> Self {
-            let inner = self.inner.clone();
-            Self {
-                inner,
-                accept_compression_encodings: self.accept_compression_encodings,
-                send_compression_encodings: self.send_compression_encodings,
-            }
-        }
-    }
-    impl<T: Msg> Clone for _Inner<T> {
-        fn clone(&self) -> Self {
-            Self(self.0.clone())
-        }
-    }
-    impl<T: std::fmt::Debug> std::fmt::Debug for _Inner<T> {
-        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-            write!(f, "{:?}", self.0)
-        }
-    }
-    impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
-        const NAME: &'static str = "cosmos.staking.v1beta1.Msg";
-    }
-}
 /// QueryValidatorsRequest is request type for Query/Validators RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2203,6 +1581,628 @@ pub mod query_server {
     }
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
         const NAME: &'static str = "cosmos.staking.v1beta1.Query";
+    }
+}
+/// MsgCreateValidator defines a SDK message for creating a new validator.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgCreateValidator {
+    #[prost(message, optional, tag = "1")]
+    pub description: ::core::option::Option<Description>,
+    #[prost(message, optional, tag = "2")]
+    pub commission: ::core::option::Option<CommissionRates>,
+    #[prost(string, tag = "3")]
+    pub min_self_delegation: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub delegator_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub validator_address: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub pubkey: ::core::option::Option<::prost_types::Any>,
+    #[prost(message, optional, tag = "7")]
+    pub value: ::core::option::Option<super::super::base::v1beta1::Coin>,
+}
+/// MsgCreateValidatorResponse defines the Msg/CreateValidator response type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgCreateValidatorResponse {}
+/// MsgEditValidator defines a SDK message for editing an existing validator.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgEditValidator {
+    #[prost(message, optional, tag = "1")]
+    pub description: ::core::option::Option<Description>,
+    #[prost(string, tag = "2")]
+    pub validator_address: ::prost::alloc::string::String,
+    /// We pass a reference to the new commission rate and min self delegation as
+    /// it's not mandatory to update. If not updated, the deserialized rate will be
+    /// zero with no way to distinguish if an update was intended.
+    /// REF: #2373
+    #[prost(string, tag = "3")]
+    pub commission_rate: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub min_self_delegation: ::prost::alloc::string::String,
+}
+/// MsgEditValidatorResponse defines the Msg/EditValidator response type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgEditValidatorResponse {}
+/// MsgDelegate defines a SDK message for performing a delegation of coins
+/// from a delegator to a validator.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgDelegate {
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator_address: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub amount: ::core::option::Option<super::super::base::v1beta1::Coin>,
+}
+/// MsgDelegateResponse defines the Msg/Delegate response type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgDelegateResponse {}
+/// MsgBeginRedelegate defines a SDK message for performing a redelegation
+/// of coins from a delegator and source validator to a destination validator.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgBeginRedelegate {
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator_src_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub validator_dst_address: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub amount: ::core::option::Option<super::super::base::v1beta1::Coin>,
+}
+/// MsgBeginRedelegateResponse defines the Msg/BeginRedelegate response type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgBeginRedelegateResponse {
+    #[prost(message, optional, tag = "1")]
+    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// MsgUndelegate defines a SDK message for performing an undelegation from a
+/// delegate and a validator.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUndelegate {
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator_address: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub amount: ::core::option::Option<super::super::base::v1beta1::Coin>,
+}
+/// MsgUndelegateResponse defines the Msg/Undelegate response type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUndelegateResponse {
+    #[prost(message, optional, tag = "1")]
+    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// MsgCancelUnbondingDelegation defines the SDK message for performing a cancel unbonding delegation for delegator
+///
+/// Since: cosmos-sdk 0.46
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgCancelUnbondingDelegation {
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator_address: ::prost::alloc::string::String,
+    /// amount is always less than or equal to unbonding delegation entry balance
+    #[prost(message, optional, tag = "3")]
+    pub amount: ::core::option::Option<super::super::base::v1beta1::Coin>,
+    /// creation_height is the height which the unbonding took place.
+    #[prost(int64, tag = "4")]
+    pub creation_height: i64,
+}
+/// MsgCancelUnbondingDelegationResponse
+///
+/// Since: cosmos-sdk 0.46
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgCancelUnbondingDelegationResponse {}
+/// Generated client implementations.
+#[cfg(feature = "grpc")]
+#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
+pub mod msg_client {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Msg defines the staking Msg service.
+    #[derive(Debug, Clone)]
+    pub struct MsgClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    #[cfg(feature = "grpc-transport")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "grpc-transport")))]
+    impl MsgClient<tonic::transport::Channel> {
+        /// Attempt to create a new client by connecting to a given endpoint.
+        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
+        where
+            D: std::convert::TryInto<tonic::transport::Endpoint>,
+            D::Error: Into<StdError>,
+        {
+            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
+            Ok(Self::new(conn))
+        }
+    }
+    impl<T> MsgClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            MsgClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// CreateValidator defines a method for creating a new validator.
+        pub async fn create_validator(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgCreateValidator>,
+        ) -> Result<tonic::Response<super::MsgCreateValidatorResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.staking.v1beta1.Msg/CreateValidator");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// EditValidator defines a method for editing an existing validator.
+        pub async fn edit_validator(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgEditValidator>,
+        ) -> Result<tonic::Response<super::MsgEditValidatorResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.staking.v1beta1.Msg/EditValidator");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// Delegate defines a method for performing a delegation of coins
+        /// from a delegator to a validator.
+        pub async fn delegate(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgDelegate>,
+        ) -> Result<tonic::Response<super::MsgDelegateResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/cosmos.staking.v1beta1.Msg/Delegate");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// BeginRedelegate defines a method for performing a redelegation
+        /// of coins from a delegator and source validator to a destination validator.
+        pub async fn begin_redelegate(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgBeginRedelegate>,
+        ) -> Result<tonic::Response<super::MsgBeginRedelegateResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.staking.v1beta1.Msg/BeginRedelegate");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// Undelegate defines a method for performing an undelegation from a
+        /// delegate and a validator.
+        pub async fn undelegate(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgUndelegate>,
+        ) -> Result<tonic::Response<super::MsgUndelegateResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.staking.v1beta1.Msg/Undelegate");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// CancelUnbondingDelegation defines a method for performing canceling the unbonding delegation
+        /// and delegate back to previous validator.
+        ///
+        /// Since: cosmos-sdk 0.46
+        pub async fn cancel_unbonding_delegation(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgCancelUnbondingDelegation>,
+        ) -> Result<tonic::Response<super::MsgCancelUnbondingDelegationResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.staking.v1beta1.Msg/CancelUnbondingDelegation",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+    }
+}
+/// Generated server implementations.
+#[cfg(feature = "grpc")]
+#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
+pub mod msg_server {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    /// Generated trait containing gRPC methods that should be implemented for use with MsgServer.
+    #[async_trait]
+    pub trait Msg: Send + Sync + 'static {
+        /// CreateValidator defines a method for creating a new validator.
+        async fn create_validator(
+            &self,
+            request: tonic::Request<super::MsgCreateValidator>,
+        ) -> Result<tonic::Response<super::MsgCreateValidatorResponse>, tonic::Status>;
+        /// EditValidator defines a method for editing an existing validator.
+        async fn edit_validator(
+            &self,
+            request: tonic::Request<super::MsgEditValidator>,
+        ) -> Result<tonic::Response<super::MsgEditValidatorResponse>, tonic::Status>;
+        /// Delegate defines a method for performing a delegation of coins
+        /// from a delegator to a validator.
+        async fn delegate(
+            &self,
+            request: tonic::Request<super::MsgDelegate>,
+        ) -> Result<tonic::Response<super::MsgDelegateResponse>, tonic::Status>;
+        /// BeginRedelegate defines a method for performing a redelegation
+        /// of coins from a delegator and source validator to a destination validator.
+        async fn begin_redelegate(
+            &self,
+            request: tonic::Request<super::MsgBeginRedelegate>,
+        ) -> Result<tonic::Response<super::MsgBeginRedelegateResponse>, tonic::Status>;
+        /// Undelegate defines a method for performing an undelegation from a
+        /// delegate and a validator.
+        async fn undelegate(
+            &self,
+            request: tonic::Request<super::MsgUndelegate>,
+        ) -> Result<tonic::Response<super::MsgUndelegateResponse>, tonic::Status>;
+        /// CancelUnbondingDelegation defines a method for performing canceling the unbonding delegation
+        /// and delegate back to previous validator.
+        ///
+        /// Since: cosmos-sdk 0.46
+        async fn cancel_unbonding_delegation(
+            &self,
+            request: tonic::Request<super::MsgCancelUnbondingDelegation>,
+        ) -> Result<tonic::Response<super::MsgCancelUnbondingDelegationResponse>, tonic::Status>;
+    }
+    /// Msg defines the staking Msg service.
+    #[derive(Debug)]
+    pub struct MsgServer<T: Msg> {
+        inner: _Inner<T>,
+        accept_compression_encodings: EnabledCompressionEncodings,
+        send_compression_encodings: EnabledCompressionEncodings,
+    }
+    struct _Inner<T>(Arc<T>);
+    impl<T: Msg> MsgServer<T> {
+        pub fn new(inner: T) -> Self {
+            Self::from_arc(Arc::new(inner))
+        }
+        pub fn from_arc(inner: Arc<T>) -> Self {
+            let inner = _Inner(inner);
+            Self {
+                inner,
+                accept_compression_encodings: Default::default(),
+                send_compression_encodings: Default::default(),
+            }
+        }
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> InterceptedService<Self, F>
+        where
+            F: tonic::service::Interceptor,
+        {
+            InterceptedService::new(Self::new(inner), interceptor)
+        }
+        /// Enable decompressing requests with the given encoding.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.accept_compression_encodings.enable(encoding);
+            self
+        }
+        /// Compress responses with the given encoding, if the client supports it.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.send_compression_encodings.enable(encoding);
+            self
+        }
+    }
+    impl<T, B> tonic::codegen::Service<http::Request<B>> for MsgServer<T>
+    where
+        T: Msg,
+        B: Body + Send + 'static,
+        B::Error: Into<StdError> + Send + 'static,
+    {
+        type Response = http::Response<tonic::body::BoxBody>;
+        type Error = std::convert::Infallible;
+        type Future = BoxFuture<Self::Response, Self::Error>;
+        fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
+            Poll::Ready(Ok(()))
+        }
+        fn call(&mut self, req: http::Request<B>) -> Self::Future {
+            let inner = self.inner.clone();
+            match req.uri().path() {
+                "/cosmos.staking.v1beta1.Msg/CreateValidator" => {
+                    #[allow(non_camel_case_types)]
+                    struct CreateValidatorSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgCreateValidator> for CreateValidatorSvc<T> {
+                        type Response = super::MsgCreateValidatorResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgCreateValidator>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).create_validator(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = CreateValidatorSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmos.staking.v1beta1.Msg/EditValidator" => {
+                    #[allow(non_camel_case_types)]
+                    struct EditValidatorSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgEditValidator> for EditValidatorSvc<T> {
+                        type Response = super::MsgEditValidatorResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgEditValidator>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).edit_validator(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = EditValidatorSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmos.staking.v1beta1.Msg/Delegate" => {
+                    #[allow(non_camel_case_types)]
+                    struct DelegateSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgDelegate> for DelegateSvc<T> {
+                        type Response = super::MsgDelegateResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgDelegate>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).delegate(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = DelegateSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmos.staking.v1beta1.Msg/BeginRedelegate" => {
+                    #[allow(non_camel_case_types)]
+                    struct BeginRedelegateSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgBeginRedelegate> for BeginRedelegateSvc<T> {
+                        type Response = super::MsgBeginRedelegateResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgBeginRedelegate>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).begin_redelegate(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = BeginRedelegateSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmos.staking.v1beta1.Msg/Undelegate" => {
+                    #[allow(non_camel_case_types)]
+                    struct UndelegateSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgUndelegate> for UndelegateSvc<T> {
+                        type Response = super::MsgUndelegateResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgUndelegate>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).undelegate(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UndelegateSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmos.staking.v1beta1.Msg/CancelUnbondingDelegation" => {
+                    #[allow(non_camel_case_types)]
+                    struct CancelUnbondingDelegationSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgCancelUnbondingDelegation>
+                        for CancelUnbondingDelegationSvc<T>
+                    {
+                        type Response = super::MsgCancelUnbondingDelegationResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgCancelUnbondingDelegation>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut =
+                                async move { (*inner).cancel_unbonding_delegation(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = CancelUnbondingDelegationSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                _ => Box::pin(async move {
+                    Ok(http::Response::builder()
+                        .status(200)
+                        .header("grpc-status", "12")
+                        .header("content-type", "application/grpc")
+                        .body(empty_body())
+                        .unwrap())
+                }),
+            }
+        }
+    }
+    impl<T: Msg> Clone for MsgServer<T> {
+        fn clone(&self) -> Self {
+            let inner = self.inner.clone();
+            Self {
+                inner,
+                accept_compression_encodings: self.accept_compression_encodings,
+                send_compression_encodings: self.send_compression_encodings,
+            }
+        }
+    }
+    impl<T: Msg> Clone for _Inner<T> {
+        fn clone(&self) -> Self {
+            Self(self.0.clone())
+        }
+    }
+    impl<T: std::fmt::Debug> std::fmt::Debug for _Inner<T> {
+        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+            write!(f, "{:?}", self.0)
+        }
+    }
+    impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
+        const NAME: &'static str = "cosmos.staking.v1beta1.Msg";
     }
 }
 /// GenesisState defines the staking module's genesis state.

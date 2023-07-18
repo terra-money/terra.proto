@@ -62,6 +62,13 @@ pub struct Grant {
     #[prost(message, optional, tag = "3")]
     pub allowance: ::core::option::Option<::prost_types::Any>,
 }
+/// GenesisState contains a set of fee allowances, persisted from the store
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenesisState {
+    #[prost(message, repeated, tag = "1")]
+    pub allowances: ::prost::alloc::vec::Vec<Grant>,
+}
 /// MsgGrantAllowance adds permission for Grantee to spend up to Allowance
 /// of fees from the account of Granter.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -779,11 +786,4 @@ pub mod query_server {
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
         const NAME: &'static str = "cosmos.feegrant.v1beta1.Query";
     }
-}
-/// GenesisState contains a set of fee allowances, persisted from the store
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenesisState {
-    #[prost(message, repeated, tag = "1")]
-    pub allowances: ::prost::alloc::vec::Vec<Grant>,
 }

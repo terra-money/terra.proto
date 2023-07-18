@@ -1,29 +1,3 @@
-/// Metadata defines the ICS29 channel specific metadata encoded into the channel version bytestring
-/// See ICS004: <https://github.com/cosmos/ibc/tree/master/spec/core/ics-004-channel-and-packet-semantics#Versioning>
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Metadata {
-    /// fee_version defines the ICS29 fee version
-    #[prost(string, tag = "1")]
-    pub fee_version: ::prost::alloc::string::String,
-    /// app_version defines the underlying application version, which may or may not be a JSON encoded bytestring
-    #[prost(string, tag = "2")]
-    pub app_version: ::prost::alloc::string::String,
-}
-/// IncentivizedAcknowledgement is the acknowledgement format to be used by applications wrapped in the fee middleware
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct IncentivizedAcknowledgement {
-    /// the underlying app acknowledgement bytes
-    #[prost(bytes = "vec", tag = "1")]
-    pub app_acknowledgement: ::prost::alloc::vec::Vec<u8>,
-    /// the relayer address which submits the recv packet message
-    #[prost(string, tag = "2")]
-    pub forward_relayer_address: ::prost::alloc::string::String,
-    /// success flag of the base application callback
-    #[prost(bool, tag = "3")]
-    pub underlying_app_success: bool,
-}
 /// Fee defines the ICS29 receive, acknowledgement and timeout fees
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -568,6 +542,20 @@ pub mod msg_server {
     impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
         const NAME: &'static str = "ibc.applications.fee.v1.Msg";
     }
+}
+/// IncentivizedAcknowledgement is the acknowledgement format to be used by applications wrapped in the fee middleware
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IncentivizedAcknowledgement {
+    /// the underlying app acknowledgement bytes
+    #[prost(bytes = "vec", tag = "1")]
+    pub app_acknowledgement: ::prost::alloc::vec::Vec<u8>,
+    /// the relayer address which submits the recv packet message
+    #[prost(string, tag = "2")]
+    pub forward_relayer_address: ::prost::alloc::string::String,
+    /// success flag of the base application callback
+    #[prost(bool, tag = "3")]
+    pub underlying_app_success: bool,
 }
 /// GenesisState defines the ICS29 fee middleware genesis state
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1563,4 +1551,16 @@ pub mod query_server {
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
         const NAME: &'static str = "ibc.applications.fee.v1.Query";
     }
+}
+/// Metadata defines the ICS29 channel specific metadata encoded into the channel version bytestring
+/// See ICS004: <https://github.com/cosmos/ibc/tree/master/spec/core/ics-004-channel-and-packet-semantics#Versioning>
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Metadata {
+    /// fee_version defines the ICS29 fee version
+    #[prost(string, tag = "1")]
+    pub fee_version: ::prost::alloc::string::String,
+    /// app_version defines the underlying application version, which may or may not be a JSON encoded bytestring
+    #[prost(string, tag = "2")]
+    pub app_version: ::prost::alloc::string::String,
 }

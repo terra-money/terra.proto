@@ -1,42 +1,3 @@
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct IcacallbacksPacketData {
-    #[prost(oneof = "icacallbacks_packet_data::Packet", tags = "1")]
-    pub packet: ::core::option::Option<icacallbacks_packet_data::Packet>,
-}
-/// Nested message and enum types in `IcacallbacksPacketData`.
-pub mod icacallbacks_packet_data {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Packet {
-        /// this line is used by starport scaffolding # ibc/packet/proto/field
-        #[prost(message, tag = "1")]
-        NoData(super::NoData),
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct NoData {}
-/// Params defines the parameters for the module.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Params {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CallbackData {
-    #[prost(string, tag = "1")]
-    pub callback_key: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub port_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub channel_id: ::prost::alloc::string::String,
-    #[prost(uint64, tag = "4")]
-    pub sequence: u64,
-    #[prost(string, tag = "5")]
-    pub callback_id: ::prost::alloc::string::String,
-    #[prost(bytes = "vec", tag = "6")]
-    pub callback_args: ::prost::alloc::vec::Vec<u8>,
-}
 /// Generated client implementations.
 #[cfg(feature = "grpc")]
 #[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
@@ -206,6 +167,38 @@ pub mod msg_server {
     impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
         const NAME: &'static str = "stride.icacallbacks.Msg";
     }
+}
+/// Params defines the parameters for the module.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Params {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CallbackData {
+    #[prost(string, tag = "1")]
+    pub callback_key: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub port_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub channel_id: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "4")]
+    pub sequence: u64,
+    #[prost(string, tag = "5")]
+    pub callback_id: ::prost::alloc::string::String,
+    #[prost(bytes = "vec", tag = "6")]
+    pub callback_args: ::prost::alloc::vec::Vec<u8>,
+}
+/// GenesisState defines the icacallbacks module's genesis state.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenesisState {
+    #[prost(message, optional, tag = "1")]
+    pub params: ::core::option::Option<Params>,
+    #[prost(string, tag = "2")]
+    pub port_id: ::prost::alloc::string::String,
+    /// this line is used by starport scaffolding # genesis/proto/state
+    #[prost(message, repeated, tag = "3")]
+    pub callback_data_list: ::prost::alloc::vec::Vec<CallbackData>,
 }
 /// QueryParamsRequest is request type for the Query/Params RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -579,15 +572,22 @@ pub mod query_server {
         const NAME: &'static str = "stride.icacallbacks.Query";
     }
 }
-/// GenesisState defines the icacallbacks module's genesis state.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenesisState {
-    #[prost(message, optional, tag = "1")]
-    pub params: ::core::option::Option<Params>,
-    #[prost(string, tag = "2")]
-    pub port_id: ::prost::alloc::string::String,
-    /// this line is used by starport scaffolding # genesis/proto/state
-    #[prost(message, repeated, tag = "3")]
-    pub callback_data_list: ::prost::alloc::vec::Vec<CallbackData>,
+pub struct IcacallbacksPacketData {
+    #[prost(oneof = "icacallbacks_packet_data::Packet", tags = "1")]
+    pub packet: ::core::option::Option<icacallbacks_packet_data::Packet>,
 }
+/// Nested message and enum types in `IcacallbacksPacketData`.
+pub mod icacallbacks_packet_data {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Packet {
+        /// this line is used by starport scaffolding # ibc/packet/proto/field
+        #[prost(message, tag = "1")]
+        NoData(super::NoData),
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct NoData {}
