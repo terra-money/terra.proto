@@ -18,3 +18,6 @@
 	path = wasmd
 	url = https://github.com/notional-labs/wasmd
 	branch = release/v0.30.0-sdk-v0.46.x
+[submodule "jax"]
+	path = jax
+	url = https://github.com/terra-money/jax
