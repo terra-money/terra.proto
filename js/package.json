@@ -16,6 +16,7 @@
   "files": [
     "alliance/",
     "confio/",
+    "jax/",
     "cosmos/",
     "cosmos_proto/",
     "cosmwasm/",
