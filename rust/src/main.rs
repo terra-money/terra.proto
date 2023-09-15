@@ -75,17 +75,13 @@ fn compile_protos_and_services() {
     );
     let proto_directories = vec![
         "../protobuf",
-        "../protobuf/protobuf",
-        "../protobuf/proto",
         "../cosmos-sdk/proto",
         "../alliance/proto",
         "../ibc-go/proto",
         "../ibc-apps/middleware/packet-forward-middleware/proto",
         "../wasmd/proto",
-        "../cosmos-proto/proto",
         "../grpc-gateway",
-        "../grpc-gateway/third_party",
-        "../grpc-gateway/third_party/googleapis",
+        "../cosmos-proto/proto",
         "../terra/proto",
     ];
     let mut protos: Vec<String> = Vec::new();
@@ -95,7 +91,7 @@ fn compile_protos_and_services() {
         let protos_paths = list_files_in_dir(&proto_dir);
         protos.extend(protos_paths);
     }
-
+    println!("{:?}", protos);
     // Compile all of the proto files, along with grpc service clients
     println!("Compiling proto definitions and clients for GRPC services!");
     tonic_build::configure()
