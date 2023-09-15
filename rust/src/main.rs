@@ -74,12 +74,19 @@ fn compile_protos_and_services() {
         TMP_BUILD_DIR
     );
     let proto_directories = vec![
+        "../protobuf",
+        "../protobuf/protobuf",
+        "../protobuf/proto",
         "../cosmos-sdk/proto",
-        "../cosmos-sdk/third_party/proto",
-        "../ibc-go/proto",
-        "../wasmd/proto",
         "../alliance/proto",
-        "../third_party"
+        "../ibc-go/proto",
+        "../ibc-apps/middleware/packet-forward-middleware/proto",
+        "../wasmd/proto",
+        "../cosmos-proto/proto",
+        "../grpc-gateway",
+        "../grpc-gateway/third_party",
+        "../grpc-gateway/third_party/googleapis",
+        "../terra/proto",
     ];
     let mut protos: Vec<String> = Vec::new();
 

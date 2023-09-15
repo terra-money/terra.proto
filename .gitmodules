@@ -17,4 +17,14 @@
 [submodule "wasmd"]
 	path = wasmd
 	url = https://github.com/cosmwasm/wasmd
-	branch = release/v0.40.x
+	branch = releases/v0.40.x
+[submodule "protobuf"]
+	path = protobuf
+	url = https://github.com/regen-network/protobuf
+[submodule "ibc-apps"]
+	path = ibc-apps
+	url = https://github.com/cosmos/ibc-apps
+[submodule "grpc-gateway"]
+	path = grpc-gateway
+	url = https://github.com/grpc-ecosystem/grpc-gateway
+	branch = v1
