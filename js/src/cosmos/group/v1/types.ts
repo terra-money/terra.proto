@@ -224,7 +224,7 @@ export interface MemberRequest {
 /**
  * ThresholdDecisionPolicy is a decision policy where a proposal passes when it
  * satisfies the two following conditions:
- * 1. The sum of all `YES` voters' weights is greater or equal than the defined
+ * 1. The sum of all `YES` voter's weights is greater or equal than the defined
  *    `threshold`.
  * 2. The voting and execution periods of the proposal respect the parameters
  *    given by `windows`.
@@ -249,7 +249,7 @@ export interface ThresholdDecisionPolicy {
  */
 export interface PercentageDecisionPolicy {
   /**
-   * percentage is the minimum percentage the weighted sum of `YES` votes must
+   * percentage is the minimum percentage of the weighted sum of `YES` votes must
    * meet for a proposal to succeed.
    */
   percentage: string;
@@ -317,7 +317,11 @@ export interface GroupPolicyInfo {
   groupId: Long;
   /** admin is the account address of the group admin. */
   admin: string;
-  /** metadata is any arbitrary metadata to attached to the group policy. */
+  /**
+   * metadata is any arbitrary metadata attached to the group policy.
+   * the recommended format of the metadata is to be found here:
+   * https://docs.cosmos.network/v0.47/modules/group#decision-policy-1
+   */
   metadata: string;
   /**
    * version is used to track changes to a group's GroupPolicyInfo structure that
@@ -341,7 +345,11 @@ export interface Proposal {
   id: Long;
   /** group_policy_address is the account address of group policy. */
   groupPolicyAddress: string;
-  /** metadata is any arbitrary metadata to attached to the proposal. */
+  /**
+   * metadata is any arbitrary metadata attached to the proposal.
+   * the recommended format of the metadata is to be found here:
+   * https://docs.cosmos.network/v0.47/modules/group#proposal-4
+   */
   metadata: string;
   /** proposers are the account addresses of the proposers. */
   proposers: string[];
@@ -370,7 +378,7 @@ export interface Proposal {
   finalTallyResult?: TallyResult;
   /**
    * voting_period_end is the timestamp before which voting must be done.
-   * Unless a successfull MsgExec is called before (to execute a proposal whose
+   * Unless a successful MsgExec is called before (to execute a proposal whose
    * tally is successful before the voting period ends), tallying will be done
    * at this point, and the `final_tally_result`and `status` fields will be
    * accordingly updated.
@@ -380,6 +388,18 @@ export interface Proposal {
   executorResult: ProposalExecutorResult;
   /** messages is a list of `sdk.Msg`s that will be executed if the proposal passes. */
   messages: Any[];
+  /**
+   * title is the title of the proposal
+   *
+   * Since: cosmos-sdk 0.47
+   */
+  title: string;
+  /**
+   * summary is a short summary of the proposal
+   *
+   * Since: cosmos-sdk 0.47
+   */
+  summary: string;
 }
 
 /** TallyResult represents the sum of weighted votes for each vote option. */
@@ -402,7 +422,7 @@ export interface Vote {
   voter: string;
   /** option is the voter's choice on the proposal. */
   option: VoteOption;
-  /** metadata is any arbitrary metadata to attached to the vote. */
+  /** metadata is any arbitrary metadata attached to the vote. */
   metadata: string;
   /** submit_time is the timestamp when the vote was submitted. */
   submitTime?: Date;
@@ -1216,6 +1236,8 @@ const baseProposal: object = {
   groupPolicyVersion: Long.UZERO,
   status: 0,
   executorResult: 0,
+  title: "",
+  summary: "",
 };
 
 export const Proposal = {
@@ -1255,6 +1277,12 @@ export const Proposal = {
     }
     for (const v of message.messages) {
       Any.encode(v!, writer.uint32(98).fork()).ldelim();
+    }
+    if (message.title !== "") {
+      writer.uint32(106).string(message.title);
+    }
+    if (message.summary !== "") {
+      writer.uint32(114).string(message.summary);
     }
     return writer;
   },
@@ -1303,6 +1331,12 @@ export const Proposal = {
           break;
         case 12:
           message.messages.push(Any.decode(reader, reader.uint32()));
+          break;
+        case 13:
+          message.title = reader.string();
+          break;
+        case 14:
+          message.summary = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1376,6 +1410,16 @@ export const Proposal = {
         message.messages.push(Any.fromJSON(e));
       }
     }
+    if (object.title !== undefined && object.title !== null) {
+      message.title = String(object.title);
+    } else {
+      message.title = "";
+    }
+    if (object.summary !== undefined && object.summary !== null) {
+      message.summary = String(object.summary);
+    } else {
+      message.summary = "";
+    }
     return message;
   },
 
@@ -1407,6 +1451,8 @@ export const Proposal = {
     } else {
       obj.messages = [];
     }
+    message.title !== undefined && (obj.title = message.title);
+    message.summary !== undefined && (obj.summary = message.summary);
     return obj;
   },
 
@@ -1473,6 +1519,16 @@ export const Proposal = {
       for (const e of object.messages) {
         message.messages.push(Any.fromPartial(e));
       }
+    }
+    if (object.title !== undefined && object.title !== null) {
+      message.title = object.title;
+    } else {
+      message.title = "";
+    }
+    if (object.summary !== undefined && object.summary !== null) {
+      message.summary = object.summary;
+    } else {
+      message.summary = "";
     }
     return message;
   },

@@ -28,13 +28,6 @@ export interface BlockParams {
    * Note: must be greater or equal to -1
    */
   maxGas: Long;
-  /**
-   * Minimum time increment between consecutive blocks (in milliseconds) If the
-   * block header timestamp is ahead of the system clock, decrease this value.
-   *
-   * Not exposed to the application.
-   */
-  timeIotaMs: Long;
 }
 
 /** EvidenceParams determine how we handle evidence of malfeasance. */
@@ -72,7 +65,7 @@ export interface ValidatorParams {
 
 /** VersionParams contains the ABCI application version. */
 export interface VersionParams {
-  appVersion: Long;
+  app: Long;
 }
 
 /**
@@ -195,7 +188,7 @@ export const ConsensusParams = {
   },
 };
 
-const baseBlockParams: object = { maxBytes: Long.ZERO, maxGas: Long.ZERO, timeIotaMs: Long.ZERO };
+const baseBlockParams: object = { maxBytes: Long.ZERO, maxGas: Long.ZERO };
 
 export const BlockParams = {
   encode(message: BlockParams, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -204,9 +197,6 @@ export const BlockParams = {
     }
     if (!message.maxGas.isZero()) {
       writer.uint32(16).int64(message.maxGas);
-    }
-    if (!message.timeIotaMs.isZero()) {
-      writer.uint32(24).int64(message.timeIotaMs);
     }
     return writer;
   },
@@ -223,9 +213,6 @@ export const BlockParams = {
           break;
         case 2:
           message.maxGas = reader.int64() as Long;
-          break;
-        case 3:
-          message.timeIotaMs = reader.int64() as Long;
           break;
         default:
           reader.skipType(tag & 7);
@@ -247,11 +234,6 @@ export const BlockParams = {
     } else {
       message.maxGas = Long.ZERO;
     }
-    if (object.timeIotaMs !== undefined && object.timeIotaMs !== null) {
-      message.timeIotaMs = Long.fromString(object.timeIotaMs);
-    } else {
-      message.timeIotaMs = Long.ZERO;
-    }
     return message;
   },
 
@@ -259,7 +241,6 @@ export const BlockParams = {
     const obj: any = {};
     message.maxBytes !== undefined && (obj.maxBytes = (message.maxBytes || Long.ZERO).toString());
     message.maxGas !== undefined && (obj.maxGas = (message.maxGas || Long.ZERO).toString());
-    message.timeIotaMs !== undefined && (obj.timeIotaMs = (message.timeIotaMs || Long.ZERO).toString());
     return obj;
   },
 
@@ -274,11 +255,6 @@ export const BlockParams = {
       message.maxGas = object.maxGas as Long;
     } else {
       message.maxGas = Long.ZERO;
-    }
-    if (object.timeIotaMs !== undefined && object.timeIotaMs !== null) {
-      message.timeIotaMs = object.timeIotaMs as Long;
-    } else {
-      message.timeIotaMs = Long.ZERO;
     }
     return message;
   },
@@ -437,12 +413,12 @@ export const ValidatorParams = {
   },
 };
 
-const baseVersionParams: object = { appVersion: Long.UZERO };
+const baseVersionParams: object = { app: Long.UZERO };
 
 export const VersionParams = {
   encode(message: VersionParams, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (!message.appVersion.isZero()) {
-      writer.uint32(8).uint64(message.appVersion);
+    if (!message.app.isZero()) {
+      writer.uint32(8).uint64(message.app);
     }
     return writer;
   },
@@ -455,7 +431,7 @@ export const VersionParams = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.appVersion = reader.uint64() as Long;
+          message.app = reader.uint64() as Long;
           break;
         default:
           reader.skipType(tag & 7);
@@ -467,26 +443,26 @@ export const VersionParams = {
 
   fromJSON(object: any): VersionParams {
     const message = { ...baseVersionParams } as VersionParams;
-    if (object.appVersion !== undefined && object.appVersion !== null) {
-      message.appVersion = Long.fromString(object.appVersion);
+    if (object.app !== undefined && object.app !== null) {
+      message.app = Long.fromString(object.app);
     } else {
-      message.appVersion = Long.UZERO;
+      message.app = Long.UZERO;
     }
     return message;
   },
 
   toJSON(message: VersionParams): unknown {
     const obj: any = {};
-    message.appVersion !== undefined && (obj.appVersion = (message.appVersion || Long.UZERO).toString());
+    message.app !== undefined && (obj.app = (message.app || Long.UZERO).toString());
     return obj;
   },
 
   fromPartial(object: DeepPartial<VersionParams>): VersionParams {
     const message = { ...baseVersionParams } as VersionParams;
-    if (object.appVersion !== undefined && object.appVersion !== null) {
-      message.appVersion = object.appVersion as Long;
+    if (object.app !== undefined && object.app !== null) {
+      message.app = object.app as Long;
     } else {
-      message.appVersion = Long.UZERO;
+      message.app = Long.UZERO;
     }
     return message;
   },
