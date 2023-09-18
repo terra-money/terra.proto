@@ -28,3 +28,6 @@
 	path = grpc-gateway
 	url = https://github.com/grpc-ecosystem/grpc-gateway
 	branch = v1
+[submodule "pob"]
+	path = pob
+	url = https://github.com/skip-mev/pob

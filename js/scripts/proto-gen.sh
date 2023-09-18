@@ -20,8 +20,9 @@ GRPC_DIR=$(readlink -f "../grpc-gateway")
 JAX_DIR=$(readlink -f "../jax/proto")
 COSMOS_DIR=$(readlink -f "../cosmos-proto/proto")
 TERRA_DIR=$(readlink -f "../terra/proto")
+POB_DIR=$(readlink -f "../pob/proto")
 
-proto_dirs=$(find $PROTOBUF_DIR $COSMOS_SDK_DIR $ALLIANCE_DIR $IBC_DIR $PFM_DIR $WASMD_DIR $GRPC_DIR $JAX_DIR $COSMOS_DIR $TERRA_DIR -path -prune -o -name '*.proto' -print0 | xargs -0 -n1 dirname | sort | uniq)
+proto_dirs=$(find $PROTOBUF_DIR $COSMOS_SDK_DIR $ALLIANCE_DIR $IBC_DIR $PFM_DIR $WASMD_DIR $GRPC_DIR $JAX_DIR $COSMOS_DIR $TERRA_DIR $POB_DIR -path -prune -o -name '*.proto' -print0 | xargs -0 -n1 dirname | sort | uniq)
 for dir in $proto_dirs; do
   # generate swagger files (filter query files)
   query_file=$(find "${dir}" -maxdepth 1 \( -name 'query.proto' -o -name 'service.proto' \))
@@ -41,6 +42,7 @@ for dir in $proto_dirs; do
     -I "$JAX_DIR" \
     -I "$COSMOS_DIR" \
     -I "$TERRA_DIR" \
+    -I "$POB_DIR" \
       "$query_file" \
     --plugin="protoc-gen-ts_proto=${PROTOC_GEN_TS_PROTO_PATH}" \
     --ts_proto_out="${OUT_DIR}" \
