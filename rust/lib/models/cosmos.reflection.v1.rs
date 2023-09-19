@@ -1,57 +1,31 @@
-/// BaseVestingAccount implements the VestingAccount interface. It contains all
-/// the necessary fields needed for any vesting account implementation.
+/// FileDescriptorsRequest is the Query/FileDescriptors request type.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BaseVestingAccount {
-    #[prost(message, optional, tag = "1")]
-    pub base_account: ::core::option::Option<super::super::cosmos::auth::v1beta1::BaseAccount>,
-    #[prost(message, repeated, tag = "2")]
-    pub original_vesting: ::prost::alloc::vec::Vec<super::super::cosmos::base::v1beta1::Coin>,
-    #[prost(message, repeated, tag = "3")]
-    pub delegated_free: ::prost::alloc::vec::Vec<super::super::cosmos::base::v1beta1::Coin>,
-    #[prost(message, repeated, tag = "4")]
-    pub delegated_vesting: ::prost::alloc::vec::Vec<super::super::cosmos::base::v1beta1::Coin>,
-    #[prost(int64, tag = "5")]
-    pub end_time: i64,
-}
-/// Period defines a length of time and amount of coins that will vest.
+pub struct FileDescriptorsRequest {}
+/// FileDescriptorsResponse is the Query/FileDescriptors response type.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Period {
-    #[prost(int64, tag = "1")]
-    pub start_time: i64,
-    #[prost(int64, tag = "2")]
-    pub length: i64,
-    #[prost(message, repeated, tag = "3")]
-    pub amount: ::prost::alloc::vec::Vec<super::super::cosmos::base::v1beta1::Coin>,
-    #[prost(int32, tag = "4")]
-    pub action_type: i32,
-}
-/// StridePeriodicVestingAccount implements the VestingAccount interface. It
-/// periodically vests by unlocking coins during each specified period.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StridePeriodicVestingAccount {
-    #[prost(message, optional, tag = "1")]
-    pub base_vesting_account: ::core::option::Option<BaseVestingAccount>,
-    #[prost(message, repeated, tag = "3")]
-    pub vesting_periods: ::prost::alloc::vec::Vec<Period>,
+pub struct FileDescriptorsResponse {
+    /// files is the file descriptors.
+    #[prost(message, repeated, tag = "1")]
+    pub files: ::prost::alloc::vec::Vec<::prost_types::FileDescriptorProto>,
 }
 /// Generated client implementations.
 #[cfg(feature = "grpc")]
 #[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod msg_client {
+pub mod reflection_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::http::Uri;
     use tonic::codegen::*;
-    /// Msg defines the bank Msg service.
+    /// Package cosmos.reflection.v1 provides support for inspecting protobuf
+    /// file descriptors.
     #[derive(Debug, Clone)]
-    pub struct MsgClient<T> {
+    pub struct ReflectionServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
     #[cfg(feature = "grpc-transport")]
     #[cfg_attr(docsrs, doc(cfg(feature = "grpc-transport")))]
-    impl MsgClient<tonic::transport::Channel> {
+    impl ReflectionServiceClient<tonic::transport::Channel> {
         /// Attempt to create a new client by connecting to a given endpoint.
         pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
         where
@@ -62,7 +36,7 @@ pub mod msg_client {
             Ok(Self::new(conn))
         }
     }
-    impl<T> MsgClient<T>
+    impl<T> ReflectionServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
@@ -77,7 +51,10 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::with_origin(inner, origin);
             Self { inner }
         }
-        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> ReflectionServiceClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -90,7 +67,7 @@ pub mod msg_client {
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {
-            MsgClient::new(InterceptedService::new(inner, interceptor))
+            ReflectionServiceClient::new(InterceptedService::new(inner, interceptor))
         }
         /// Compress requests with the given encoding.
         ///
@@ -107,26 +84,52 @@ pub mod msg_client {
             self.inner = self.inner.accept_compressed(encoding);
             self
         }
+        /// FileDescriptors queries all the file descriptors in the app in order
+        /// to enable easier generation of dynamic clients.
+        pub async fn file_descriptors(
+            &mut self,
+            request: impl tonic::IntoRequest<super::FileDescriptorsRequest>,
+        ) -> Result<tonic::Response<super::FileDescriptorsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.reflection.v1.ReflectionService/FileDescriptors",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
     }
 }
 /// Generated server implementations.
 #[cfg(feature = "grpc")]
 #[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod msg_server {
+pub mod reflection_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    /// Generated trait containing gRPC methods that should be implemented for use with MsgServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with ReflectionServiceServer.
     #[async_trait]
-    pub trait Msg: Send + Sync + 'static {}
-    /// Msg defines the bank Msg service.
+    pub trait ReflectionService: Send + Sync + 'static {
+        /// FileDescriptors queries all the file descriptors in the app in order
+        /// to enable easier generation of dynamic clients.
+        async fn file_descriptors(
+            &self,
+            request: tonic::Request<super::FileDescriptorsRequest>,
+        ) -> Result<tonic::Response<super::FileDescriptorsResponse>, tonic::Status>;
+    }
+    /// Package cosmos.reflection.v1 provides support for inspecting protobuf
+    /// file descriptors.
     #[derive(Debug)]
-    pub struct MsgServer<T: Msg> {
+    pub struct ReflectionServiceServer<T: ReflectionService> {
         inner: _Inner<T>,
         accept_compression_encodings: EnabledCompressionEncodings,
         send_compression_encodings: EnabledCompressionEncodings,
     }
     struct _Inner<T>(Arc<T>);
-    impl<T: Msg> MsgServer<T> {
+    impl<T: ReflectionService> ReflectionServiceServer<T> {
         pub fn new(inner: T) -> Self {
             Self::from_arc(Arc::new(inner))
         }
@@ -157,9 +160,9 @@ pub mod msg_server {
             self
         }
     }
-    impl<T, B> tonic::codegen::Service<http::Request<B>> for MsgServer<T>
+    impl<T, B> tonic::codegen::Service<http::Request<B>> for ReflectionServiceServer<T>
     where
-        T: Msg,
+        T: ReflectionService,
         B: Body + Send + 'static,
         B::Error: Into<StdError> + Send + 'static,
     {
@@ -172,6 +175,40 @@ pub mod msg_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
+                "/cosmos.reflection.v1.ReflectionService/FileDescriptors" => {
+                    #[allow(non_camel_case_types)]
+                    struct FileDescriptorsSvc<T: ReflectionService>(pub Arc<T>);
+                    impl<T: ReflectionService>
+                        tonic::server::UnaryService<super::FileDescriptorsRequest>
+                        for FileDescriptorsSvc<T>
+                    {
+                        type Response = super::FileDescriptorsResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::FileDescriptorsRequest>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).file_descriptors(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = FileDescriptorsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
                 _ => Box::pin(async move {
                     Ok(http::Response::builder()
                         .status(200)
@@ -183,7 +220,7 @@ pub mod msg_server {
             }
         }
     }
-    impl<T: Msg> Clone for MsgServer<T> {
+    impl<T: ReflectionService> Clone for ReflectionServiceServer<T> {
         fn clone(&self) -> Self {
             let inner = self.inner.clone();
             Self {
@@ -193,7 +230,7 @@ pub mod msg_server {
             }
         }
     }
-    impl<T: Msg> Clone for _Inner<T> {
+    impl<T: ReflectionService> Clone for _Inner<T> {
         fn clone(&self) -> Self {
             Self(self.0.clone())
         }
@@ -203,7 +240,7 @@ pub mod msg_server {
             write!(f, "{:?}", self.0)
         }
     }
-    impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
-        const NAME: &'static str = "stride.vesting.Msg";
+    impl<T: ReflectionService> tonic::server::NamedService for ReflectionServiceServer<T> {
+        const NAME: &'static str = "cosmos.reflection.v1.ReflectionService";
     }
 }

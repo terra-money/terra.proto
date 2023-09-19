@@ -66,8 +66,7 @@ pub struct Header {
     #[prost(string, tag = "14")]
     pub proposer_address: ::prost::alloc::string::String,
 }
-/// GetValidatorSetByHeightRequest is the request type for the
-/// Query/GetValidatorSetByHeight RPC method.
+/// GetValidatorSetByHeightRequest is the request type for the Query/GetValidatorSetByHeight RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetValidatorSetByHeightRequest {
@@ -77,8 +76,7 @@ pub struct GetValidatorSetByHeightRequest {
     #[prost(message, optional, tag = "2")]
     pub pagination: ::core::option::Option<super::super::query::v1beta1::PageRequest>,
 }
-/// GetValidatorSetByHeightResponse is the response type for the
-/// Query/GetValidatorSetByHeight RPC method.
+/// GetValidatorSetByHeightResponse is the response type for the Query/GetValidatorSetByHeight RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetValidatorSetByHeightResponse {
@@ -90,8 +88,7 @@ pub struct GetValidatorSetByHeightResponse {
     #[prost(message, optional, tag = "3")]
     pub pagination: ::core::option::Option<super::super::query::v1beta1::PageResponse>,
 }
-/// GetLatestValidatorSetRequest is the request type for the
-/// Query/GetValidatorSetByHeight RPC method.
+/// GetLatestValidatorSetRequest is the request type for the Query/GetValidatorSetByHeight RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetLatestValidatorSetRequest {
@@ -99,8 +96,7 @@ pub struct GetLatestValidatorSetRequest {
     #[prost(message, optional, tag = "1")]
     pub pagination: ::core::option::Option<super::super::query::v1beta1::PageRequest>,
 }
-/// GetLatestValidatorSetResponse is the response type for the
-/// Query/GetValidatorSetByHeight RPC method.
+/// GetLatestValidatorSetResponse is the response type for the Query/GetValidatorSetByHeight RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetLatestValidatorSetResponse {
@@ -125,16 +121,14 @@ pub struct Validator {
     #[prost(int64, tag = "4")]
     pub proposer_priority: i64,
 }
-/// GetBlockByHeightRequest is the request type for the Query/GetBlockByHeight
-/// RPC method.
+/// GetBlockByHeightRequest is the request type for the Query/GetBlockByHeight RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBlockByHeightRequest {
     #[prost(int64, tag = "1")]
     pub height: i64,
 }
-/// GetBlockByHeightResponse is the response type for the Query/GetBlockByHeight
-/// RPC method.
+/// GetBlockByHeightResponse is the response type for the Query/GetBlockByHeight RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBlockByHeightResponse {
@@ -147,13 +141,11 @@ pub struct GetBlockByHeightResponse {
     #[prost(message, optional, tag = "3")]
     pub sdk_block: ::core::option::Option<Block>,
 }
-/// GetLatestBlockRequest is the request type for the Query/GetLatestBlock RPC
-/// method.
+/// GetLatestBlockRequest is the request type for the Query/GetLatestBlock RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetLatestBlockRequest {}
-/// GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC
-/// method.
+/// GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetLatestBlockResponse {
@@ -181,8 +173,7 @@ pub struct GetSyncingResponse {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNodeInfoRequest {}
-/// GetNodeInfoResponse is the response type for the Query/GetNodeInfo RPC
-/// method.
+/// GetNodeInfoResponse is the response type for the Query/GetNodeInfo RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNodeInfoResponse {
@@ -240,8 +231,7 @@ pub struct AbciQueryRequest {
     #[prost(bool, tag = "4")]
     pub prove: bool,
 }
-/// ABCIQueryResponse defines the response structure for the ABCIQuery gRPC
-/// query.
+/// ABCIQueryResponse defines the response structure for the ABCIQuery gRPC query.
 ///
 /// Note: This type is a duplicate of the ResponseQuery proto type defined in
 /// Tendermint.
@@ -270,11 +260,10 @@ pub struct AbciQueryResponse {
     pub codespace: ::prost::alloc::string::String,
 }
 /// ProofOp defines an operation used for calculating Merkle root. The data could
-/// be arbitrary format, providing nessecary data for example neighbouring node
+/// be arbitrary format, providing necessary data for example neighbouring node
 /// hash.
 ///
-/// Note: This type is a duplicate of the ProofOp proto type defined in
-/// Tendermint.
+/// Note: This type is a duplicate of the ProofOp proto type defined in Tendermint.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProofOp {
@@ -287,8 +276,7 @@ pub struct ProofOp {
 }
 /// ProofOps is Merkle proof defined by the list of ProofOps.
 ///
-/// Note: This type is a duplicate of the ProofOps proto type defined in
-/// Tendermint.
+/// Note: This type is a duplicate of the ProofOps proto type defined in Tendermint.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProofOps {
@@ -471,9 +459,9 @@ pub mod service_client {
             );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        /// ABCIQuery defines a query handler that supports ABCI queries directly to
-        /// the application, bypassing Tendermint completely. The ABCI query must
-        /// contain a valid and supported path, including app, custom, p2p, and store.
+        /// ABCIQuery defines a query handler that supports ABCI queries directly to the
+        /// application, bypassing Tendermint completely. The ABCI query must contain
+        /// a valid and supported path, including app, custom, p2p, and store.
         ///
         /// Since: cosmos-sdk 0.46
         pub async fn abci_query(
@@ -533,9 +521,9 @@ pub mod service_server {
             &self,
             request: tonic::Request<super::GetValidatorSetByHeightRequest>,
         ) -> Result<tonic::Response<super::GetValidatorSetByHeightResponse>, tonic::Status>;
-        /// ABCIQuery defines a query handler that supports ABCI queries directly to
-        /// the application, bypassing Tendermint completely. The ABCI query must
-        /// contain a valid and supported path, including app, custom, p2p, and store.
+        /// ABCIQuery defines a query handler that supports ABCI queries directly to the
+        /// application, bypassing Tendermint completely. The ABCI query must contain
+        /// a valid and supported path, including app, custom, p2p, and store.
         ///
         /// Since: cosmos-sdk 0.46
         async fn abci_query(

@@ -4,8 +4,14 @@
 pub struct Params {
     #[prost(string, tag = "1")]
     pub community_tax: ::prost::alloc::string::String,
+    /// Deprecated: The base_proposer_reward field is deprecated and is no longer used
+    /// in the x/distribution module's reward mechanism.
+    #[deprecated]
     #[prost(string, tag = "2")]
     pub base_proposer_reward: ::prost::alloc::string::String,
+    /// Deprecated: The bonus_proposer_reward field is deprecated and is no longer used
+    /// in the x/distribution module's reward mechanism.
+    #[deprecated]
     #[prost(string, tag = "3")]
     pub bonus_proposer_reward: ::prost::alloc::string::String,
     #[prost(bool, tag = "4")]
@@ -87,6 +93,11 @@ pub struct FeePool {
 /// CommunityPoolSpendProposal details a proposal for use of community funds,
 /// together with how many coins are proposed to be spent, and to which
 /// recipient account.
+///
+/// Deprecated: Do not use. As of the Cosmos SDK release v0.47.x, there is no
+/// longer a need for an explicit CommunityPoolSpendProposal. To spend community
+/// pool funds, a simple MsgCommunityPoolSpend can be invoked from the x/gov
+/// module via a v1 governance proposal.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommunityPoolSpendProposal {
@@ -141,6 +152,642 @@ pub struct CommunityPoolSpendProposalWithDeposit {
     #[prost(string, tag = "5")]
     pub deposit: ::prost::alloc::string::String,
 }
+/// MsgSetWithdrawAddress sets the withdraw address for
+/// a delegator (or validator self-delegation).
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgSetWithdrawAddress {
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub withdraw_address: ::prost::alloc::string::String,
+}
+/// MsgSetWithdrawAddressResponse defines the Msg/SetWithdrawAddress response
+/// type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgSetWithdrawAddressResponse {}
+/// MsgWithdrawDelegatorReward represents delegation withdrawal to a delegator
+/// from a single validator.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgWithdrawDelegatorReward {
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator_address: ::prost::alloc::string::String,
+}
+/// MsgWithdrawDelegatorRewardResponse defines the Msg/WithdrawDelegatorReward
+/// response type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgWithdrawDelegatorRewardResponse {
+    /// Since: cosmos-sdk 0.46
+    #[prost(message, repeated, tag = "1")]
+    pub amount: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
+}
+/// MsgWithdrawValidatorCommission withdraws the full commission to the validator
+/// address.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgWithdrawValidatorCommission {
+    #[prost(string, tag = "1")]
+    pub validator_address: ::prost::alloc::string::String,
+}
+/// MsgWithdrawValidatorCommissionResponse defines the
+/// Msg/WithdrawValidatorCommission response type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgWithdrawValidatorCommissionResponse {
+    /// Since: cosmos-sdk 0.46
+    #[prost(message, repeated, tag = "1")]
+    pub amount: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
+}
+/// MsgFundCommunityPool allows an account to directly
+/// fund the community pool.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgFundCommunityPool {
+    #[prost(message, repeated, tag = "1")]
+    pub amount: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
+    #[prost(string, tag = "2")]
+    pub depositor: ::prost::alloc::string::String,
+}
+/// MsgFundCommunityPoolResponse defines the Msg/FundCommunityPool response type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgFundCommunityPoolResponse {}
+/// MsgUpdateParams is the Msg/UpdateParams request type.
+///
+/// Since: cosmos-sdk 0.47
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateParams {
+    /// authority is the address that controls the module (defaults to x/gov unless overwritten).
+    #[prost(string, tag = "1")]
+    pub authority: ::prost::alloc::string::String,
+    /// params defines the x/distribution parameters to update.
+    ///
+    /// NOTE: All parameters must be supplied.
+    #[prost(message, optional, tag = "2")]
+    pub params: ::core::option::Option<Params>,
+}
+/// MsgUpdateParamsResponse defines the response structure for executing a
+/// MsgUpdateParams message.
+///
+/// Since: cosmos-sdk 0.47
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateParamsResponse {}
+/// MsgCommunityPoolSpend defines a message for sending tokens from the community
+/// pool to another account. This message is typically executed via a governance
+/// proposal with the governance module being the executing authority.
+///
+/// Since: cosmos-sdk 0.47
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgCommunityPoolSpend {
+    /// authority is the address that controls the module (defaults to x/gov unless overwritten).
+    #[prost(string, tag = "1")]
+    pub authority: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub recipient: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub amount: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
+}
+/// MsgCommunityPoolSpendResponse defines the response to executing a
+/// MsgCommunityPoolSpend message.
+///
+/// Since: cosmos-sdk 0.47
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgCommunityPoolSpendResponse {}
+/// Generated client implementations.
+#[cfg(feature = "grpc")]
+#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
+pub mod msg_client {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Msg defines the distribution Msg service.
+    #[derive(Debug, Clone)]
+    pub struct MsgClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    #[cfg(feature = "grpc-transport")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "grpc-transport")))]
+    impl MsgClient<tonic::transport::Channel> {
+        /// Attempt to create a new client by connecting to a given endpoint.
+        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
+        where
+            D: std::convert::TryInto<tonic::transport::Endpoint>,
+            D::Error: Into<StdError>,
+        {
+            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
+            Ok(Self::new(conn))
+        }
+    }
+    impl<T> MsgClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            MsgClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// SetWithdrawAddress defines a method to change the withdraw address
+        /// for a delegator (or validator self-delegation).
+        pub async fn set_withdraw_address(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgSetWithdrawAddress>,
+        ) -> Result<tonic::Response<super::MsgSetWithdrawAddressResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.distribution.v1beta1.Msg/SetWithdrawAddress",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// WithdrawDelegatorReward defines a method to withdraw rewards of delegator
+        /// from a single validator.
+        pub async fn withdraw_delegator_reward(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgWithdrawDelegatorReward>,
+        ) -> Result<tonic::Response<super::MsgWithdrawDelegatorRewardResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.distribution.v1beta1.Msg/WithdrawDelegatorReward",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// WithdrawValidatorCommission defines a method to withdraw the
+        /// full commission to the validator address.
+        pub async fn withdraw_validator_commission(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgWithdrawValidatorCommission>,
+        ) -> Result<tonic::Response<super::MsgWithdrawValidatorCommissionResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.distribution.v1beta1.Msg/WithdrawValidatorCommission",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// FundCommunityPool defines a method to allow an account to directly
+        /// fund the community pool.
+        pub async fn fund_community_pool(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgFundCommunityPool>,
+        ) -> Result<tonic::Response<super::MsgFundCommunityPoolResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.distribution.v1beta1.Msg/FundCommunityPool",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// UpdateParams defines a governance operation for updating the x/distribution
+        /// module parameters. The authority is defined in the keeper.
+        ///
+        /// Since: cosmos-sdk 0.47
+        pub async fn update_params(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgUpdateParams>,
+        ) -> Result<tonic::Response<super::MsgUpdateParamsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.distribution.v1beta1.Msg/UpdateParams",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// CommunityPoolSpend defines a governance operation for sending tokens from
+        /// the community pool in the x/distribution module to another account, which
+        /// could be the governance module itself. The authority is defined in the
+        /// keeper.
+        ///
+        /// Since: cosmos-sdk 0.47
+        pub async fn community_pool_spend(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgCommunityPoolSpend>,
+        ) -> Result<tonic::Response<super::MsgCommunityPoolSpendResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.distribution.v1beta1.Msg/CommunityPoolSpend",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+    }
+}
+/// Generated server implementations.
+#[cfg(feature = "grpc")]
+#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
+pub mod msg_server {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    /// Generated trait containing gRPC methods that should be implemented for use with MsgServer.
+    #[async_trait]
+    pub trait Msg: Send + Sync + 'static {
+        /// SetWithdrawAddress defines a method to change the withdraw address
+        /// for a delegator (or validator self-delegation).
+        async fn set_withdraw_address(
+            &self,
+            request: tonic::Request<super::MsgSetWithdrawAddress>,
+        ) -> Result<tonic::Response<super::MsgSetWithdrawAddressResponse>, tonic::Status>;
+        /// WithdrawDelegatorReward defines a method to withdraw rewards of delegator
+        /// from a single validator.
+        async fn withdraw_delegator_reward(
+            &self,
+            request: tonic::Request<super::MsgWithdrawDelegatorReward>,
+        ) -> Result<tonic::Response<super::MsgWithdrawDelegatorRewardResponse>, tonic::Status>;
+        /// WithdrawValidatorCommission defines a method to withdraw the
+        /// full commission to the validator address.
+        async fn withdraw_validator_commission(
+            &self,
+            request: tonic::Request<super::MsgWithdrawValidatorCommission>,
+        ) -> Result<tonic::Response<super::MsgWithdrawValidatorCommissionResponse>, tonic::Status>;
+        /// FundCommunityPool defines a method to allow an account to directly
+        /// fund the community pool.
+        async fn fund_community_pool(
+            &self,
+            request: tonic::Request<super::MsgFundCommunityPool>,
+        ) -> Result<tonic::Response<super::MsgFundCommunityPoolResponse>, tonic::Status>;
+        /// UpdateParams defines a governance operation for updating the x/distribution
+        /// module parameters. The authority is defined in the keeper.
+        ///
+        /// Since: cosmos-sdk 0.47
+        async fn update_params(
+            &self,
+            request: tonic::Request<super::MsgUpdateParams>,
+        ) -> Result<tonic::Response<super::MsgUpdateParamsResponse>, tonic::Status>;
+        /// CommunityPoolSpend defines a governance operation for sending tokens from
+        /// the community pool in the x/distribution module to another account, which
+        /// could be the governance module itself. The authority is defined in the
+        /// keeper.
+        ///
+        /// Since: cosmos-sdk 0.47
+        async fn community_pool_spend(
+            &self,
+            request: tonic::Request<super::MsgCommunityPoolSpend>,
+        ) -> Result<tonic::Response<super::MsgCommunityPoolSpendResponse>, tonic::Status>;
+    }
+    /// Msg defines the distribution Msg service.
+    #[derive(Debug)]
+    pub struct MsgServer<T: Msg> {
+        inner: _Inner<T>,
+        accept_compression_encodings: EnabledCompressionEncodings,
+        send_compression_encodings: EnabledCompressionEncodings,
+    }
+    struct _Inner<T>(Arc<T>);
+    impl<T: Msg> MsgServer<T> {
+        pub fn new(inner: T) -> Self {
+            Self::from_arc(Arc::new(inner))
+        }
+        pub fn from_arc(inner: Arc<T>) -> Self {
+            let inner = _Inner(inner);
+            Self {
+                inner,
+                accept_compression_encodings: Default::default(),
+                send_compression_encodings: Default::default(),
+            }
+        }
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> InterceptedService<Self, F>
+        where
+            F: tonic::service::Interceptor,
+        {
+            InterceptedService::new(Self::new(inner), interceptor)
+        }
+        /// Enable decompressing requests with the given encoding.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.accept_compression_encodings.enable(encoding);
+            self
+        }
+        /// Compress responses with the given encoding, if the client supports it.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.send_compression_encodings.enable(encoding);
+            self
+        }
+    }
+    impl<T, B> tonic::codegen::Service<http::Request<B>> for MsgServer<T>
+    where
+        T: Msg,
+        B: Body + Send + 'static,
+        B::Error: Into<StdError> + Send + 'static,
+    {
+        type Response = http::Response<tonic::body::BoxBody>;
+        type Error = std::convert::Infallible;
+        type Future = BoxFuture<Self::Response, Self::Error>;
+        fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
+            Poll::Ready(Ok(()))
+        }
+        fn call(&mut self, req: http::Request<B>) -> Self::Future {
+            let inner = self.inner.clone();
+            match req.uri().path() {
+                "/cosmos.distribution.v1beta1.Msg/SetWithdrawAddress" => {
+                    #[allow(non_camel_case_types)]
+                    struct SetWithdrawAddressSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgSetWithdrawAddress>
+                        for SetWithdrawAddressSvc<T>
+                    {
+                        type Response = super::MsgSetWithdrawAddressResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgSetWithdrawAddress>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).set_withdraw_address(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = SetWithdrawAddressSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmos.distribution.v1beta1.Msg/WithdrawDelegatorReward" => {
+                    #[allow(non_camel_case_types)]
+                    struct WithdrawDelegatorRewardSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgWithdrawDelegatorReward>
+                        for WithdrawDelegatorRewardSvc<T>
+                    {
+                        type Response = super::MsgWithdrawDelegatorRewardResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgWithdrawDelegatorReward>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut =
+                                async move { (*inner).withdraw_delegator_reward(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = WithdrawDelegatorRewardSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmos.distribution.v1beta1.Msg/WithdrawValidatorCommission" => {
+                    #[allow(non_camel_case_types)]
+                    struct WithdrawValidatorCommissionSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgWithdrawValidatorCommission>
+                        for WithdrawValidatorCommissionSvc<T>
+                    {
+                        type Response = super::MsgWithdrawValidatorCommissionResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgWithdrawValidatorCommission>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move {
+                                (*inner).withdraw_validator_commission(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = WithdrawValidatorCommissionSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmos.distribution.v1beta1.Msg/FundCommunityPool" => {
+                    #[allow(non_camel_case_types)]
+                    struct FundCommunityPoolSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgFundCommunityPool> for FundCommunityPoolSvc<T> {
+                        type Response = super::MsgFundCommunityPoolResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgFundCommunityPool>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).fund_community_pool(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = FundCommunityPoolSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmos.distribution.v1beta1.Msg/UpdateParams" => {
+                    #[allow(non_camel_case_types)]
+                    struct UpdateParamsSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgUpdateParams> for UpdateParamsSvc<T> {
+                        type Response = super::MsgUpdateParamsResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgUpdateParams>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).update_params(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UpdateParamsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmos.distribution.v1beta1.Msg/CommunityPoolSpend" => {
+                    #[allow(non_camel_case_types)]
+                    struct CommunityPoolSpendSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgCommunityPoolSpend>
+                        for CommunityPoolSpendSvc<T>
+                    {
+                        type Response = super::MsgCommunityPoolSpendResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgCommunityPoolSpend>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).community_pool_spend(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = CommunityPoolSpendSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                _ => Box::pin(async move {
+                    Ok(http::Response::builder()
+                        .status(200)
+                        .header("grpc-status", "12")
+                        .header("content-type", "application/grpc")
+                        .body(empty_body())
+                        .unwrap())
+                }),
+            }
+        }
+    }
+    impl<T: Msg> Clone for MsgServer<T> {
+        fn clone(&self) -> Self {
+            let inner = self.inner.clone();
+            Self {
+                inner,
+                accept_compression_encodings: self.accept_compression_encodings,
+                send_compression_encodings: self.send_compression_encodings,
+            }
+        }
+    }
+    impl<T: Msg> Clone for _Inner<T> {
+        fn clone(&self) -> Self {
+            Self(self.0.clone())
+        }
+    }
+    impl<T: std::fmt::Debug> std::fmt::Debug for _Inner<T> {
+        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+            write!(f, "{:?}", self.0)
+        }
+    }
+    impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
+        const NAME: &'static str = "cosmos.distribution.v1beta1.Msg";
+    }
+}
 /// QueryParamsRequest is the request type for the Query/Params RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -152,6 +799,28 @@ pub struct QueryParamsResponse {
     /// params defines the parameters of the module.
     #[prost(message, optional, tag = "1")]
     pub params: ::core::option::Option<Params>,
+}
+/// QueryValidatorDistributionInfoRequest is the request type for the Query/ValidatorDistributionInfo RPC method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryValidatorDistributionInfoRequest {
+    /// validator_address defines the validator address to query for.
+    #[prost(string, tag = "1")]
+    pub validator_address: ::prost::alloc::string::String,
+}
+/// QueryValidatorDistributionInfoResponse is the response type for the Query/ValidatorDistributionInfo RPC method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryValidatorDistributionInfoResponse {
+    /// operator_address defines the validator operator address.
+    #[prost(string, tag = "1")]
+    pub operator_address: ::prost::alloc::string::String,
+    /// self_bond_rewards defines the self delegations rewards.
+    #[prost(message, repeated, tag = "2")]
+    pub self_bond_rewards: ::prost::alloc::vec::Vec<super::super::base::v1beta1::DecCoin>,
+    /// commission defines the commission the validator received.
+    #[prost(message, repeated, tag = "3")]
+    pub commission: ::prost::alloc::vec::Vec<super::super::base::v1beta1::DecCoin>,
 }
 /// QueryValidatorOutstandingRewardsRequest is the request type for the
 /// Query/ValidatorOutstandingRewards RPC method.
@@ -184,7 +853,7 @@ pub struct QueryValidatorCommissionRequest {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryValidatorCommissionResponse {
-    /// commission defines the commision the validator received.
+    /// commission defines the commission the validator received.
     #[prost(message, optional, tag = "1")]
     pub commission: ::core::option::Option<ValidatorAccumulatedCommission>,
 }
@@ -399,6 +1068,24 @@ pub mod query_client {
                 http::uri::PathAndQuery::from_static("/cosmos.distribution.v1beta1.Query/Params");
             self.inner.unary(request.into_request(), path, codec).await
         }
+        /// ValidatorDistributionInfo queries validator commission and self-delegation rewards for validator
+        pub async fn validator_distribution_info(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryValidatorDistributionInfoRequest>,
+        ) -> Result<tonic::Response<super::QueryValidatorDistributionInfoResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.distribution.v1beta1.Query/ValidatorDistributionInfo",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
         /// ValidatorOutstandingRewards queries rewards of a validator address.
         pub async fn validator_outstanding_rewards(
             &mut self,
@@ -557,6 +1244,11 @@ pub mod query_server {
             &self,
             request: tonic::Request<super::QueryParamsRequest>,
         ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>;
+        /// ValidatorDistributionInfo queries validator commission and self-delegation rewards for validator
+        async fn validator_distribution_info(
+            &self,
+            request: tonic::Request<super::QueryValidatorDistributionInfoRequest>,
+        ) -> Result<tonic::Response<super::QueryValidatorDistributionInfoResponse>, tonic::Status>;
         /// ValidatorOutstandingRewards queries rewards of a validator address.
         async fn validator_outstanding_rewards(
             &self,
@@ -674,6 +1366,41 @@ pub mod query_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = ParamsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmos.distribution.v1beta1.Query/ValidatorDistributionInfo" => {
+                    #[allow(non_camel_case_types)]
+                    struct ValidatorDistributionInfoSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query>
+                        tonic::server::UnaryService<super::QueryValidatorDistributionInfoRequest>
+                        for ValidatorDistributionInfoSvc<T>
+                    {
+                        type Response = super::QueryValidatorDistributionInfoResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryValidatorDistributionInfoRequest>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut =
+                                async move { (*inner).validator_distribution_info(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = ValidatorDistributionInfoSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,
@@ -992,470 +1719,6 @@ pub mod query_server {
         const NAME: &'static str = "cosmos.distribution.v1beta1.Query";
     }
 }
-/// MsgSetWithdrawAddress sets the withdraw address for
-/// a delegator (or validator self-delegation).
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgSetWithdrawAddress {
-    #[prost(string, tag = "1")]
-    pub delegator_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub withdraw_address: ::prost::alloc::string::String,
-}
-/// MsgSetWithdrawAddressResponse defines the Msg/SetWithdrawAddress response type.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgSetWithdrawAddressResponse {}
-/// MsgWithdrawDelegatorReward represents delegation withdrawal to a delegator
-/// from a single validator.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgWithdrawDelegatorReward {
-    #[prost(string, tag = "1")]
-    pub delegator_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator_address: ::prost::alloc::string::String,
-}
-/// MsgWithdrawDelegatorRewardResponse defines the Msg/WithdrawDelegatorReward response type.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgWithdrawDelegatorRewardResponse {
-    /// Since: cosmos-sdk 0.46
-    #[prost(message, repeated, tag = "1")]
-    pub amount: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
-}
-/// MsgWithdrawValidatorCommission withdraws the full commission to the validator
-/// address.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgWithdrawValidatorCommission {
-    #[prost(string, tag = "1")]
-    pub validator_address: ::prost::alloc::string::String,
-}
-/// MsgWithdrawValidatorCommissionResponse defines the Msg/WithdrawValidatorCommission response type.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgWithdrawValidatorCommissionResponse {
-    /// Since: cosmos-sdk 0.46
-    #[prost(message, repeated, tag = "1")]
-    pub amount: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
-}
-/// MsgFundCommunityPool allows an account to directly
-/// fund the community pool.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgFundCommunityPool {
-    #[prost(message, repeated, tag = "1")]
-    pub amount: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
-    #[prost(string, tag = "2")]
-    pub depositor: ::prost::alloc::string::String,
-}
-/// MsgFundCommunityPoolResponse defines the Msg/FundCommunityPool response type.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgFundCommunityPoolResponse {}
-/// Generated client implementations.
-#[cfg(feature = "grpc")]
-#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod msg_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
-    use tonic::codegen::*;
-    /// Msg defines the distribution Msg service.
-    #[derive(Debug, Clone)]
-    pub struct MsgClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    #[cfg(feature = "grpc-transport")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "grpc-transport")))]
-    impl MsgClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: std::convert::TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
-    impl<T> MsgClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
-        {
-            MsgClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// SetWithdrawAddress defines a method to change the withdraw address
-        /// for a delegator (or validator self-delegation).
-        pub async fn set_withdraw_address(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgSetWithdrawAddress>,
-        ) -> Result<tonic::Response<super::MsgSetWithdrawAddressResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.distribution.v1beta1.Msg/SetWithdrawAddress",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// WithdrawDelegatorReward defines a method to withdraw rewards of delegator
-        /// from a single validator.
-        pub async fn withdraw_delegator_reward(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgWithdrawDelegatorReward>,
-        ) -> Result<tonic::Response<super::MsgWithdrawDelegatorRewardResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.distribution.v1beta1.Msg/WithdrawDelegatorReward",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// WithdrawValidatorCommission defines a method to withdraw the
-        /// full commission to the validator address.
-        pub async fn withdraw_validator_commission(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgWithdrawValidatorCommission>,
-        ) -> Result<tonic::Response<super::MsgWithdrawValidatorCommissionResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.distribution.v1beta1.Msg/WithdrawValidatorCommission",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// FundCommunityPool defines a method to allow an account to directly
-        /// fund the community pool.
-        pub async fn fund_community_pool(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgFundCommunityPool>,
-        ) -> Result<tonic::Response<super::MsgFundCommunityPoolResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.distribution.v1beta1.Msg/FundCommunityPool",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-    }
-}
-/// Generated server implementations.
-#[cfg(feature = "grpc")]
-#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod msg_server {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    /// Generated trait containing gRPC methods that should be implemented for use with MsgServer.
-    #[async_trait]
-    pub trait Msg: Send + Sync + 'static {
-        /// SetWithdrawAddress defines a method to change the withdraw address
-        /// for a delegator (or validator self-delegation).
-        async fn set_withdraw_address(
-            &self,
-            request: tonic::Request<super::MsgSetWithdrawAddress>,
-        ) -> Result<tonic::Response<super::MsgSetWithdrawAddressResponse>, tonic::Status>;
-        /// WithdrawDelegatorReward defines a method to withdraw rewards of delegator
-        /// from a single validator.
-        async fn withdraw_delegator_reward(
-            &self,
-            request: tonic::Request<super::MsgWithdrawDelegatorReward>,
-        ) -> Result<tonic::Response<super::MsgWithdrawDelegatorRewardResponse>, tonic::Status>;
-        /// WithdrawValidatorCommission defines a method to withdraw the
-        /// full commission to the validator address.
-        async fn withdraw_validator_commission(
-            &self,
-            request: tonic::Request<super::MsgWithdrawValidatorCommission>,
-        ) -> Result<tonic::Response<super::MsgWithdrawValidatorCommissionResponse>, tonic::Status>;
-        /// FundCommunityPool defines a method to allow an account to directly
-        /// fund the community pool.
-        async fn fund_community_pool(
-            &self,
-            request: tonic::Request<super::MsgFundCommunityPool>,
-        ) -> Result<tonic::Response<super::MsgFundCommunityPoolResponse>, tonic::Status>;
-    }
-    /// Msg defines the distribution Msg service.
-    #[derive(Debug)]
-    pub struct MsgServer<T: Msg> {
-        inner: _Inner<T>,
-        accept_compression_encodings: EnabledCompressionEncodings,
-        send_compression_encodings: EnabledCompressionEncodings,
-    }
-    struct _Inner<T>(Arc<T>);
-    impl<T: Msg> MsgServer<T> {
-        pub fn new(inner: T) -> Self {
-            Self::from_arc(Arc::new(inner))
-        }
-        pub fn from_arc(inner: Arc<T>) -> Self {
-            let inner = _Inner(inner);
-            Self {
-                inner,
-                accept_compression_encodings: Default::default(),
-                send_compression_encodings: Default::default(),
-            }
-        }
-        pub fn with_interceptor<F>(inner: T, interceptor: F) -> InterceptedService<Self, F>
-        where
-            F: tonic::service::Interceptor,
-        {
-            InterceptedService::new(Self::new(inner), interceptor)
-        }
-        /// Enable decompressing requests with the given encoding.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.accept_compression_encodings.enable(encoding);
-            self
-        }
-        /// Compress responses with the given encoding, if the client supports it.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.send_compression_encodings.enable(encoding);
-            self
-        }
-    }
-    impl<T, B> tonic::codegen::Service<http::Request<B>> for MsgServer<T>
-    where
-        T: Msg,
-        B: Body + Send + 'static,
-        B::Error: Into<StdError> + Send + 'static,
-    {
-        type Response = http::Response<tonic::body::BoxBody>;
-        type Error = std::convert::Infallible;
-        type Future = BoxFuture<Self::Response, Self::Error>;
-        fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
-            Poll::Ready(Ok(()))
-        }
-        fn call(&mut self, req: http::Request<B>) -> Self::Future {
-            let inner = self.inner.clone();
-            match req.uri().path() {
-                "/cosmos.distribution.v1beta1.Msg/SetWithdrawAddress" => {
-                    #[allow(non_camel_case_types)]
-                    struct SetWithdrawAddressSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgSetWithdrawAddress>
-                        for SetWithdrawAddressSvc<T>
-                    {
-                        type Response = super::MsgSetWithdrawAddressResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgSetWithdrawAddress>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).set_withdraw_address(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = SetWithdrawAddressSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/cosmos.distribution.v1beta1.Msg/WithdrawDelegatorReward" => {
-                    #[allow(non_camel_case_types)]
-                    struct WithdrawDelegatorRewardSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgWithdrawDelegatorReward>
-                        for WithdrawDelegatorRewardSvc<T>
-                    {
-                        type Response = super::MsgWithdrawDelegatorRewardResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgWithdrawDelegatorReward>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut =
-                                async move { (*inner).withdraw_delegator_reward(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = WithdrawDelegatorRewardSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/cosmos.distribution.v1beta1.Msg/WithdrawValidatorCommission" => {
-                    #[allow(non_camel_case_types)]
-                    struct WithdrawValidatorCommissionSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgWithdrawValidatorCommission>
-                        for WithdrawValidatorCommissionSvc<T>
-                    {
-                        type Response = super::MsgWithdrawValidatorCommissionResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgWithdrawValidatorCommission>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move {
-                                (*inner).withdraw_validator_commission(request).await
-                            };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = WithdrawValidatorCommissionSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/cosmos.distribution.v1beta1.Msg/FundCommunityPool" => {
-                    #[allow(non_camel_case_types)]
-                    struct FundCommunityPoolSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgFundCommunityPool> for FundCommunityPoolSvc<T> {
-                        type Response = super::MsgFundCommunityPoolResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgFundCommunityPool>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).fund_community_pool(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = FundCommunityPoolSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                _ => Box::pin(async move {
-                    Ok(http::Response::builder()
-                        .status(200)
-                        .header("grpc-status", "12")
-                        .header("content-type", "application/grpc")
-                        .body(empty_body())
-                        .unwrap())
-                }),
-            }
-        }
-    }
-    impl<T: Msg> Clone for MsgServer<T> {
-        fn clone(&self) -> Self {
-            let inner = self.inner.clone();
-            Self {
-                inner,
-                accept_compression_encodings: self.accept_compression_encodings,
-                send_compression_encodings: self.send_compression_encodings,
-            }
-        }
-    }
-    impl<T: Msg> Clone for _Inner<T> {
-        fn clone(&self) -> Self {
-            Self(self.0.clone())
-        }
-    }
-    impl<T: std::fmt::Debug> std::fmt::Debug for _Inner<T> {
-        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-            write!(f, "{:?}", self.0)
-        }
-    }
-    impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
-        const NAME: &'static str = "cosmos.distribution.v1beta1.Msg";
-    }
-}
 /// DelegatorWithdrawInfo is the address for where distributions rewards are
 /// withdrawn to by default this struct is only used at genesis to feed in
 /// default withdraw addresses.
@@ -1476,7 +1739,7 @@ pub struct ValidatorOutstandingRewardsRecord {
     /// validator_address is the address of the validator.
     #[prost(string, tag = "1")]
     pub validator_address: ::prost::alloc::string::String,
-    /// outstanding_rewards represents the oustanding rewards of a validator.
+    /// outstanding_rewards represents the outstanding rewards of a validator.
     #[prost(message, repeated, tag = "2")]
     pub outstanding_rewards: ::prost::alloc::vec::Vec<super::super::base::v1beta1::DecCoin>,
 }
@@ -1539,7 +1802,7 @@ pub struct ValidatorSlashEventRecord {
     /// validator_address is the address of the validator.
     #[prost(string, tag = "1")]
     pub validator_address: ::prost::alloc::string::String,
-    /// height defines the block height at which the slash event occured.
+    /// height defines the block height at which the slash event occurred.
     #[prost(uint64, tag = "2")]
     pub height: u64,
     /// period is the period of the slash event.
@@ -1553,7 +1816,7 @@ pub struct ValidatorSlashEventRecord {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenesisState {
-    /// params defines all the paramaters of the module.
+    /// params defines all the parameters of the module.
     #[prost(message, optional, tag = "1")]
     pub params: ::core::option::Option<Params>,
     /// fee_pool defines the fee pool at genesis.
@@ -1568,7 +1831,7 @@ pub struct GenesisState {
     /// fee_pool defines the outstanding rewards of all validators at genesis.
     #[prost(message, repeated, tag = "5")]
     pub outstanding_rewards: ::prost::alloc::vec::Vec<ValidatorOutstandingRewardsRecord>,
-    /// fee_pool defines the accumulated commisions of all validators at genesis.
+    /// fee_pool defines the accumulated commissions of all validators at genesis.
     #[prost(message, repeated, tag = "6")]
     pub validator_accumulated_commissions:
         ::prost::alloc::vec::Vec<ValidatorAccumulatedCommissionRecord>,

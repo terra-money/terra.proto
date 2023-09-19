@@ -45,6 +45,13 @@ pub mod cosmos {
         }
     }
 
+    /// Consensus.
+    pub mod consensus {
+        pub mod v1 {
+            include!("models/cosmos.consensus.v1.rs");
+        }
+    }
+
     /// Base functionality.
     pub mod base {
         /// Application BlockChain Interface (ABCI).
@@ -164,9 +171,6 @@ pub mod cosmos {
 
     /// Messages and services handling governance
     pub mod gov {
-        pub mod v1beta1 {
-            include!("models/cosmos.gov.v1beta1.rs");
-        }
         pub mod v1 {
             include!("models/cosmos.gov.v1.rs");
         }
@@ -227,6 +231,12 @@ pub mod cosmos {
             include!("models/cosmos.vesting.v1beta1.rs");
         }
     }
+    /// ICS23 protobuf definitions.
+    pub mod ics23 {
+        pub mod v1 {
+            include!("models/cosmos.ics23.v1.rs");
+        }
+    }
 }
 
 /// CosmWasm protobuf definitions.
@@ -237,10 +247,13 @@ pub mod cosmwasm {
             include!("models/cosmwasm.wasm.v1.rs");
         }
     }
-    /// Messages and services handling CosmWasm.
+}
+
+/// TokenFactory definitions.
+pub mod osmosis {
     pub mod tokenfactory {
         pub mod v1beta1 {
-            include!("models/cosmwasm.tokenfactory.v1beta1.rs");
+            include!("models/osmosis.tokenfactory.v1beta1.rs");
         }
     }
 }
@@ -249,6 +262,8 @@ pub mod cosmwasm {
 pub mod ibc {
     /// IBC applications.
     pub mod applications {
+
+
         /// Interchain accounts support.
         pub mod interchain_accounts {
             pub mod controller {
@@ -265,6 +280,12 @@ pub mod ibc {
 
             pub mod v1 {
                 include!("models/ibc.applications.interchain_accounts.v1.rs");
+            }
+        }
+
+        pub mod fee {
+            pub mod v1 {
+                include!("models/ibc.applications.fee.v1.rs");
             }
         }
 
@@ -320,16 +341,7 @@ pub mod ibc {
 
     /// IBC light clients.
     pub mod lightclients {
-        pub mod localhost {
-            pub mod v1 {
-                include!("models/ibc.lightclients.localhost.v1.rs");
-            }
-        }
         pub mod solomachine {
-            pub mod v1 {
-                include!("models/ibc.lightclients.solomachine.v1.rs");
-            }
-
             pub mod v2 {
                 include!("models/ibc.lightclients.solomachine.v2.rs");
             }
@@ -342,7 +354,11 @@ pub mod ibc {
     }
 }
 
-/// ICS23 protobuf definitions.
-pub mod ics23 {
-    include!("models/ics23.rs");
+
+pub mod pob {
+    pub mod builder {
+        pub mod v1 {
+            include!("models/pob.builder.v1.rs");
+        }
+    }
 }

@@ -69,38 +69,60 @@ fn run_rustfmt(dir: &Path) {
 }
 
 fn compile_protos_and_services() {
-    println!(
-        "Compiling cosmos-sdk .proto files to Rust into '{}'...",
-        TMP_BUILD_DIR
-    );
-    let proto_directories = vec![
-        "../protobuf",
-        "../cosmos-sdk/proto",
-        "../alliance/proto",
-        "../ibc-go/proto",
-        "../ibc-apps/middleware/packet-forward-middleware/proto",
-        "../wasmd/proto",
-        "../grpc-gateway",
-        "../cosmos-proto/proto",
-        "../terra/proto",
-    ];
-    let mut protos: Vec<String> = Vec::new();
+    println!("Compiling .proto files to Rust into '{}'...", TMP_BUILD_DIR);
 
-    for proto_path in proto_directories.iter() {
-        let proto_dir = Path::new(proto_path);
-        let protos_paths = list_files_in_dir(&proto_dir);
-        protos.extend(protos_paths);
+    let cosmos_sdk_dir = fs::canonicalize(PathBuf::from("../cosmos-sdk/proto")).unwrap();
+    let alliance_dir = fs::canonicalize(PathBuf::from("../alliance/proto")).unwrap();
+    let ibc_dir = fs::canonicalize(PathBuf::from("../ibc-go/proto")).unwrap();
+    let pfm_dir = fs::canonicalize(PathBuf::from(
+        "../ibc-apps/middleware/packet-forward-middleware/proto",
+    ))
+    .unwrap();
+    let wasmd_dir = fs::canonicalize(PathBuf::from("../wasmd/proto")).unwrap();
+    let cosmos_dir = fs::canonicalize(PathBuf::from("../cosmos-proto/proto")).unwrap();
+    let terra_dir = fs::canonicalize(PathBuf::from("../terra/proto")).unwrap();
+    let pob_dir = fs::canonicalize(PathBuf::from("../pob/proto")).unwrap();
+
+    let proto_dirs = vec![
+        cosmos_sdk_dir.clone(),
+        alliance_dir.clone(),
+        ibc_dir.clone(),
+        pfm_dir.clone(),
+        wasmd_dir.clone(),
+        cosmos_dir.clone(),
+        terra_dir.clone(),
+        pob_dir.clone(),
+    ];
+    let include_dirs = vec![
+        fs::canonicalize(PathBuf::from("../protobuf/protobuf")).unwrap(),
+        fs::canonicalize(PathBuf::from("../protobuf")).unwrap(),
+        fs::canonicalize(PathBuf::from("../protobuf/proto")).unwrap(),
+        cosmos_sdk_dir,
+        alliance_dir,
+        ibc_dir,
+        pfm_dir,
+        wasmd_dir,
+        fs::canonicalize(PathBuf::from("../grpc-gateway/third_party")).unwrap(),
+        fs::canonicalize(PathBuf::from("../grpc-gateway/third_party/googleapis")).unwrap(),
+        cosmos_dir,
+        terra_dir,
+        pob_dir,
+    ];
+
+    for proto_path in proto_dirs.iter() {
+        let query_file = list_files_in_dir(proto_path);
+
+        if query_file.is_empty() {
+            continue;
+        }
+
+        println!("Compiling {:?}...", query_file);
+        tonic_build::configure()
+            .out_dir(TMP_BUILD_DIR)
+            .extern_path(".tendermint", "::tendermint_proto")
+            .compile(&query_file, &include_dirs)
+            .unwrap();
     }
-    println!("{:?}", protos);
-    // Compile all of the proto files, along with grpc service clients
-    println!("Compiling proto definitions and clients for GRPC services!");
-    tonic_build::configure()
-        .build_client(true)
-        .build_server(true)
-        .out_dir(TMP_BUILD_DIR)
-        .extern_path(".tendermint", "::tendermint_proto")
-        .compile(&protos, &proto_directories)
-        .unwrap();
 }
 
 fn list_files_in_dir(dir_path: &Path) -> Vec<String> {
@@ -110,13 +132,19 @@ fn list_files_in_dir(dir_path: &Path) -> Vec<String> {
         for entry in entries {
             if let Ok(entry) = entry {
                 let path = entry.path();
+                let proto_path = path.to_str().unwrap().to_string();
+
                 if path.is_dir() {
                     let list_files = list_files_in_dir(&path);
                     protos_path.extend(list_files);
-                } else {
-                    if path.extension() == Some(OsStr::new("proto")) {
-                        protos_path.push(path.to_str().unwrap().to_string());
-                    }
+                } else if proto_path.ends_with("proto")
+                    && !proto_path.contains("example")
+                    && !proto_path.contains("swagger")
+                    && !proto_path.contains("nft")
+                    && !proto_path.contains("gov/v1beta1")
+                    && !proto_path.contains("group/v1")
+                {
+                    protos_path.push(proto_path);
                 }
             }
         }
@@ -200,7 +228,7 @@ fn patch_file(path: impl AsRef<Path>, pattern: &Regex, replacement: &str) -> io:
     fs::write(path, &contents)
 }
 
-/// Fix clashing type names in prost-generated code. 
+/// Fix clashing type names in prost-generated code.
 /// See cosmos/cosmos-rust#154.
 fn apply_patches(proto_dir: &Path) {
     for (pattern, replacement) in [

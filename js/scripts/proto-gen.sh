@@ -24,8 +24,8 @@ POB_DIR=$(readlink -f "../pob/proto")
 
 proto_dirs=$(find $PROTOBUF_DIR $COSMOS_SDK_DIR $ALLIANCE_DIR $IBC_DIR $PFM_DIR $WASMD_DIR $GRPC_DIR $JAX_DIR $COSMOS_DIR $TERRA_DIR $POB_DIR -path -prune -o -name '*.proto' -print0 | xargs -0 -n1 dirname | sort | uniq)
 for dir in $proto_dirs; do
-  # generate swagger files (filter query files)
   query_file=$(find "${dir}" -maxdepth 1 \( -name 'query.proto' -o -name 'service.proto' \))
+  echo "query_file: $query_file"
   
   if [[ ! -z "$query_file" ]]; then
     protoc  \

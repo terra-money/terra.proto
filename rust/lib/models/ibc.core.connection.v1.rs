@@ -145,20 +145,6 @@ impl State {
         }
     }
 }
-/// GenesisState defines the ibc connection submodule's genesis state.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenesisState {
-    #[prost(message, repeated, tag = "1")]
-    pub connections: ::prost::alloc::vec::Vec<IdentifiedConnection>,
-    #[prost(message, repeated, tag = "2")]
-    pub client_connection_paths: ::prost::alloc::vec::Vec<ConnectionPaths>,
-    /// the sequence for the next generated connection identifier
-    #[prost(uint64, tag = "3")]
-    pub next_connection_sequence: u64,
-    #[prost(message, optional, tag = "4")]
-    pub params: ::core::option::Option<Params>,
-}
 /// MsgConnectionOpenInit defines the msg sent by an account on Chain A to
 /// initialize a connection with Chain B.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -215,6 +201,9 @@ pub struct MsgConnectionOpenTry {
     pub consensus_height: ::core::option::Option<super::super::client::v1::Height>,
     #[prost(string, tag = "12")]
     pub signer: ::prost::alloc::string::String,
+    /// optional proof data for host state machines that are unable to introspect their own consensus state
+    #[prost(bytes = "vec", tag = "13")]
+    pub host_consensus_state_proof: ::prost::alloc::vec::Vec<u8>,
 }
 /// MsgConnectionOpenTryResponse defines the Msg/ConnectionOpenTry response type.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -249,6 +238,9 @@ pub struct MsgConnectionOpenAck {
     pub consensus_height: ::core::option::Option<super::super::client::v1::Height>,
     #[prost(string, tag = "10")]
     pub signer: ::prost::alloc::string::String,
+    /// optional proof data for host state machines that are unable to introspect their own consensus state
+    #[prost(bytes = "vec", tag = "11")]
+    pub host_consensus_state_proof: ::prost::alloc::vec::Vec<u8>,
 }
 /// MsgConnectionOpenAckResponse defines the Msg/ConnectionOpenAck response type.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -664,6 +656,20 @@ pub mod msg_server {
     impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
         const NAME: &'static str = "ibc.core.connection.v1.Msg";
     }
+}
+/// GenesisState defines the ibc connection submodule's genesis state.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenesisState {
+    #[prost(message, repeated, tag = "1")]
+    pub connections: ::prost::alloc::vec::Vec<IdentifiedConnection>,
+    #[prost(message, repeated, tag = "2")]
+    pub client_connection_paths: ::prost::alloc::vec::Vec<ConnectionPaths>,
+    /// the sequence for the next generated connection identifier
+    #[prost(uint64, tag = "3")]
+    pub next_connection_sequence: u64,
+    #[prost(message, optional, tag = "4")]
+    pub params: ::core::option::Option<Params>,
 }
 /// QueryConnectionRequest is the request type for the Query/Connection RPC
 /// method

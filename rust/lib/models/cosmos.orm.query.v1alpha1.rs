@@ -1,56 +1,159 @@
-/// MsgVerifyInvariant represents a message to verify a particular invariance.
+/// GetRequest is the Query/Get request type.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgVerifyInvariant {
-    /// sender is the account address of private key to send coins to fee collector account.
+pub struct GetRequest {
+    /// message_name is the fully-qualified message name of the ORM table being queried.
     #[prost(string, tag = "1")]
-    pub sender: ::prost::alloc::string::String,
-    /// name of the invariant module.
+    pub message_name: ::prost::alloc::string::String,
+    /// index is the index fields expression used in orm definitions. If it
+    /// is empty, the table's primary key is assumed. If it is non-empty, it must
+    /// refer to an unique index.
     #[prost(string, tag = "2")]
-    pub invariant_module_name: ::prost::alloc::string::String,
-    /// invariant_route is the msg's invariant route.
-    #[prost(string, tag = "3")]
-    pub invariant_route: ::prost::alloc::string::String,
+    pub index: ::prost::alloc::string::String,
+    /// values are the values of the fields corresponding to the requested index.
+    /// There must be as many values provided as there are fields in the index and
+    /// these values must correspond to the index field types.
+    #[prost(message, repeated, tag = "3")]
+    pub values: ::prost::alloc::vec::Vec<IndexValue>,
 }
-/// MsgVerifyInvariantResponse defines the Msg/VerifyInvariant response type.
+/// GetResponse is the Query/Get response type.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgVerifyInvariantResponse {}
-/// MsgUpdateParams is the Msg/UpdateParams request type.
-///
-/// Since: cosmos-sdk 0.47
+pub struct GetResponse {
+    /// result is the result of the get query. If no value is found, the gRPC
+    /// status code NOT_FOUND will be returned.
+    #[prost(message, optional, tag = "1")]
+    pub result: ::core::option::Option<::prost_types::Any>,
+}
+/// ListRequest is the Query/List request type.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgUpdateParams {
-    /// authority is the address that controls the module (defaults to x/gov unless overwritten).
+pub struct ListRequest {
+    /// message_name is the fully-qualified message name of the ORM table being queried.
     #[prost(string, tag = "1")]
-    pub authority: ::prost::alloc::string::String,
-    /// constant_fee defines the x/crisis parameter.
-    #[prost(message, optional, tag = "2")]
-    pub constant_fee: ::core::option::Option<super::super::base::v1beta1::Coin>,
+    pub message_name: ::prost::alloc::string::String,
+    /// index is the index fields expression used in orm definitions. If it
+    /// is empty, the table's primary key is assumed.
+    #[prost(string, tag = "2")]
+    pub index: ::prost::alloc::string::String,
+    /// pagination is the pagination request.
+    #[prost(message, optional, tag = "5")]
+    pub pagination: ::core::option::Option<super::super::super::base::query::v1beta1::PageRequest>,
+    /// query is the query expression corresponding to the provided index. If
+    /// neither prefix nor range is specified, the query will list all the fields
+    /// in the index.
+    #[prost(oneof = "list_request::Query", tags = "3, 4")]
+    pub query: ::core::option::Option<list_request::Query>,
 }
-/// MsgUpdateParamsResponse defines the response structure for executing a
-/// MsgUpdateParams message.
-///
-/// Since: cosmos-sdk 0.47
+/// Nested message and enum types in `ListRequest`.
+pub mod list_request {
+    /// Prefix specifies the arguments to a prefix query.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Prefix {
+        /// values specifies the index values for the prefix query.
+        /// It is valid to special a partial prefix with fewer values than
+        /// the number of fields in the index.
+        #[prost(message, repeated, tag = "1")]
+        pub values: ::prost::alloc::vec::Vec<super::IndexValue>,
+    }
+    /// Range specifies the arguments to a range query.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Range {
+        /// start specifies the starting index values for the range query.
+        /// It is valid to provide fewer values than the number of fields in the
+        /// index.
+        #[prost(message, repeated, tag = "1")]
+        pub start: ::prost::alloc::vec::Vec<super::IndexValue>,
+        /// end specifies the inclusive ending index values for the range query.
+        /// It is valid to provide fewer values than the number of fields in the
+        /// index.
+        #[prost(message, repeated, tag = "2")]
+        pub end: ::prost::alloc::vec::Vec<super::IndexValue>,
+    }
+    /// query is the query expression corresponding to the provided index. If
+    /// neither prefix nor range is specified, the query will list all the fields
+    /// in the index.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Query {
+        /// prefix defines a prefix query.
+        #[prost(message, tag = "3")]
+        Prefix(Prefix),
+        /// range defines a range query.
+        #[prost(message, tag = "4")]
+        Range(Range),
+    }
+}
+/// ListResponse is the Query/List response type.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgUpdateParamsResponse {}
+pub struct ListResponse {
+    /// results are the results of the query.
+    #[prost(message, repeated, tag = "1")]
+    pub results: ::prost::alloc::vec::Vec<::prost_types::Any>,
+    /// pagination is the pagination response.
+    #[prost(message, optional, tag = "5")]
+    pub pagination: ::core::option::Option<super::super::super::base::query::v1beta1::PageResponse>,
+}
+/// IndexValue represents the value of a field in an ORM index expression.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IndexValue {
+    /// value specifies the index value
+    #[prost(oneof = "index_value::Value", tags = "1, 2, 3, 4, 5, 6, 7, 8")]
+    pub value: ::core::option::Option<index_value::Value>,
+}
+/// Nested message and enum types in `IndexValue`.
+pub mod index_value {
+    /// value specifies the index value
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Value {
+        /// uint specifies a value for an uint32, fixed32, uint64, or fixed64
+        /// index field.
+        #[prost(uint64, tag = "1")]
+        Uint(u64),
+        /// int64 specifies a value for an int32, sfixed32, int64, or sfixed64
+        /// index field.
+        #[prost(int64, tag = "2")]
+        Int(i64),
+        /// str specifies a value for a string index field.
+        #[prost(string, tag = "3")]
+        Str(::prost::alloc::string::String),
+        /// bytes specifies a value for a bytes index field.
+        #[prost(bytes, tag = "4")]
+        Bytes(::prost::alloc::vec::Vec<u8>),
+        /// enum specifies a value for an enum index field.
+        #[prost(string, tag = "5")]
+        Enum(::prost::alloc::string::String),
+        /// bool specifies a value for a bool index field.
+        #[prost(bool, tag = "6")]
+        Bool(bool),
+        /// timestamp specifies a value for a timestamp index field.
+        #[prost(message, tag = "7")]
+        Timestamp(::prost_types::Timestamp),
+        /// duration specifies a value for a duration index field.
+        #[prost(message, tag = "8")]
+        Duration(::prost_types::Duration),
+    }
+}
 /// Generated client implementations.
 #[cfg(feature = "grpc")]
 #[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod msg_client {
+pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::http::Uri;
     use tonic::codegen::*;
-    /// Msg defines the bank Msg service.
+    /// Query is a generic gRPC service for querying ORM data.
     #[derive(Debug, Clone)]
-    pub struct MsgClient<T> {
+    pub struct QueryClient<T> {
         inner: tonic::client::Grpc<T>,
     }
     #[cfg(feature = "grpc-transport")]
     #[cfg_attr(docsrs, doc(cfg(feature = "grpc-transport")))]
-    impl MsgClient<tonic::transport::Channel> {
+    impl QueryClient<tonic::transport::Channel> {
         /// Attempt to create a new client by connecting to a given endpoint.
         pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
         where
@@ -61,7 +164,7 @@ pub mod msg_client {
             Ok(Self::new(conn))
         }
     }
-    impl<T> MsgClient<T>
+    impl<T> QueryClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
@@ -76,7 +179,10 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::with_origin(inner, origin);
             Self { inner }
         }
-        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> QueryClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -89,7 +195,7 @@ pub mod msg_client {
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {
-            MsgClient::new(InterceptedService::new(inner, interceptor))
+            QueryClient::new(InterceptedService::new(inner, interceptor))
         }
         /// Compress requests with the given encoding.
         ///
@@ -106,11 +212,11 @@ pub mod msg_client {
             self.inner = self.inner.accept_compressed(encoding);
             self
         }
-        /// VerifyInvariant defines a method to verify a particular invariant.
-        pub async fn verify_invariant(
+        /// Get queries an ORM table against an unique index.
+        pub async fn get(
             &mut self,
-            request: impl tonic::IntoRequest<super::MsgVerifyInvariant>,
-        ) -> Result<tonic::Response<super::MsgVerifyInvariantResponse>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::GetRequest>,
+        ) -> Result<tonic::Response<super::GetResponse>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -118,18 +224,14 @@ pub mod msg_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/cosmos.crisis.v1beta1.Msg/VerifyInvariant");
+            let path = http::uri::PathAndQuery::from_static("/cosmos.orm.query.v1alpha1.Query/Get");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        /// UpdateParams defines a governance operation for updating the x/crisis module
-        /// parameters. The authority is defined in the keeper.
-        ///
-        /// Since: cosmos-sdk 0.47
-        pub async fn update_params(
+        /// List queries an ORM table against an index.
+        pub async fn list(
             &mut self,
-            request: impl tonic::IntoRequest<super::MsgUpdateParams>,
-        ) -> Result<tonic::Response<super::MsgUpdateParamsResponse>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::ListRequest>,
+        ) -> Result<tonic::Response<super::ListResponse>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -138,7 +240,7 @@ pub mod msg_client {
             })?;
             let codec = tonic::codec::ProstCodec::default();
             let path =
-                http::uri::PathAndQuery::from_static("/cosmos.crisis.v1beta1.Msg/UpdateParams");
+                http::uri::PathAndQuery::from_static("/cosmos.orm.query.v1alpha1.Query/List");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -146,35 +248,32 @@ pub mod msg_client {
 /// Generated server implementations.
 #[cfg(feature = "grpc")]
 #[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod msg_server {
+pub mod query_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    /// Generated trait containing gRPC methods that should be implemented for use with MsgServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with QueryServer.
     #[async_trait]
-    pub trait Msg: Send + Sync + 'static {
-        /// VerifyInvariant defines a method to verify a particular invariant.
-        async fn verify_invariant(
+    pub trait Query: Send + Sync + 'static {
+        /// Get queries an ORM table against an unique index.
+        async fn get(
             &self,
-            request: tonic::Request<super::MsgVerifyInvariant>,
-        ) -> Result<tonic::Response<super::MsgVerifyInvariantResponse>, tonic::Status>;
-        /// UpdateParams defines a governance operation for updating the x/crisis module
-        /// parameters. The authority is defined in the keeper.
-        ///
-        /// Since: cosmos-sdk 0.47
-        async fn update_params(
+            request: tonic::Request<super::GetRequest>,
+        ) -> Result<tonic::Response<super::GetResponse>, tonic::Status>;
+        /// List queries an ORM table against an index.
+        async fn list(
             &self,
-            request: tonic::Request<super::MsgUpdateParams>,
-        ) -> Result<tonic::Response<super::MsgUpdateParamsResponse>, tonic::Status>;
+            request: tonic::Request<super::ListRequest>,
+        ) -> Result<tonic::Response<super::ListResponse>, tonic::Status>;
     }
-    /// Msg defines the bank Msg service.
+    /// Query is a generic gRPC service for querying ORM data.
     #[derive(Debug)]
-    pub struct MsgServer<T: Msg> {
+    pub struct QueryServer<T: Query> {
         inner: _Inner<T>,
         accept_compression_encodings: EnabledCompressionEncodings,
         send_compression_encodings: EnabledCompressionEncodings,
     }
     struct _Inner<T>(Arc<T>);
-    impl<T: Msg> MsgServer<T> {
+    impl<T: Query> QueryServer<T> {
         pub fn new(inner: T) -> Self {
             Self::from_arc(Arc::new(inner))
         }
@@ -205,9 +304,9 @@ pub mod msg_server {
             self
         }
     }
-    impl<T, B> tonic::codegen::Service<http::Request<B>> for MsgServer<T>
+    impl<T, B> tonic::codegen::Service<http::Request<B>> for QueryServer<T>
     where
-        T: Msg,
+        T: Query,
         B: Body + Send + 'static,
         B::Error: Into<StdError> + Send + 'static,
     {
@@ -220,18 +319,18 @@ pub mod msg_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/cosmos.crisis.v1beta1.Msg/VerifyInvariant" => {
+                "/cosmos.orm.query.v1alpha1.Query/Get" => {
                     #[allow(non_camel_case_types)]
-                    struct VerifyInvariantSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgVerifyInvariant> for VerifyInvariantSvc<T> {
-                        type Response = super::MsgVerifyInvariantResponse;
+                    struct GetSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::GetRequest> for GetSvc<T> {
+                        type Response = super::GetResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::MsgVerifyInvariant>,
+                            request: tonic::Request<super::GetRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { (*inner).verify_invariant(request).await };
+                            let fut = async move { (*inner).get(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -240,7 +339,7 @@ pub mod msg_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = VerifyInvariantSvc(inner);
+                        let method = GetSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,
@@ -251,18 +350,18 @@ pub mod msg_server {
                     };
                     Box::pin(fut)
                 }
-                "/cosmos.crisis.v1beta1.Msg/UpdateParams" => {
+                "/cosmos.orm.query.v1alpha1.Query/List" => {
                     #[allow(non_camel_case_types)]
-                    struct UpdateParamsSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgUpdateParams> for UpdateParamsSvc<T> {
-                        type Response = super::MsgUpdateParamsResponse;
+                    struct ListSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::ListRequest> for ListSvc<T> {
+                        type Response = super::ListResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::MsgUpdateParams>,
+                            request: tonic::Request<super::ListRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { (*inner).update_params(request).await };
+                            let fut = async move { (*inner).list(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -271,7 +370,7 @@ pub mod msg_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = UpdateParamsSvc(inner);
+                        let method = ListSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,
@@ -293,7 +392,7 @@ pub mod msg_server {
             }
         }
     }
-    impl<T: Msg> Clone for MsgServer<T> {
+    impl<T: Query> Clone for QueryServer<T> {
         fn clone(&self) -> Self {
             let inner = self.inner.clone();
             Self {
@@ -303,7 +402,7 @@ pub mod msg_server {
             }
         }
     }
-    impl<T: Msg> Clone for _Inner<T> {
+    impl<T: Query> Clone for _Inner<T> {
         fn clone(&self) -> Self {
             Self(self.0.clone())
         }
@@ -313,16 +412,7 @@ pub mod msg_server {
             write!(f, "{:?}", self.0)
         }
     }
-    impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
-        const NAME: &'static str = "cosmos.crisis.v1beta1.Msg";
+    impl<T: Query> tonic::server::NamedService for QueryServer<T> {
+        const NAME: &'static str = "cosmos.orm.query.v1alpha1.Query";
     }
-}
-/// GenesisState defines the crisis module's genesis state.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenesisState {
-    /// constant_fee is the fee used to verify the invariant in the crisis
-    /// module.
-    #[prost(message, optional, tag = "3")]
-    pub constant_fee: ::core::option::Option<super::super::base::v1beta1::Coin>,
 }

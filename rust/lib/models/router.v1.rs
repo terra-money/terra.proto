@@ -1,57 +1,53 @@
-/// Minter represents the minting state.
+/// GenesisState defines the router genesis state
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Minter {
-    /// current epoch provisions
-    #[prost(string, tag = "1")]
-    pub epoch_provisions: ::prost::alloc::string::String,
+pub struct GenesisState {
+    #[prost(message, optional, tag = "1")]
+    pub params: ::core::option::Option<Params>,
+    /// key - information about forwarded packet: src_channel
+    /// (parsedReceiver.Channel), src_port (parsedReceiver.Port), sequence value -
+    /// information about original packet for refunding if necessary: retries,
+    /// srcPacketSender, srcPacket.DestinationChannel, srcPacket.DestinationPort
+    #[prost(map = "string, message", tag = "2")]
+    pub in_flight_packets:
+        ::std::collections::HashMap<::prost::alloc::string::String, InFlightPacket>,
 }
-/// next id: 5
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DistributionProportions {
-    /// staking defines the proportion of the minted minted_denom that is to be
-    /// allocated as staking rewards.
-    #[prost(string, tag = "1")]
-    pub staking: ::prost::alloc::string::String,
-    /// community_pool defines the proportion of the minted mint_denom that is
-    /// to be allocated to the community pool: growth.
-    #[prost(string, tag = "2")]
-    pub community_pool_growth: ::prost::alloc::string::String,
-    /// community_pool defines the proportion of the minted mint_denom that is
-    /// to be allocated to the community pool: security budget.
-    #[prost(string, tag = "3")]
-    pub community_pool_security_budget: ::prost::alloc::string::String,
-    /// strategic_reserve defines the proportion of the minted mint_denom that is
-    /// to be allocated to the pool: strategic reserve.
-    #[prost(string, tag = "4")]
-    pub strategic_reserve: ::prost::alloc::string::String,
-}
-/// Params holds parameters for the mint module.
+/// Params defines the set of IBC router parameters.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Params {
-    /// type of coin to mint
     #[prost(string, tag = "1")]
-    pub mint_denom: ::prost::alloc::string::String,
-    /// epoch provisions from the first epoch
+    pub fee_percentage: ::prost::alloc::string::String,
+}
+/// InFlightPacket contains information about original packet for
+/// writing the acknowledgement and refunding if necessary.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct InFlightPacket {
+    #[prost(string, tag = "1")]
+    pub original_sender_address: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
-    pub genesis_epoch_provisions: ::prost::alloc::string::String,
-    /// mint epoch identifier
+    pub refund_channel_id: ::prost::alloc::string::String,
     #[prost(string, tag = "3")]
-    pub epoch_identifier: ::prost::alloc::string::String,
-    /// number of epochs take to reduce rewards
-    #[prost(int64, tag = "4")]
-    pub reduction_period_in_epochs: i64,
-    /// reduction multiplier to execute on each period
+    pub refund_port_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub packet_src_channel_id: ::prost::alloc::string::String,
     #[prost(string, tag = "5")]
-    pub reduction_factor: ::prost::alloc::string::String,
-    /// distribution_proportions defines the proportion of the minted denom
-    #[prost(message, optional, tag = "6")]
-    pub distribution_proportions: ::core::option::Option<DistributionProportions>,
-    /// start epoch to distribute minting rewards
-    #[prost(int64, tag = "7")]
-    pub minting_rewards_distribution_start_epoch: i64,
+    pub packet_src_port_id: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "6")]
+    pub packet_timeout_timestamp: u64,
+    #[prost(string, tag = "7")]
+    pub packet_timeout_height: ::prost::alloc::string::String,
+    #[prost(bytes = "vec", tag = "8")]
+    pub packet_data: ::prost::alloc::vec::Vec<u8>,
+    #[prost(uint64, tag = "9")]
+    pub refund_sequence: u64,
+    #[prost(int32, tag = "10")]
+    pub retries_remaining: i32,
+    #[prost(uint64, tag = "11")]
+    pub timeout: u64,
+    #[prost(bool, tag = "12")]
+    pub nonrefundable: bool,
 }
 /// QueryParamsRequest is the request type for the Query/Params RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -64,20 +60,6 @@ pub struct QueryParamsResponse {
     /// params defines the parameters of the module.
     #[prost(message, optional, tag = "1")]
     pub params: ::core::option::Option<Params>,
-}
-/// QueryEpochProvisionsRequest is the request type for the
-/// Query/EpochProvisions RPC method.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryEpochProvisionsRequest {}
-/// QueryEpochProvisionsResponse is the response type for the
-/// Query/EpochProvisions RPC method.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryEpochProvisionsResponse {
-    /// epoch_provisions is the current minting per epoch provisions value.
-    #[prost(bytes = "vec", tag = "1")]
-    pub epoch_provisions: ::prost::alloc::vec::Vec<u8>,
 }
 /// Generated client implementations.
 #[cfg(feature = "grpc")]
@@ -152,7 +134,7 @@ pub mod query_client {
             self.inner = self.inner.accept_compressed(encoding);
             self
         }
-        /// Params returns the total set of minting parameters.
+        /// Params queries all parameters of the router module.
         pub async fn params(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryParamsRequest>,
@@ -164,23 +146,7 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/stride.mint.v1beta1.Query/Params");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// EpochProvisions current minting epoch provisions value.
-        pub async fn epoch_provisions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryEpochProvisionsRequest>,
-        ) -> Result<tonic::Response<super::QueryEpochProvisionsResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/stride.mint.v1beta1.Query/EpochProvisions");
+            let path = http::uri::PathAndQuery::from_static("/router.v1.Query/Params");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -194,16 +160,11 @@ pub mod query_server {
     /// Generated trait containing gRPC methods that should be implemented for use with QueryServer.
     #[async_trait]
     pub trait Query: Send + Sync + 'static {
-        /// Params returns the total set of minting parameters.
+        /// Params queries all parameters of the router module.
         async fn params(
             &self,
             request: tonic::Request<super::QueryParamsRequest>,
         ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>;
-        /// EpochProvisions current minting epoch provisions value.
-        async fn epoch_provisions(
-            &self,
-            request: tonic::Request<super::QueryEpochProvisionsRequest>,
-        ) -> Result<tonic::Response<super::QueryEpochProvisionsResponse>, tonic::Status>;
     }
     /// Query provides defines the gRPC querier service.
     #[derive(Debug)]
@@ -259,7 +220,7 @@ pub mod query_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/stride.mint.v1beta1.Query/Params" => {
+                "/router.v1.Query/Params" => {
                     #[allow(non_camel_case_types)]
                     struct ParamsSvc<T: Query>(pub Arc<T>);
                     impl<T: Query> tonic::server::UnaryService<super::QueryParamsRequest> for ParamsSvc<T> {
@@ -280,39 +241,6 @@ pub mod query_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = ParamsSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/stride.mint.v1beta1.Query/EpochProvisions" => {
-                    #[allow(non_camel_case_types)]
-                    struct EpochProvisionsSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryEpochProvisionsRequest>
-                        for EpochProvisionsSvc<T>
-                    {
-                        type Response = super::QueryEpochProvisionsResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryEpochProvisionsRequest>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).epoch_provisions(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = EpochProvisionsSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,
@@ -355,20 +283,6 @@ pub mod query_server {
         }
     }
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
-        const NAME: &'static str = "stride.mint.v1beta1.Query";
+        const NAME: &'static str = "router.v1.Query";
     }
-}
-/// GenesisState defines the mint module's genesis state.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenesisState {
-    /// minter is a space for holding current rewards information.
-    #[prost(message, optional, tag = "1")]
-    pub minter: ::core::option::Option<Minter>,
-    /// params defines all the paramaters of the module.
-    #[prost(message, optional, tag = "2")]
-    pub params: ::core::option::Option<Params>,
-    /// current reduction period start epoch
-    #[prost(int64, tag = "3")]
-    pub reduction_started_epoch: i64,
 }

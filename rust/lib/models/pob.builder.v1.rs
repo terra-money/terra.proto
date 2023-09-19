@@ -1,25 +1,77 @@
-/// MsgSubmitQueryResponse represents a message type to fulfil a query request.
+/// GenesisState defines the genesis state of the x/builder module.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgSubmitQueryResponse {
-    #[prost(string, tag = "1")]
-    pub chain_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub query_id: ::prost::alloc::string::String,
-    #[prost(bytes = "vec", tag = "3")]
-    pub result: ::prost::alloc::vec::Vec<u8>,
-    #[prost(message, optional, tag = "4")]
-    pub proof_ops: ::core::option::Option<::tendermint_proto::crypto::ProofOps>,
-    #[prost(int64, tag = "5")]
-    pub height: i64,
-    #[prost(string, tag = "6")]
-    pub from_address: ::prost::alloc::string::String,
+pub struct GenesisState {
+    #[prost(message, optional, tag = "1")]
+    pub params: ::core::option::Option<Params>,
 }
-/// MsgSubmitQueryResponseResponse defines the MsgSubmitQueryResponse response
-/// type.
+/// Params defines the parameters of the x/builder module.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgSubmitQueryResponseResponse {}
+pub struct Params {
+    /// max_bundle_size is the maximum number of transactions that can be bundled
+    /// in a single bundle.
+    #[prost(uint32, tag = "1")]
+    pub max_bundle_size: u32,
+    /// escrow_account_address is the address of the account that will receive a
+    /// portion of the bid proceeds.
+    #[prost(bytes = "vec", tag = "2")]
+    pub escrow_account_address: ::prost::alloc::vec::Vec<u8>,
+    /// reserve_fee specifies the bid floor for the auction.
+    #[prost(message, optional, tag = "3")]
+    pub reserve_fee: ::core::option::Option<super::super::super::cosmos::base::v1beta1::Coin>,
+    /// min_bid_increment specifies the minimum amount that the next bid must be
+    /// greater than the previous bid.
+    #[prost(message, optional, tag = "4")]
+    pub min_bid_increment: ::core::option::Option<super::super::super::cosmos::base::v1beta1::Coin>,
+    /// front_running_protection specifies whether front running and sandwich
+    /// attack protection is enabled.
+    #[prost(bool, tag = "5")]
+    pub front_running_protection: bool,
+    /// proposer_fee defines the portion of the winning bid that goes to the block
+    /// proposer that proposed the block.
+    #[prost(string, tag = "6")]
+    pub proposer_fee: ::prost::alloc::string::String,
+}
+/// MsgAuctionBid defines a request type for sending bids to the x/builder
+/// module.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgAuctionBid {
+    /// bidder is the address of the account that is submitting a bid to the
+    /// auction.
+    #[prost(string, tag = "1")]
+    pub bidder: ::prost::alloc::string::String,
+    /// bid is the amount of coins that the bidder is bidding to participate in the
+    /// auction.
+    #[prost(message, optional, tag = "2")]
+    pub bid: ::core::option::Option<super::super::super::cosmos::base::v1beta1::Coin>,
+    /// transactions are the bytes of the transactions that the bidder wants to
+    /// bundle together.
+    #[prost(bytes = "vec", repeated, tag = "3")]
+    pub transactions: ::prost::alloc::vec::Vec<::prost::alloc::vec::Vec<u8>>,
+}
+/// MsgAuctionBidResponse defines the Msg/AuctionBid response type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgAuctionBidResponse {}
+/// MsgUpdateParams defines a request type for updating the x/builder module
+/// parameters.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateParams {
+    /// authority is the address of the account that is authorized to update the
+    /// x/builder module parameters.
+    #[prost(string, tag = "1")]
+    pub authority: ::prost::alloc::string::String,
+    /// params is the new parameters for the x/builder module.
+    #[prost(message, optional, tag = "2")]
+    pub params: ::core::option::Option<Params>,
+}
+/// MsgUpdateParamsResponse defines the Msg/UpdateParams response type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateParamsResponse {}
 /// Generated client implementations.
 #[cfg(feature = "grpc")]
 #[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
@@ -27,7 +79,7 @@ pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::http::Uri;
     use tonic::codegen::*;
-    /// Msg defines the interchainquery Msg service.
+    /// Msg defines the x/builder Msg service.
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -90,11 +142,11 @@ pub mod msg_client {
             self.inner = self.inner.accept_compressed(encoding);
             self
         }
-        /// SubmitQueryResponse defines a method for submit query responses.
-        pub async fn submit_query_response(
+        /// AuctionBid defines a method for sending bids to the x/builder module.
+        pub async fn auction_bid(
             &mut self,
-            request: impl tonic::IntoRequest<super::MsgSubmitQueryResponse>,
-        ) -> Result<tonic::Response<super::MsgSubmitQueryResponseResponse>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::MsgAuctionBid>,
+        ) -> Result<tonic::Response<super::MsgAuctionBidResponse>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -102,9 +154,23 @@ pub mod msg_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/stride.interchainquery.v1.Msg/SubmitQueryResponse",
-            );
+            let path = http::uri::PathAndQuery::from_static("/pob.builder.v1.Msg/AuctionBid");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// UpdateParams defines a governance operation for updating the x/builder
+        /// module parameters. The authority is hard-coded to the x/gov module account.
+        pub async fn update_params(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgUpdateParams>,
+        ) -> Result<tonic::Response<super::MsgUpdateParamsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/pob.builder.v1.Msg/UpdateParams");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -118,13 +184,19 @@ pub mod msg_server {
     /// Generated trait containing gRPC methods that should be implemented for use with MsgServer.
     #[async_trait]
     pub trait Msg: Send + Sync + 'static {
-        /// SubmitQueryResponse defines a method for submit query responses.
-        async fn submit_query_response(
+        /// AuctionBid defines a method for sending bids to the x/builder module.
+        async fn auction_bid(
             &self,
-            request: tonic::Request<super::MsgSubmitQueryResponse>,
-        ) -> Result<tonic::Response<super::MsgSubmitQueryResponseResponse>, tonic::Status>;
+            request: tonic::Request<super::MsgAuctionBid>,
+        ) -> Result<tonic::Response<super::MsgAuctionBidResponse>, tonic::Status>;
+        /// UpdateParams defines a governance operation for updating the x/builder
+        /// module parameters. The authority is hard-coded to the x/gov module account.
+        async fn update_params(
+            &self,
+            request: tonic::Request<super::MsgUpdateParams>,
+        ) -> Result<tonic::Response<super::MsgUpdateParamsResponse>, tonic::Status>;
     }
-    /// Msg defines the interchainquery Msg service.
+    /// Msg defines the x/builder Msg service.
     #[derive(Debug)]
     pub struct MsgServer<T: Msg> {
         inner: _Inner<T>,
@@ -178,20 +250,18 @@ pub mod msg_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/stride.interchainquery.v1.Msg/SubmitQueryResponse" => {
+                "/pob.builder.v1.Msg/AuctionBid" => {
                     #[allow(non_camel_case_types)]
-                    struct SubmitQueryResponseSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgSubmitQueryResponse>
-                        for SubmitQueryResponseSvc<T>
-                    {
-                        type Response = super::MsgSubmitQueryResponseResponse;
+                    struct AuctionBidSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgAuctionBid> for AuctionBidSvc<T> {
+                        type Response = super::MsgAuctionBidResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::MsgSubmitQueryResponse>,
+                            request: tonic::Request<super::MsgAuctionBid>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { (*inner).submit_query_response(request).await };
+                            let fut = async move { (*inner).auction_bid(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -200,7 +270,38 @@ pub mod msg_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = SubmitQueryResponseSvc(inner);
+                        let method = AuctionBidSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/pob.builder.v1.Msg/UpdateParams" => {
+                    #[allow(non_camel_case_types)]
+                    struct UpdateParamsSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgUpdateParams> for UpdateParamsSvc<T> {
+                        type Response = super::MsgUpdateParamsResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgUpdateParams>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).update_params(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UpdateParamsSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,
@@ -243,71 +344,36 @@ pub mod msg_server {
         }
     }
     impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
-        const NAME: &'static str = "stride.interchainquery.v1.Msg";
+        const NAME: &'static str = "pob.builder.v1.Msg";
     }
 }
+/// QueryParamsRequest is the request type for the Query/Params RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Query {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub connection_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub chain_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub query_type: ::prost::alloc::string::String,
-    #[prost(bytes = "vec", tag = "5")]
-    pub request: ::prost::alloc::vec::Vec<u8>,
-    #[prost(string, tag = "8")]
-    pub callback_id: ::prost::alloc::string::String,
-    #[prost(uint64, tag = "9")]
-    pub ttl: u64,
-    #[prost(bool, tag = "11")]
-    pub request_sent: bool,
-}
+pub struct QueryParamsRequest {}
+/// QueryParamsResponse is the response type for the Query/Params RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DataPoint {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub remote_height: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub local_height: ::prost::alloc::string::String,
-    #[prost(bytes = "vec", tag = "4")]
-    pub value: ::prost::alloc::vec::Vec<u8>,
-}
-/// GenesisState defines the epochs module's genesis state.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenesisState {
-    #[prost(message, repeated, tag = "1")]
-    pub queries: ::prost::alloc::vec::Vec<Query>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryPendingQueriesRequest {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryPendingQueriesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub pending_queries: ::prost::alloc::vec::Vec<Query>,
+pub struct QueryParamsResponse {
+    /// params defines the parameters of the module.
+    #[prost(message, optional, tag = "1")]
+    pub params: ::core::option::Option<Params>,
 }
 /// Generated client implementations.
 #[cfg(feature = "grpc")]
 #[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod query_service_client {
+pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    /// Query defines the x/builder querier service.
     #[derive(Debug, Clone)]
-    pub struct QueryServiceClient<T> {
+    pub struct QueryClient<T> {
         inner: tonic::client::Grpc<T>,
     }
     #[cfg(feature = "grpc-transport")]
     #[cfg_attr(docsrs, doc(cfg(feature = "grpc-transport")))]
-    impl QueryServiceClient<tonic::transport::Channel> {
+    impl QueryClient<tonic::transport::Channel> {
         /// Attempt to create a new client by connecting to a given endpoint.
         pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
         where
@@ -318,7 +384,7 @@ pub mod query_service_client {
             Ok(Self::new(conn))
         }
     }
-    impl<T> QueryServiceClient<T>
+    impl<T> QueryClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
@@ -336,7 +402,7 @@ pub mod query_service_client {
         pub fn with_interceptor<F>(
             inner: T,
             interceptor: F,
-        ) -> QueryServiceClient<InterceptedService<T, F>>
+        ) -> QueryClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -349,7 +415,7 @@ pub mod query_service_client {
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {
-            QueryServiceClient::new(InterceptedService::new(inner, interceptor))
+            QueryClient::new(InterceptedService::new(inner, interceptor))
         }
         /// Compress requests with the given encoding.
         ///
@@ -366,10 +432,11 @@ pub mod query_service_client {
             self.inner = self.inner.accept_compressed(encoding);
             self
         }
-        pub async fn pending_queries(
+        /// Params queries the parameters of the x/builder module.
+        pub async fn params(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryPendingQueriesRequest>,
-        ) -> Result<tonic::Response<super::QueryPendingQueriesResponse>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::QueryParamsRequest>,
+        ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -377,9 +444,7 @@ pub mod query_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/stride.interchainquery.v1.QueryService/PendingQueries",
-            );
+            let path = http::uri::PathAndQuery::from_static("/pob.builder.v1.Query/Params");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -387,25 +452,27 @@ pub mod query_service_client {
 /// Generated server implementations.
 #[cfg(feature = "grpc")]
 #[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod query_service_server {
+pub mod query_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    /// Generated trait containing gRPC methods that should be implemented for use with QueryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with QueryServer.
     #[async_trait]
-    pub trait QueryService: Send + Sync + 'static {
-        async fn pending_queries(
+    pub trait Query: Send + Sync + 'static {
+        /// Params queries the parameters of the x/builder module.
+        async fn params(
             &self,
-            request: tonic::Request<super::QueryPendingQueriesRequest>,
-        ) -> Result<tonic::Response<super::QueryPendingQueriesResponse>, tonic::Status>;
+            request: tonic::Request<super::QueryParamsRequest>,
+        ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>;
     }
+    /// Query defines the x/builder querier service.
     #[derive(Debug)]
-    pub struct QueryServiceServer<T: QueryService> {
+    pub struct QueryServer<T: Query> {
         inner: _Inner<T>,
         accept_compression_encodings: EnabledCompressionEncodings,
         send_compression_encodings: EnabledCompressionEncodings,
     }
     struct _Inner<T>(Arc<T>);
-    impl<T: QueryService> QueryServiceServer<T> {
+    impl<T: Query> QueryServer<T> {
         pub fn new(inner: T) -> Self {
             Self::from_arc(Arc::new(inner))
         }
@@ -436,9 +503,9 @@ pub mod query_service_server {
             self
         }
     }
-    impl<T, B> tonic::codegen::Service<http::Request<B>> for QueryServiceServer<T>
+    impl<T, B> tonic::codegen::Service<http::Request<B>> for QueryServer<T>
     where
-        T: QueryService,
+        T: Query,
         B: Body + Send + 'static,
         B::Error: Into<StdError> + Send + 'static,
     {
@@ -451,21 +518,18 @@ pub mod query_service_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/stride.interchainquery.v1.QueryService/PendingQueries" => {
+                "/pob.builder.v1.Query/Params" => {
                     #[allow(non_camel_case_types)]
-                    struct PendingQueriesSvc<T: QueryService>(pub Arc<T>);
-                    impl<T: QueryService>
-                        tonic::server::UnaryService<super::QueryPendingQueriesRequest>
-                        for PendingQueriesSvc<T>
-                    {
-                        type Response = super::QueryPendingQueriesResponse;
+                    struct ParamsSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query> tonic::server::UnaryService<super::QueryParamsRequest> for ParamsSvc<T> {
+                        type Response = super::QueryParamsResponse;
                         type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::QueryPendingQueriesRequest>,
+                            request: tonic::Request<super::QueryParamsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { (*inner).pending_queries(request).await };
+                            let fut = async move { (*inner).params(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -474,7 +538,7 @@ pub mod query_service_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = PendingQueriesSvc(inner);
+                        let method = ParamsSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,
@@ -496,7 +560,7 @@ pub mod query_service_server {
             }
         }
     }
-    impl<T: QueryService> Clone for QueryServiceServer<T> {
+    impl<T: Query> Clone for QueryServer<T> {
         fn clone(&self) -> Self {
             let inner = self.inner.clone();
             Self {
@@ -506,7 +570,7 @@ pub mod query_service_server {
             }
         }
     }
-    impl<T: QueryService> Clone for _Inner<T> {
+    impl<T: Query> Clone for _Inner<T> {
         fn clone(&self) -> Self {
             Self(self.0.clone())
         }
@@ -516,7 +580,7 @@ pub mod query_service_server {
             write!(f, "{:?}", self.0)
         }
     }
-    impl<T: QueryService> tonic::server::NamedService for QueryServiceServer<T> {
-        const NAME: &'static str = "stride.interchainquery.v1.QueryService";
+    impl<T: Query> tonic::server::NamedService for QueryServer<T> {
+        const NAME: &'static str = "pob.builder.v1.Query";
     }
 }

@@ -42,13 +42,6 @@ pub struct GrantQueueItem {
     #[prost(string, repeated, tag = "1")]
     pub msg_type_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
-/// GenesisState defines the authz module's genesis state.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenesisState {
-    #[prost(message, repeated, tag = "1")]
-    pub authorization: ::prost::alloc::vec::Vec<GrantAuthorization>,
-}
 /// MsgGrant is a request type for Grant method. It declares authorization to the grantee
 /// on behalf of the granter with the provided expiration time.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -76,7 +69,7 @@ pub struct MsgExecResponse {
 pub struct MsgExec {
     #[prost(string, tag = "1")]
     pub grantee: ::prost::alloc::string::String,
-    /// Authorization Msg requests to execute. Each msg must implement Authorization interface
+    /// Execute Msg.
     /// The x/authz will try to find a grant matching (msg.signers\[0\], grantee, MsgTypeURL(msg))
     /// triple and validate it.
     #[prost(message, repeated, tag = "2")]
@@ -437,6 +430,41 @@ pub mod msg_server {
     impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
         const NAME: &'static str = "cosmos.authz.v1beta1.Msg";
     }
+}
+/// GenesisState defines the authz module's genesis state.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenesisState {
+    #[prost(message, repeated, tag = "1")]
+    pub authorization: ::prost::alloc::vec::Vec<GrantAuthorization>,
+}
+/// EventGrant is emitted on Msg/Grant
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EventGrant {
+    /// Msg type URL for which an autorization is granted
+    #[prost(string, tag = "2")]
+    pub msg_type_url: ::prost::alloc::string::String,
+    /// Granter account address
+    #[prost(string, tag = "3")]
+    pub granter: ::prost::alloc::string::String,
+    /// Grantee account address
+    #[prost(string, tag = "4")]
+    pub grantee: ::prost::alloc::string::String,
+}
+/// EventRevoke is emitted on Msg/Revoke
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EventRevoke {
+    /// Msg type URL for which an autorization is revoked
+    #[prost(string, tag = "2")]
+    pub msg_type_url: ::prost::alloc::string::String,
+    /// Granter account address
+    #[prost(string, tag = "3")]
+    pub granter: ::prost::alloc::string::String,
+    /// Grantee account address
+    #[prost(string, tag = "4")]
+    pub grantee: ::prost::alloc::string::String,
 }
 /// QueryGrantsRequest is the request type for the Query/Grants RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -846,32 +874,4 @@ pub mod query_server {
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
         const NAME: &'static str = "cosmos.authz.v1beta1.Query";
     }
-}
-/// EventGrant is emitted on Msg/Grant
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EventGrant {
-    /// Msg type URL for which an autorization is granted
-    #[prost(string, tag = "2")]
-    pub msg_type_url: ::prost::alloc::string::String,
-    /// Granter account address
-    #[prost(string, tag = "3")]
-    pub granter: ::prost::alloc::string::String,
-    /// Grantee account address
-    #[prost(string, tag = "4")]
-    pub grantee: ::prost::alloc::string::String,
-}
-/// EventRevoke is emitted on Msg/Revoke
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EventRevoke {
-    /// Msg type URL for which an autorization is revoked
-    #[prost(string, tag = "2")]
-    pub msg_type_url: ::prost::alloc::string::String,
-    /// Granter account address
-    #[prost(string, tag = "3")]
-    pub granter: ::prost::alloc::string::String,
-    /// Grantee account address
-    #[prost(string, tag = "4")]
-    pub grantee: ::prost::alloc::string::String,
 }
