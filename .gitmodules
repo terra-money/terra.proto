@@ -1,7 +1,7 @@
 [submodule "cosmos-sdk"]
 	path = cosmos-sdk
 	url = https://github.com/terra-money/cosmos-sdk.git
-	branch = upgrade/v0.47.x
+	branch = release/v0.47.x
 [submodule "ibc-go"]
 	path = ibc-go
 	url = https://github.com/cosmos/ibc-go.git
@@ -13,7 +13,7 @@
 [submodule "terra"]
 	path = terra
 	url = https://github.com/terra-money/core
-	branch = upgrade/2.5
+	branch = release/v2.5
 [submodule "wasmd"]
 	path = wasmd
 	url = https://github.com/cosmwasm/wasmd
