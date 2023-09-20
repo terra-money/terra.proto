@@ -46,517 +46,6 @@ pub struct IdentifiedPacketFees {
     #[prost(message, repeated, tag = "2")]
     pub packet_fees: ::prost::alloc::vec::Vec<PacketFee>,
 }
-/// MsgRegisterPayee defines the request type for the RegisterPayee rpc
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgRegisterPayee {
-    /// unique port identifier
-    #[prost(string, tag = "1")]
-    pub port_id: ::prost::alloc::string::String,
-    /// unique channel identifier
-    #[prost(string, tag = "2")]
-    pub channel_id: ::prost::alloc::string::String,
-    /// the relayer address
-    #[prost(string, tag = "3")]
-    pub relayer: ::prost::alloc::string::String,
-    /// the payee address
-    #[prost(string, tag = "4")]
-    pub payee: ::prost::alloc::string::String,
-}
-/// MsgRegisterPayeeResponse defines the response type for the RegisterPayee rpc
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgRegisterPayeeResponse {}
-/// MsgRegisterCounterpartyPayee defines the request type for the RegisterCounterpartyPayee rpc
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgRegisterCounterpartyPayee {
-    /// unique port identifier
-    #[prost(string, tag = "1")]
-    pub port_id: ::prost::alloc::string::String,
-    /// unique channel identifier
-    #[prost(string, tag = "2")]
-    pub channel_id: ::prost::alloc::string::String,
-    /// the relayer address
-    #[prost(string, tag = "3")]
-    pub relayer: ::prost::alloc::string::String,
-    /// the counterparty payee address
-    #[prost(string, tag = "4")]
-    pub counterparty_payee: ::prost::alloc::string::String,
-}
-/// MsgRegisterCounterpartyPayeeResponse defines the response type for the RegisterCounterpartyPayee rpc
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgRegisterCounterpartyPayeeResponse {}
-/// MsgPayPacketFee defines the request type for the PayPacketFee rpc
-/// This Msg can be used to pay for a packet at the next sequence send & should be combined with the Msg that will be
-/// paid for
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgPayPacketFee {
-    /// fee encapsulates the recv, ack and timeout fees associated with an IBC packet
-    #[prost(message, optional, tag = "1")]
-    pub fee: ::core::option::Option<Fee>,
-    /// the source port unique identifier
-    #[prost(string, tag = "2")]
-    pub source_port_id: ::prost::alloc::string::String,
-    /// the source channel unique identifer
-    #[prost(string, tag = "3")]
-    pub source_channel_id: ::prost::alloc::string::String,
-    /// account address to refund fee if necessary
-    #[prost(string, tag = "4")]
-    pub signer: ::prost::alloc::string::String,
-    /// optional list of relayers permitted to the receive packet fees
-    #[prost(string, repeated, tag = "5")]
-    pub relayers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-/// MsgPayPacketFeeResponse defines the response type for the PayPacketFee rpc
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgPayPacketFeeResponse {}
-/// MsgPayPacketFeeAsync defines the request type for the PayPacketFeeAsync rpc
-/// This Msg can be used to pay for a packet at a specified sequence (instead of the next sequence send)
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgPayPacketFeeAsync {
-    /// unique packet identifier comprised of the channel ID, port ID and sequence
-    #[prost(message, optional, tag = "1")]
-    pub packet_id: ::core::option::Option<super::super::super::core::channel::v1::PacketId>,
-    /// the packet fee associated with a particular IBC packet
-    #[prost(message, optional, tag = "2")]
-    pub packet_fee: ::core::option::Option<PacketFee>,
-}
-/// MsgPayPacketFeeAsyncResponse defines the response type for the PayPacketFeeAsync rpc
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgPayPacketFeeAsyncResponse {}
-/// Generated client implementations.
-#[cfg(feature = "grpc")]
-#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod msg_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
-    use tonic::codegen::*;
-    /// Msg defines the ICS29 Msg service.
-    #[derive(Debug, Clone)]
-    pub struct MsgClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    #[cfg(feature = "grpc-transport")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "grpc-transport")))]
-    impl MsgClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: std::convert::TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
-    impl<T> MsgClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
-        {
-            MsgClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// RegisterPayee defines a rpc handler method for MsgRegisterPayee
-        /// RegisterPayee is called by the relayer on each channelEnd and allows them to set an optional
-        /// payee to which reverse and timeout relayer packet fees will be paid out. The payee should be registered on
-        /// the source chain from which packets originate as this is where fee distribution takes place. This function may be
-        /// called more than once by a relayer, in which case, the latest payee is always used.
-        pub async fn register_payee(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgRegisterPayee>,
-        ) -> Result<tonic::Response<super::MsgRegisterPayeeResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/ibc.applications.fee.v1.Msg/RegisterPayee");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// RegisterCounterpartyPayee defines a rpc handler method for MsgRegisterCounterpartyPayee
-        /// RegisterCounterpartyPayee is called by the relayer on each channelEnd and allows them to specify the counterparty
-        /// payee address before relaying. This ensures they will be properly compensated for forward relaying since
-        /// the destination chain must include the registered counterparty payee address in the acknowledgement. This function
-        /// may be called more than once by a relayer, in which case, the latest counterparty payee address is always used.
-        pub async fn register_counterparty_payee(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgRegisterCounterpartyPayee>,
-        ) -> Result<tonic::Response<super::MsgRegisterCounterpartyPayeeResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.applications.fee.v1.Msg/RegisterCounterpartyPayee",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// PayPacketFee defines a rpc handler method for MsgPayPacketFee
-        /// PayPacketFee is an open callback that may be called by any module/user that wishes to escrow funds in order to
-        /// incentivize the relaying of the packet at the next sequence
-        /// NOTE: This method is intended to be used within a multi msg transaction, where the subsequent msg that follows
-        /// initiates the lifecycle of the incentivized packet
-        pub async fn pay_packet_fee(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgPayPacketFee>,
-        ) -> Result<tonic::Response<super::MsgPayPacketFeeResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/ibc.applications.fee.v1.Msg/PayPacketFee");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// PayPacketFeeAsync defines a rpc handler method for MsgPayPacketFeeAsync
-        /// PayPacketFeeAsync is an open callback that may be called by any module/user that wishes to escrow funds in order to
-        /// incentivize the relaying of a known packet (i.e. at a particular sequence)
-        pub async fn pay_packet_fee_async(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgPayPacketFeeAsync>,
-        ) -> Result<tonic::Response<super::MsgPayPacketFeeAsyncResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.applications.fee.v1.Msg/PayPacketFeeAsync",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-    }
-}
-/// Generated server implementations.
-#[cfg(feature = "grpc")]
-#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod msg_server {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    /// Generated trait containing gRPC methods that should be implemented for use with MsgServer.
-    #[async_trait]
-    pub trait Msg: Send + Sync + 'static {
-        /// RegisterPayee defines a rpc handler method for MsgRegisterPayee
-        /// RegisterPayee is called by the relayer on each channelEnd and allows them to set an optional
-        /// payee to which reverse and timeout relayer packet fees will be paid out. The payee should be registered on
-        /// the source chain from which packets originate as this is where fee distribution takes place. This function may be
-        /// called more than once by a relayer, in which case, the latest payee is always used.
-        async fn register_payee(
-            &self,
-            request: tonic::Request<super::MsgRegisterPayee>,
-        ) -> Result<tonic::Response<super::MsgRegisterPayeeResponse>, tonic::Status>;
-        /// RegisterCounterpartyPayee defines a rpc handler method for MsgRegisterCounterpartyPayee
-        /// RegisterCounterpartyPayee is called by the relayer on each channelEnd and allows them to specify the counterparty
-        /// payee address before relaying. This ensures they will be properly compensated for forward relaying since
-        /// the destination chain must include the registered counterparty payee address in the acknowledgement. This function
-        /// may be called more than once by a relayer, in which case, the latest counterparty payee address is always used.
-        async fn register_counterparty_payee(
-            &self,
-            request: tonic::Request<super::MsgRegisterCounterpartyPayee>,
-        ) -> Result<tonic::Response<super::MsgRegisterCounterpartyPayeeResponse>, tonic::Status>;
-        /// PayPacketFee defines a rpc handler method for MsgPayPacketFee
-        /// PayPacketFee is an open callback that may be called by any module/user that wishes to escrow funds in order to
-        /// incentivize the relaying of the packet at the next sequence
-        /// NOTE: This method is intended to be used within a multi msg transaction, where the subsequent msg that follows
-        /// initiates the lifecycle of the incentivized packet
-        async fn pay_packet_fee(
-            &self,
-            request: tonic::Request<super::MsgPayPacketFee>,
-        ) -> Result<tonic::Response<super::MsgPayPacketFeeResponse>, tonic::Status>;
-        /// PayPacketFeeAsync defines a rpc handler method for MsgPayPacketFeeAsync
-        /// PayPacketFeeAsync is an open callback that may be called by any module/user that wishes to escrow funds in order to
-        /// incentivize the relaying of a known packet (i.e. at a particular sequence)
-        async fn pay_packet_fee_async(
-            &self,
-            request: tonic::Request<super::MsgPayPacketFeeAsync>,
-        ) -> Result<tonic::Response<super::MsgPayPacketFeeAsyncResponse>, tonic::Status>;
-    }
-    /// Msg defines the ICS29 Msg service.
-    #[derive(Debug)]
-    pub struct MsgServer<T: Msg> {
-        inner: _Inner<T>,
-        accept_compression_encodings: EnabledCompressionEncodings,
-        send_compression_encodings: EnabledCompressionEncodings,
-    }
-    struct _Inner<T>(Arc<T>);
-    impl<T: Msg> MsgServer<T> {
-        pub fn new(inner: T) -> Self {
-            Self::from_arc(Arc::new(inner))
-        }
-        pub fn from_arc(inner: Arc<T>) -> Self {
-            let inner = _Inner(inner);
-            Self {
-                inner,
-                accept_compression_encodings: Default::default(),
-                send_compression_encodings: Default::default(),
-            }
-        }
-        pub fn with_interceptor<F>(inner: T, interceptor: F) -> InterceptedService<Self, F>
-        where
-            F: tonic::service::Interceptor,
-        {
-            InterceptedService::new(Self::new(inner), interceptor)
-        }
-        /// Enable decompressing requests with the given encoding.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.accept_compression_encodings.enable(encoding);
-            self
-        }
-        /// Compress responses with the given encoding, if the client supports it.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.send_compression_encodings.enable(encoding);
-            self
-        }
-    }
-    impl<T, B> tonic::codegen::Service<http::Request<B>> for MsgServer<T>
-    where
-        T: Msg,
-        B: Body + Send + 'static,
-        B::Error: Into<StdError> + Send + 'static,
-    {
-        type Response = http::Response<tonic::body::BoxBody>;
-        type Error = std::convert::Infallible;
-        type Future = BoxFuture<Self::Response, Self::Error>;
-        fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
-            Poll::Ready(Ok(()))
-        }
-        fn call(&mut self, req: http::Request<B>) -> Self::Future {
-            let inner = self.inner.clone();
-            match req.uri().path() {
-                "/ibc.applications.fee.v1.Msg/RegisterPayee" => {
-                    #[allow(non_camel_case_types)]
-                    struct RegisterPayeeSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgRegisterPayee> for RegisterPayeeSvc<T> {
-                        type Response = super::MsgRegisterPayeeResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgRegisterPayee>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).register_payee(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = RegisterPayeeSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/ibc.applications.fee.v1.Msg/RegisterCounterpartyPayee" => {
-                    #[allow(non_camel_case_types)]
-                    struct RegisterCounterpartyPayeeSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgRegisterCounterpartyPayee>
-                        for RegisterCounterpartyPayeeSvc<T>
-                    {
-                        type Response = super::MsgRegisterCounterpartyPayeeResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgRegisterCounterpartyPayee>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut =
-                                async move { (*inner).register_counterparty_payee(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = RegisterCounterpartyPayeeSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/ibc.applications.fee.v1.Msg/PayPacketFee" => {
-                    #[allow(non_camel_case_types)]
-                    struct PayPacketFeeSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgPayPacketFee> for PayPacketFeeSvc<T> {
-                        type Response = super::MsgPayPacketFeeResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgPayPacketFee>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).pay_packet_fee(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = PayPacketFeeSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/ibc.applications.fee.v1.Msg/PayPacketFeeAsync" => {
-                    #[allow(non_camel_case_types)]
-                    struct PayPacketFeeAsyncSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgPayPacketFeeAsync> for PayPacketFeeAsyncSvc<T> {
-                        type Response = super::MsgPayPacketFeeAsyncResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgPayPacketFeeAsync>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).pay_packet_fee_async(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = PayPacketFeeAsyncSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                _ => Box::pin(async move {
-                    Ok(http::Response::builder()
-                        .status(200)
-                        .header("grpc-status", "12")
-                        .header("content-type", "application/grpc")
-                        .body(empty_body())
-                        .unwrap())
-                }),
-            }
-        }
-    }
-    impl<T: Msg> Clone for MsgServer<T> {
-        fn clone(&self) -> Self {
-            let inner = self.inner.clone();
-            Self {
-                inner,
-                accept_compression_encodings: self.accept_compression_encodings,
-                send_compression_encodings: self.send_compression_encodings,
-            }
-        }
-    }
-    impl<T: Msg> Clone for _Inner<T> {
-        fn clone(&self) -> Self {
-            Self(self.0.clone())
-        }
-    }
-    impl<T: std::fmt::Debug> std::fmt::Debug for _Inner<T> {
-        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-            write!(f, "{:?}", self.0)
-        }
-    }
-    impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
-        const NAME: &'static str = "ibc.applications.fee.v1.Msg";
-    }
-}
-/// IncentivizedAcknowledgement is the acknowledgement format to be used by applications wrapped in the fee middleware
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct IncentivizedAcknowledgement {
-    /// the underlying app acknowledgement bytes
-    #[prost(bytes = "vec", tag = "1")]
-    pub app_acknowledgement: ::prost::alloc::vec::Vec<u8>,
-    /// the relayer address which submits the recv packet message
-    #[prost(string, tag = "2")]
-    pub forward_relayer_address: ::prost::alloc::string::String,
-    /// success flag of the base application callback
-    #[prost(bool, tag = "3")]
-    pub underlying_app_success: bool,
-}
 /// GenesisState defines the ICS29 fee middleware genesis state
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1550,6 +1039,517 @@ pub mod query_server {
     }
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
         const NAME: &'static str = "ibc.applications.fee.v1.Query";
+    }
+}
+/// IncentivizedAcknowledgement is the acknowledgement format to be used by applications wrapped in the fee middleware
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IncentivizedAcknowledgement {
+    /// the underlying app acknowledgement bytes
+    #[prost(bytes = "vec", tag = "1")]
+    pub app_acknowledgement: ::prost::alloc::vec::Vec<u8>,
+    /// the relayer address which submits the recv packet message
+    #[prost(string, tag = "2")]
+    pub forward_relayer_address: ::prost::alloc::string::String,
+    /// success flag of the base application callback
+    #[prost(bool, tag = "3")]
+    pub underlying_app_success: bool,
+}
+/// MsgRegisterPayee defines the request type for the RegisterPayee rpc
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgRegisterPayee {
+    /// unique port identifier
+    #[prost(string, tag = "1")]
+    pub port_id: ::prost::alloc::string::String,
+    /// unique channel identifier
+    #[prost(string, tag = "2")]
+    pub channel_id: ::prost::alloc::string::String,
+    /// the relayer address
+    #[prost(string, tag = "3")]
+    pub relayer: ::prost::alloc::string::String,
+    /// the payee address
+    #[prost(string, tag = "4")]
+    pub payee: ::prost::alloc::string::String,
+}
+/// MsgRegisterPayeeResponse defines the response type for the RegisterPayee rpc
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgRegisterPayeeResponse {}
+/// MsgRegisterCounterpartyPayee defines the request type for the RegisterCounterpartyPayee rpc
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgRegisterCounterpartyPayee {
+    /// unique port identifier
+    #[prost(string, tag = "1")]
+    pub port_id: ::prost::alloc::string::String,
+    /// unique channel identifier
+    #[prost(string, tag = "2")]
+    pub channel_id: ::prost::alloc::string::String,
+    /// the relayer address
+    #[prost(string, tag = "3")]
+    pub relayer: ::prost::alloc::string::String,
+    /// the counterparty payee address
+    #[prost(string, tag = "4")]
+    pub counterparty_payee: ::prost::alloc::string::String,
+}
+/// MsgRegisterCounterpartyPayeeResponse defines the response type for the RegisterCounterpartyPayee rpc
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgRegisterCounterpartyPayeeResponse {}
+/// MsgPayPacketFee defines the request type for the PayPacketFee rpc
+/// This Msg can be used to pay for a packet at the next sequence send & should be combined with the Msg that will be
+/// paid for
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgPayPacketFee {
+    /// fee encapsulates the recv, ack and timeout fees associated with an IBC packet
+    #[prost(message, optional, tag = "1")]
+    pub fee: ::core::option::Option<Fee>,
+    /// the source port unique identifier
+    #[prost(string, tag = "2")]
+    pub source_port_id: ::prost::alloc::string::String,
+    /// the source channel unique identifer
+    #[prost(string, tag = "3")]
+    pub source_channel_id: ::prost::alloc::string::String,
+    /// account address to refund fee if necessary
+    #[prost(string, tag = "4")]
+    pub signer: ::prost::alloc::string::String,
+    /// optional list of relayers permitted to the receive packet fees
+    #[prost(string, repeated, tag = "5")]
+    pub relayers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// MsgPayPacketFeeResponse defines the response type for the PayPacketFee rpc
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgPayPacketFeeResponse {}
+/// MsgPayPacketFeeAsync defines the request type for the PayPacketFeeAsync rpc
+/// This Msg can be used to pay for a packet at a specified sequence (instead of the next sequence send)
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgPayPacketFeeAsync {
+    /// unique packet identifier comprised of the channel ID, port ID and sequence
+    #[prost(message, optional, tag = "1")]
+    pub packet_id: ::core::option::Option<super::super::super::core::channel::v1::PacketId>,
+    /// the packet fee associated with a particular IBC packet
+    #[prost(message, optional, tag = "2")]
+    pub packet_fee: ::core::option::Option<PacketFee>,
+}
+/// MsgPayPacketFeeAsyncResponse defines the response type for the PayPacketFeeAsync rpc
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgPayPacketFeeAsyncResponse {}
+/// Generated client implementations.
+#[cfg(feature = "grpc")]
+#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
+pub mod msg_client {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Msg defines the ICS29 Msg service.
+    #[derive(Debug, Clone)]
+    pub struct MsgClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    #[cfg(feature = "grpc-transport")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "grpc-transport")))]
+    impl MsgClient<tonic::transport::Channel> {
+        /// Attempt to create a new client by connecting to a given endpoint.
+        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
+        where
+            D: std::convert::TryInto<tonic::transport::Endpoint>,
+            D::Error: Into<StdError>,
+        {
+            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
+            Ok(Self::new(conn))
+        }
+    }
+    impl<T> MsgClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            MsgClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// RegisterPayee defines a rpc handler method for MsgRegisterPayee
+        /// RegisterPayee is called by the relayer on each channelEnd and allows them to set an optional
+        /// payee to which reverse and timeout relayer packet fees will be paid out. The payee should be registered on
+        /// the source chain from which packets originate as this is where fee distribution takes place. This function may be
+        /// called more than once by a relayer, in which case, the latest payee is always used.
+        pub async fn register_payee(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgRegisterPayee>,
+        ) -> Result<tonic::Response<super::MsgRegisterPayeeResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.applications.fee.v1.Msg/RegisterPayee");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// RegisterCounterpartyPayee defines a rpc handler method for MsgRegisterCounterpartyPayee
+        /// RegisterCounterpartyPayee is called by the relayer on each channelEnd and allows them to specify the counterparty
+        /// payee address before relaying. This ensures they will be properly compensated for forward relaying since
+        /// the destination chain must include the registered counterparty payee address in the acknowledgement. This function
+        /// may be called more than once by a relayer, in which case, the latest counterparty payee address is always used.
+        pub async fn register_counterparty_payee(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgRegisterCounterpartyPayee>,
+        ) -> Result<tonic::Response<super::MsgRegisterCounterpartyPayeeResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/ibc.applications.fee.v1.Msg/RegisterCounterpartyPayee",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// PayPacketFee defines a rpc handler method for MsgPayPacketFee
+        /// PayPacketFee is an open callback that may be called by any module/user that wishes to escrow funds in order to
+        /// incentivize the relaying of the packet at the next sequence
+        /// NOTE: This method is intended to be used within a multi msg transaction, where the subsequent msg that follows
+        /// initiates the lifecycle of the incentivized packet
+        pub async fn pay_packet_fee(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgPayPacketFee>,
+        ) -> Result<tonic::Response<super::MsgPayPacketFeeResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.applications.fee.v1.Msg/PayPacketFee");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// PayPacketFeeAsync defines a rpc handler method for MsgPayPacketFeeAsync
+        /// PayPacketFeeAsync is an open callback that may be called by any module/user that wishes to escrow funds in order to
+        /// incentivize the relaying of a known packet (i.e. at a particular sequence)
+        pub async fn pay_packet_fee_async(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgPayPacketFeeAsync>,
+        ) -> Result<tonic::Response<super::MsgPayPacketFeeAsyncResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/ibc.applications.fee.v1.Msg/PayPacketFeeAsync",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+    }
+}
+/// Generated server implementations.
+#[cfg(feature = "grpc")]
+#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
+pub mod msg_server {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    /// Generated trait containing gRPC methods that should be implemented for use with MsgServer.
+    #[async_trait]
+    pub trait Msg: Send + Sync + 'static {
+        /// RegisterPayee defines a rpc handler method for MsgRegisterPayee
+        /// RegisterPayee is called by the relayer on each channelEnd and allows them to set an optional
+        /// payee to which reverse and timeout relayer packet fees will be paid out. The payee should be registered on
+        /// the source chain from which packets originate as this is where fee distribution takes place. This function may be
+        /// called more than once by a relayer, in which case, the latest payee is always used.
+        async fn register_payee(
+            &self,
+            request: tonic::Request<super::MsgRegisterPayee>,
+        ) -> Result<tonic::Response<super::MsgRegisterPayeeResponse>, tonic::Status>;
+        /// RegisterCounterpartyPayee defines a rpc handler method for MsgRegisterCounterpartyPayee
+        /// RegisterCounterpartyPayee is called by the relayer on each channelEnd and allows them to specify the counterparty
+        /// payee address before relaying. This ensures they will be properly compensated for forward relaying since
+        /// the destination chain must include the registered counterparty payee address in the acknowledgement. This function
+        /// may be called more than once by a relayer, in which case, the latest counterparty payee address is always used.
+        async fn register_counterparty_payee(
+            &self,
+            request: tonic::Request<super::MsgRegisterCounterpartyPayee>,
+        ) -> Result<tonic::Response<super::MsgRegisterCounterpartyPayeeResponse>, tonic::Status>;
+        /// PayPacketFee defines a rpc handler method for MsgPayPacketFee
+        /// PayPacketFee is an open callback that may be called by any module/user that wishes to escrow funds in order to
+        /// incentivize the relaying of the packet at the next sequence
+        /// NOTE: This method is intended to be used within a multi msg transaction, where the subsequent msg that follows
+        /// initiates the lifecycle of the incentivized packet
+        async fn pay_packet_fee(
+            &self,
+            request: tonic::Request<super::MsgPayPacketFee>,
+        ) -> Result<tonic::Response<super::MsgPayPacketFeeResponse>, tonic::Status>;
+        /// PayPacketFeeAsync defines a rpc handler method for MsgPayPacketFeeAsync
+        /// PayPacketFeeAsync is an open callback that may be called by any module/user that wishes to escrow funds in order to
+        /// incentivize the relaying of a known packet (i.e. at a particular sequence)
+        async fn pay_packet_fee_async(
+            &self,
+            request: tonic::Request<super::MsgPayPacketFeeAsync>,
+        ) -> Result<tonic::Response<super::MsgPayPacketFeeAsyncResponse>, tonic::Status>;
+    }
+    /// Msg defines the ICS29 Msg service.
+    #[derive(Debug)]
+    pub struct MsgServer<T: Msg> {
+        inner: _Inner<T>,
+        accept_compression_encodings: EnabledCompressionEncodings,
+        send_compression_encodings: EnabledCompressionEncodings,
+    }
+    struct _Inner<T>(Arc<T>);
+    impl<T: Msg> MsgServer<T> {
+        pub fn new(inner: T) -> Self {
+            Self::from_arc(Arc::new(inner))
+        }
+        pub fn from_arc(inner: Arc<T>) -> Self {
+            let inner = _Inner(inner);
+            Self {
+                inner,
+                accept_compression_encodings: Default::default(),
+                send_compression_encodings: Default::default(),
+            }
+        }
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> InterceptedService<Self, F>
+        where
+            F: tonic::service::Interceptor,
+        {
+            InterceptedService::new(Self::new(inner), interceptor)
+        }
+        /// Enable decompressing requests with the given encoding.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.accept_compression_encodings.enable(encoding);
+            self
+        }
+        /// Compress responses with the given encoding, if the client supports it.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.send_compression_encodings.enable(encoding);
+            self
+        }
+    }
+    impl<T, B> tonic::codegen::Service<http::Request<B>> for MsgServer<T>
+    where
+        T: Msg,
+        B: Body + Send + 'static,
+        B::Error: Into<StdError> + Send + 'static,
+    {
+        type Response = http::Response<tonic::body::BoxBody>;
+        type Error = std::convert::Infallible;
+        type Future = BoxFuture<Self::Response, Self::Error>;
+        fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
+            Poll::Ready(Ok(()))
+        }
+        fn call(&mut self, req: http::Request<B>) -> Self::Future {
+            let inner = self.inner.clone();
+            match req.uri().path() {
+                "/ibc.applications.fee.v1.Msg/RegisterPayee" => {
+                    #[allow(non_camel_case_types)]
+                    struct RegisterPayeeSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgRegisterPayee> for RegisterPayeeSvc<T> {
+                        type Response = super::MsgRegisterPayeeResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgRegisterPayee>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).register_payee(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = RegisterPayeeSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/ibc.applications.fee.v1.Msg/RegisterCounterpartyPayee" => {
+                    #[allow(non_camel_case_types)]
+                    struct RegisterCounterpartyPayeeSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgRegisterCounterpartyPayee>
+                        for RegisterCounterpartyPayeeSvc<T>
+                    {
+                        type Response = super::MsgRegisterCounterpartyPayeeResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgRegisterCounterpartyPayee>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut =
+                                async move { (*inner).register_counterparty_payee(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = RegisterCounterpartyPayeeSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/ibc.applications.fee.v1.Msg/PayPacketFee" => {
+                    #[allow(non_camel_case_types)]
+                    struct PayPacketFeeSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgPayPacketFee> for PayPacketFeeSvc<T> {
+                        type Response = super::MsgPayPacketFeeResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgPayPacketFee>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).pay_packet_fee(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = PayPacketFeeSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/ibc.applications.fee.v1.Msg/PayPacketFeeAsync" => {
+                    #[allow(non_camel_case_types)]
+                    struct PayPacketFeeAsyncSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgPayPacketFeeAsync> for PayPacketFeeAsyncSvc<T> {
+                        type Response = super::MsgPayPacketFeeAsyncResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgPayPacketFeeAsync>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).pay_packet_fee_async(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = PayPacketFeeAsyncSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                _ => Box::pin(async move {
+                    Ok(http::Response::builder()
+                        .status(200)
+                        .header("grpc-status", "12")
+                        .header("content-type", "application/grpc")
+                        .body(empty_body())
+                        .unwrap())
+                }),
+            }
+        }
+    }
+    impl<T: Msg> Clone for MsgServer<T> {
+        fn clone(&self) -> Self {
+            let inner = self.inner.clone();
+            Self {
+                inner,
+                accept_compression_encodings: self.accept_compression_encodings,
+                send_compression_encodings: self.send_compression_encodings,
+            }
+        }
+    }
+    impl<T: Msg> Clone for _Inner<T> {
+        fn clone(&self) -> Self {
+            Self(self.0.clone())
+        }
+    }
+    impl<T: std::fmt::Debug> std::fmt::Debug for _Inner<T> {
+        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+            write!(f, "{:?}", self.0)
+        }
+    }
+    impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
+        const NAME: &'static str = "ibc.applications.fee.v1.Msg";
     }
 }
 /// Metadata defines the ICS29 channel specific metadata encoded into the channel version bytestring

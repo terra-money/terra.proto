@@ -2224,7 +2224,12 @@ export const QueryParamsResponse = {
 
 /** Query defines the gRPC querier service. */
 export interface Query {
-  /** Validators queries all validators that match the given status. */
+  /**
+   * Validators queries all validators that match the given status.
+   *
+   * When called from another module, this query might consume a high amount of
+   * gas if the pagination field is incorrectly set.
+   */
   Validators(
     request: DeepPartial<QueryValidatorsRequest>,
     metadata?: grpc.Metadata,
@@ -2234,12 +2239,22 @@ export interface Query {
     request: DeepPartial<QueryValidatorRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryValidatorResponse>;
-  /** ValidatorDelegations queries delegate info for given validator. */
+  /**
+   * ValidatorDelegations queries delegate info for given validator.
+   *
+   * When called from another module, this query might consume a high amount of
+   * gas if the pagination field is incorrectly set.
+   */
   ValidatorDelegations(
     request: DeepPartial<QueryValidatorDelegationsRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryValidatorDelegationsResponse>;
-  /** ValidatorUnbondingDelegations queries unbonding delegations of a validator. */
+  /**
+   * ValidatorUnbondingDelegations queries unbonding delegations of a validator.
+   *
+   * When called from another module, this query might consume a high amount of
+   * gas if the pagination field is incorrectly set.
+   */
   ValidatorUnbondingDelegations(
     request: DeepPartial<QueryValidatorUnbondingDelegationsRequest>,
     metadata?: grpc.Metadata,
@@ -2257,7 +2272,12 @@ export interface Query {
     request: DeepPartial<QueryUnbondingDelegationRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryUnbondingDelegationResponse>;
-  /** DelegatorDelegations queries all delegations of a given delegator address. */
+  /**
+   * DelegatorDelegations queries all delegations of a given delegator address.
+   *
+   * When called from another module, this query might consume a high amount of
+   * gas if the pagination field is incorrectly set.
+   */
   DelegatorDelegations(
     request: DeepPartial<QueryDelegatorDelegationsRequest>,
     metadata?: grpc.Metadata,
@@ -2265,12 +2285,20 @@ export interface Query {
   /**
    * DelegatorUnbondingDelegations queries all unbonding delegations of a given
    * delegator address.
+   *
+   * When called from another module, this query might consume a high amount of
+   * gas if the pagination field is incorrectly set.
    */
   DelegatorUnbondingDelegations(
     request: DeepPartial<QueryDelegatorUnbondingDelegationsRequest>,
     metadata?: grpc.Metadata,
   ): Promise<QueryDelegatorUnbondingDelegationsResponse>;
-  /** Redelegations queries redelegations of given address. */
+  /**
+   * Redelegations queries redelegations of given address.
+   *
+   * When called from another module, this query might consume a high amount of
+   * gas if the pagination field is incorrectly set.
+   */
   Redelegations(
     request: DeepPartial<QueryRedelegationsRequest>,
     metadata?: grpc.Metadata,
@@ -2278,6 +2306,9 @@ export interface Query {
   /**
    * DelegatorValidators queries all validators info for given delegator
    * address.
+   *
+   * When called from another module, this query might consume a high amount of
+   * gas if the pagination field is incorrectly set.
    */
   DelegatorValidators(
     request: DeepPartial<QueryDelegatorValidatorsRequest>,

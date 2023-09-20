@@ -2,10 +2,13 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgVerifyInvariant {
+    /// sender is the account address of private key to send coins to fee collector account.
     #[prost(string, tag = "1")]
     pub sender: ::prost::alloc::string::String,
+    /// name of the invariant module.
     #[prost(string, tag = "2")]
     pub invariant_module_name: ::prost::alloc::string::String,
+    /// invariant_route is the msg's invariant route.
     #[prost(string, tag = "3")]
     pub invariant_route: ::prost::alloc::string::String,
 }
@@ -13,6 +16,26 @@ pub struct MsgVerifyInvariant {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgVerifyInvariantResponse {}
+/// MsgUpdateParams is the Msg/UpdateParams request type.
+///
+/// Since: cosmos-sdk 0.47
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateParams {
+    /// authority is the address that controls the module (defaults to x/gov unless overwritten).
+    #[prost(string, tag = "1")]
+    pub authority: ::prost::alloc::string::String,
+    /// constant_fee defines the x/crisis parameter.
+    #[prost(message, optional, tag = "2")]
+    pub constant_fee: ::core::option::Option<super::super::base::v1beta1::Coin>,
+}
+/// MsgUpdateParamsResponse defines the response structure for executing a
+/// MsgUpdateParams message.
+///
+/// Since: cosmos-sdk 0.47
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateParamsResponse {}
 /// Generated client implementations.
 #[cfg(feature = "grpc")]
 #[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
@@ -83,7 +106,7 @@ pub mod msg_client {
             self.inner = self.inner.accept_compressed(encoding);
             self
         }
-        /// VerifyInvariant defines a method to verify a particular invariance.
+        /// VerifyInvariant defines a method to verify a particular invariant.
         pub async fn verify_invariant(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgVerifyInvariant>,
@@ -99,6 +122,25 @@ pub mod msg_client {
                 http::uri::PathAndQuery::from_static("/cosmos.crisis.v1beta1.Msg/VerifyInvariant");
             self.inner.unary(request.into_request(), path, codec).await
         }
+        /// UpdateParams defines a governance operation for updating the x/crisis module
+        /// parameters. The authority is defined in the keeper.
+        ///
+        /// Since: cosmos-sdk 0.47
+        pub async fn update_params(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgUpdateParams>,
+        ) -> Result<tonic::Response<super::MsgUpdateParamsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.crisis.v1beta1.Msg/UpdateParams");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -110,11 +152,19 @@ pub mod msg_server {
     /// Generated trait containing gRPC methods that should be implemented for use with MsgServer.
     #[async_trait]
     pub trait Msg: Send + Sync + 'static {
-        /// VerifyInvariant defines a method to verify a particular invariance.
+        /// VerifyInvariant defines a method to verify a particular invariant.
         async fn verify_invariant(
             &self,
             request: tonic::Request<super::MsgVerifyInvariant>,
         ) -> Result<tonic::Response<super::MsgVerifyInvariantResponse>, tonic::Status>;
+        /// UpdateParams defines a governance operation for updating the x/crisis module
+        /// parameters. The authority is defined in the keeper.
+        ///
+        /// Since: cosmos-sdk 0.47
+        async fn update_params(
+            &self,
+            request: tonic::Request<super::MsgUpdateParams>,
+        ) -> Result<tonic::Response<super::MsgUpdateParamsResponse>, tonic::Status>;
     }
     /// Msg defines the bank Msg service.
     #[derive(Debug)]
@@ -191,6 +241,37 @@ pub mod msg_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = VerifyInvariantSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmos.crisis.v1beta1.Msg/UpdateParams" => {
+                    #[allow(non_camel_case_types)]
+                    struct UpdateParamsSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgUpdateParams> for UpdateParamsSvc<T> {
+                        type Response = super::MsgUpdateParamsResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgUpdateParams>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).update_params(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UpdateParamsSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,

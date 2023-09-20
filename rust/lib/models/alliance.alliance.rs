@@ -1,3 +1,46 @@
+/// Used internally to keep track of redelegations
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueuedRedelegation {
+    #[prost(message, repeated, tag = "1")]
+    pub entries: ::prost::alloc::vec::Vec<Redelegation>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Redelegation {
+    /// internal or external user address
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+    /// redelegation source validator
+    #[prost(string, tag = "2")]
+    pub src_validator_address: ::prost::alloc::string::String,
+    /// redelegation destination validator
+    #[prost(string, tag = "3")]
+    pub dst_validator_address: ::prost::alloc::string::String,
+    /// amount to redelegate
+    #[prost(message, optional, tag = "4")]
+    pub balance: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+}
+/// Used on QueryServer
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RedelegationEntry {
+    /// internal or external user address
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+    /// redelegation source validator
+    #[prost(string, tag = "2")]
+    pub src_validator_address: ::prost::alloc::string::String,
+    /// redelegation destination validator
+    #[prost(string, tag = "3")]
+    pub dst_validator_address: ::prost::alloc::string::String,
+    /// amount to redelegate
+    #[prost(message, optional, tag = "4")]
+    pub balance: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+    /// completion_time defines the unix time for redelegation completion.
+    #[prost(message, optional, tag = "5")]
+    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Params {
@@ -91,24 +134,6 @@ pub struct Delegation {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Redelegation {
-    #[prost(string, tag = "1")]
-    pub delegator_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub src_validator_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub dst_validator_address: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub balance: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueuedRedelegation {
-    #[prost(message, repeated, tag = "1")]
-    pub entries: ::prost::alloc::vec::Vec<Redelegation>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Undelegation {
     #[prost(string, tag = "1")]
     pub delegator_address: ::prost::alloc::string::String,
@@ -188,6 +213,836 @@ pub struct GenesisState {
     pub redelegations: ::prost::alloc::vec::Vec<RedelegationState>,
     #[prost(message, repeated, tag = "7")]
     pub undelegations: ::prost::alloc::vec::Vec<UndelegationState>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgCreateAllianceProposal {
+    /// the title of the update proposal
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// the description of the proposal
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// Denom of the asset. It could either be a native token or an IBC token
+    #[prost(string, tag = "3")]
+    pub denom: ::prost::alloc::string::String,
+    /// The reward weight specifies the ratio of rewards that will be given to each alliance asset
+    /// It does not need to sum to 1. rate = weight / total_weight
+    /// Native asset is always assumed to have a weight of 1.
+    #[prost(string, tag = "4")]
+    pub reward_weight: ::prost::alloc::string::String,
+    /// A positive take rate is used for liquid staking derivatives. It defines an annualized reward rate that
+    /// will be redirected to the distribution rewards pool
+    #[prost(string, tag = "5")]
+    pub take_rate: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub reward_change_rate: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub reward_change_interval: ::core::option::Option<::prost_types::Duration>,
+    /// set a bound of weight range to limit how much reward weights can scale.
+    #[prost(message, optional, tag = "8")]
+    pub reward_weight_range: ::core::option::Option<RewardWeightRange>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateAllianceProposal {
+    /// the title of the update proposal
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// the description of the proposal
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// Denom of the asset. It could either be a native token or an IBC token
+    #[prost(string, tag = "3")]
+    pub denom: ::prost::alloc::string::String,
+    /// The reward weight specifies the ratio of rewards that will be given to each alliance asset
+    /// It does not need to sum to 1. rate = weight / total_weight
+    /// Native asset is always assumed to have a weight of 1.
+    #[prost(string, tag = "4")]
+    pub reward_weight: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub take_rate: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub reward_change_rate: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub reward_change_interval: ::core::option::Option<::prost_types::Duration>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgDeleteAllianceProposal {
+    /// the title of the update proposal
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// the description of the proposal
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub denom: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DelegateAllianceEvent {
+    #[prost(string, tag = "1")]
+    pub alliance_sender: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub coin: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+    #[prost(string, tag = "4")]
+    pub new_shares: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UndelegateAllianceEvent {
+    #[prost(string, tag = "1")]
+    pub alliance_sender: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub coin: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+    #[prost(message, optional, tag = "4")]
+    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RedelegateAllianceEvent {
+    #[prost(string, tag = "1")]
+    pub alliance_sender: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub source_validator: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub destination_validator: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub coin: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+    #[prost(message, optional, tag = "5")]
+    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ClaimAllianceRewardsEvent {
+    #[prost(string, tag = "1")]
+    pub alliance_sender: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub coins: ::prost::alloc::vec::Vec<super::super::cosmos::base::v1beta1::Coin>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeductAllianceAssetsEvent {
+    #[prost(message, repeated, tag = "1")]
+    pub coins: ::prost::alloc::vec::Vec<super::super::cosmos::base::v1beta1::Coin>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgDelegate {
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator_address: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub amount: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgDelegateResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUndelegate {
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator_address: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub amount: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUndelegateResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgRedelegate {
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator_src_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub validator_dst_address: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub amount: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgRedelegateResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgClaimDelegationRewards {
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub denom: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgClaimDelegationRewardsResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateParams {
+    #[prost(string, tag = "1")]
+    pub authority: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub params: ::core::option::Option<Params>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateParamsResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgCreateAlliance {
+    #[prost(string, tag = "1")]
+    pub authority: ::prost::alloc::string::String,
+    /// Denom of the asset. It could either be a native token or an IBC token
+    #[prost(string, tag = "2")]
+    pub denom: ::prost::alloc::string::String,
+    /// The reward weight specifies the ratio of rewards that will be given to each alliance asset
+    /// It does not need to sum to 1. rate = weight / total_weight
+    /// Native asset is always assumed to have a weight of 1.
+    #[prost(string, tag = "3")]
+    pub reward_weight: ::prost::alloc::string::String,
+    /// A positive take rate is used for liquid staking derivatives. It defines an annualized reward rate that
+    /// will be redirected to the distribution rewards pool
+    #[prost(string, tag = "4")]
+    pub take_rate: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub reward_change_rate: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub reward_change_interval: ::core::option::Option<::prost_types::Duration>,
+    /// set a bound of weight range to limit how much reward weights can scale.
+    #[prost(message, optional, tag = "7")]
+    pub reward_weight_range: ::core::option::Option<RewardWeightRange>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgCreateAllianceResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateAlliance {
+    #[prost(string, tag = "1")]
+    pub authority: ::prost::alloc::string::String,
+    /// Denom of the asset. It could either be a native token or an IBC token
+    #[prost(string, tag = "2")]
+    pub denom: ::prost::alloc::string::String,
+    /// The reward weight specifies the ratio of rewards that will be given to each alliance asset
+    /// It does not need to sum to 1. rate = weight / total_weight
+    /// Native asset is always assumed to have a weight of 1.
+    #[prost(string, tag = "3")]
+    pub reward_weight: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub take_rate: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub reward_change_rate: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub reward_change_interval: ::core::option::Option<::prost_types::Duration>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateAllianceResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgDeleteAlliance {
+    #[prost(string, tag = "1")]
+    pub authority: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub denom: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgDeleteAllianceResponse {}
+/// Generated client implementations.
+#[cfg(feature = "grpc")]
+#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
+pub mod msg_client {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    #[derive(Debug, Clone)]
+    pub struct MsgClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    #[cfg(feature = "grpc-transport")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "grpc-transport")))]
+    impl MsgClient<tonic::transport::Channel> {
+        /// Attempt to create a new client by connecting to a given endpoint.
+        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
+        where
+            D: std::convert::TryInto<tonic::transport::Endpoint>,
+            D::Error: Into<StdError>,
+        {
+            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
+            Ok(Self::new(conn))
+        }
+    }
+    impl<T> MsgClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            MsgClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        pub async fn delegate(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgDelegate>,
+        ) -> Result<tonic::Response<super::MsgDelegateResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/alliance.alliance.Msg/Delegate");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        pub async fn redelegate(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgRedelegate>,
+        ) -> Result<tonic::Response<super::MsgRedelegateResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/alliance.alliance.Msg/Redelegate");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        pub async fn undelegate(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgUndelegate>,
+        ) -> Result<tonic::Response<super::MsgUndelegateResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/alliance.alliance.Msg/Undelegate");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        pub async fn claim_delegation_rewards(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgClaimDelegationRewards>,
+        ) -> Result<tonic::Response<super::MsgClaimDelegationRewardsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/alliance.alliance.Msg/ClaimDelegationRewards",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        pub async fn update_params(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgUpdateParams>,
+        ) -> Result<tonic::Response<super::MsgUpdateParamsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/alliance.alliance.Msg/UpdateParams");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        pub async fn create_alliance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgCreateAlliance>,
+        ) -> Result<tonic::Response<super::MsgCreateAllianceResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/alliance.alliance.Msg/CreateAlliance");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        pub async fn update_alliance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgUpdateAlliance>,
+        ) -> Result<tonic::Response<super::MsgUpdateAllianceResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/alliance.alliance.Msg/UpdateAlliance");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        pub async fn delete_alliance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgDeleteAlliance>,
+        ) -> Result<tonic::Response<super::MsgDeleteAllianceResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/alliance.alliance.Msg/DeleteAlliance");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+    }
+}
+/// Generated server implementations.
+#[cfg(feature = "grpc")]
+#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
+pub mod msg_server {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    /// Generated trait containing gRPC methods that should be implemented for use with MsgServer.
+    #[async_trait]
+    pub trait Msg: Send + Sync + 'static {
+        async fn delegate(
+            &self,
+            request: tonic::Request<super::MsgDelegate>,
+        ) -> Result<tonic::Response<super::MsgDelegateResponse>, tonic::Status>;
+        async fn redelegate(
+            &self,
+            request: tonic::Request<super::MsgRedelegate>,
+        ) -> Result<tonic::Response<super::MsgRedelegateResponse>, tonic::Status>;
+        async fn undelegate(
+            &self,
+            request: tonic::Request<super::MsgUndelegate>,
+        ) -> Result<tonic::Response<super::MsgUndelegateResponse>, tonic::Status>;
+        async fn claim_delegation_rewards(
+            &self,
+            request: tonic::Request<super::MsgClaimDelegationRewards>,
+        ) -> Result<tonic::Response<super::MsgClaimDelegationRewardsResponse>, tonic::Status>;
+        async fn update_params(
+            &self,
+            request: tonic::Request<super::MsgUpdateParams>,
+        ) -> Result<tonic::Response<super::MsgUpdateParamsResponse>, tonic::Status>;
+        async fn create_alliance(
+            &self,
+            request: tonic::Request<super::MsgCreateAlliance>,
+        ) -> Result<tonic::Response<super::MsgCreateAllianceResponse>, tonic::Status>;
+        async fn update_alliance(
+            &self,
+            request: tonic::Request<super::MsgUpdateAlliance>,
+        ) -> Result<tonic::Response<super::MsgUpdateAllianceResponse>, tonic::Status>;
+        async fn delete_alliance(
+            &self,
+            request: tonic::Request<super::MsgDeleteAlliance>,
+        ) -> Result<tonic::Response<super::MsgDeleteAllianceResponse>, tonic::Status>;
+    }
+    #[derive(Debug)]
+    pub struct MsgServer<T: Msg> {
+        inner: _Inner<T>,
+        accept_compression_encodings: EnabledCompressionEncodings,
+        send_compression_encodings: EnabledCompressionEncodings,
+    }
+    struct _Inner<T>(Arc<T>);
+    impl<T: Msg> MsgServer<T> {
+        pub fn new(inner: T) -> Self {
+            Self::from_arc(Arc::new(inner))
+        }
+        pub fn from_arc(inner: Arc<T>) -> Self {
+            let inner = _Inner(inner);
+            Self {
+                inner,
+                accept_compression_encodings: Default::default(),
+                send_compression_encodings: Default::default(),
+            }
+        }
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> InterceptedService<Self, F>
+        where
+            F: tonic::service::Interceptor,
+        {
+            InterceptedService::new(Self::new(inner), interceptor)
+        }
+        /// Enable decompressing requests with the given encoding.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.accept_compression_encodings.enable(encoding);
+            self
+        }
+        /// Compress responses with the given encoding, if the client supports it.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.send_compression_encodings.enable(encoding);
+            self
+        }
+    }
+    impl<T, B> tonic::codegen::Service<http::Request<B>> for MsgServer<T>
+    where
+        T: Msg,
+        B: Body + Send + 'static,
+        B::Error: Into<StdError> + Send + 'static,
+    {
+        type Response = http::Response<tonic::body::BoxBody>;
+        type Error = std::convert::Infallible;
+        type Future = BoxFuture<Self::Response, Self::Error>;
+        fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
+            Poll::Ready(Ok(()))
+        }
+        fn call(&mut self, req: http::Request<B>) -> Self::Future {
+            let inner = self.inner.clone();
+            match req.uri().path() {
+                "/alliance.alliance.Msg/Delegate" => {
+                    #[allow(non_camel_case_types)]
+                    struct DelegateSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgDelegate> for DelegateSvc<T> {
+                        type Response = super::MsgDelegateResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgDelegate>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).delegate(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = DelegateSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/alliance.alliance.Msg/Redelegate" => {
+                    #[allow(non_camel_case_types)]
+                    struct RedelegateSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgRedelegate> for RedelegateSvc<T> {
+                        type Response = super::MsgRedelegateResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgRedelegate>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).redelegate(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = RedelegateSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/alliance.alliance.Msg/Undelegate" => {
+                    #[allow(non_camel_case_types)]
+                    struct UndelegateSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgUndelegate> for UndelegateSvc<T> {
+                        type Response = super::MsgUndelegateResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgUndelegate>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).undelegate(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UndelegateSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/alliance.alliance.Msg/ClaimDelegationRewards" => {
+                    #[allow(non_camel_case_types)]
+                    struct ClaimDelegationRewardsSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgClaimDelegationRewards>
+                        for ClaimDelegationRewardsSvc<T>
+                    {
+                        type Response = super::MsgClaimDelegationRewardsResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgClaimDelegationRewards>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut =
+                                async move { (*inner).claim_delegation_rewards(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = ClaimDelegationRewardsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/alliance.alliance.Msg/UpdateParams" => {
+                    #[allow(non_camel_case_types)]
+                    struct UpdateParamsSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgUpdateParams> for UpdateParamsSvc<T> {
+                        type Response = super::MsgUpdateParamsResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgUpdateParams>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).update_params(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UpdateParamsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/alliance.alliance.Msg/CreateAlliance" => {
+                    #[allow(non_camel_case_types)]
+                    struct CreateAllianceSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgCreateAlliance> for CreateAllianceSvc<T> {
+                        type Response = super::MsgCreateAllianceResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgCreateAlliance>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).create_alliance(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = CreateAllianceSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/alliance.alliance.Msg/UpdateAlliance" => {
+                    #[allow(non_camel_case_types)]
+                    struct UpdateAllianceSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgUpdateAlliance> for UpdateAllianceSvc<T> {
+                        type Response = super::MsgUpdateAllianceResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgUpdateAlliance>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).update_alliance(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UpdateAllianceSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/alliance.alliance.Msg/DeleteAlliance" => {
+                    #[allow(non_camel_case_types)]
+                    struct DeleteAllianceSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgDeleteAlliance> for DeleteAllianceSvc<T> {
+                        type Response = super::MsgDeleteAllianceResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgDeleteAlliance>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).delete_alliance(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = DeleteAllianceSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                _ => Box::pin(async move {
+                    Ok(http::Response::builder()
+                        .status(200)
+                        .header("grpc-status", "12")
+                        .header("content-type", "application/grpc")
+                        .body(empty_body())
+                        .unwrap())
+                }),
+            }
+        }
+    }
+    impl<T: Msg> Clone for MsgServer<T> {
+        fn clone(&self) -> Self {
+            let inner = self.inner.clone();
+            Self {
+                inner,
+                accept_compression_encodings: self.accept_compression_encodings,
+                send_compression_encodings: self.send_compression_encodings,
+            }
+        }
+    }
+    impl<T: Msg> Clone for _Inner<T> {
+        fn clone(&self) -> Self {
+            Self(self.0.clone())
+        }
+    }
+    impl<T: std::fmt::Debug> std::fmt::Debug for _Inner<T> {
+        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+            write!(f, "{:?}", self.0)
+        }
+    }
+    impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
+        const NAME: &'static str = "alliance.alliance.Msg";
+    }
+}
+/// UnbondingDelegation defines an unbonding object with relevant metadata.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UnbondingDelegation {
+    /// completion_time is the unix time for unbonding completion.
+    #[prost(message, optional, tag = "1")]
+    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// validator_address is the bech32-encoded address of the validator.
+    #[prost(string, tag = "2")]
+    pub validator_address: ::prost::alloc::string::String,
+    /// amount defines the tokens to receive at completion.
+    #[prost(string, tag = "3")]
+    pub amount: ::prost::alloc::string::String,
 }
 /// Params
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -371,6 +1226,67 @@ pub struct QueryAllianceValidatorResponse {
 pub struct QueryAllianceValidatorsResponse {
     #[prost(message, repeated, tag = "1")]
     pub validators: ::prost::alloc::vec::Vec<QueryAllianceValidatorResponse>,
+    #[prost(message, optional, tag = "2")]
+    pub pagination:
+        ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageResponse>,
+}
+/// AllianceDelegation
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryAllianceUnbondingsByDenomAndDelegatorRequest {
+    #[prost(string, tag = "1")]
+    pub denom: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub delegator_addr: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub pagination: ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageRequest>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryAllianceUnbondingsByDenomAndDelegatorResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub unbondings: ::prost::alloc::vec::Vec<UnbondingDelegation>,
+    #[prost(message, optional, tag = "2")]
+    pub pagination:
+        ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageResponse>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryAllianceUnbondingsRequest {
+    #[prost(string, tag = "1")]
+    pub denom: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub delegator_addr: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub validator_addr: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub pagination: ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageRequest>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryAllianceUnbondingsResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub unbondings: ::prost::alloc::vec::Vec<UnbondingDelegation>,
+    #[prost(message, optional, tag = "2")]
+    pub pagination:
+        ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageResponse>,
+}
+/// Redelegations
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryAllianceRedelegationsRequest {
+    #[prost(string, tag = "1")]
+    pub denom: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub delegator_addr: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub pagination: ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageRequest>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryAllianceRedelegationsResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub redelegations: ::prost::alloc::vec::Vec<RedelegationEntry>,
     #[prost(message, optional, tag = "2")]
     pub pagination:
         ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageResponse>,
@@ -656,6 +1572,61 @@ pub mod query_client {
             );
             self.inner.unary(request.into_request(), path, codec).await
         }
+        /// Query for rewards by delegator addr, validator_addr and denom
+        pub async fn alliance_unbondings_by_denom_and_delegator(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryAllianceUnbondingsByDenomAndDelegatorRequest>,
+        ) -> Result<
+            tonic::Response<super::QueryAllianceUnbondingsByDenomAndDelegatorResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/alliance.alliance.Query/AllianceUnbondingsByDenomAndDelegator",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// Query for rewards by delegator addr, validator_addr and denom
+        pub async fn alliance_unbondings(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryAllianceUnbondingsRequest>,
+        ) -> Result<tonic::Response<super::QueryAllianceUnbondingsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/alliance.alliance.Query/AllianceUnbondings");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// Query redelegations by denom and delegator address
+        pub async fn alliance_redelegations(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryAllianceRedelegationsRequest>,
+        ) -> Result<tonic::Response<super::QueryAllianceRedelegationsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/alliance.alliance.Query/AllianceRedelegations",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
         /// Query a specific alliance by denom
         pub async fn alliance(
             &mut self,
@@ -747,6 +1718,24 @@ pub mod query_server {
             &self,
             request: tonic::Request<super::QueryIbcAllianceDelegationRewardsRequest>,
         ) -> Result<tonic::Response<super::QueryAllianceDelegationRewardsResponse>, tonic::Status>;
+        /// Query for rewards by delegator addr, validator_addr and denom
+        async fn alliance_unbondings_by_denom_and_delegator(
+            &self,
+            request: tonic::Request<super::QueryAllianceUnbondingsByDenomAndDelegatorRequest>,
+        ) -> Result<
+            tonic::Response<super::QueryAllianceUnbondingsByDenomAndDelegatorResponse>,
+            tonic::Status,
+        >;
+        /// Query for rewards by delegator addr, validator_addr and denom
+        async fn alliance_unbondings(
+            &self,
+            request: tonic::Request<super::QueryAllianceUnbondingsRequest>,
+        ) -> Result<tonic::Response<super::QueryAllianceUnbondingsResponse>, tonic::Status>;
+        /// Query redelegations by denom and delegator address
+        async fn alliance_redelegations(
+            &self,
+            request: tonic::Request<super::QueryAllianceRedelegationsRequest>,
+        ) -> Result<tonic::Response<super::QueryAllianceRedelegationsResponse>, tonic::Status>;
         /// Query a specific alliance by denom
         async fn alliance(
             &self,
@@ -1217,6 +2206,115 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
+                "/alliance.alliance.Query/AllianceUnbondingsByDenomAndDelegator" => {
+                    #[allow(non_camel_case_types)]
+                    struct AllianceUnbondingsByDenomAndDelegatorSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query>
+                        tonic::server::UnaryService<
+                            super::QueryAllianceUnbondingsByDenomAndDelegatorRequest,
+                        > for AllianceUnbondingsByDenomAndDelegatorSvc<T>
+                    {
+                        type Response = super::QueryAllianceUnbondingsByDenomAndDelegatorResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<
+                                super::QueryAllianceUnbondingsByDenomAndDelegatorRequest,
+                            >,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move {
+                                (*inner)
+                                    .alliance_unbondings_by_denom_and_delegator(request)
+                                    .await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = AllianceUnbondingsByDenomAndDelegatorSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/alliance.alliance.Query/AllianceUnbondings" => {
+                    #[allow(non_camel_case_types)]
+                    struct AllianceUnbondingsSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query>
+                        tonic::server::UnaryService<super::QueryAllianceUnbondingsRequest>
+                        for AllianceUnbondingsSvc<T>
+                    {
+                        type Response = super::QueryAllianceUnbondingsResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryAllianceUnbondingsRequest>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).alliance_unbondings(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = AllianceUnbondingsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/alliance.alliance.Query/AllianceRedelegations" => {
+                    #[allow(non_camel_case_types)]
+                    struct AllianceRedelegationsSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query>
+                        tonic::server::UnaryService<super::QueryAllianceRedelegationsRequest>
+                        for AllianceRedelegationsSvc<T>
+                    {
+                        type Response = super::QueryAllianceRedelegationsResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::QueryAllianceRedelegationsRequest>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).alliance_redelegations(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = AllianceRedelegationsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
                 "/alliance.alliance.Query/Alliance" => {
                     #[allow(non_camel_case_types)]
                     struct AllianceSvc<T: Query>(pub Arc<T>);
@@ -1282,542 +2380,4 @@ pub mod query_server {
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
         const NAME: &'static str = "alliance.alliance.Query";
     }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgDelegate {
-    #[prost(string, tag = "1")]
-    pub delegator_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator_address: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub amount: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgDelegateResponse {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgUndelegate {
-    #[prost(string, tag = "1")]
-    pub delegator_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator_address: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub amount: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgUndelegateResponse {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgRedelegate {
-    #[prost(string, tag = "1")]
-    pub delegator_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator_src_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub validator_dst_address: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub amount: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgRedelegateResponse {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgClaimDelegationRewards {
-    #[prost(string, tag = "1")]
-    pub delegator_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub denom: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgClaimDelegationRewardsResponse {}
-/// Generated client implementations.
-#[cfg(feature = "grpc")]
-#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod msg_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
-    use tonic::codegen::*;
-    #[derive(Debug, Clone)]
-    pub struct MsgClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    #[cfg(feature = "grpc-transport")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "grpc-transport")))]
-    impl MsgClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: std::convert::TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
-    impl<T> MsgClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
-        {
-            MsgClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        pub async fn delegate(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgDelegate>,
-        ) -> Result<tonic::Response<super::MsgDelegateResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/alliance.alliance.Msg/Delegate");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        pub async fn redelegate(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgRedelegate>,
-        ) -> Result<tonic::Response<super::MsgRedelegateResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/alliance.alliance.Msg/Redelegate");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        pub async fn undelegate(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgUndelegate>,
-        ) -> Result<tonic::Response<super::MsgUndelegateResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/alliance.alliance.Msg/Undelegate");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        pub async fn claim_delegation_rewards(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MsgClaimDelegationRewards>,
-        ) -> Result<tonic::Response<super::MsgClaimDelegationRewardsResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/alliance.alliance.Msg/ClaimDelegationRewards",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-    }
-}
-/// Generated server implementations.
-#[cfg(feature = "grpc")]
-#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-pub mod msg_server {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    /// Generated trait containing gRPC methods that should be implemented for use with MsgServer.
-    #[async_trait]
-    pub trait Msg: Send + Sync + 'static {
-        async fn delegate(
-            &self,
-            request: tonic::Request<super::MsgDelegate>,
-        ) -> Result<tonic::Response<super::MsgDelegateResponse>, tonic::Status>;
-        async fn redelegate(
-            &self,
-            request: tonic::Request<super::MsgRedelegate>,
-        ) -> Result<tonic::Response<super::MsgRedelegateResponse>, tonic::Status>;
-        async fn undelegate(
-            &self,
-            request: tonic::Request<super::MsgUndelegate>,
-        ) -> Result<tonic::Response<super::MsgUndelegateResponse>, tonic::Status>;
-        async fn claim_delegation_rewards(
-            &self,
-            request: tonic::Request<super::MsgClaimDelegationRewards>,
-        ) -> Result<tonic::Response<super::MsgClaimDelegationRewardsResponse>, tonic::Status>;
-    }
-    #[derive(Debug)]
-    pub struct MsgServer<T: Msg> {
-        inner: _Inner<T>,
-        accept_compression_encodings: EnabledCompressionEncodings,
-        send_compression_encodings: EnabledCompressionEncodings,
-    }
-    struct _Inner<T>(Arc<T>);
-    impl<T: Msg> MsgServer<T> {
-        pub fn new(inner: T) -> Self {
-            Self::from_arc(Arc::new(inner))
-        }
-        pub fn from_arc(inner: Arc<T>) -> Self {
-            let inner = _Inner(inner);
-            Self {
-                inner,
-                accept_compression_encodings: Default::default(),
-                send_compression_encodings: Default::default(),
-            }
-        }
-        pub fn with_interceptor<F>(inner: T, interceptor: F) -> InterceptedService<Self, F>
-        where
-            F: tonic::service::Interceptor,
-        {
-            InterceptedService::new(Self::new(inner), interceptor)
-        }
-        /// Enable decompressing requests with the given encoding.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.accept_compression_encodings.enable(encoding);
-            self
-        }
-        /// Compress responses with the given encoding, if the client supports it.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.send_compression_encodings.enable(encoding);
-            self
-        }
-    }
-    impl<T, B> tonic::codegen::Service<http::Request<B>> for MsgServer<T>
-    where
-        T: Msg,
-        B: Body + Send + 'static,
-        B::Error: Into<StdError> + Send + 'static,
-    {
-        type Response = http::Response<tonic::body::BoxBody>;
-        type Error = std::convert::Infallible;
-        type Future = BoxFuture<Self::Response, Self::Error>;
-        fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
-            Poll::Ready(Ok(()))
-        }
-        fn call(&mut self, req: http::Request<B>) -> Self::Future {
-            let inner = self.inner.clone();
-            match req.uri().path() {
-                "/alliance.alliance.Msg/Delegate" => {
-                    #[allow(non_camel_case_types)]
-                    struct DelegateSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgDelegate> for DelegateSvc<T> {
-                        type Response = super::MsgDelegateResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgDelegate>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).delegate(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = DelegateSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/alliance.alliance.Msg/Redelegate" => {
-                    #[allow(non_camel_case_types)]
-                    struct RedelegateSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgRedelegate> for RedelegateSvc<T> {
-                        type Response = super::MsgRedelegateResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgRedelegate>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).redelegate(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = RedelegateSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/alliance.alliance.Msg/Undelegate" => {
-                    #[allow(non_camel_case_types)]
-                    struct UndelegateSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgUndelegate> for UndelegateSvc<T> {
-                        type Response = super::MsgUndelegateResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgUndelegate>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).undelegate(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = UndelegateSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/alliance.alliance.Msg/ClaimDelegationRewards" => {
-                    #[allow(non_camel_case_types)]
-                    struct ClaimDelegationRewardsSvc<T: Msg>(pub Arc<T>);
-                    impl<T: Msg> tonic::server::UnaryService<super::MsgClaimDelegationRewards>
-                        for ClaimDelegationRewardsSvc<T>
-                    {
-                        type Response = super::MsgClaimDelegationRewardsResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::MsgClaimDelegationRewards>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut =
-                                async move { (*inner).claim_delegation_rewards(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = ClaimDelegationRewardsSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                _ => Box::pin(async move {
-                    Ok(http::Response::builder()
-                        .status(200)
-                        .header("grpc-status", "12")
-                        .header("content-type", "application/grpc")
-                        .body(empty_body())
-                        .unwrap())
-                }),
-            }
-        }
-    }
-    impl<T: Msg> Clone for MsgServer<T> {
-        fn clone(&self) -> Self {
-            let inner = self.inner.clone();
-            Self {
-                inner,
-                accept_compression_encodings: self.accept_compression_encodings,
-                send_compression_encodings: self.send_compression_encodings,
-            }
-        }
-    }
-    impl<T: Msg> Clone for _Inner<T> {
-        fn clone(&self) -> Self {
-            Self(self.0.clone())
-        }
-    }
-    impl<T: std::fmt::Debug> std::fmt::Debug for _Inner<T> {
-        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-            write!(f, "{:?}", self.0)
-        }
-    }
-    impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
-        const NAME: &'static str = "alliance.alliance.Msg";
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DelegateAllianceEvent {
-    #[prost(string, tag = "1")]
-    pub alliance_sender: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub coin: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-    #[prost(string, tag = "4")]
-    pub new_shares: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UndelegateAllianceEvent {
-    #[prost(string, tag = "1")]
-    pub alliance_sender: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub coin: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-    #[prost(message, optional, tag = "4")]
-    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RedelegateAllianceEvent {
-    #[prost(string, tag = "1")]
-    pub alliance_sender: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub source_validator: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub destination_validator: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub coin: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-    #[prost(message, optional, tag = "5")]
-    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ClaimAllianceRewardsEvent {
-    #[prost(string, tag = "1")]
-    pub alliance_sender: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub coins: ::prost::alloc::vec::Vec<super::super::cosmos::base::v1beta1::Coin>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgCreateAllianceProposal {
-    /// the title of the update proposal
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// the description of the proposal
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// Denom of the asset. It could either be a native token or an IBC token
-    #[prost(string, tag = "3")]
-    pub denom: ::prost::alloc::string::String,
-    /// The reward weight specifies the ratio of rewards that will be given to each alliance asset
-    /// It does not need to sum to 1. rate = weight / total_weight
-    /// Native asset is always assumed to have a weight of 1.
-    #[prost(string, tag = "4")]
-    pub reward_weight: ::prost::alloc::string::String,
-    /// A positive take rate is used for liquid staking derivatives. It defines an annualized reward rate that
-    /// will be redirected to the distribution rewards pool
-    #[prost(string, tag = "5")]
-    pub take_rate: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub reward_change_rate: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "7")]
-    pub reward_change_interval: ::core::option::Option<::prost_types::Duration>,
-    /// set a bound of weight range to limit how much reward weights can scale.
-    #[prost(message, optional, tag = "8")]
-    pub reward_weight_range: ::core::option::Option<RewardWeightRange>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgUpdateAllianceProposal {
-    /// the title of the update proposal
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// the description of the proposal
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// Denom of the asset. It could either be a native token or an IBC token
-    #[prost(string, tag = "3")]
-    pub denom: ::prost::alloc::string::String,
-    /// The reward weight specifies the ratio of rewards that will be given to each alliance asset
-    /// It does not need to sum to 1. rate = weight / total_weight
-    /// Native asset is always assumed to have a weight of 1.
-    #[prost(string, tag = "4")]
-    pub reward_weight: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub take_rate: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub reward_change_rate: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "7")]
-    pub reward_change_interval: ::core::option::Option<::prost_types::Duration>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgDeleteAllianceProposal {
-    /// the title of the update proposal
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// the description of the proposal
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub denom: ::prost::alloc::string::String,
 }

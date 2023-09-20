@@ -191,11 +191,340 @@ impl ContractCodeHistoryOperationType {
         }
     }
 }
+/// Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+/// an explicit StoreCodeProposal. To submit WASM code to the system,
+/// a simple MsgStoreCode can be invoked from the x/gov module via
+/// a v1 governance proposal.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StoreCodeProposal {
+    /// Title is a short summary
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// Description is a human readable text
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// RunAs is the address that is passed to the contract's environment as sender
+    #[prost(string, tag = "3")]
+    pub run_as: ::prost::alloc::string::String,
+    /// WASMByteCode can be raw or gzip compressed
+    #[prost(bytes = "vec", tag = "4")]
+    pub wasm_byte_code: ::prost::alloc::vec::Vec<u8>,
+    /// InstantiatePermission to apply on contract creation, optional
+    #[prost(message, optional, tag = "7")]
+    pub instantiate_permission: ::core::option::Option<AccessConfig>,
+    /// UnpinCode code on upload, optional
+    #[prost(bool, tag = "8")]
+    pub unpin_code: bool,
+    /// Source is the URL where the code is hosted
+    #[prost(string, tag = "9")]
+    pub source: ::prost::alloc::string::String,
+    /// Builder is the docker image used to build the code deterministically, used
+    /// for smart contract verification
+    #[prost(string, tag = "10")]
+    pub builder: ::prost::alloc::string::String,
+    /// CodeHash is the SHA256 sum of the code outputted by builder, used for smart
+    /// contract verification
+    #[prost(bytes = "vec", tag = "11")]
+    pub code_hash: ::prost::alloc::vec::Vec<u8>,
+}
+/// Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+/// an explicit InstantiateContractProposal. To instantiate a contract,
+/// a simple MsgInstantiateContract can be invoked from the x/gov module via
+/// a v1 governance proposal.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct InstantiateContractProposal {
+    /// Title is a short summary
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// Description is a human readable text
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// RunAs is the address that is passed to the contract's environment as sender
+    #[prost(string, tag = "3")]
+    pub run_as: ::prost::alloc::string::String,
+    /// Admin is an optional address that can execute migrations
+    #[prost(string, tag = "4")]
+    pub admin: ::prost::alloc::string::String,
+    /// CodeID is the reference to the stored WASM code
+    #[prost(uint64, tag = "5")]
+    pub code_id: u64,
+    /// Label is optional metadata to be stored with a constract instance.
+    #[prost(string, tag = "6")]
+    pub label: ::prost::alloc::string::String,
+    /// Msg json encoded message to be passed to the contract on instantiation
+    #[prost(bytes = "vec", tag = "7")]
+    pub msg: ::prost::alloc::vec::Vec<u8>,
+    /// Funds coins that are transferred to the contract on instantiation
+    #[prost(message, repeated, tag = "8")]
+    pub funds: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
+}
+/// Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+/// an explicit InstantiateContract2Proposal. To instantiate contract 2,
+/// a simple MsgInstantiateContract2 can be invoked from the x/gov module via
+/// a v1 governance proposal.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct InstantiateContract2Proposal {
+    /// Title is a short summary
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// Description is a human readable text
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// RunAs is the address that is passed to the contract's enviroment as sender
+    #[prost(string, tag = "3")]
+    pub run_as: ::prost::alloc::string::String,
+    /// Admin is an optional address that can execute migrations
+    #[prost(string, tag = "4")]
+    pub admin: ::prost::alloc::string::String,
+    /// CodeID is the reference to the stored WASM code
+    #[prost(uint64, tag = "5")]
+    pub code_id: u64,
+    /// Label is optional metadata to be stored with a constract instance.
+    #[prost(string, tag = "6")]
+    pub label: ::prost::alloc::string::String,
+    /// Msg json encode message to be passed to the contract on instantiation
+    #[prost(bytes = "vec", tag = "7")]
+    pub msg: ::prost::alloc::vec::Vec<u8>,
+    /// Funds coins that are transferred to the contract on instantiation
+    #[prost(message, repeated, tag = "8")]
+    pub funds: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
+    /// Salt is an arbitrary value provided by the sender. Size can be 1 to 64.
+    #[prost(bytes = "vec", tag = "9")]
+    pub salt: ::prost::alloc::vec::Vec<u8>,
+    /// FixMsg include the msg value into the hash for the predictable address.
+    /// Default is false
+    #[prost(bool, tag = "10")]
+    pub fix_msg: bool,
+}
+/// Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+/// an explicit MigrateContractProposal. To migrate a contract,
+/// a simple MsgMigrateContract can be invoked from the x/gov module via
+/// a v1 governance proposal.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MigrateContractProposal {
+    /// Title is a short summary
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// Description is a human readable text
+    ///
+    /// Note: skipping 3 as this was previously used for unneeded run_as
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// Contract is the address of the smart contract
+    #[prost(string, tag = "4")]
+    pub contract: ::prost::alloc::string::String,
+    /// CodeID references the new WASM code
+    #[prost(uint64, tag = "5")]
+    pub code_id: u64,
+    /// Msg json encoded message to be passed to the contract on migration
+    #[prost(bytes = "vec", tag = "6")]
+    pub msg: ::prost::alloc::vec::Vec<u8>,
+}
+/// Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+/// an explicit SudoContractProposal. To call sudo on a contract,
+/// a simple MsgSudoContract can be invoked from the x/gov module via
+/// a v1 governance proposal.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SudoContractProposal {
+    /// Title is a short summary
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// Description is a human readable text
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// Contract is the address of the smart contract
+    #[prost(string, tag = "3")]
+    pub contract: ::prost::alloc::string::String,
+    /// Msg json encoded message to be passed to the contract as sudo
+    #[prost(bytes = "vec", tag = "4")]
+    pub msg: ::prost::alloc::vec::Vec<u8>,
+}
+/// Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+/// an explicit ExecuteContractProposal. To call execute on a contract,
+/// a simple MsgExecuteContract can be invoked from the x/gov module via
+/// a v1 governance proposal.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExecuteContractProposal {
+    /// Title is a short summary
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// Description is a human readable text
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// RunAs is the address that is passed to the contract's environment as sender
+    #[prost(string, tag = "3")]
+    pub run_as: ::prost::alloc::string::String,
+    /// Contract is the address of the smart contract
+    #[prost(string, tag = "4")]
+    pub contract: ::prost::alloc::string::String,
+    /// Msg json encoded message to be passed to the contract as execute
+    #[prost(bytes = "vec", tag = "5")]
+    pub msg: ::prost::alloc::vec::Vec<u8>,
+    /// Funds coins that are transferred to the contract on instantiation
+    #[prost(message, repeated, tag = "6")]
+    pub funds: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
+}
+/// Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+/// an explicit UpdateAdminProposal. To set an admin for a contract,
+/// a simple MsgUpdateAdmin can be invoked from the x/gov module via
+/// a v1 governance proposal.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateAdminProposal {
+    /// Title is a short summary
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// Description is a human readable text
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// NewAdmin address to be set
+    #[prost(string, tag = "3")]
+    pub new_admin: ::prost::alloc::string::String,
+    /// Contract is the address of the smart contract
+    #[prost(string, tag = "4")]
+    pub contract: ::prost::alloc::string::String,
+}
+/// Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+/// an explicit ClearAdminProposal. To clear the admin of a contract,
+/// a simple MsgClearAdmin can be invoked from the x/gov module via
+/// a v1 governance proposal.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ClearAdminProposal {
+    /// Title is a short summary
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// Description is a human readable text
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// Contract is the address of the smart contract
+    #[prost(string, tag = "3")]
+    pub contract: ::prost::alloc::string::String,
+}
+/// Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+/// an explicit PinCodesProposal. To pin a set of code ids in the wasmvm
+/// cache, a simple MsgPinCodes can be invoked from the x/gov module via
+/// a v1 governance proposal.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PinCodesProposal {
+    /// Title is a short summary
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// Description is a human readable text
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// CodeIDs references the new WASM codes
+    #[prost(uint64, repeated, packed = "false", tag = "3")]
+    pub code_ids: ::prost::alloc::vec::Vec<u64>,
+}
+/// Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+/// an explicit UnpinCodesProposal. To unpin a set of code ids in the wasmvm
+/// cache, a simple MsgUnpinCodes can be invoked from the x/gov module via
+/// a v1 governance proposal.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UnpinCodesProposal {
+    /// Title is a short summary
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// Description is a human readable text
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// CodeIDs references the WASM codes
+    #[prost(uint64, repeated, packed = "false", tag = "3")]
+    pub code_ids: ::prost::alloc::vec::Vec<u64>,
+}
+/// AccessConfigUpdate contains the code id and the access config to be
+/// applied.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AccessConfigUpdate {
+    /// CodeID is the reference to the stored WASM code to be updated
+    #[prost(uint64, tag = "1")]
+    pub code_id: u64,
+    /// InstantiatePermission to apply to the set of code ids
+    #[prost(message, optional, tag = "2")]
+    pub instantiate_permission: ::core::option::Option<AccessConfig>,
+}
+/// Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+/// an explicit UpdateInstantiateConfigProposal. To update instantiate config
+/// to a set of code ids, a simple MsgUpdateInstantiateConfig can be invoked from
+/// the x/gov module via a v1 governance proposal.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateInstantiateConfigProposal {
+    /// Title is a short summary
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// Description is a human readable text
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// AccessConfigUpdate contains the list of code ids and the access config
+    /// to be applied.
+    #[prost(message, repeated, tag = "3")]
+    pub access_config_updates: ::prost::alloc::vec::Vec<AccessConfigUpdate>,
+}
+/// Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+/// an explicit StoreAndInstantiateContractProposal. To store and instantiate
+/// the contract, a simple MsgStoreAndInstantiateContract can be invoked from
+/// the x/gov module via a v1 governance proposal.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StoreAndInstantiateContractProposal {
+    /// Title is a short summary
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// Description is a human readable text
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// RunAs is the address that is passed to the contract's environment as sender
+    #[prost(string, tag = "3")]
+    pub run_as: ::prost::alloc::string::String,
+    /// WASMByteCode can be raw or gzip compressed
+    #[prost(bytes = "vec", tag = "4")]
+    pub wasm_byte_code: ::prost::alloc::vec::Vec<u8>,
+    /// InstantiatePermission to apply on contract creation, optional
+    #[prost(message, optional, tag = "5")]
+    pub instantiate_permission: ::core::option::Option<AccessConfig>,
+    /// UnpinCode code on upload, optional
+    #[prost(bool, tag = "6")]
+    pub unpin_code: bool,
+    /// Admin is an optional address that can execute migrations
+    #[prost(string, tag = "7")]
+    pub admin: ::prost::alloc::string::String,
+    /// Label is optional metadata to be stored with a constract instance.
+    #[prost(string, tag = "8")]
+    pub label: ::prost::alloc::string::String,
+    /// Msg json encoded message to be passed to the contract on instantiation
+    #[prost(bytes = "vec", tag = "9")]
+    pub msg: ::prost::alloc::vec::Vec<u8>,
+    /// Funds coins that are transferred to the contract on instantiation
+    #[prost(message, repeated, tag = "10")]
+    pub funds: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
+    /// Source is the URL where the code is hosted
+    #[prost(string, tag = "11")]
+    pub source: ::prost::alloc::string::String,
+    /// Builder is the docker image used to build the code deterministically, used
+    /// for smart contract verification
+    #[prost(string, tag = "12")]
+    pub builder: ::prost::alloc::string::String,
+    /// CodeHash is the SHA256 sum of the code outputted by builder, used for smart
+    /// contract verification
+    #[prost(bytes = "vec", tag = "13")]
+    pub code_hash: ::prost::alloc::vec::Vec<u8>,
+}
 /// MsgStoreCode submit Wasm code to the system
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgStoreCode {
-    /// Sender is the that actor that signed the messages
+    /// Sender is the actor that signed the messages
     #[prost(string, tag = "1")]
     pub sender: ::prost::alloc::string::String,
     /// WASMByteCode can be raw or gzip compressed
@@ -241,6 +570,17 @@ pub struct MsgInstantiateContract {
     #[prost(message, repeated, tag = "6")]
     pub funds: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
 }
+/// MsgInstantiateContractResponse return instantiation result data
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgInstantiateContractResponse {
+    /// Address is the bech32 address of the new contract instance.
+    #[prost(string, tag = "1")]
+    pub address: ::prost::alloc::string::String,
+    /// Data contains bytes to returned from the contract
+    #[prost(bytes = "vec", tag = "2")]
+    pub data: ::prost::alloc::vec::Vec<u8>,
+}
 /// MsgInstantiateContract2 create a new smart contract instance for the given
 /// code id with a predicable address.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -271,17 +611,6 @@ pub struct MsgInstantiateContract2 {
     /// Default is false
     #[prost(bool, tag = "8")]
     pub fix_msg: bool,
-}
-/// MsgInstantiateContractResponse return instantiation result data
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgInstantiateContractResponse {
-    /// Address is the bech32 address of the new contract instance.
-    #[prost(string, tag = "1")]
-    pub address: ::prost::alloc::string::String,
-    /// Data contains bytes to returned from the contract
-    #[prost(bytes = "vec", tag = "2")]
-    pub data: ::prost::alloc::vec::Vec<u8>,
 }
 /// MsgInstantiateContract2Response return instantiation result data
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -367,7 +696,7 @@ pub struct MsgUpdateAdminResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgClearAdmin {
-    /// Sender is the that actor that signed the messages
+    /// Sender is the actor that signed the messages
     #[prost(string, tag = "1")]
     pub sender: ::prost::alloc::string::String,
     /// Contract is the address of the smart contract
@@ -378,6 +707,172 @@ pub struct MsgClearAdmin {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgClearAdminResponse {}
+/// MsgUpdateInstantiateConfig updates instantiate config for a smart contract
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateInstantiateConfig {
+    /// Sender is the that actor that signed the messages
+    #[prost(string, tag = "1")]
+    pub sender: ::prost::alloc::string::String,
+    /// CodeID references the stored WASM code
+    #[prost(uint64, tag = "2")]
+    pub code_id: u64,
+    /// NewInstantiatePermission is the new access control
+    #[prost(message, optional, tag = "3")]
+    pub new_instantiate_permission: ::core::option::Option<AccessConfig>,
+}
+/// MsgUpdateInstantiateConfigResponse returns empty data
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateInstantiateConfigResponse {}
+/// MsgUpdateParams is the MsgUpdateParams request type.
+///
+/// Since: 0.40
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateParams {
+    /// Authority is the address of the governance account.
+    #[prost(string, tag = "1")]
+    pub authority: ::prost::alloc::string::String,
+    /// params defines the x/wasm parameters to update.
+    ///
+    /// NOTE: All parameters must be supplied.
+    #[prost(message, optional, tag = "2")]
+    pub params: ::core::option::Option<Params>,
+}
+/// MsgUpdateParamsResponse defines the response structure for executing a
+/// MsgUpdateParams message.
+///
+/// Since: 0.40
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateParamsResponse {}
+/// MsgSudoContract is the MsgSudoContract request type.
+///
+/// Since: 0.40
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgSudoContract {
+    /// Authority is the address of the governance account.
+    #[prost(string, tag = "1")]
+    pub authority: ::prost::alloc::string::String,
+    /// Contract is the address of the smart contract
+    #[prost(string, tag = "2")]
+    pub contract: ::prost::alloc::string::String,
+    /// Msg json encoded message to be passed to the contract as sudo
+    #[prost(bytes = "vec", tag = "3")]
+    pub msg: ::prost::alloc::vec::Vec<u8>,
+}
+/// MsgSudoContractResponse defines the response structure for executing a
+/// MsgSudoContract message.
+///
+/// Since: 0.40
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgSudoContractResponse {
+    /// Data contains bytes to returned from the contract
+    #[prost(bytes = "vec", tag = "1")]
+    pub data: ::prost::alloc::vec::Vec<u8>,
+}
+/// MsgPinCodes is the MsgPinCodes request type.
+///
+/// Since: 0.40
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgPinCodes {
+    /// Authority is the address of the governance account.
+    #[prost(string, tag = "1")]
+    pub authority: ::prost::alloc::string::String,
+    /// CodeIDs references the new WASM codes
+    #[prost(uint64, repeated, packed = "false", tag = "2")]
+    pub code_ids: ::prost::alloc::vec::Vec<u64>,
+}
+/// MsgPinCodesResponse defines the response structure for executing a
+/// MsgPinCodes message.
+///
+/// Since: 0.40
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgPinCodesResponse {}
+/// MsgUnpinCodes is the MsgUnpinCodes request type.
+///
+/// Since: 0.40
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUnpinCodes {
+    /// Authority is the address of the governance account.
+    #[prost(string, tag = "1")]
+    pub authority: ::prost::alloc::string::String,
+    /// CodeIDs references the WASM codes
+    #[prost(uint64, repeated, packed = "false", tag = "2")]
+    pub code_ids: ::prost::alloc::vec::Vec<u64>,
+}
+/// MsgUnpinCodesResponse defines the response structure for executing a
+/// MsgUnpinCodes message.
+///
+/// Since: 0.40
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUnpinCodesResponse {}
+/// MsgStoreAndInstantiateContract is the MsgStoreAndInstantiateContract
+/// request type.
+///
+/// Since: 0.40
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgStoreAndInstantiateContract {
+    /// Authority is the address of the governance account.
+    #[prost(string, tag = "1")]
+    pub authority: ::prost::alloc::string::String,
+    /// WASMByteCode can be raw or gzip compressed
+    #[prost(bytes = "vec", tag = "3")]
+    pub wasm_byte_code: ::prost::alloc::vec::Vec<u8>,
+    /// InstantiatePermission to apply on contract creation, optional
+    #[prost(message, optional, tag = "4")]
+    pub instantiate_permission: ::core::option::Option<AccessConfig>,
+    /// UnpinCode code on upload, optional. As default the uploaded contract is
+    /// pinned to cache.
+    #[prost(bool, tag = "5")]
+    pub unpin_code: bool,
+    /// Admin is an optional address that can execute migrations
+    #[prost(string, tag = "6")]
+    pub admin: ::prost::alloc::string::String,
+    /// Label is optional metadata to be stored with a constract instance.
+    #[prost(string, tag = "7")]
+    pub label: ::prost::alloc::string::String,
+    /// Msg json encoded message to be passed to the contract on instantiation
+    #[prost(bytes = "vec", tag = "8")]
+    pub msg: ::prost::alloc::vec::Vec<u8>,
+    /// Funds coins that are transferred from the authority account to the contract
+    /// on instantiation
+    #[prost(message, repeated, tag = "9")]
+    pub funds: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
+    /// Source is the URL where the code is hosted
+    #[prost(string, tag = "10")]
+    pub source: ::prost::alloc::string::String,
+    /// Builder is the docker image used to build the code deterministically, used
+    /// for smart contract verification
+    #[prost(string, tag = "11")]
+    pub builder: ::prost::alloc::string::String,
+    /// CodeHash is the SHA256 sum of the code outputted by builder, used for smart
+    /// contract verification
+    #[prost(bytes = "vec", tag = "12")]
+    pub code_hash: ::prost::alloc::vec::Vec<u8>,
+}
+/// MsgStoreAndInstantiateContractResponse defines the response structure
+/// for executing a MsgStoreAndInstantiateContract message.
+///
+/// Since: 0.40
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgStoreAndInstantiateContractResponse {
+    /// Address is the bech32 address of the new contract instance.
+    #[prost(string, tag = "1")]
+    pub address: ::prost::alloc::string::String,
+    /// Data contains bytes to returned from the contract
+    #[prost(bytes = "vec", tag = "2")]
+    pub data: ::prost::alloc::vec::Vec<u8>,
+}
 /// Generated client implementations.
 #[cfg(feature = "grpc")]
 #[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
@@ -560,6 +1055,117 @@ pub mod msg_client {
             let path = http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Msg/ClearAdmin");
             self.inner.unary(request.into_request(), path, codec).await
         }
+        /// UpdateInstantiateConfig updates instantiate config for a smart contract
+        pub async fn update_instantiate_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgUpdateInstantiateConfig>,
+        ) -> Result<tonic::Response<super::MsgUpdateInstantiateConfigResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmwasm.wasm.v1.Msg/UpdateInstantiateConfig",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// UpdateParams defines a governance operation for updating the x/wasm
+        /// module parameters. The authority is defined in the keeper.
+        ///
+        /// Since: 0.40
+        pub async fn update_params(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgUpdateParams>,
+        ) -> Result<tonic::Response<super::MsgUpdateParamsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Msg/UpdateParams");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// SudoContract defines a governance operation for calling sudo
+        /// on a contract. The authority is defined in the keeper.
+        ///
+        /// Since: 0.40
+        pub async fn sudo_contract(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgSudoContract>,
+        ) -> Result<tonic::Response<super::MsgSudoContractResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Msg/SudoContract");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// PinCodes defines a governance operation for pinning a set of
+        /// code ids in the wasmvm cache. The authority is defined in the keeper.
+        ///
+        /// Since: 0.40
+        pub async fn pin_codes(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgPinCodes>,
+        ) -> Result<tonic::Response<super::MsgPinCodesResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Msg/PinCodes");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// UnpinCodes defines a governance operation for unpinning a set of
+        /// code ids in the wasmvm cache. The authority is defined in the keeper.
+        ///
+        /// Since: 0.40
+        pub async fn unpin_codes(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgUnpinCodes>,
+        ) -> Result<tonic::Response<super::MsgUnpinCodesResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Msg/UnpinCodes");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// StoreAndInstantiateContract defines a governance operation for storing
+        /// and instantiating the contract. The authority is defined in the keeper.
+        ///
+        /// Since: 0.40
+        pub async fn store_and_instantiate_contract(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgStoreAndInstantiateContract>,
+        ) -> Result<tonic::Response<super::MsgStoreAndInstantiateContractResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmwasm.wasm.v1.Msg/StoreAndInstantiateContract",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -608,6 +1214,51 @@ pub mod msg_server {
             &self,
             request: tonic::Request<super::MsgClearAdmin>,
         ) -> Result<tonic::Response<super::MsgClearAdminResponse>, tonic::Status>;
+        /// UpdateInstantiateConfig updates instantiate config for a smart contract
+        async fn update_instantiate_config(
+            &self,
+            request: tonic::Request<super::MsgUpdateInstantiateConfig>,
+        ) -> Result<tonic::Response<super::MsgUpdateInstantiateConfigResponse>, tonic::Status>;
+        /// UpdateParams defines a governance operation for updating the x/wasm
+        /// module parameters. The authority is defined in the keeper.
+        ///
+        /// Since: 0.40
+        async fn update_params(
+            &self,
+            request: tonic::Request<super::MsgUpdateParams>,
+        ) -> Result<tonic::Response<super::MsgUpdateParamsResponse>, tonic::Status>;
+        /// SudoContract defines a governance operation for calling sudo
+        /// on a contract. The authority is defined in the keeper.
+        ///
+        /// Since: 0.40
+        async fn sudo_contract(
+            &self,
+            request: tonic::Request<super::MsgSudoContract>,
+        ) -> Result<tonic::Response<super::MsgSudoContractResponse>, tonic::Status>;
+        /// PinCodes defines a governance operation for pinning a set of
+        /// code ids in the wasmvm cache. The authority is defined in the keeper.
+        ///
+        /// Since: 0.40
+        async fn pin_codes(
+            &self,
+            request: tonic::Request<super::MsgPinCodes>,
+        ) -> Result<tonic::Response<super::MsgPinCodesResponse>, tonic::Status>;
+        /// UnpinCodes defines a governance operation for unpinning a set of
+        /// code ids in the wasmvm cache. The authority is defined in the keeper.
+        ///
+        /// Since: 0.40
+        async fn unpin_codes(
+            &self,
+            request: tonic::Request<super::MsgUnpinCodes>,
+        ) -> Result<tonic::Response<super::MsgUnpinCodesResponse>, tonic::Status>;
+        /// StoreAndInstantiateContract defines a governance operation for storing
+        /// and instantiating the contract. The authority is defined in the keeper.
+        ///
+        /// Since: 0.40
+        async fn store_and_instantiate_contract(
+            &self,
+            request: tonic::Request<super::MsgStoreAndInstantiateContract>,
+        ) -> Result<tonic::Response<super::MsgStoreAndInstantiateContractResponse>, tonic::Status>;
     }
     /// Msg defines the wasm Msg service.
     #[derive(Debug)]
@@ -884,6 +1535,199 @@ pub mod msg_server {
                     };
                     Box::pin(fut)
                 }
+                "/cosmwasm.wasm.v1.Msg/UpdateInstantiateConfig" => {
+                    #[allow(non_camel_case_types)]
+                    struct UpdateInstantiateConfigSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgUpdateInstantiateConfig>
+                        for UpdateInstantiateConfigSvc<T>
+                    {
+                        type Response = super::MsgUpdateInstantiateConfigResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgUpdateInstantiateConfig>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut =
+                                async move { (*inner).update_instantiate_config(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UpdateInstantiateConfigSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmwasm.wasm.v1.Msg/UpdateParams" => {
+                    #[allow(non_camel_case_types)]
+                    struct UpdateParamsSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgUpdateParams> for UpdateParamsSvc<T> {
+                        type Response = super::MsgUpdateParamsResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgUpdateParams>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).update_params(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UpdateParamsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmwasm.wasm.v1.Msg/SudoContract" => {
+                    #[allow(non_camel_case_types)]
+                    struct SudoContractSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgSudoContract> for SudoContractSvc<T> {
+                        type Response = super::MsgSudoContractResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgSudoContract>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).sudo_contract(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = SudoContractSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmwasm.wasm.v1.Msg/PinCodes" => {
+                    #[allow(non_camel_case_types)]
+                    struct PinCodesSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgPinCodes> for PinCodesSvc<T> {
+                        type Response = super::MsgPinCodesResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgPinCodes>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).pin_codes(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = PinCodesSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmwasm.wasm.v1.Msg/UnpinCodes" => {
+                    #[allow(non_camel_case_types)]
+                    struct UnpinCodesSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgUnpinCodes> for UnpinCodesSvc<T> {
+                        type Response = super::MsgUnpinCodesResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgUnpinCodes>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move { (*inner).unpin_codes(request).await };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UnpinCodesSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/cosmwasm.wasm.v1.Msg/StoreAndInstantiateContract" => {
+                    #[allow(non_camel_case_types)]
+                    struct StoreAndInstantiateContractSvc<T: Msg>(pub Arc<T>);
+                    impl<T: Msg> tonic::server::UnaryService<super::MsgStoreAndInstantiateContract>
+                        for StoreAndInstantiateContractSvc<T>
+                    {
+                        type Response = super::MsgStoreAndInstantiateContractResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::MsgStoreAndInstantiateContract>,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move {
+                                (*inner).store_and_instantiate_contract(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = StoreAndInstantiateContractSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
                 _ => Box::pin(async move {
                     Ok(http::Response::builder()
                         .status(200)
@@ -919,6 +1763,134 @@ pub mod msg_server {
         const NAME: &'static str = "cosmwasm.wasm.v1.Msg";
     }
 }
+/// ContractExecutionAuthorization defines authorization for wasm execute.
+/// Since: wasmd 0.30
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ContractExecutionAuthorization {
+    /// Grants for contract executions
+    #[prost(message, repeated, tag = "1")]
+    pub grants: ::prost::alloc::vec::Vec<ContractGrant>,
+}
+/// ContractMigrationAuthorization defines authorization for wasm contract
+/// migration. Since: wasmd 0.30
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ContractMigrationAuthorization {
+    /// Grants for contract migrations
+    #[prost(message, repeated, tag = "1")]
+    pub grants: ::prost::alloc::vec::Vec<ContractGrant>,
+}
+/// ContractGrant a granted permission for a single contract
+/// Since: wasmd 0.30
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ContractGrant {
+    /// Contract is the bech32 address of the smart contract
+    #[prost(string, tag = "1")]
+    pub contract: ::prost::alloc::string::String,
+    /// Limit defines execution limits that are enforced and updated when the grant
+    /// is applied. When the limit lapsed the grant is removed.
+    #[prost(message, optional, tag = "2")]
+    pub limit: ::core::option::Option<::prost_types::Any>,
+    /// Filter define more fine-grained control on the message payload passed
+    /// to the contract in the operation. When no filter applies on execution, the
+    /// operation is prohibited.
+    #[prost(message, optional, tag = "3")]
+    pub filter: ::core::option::Option<::prost_types::Any>,
+}
+/// MaxCallsLimit limited number of calls to the contract. No funds transferable.
+/// Since: wasmd 0.30
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MaxCallsLimit {
+    /// Remaining number that is decremented on each execution
+    #[prost(uint64, tag = "1")]
+    pub remaining: u64,
+}
+/// MaxFundsLimit defines the maximal amounts that can be sent to the contract.
+/// Since: wasmd 0.30
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MaxFundsLimit {
+    /// Amounts is the maximal amount of tokens transferable to the contract.
+    #[prost(message, repeated, tag = "1")]
+    pub amounts: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
+}
+/// CombinedLimit defines the maximal amounts that can be sent to a contract and
+/// the maximal number of calls executable. Both need to remain >0 to be valid.
+/// Since: wasmd 0.30
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CombinedLimit {
+    /// Remaining number that is decremented on each execution
+    #[prost(uint64, tag = "1")]
+    pub calls_remaining: u64,
+    /// Amounts is the maximal amount of tokens transferable to the contract.
+    #[prost(message, repeated, tag = "2")]
+    pub amounts: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
+}
+/// AllowAllMessagesFilter is a wildcard to allow any type of contract payload
+/// message.
+/// Since: wasmd 0.30
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AllowAllMessagesFilter {}
+/// AcceptedMessageKeysFilter accept only the specific contract message keys in
+/// the json object to be executed.
+/// Since: wasmd 0.30
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AcceptedMessageKeysFilter {
+    /// Messages is the list of unique keys
+    #[prost(string, repeated, tag = "1")]
+    pub keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// AcceptedMessagesFilter accept only the specific raw contract messages to be
+/// executed.
+/// Since: wasmd 0.30
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AcceptedMessagesFilter {
+    /// Messages is the list of raw contract messages
+    #[prost(bytes = "vec", repeated, tag = "1")]
+    pub messages: ::prost::alloc::vec::Vec<::prost::alloc::vec::Vec<u8>>,
+}
+/// MsgIBCSend
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgIbcSend {
+    /// the channel by which the packet will be sent
+    #[prost(string, tag = "2")]
+    pub channel: ::prost::alloc::string::String,
+    /// Timeout height relative to the current block height.
+    /// The timeout is disabled when set to 0.
+    #[prost(uint64, tag = "4")]
+    pub timeout_height: u64,
+    /// Timeout timestamp (in nanoseconds) relative to the current block timestamp.
+    /// The timeout is disabled when set to 0.
+    #[prost(uint64, tag = "5")]
+    pub timeout_timestamp: u64,
+    /// Data is the payload to transfer. We must not make assumption what format or
+    /// content is in here.
+    #[prost(bytes = "vec", tag = "6")]
+    pub data: ::prost::alloc::vec::Vec<u8>,
+}
+/// MsgIBCSendResponse
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgIbcSendResponse {
+    /// Sequence number of the IBC packet sent
+    #[prost(uint64, tag = "1")]
+    pub sequence: u64,
+}
+/// MsgIBCCloseChannel port and channel need to be owned by the contract
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgIbcCloseChannel {
+    #[prost(string, tag = "2")]
+    pub channel: ::prost::alloc::string::String,
+}
 /// GenesisState - genesis state of x/wasm
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -931,36 +1903,6 @@ pub struct GenesisState {
     pub contracts: ::prost::alloc::vec::Vec<Contract>,
     #[prost(message, repeated, tag = "4")]
     pub sequences: ::prost::alloc::vec::Vec<Sequence>,
-    #[prost(message, repeated, tag = "5")]
-    pub gen_msgs: ::prost::alloc::vec::Vec<genesis_state::GenMsgs>,
-}
-/// Nested message and enum types in `GenesisState`.
-pub mod genesis_state {
-    /// GenMsgs define the messages that can be executed during genesis phase in
-    /// order. The intention is to have more human readable data that is auditable.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct GenMsgs {
-        /// sum is a single message
-        #[prost(oneof = "gen_msgs::Sum", tags = "1, 2, 3")]
-        pub sum: ::core::option::Option<gen_msgs::Sum>,
-    }
-    /// Nested message and enum types in `GenMsgs`.
-    pub mod gen_msgs {
-        /// sum is a single message
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum Sum {
-            #[prost(message, tag = "1")]
-            StoreCode(super::super::MsgStoreCode),
-            #[prost(message, tag = "2")]
-            InstantiateContract(super::super::MsgInstantiateContract),
-            /// MsgInstantiateContract2 intentionally not supported
-            /// see <https://github.com/CosmWasm/wasmd/issues/987>
-            #[prost(message, tag = "3")]
-            ExecuteContract(super::super::MsgExecuteContract),
-        }
-    }
 }
 /// Code struct encompasses CodeInfo and CodeBytes
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -2002,388 +2944,4 @@ pub mod query_server {
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
         const NAME: &'static str = "cosmwasm.wasm.v1.Query";
     }
-}
-/// StoreCodeProposal gov proposal content type to submit WASM code to the system
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StoreCodeProposal {
-    /// Title is a short summary
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// Description is a human readable text
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// RunAs is the address that is passed to the contract's environment as sender
-    #[prost(string, tag = "3")]
-    pub run_as: ::prost::alloc::string::String,
-    /// WASMByteCode can be raw or gzip compressed
-    #[prost(bytes = "vec", tag = "4")]
-    pub wasm_byte_code: ::prost::alloc::vec::Vec<u8>,
-    /// InstantiatePermission to apply on contract creation, optional
-    #[prost(message, optional, tag = "7")]
-    pub instantiate_permission: ::core::option::Option<AccessConfig>,
-    /// UnpinCode code on upload, optional
-    #[prost(bool, tag = "8")]
-    pub unpin_code: bool,
-    /// Source is the URL where the code is hosted
-    #[prost(string, tag = "9")]
-    pub source: ::prost::alloc::string::String,
-    /// Builder is the docker image used to build the code deterministically, used
-    /// for smart contract verification
-    #[prost(string, tag = "10")]
-    pub builder: ::prost::alloc::string::String,
-    /// CodeHash is the SHA256 sum of the code outputted by builder, used for smart
-    /// contract verification
-    #[prost(bytes = "vec", tag = "11")]
-    pub code_hash: ::prost::alloc::vec::Vec<u8>,
-}
-/// InstantiateContractProposal gov proposal content type to instantiate a
-/// contract.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InstantiateContractProposal {
-    /// Title is a short summary
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// Description is a human readable text
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// RunAs is the address that is passed to the contract's environment as sender
-    #[prost(string, tag = "3")]
-    pub run_as: ::prost::alloc::string::String,
-    /// Admin is an optional address that can execute migrations
-    #[prost(string, tag = "4")]
-    pub admin: ::prost::alloc::string::String,
-    /// CodeID is the reference to the stored WASM code
-    #[prost(uint64, tag = "5")]
-    pub code_id: u64,
-    /// Label is optional metadata to be stored with a constract instance.
-    #[prost(string, tag = "6")]
-    pub label: ::prost::alloc::string::String,
-    /// Msg json encoded message to be passed to the contract on instantiation
-    #[prost(bytes = "vec", tag = "7")]
-    pub msg: ::prost::alloc::vec::Vec<u8>,
-    /// Funds coins that are transferred to the contract on instantiation
-    #[prost(message, repeated, tag = "8")]
-    pub funds: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
-}
-/// MigrateContractProposal gov proposal content type to migrate a contract.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MigrateContractProposal {
-    /// Title is a short summary
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// Description is a human readable text
-    ///
-    /// Note: skipping 3 as this was previously used for unneeded run_as
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// Contract is the address of the smart contract
-    #[prost(string, tag = "4")]
-    pub contract: ::prost::alloc::string::String,
-    /// CodeID references the new WASM code
-    #[prost(uint64, tag = "5")]
-    pub code_id: u64,
-    /// Msg json encoded message to be passed to the contract on migration
-    #[prost(bytes = "vec", tag = "6")]
-    pub msg: ::prost::alloc::vec::Vec<u8>,
-}
-/// SudoContractProposal gov proposal content type to call sudo on a contract.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SudoContractProposal {
-    /// Title is a short summary
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// Description is a human readable text
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// Contract is the address of the smart contract
-    #[prost(string, tag = "3")]
-    pub contract: ::prost::alloc::string::String,
-    /// Msg json encoded message to be passed to the contract as sudo
-    #[prost(bytes = "vec", tag = "4")]
-    pub msg: ::prost::alloc::vec::Vec<u8>,
-}
-/// ExecuteContractProposal gov proposal content type to call execute on a
-/// contract.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ExecuteContractProposal {
-    /// Title is a short summary
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// Description is a human readable text
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// RunAs is the address that is passed to the contract's environment as sender
-    #[prost(string, tag = "3")]
-    pub run_as: ::prost::alloc::string::String,
-    /// Contract is the address of the smart contract
-    #[prost(string, tag = "4")]
-    pub contract: ::prost::alloc::string::String,
-    /// Msg json encoded message to be passed to the contract as execute
-    #[prost(bytes = "vec", tag = "5")]
-    pub msg: ::prost::alloc::vec::Vec<u8>,
-    /// Funds coins that are transferred to the contract on instantiation
-    #[prost(message, repeated, tag = "6")]
-    pub funds: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
-}
-/// UpdateAdminProposal gov proposal content type to set an admin for a contract.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpdateAdminProposal {
-    /// Title is a short summary
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// Description is a human readable text
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// NewAdmin address to be set
-    #[prost(string, tag = "3")]
-    pub new_admin: ::prost::alloc::string::String,
-    /// Contract is the address of the smart contract
-    #[prost(string, tag = "4")]
-    pub contract: ::prost::alloc::string::String,
-}
-/// ClearAdminProposal gov proposal content type to clear the admin of a
-/// contract.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ClearAdminProposal {
-    /// Title is a short summary
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// Description is a human readable text
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// Contract is the address of the smart contract
-    #[prost(string, tag = "3")]
-    pub contract: ::prost::alloc::string::String,
-}
-/// PinCodesProposal gov proposal content type to pin a set of code ids in the
-/// wasmvm cache.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PinCodesProposal {
-    /// Title is a short summary
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// Description is a human readable text
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// CodeIDs references the new WASM codes
-    #[prost(uint64, repeated, packed = "false", tag = "3")]
-    pub code_ids: ::prost::alloc::vec::Vec<u64>,
-}
-/// UnpinCodesProposal gov proposal content type to unpin a set of code ids in
-/// the wasmvm cache.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UnpinCodesProposal {
-    /// Title is a short summary
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// Description is a human readable text
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// CodeIDs references the WASM codes
-    #[prost(uint64, repeated, packed = "false", tag = "3")]
-    pub code_ids: ::prost::alloc::vec::Vec<u64>,
-}
-/// AccessConfigUpdate contains the code id and the access config to be
-/// applied.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AccessConfigUpdate {
-    /// CodeID is the reference to the stored WASM code to be updated
-    #[prost(uint64, tag = "1")]
-    pub code_id: u64,
-    /// InstantiatePermission to apply to the set of code ids
-    #[prost(message, optional, tag = "2")]
-    pub instantiate_permission: ::core::option::Option<AccessConfig>,
-}
-/// UpdateInstantiateConfigProposal gov proposal content type to update
-/// instantiate config to a  set of code ids.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpdateInstantiateConfigProposal {
-    /// Title is a short summary
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// Description is a human readable text
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// AccessConfigUpdate contains the list of code ids and the access config
-    /// to be applied.
-    #[prost(message, repeated, tag = "3")]
-    pub access_config_updates: ::prost::alloc::vec::Vec<AccessConfigUpdate>,
-}
-/// StoreAndInstantiateContractProposal gov proposal content type to store
-/// and instantiate the contract.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StoreAndInstantiateContractProposal {
-    /// Title is a short summary
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// Description is a human readable text
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// RunAs is the address that is passed to the contract's environment as sender
-    #[prost(string, tag = "3")]
-    pub run_as: ::prost::alloc::string::String,
-    /// WASMByteCode can be raw or gzip compressed
-    #[prost(bytes = "vec", tag = "4")]
-    pub wasm_byte_code: ::prost::alloc::vec::Vec<u8>,
-    /// InstantiatePermission to apply on contract creation, optional
-    #[prost(message, optional, tag = "5")]
-    pub instantiate_permission: ::core::option::Option<AccessConfig>,
-    /// UnpinCode code on upload, optional
-    #[prost(bool, tag = "6")]
-    pub unpin_code: bool,
-    /// Admin is an optional address that can execute migrations
-    #[prost(string, tag = "7")]
-    pub admin: ::prost::alloc::string::String,
-    /// Label is optional metadata to be stored with a constract instance.
-    #[prost(string, tag = "8")]
-    pub label: ::prost::alloc::string::String,
-    /// Msg json encoded message to be passed to the contract on instantiation
-    #[prost(bytes = "vec", tag = "9")]
-    pub msg: ::prost::alloc::vec::Vec<u8>,
-    /// Funds coins that are transferred to the contract on instantiation
-    #[prost(message, repeated, tag = "10")]
-    pub funds: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
-    /// Source is the URL where the code is hosted
-    #[prost(string, tag = "11")]
-    pub source: ::prost::alloc::string::String,
-    /// Builder is the docker image used to build the code deterministically, used
-    /// for smart contract verification
-    #[prost(string, tag = "12")]
-    pub builder: ::prost::alloc::string::String,
-    /// CodeHash is the SHA256 sum of the code outputted by builder, used for smart
-    /// contract verification
-    #[prost(bytes = "vec", tag = "13")]
-    pub code_hash: ::prost::alloc::vec::Vec<u8>,
-}
-/// ContractExecutionAuthorization defines authorization for wasm execute.
-/// Since: wasmd 0.30
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ContractExecutionAuthorization {
-    /// Grants for contract executions
-    #[prost(message, repeated, tag = "1")]
-    pub grants: ::prost::alloc::vec::Vec<ContractGrant>,
-}
-/// ContractMigrationAuthorization defines authorization for wasm contract
-/// migration. Since: wasmd 0.30
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ContractMigrationAuthorization {
-    /// Grants for contract migrations
-    #[prost(message, repeated, tag = "1")]
-    pub grants: ::prost::alloc::vec::Vec<ContractGrant>,
-}
-/// ContractGrant a granted permission for a single contract
-/// Since: wasmd 0.30
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ContractGrant {
-    /// Contract is the bech32 address of the smart contract
-    #[prost(string, tag = "1")]
-    pub contract: ::prost::alloc::string::String,
-    /// Limit defines execution limits that are enforced and updated when the grant
-    /// is applied. When the limit lapsed the grant is removed.
-    #[prost(message, optional, tag = "2")]
-    pub limit: ::core::option::Option<::prost_types::Any>,
-    /// Filter define more fine-grained control on the message payload passed
-    /// to the contract in the operation. When no filter applies on execution, the
-    /// operation is prohibited.
-    #[prost(message, optional, tag = "3")]
-    pub filter: ::core::option::Option<::prost_types::Any>,
-}
-/// MaxCallsLimit limited number of calls to the contract. No funds transferable.
-/// Since: wasmd 0.30
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MaxCallsLimit {
-    /// Remaining number that is decremented on each execution
-    #[prost(uint64, tag = "1")]
-    pub remaining: u64,
-}
-/// MaxFundsLimit defines the maximal amounts that can be sent to the contract.
-/// Since: wasmd 0.30
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MaxFundsLimit {
-    /// Amounts is the maximal amount of tokens transferable to the contract.
-    #[prost(message, repeated, tag = "1")]
-    pub amounts: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
-}
-/// CombinedLimit defines the maximal amounts that can be sent to a contract and
-/// the maximal number of calls executable. Both need to remain >0 to be valid.
-/// Since: wasmd 0.30
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CombinedLimit {
-    /// Remaining number that is decremented on each execution
-    #[prost(uint64, tag = "1")]
-    pub calls_remaining: u64,
-    /// Amounts is the maximal amount of tokens transferable to the contract.
-    #[prost(message, repeated, tag = "2")]
-    pub amounts: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
-}
-/// AllowAllMessagesFilter is a wildcard to allow any type of contract payload
-/// message.
-/// Since: wasmd 0.30
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AllowAllMessagesFilter {}
-/// AcceptedMessageKeysFilter accept only the specific contract message keys in
-/// the json object to be executed.
-/// Since: wasmd 0.30
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AcceptedMessageKeysFilter {
-    /// Messages is the list of unique keys
-    #[prost(string, repeated, tag = "1")]
-    pub keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-/// AcceptedMessagesFilter accept only the specific raw contract messages to be
-/// executed.
-/// Since: wasmd 0.30
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AcceptedMessagesFilter {
-    /// Messages is the list of raw contract messages
-    #[prost(bytes = "vec", repeated, tag = "1")]
-    pub messages: ::prost::alloc::vec::Vec<::prost::alloc::vec::Vec<u8>>,
-}
-/// MsgIBCSend
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgIbcSend {
-    /// the channel by which the packet will be sent
-    #[prost(string, tag = "2")]
-    pub channel: ::prost::alloc::string::String,
-    /// Timeout height relative to the current block height.
-    /// The timeout is disabled when set to 0.
-    #[prost(uint64, tag = "4")]
-    pub timeout_height: u64,
-    /// Timeout timestamp (in nanoseconds) relative to the current block timestamp.
-    /// The timeout is disabled when set to 0.
-    #[prost(uint64, tag = "5")]
-    pub timeout_timestamp: u64,
-    /// Data is the payload to transfer. We must not make assumption what format or
-    /// content is in here.
-    #[prost(bytes = "vec", tag = "6")]
-    pub data: ::prost::alloc::vec::Vec<u8>,
-}
-/// MsgIBCCloseChannel port and channel need to be owned by the contract
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgIbcCloseChannel {
-    #[prost(string, tag = "2")]
-    pub channel: ::prost::alloc::string::String,
 }

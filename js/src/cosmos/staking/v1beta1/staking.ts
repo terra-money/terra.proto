@@ -6,6 +6,7 @@ import { Any } from "../../../google/protobuf/any";
 import { Duration } from "../../../google/protobuf/duration";
 import { Coin } from "../../../cosmos/base/v1beta1/coin";
 import { Timestamp } from "../../../google/protobuf/timestamp";
+import { ValidatorUpdate } from "../../../tendermint/abci/types";
 
 export const protobufPackage = "cosmos.staking.v1beta1";
 
@@ -53,6 +54,48 @@ export function bondStatusToJSON(object: BondStatus): string {
       return "BOND_STATUS_UNBONDING";
     case BondStatus.BOND_STATUS_BONDED:
       return "BOND_STATUS_BONDED";
+    default:
+      return "UNKNOWN";
+  }
+}
+
+/** Infraction indicates the infraction a validator commited. */
+export enum Infraction {
+  /** INFRACTION_UNSPECIFIED - UNSPECIFIED defines an empty infraction. */
+  INFRACTION_UNSPECIFIED = 0,
+  /** INFRACTION_DOUBLE_SIGN - DOUBLE_SIGN defines a validator that double-signs a block. */
+  INFRACTION_DOUBLE_SIGN = 1,
+  /** INFRACTION_DOWNTIME - DOWNTIME defines a validator that missed signing too many blocks. */
+  INFRACTION_DOWNTIME = 2,
+  UNRECOGNIZED = -1,
+}
+
+export function infractionFromJSON(object: any): Infraction {
+  switch (object) {
+    case 0:
+    case "INFRACTION_UNSPECIFIED":
+      return Infraction.INFRACTION_UNSPECIFIED;
+    case 1:
+    case "INFRACTION_DOUBLE_SIGN":
+      return Infraction.INFRACTION_DOUBLE_SIGN;
+    case 2:
+    case "INFRACTION_DOWNTIME":
+      return Infraction.INFRACTION_DOWNTIME;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return Infraction.UNRECOGNIZED;
+  }
+}
+
+export function infractionToJSON(object: Infraction): string {
+  switch (object) {
+    case Infraction.INFRACTION_UNSPECIFIED:
+      return "INFRACTION_UNSPECIFIED";
+    case Infraction.INFRACTION_DOUBLE_SIGN:
+      return "INFRACTION_DOUBLE_SIGN";
+    case Infraction.INFRACTION_DOWNTIME:
+      return "INFRACTION_DOWNTIME";
     default:
       return "UNKNOWN";
   }
@@ -141,6 +184,10 @@ export interface Validator {
    * Since: cosmos-sdk 0.46
    */
   minSelfDelegation: string;
+  /** strictly positive if this validator's unbonding has been stopped by external modules */
+  unbondingOnHoldRefCount: Long;
+  /** list of unbonding ids, each uniquely identifing an unbonding of this validator */
+  unbondingIds: Long[];
 }
 
 /** ValAddresses defines a repeated set of validator addresses. */
@@ -217,6 +264,10 @@ export interface UnbondingDelegationEntry {
   initialBalance: string;
   /** balance defines the tokens to receive at completion. */
   balance: string;
+  /** Incrementing id that uniquely identifies this entry */
+  unbondingId: Long;
+  /** Strictly positive if this entry's unbonding has been stopped by external modules */
+  unbondingOnHoldRefCount: Long;
 }
 
 /** RedelegationEntry defines a redelegation object with relevant metadata. */
@@ -229,6 +280,10 @@ export interface RedelegationEntry {
   initialBalance: string;
   /** shares_dst is the amount of destination-validator shares created by redelegation. */
   sharesDst: string;
+  /** Incrementing id that uniquely identifies this entry */
+  unbondingId: Long;
+  /** Strictly positive if this entry's unbonding has been stopped by external modules */
+  unbondingOnHoldRefCount: Long;
 }
 
 /**
@@ -246,7 +301,7 @@ export interface Redelegation {
   entries: RedelegationEntry[];
 }
 
-/** Params defines the parameters for the staking module. */
+/** Params defines the parameters for the x/staking module. */
 export interface Params {
   /** unbonding_time is the time duration of unbonding. */
   unbondingTime?: Duration;
@@ -298,6 +353,14 @@ export interface RedelegationResponse {
 export interface Pool {
   notBondedTokens: string;
   bondedTokens: string;
+}
+
+/**
+ * ValidatorUpdates defines an array of abci.ValidatorUpdate objects.
+ * TODO: explore moving this to proto/cosmos/base to separate modules from tendermint dependence
+ */
+export interface ValidatorUpdates {
+  updates: ValidatorUpdate[];
 }
 
 const baseHistoricalInfo: object = {};
@@ -674,6 +737,8 @@ const baseValidator: object = {
   delegatorShares: "",
   unbondingHeight: Long.ZERO,
   minSelfDelegation: "",
+  unbondingOnHoldRefCount: Long.ZERO,
+  unbondingIds: Long.UZERO,
 };
 
 export const Validator = {
@@ -711,6 +776,14 @@ export const Validator = {
     if (message.minSelfDelegation !== "") {
       writer.uint32(90).string(message.minSelfDelegation);
     }
+    if (!message.unbondingOnHoldRefCount.isZero()) {
+      writer.uint32(96).int64(message.unbondingOnHoldRefCount);
+    }
+    writer.uint32(106).fork();
+    for (const v of message.unbondingIds) {
+      writer.uint64(v);
+    }
+    writer.ldelim();
     return writer;
   },
 
@@ -718,6 +791,7 @@ export const Validator = {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseValidator } as Validator;
+    message.unbondingIds = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -754,6 +828,19 @@ export const Validator = {
         case 11:
           message.minSelfDelegation = reader.string();
           break;
+        case 12:
+          message.unbondingOnHoldRefCount = reader.int64() as Long;
+          break;
+        case 13:
+          if ((tag & 7) === 2) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.unbondingIds.push(reader.uint64() as Long);
+            }
+          } else {
+            message.unbondingIds.push(reader.uint64() as Long);
+          }
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -764,6 +851,7 @@ export const Validator = {
 
   fromJSON(object: any): Validator {
     const message = { ...baseValidator } as Validator;
+    message.unbondingIds = [];
     if (object.operatorAddress !== undefined && object.operatorAddress !== null) {
       message.operatorAddress = String(object.operatorAddress);
     } else {
@@ -819,6 +907,16 @@ export const Validator = {
     } else {
       message.minSelfDelegation = "";
     }
+    if (object.unbondingOnHoldRefCount !== undefined && object.unbondingOnHoldRefCount !== null) {
+      message.unbondingOnHoldRefCount = Long.fromString(object.unbondingOnHoldRefCount);
+    } else {
+      message.unbondingOnHoldRefCount = Long.ZERO;
+    }
+    if (object.unbondingIds !== undefined && object.unbondingIds !== null) {
+      for (const e of object.unbondingIds) {
+        message.unbondingIds.push(Long.fromString(e));
+      }
+    }
     return message;
   },
 
@@ -839,11 +937,19 @@ export const Validator = {
     message.commission !== undefined &&
       (obj.commission = message.commission ? Commission.toJSON(message.commission) : undefined);
     message.minSelfDelegation !== undefined && (obj.minSelfDelegation = message.minSelfDelegation);
+    message.unbondingOnHoldRefCount !== undefined &&
+      (obj.unbondingOnHoldRefCount = (message.unbondingOnHoldRefCount || Long.ZERO).toString());
+    if (message.unbondingIds) {
+      obj.unbondingIds = message.unbondingIds.map((e) => (e || Long.UZERO).toString());
+    } else {
+      obj.unbondingIds = [];
+    }
     return obj;
   },
 
   fromPartial(object: DeepPartial<Validator>): Validator {
     const message = { ...baseValidator } as Validator;
+    message.unbondingIds = [];
     if (object.operatorAddress !== undefined && object.operatorAddress !== null) {
       message.operatorAddress = object.operatorAddress;
     } else {
@@ -898,6 +1004,16 @@ export const Validator = {
       message.minSelfDelegation = object.minSelfDelegation;
     } else {
       message.minSelfDelegation = "";
+    }
+    if (object.unbondingOnHoldRefCount !== undefined && object.unbondingOnHoldRefCount !== null) {
+      message.unbondingOnHoldRefCount = object.unbondingOnHoldRefCount as Long;
+    } else {
+      message.unbondingOnHoldRefCount = Long.ZERO;
+    }
+    if (object.unbondingIds !== undefined && object.unbondingIds !== null) {
+      for (const e of object.unbondingIds) {
+        message.unbondingIds.push(e);
+      }
     }
     return message;
   },
@@ -1435,7 +1551,13 @@ export const UnbondingDelegation = {
   },
 };
 
-const baseUnbondingDelegationEntry: object = { creationHeight: Long.ZERO, initialBalance: "", balance: "" };
+const baseUnbondingDelegationEntry: object = {
+  creationHeight: Long.ZERO,
+  initialBalance: "",
+  balance: "",
+  unbondingId: Long.UZERO,
+  unbondingOnHoldRefCount: Long.ZERO,
+};
 
 export const UnbondingDelegationEntry = {
   encode(message: UnbondingDelegationEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -1450,6 +1572,12 @@ export const UnbondingDelegationEntry = {
     }
     if (message.balance !== "") {
       writer.uint32(34).string(message.balance);
+    }
+    if (!message.unbondingId.isZero()) {
+      writer.uint32(40).uint64(message.unbondingId);
+    }
+    if (!message.unbondingOnHoldRefCount.isZero()) {
+      writer.uint32(48).int64(message.unbondingOnHoldRefCount);
     }
     return writer;
   },
@@ -1472,6 +1600,12 @@ export const UnbondingDelegationEntry = {
           break;
         case 4:
           message.balance = reader.string();
+          break;
+        case 5:
+          message.unbondingId = reader.uint64() as Long;
+          break;
+        case 6:
+          message.unbondingOnHoldRefCount = reader.int64() as Long;
           break;
         default:
           reader.skipType(tag & 7);
@@ -1503,6 +1637,16 @@ export const UnbondingDelegationEntry = {
     } else {
       message.balance = "";
     }
+    if (object.unbondingId !== undefined && object.unbondingId !== null) {
+      message.unbondingId = Long.fromString(object.unbondingId);
+    } else {
+      message.unbondingId = Long.UZERO;
+    }
+    if (object.unbondingOnHoldRefCount !== undefined && object.unbondingOnHoldRefCount !== null) {
+      message.unbondingOnHoldRefCount = Long.fromString(object.unbondingOnHoldRefCount);
+    } else {
+      message.unbondingOnHoldRefCount = Long.ZERO;
+    }
     return message;
   },
 
@@ -1513,6 +1657,9 @@ export const UnbondingDelegationEntry = {
     message.completionTime !== undefined && (obj.completionTime = message.completionTime.toISOString());
     message.initialBalance !== undefined && (obj.initialBalance = message.initialBalance);
     message.balance !== undefined && (obj.balance = message.balance);
+    message.unbondingId !== undefined && (obj.unbondingId = (message.unbondingId || Long.UZERO).toString());
+    message.unbondingOnHoldRefCount !== undefined &&
+      (obj.unbondingOnHoldRefCount = (message.unbondingOnHoldRefCount || Long.ZERO).toString());
     return obj;
   },
 
@@ -1538,11 +1685,27 @@ export const UnbondingDelegationEntry = {
     } else {
       message.balance = "";
     }
+    if (object.unbondingId !== undefined && object.unbondingId !== null) {
+      message.unbondingId = object.unbondingId as Long;
+    } else {
+      message.unbondingId = Long.UZERO;
+    }
+    if (object.unbondingOnHoldRefCount !== undefined && object.unbondingOnHoldRefCount !== null) {
+      message.unbondingOnHoldRefCount = object.unbondingOnHoldRefCount as Long;
+    } else {
+      message.unbondingOnHoldRefCount = Long.ZERO;
+    }
     return message;
   },
 };
 
-const baseRedelegationEntry: object = { creationHeight: Long.ZERO, initialBalance: "", sharesDst: "" };
+const baseRedelegationEntry: object = {
+  creationHeight: Long.ZERO,
+  initialBalance: "",
+  sharesDst: "",
+  unbondingId: Long.UZERO,
+  unbondingOnHoldRefCount: Long.ZERO,
+};
 
 export const RedelegationEntry = {
   encode(message: RedelegationEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -1557,6 +1720,12 @@ export const RedelegationEntry = {
     }
     if (message.sharesDst !== "") {
       writer.uint32(34).string(message.sharesDst);
+    }
+    if (!message.unbondingId.isZero()) {
+      writer.uint32(40).uint64(message.unbondingId);
+    }
+    if (!message.unbondingOnHoldRefCount.isZero()) {
+      writer.uint32(48).int64(message.unbondingOnHoldRefCount);
     }
     return writer;
   },
@@ -1579,6 +1748,12 @@ export const RedelegationEntry = {
           break;
         case 4:
           message.sharesDst = reader.string();
+          break;
+        case 5:
+          message.unbondingId = reader.uint64() as Long;
+          break;
+        case 6:
+          message.unbondingOnHoldRefCount = reader.int64() as Long;
           break;
         default:
           reader.skipType(tag & 7);
@@ -1610,6 +1785,16 @@ export const RedelegationEntry = {
     } else {
       message.sharesDst = "";
     }
+    if (object.unbondingId !== undefined && object.unbondingId !== null) {
+      message.unbondingId = Long.fromString(object.unbondingId);
+    } else {
+      message.unbondingId = Long.UZERO;
+    }
+    if (object.unbondingOnHoldRefCount !== undefined && object.unbondingOnHoldRefCount !== null) {
+      message.unbondingOnHoldRefCount = Long.fromString(object.unbondingOnHoldRefCount);
+    } else {
+      message.unbondingOnHoldRefCount = Long.ZERO;
+    }
     return message;
   },
 
@@ -1620,6 +1805,9 @@ export const RedelegationEntry = {
     message.completionTime !== undefined && (obj.completionTime = message.completionTime.toISOString());
     message.initialBalance !== undefined && (obj.initialBalance = message.initialBalance);
     message.sharesDst !== undefined && (obj.sharesDst = message.sharesDst);
+    message.unbondingId !== undefined && (obj.unbondingId = (message.unbondingId || Long.UZERO).toString());
+    message.unbondingOnHoldRefCount !== undefined &&
+      (obj.unbondingOnHoldRefCount = (message.unbondingOnHoldRefCount || Long.ZERO).toString());
     return obj;
   },
 
@@ -1644,6 +1832,16 @@ export const RedelegationEntry = {
       message.sharesDst = object.sharesDst;
     } else {
       message.sharesDst = "";
+    }
+    if (object.unbondingId !== undefined && object.unbondingId !== null) {
+      message.unbondingId = object.unbondingId as Long;
+    } else {
+      message.unbondingId = Long.UZERO;
+    }
+    if (object.unbondingOnHoldRefCount !== undefined && object.unbondingOnHoldRefCount !== null) {
+      message.unbondingOnHoldRefCount = object.unbondingOnHoldRefCount as Long;
+    } else {
+      message.unbondingOnHoldRefCount = Long.ZERO;
     }
     return message;
   },
@@ -2205,6 +2403,68 @@ export const Pool = {
       message.bondedTokens = object.bondedTokens;
     } else {
       message.bondedTokens = "";
+    }
+    return message;
+  },
+};
+
+const baseValidatorUpdates: object = {};
+
+export const ValidatorUpdates = {
+  encode(message: ValidatorUpdates, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.updates) {
+      ValidatorUpdate.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ValidatorUpdates {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseValidatorUpdates } as ValidatorUpdates;
+    message.updates = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.updates.push(ValidatorUpdate.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ValidatorUpdates {
+    const message = { ...baseValidatorUpdates } as ValidatorUpdates;
+    message.updates = [];
+    if (object.updates !== undefined && object.updates !== null) {
+      for (const e of object.updates) {
+        message.updates.push(ValidatorUpdate.fromJSON(e));
+      }
+    }
+    return message;
+  },
+
+  toJSON(message: ValidatorUpdates): unknown {
+    const obj: any = {};
+    if (message.updates) {
+      obj.updates = message.updates.map((e) => (e ? ValidatorUpdate.toJSON(e) : undefined));
+    } else {
+      obj.updates = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<ValidatorUpdates>): ValidatorUpdates {
+    const message = { ...baseValidatorUpdates } as ValidatorUpdates;
+    message.updates = [];
+    if (object.updates !== undefined && object.updates !== null) {
+      for (const e of object.updates) {
+        message.updates.push(ValidatorUpdate.fromPartial(e));
+      }
     }
     return message;
   },
