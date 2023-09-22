@@ -11,14 +11,14 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
 ]
-description = "The Python Protobuf implementation for Terra"
+description = "DEPRECATED Python Protobuf implementation for Terra"
 homepage = "https://github.com/terra-money/terra.proto"
 keywords = ["jigu", "blockchain", "terra", "defi", "crypto"]
 license = "MIT"
 packages = [{ include = "terra_proto" }]
 readme = "README.md"
 repository = "https://github.com/terra-money/terra.proto"
-version = "4.0.0"
+version = "4.0.2"
 
 [tool.poetry.dependencies]
 python = "^3.7"
