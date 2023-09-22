@@ -8,7 +8,6 @@ import {
   Model,
   ContractCodeHistoryEntry,
 } from "../../../cosmwasm/wasm/v1/types";
-import { MsgStoreCode, MsgInstantiateContract, MsgExecuteContract } from "../../../cosmwasm/wasm/v1/tx";
 
 export const protobufPackage = "cosmwasm.wasm.v1";
 
@@ -18,21 +17,6 @@ export interface GenesisState {
   codes: Code[];
   contracts: Contract[];
   sequences: Sequence[];
-  genMsgs: GenesisState_GenMsgs[];
-}
-
-/**
- * GenMsgs define the messages that can be executed during genesis phase in
- * order. The intention is to have more human readable data that is auditable.
- */
-export interface GenesisState_GenMsgs {
-  storeCode?: MsgStoreCode | undefined;
-  instantiateContract?: MsgInstantiateContract | undefined;
-  /**
-   * MsgInstantiateContract2 intentionally not supported
-   * see https://github.com/CosmWasm/wasmd/issues/987
-   */
-  executeContract?: MsgExecuteContract | undefined;
 }
 
 /** Code struct encompasses CodeInfo and CodeBytes */
@@ -74,9 +58,6 @@ export const GenesisState = {
     for (const v of message.sequences) {
       Sequence.encode(v!, writer.uint32(34).fork()).ldelim();
     }
-    for (const v of message.genMsgs) {
-      GenesisState_GenMsgs.encode(v!, writer.uint32(42).fork()).ldelim();
-    }
     return writer;
   },
 
@@ -87,7 +68,6 @@ export const GenesisState = {
     message.codes = [];
     message.contracts = [];
     message.sequences = [];
-    message.genMsgs = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -103,9 +83,6 @@ export const GenesisState = {
         case 4:
           message.sequences.push(Sequence.decode(reader, reader.uint32()));
           break;
-        case 5:
-          message.genMsgs.push(GenesisState_GenMsgs.decode(reader, reader.uint32()));
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -119,7 +96,6 @@ export const GenesisState = {
     message.codes = [];
     message.contracts = [];
     message.sequences = [];
-    message.genMsgs = [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromJSON(object.params);
     } else {
@@ -138,11 +114,6 @@ export const GenesisState = {
     if (object.sequences !== undefined && object.sequences !== null) {
       for (const e of object.sequences) {
         message.sequences.push(Sequence.fromJSON(e));
-      }
-    }
-    if (object.genMsgs !== undefined && object.genMsgs !== null) {
-      for (const e of object.genMsgs) {
-        message.genMsgs.push(GenesisState_GenMsgs.fromJSON(e));
       }
     }
     return message;
@@ -166,11 +137,6 @@ export const GenesisState = {
     } else {
       obj.sequences = [];
     }
-    if (message.genMsgs) {
-      obj.genMsgs = message.genMsgs.map((e) => (e ? GenesisState_GenMsgs.toJSON(e) : undefined));
-    } else {
-      obj.genMsgs = [];
-    }
     return obj;
   },
 
@@ -179,7 +145,6 @@ export const GenesisState = {
     message.codes = [];
     message.contracts = [];
     message.sequences = [];
-    message.genMsgs = [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
     } else {
@@ -199,107 +164,6 @@ export const GenesisState = {
       for (const e of object.sequences) {
         message.sequences.push(Sequence.fromPartial(e));
       }
-    }
-    if (object.genMsgs !== undefined && object.genMsgs !== null) {
-      for (const e of object.genMsgs) {
-        message.genMsgs.push(GenesisState_GenMsgs.fromPartial(e));
-      }
-    }
-    return message;
-  },
-};
-
-const baseGenesisState_GenMsgs: object = {};
-
-export const GenesisState_GenMsgs = {
-  encode(message: GenesisState_GenMsgs, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.storeCode !== undefined) {
-      MsgStoreCode.encode(message.storeCode, writer.uint32(10).fork()).ldelim();
-    }
-    if (message.instantiateContract !== undefined) {
-      MsgInstantiateContract.encode(message.instantiateContract, writer.uint32(18).fork()).ldelim();
-    }
-    if (message.executeContract !== undefined) {
-      MsgExecuteContract.encode(message.executeContract, writer.uint32(26).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState_GenMsgs {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseGenesisState_GenMsgs } as GenesisState_GenMsgs;
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.storeCode = MsgStoreCode.decode(reader, reader.uint32());
-          break;
-        case 2:
-          message.instantiateContract = MsgInstantiateContract.decode(reader, reader.uint32());
-          break;
-        case 3:
-          message.executeContract = MsgExecuteContract.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): GenesisState_GenMsgs {
-    const message = { ...baseGenesisState_GenMsgs } as GenesisState_GenMsgs;
-    if (object.storeCode !== undefined && object.storeCode !== null) {
-      message.storeCode = MsgStoreCode.fromJSON(object.storeCode);
-    } else {
-      message.storeCode = undefined;
-    }
-    if (object.instantiateContract !== undefined && object.instantiateContract !== null) {
-      message.instantiateContract = MsgInstantiateContract.fromJSON(object.instantiateContract);
-    } else {
-      message.instantiateContract = undefined;
-    }
-    if (object.executeContract !== undefined && object.executeContract !== null) {
-      message.executeContract = MsgExecuteContract.fromJSON(object.executeContract);
-    } else {
-      message.executeContract = undefined;
-    }
-    return message;
-  },
-
-  toJSON(message: GenesisState_GenMsgs): unknown {
-    const obj: any = {};
-    message.storeCode !== undefined &&
-      (obj.storeCode = message.storeCode ? MsgStoreCode.toJSON(message.storeCode) : undefined);
-    message.instantiateContract !== undefined &&
-      (obj.instantiateContract = message.instantiateContract
-        ? MsgInstantiateContract.toJSON(message.instantiateContract)
-        : undefined);
-    message.executeContract !== undefined &&
-      (obj.executeContract = message.executeContract
-        ? MsgExecuteContract.toJSON(message.executeContract)
-        : undefined);
-    return obj;
-  },
-
-  fromPartial(object: DeepPartial<GenesisState_GenMsgs>): GenesisState_GenMsgs {
-    const message = { ...baseGenesisState_GenMsgs } as GenesisState_GenMsgs;
-    if (object.storeCode !== undefined && object.storeCode !== null) {
-      message.storeCode = MsgStoreCode.fromPartial(object.storeCode);
-    } else {
-      message.storeCode = undefined;
-    }
-    if (object.instantiateContract !== undefined && object.instantiateContract !== null) {
-      message.instantiateContract = MsgInstantiateContract.fromPartial(object.instantiateContract);
-    } else {
-      message.instantiateContract = undefined;
-    }
-    if (object.executeContract !== undefined && object.executeContract !== null) {
-      message.executeContract = MsgExecuteContract.fromPartial(object.executeContract);
-    } else {
-      message.executeContract = undefined;
     }
     return message;
   },

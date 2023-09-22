@@ -90,6 +90,7 @@ export interface MsgChannelOpenTry {
 /** MsgChannelOpenTryResponse defines the Msg/ChannelOpenTry response type. */
 export interface MsgChannelOpenTryResponse {
   version: string;
+  channelId: string;
 }
 
 /**
@@ -543,12 +544,15 @@ export const MsgChannelOpenTry = {
   },
 };
 
-const baseMsgChannelOpenTryResponse: object = { version: "" };
+const baseMsgChannelOpenTryResponse: object = { version: "", channelId: "" };
 
 export const MsgChannelOpenTryResponse = {
   encode(message: MsgChannelOpenTryResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.version !== "") {
       writer.uint32(10).string(message.version);
+    }
+    if (message.channelId !== "") {
+      writer.uint32(18).string(message.channelId);
     }
     return writer;
   },
@@ -562,6 +566,9 @@ export const MsgChannelOpenTryResponse = {
       switch (tag >>> 3) {
         case 1:
           message.version = reader.string();
+          break;
+        case 2:
+          message.channelId = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -578,12 +585,18 @@ export const MsgChannelOpenTryResponse = {
     } else {
       message.version = "";
     }
+    if (object.channelId !== undefined && object.channelId !== null) {
+      message.channelId = String(object.channelId);
+    } else {
+      message.channelId = "";
+    }
     return message;
   },
 
   toJSON(message: MsgChannelOpenTryResponse): unknown {
     const obj: any = {};
     message.version !== undefined && (obj.version = message.version);
+    message.channelId !== undefined && (obj.channelId = message.channelId);
     return obj;
   },
 
@@ -593,6 +606,11 @@ export const MsgChannelOpenTryResponse = {
       message.version = object.version;
     } else {
       message.version = "";
+    }
+    if (object.channelId !== undefined && object.channelId !== null) {
+      message.channelId = object.channelId;
+    } else {
+      message.channelId = "";
     }
     return message;
   },

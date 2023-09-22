@@ -1,14 +1,14 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal";
-import { Params, Metadata } from "../../../cosmos/bank/v1beta1/bank";
+import { Params, Metadata, SendEnabled } from "../../../cosmos/bank/v1beta1/bank";
 import { Coin } from "../../../cosmos/base/v1beta1/coin";
 
 export const protobufPackage = "cosmos.bank.v1beta1";
 
 /** GenesisState defines the bank module's genesis state. */
 export interface GenesisState {
-  /** params defines all the paramaters of the module. */
+  /** params defines all the parameters of the module. */
   params?: Params;
   /** balances is an array containing the balances of all the accounts. */
   balances: Balance[];
@@ -17,8 +17,14 @@ export interface GenesisState {
    * balances. Otherwise, it will be used to validate that the sum of the balances equals this amount.
    */
   supply: Coin[];
-  /** denom_metadata defines the metadata of the differents coins. */
+  /** denom_metadata defines the metadata of the different coins. */
   denomMetadata: Metadata[];
+  /**
+   * send_enabled defines the denoms where send is enabled or disabled.
+   *
+   * Since: cosmos-sdk 0.47
+   */
+  sendEnabled: SendEnabled[];
 }
 
 /**
@@ -48,6 +54,9 @@ export const GenesisState = {
     for (const v of message.denomMetadata) {
       Metadata.encode(v!, writer.uint32(34).fork()).ldelim();
     }
+    for (const v of message.sendEnabled) {
+      SendEnabled.encode(v!, writer.uint32(42).fork()).ldelim();
+    }
     return writer;
   },
 
@@ -58,6 +67,7 @@ export const GenesisState = {
     message.balances = [];
     message.supply = [];
     message.denomMetadata = [];
+    message.sendEnabled = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -73,6 +83,9 @@ export const GenesisState = {
         case 4:
           message.denomMetadata.push(Metadata.decode(reader, reader.uint32()));
           break;
+        case 5:
+          message.sendEnabled.push(SendEnabled.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -86,6 +99,7 @@ export const GenesisState = {
     message.balances = [];
     message.supply = [];
     message.denomMetadata = [];
+    message.sendEnabled = [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromJSON(object.params);
     } else {
@@ -104,6 +118,11 @@ export const GenesisState = {
     if (object.denomMetadata !== undefined && object.denomMetadata !== null) {
       for (const e of object.denomMetadata) {
         message.denomMetadata.push(Metadata.fromJSON(e));
+      }
+    }
+    if (object.sendEnabled !== undefined && object.sendEnabled !== null) {
+      for (const e of object.sendEnabled) {
+        message.sendEnabled.push(SendEnabled.fromJSON(e));
       }
     }
     return message;
@@ -127,6 +146,11 @@ export const GenesisState = {
     } else {
       obj.denomMetadata = [];
     }
+    if (message.sendEnabled) {
+      obj.sendEnabled = message.sendEnabled.map((e) => (e ? SendEnabled.toJSON(e) : undefined));
+    } else {
+      obj.sendEnabled = [];
+    }
     return obj;
   },
 
@@ -135,6 +159,7 @@ export const GenesisState = {
     message.balances = [];
     message.supply = [];
     message.denomMetadata = [];
+    message.sendEnabled = [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
     } else {
@@ -153,6 +178,11 @@ export const GenesisState = {
     if (object.denomMetadata !== undefined && object.denomMetadata !== null) {
       for (const e of object.denomMetadata) {
         message.denomMetadata.push(Metadata.fromPartial(e));
+      }
+    }
+    if (object.sendEnabled !== undefined && object.sendEnabled !== null) {
+      for (const e of object.sendEnabled) {
+        message.sendEnabled.push(SendEnabled.fromPartial(e));
       }
     }
     return message;
