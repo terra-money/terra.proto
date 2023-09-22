@@ -209,6 +209,57 @@ class TxProof(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class Evidence(betterproto.Message):
+    duplicate_vote_evidence: "DuplicateVoteEvidence" = betterproto.message_field(
+        1, group="sum"
+    )
+    light_client_attack_evidence: "LightClientAttackEvidence" = (
+        betterproto.message_field(2, group="sum")
+    )
+
+
+@dataclass(eq=False, repr=False)
+class DuplicateVoteEvidence(betterproto.Message):
+    """
+    DuplicateVoteEvidence contains evidence of a validator signed two
+    conflicting votes.
+    """
+
+    vote_a: "Vote" = betterproto.message_field(1)
+    vote_b: "Vote" = betterproto.message_field(2)
+    total_voting_power: int = betterproto.int64_field(3)
+    validator_power: int = betterproto.int64_field(4)
+    timestamp: datetime = betterproto.message_field(5)
+
+
+@dataclass(eq=False, repr=False)
+class LightClientAttackEvidence(betterproto.Message):
+    """
+    LightClientAttackEvidence contains evidence of a set of validators
+    attempting to mislead a light client.
+    """
+
+    conflicting_block: "LightBlock" = betterproto.message_field(1)
+    common_height: int = betterproto.int64_field(2)
+    byzantine_validators: List["Validator"] = betterproto.message_field(3)
+    total_voting_power: int = betterproto.int64_field(4)
+    timestamp: datetime = betterproto.message_field(5)
+
+
+@dataclass(eq=False, repr=False)
+class EvidenceList(betterproto.Message):
+    evidence: List["Evidence"] = betterproto.message_field(1)
+
+
+@dataclass(eq=False, repr=False)
+class Block(betterproto.Message):
+    header: "Header" = betterproto.message_field(1)
+    data: "Data" = betterproto.message_field(2)
+    evidence: "EvidenceList" = betterproto.message_field(3)
+    last_commit: "Commit" = betterproto.message_field(4)
+
+
+@dataclass(eq=False, repr=False)
 class ConsensusParams(betterproto.Message):
     """
     ConsensusParams contains consensus critical parameters that determine the
@@ -284,54 +335,3 @@ class HashedParams(betterproto.Message):
 
     block_max_bytes: int = betterproto.int64_field(1)
     block_max_gas: int = betterproto.int64_field(2)
-
-
-@dataclass(eq=False, repr=False)
-class Evidence(betterproto.Message):
-    duplicate_vote_evidence: "DuplicateVoteEvidence" = betterproto.message_field(
-        1, group="sum"
-    )
-    light_client_attack_evidence: "LightClientAttackEvidence" = (
-        betterproto.message_field(2, group="sum")
-    )
-
-
-@dataclass(eq=False, repr=False)
-class DuplicateVoteEvidence(betterproto.Message):
-    """
-    DuplicateVoteEvidence contains evidence of a validator signed two
-    conflicting votes.
-    """
-
-    vote_a: "Vote" = betterproto.message_field(1)
-    vote_b: "Vote" = betterproto.message_field(2)
-    total_voting_power: int = betterproto.int64_field(3)
-    validator_power: int = betterproto.int64_field(4)
-    timestamp: datetime = betterproto.message_field(5)
-
-
-@dataclass(eq=False, repr=False)
-class LightClientAttackEvidence(betterproto.Message):
-    """
-    LightClientAttackEvidence contains evidence of a set of validators
-    attempting to mislead a light client.
-    """
-
-    conflicting_block: "LightBlock" = betterproto.message_field(1)
-    common_height: int = betterproto.int64_field(2)
-    byzantine_validators: List["Validator"] = betterproto.message_field(3)
-    total_voting_power: int = betterproto.int64_field(4)
-    timestamp: datetime = betterproto.message_field(5)
-
-
-@dataclass(eq=False, repr=False)
-class EvidenceList(betterproto.Message):
-    evidence: List["Evidence"] = betterproto.message_field(1)
-
-
-@dataclass(eq=False, repr=False)
-class Block(betterproto.Message):
-    header: "Header" = betterproto.message_field(1)
-    data: "Data" = betterproto.message_field(2)
-    evidence: "EvidenceList" = betterproto.message_field(3)
-    last_commit: "Commit" = betterproto.message_field(4)
