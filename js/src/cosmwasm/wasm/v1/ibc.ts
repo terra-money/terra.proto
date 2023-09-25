@@ -25,6 +25,12 @@ export interface MsgIBCSend {
   data: Uint8Array;
 }
 
+/** MsgIBCSendResponse */
+export interface MsgIBCSendResponse {
+  /** Sequence number of the IBC packet sent */
+  sequence: Long;
+}
+
 /** MsgIBCCloseChannel port and channel need to be owned by the contract */
 export interface MsgIBCCloseChannel {
   channel: string;
@@ -134,6 +140,61 @@ export const MsgIBCSend = {
       message.data = object.data;
     } else {
       message.data = new Uint8Array();
+    }
+    return message;
+  },
+};
+
+const baseMsgIBCSendResponse: object = { sequence: Long.UZERO };
+
+export const MsgIBCSendResponse = {
+  encode(message: MsgIBCSendResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (!message.sequence.isZero()) {
+      writer.uint32(8).uint64(message.sequence);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgIBCSendResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgIBCSendResponse } as MsgIBCSendResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.sequence = reader.uint64() as Long;
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgIBCSendResponse {
+    const message = { ...baseMsgIBCSendResponse } as MsgIBCSendResponse;
+    if (object.sequence !== undefined && object.sequence !== null) {
+      message.sequence = Long.fromString(object.sequence);
+    } else {
+      message.sequence = Long.UZERO;
+    }
+    return message;
+  },
+
+  toJSON(message: MsgIBCSendResponse): unknown {
+    const obj: any = {};
+    message.sequence !== undefined && (obj.sequence = (message.sequence || Long.UZERO).toString());
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<MsgIBCSendResponse>): MsgIBCSendResponse {
+    const message = { ...baseMsgIBCSendResponse } as MsgIBCSendResponse;
+    if (object.sequence !== undefined && object.sequence !== null) {
+      message.sequence = object.sequence as Long;
+    } else {
+      message.sequence = Long.UZERO;
     }
     return message;
   },

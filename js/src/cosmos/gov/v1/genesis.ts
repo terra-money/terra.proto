@@ -5,6 +5,7 @@ import {
   DepositParams,
   VotingParams,
   TallyParams,
+  Params,
   Deposit,
   Vote,
   Proposal,
@@ -24,12 +25,33 @@ export interface GenesisState {
   votes: Vote[];
   /** proposals defines all the proposals present at genesis. */
   proposals: Proposal[];
-  /** params defines all the paramaters of related to deposit. */
+  /**
+   * Deprecated: Prefer to use `params` instead.
+   * deposit_params defines all the paramaters of related to deposit.
+   *
+   * @deprecated
+   */
   depositParams?: DepositParams;
-  /** params defines all the paramaters of related to voting. */
+  /**
+   * Deprecated: Prefer to use `params` instead.
+   * voting_params defines all the paramaters of related to voting.
+   *
+   * @deprecated
+   */
   votingParams?: VotingParams;
-  /** params defines all the paramaters of related to tally. */
+  /**
+   * Deprecated: Prefer to use `params` instead.
+   * tally_params defines all the paramaters of related to tally.
+   *
+   * @deprecated
+   */
   tallyParams?: TallyParams;
+  /**
+   * params defines all the paramaters of x/gov module.
+   *
+   * Since: cosmos-sdk 0.47
+   */
+  params?: Params;
 }
 
 const baseGenesisState: object = { startingProposalId: Long.UZERO };
@@ -56,6 +78,9 @@ export const GenesisState = {
     }
     if (message.tallyParams !== undefined) {
       TallyParams.encode(message.tallyParams, writer.uint32(58).fork()).ldelim();
+    }
+    if (message.params !== undefined) {
+      Params.encode(message.params, writer.uint32(66).fork()).ldelim();
     }
     return writer;
   },
@@ -90,6 +115,9 @@ export const GenesisState = {
           break;
         case 7:
           message.tallyParams = TallyParams.decode(reader, reader.uint32());
+          break;
+        case 8:
+          message.params = Params.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -139,6 +167,11 @@ export const GenesisState = {
     } else {
       message.tallyParams = undefined;
     }
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromJSON(object.params);
+    } else {
+      message.params = undefined;
+    }
     return message;
   },
 
@@ -167,6 +200,7 @@ export const GenesisState = {
       (obj.votingParams = message.votingParams ? VotingParams.toJSON(message.votingParams) : undefined);
     message.tallyParams !== undefined &&
       (obj.tallyParams = message.tallyParams ? TallyParams.toJSON(message.tallyParams) : undefined);
+    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
 
@@ -209,6 +243,11 @@ export const GenesisState = {
       message.tallyParams = TallyParams.fromPartial(object.tallyParams);
     } else {
       message.tallyParams = undefined;
+    }
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromPartial(object.params);
+    } else {
+      message.params = undefined;
     }
     return message;
   },

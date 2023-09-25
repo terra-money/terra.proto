@@ -6,7 +6,14 @@ import { Coin } from "../../../cosmos/base/v1beta1/coin";
 
 export const protobufPackage = "cosmwasm.wasm.v1";
 
-/** StoreCodeProposal gov proposal content type to submit WASM code to the system */
+/**
+ * Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+ * an explicit StoreCodeProposal. To submit WASM code to the system,
+ * a simple MsgStoreCode can be invoked from the x/gov module via
+ * a v1 governance proposal.
+ *
+ * @deprecated
+ */
 export interface StoreCodeProposal {
   /** Title is a short summary */
   title: string;
@@ -35,8 +42,12 @@ export interface StoreCodeProposal {
 }
 
 /**
- * InstantiateContractProposal gov proposal content type to instantiate a
- * contract.
+ * Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+ * an explicit InstantiateContractProposal. To instantiate a contract,
+ * a simple MsgInstantiateContract can be invoked from the x/gov module via
+ * a v1 governance proposal.
+ *
+ * @deprecated
  */
 export interface InstantiateContractProposal {
   /** Title is a short summary */
@@ -57,7 +68,48 @@ export interface InstantiateContractProposal {
   funds: Coin[];
 }
 
-/** MigrateContractProposal gov proposal content type to migrate a contract. */
+/**
+ * Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+ * an explicit InstantiateContract2Proposal. To instantiate contract 2,
+ * a simple MsgInstantiateContract2 can be invoked from the x/gov module via
+ * a v1 governance proposal.
+ *
+ * @deprecated
+ */
+export interface InstantiateContract2Proposal {
+  /** Title is a short summary */
+  title: string;
+  /** Description is a human readable text */
+  description: string;
+  /** RunAs is the address that is passed to the contract's enviroment as sender */
+  runAs: string;
+  /** Admin is an optional address that can execute migrations */
+  admin: string;
+  /** CodeID is the reference to the stored WASM code */
+  codeId: Long;
+  /** Label is optional metadata to be stored with a constract instance. */
+  label: string;
+  /** Msg json encode message to be passed to the contract on instantiation */
+  msg: Uint8Array;
+  /** Funds coins that are transferred to the contract on instantiation */
+  funds: Coin[];
+  /** Salt is an arbitrary value provided by the sender. Size can be 1 to 64. */
+  salt: Uint8Array;
+  /**
+   * FixMsg include the msg value into the hash for the predictable address.
+   * Default is false
+   */
+  fixMsg: boolean;
+}
+
+/**
+ * Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+ * an explicit MigrateContractProposal. To migrate a contract,
+ * a simple MsgMigrateContract can be invoked from the x/gov module via
+ * a v1 governance proposal.
+ *
+ * @deprecated
+ */
 export interface MigrateContractProposal {
   /** Title is a short summary */
   title: string;
@@ -71,7 +123,14 @@ export interface MigrateContractProposal {
   msg: Uint8Array;
 }
 
-/** SudoContractProposal gov proposal content type to call sudo on a contract. */
+/**
+ * Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+ * an explicit SudoContractProposal. To call sudo on a contract,
+ * a simple MsgSudoContract can be invoked from the x/gov module via
+ * a v1 governance proposal.
+ *
+ * @deprecated
+ */
 export interface SudoContractProposal {
   /** Title is a short summary */
   title: string;
@@ -84,8 +143,12 @@ export interface SudoContractProposal {
 }
 
 /**
- * ExecuteContractProposal gov proposal content type to call execute on a
- * contract.
+ * Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+ * an explicit ExecuteContractProposal. To call execute on a contract,
+ * a simple MsgExecuteContract can be invoked from the x/gov module via
+ * a v1 governance proposal.
+ *
+ * @deprecated
  */
 export interface ExecuteContractProposal {
   /** Title is a short summary */
@@ -102,7 +165,14 @@ export interface ExecuteContractProposal {
   funds: Coin[];
 }
 
-/** UpdateAdminProposal gov proposal content type to set an admin for a contract. */
+/**
+ * Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+ * an explicit UpdateAdminProposal. To set an admin for a contract,
+ * a simple MsgUpdateAdmin can be invoked from the x/gov module via
+ * a v1 governance proposal.
+ *
+ * @deprecated
+ */
 export interface UpdateAdminProposal {
   /** Title is a short summary */
   title: string;
@@ -115,8 +185,12 @@ export interface UpdateAdminProposal {
 }
 
 /**
- * ClearAdminProposal gov proposal content type to clear the admin of a
- * contract.
+ * Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+ * an explicit ClearAdminProposal. To clear the admin of a contract,
+ * a simple MsgClearAdmin can be invoked from the x/gov module via
+ * a v1 governance proposal.
+ *
+ * @deprecated
  */
 export interface ClearAdminProposal {
   /** Title is a short summary */
@@ -128,8 +202,12 @@ export interface ClearAdminProposal {
 }
 
 /**
- * PinCodesProposal gov proposal content type to pin a set of code ids in the
- * wasmvm cache.
+ * Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+ * an explicit PinCodesProposal. To pin a set of code ids in the wasmvm
+ * cache, a simple MsgPinCodes can be invoked from the x/gov module via
+ * a v1 governance proposal.
+ *
+ * @deprecated
  */
 export interface PinCodesProposal {
   /** Title is a short summary */
@@ -141,8 +219,12 @@ export interface PinCodesProposal {
 }
 
 /**
- * UnpinCodesProposal gov proposal content type to unpin a set of code ids in
- * the wasmvm cache.
+ * Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+ * an explicit UnpinCodesProposal. To unpin a set of code ids in the wasmvm
+ * cache, a simple MsgUnpinCodes can be invoked from the x/gov module via
+ * a v1 governance proposal.
+ *
+ * @deprecated
  */
 export interface UnpinCodesProposal {
   /** Title is a short summary */
@@ -165,8 +247,12 @@ export interface AccessConfigUpdate {
 }
 
 /**
- * UpdateInstantiateConfigProposal gov proposal content type to update
- * instantiate config to a  set of code ids.
+ * Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+ * an explicit UpdateInstantiateConfigProposal. To update instantiate config
+ * to a set of code ids, a simple MsgUpdateInstantiateConfig can be invoked from
+ * the x/gov module via a v1 governance proposal.
+ *
+ * @deprecated
  */
 export interface UpdateInstantiateConfigProposal {
   /** Title is a short summary */
@@ -181,8 +267,12 @@ export interface UpdateInstantiateConfigProposal {
 }
 
 /**
- * StoreAndInstantiateContractProposal gov proposal content type to store
- * and instantiate the contract.
+ * Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for
+ * an explicit StoreAndInstantiateContractProposal. To store and instantiate
+ * the contract, a simple MsgStoreAndInstantiateContract can be invoked from
+ * the x/gov module via a v1 governance proposal.
+ *
+ * @deprecated
  */
 export interface StoreAndInstantiateContractProposal {
   /** Title is a short summary */
@@ -608,6 +698,231 @@ export const InstantiateContractProposal = {
       for (const e of object.funds) {
         message.funds.push(Coin.fromPartial(e));
       }
+    }
+    return message;
+  },
+};
+
+const baseInstantiateContract2Proposal: object = {
+  title: "",
+  description: "",
+  runAs: "",
+  admin: "",
+  codeId: Long.UZERO,
+  label: "",
+  fixMsg: false,
+};
+
+export const InstantiateContract2Proposal = {
+  encode(message: InstantiateContract2Proposal, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.title !== "") {
+      writer.uint32(10).string(message.title);
+    }
+    if (message.description !== "") {
+      writer.uint32(18).string(message.description);
+    }
+    if (message.runAs !== "") {
+      writer.uint32(26).string(message.runAs);
+    }
+    if (message.admin !== "") {
+      writer.uint32(34).string(message.admin);
+    }
+    if (!message.codeId.isZero()) {
+      writer.uint32(40).uint64(message.codeId);
+    }
+    if (message.label !== "") {
+      writer.uint32(50).string(message.label);
+    }
+    if (message.msg.length !== 0) {
+      writer.uint32(58).bytes(message.msg);
+    }
+    for (const v of message.funds) {
+      Coin.encode(v!, writer.uint32(66).fork()).ldelim();
+    }
+    if (message.salt.length !== 0) {
+      writer.uint32(74).bytes(message.salt);
+    }
+    if (message.fixMsg === true) {
+      writer.uint32(80).bool(message.fixMsg);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): InstantiateContract2Proposal {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseInstantiateContract2Proposal } as InstantiateContract2Proposal;
+    message.funds = [];
+    message.msg = new Uint8Array();
+    message.salt = new Uint8Array();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.title = reader.string();
+          break;
+        case 2:
+          message.description = reader.string();
+          break;
+        case 3:
+          message.runAs = reader.string();
+          break;
+        case 4:
+          message.admin = reader.string();
+          break;
+        case 5:
+          message.codeId = reader.uint64() as Long;
+          break;
+        case 6:
+          message.label = reader.string();
+          break;
+        case 7:
+          message.msg = reader.bytes();
+          break;
+        case 8:
+          message.funds.push(Coin.decode(reader, reader.uint32()));
+          break;
+        case 9:
+          message.salt = reader.bytes();
+          break;
+        case 10:
+          message.fixMsg = reader.bool();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): InstantiateContract2Proposal {
+    const message = { ...baseInstantiateContract2Proposal } as InstantiateContract2Proposal;
+    message.funds = [];
+    message.msg = new Uint8Array();
+    message.salt = new Uint8Array();
+    if (object.title !== undefined && object.title !== null) {
+      message.title = String(object.title);
+    } else {
+      message.title = "";
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = String(object.description);
+    } else {
+      message.description = "";
+    }
+    if (object.runAs !== undefined && object.runAs !== null) {
+      message.runAs = String(object.runAs);
+    } else {
+      message.runAs = "";
+    }
+    if (object.admin !== undefined && object.admin !== null) {
+      message.admin = String(object.admin);
+    } else {
+      message.admin = "";
+    }
+    if (object.codeId !== undefined && object.codeId !== null) {
+      message.codeId = Long.fromString(object.codeId);
+    } else {
+      message.codeId = Long.UZERO;
+    }
+    if (object.label !== undefined && object.label !== null) {
+      message.label = String(object.label);
+    } else {
+      message.label = "";
+    }
+    if (object.msg !== undefined && object.msg !== null) {
+      message.msg = bytesFromBase64(object.msg);
+    }
+    if (object.funds !== undefined && object.funds !== null) {
+      for (const e of object.funds) {
+        message.funds.push(Coin.fromJSON(e));
+      }
+    }
+    if (object.salt !== undefined && object.salt !== null) {
+      message.salt = bytesFromBase64(object.salt);
+    }
+    if (object.fixMsg !== undefined && object.fixMsg !== null) {
+      message.fixMsg = Boolean(object.fixMsg);
+    } else {
+      message.fixMsg = false;
+    }
+    return message;
+  },
+
+  toJSON(message: InstantiateContract2Proposal): unknown {
+    const obj: any = {};
+    message.title !== undefined && (obj.title = message.title);
+    message.description !== undefined && (obj.description = message.description);
+    message.runAs !== undefined && (obj.runAs = message.runAs);
+    message.admin !== undefined && (obj.admin = message.admin);
+    message.codeId !== undefined && (obj.codeId = (message.codeId || Long.UZERO).toString());
+    message.label !== undefined && (obj.label = message.label);
+    message.msg !== undefined &&
+      (obj.msg = base64FromBytes(message.msg !== undefined ? message.msg : new Uint8Array()));
+    if (message.funds) {
+      obj.funds = message.funds.map((e) => (e ? Coin.toJSON(e) : undefined));
+    } else {
+      obj.funds = [];
+    }
+    message.salt !== undefined &&
+      (obj.salt = base64FromBytes(message.salt !== undefined ? message.salt : new Uint8Array()));
+    message.fixMsg !== undefined && (obj.fixMsg = message.fixMsg);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<InstantiateContract2Proposal>): InstantiateContract2Proposal {
+    const message = { ...baseInstantiateContract2Proposal } as InstantiateContract2Proposal;
+    message.funds = [];
+    if (object.title !== undefined && object.title !== null) {
+      message.title = object.title;
+    } else {
+      message.title = "";
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = object.description;
+    } else {
+      message.description = "";
+    }
+    if (object.runAs !== undefined && object.runAs !== null) {
+      message.runAs = object.runAs;
+    } else {
+      message.runAs = "";
+    }
+    if (object.admin !== undefined && object.admin !== null) {
+      message.admin = object.admin;
+    } else {
+      message.admin = "";
+    }
+    if (object.codeId !== undefined && object.codeId !== null) {
+      message.codeId = object.codeId as Long;
+    } else {
+      message.codeId = Long.UZERO;
+    }
+    if (object.label !== undefined && object.label !== null) {
+      message.label = object.label;
+    } else {
+      message.label = "";
+    }
+    if (object.msg !== undefined && object.msg !== null) {
+      message.msg = object.msg;
+    } else {
+      message.msg = new Uint8Array();
+    }
+    if (object.funds !== undefined && object.funds !== null) {
+      for (const e of object.funds) {
+        message.funds.push(Coin.fromPartial(e));
+      }
+    }
+    if (object.salt !== undefined && object.salt !== null) {
+      message.salt = object.salt;
+    } else {
+      message.salt = new Uint8Array();
+    }
+    if (object.fixMsg !== undefined && object.fixMsg !== null) {
+      message.fixMsg = object.fixMsg;
+    } else {
+      message.fixMsg = false;
     }
     return message;
   },
