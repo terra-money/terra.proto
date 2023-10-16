@@ -2,7 +2,7 @@
 set -o errexit -o nounset -o pipefail
 command -v shellcheck >/dev/null && shellcheck "$0"
 
-DIRS="alliance amino confio cosmos cosmos_proto cosmwasm gogoproto google ibc jax osmosis pob router tendermint proofs.d.ts proofs.js proofs.js.map"
+DIRS="alliance amino confio cosmos cosmos_proto cosmwasm gogoproto google ibc jax osmosis juno pob router tendermint proofs.d.ts proofs.js proofs.js.map"
 
 for dir in $DIRS; do
   rm -rf "$dir"
