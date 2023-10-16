@@ -1,4 +1,4 @@
-/// GenesisState defines the router genesis state
+/// GenesisState defines the packetforward genesis state
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenesisState {
@@ -12,7 +12,7 @@ pub struct GenesisState {
     pub in_flight_packets:
         ::std::collections::HashMap<::prost::alloc::string::String, InFlightPacket>,
 }
-/// Params defines the set of IBC router parameters.
+/// Params defines the set of packetforward parameters.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Params {
@@ -134,7 +134,7 @@ pub mod query_client {
             self.inner = self.inner.accept_compressed(encoding);
             self
         }
-        /// Params queries all parameters of the router module.
+        /// Params queries all parameters of the packetforward module.
         pub async fn params(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryParamsRequest>,
@@ -146,7 +146,7 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/router.v1.Query/Params");
+            let path = http::uri::PathAndQuery::from_static("/packetforward.v1.Query/Params");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -160,7 +160,7 @@ pub mod query_server {
     /// Generated trait containing gRPC methods that should be implemented for use with QueryServer.
     #[async_trait]
     pub trait Query: Send + Sync + 'static {
-        /// Params queries all parameters of the router module.
+        /// Params queries all parameters of the packetforward module.
         async fn params(
             &self,
             request: tonic::Request<super::QueryParamsRequest>,
@@ -220,7 +220,7 @@ pub mod query_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/router.v1.Query/Params" => {
+                "/packetforward.v1.Query/Params" => {
                     #[allow(non_camel_case_types)]
                     struct ParamsSvc<T: Query>(pub Arc<T>);
                     impl<T: Query> tonic::server::UnaryService<super::QueryParamsRequest> for ParamsSvc<T> {
@@ -283,6 +283,6 @@ pub mod query_server {
         }
     }
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
-        const NAME: &'static str = "router.v1.Query";
+        const NAME: &'static str = "packetforward.v1.Query";
     }
 }

@@ -362,3 +362,12 @@ pub mod pob {
         }
     }
 }
+
+
+pub mod juno {
+    pub mod feeshare {
+        pub mod v1 {
+            include!("models/juno.feeshare.v1.rs");
+        }
+    }
+}

@@ -123,6 +123,11 @@ When building a smart contract you can use the following messages natively witho
 - `/pob.builder.v1.MsgAuctionBid`
 - `/pob.builder.v1.MsgUpdateParams`
 
+#### POB Module
+- `/juno.feeshare.v1.MsgRegisterFeeShare`
+- `/juno.feeshare.v1.MsgUpdateFeeShare`
+- `/juno.feeshare.v1.MsgCancelFeeShare`
+- `/juno.feeshare.v1.MsgUpdateParams`
 
 
 ### Example
