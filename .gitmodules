@@ -13,7 +13,7 @@
 [submodule "terra"]
 	path = terra
 	url = https://github.com/terra-money/core
-	branch = release/v2.5
+	branch = release/v2.6
 [submodule "wasmd"]
 	path = wasmd
 	url = https://github.com/cosmwasm/wasmd

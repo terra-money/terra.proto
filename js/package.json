@@ -1,6 +1,6 @@
 {
   "name": "@terra-money/terra.proto",
-  "version": "4.0.1",
+  "version": "4.0.3",
   "description": "JS and TS types relating to Protocol Buffers used by Terra project",
   "contributors": [
     "Yun Yeo <YunSuk-Yeo@users.noreply.github.com>"
@@ -25,6 +25,7 @@
     "ibc/",
     "jax/",
     "osmosis/",
+    "juno/",
     "pob/",
     "router/",
     "tendermint/",

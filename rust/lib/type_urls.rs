@@ -4,7 +4,7 @@
 // TODO(tarcieri): leverage first-class support for type URLs in prost?
 // See: https://github.com/tokio-rs/prost/issues/299
 
-use crate::{cosmos, cosmwasm , ibc, alliance, osmosis, pob, traits::TypeUrl};
+use crate::{cosmos, cosmwasm , ibc, alliance, osmosis, pob, traits::TypeUrl, juno};
 
 // #########
 // Alliance
@@ -474,10 +474,22 @@ impl TypeUrl for pob::builder::v1::MsgUpdateParams{
     const TYPE_URL: &'static str = "/pob.builder.v1.MsgUpdateParams";
 }
 
+// ################
+// Feeshare Module
+// ################
 
+impl TypeUrl for juno::feeshare::v1::MsgRegisterFeeShare{
+    const TYPE_URL: &'static str = "/juno.feeshare.v1.MsgRegisterFeeShare";
+}
 
+impl TypeUrl for juno::feeshare::v1::MsgUpdateFeeShare{
+    const TYPE_URL: &'static str = "/juno.feeshare.v1.MsgUpdateFeeShare";
+}
 
+impl TypeUrl for juno::feeshare::v1::MsgCancelFeeShare{
+    const TYPE_URL: &'static str = "/juno.feeshare.v1.MsgCancelFeeShare";
+}
 
-
-
-
+impl TypeUrl for juno::feeshare::v1::MsgUpdateParams{
+    const TYPE_URL: &'static str = "/juno.feeshare.v1.MsgUpdateParams";
+}

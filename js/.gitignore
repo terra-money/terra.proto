@@ -17,5 +17,8 @@ node_modules
 /proofs.d.ts
 /proofs.js
 /proofs.js.map
-
+/pob/
+/juno/
+/amino/
+/osmosis/
 /.temp/
