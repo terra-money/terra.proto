@@ -1,6 +1,6 @@
 {
   "name": "@terra-money/terra.proto",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "JS and TS types relating to Protocol Buffers used by Terra project",
   "contributors": [
     "Yun Yeo <YunSuk-Yeo@users.noreply.github.com>"
@@ -15,6 +15,7 @@
   },
   "files": [
     "alliance/",
+    "icq/",
     "amino/",
     "confio/",
     "cosmos/",

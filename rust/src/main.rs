@@ -78,6 +78,10 @@ fn compile_protos_and_services() {
         "../ibc-apps/middleware/packet-forward-middleware/proto",
     ))
     .unwrap();
+    let icq = fs::canonicalize(PathBuf::from(
+        "../ibc-apps/modules/async-icq/proto",
+    ))
+    .unwrap();
     let wasmd_dir = fs::canonicalize(PathBuf::from("../wasmd/proto")).unwrap();
     let cosmos_dir = fs::canonicalize(PathBuf::from("../cosmos-proto/proto")).unwrap();
     let terra_dir = fs::canonicalize(PathBuf::from("../terra/proto")).unwrap();
@@ -88,6 +92,7 @@ fn compile_protos_and_services() {
         alliance_dir.clone(),
         ibc_dir.clone(),
         pfm_dir.clone(),
+        icq.clone(),
         wasmd_dir.clone(),
         cosmos_dir.clone(),
         terra_dir.clone(),
@@ -101,6 +106,7 @@ fn compile_protos_and_services() {
         alliance_dir,
         ibc_dir,
         pfm_dir,
+        icq,
         wasmd_dir,
         fs::canonicalize(PathBuf::from("../grpc-gateway/third_party")).unwrap(),
         fs::canonicalize(PathBuf::from("../grpc-gateway/third_party/googleapis")).unwrap(),
