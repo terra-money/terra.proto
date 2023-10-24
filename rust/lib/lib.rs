@@ -263,6 +263,11 @@ pub mod ibc {
     /// IBC applications.
     pub mod applications {
 
+        pub mod icq {
+            pub mod v1 {
+                include!("models/icq.v1.rs");
+            }
+        }
 
         /// Interchain accounts support.
         pub mod interchain_accounts {
