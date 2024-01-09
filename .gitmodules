@@ -31,3 +31,6 @@
 [submodule "pob"]
 	path = pob
 	url = https://github.com/skip-mev/pob
+[submodule "feemarket"]
+	path = feemarket
+	url = https://github.com/terra-money/feemarket
