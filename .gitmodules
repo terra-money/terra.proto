@@ -1,36 +1,37 @@
 [submodule "cosmos-sdk"]
-	path = cosmos-sdk
-	url = https://github.com/terra-money/cosmos-sdk.git
-	branch = release/v0.47.x
+path = cosmos-sdk
+url = https://github.com/terra-money/cosmos-sdk.git
+branch = release/v0.47.x
 [submodule "ibc-go"]
-	path = ibc-go
-	url = https://github.com/cosmos/ibc-go.git
-	branch = release/v7.3.x
+path = ibc-go
+url = https://github.com/cosmos/ibc-go.git
+branch = release/v7.3.x
 [submodule "alliance"]
-	path = alliance
-	url = https://github.com/terra-money/alliance.git
-	branch = release/v0.3.x
+path = alliance
+url = https://github.com/terra-money/alliance.git
+branch = release/v0.3.x
 [submodule "terra"]
-	path = terra
-	url = https://github.com/terra-money/core
-	branch = release/v2.6
+path = terra
+url = https://github.com/terra-money/core
+branch = release/v2.6
 [submodule "wasmd"]
-	path = wasmd
-	url = https://github.com/cosmwasm/wasmd
-	branch = releases/v0.40.x
+path = wasmd
+url = https://github.com/cosmwasm/wasmd
+branch = releases/v0.40.x
 [submodule "protobuf"]
-	path = protobuf
-	url = https://github.com/regen-network/protobuf
+path = protobuf
+url = https://github.com/regen-network/protobuf
 [submodule "ibc-apps"]
-	path = ibc-apps
-	url = https://github.com/cosmos/ibc-apps
+path = ibc-apps
+url = https://github.com/cosmos/ibc-apps
 [submodule "grpc-gateway"]
-	path = grpc-gateway
-	url = https://github.com/grpc-ecosystem/grpc-gateway
-	branch = v1
+path = grpc-gateway
+url = https://github.com/grpc-ecosystem/grpc-gateway
+branch = v1
 [submodule "pob"]
-	path = pob
-	url = https://github.com/skip-mev/pob
+path = pob
+url = https://github.com/skip-mev/pob
 [submodule "feemarket"]
-	path = feemarket
-	url = https://github.com/terra-money/feemarket
+path = feemarket
+url = https://github.com/terra-money/feemarket
+branch = v0.0.1-alpha.2-terra
