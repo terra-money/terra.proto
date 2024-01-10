@@ -22,8 +22,9 @@ JAX_DIR=$(readlink -f "../jax/proto")
 COSMOS_DIR=$(readlink -f "../cosmos-proto/proto")
 TERRA_DIR=$(readlink -f "../terra/proto")
 POB_DIR=$(readlink -f "../pob/proto")
+FEEMARKET_DIR=$(readlink -f "../feemarket/proto")
 
-protoc  \
+protoc \
   -I "$PROTOBUF_DIR" \
   -I "$PROTOBUF_DIR/protobuf" \
   -I "$COSMOS_SDK_DIR" \
@@ -39,7 +40,8 @@ protoc  \
   -I "$ICQ_DIR" \
   -I "$TERRA_DIR" \
   -I "$POB_DIR" \
-  $(find $COSMOS_SDK_DIR $ALLIANCE_DIR $IBC_DIR $PFM_DIR $WASMD_DIR $COSMOS_DIR $TERRA_DIR $POB_DIR $ICQ_DIR -path -prune -o -name '*.proto' -print0 | xargs -0) \
+  -I "$FEEMARKET_DIR" \
+  $(find $COSMOS_SDK_DIR $ALLIANCE_DIR $IBC_DIR $PFM_DIR $WASMD_DIR $COSMOS_DIR $TERRA_DIR $POB_DIR $ICQ_DIR $FEEMARKET -path -prune -o -name '*.proto' -print0 | xargs -0) \
   --plugin="protoc-gen-ts_proto=${PROTOC_GEN_TS_PROTO_PATH}" \
   --ts_proto_out="${OUT_DIR}" \
-  --ts_proto_opt="esModuleInterop=true,forceLong=long,useOptionals=true,outputClientImpl=grpc-web" 
+  --ts_proto_opt="esModuleInterop=true,forceLong=long,useOptionals=true,outputClientImpl=grpc-web"
