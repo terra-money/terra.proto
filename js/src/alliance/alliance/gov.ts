@@ -46,6 +46,8 @@ export interface MsgUpdateAllianceProposal {
   takeRate: string;
   rewardChangeRate: string;
   rewardChangeInterval?: Duration;
+  /** set a bound of weight range to limit how much reward weights can scale. */
+  rewardWeightRange?: RewardWeightRange;
 }
 
 export interface MsgDeleteAllianceProposal {
@@ -275,6 +277,9 @@ export const MsgUpdateAllianceProposal = {
     if (message.rewardChangeInterval !== undefined) {
       Duration.encode(message.rewardChangeInterval, writer.uint32(58).fork()).ldelim();
     }
+    if (message.rewardWeightRange !== undefined) {
+      RewardWeightRange.encode(message.rewardWeightRange, writer.uint32(66).fork()).ldelim();
+    }
     return writer;
   },
 
@@ -305,6 +310,9 @@ export const MsgUpdateAllianceProposal = {
           break;
         case 7:
           message.rewardChangeInterval = Duration.decode(reader, reader.uint32());
+          break;
+        case 8:
+          message.rewardWeightRange = RewardWeightRange.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -351,6 +359,11 @@ export const MsgUpdateAllianceProposal = {
     } else {
       message.rewardChangeInterval = undefined;
     }
+    if (object.rewardWeightRange !== undefined && object.rewardWeightRange !== null) {
+      message.rewardWeightRange = RewardWeightRange.fromJSON(object.rewardWeightRange);
+    } else {
+      message.rewardWeightRange = undefined;
+    }
     return message;
   },
 
@@ -365,6 +378,10 @@ export const MsgUpdateAllianceProposal = {
     message.rewardChangeInterval !== undefined &&
       (obj.rewardChangeInterval = message.rewardChangeInterval
         ? Duration.toJSON(message.rewardChangeInterval)
+        : undefined);
+    message.rewardWeightRange !== undefined &&
+      (obj.rewardWeightRange = message.rewardWeightRange
+        ? RewardWeightRange.toJSON(message.rewardWeightRange)
         : undefined);
     return obj;
   },
@@ -405,6 +422,11 @@ export const MsgUpdateAllianceProposal = {
       message.rewardChangeInterval = Duration.fromPartial(object.rewardChangeInterval);
     } else {
       message.rewardChangeInterval = undefined;
+    }
+    if (object.rewardWeightRange !== undefined && object.rewardWeightRange !== null) {
+      message.rewardWeightRange = RewardWeightRange.fromPartial(object.rewardWeightRange);
+    } else {
+      message.rewardWeightRange = undefined;
     }
     return message;
   },
