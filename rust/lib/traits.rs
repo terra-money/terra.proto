@@ -1,9 +1,10 @@
 //! Support traits for Cosmos SDK protobufs.
 
+use cosmwasm_std::CosmosMsg;
 pub use prost::Message;
 
-use prost_types::Any;
 use prost::{DecodeError, EncodeError};
+use prost_types::Any;
 use std::str::FromStr;
 
 /// Associate a type URL with a given proto.
@@ -45,6 +46,25 @@ pub trait MessageExt: Message {
 
     /// Serialize this protobuf message as a byte vector.
     fn to_bytes(&self) -> Result<Vec<u8>, EncodeError>;
+
+    /// Serialize this message as [`CosmosMsg::Stargate`]
+    fn to_stargate_msg(&self) -> Result<CosmosMsg, EncodeError>
+    where
+        Self: TypeUrl,
+    {
+        Ok(CosmosMsg::Stargate {
+            type_url: Self::TYPE_URL.to_string(),
+            value: self.to_bytes()?.into(),
+        })
+    }
+
+    /// Return `SELF::TYPE_URL`
+    fn type_url(&self) -> String
+    where
+        Self: TypeUrl,
+    {
+        Self::TYPE_URL.to_string()
+    }
 }
 
 impl<M> MessageExt for M
