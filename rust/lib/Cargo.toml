@@ -15,6 +15,7 @@ keywords = ["terra-money", "alliance", "cosmos-sdk", "proto", "blockchain"]
 prost = "0.11"
 prost-types = "0.11"
 tendermint-proto = "0.30"
+cosmwasm-std = { version = "1.5.1", features = ["stargate"]}
 # Optional dependencies
 tonic = { version = "0.8", optional = true, default-features = false, features = ["codegen", "prost"] }
 
