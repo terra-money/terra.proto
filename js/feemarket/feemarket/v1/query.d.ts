@@ -2,8 +2,8 @@ import Long from "long";
 import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Params } from "../../../feemarket/feemarket/v1/params";
+import { DecCoin } from "../../../cosmos/base/v1beta1/coin";
 import { State } from "../../../feemarket/feemarket/v1/genesis";
-import { Coin } from "../../../cosmos/base/v1beta1/coin";
 export declare const protobufPackage = "feemarket.feemarket.v1";
 /** ParamsRequest is the request type for the Query/Params RPC method. */
 export interface ParamsRequest {
@@ -26,7 +26,7 @@ export interface BaseFeeRequest {
 }
 /** StateResponse is the response type for the Query/BaseFee RPC method. */
 export interface BaseFeeResponse {
-    fees: Coin[];
+    fee?: DecCoin;
 }
 export declare const ParamsRequest: {
     encode(_: ParamsRequest, writer?: _m0.Writer): _m0.Writer;

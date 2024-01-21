@@ -9,9 +9,9 @@ const long_1 = __importDefault(require("long"));
 const grpc_web_1 = require("@improbable-eng/grpc-web");
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const params_1 = require("../../../feemarket/feemarket/v1/params");
+const coin_1 = require("../../../cosmos/base/v1beta1/coin");
 const browser_headers_1 = require("browser-headers");
 const genesis_1 = require("../../../feemarket/feemarket/v1/genesis");
-const coin_1 = require("../../../cosmos/base/v1beta1/coin");
 exports.protobufPackage = "feemarket.feemarket.v1";
 const baseParamsRequest = {};
 exports.ParamsRequest = {
@@ -258,8 +258,8 @@ exports.BaseFeeRequest = {
 const baseBaseFeeResponse = {};
 exports.BaseFeeResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        for (const v of message.fees) {
-            coin_1.Coin.encode(v, writer.uint32(10).fork()).ldelim();
+        if (message.fee !== undefined) {
+            coin_1.DecCoin.encode(message.fee, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
@@ -267,12 +267,11 @@ exports.BaseFeeResponse = {
         const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = Object.assign({}, baseBaseFeeResponse);
-        message.fees = [];
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.fees.push(coin_1.Coin.decode(reader, reader.uint32()));
+                    message.fee = coin_1.DecCoin.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -283,31 +282,26 @@ exports.BaseFeeResponse = {
     },
     fromJSON(object) {
         const message = Object.assign({}, baseBaseFeeResponse);
-        message.fees = [];
-        if (object.fees !== undefined && object.fees !== null) {
-            for (const e of object.fees) {
-                message.fees.push(coin_1.Coin.fromJSON(e));
-            }
+        if (object.fee !== undefined && object.fee !== null) {
+            message.fee = coin_1.DecCoin.fromJSON(object.fee);
+        }
+        else {
+            message.fee = undefined;
         }
         return message;
     },
     toJSON(message) {
         const obj = {};
-        if (message.fees) {
-            obj.fees = message.fees.map((e) => (e ? coin_1.Coin.toJSON(e) : undefined));
-        }
-        else {
-            obj.fees = [];
-        }
+        message.fee !== undefined && (obj.fee = message.fee ? coin_1.DecCoin.toJSON(message.fee) : undefined);
         return obj;
     },
     fromPartial(object) {
         const message = Object.assign({}, baseBaseFeeResponse);
-        message.fees = [];
-        if (object.fees !== undefined && object.fees !== null) {
-            for (const e of object.fees) {
-                message.fees.push(coin_1.Coin.fromPartial(e));
-            }
+        if (object.fee !== undefined && object.fee !== null) {
+            message.fee = coin_1.DecCoin.fromPartial(object.fee);
+        }
+        else {
+            message.fee = undefined;
         }
         return message;
     },

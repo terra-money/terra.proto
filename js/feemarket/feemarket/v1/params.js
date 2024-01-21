@@ -19,6 +19,7 @@ const baseParams = {
     maxBlockUtilization: long_1.default.UZERO,
     window: long_1.default.UZERO,
     enabled: false,
+    defaultFeeDenom: "",
 };
 exports.Params = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -51,6 +52,9 @@ exports.Params = {
         }
         if (message.enabled === true) {
             writer.uint32(80).bool(message.enabled);
+        }
+        if (message.defaultFeeDenom !== "") {
+            writer.uint32(90).string(message.defaultFeeDenom);
         }
         return writer;
     },
@@ -90,6 +94,9 @@ exports.Params = {
                     break;
                 case 10:
                     message.enabled = reader.bool();
+                    break;
+                case 11:
+                    message.defaultFeeDenom = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -160,6 +167,12 @@ exports.Params = {
         else {
             message.enabled = false;
         }
+        if (object.defaultFeeDenom !== undefined && object.defaultFeeDenom !== null) {
+            message.defaultFeeDenom = String(object.defaultFeeDenom);
+        }
+        else {
+            message.defaultFeeDenom = "";
+        }
         return message;
     },
     toJSON(message) {
@@ -176,6 +189,7 @@ exports.Params = {
             (obj.maxBlockUtilization = (message.maxBlockUtilization || long_1.default.UZERO).toString());
         message.window !== undefined && (obj.window = (message.window || long_1.default.UZERO).toString());
         message.enabled !== undefined && (obj.enabled = message.enabled);
+        message.defaultFeeDenom !== undefined && (obj.defaultFeeDenom = message.defaultFeeDenom);
         return obj;
     },
     fromPartial(object) {
@@ -239,6 +253,12 @@ exports.Params = {
         }
         else {
             message.enabled = false;
+        }
+        if (object.defaultFeeDenom !== undefined && object.defaultFeeDenom !== null) {
+            message.defaultFeeDenom = object.defaultFeeDenom;
+        }
+        else {
+            message.defaultFeeDenom = "";
         }
         return message;
     },

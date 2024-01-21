@@ -47,6 +47,11 @@ export interface Params {
      * enabled.
      */
     enabled: boolean;
+    /**
+     * DefaultFeeDenom is the default fee denom for the EIP1559 fee market
+     * used to simulate transactions if there are no fees specified
+     */
+    defaultFeeDenom: string;
 }
 export declare const Params: {
     encode(message: Params, writer?: _m0.Writer): _m0.Writer;
