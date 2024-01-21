@@ -3,9 +3,9 @@ import Long from "long";
 import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Params } from "../../../feemarket/feemarket/v1/params";
+import { DecCoin } from "../../../cosmos/base/v1beta1/coin";
 import { BrowserHeaders } from "browser-headers";
 import { State } from "../../../feemarket/feemarket/v1/genesis";
-import { Coin } from "../../../cosmos/base/v1beta1/coin";
 
 export const protobufPackage = "feemarket.feemarket.v1";
 
@@ -34,7 +34,7 @@ export interface BaseFeeRequest {
 
 /** StateResponse is the response type for the Query/BaseFee RPC method. */
 export interface BaseFeeResponse {
-  fees: Coin[];
+  fee?: DecCoin;
 }
 
 const baseParamsRequest: object = {};
@@ -306,8 +306,8 @@ const baseBaseFeeResponse: object = {};
 
 export const BaseFeeResponse = {
   encode(message: BaseFeeResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.fees) {
-      Coin.encode(v!, writer.uint32(10).fork()).ldelim();
+    if (message.fee !== undefined) {
+      DecCoin.encode(message.fee, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -316,12 +316,11 @@ export const BaseFeeResponse = {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseBaseFeeResponse } as BaseFeeResponse;
-    message.fees = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.fees.push(Coin.decode(reader, reader.uint32()));
+          message.fee = DecCoin.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -333,32 +332,26 @@ export const BaseFeeResponse = {
 
   fromJSON(object: any): BaseFeeResponse {
     const message = { ...baseBaseFeeResponse } as BaseFeeResponse;
-    message.fees = [];
-    if (object.fees !== undefined && object.fees !== null) {
-      for (const e of object.fees) {
-        message.fees.push(Coin.fromJSON(e));
-      }
+    if (object.fee !== undefined && object.fee !== null) {
+      message.fee = DecCoin.fromJSON(object.fee);
+    } else {
+      message.fee = undefined;
     }
     return message;
   },
 
   toJSON(message: BaseFeeResponse): unknown {
     const obj: any = {};
-    if (message.fees) {
-      obj.fees = message.fees.map((e) => (e ? Coin.toJSON(e) : undefined));
-    } else {
-      obj.fees = [];
-    }
+    message.fee !== undefined && (obj.fee = message.fee ? DecCoin.toJSON(message.fee) : undefined);
     return obj;
   },
 
   fromPartial(object: DeepPartial<BaseFeeResponse>): BaseFeeResponse {
     const message = { ...baseBaseFeeResponse } as BaseFeeResponse;
-    message.fees = [];
-    if (object.fees !== undefined && object.fees !== null) {
-      for (const e of object.fees) {
-        message.fees.push(Coin.fromPartial(e));
-      }
+    if (object.fee !== undefined && object.fee !== null) {
+      message.fee = DecCoin.fromPartial(object.fee);
+    } else {
+      message.fee = undefined;
     }
     return message;
   },

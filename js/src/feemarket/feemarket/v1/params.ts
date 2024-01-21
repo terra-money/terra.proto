@@ -50,6 +50,11 @@ export interface Params {
    * enabled.
    */
   enabled: boolean;
+  /**
+   * DefaultFeeDenom is the default fee denom for the EIP1559 fee market
+   * used to simulate transactions if there are no fees specified
+   */
+  defaultFeeDenom: string;
 }
 
 const baseParams: object = {
@@ -63,6 +68,7 @@ const baseParams: object = {
   maxBlockUtilization: Long.UZERO,
   window: Long.UZERO,
   enabled: false,
+  defaultFeeDenom: "",
 };
 
 export const Params = {
@@ -96,6 +102,9 @@ export const Params = {
     }
     if (message.enabled === true) {
       writer.uint32(80).bool(message.enabled);
+    }
+    if (message.defaultFeeDenom !== "") {
+      writer.uint32(90).string(message.defaultFeeDenom);
     }
     return writer;
   },
@@ -136,6 +145,9 @@ export const Params = {
           break;
         case 10:
           message.enabled = reader.bool();
+          break;
+        case 11:
+          message.defaultFeeDenom = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -197,6 +209,11 @@ export const Params = {
     } else {
       message.enabled = false;
     }
+    if (object.defaultFeeDenom !== undefined && object.defaultFeeDenom !== null) {
+      message.defaultFeeDenom = String(object.defaultFeeDenom);
+    } else {
+      message.defaultFeeDenom = "";
+    }
     return message;
   },
 
@@ -214,6 +231,7 @@ export const Params = {
       (obj.maxBlockUtilization = (message.maxBlockUtilization || Long.UZERO).toString());
     message.window !== undefined && (obj.window = (message.window || Long.UZERO).toString());
     message.enabled !== undefined && (obj.enabled = message.enabled);
+    message.defaultFeeDenom !== undefined && (obj.defaultFeeDenom = message.defaultFeeDenom);
     return obj;
   },
 
@@ -268,6 +286,11 @@ export const Params = {
       message.enabled = object.enabled;
     } else {
       message.enabled = false;
+    }
+    if (object.defaultFeeDenom !== undefined && object.defaultFeeDenom !== null) {
+      message.defaultFeeDenom = object.defaultFeeDenom;
+    } else {
+      message.defaultFeeDenom = "";
     }
     return message;
   },
