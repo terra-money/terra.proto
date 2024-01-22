@@ -1345,7 +1345,7 @@ dependencies = [
 
 [[package]]
 name = "terra-proto-rs"
-version = "4.0.2"
+version = "4.0.3"
 dependencies = [
  "cosmwasm-std",
  "getrandom",
