@@ -14,15 +14,16 @@ export interface GenesisState {
    */
   params?: Params;
   /** States contains the current states of the AIMD fee market for all FeeDenom. */
-  states: State[];
+  state?: State;
+  /** FeeDenomParams contains the current state of the fee denom. */
+  feeDenomParams: FeeDenomParam[];
 }
 
 /**
- * State is utilized to track the current state of the fee market. This includes
- * the current base fee, learning rate, and block utilization within the
- * specified AIMD window.
+ * FeeDenomParam is utilized to track the current state of the fee denom. This includes
+ * the current base fee, min base fee.
  */
-export interface State {
+export interface FeeDenomParam {
   /** FeeDenom is the denom that will be used for all fee payments. */
   feeDenom: string;
   /**
@@ -35,6 +36,14 @@ export interface State {
    * unit.
    */
   baseFee: string;
+}
+
+/**
+ * State is utilized to track the current state of the fee market. This includes
+ * the current learning rate, and block utilization within the
+ * specified AIMD window.
+ */
+export interface State {
   /** LearningRate is the current learning rate. */
   learningRate: string;
   /**
@@ -54,8 +63,11 @@ export const GenesisState = {
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(10).fork()).ldelim();
     }
-    for (const v of message.states) {
-      State.encode(v!, writer.uint32(18).fork()).ldelim();
+    if (message.state !== undefined) {
+      State.encode(message.state, writer.uint32(18).fork()).ldelim();
+    }
+    for (const v of message.feeDenomParams) {
+      FeeDenomParam.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -64,7 +76,7 @@ export const GenesisState = {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseGenesisState } as GenesisState;
-    message.states = [];
+    message.feeDenomParams = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -72,7 +84,10 @@ export const GenesisState = {
           message.params = Params.decode(reader, reader.uint32());
           break;
         case 2:
-          message.states.push(State.decode(reader, reader.uint32()));
+          message.state = State.decode(reader, reader.uint32());
+          break;
+        case 3:
+          message.feeDenomParams.push(FeeDenomParam.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -84,15 +99,20 @@ export const GenesisState = {
 
   fromJSON(object: any): GenesisState {
     const message = { ...baseGenesisState } as GenesisState;
-    message.states = [];
+    message.feeDenomParams = [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromJSON(object.params);
     } else {
       message.params = undefined;
     }
-    if (object.states !== undefined && object.states !== null) {
-      for (const e of object.states) {
-        message.states.push(State.fromJSON(e));
+    if (object.state !== undefined && object.state !== null) {
+      message.state = State.fromJSON(object.state);
+    } else {
+      message.state = undefined;
+    }
+    if (object.feeDenomParams !== undefined && object.feeDenomParams !== null) {
+      for (const e of object.feeDenomParams) {
+        message.feeDenomParams.push(FeeDenomParam.fromJSON(e));
       }
     }
     return message;
@@ -101,42 +121,41 @@ export const GenesisState = {
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    if (message.states) {
-      obj.states = message.states.map((e) => (e ? State.toJSON(e) : undefined));
+    message.state !== undefined && (obj.state = message.state ? State.toJSON(message.state) : undefined);
+    if (message.feeDenomParams) {
+      obj.feeDenomParams = message.feeDenomParams.map((e) => (e ? FeeDenomParam.toJSON(e) : undefined));
     } else {
-      obj.states = [];
+      obj.feeDenomParams = [];
     }
     return obj;
   },
 
   fromPartial(object: DeepPartial<GenesisState>): GenesisState {
     const message = { ...baseGenesisState } as GenesisState;
-    message.states = [];
+    message.feeDenomParams = [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
     } else {
       message.params = undefined;
     }
-    if (object.states !== undefined && object.states !== null) {
-      for (const e of object.states) {
-        message.states.push(State.fromPartial(e));
+    if (object.state !== undefined && object.state !== null) {
+      message.state = State.fromPartial(object.state);
+    } else {
+      message.state = undefined;
+    }
+    if (object.feeDenomParams !== undefined && object.feeDenomParams !== null) {
+      for (const e of object.feeDenomParams) {
+        message.feeDenomParams.push(FeeDenomParam.fromPartial(e));
       }
     }
     return message;
   },
 };
 
-const baseState: object = {
-  feeDenom: "",
-  minBaseFee: "",
-  baseFee: "",
-  learningRate: "",
-  window: Long.UZERO,
-  index: Long.UZERO,
-};
+const baseFeeDenomParam: object = { feeDenom: "", minBaseFee: "", baseFee: "" };
 
-export const State = {
-  encode(message: State, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const FeeDenomParam = {
+  encode(message: FeeDenomParam, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.feeDenom !== "") {
       writer.uint32(10).string(message.feeDenom);
     }
@@ -146,25 +165,13 @@ export const State = {
     if (message.baseFee !== "") {
       writer.uint32(26).string(message.baseFee);
     }
-    if (message.learningRate !== "") {
-      writer.uint32(34).string(message.learningRate);
-    }
-    writer.uint32(42).fork();
-    for (const v of message.window) {
-      writer.uint64(v);
-    }
-    writer.ldelim();
-    if (!message.index.isZero()) {
-      writer.uint32(48).uint64(message.index);
-    }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): State {
+  decode(input: _m0.Reader | Uint8Array, length?: number): FeeDenomParam {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseState } as State;
-    message.window = [];
+    const message = { ...baseFeeDenomParam } as FeeDenomParam;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -177,22 +184,6 @@ export const State = {
         case 3:
           message.baseFee = reader.string();
           break;
-        case 4:
-          message.learningRate = reader.string();
-          break;
-        case 5:
-          if ((tag & 7) === 2) {
-            const end2 = reader.uint32() + reader.pos;
-            while (reader.pos < end2) {
-              message.window.push(reader.uint64() as Long);
-            }
-          } else {
-            message.window.push(reader.uint64() as Long);
-          }
-          break;
-        case 6:
-          message.index = reader.uint64() as Long;
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -201,9 +192,8 @@ export const State = {
     return message;
   },
 
-  fromJSON(object: any): State {
-    const message = { ...baseState } as State;
-    message.window = [];
+  fromJSON(object: any): FeeDenomParam {
+    const message = { ...baseFeeDenomParam } as FeeDenomParam;
     if (object.feeDenom !== undefined && object.feeDenom !== null) {
       message.feeDenom = String(object.feeDenom);
     } else {
@@ -219,6 +209,91 @@ export const State = {
     } else {
       message.baseFee = "";
     }
+    return message;
+  },
+
+  toJSON(message: FeeDenomParam): unknown {
+    const obj: any = {};
+    message.feeDenom !== undefined && (obj.feeDenom = message.feeDenom);
+    message.minBaseFee !== undefined && (obj.minBaseFee = message.minBaseFee);
+    message.baseFee !== undefined && (obj.baseFee = message.baseFee);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<FeeDenomParam>): FeeDenomParam {
+    const message = { ...baseFeeDenomParam } as FeeDenomParam;
+    if (object.feeDenom !== undefined && object.feeDenom !== null) {
+      message.feeDenom = object.feeDenom;
+    } else {
+      message.feeDenom = "";
+    }
+    if (object.minBaseFee !== undefined && object.minBaseFee !== null) {
+      message.minBaseFee = object.minBaseFee;
+    } else {
+      message.minBaseFee = "";
+    }
+    if (object.baseFee !== undefined && object.baseFee !== null) {
+      message.baseFee = object.baseFee;
+    } else {
+      message.baseFee = "";
+    }
+    return message;
+  },
+};
+
+const baseState: object = { learningRate: "", window: Long.UZERO, index: Long.UZERO };
+
+export const State = {
+  encode(message: State, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.learningRate !== "") {
+      writer.uint32(10).string(message.learningRate);
+    }
+    writer.uint32(18).fork();
+    for (const v of message.window) {
+      writer.uint64(v);
+    }
+    writer.ldelim();
+    if (!message.index.isZero()) {
+      writer.uint32(24).uint64(message.index);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): State {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseState } as State;
+    message.window = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.learningRate = reader.string();
+          break;
+        case 2:
+          if ((tag & 7) === 2) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.window.push(reader.uint64() as Long);
+            }
+          } else {
+            message.window.push(reader.uint64() as Long);
+          }
+          break;
+        case 3:
+          message.index = reader.uint64() as Long;
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): State {
+    const message = { ...baseState } as State;
+    message.window = [];
     if (object.learningRate !== undefined && object.learningRate !== null) {
       message.learningRate = String(object.learningRate);
     } else {
@@ -239,9 +314,6 @@ export const State = {
 
   toJSON(message: State): unknown {
     const obj: any = {};
-    message.feeDenom !== undefined && (obj.feeDenom = message.feeDenom);
-    message.minBaseFee !== undefined && (obj.minBaseFee = message.minBaseFee);
-    message.baseFee !== undefined && (obj.baseFee = message.baseFee);
     message.learningRate !== undefined && (obj.learningRate = message.learningRate);
     if (message.window) {
       obj.window = message.window.map((e) => (e || Long.UZERO).toString());
@@ -255,21 +327,6 @@ export const State = {
   fromPartial(object: DeepPartial<State>): State {
     const message = { ...baseState } as State;
     message.window = [];
-    if (object.feeDenom !== undefined && object.feeDenom !== null) {
-      message.feeDenom = object.feeDenom;
-    } else {
-      message.feeDenom = "";
-    }
-    if (object.minBaseFee !== undefined && object.minBaseFee !== null) {
-      message.minBaseFee = object.minBaseFee;
-    } else {
-      message.minBaseFee = "";
-    }
-    if (object.baseFee !== undefined && object.baseFee !== null) {
-      message.baseFee = object.baseFee;
-    } else {
-      message.baseFee = "";
-    }
     if (object.learningRate !== undefined && object.learningRate !== null) {
       message.learningRate = object.learningRate;
     } else {

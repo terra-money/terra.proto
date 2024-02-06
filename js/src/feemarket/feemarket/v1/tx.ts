@@ -3,7 +3,6 @@ import Long from "long";
 import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Params } from "../../../feemarket/feemarket/v1/params";
-import { State } from "../../../feemarket/feemarket/v1/genesis";
 import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "feemarket.feemarket.v1";
@@ -26,12 +25,17 @@ export interface MsgParams {
 export interface MsgParamsResponse {}
 
 /**
- * MsgState defines the Msg/State request type. It contains the
- * new state of feeDenom for the feemarket module.
+ * MsgFeeDenomParam defines the Msg/FeeDenomParam request type. It contains the
+ * new feeDenomParam of feeDenom for the feemarket module.
  */
-export interface MsgState {
-  /** State defines the new state for the feemarket module. */
-  state?: State;
+export interface MsgFeeDenomParam {
+  /** FeeDenom is the denom that will be used for all fee payments. */
+  feeDenom: string;
+  /**
+   * MinBaseFee determines the initial base fee of the fee denom.
+   * This is denominated in fee per gas unit.
+   */
+  minBaseFee: string;
   /**
    * Authority defines the authority that is updating the feemarket module
    * parameters.
@@ -39,8 +43,8 @@ export interface MsgState {
   authority: string;
 }
 
-/** MsgStateResponse defines the Msg/State response type. */
-export interface MsgStateResponse {}
+/** MsgFeeDenomParamResponse defines the Msg/State response type. */
+export interface MsgFeeDenomParamResponse {}
 
 const baseMsgParams: object = { authority: "" };
 
@@ -152,30 +156,36 @@ export const MsgParamsResponse = {
   },
 };
 
-const baseMsgState: object = { authority: "" };
+const baseMsgFeeDenomParam: object = { feeDenom: "", minBaseFee: "", authority: "" };
 
-export const MsgState = {
-  encode(message: MsgState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.state !== undefined) {
-      State.encode(message.state, writer.uint32(10).fork()).ldelim();
+export const MsgFeeDenomParam = {
+  encode(message: MsgFeeDenomParam, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.feeDenom !== "") {
+      writer.uint32(10).string(message.feeDenom);
+    }
+    if (message.minBaseFee !== "") {
+      writer.uint32(18).string(message.minBaseFee);
     }
     if (message.authority !== "") {
-      writer.uint32(18).string(message.authority);
+      writer.uint32(26).string(message.authority);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgState {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgFeeDenomParam {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseMsgState } as MsgState;
+    const message = { ...baseMsgFeeDenomParam } as MsgFeeDenomParam;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.state = State.decode(reader, reader.uint32());
+          message.feeDenom = reader.string();
           break;
         case 2:
+          message.minBaseFee = reader.string();
+          break;
+        case 3:
           message.authority = reader.string();
           break;
         default:
@@ -186,12 +196,17 @@ export const MsgState = {
     return message;
   },
 
-  fromJSON(object: any): MsgState {
-    const message = { ...baseMsgState } as MsgState;
-    if (object.state !== undefined && object.state !== null) {
-      message.state = State.fromJSON(object.state);
+  fromJSON(object: any): MsgFeeDenomParam {
+    const message = { ...baseMsgFeeDenomParam } as MsgFeeDenomParam;
+    if (object.feeDenom !== undefined && object.feeDenom !== null) {
+      message.feeDenom = String(object.feeDenom);
     } else {
-      message.state = undefined;
+      message.feeDenom = "";
+    }
+    if (object.minBaseFee !== undefined && object.minBaseFee !== null) {
+      message.minBaseFee = String(object.minBaseFee);
+    } else {
+      message.minBaseFee = "";
     }
     if (object.authority !== undefined && object.authority !== null) {
       message.authority = String(object.authority);
@@ -201,19 +216,25 @@ export const MsgState = {
     return message;
   },
 
-  toJSON(message: MsgState): unknown {
+  toJSON(message: MsgFeeDenomParam): unknown {
     const obj: any = {};
-    message.state !== undefined && (obj.state = message.state ? State.toJSON(message.state) : undefined);
+    message.feeDenom !== undefined && (obj.feeDenom = message.feeDenom);
+    message.minBaseFee !== undefined && (obj.minBaseFee = message.minBaseFee);
     message.authority !== undefined && (obj.authority = message.authority);
     return obj;
   },
 
-  fromPartial(object: DeepPartial<MsgState>): MsgState {
-    const message = { ...baseMsgState } as MsgState;
-    if (object.state !== undefined && object.state !== null) {
-      message.state = State.fromPartial(object.state);
+  fromPartial(object: DeepPartial<MsgFeeDenomParam>): MsgFeeDenomParam {
+    const message = { ...baseMsgFeeDenomParam } as MsgFeeDenomParam;
+    if (object.feeDenom !== undefined && object.feeDenom !== null) {
+      message.feeDenom = object.feeDenom;
     } else {
-      message.state = undefined;
+      message.feeDenom = "";
+    }
+    if (object.minBaseFee !== undefined && object.minBaseFee !== null) {
+      message.minBaseFee = object.minBaseFee;
+    } else {
+      message.minBaseFee = "";
     }
     if (object.authority !== undefined && object.authority !== null) {
       message.authority = object.authority;
@@ -224,17 +245,17 @@ export const MsgState = {
   },
 };
 
-const baseMsgStateResponse: object = {};
+const baseMsgFeeDenomParamResponse: object = {};
 
-export const MsgStateResponse = {
-  encode(_: MsgStateResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const MsgFeeDenomParamResponse = {
+  encode(_: MsgFeeDenomParamResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgStateResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgFeeDenomParamResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseMsgStateResponse } as MsgStateResponse;
+    const message = { ...baseMsgFeeDenomParamResponse } as MsgFeeDenomParamResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -246,18 +267,18 @@ export const MsgStateResponse = {
     return message;
   },
 
-  fromJSON(_: any): MsgStateResponse {
-    const message = { ...baseMsgStateResponse } as MsgStateResponse;
+  fromJSON(_: any): MsgFeeDenomParamResponse {
+    const message = { ...baseMsgFeeDenomParamResponse } as MsgFeeDenomParamResponse;
     return message;
   },
 
-  toJSON(_: MsgStateResponse): unknown {
+  toJSON(_: MsgFeeDenomParamResponse): unknown {
     const obj: any = {};
     return obj;
   },
 
-  fromPartial(_: DeepPartial<MsgStateResponse>): MsgStateResponse {
-    const message = { ...baseMsgStateResponse } as MsgStateResponse;
+  fromPartial(_: DeepPartial<MsgFeeDenomParamResponse>): MsgFeeDenomParamResponse {
+    const message = { ...baseMsgFeeDenomParamResponse } as MsgFeeDenomParamResponse;
     return message;
   },
 };
@@ -270,7 +291,10 @@ export interface Msg {
   /** Params defines a method for updating the feemarket module parameters. */
   Params(request: DeepPartial<MsgParams>, metadata?: grpc.Metadata): Promise<MsgParamsResponse>;
   /** State defines a method for updating the feemarket module states. */
-  State(request: DeepPartial<MsgState>, metadata?: grpc.Metadata): Promise<MsgStateResponse>;
+  FeeDenomParam(
+    request: DeepPartial<MsgFeeDenomParam>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgFeeDenomParamResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -279,15 +303,18 @@ export class MsgClientImpl implements Msg {
   constructor(rpc: Rpc) {
     this.rpc = rpc;
     this.Params = this.Params.bind(this);
-    this.State = this.State.bind(this);
+    this.FeeDenomParam = this.FeeDenomParam.bind(this);
   }
 
   Params(request: DeepPartial<MsgParams>, metadata?: grpc.Metadata): Promise<MsgParamsResponse> {
     return this.rpc.unary(MsgParamsDesc, MsgParams.fromPartial(request), metadata);
   }
 
-  State(request: DeepPartial<MsgState>, metadata?: grpc.Metadata): Promise<MsgStateResponse> {
-    return this.rpc.unary(MsgStateDesc, MsgState.fromPartial(request), metadata);
+  FeeDenomParam(
+    request: DeepPartial<MsgFeeDenomParam>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgFeeDenomParamResponse> {
+    return this.rpc.unary(MsgFeeDenomParamDesc, MsgFeeDenomParam.fromPartial(request), metadata);
   }
 }
 
@@ -317,20 +344,20 @@ export const MsgParamsDesc: UnaryMethodDefinitionish = {
   } as any,
 };
 
-export const MsgStateDesc: UnaryMethodDefinitionish = {
-  methodName: "State",
+export const MsgFeeDenomParamDesc: UnaryMethodDefinitionish = {
+  methodName: "FeeDenomParam",
   service: MsgDesc,
   requestStream: false,
   responseStream: false,
   requestType: {
     serializeBinary() {
-      return MsgState.encode(this).finish();
+      return MsgFeeDenomParam.encode(this).finish();
     },
   } as any,
   responseType: {
     deserializeBinary(data: Uint8Array) {
       return {
-        ...MsgStateResponse.decode(data),
+        ...MsgFeeDenomParamResponse.decode(data),
         toObject() {
           return this;
         },

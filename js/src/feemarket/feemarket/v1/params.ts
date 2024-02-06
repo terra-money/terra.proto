@@ -26,12 +26,6 @@ export interface Params {
    * learning rate by Beta.
    */
   theta: string;
-  /**
-   * Delta is the amount we additively increase/decrease the base fee when the
-   * net block utilization difference in the window is above/below the target
-   * utilization.
-   */
-  delta: string;
   /** MinLearningRate is the lower bound for the learning rate. */
   minLearningRate: string;
   /** MaxLearningRate is the upper bound for the learning rate. */
@@ -61,7 +55,6 @@ const baseParams: object = {
   alpha: "",
   beta: "",
   theta: "",
-  delta: "",
   minLearningRate: "",
   maxLearningRate: "",
   targetBlockUtilization: Long.UZERO,
@@ -82,29 +75,26 @@ export const Params = {
     if (message.theta !== "") {
       writer.uint32(26).string(message.theta);
     }
-    if (message.delta !== "") {
-      writer.uint32(34).string(message.delta);
-    }
     if (message.minLearningRate !== "") {
-      writer.uint32(42).string(message.minLearningRate);
+      writer.uint32(34).string(message.minLearningRate);
     }
     if (message.maxLearningRate !== "") {
-      writer.uint32(50).string(message.maxLearningRate);
+      writer.uint32(42).string(message.maxLearningRate);
     }
     if (!message.targetBlockUtilization.isZero()) {
-      writer.uint32(56).uint64(message.targetBlockUtilization);
+      writer.uint32(48).uint64(message.targetBlockUtilization);
     }
     if (!message.maxBlockUtilization.isZero()) {
-      writer.uint32(64).uint64(message.maxBlockUtilization);
+      writer.uint32(56).uint64(message.maxBlockUtilization);
     }
     if (!message.window.isZero()) {
-      writer.uint32(72).uint64(message.window);
+      writer.uint32(64).uint64(message.window);
     }
     if (message.enabled === true) {
-      writer.uint32(80).bool(message.enabled);
+      writer.uint32(72).bool(message.enabled);
     }
     if (message.defaultFeeDenom !== "") {
-      writer.uint32(90).string(message.defaultFeeDenom);
+      writer.uint32(82).string(message.defaultFeeDenom);
     }
     return writer;
   },
@@ -126,27 +116,24 @@ export const Params = {
           message.theta = reader.string();
           break;
         case 4:
-          message.delta = reader.string();
-          break;
-        case 5:
           message.minLearningRate = reader.string();
           break;
-        case 6:
+        case 5:
           message.maxLearningRate = reader.string();
           break;
-        case 7:
+        case 6:
           message.targetBlockUtilization = reader.uint64() as Long;
           break;
-        case 8:
+        case 7:
           message.maxBlockUtilization = reader.uint64() as Long;
           break;
-        case 9:
+        case 8:
           message.window = reader.uint64() as Long;
           break;
-        case 10:
+        case 9:
           message.enabled = reader.bool();
           break;
-        case 11:
+        case 10:
           message.defaultFeeDenom = reader.string();
           break;
         default:
@@ -173,11 +160,6 @@ export const Params = {
       message.theta = String(object.theta);
     } else {
       message.theta = "";
-    }
-    if (object.delta !== undefined && object.delta !== null) {
-      message.delta = String(object.delta);
-    } else {
-      message.delta = "";
     }
     if (object.minLearningRate !== undefined && object.minLearningRate !== null) {
       message.minLearningRate = String(object.minLearningRate);
@@ -222,7 +204,6 @@ export const Params = {
     message.alpha !== undefined && (obj.alpha = message.alpha);
     message.beta !== undefined && (obj.beta = message.beta);
     message.theta !== undefined && (obj.theta = message.theta);
-    message.delta !== undefined && (obj.delta = message.delta);
     message.minLearningRate !== undefined && (obj.minLearningRate = message.minLearningRate);
     message.maxLearningRate !== undefined && (obj.maxLearningRate = message.maxLearningRate);
     message.targetBlockUtilization !== undefined &&
@@ -251,11 +232,6 @@ export const Params = {
       message.theta = object.theta;
     } else {
       message.theta = "";
-    }
-    if (object.delta !== undefined && object.delta !== null) {
-      message.delta = object.delta;
-    } else {
-      message.delta = "";
     }
     if (object.minLearningRate !== undefined && object.minLearningRate !== null) {
       message.minLearningRate = object.minLearningRate;

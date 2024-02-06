@@ -3,9 +3,9 @@ import Long from "long";
 import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Params } from "../../../feemarket/feemarket/v1/params";
+import { State, FeeDenomParam } from "../../../feemarket/feemarket/v1/genesis";
 import { DecCoin } from "../../../cosmos/base/v1beta1/coin";
 import { BrowserHeaders } from "browser-headers";
-import { State } from "../../../feemarket/feemarket/v1/genesis";
 
 export const protobufPackage = "feemarket.feemarket.v1";
 
@@ -18,13 +18,21 @@ export interface ParamsResponse {
 }
 
 /** StateRequest is the request type for the Query/State RPC method. */
-export interface StateRequest {
-  feeDenom: string;
-}
+export interface StateRequest {}
 
 /** StateResponse is the response type for the Query/State RPC method. */
 export interface StateResponse {
-  states: State[];
+  state?: State;
+}
+
+/** FeeDenomParamRequest is the request type for the Query/State RPC method. */
+export interface FeeDenomParamRequest {
+  feeDenom: string;
+}
+
+/** FeeDenomParamResponse is the response type for the Query/State RPC method. */
+export interface FeeDenomParamResponse {
+  feeDenomParams: FeeDenomParam[];
 }
 
 /** BaseFeeRequest is the request type for the Query/BaseFee RPC method. */
@@ -130,13 +138,10 @@ export const ParamsResponse = {
   },
 };
 
-const baseStateRequest: object = { feeDenom: "" };
+const baseStateRequest: object = {};
 
 export const StateRequest = {
-  encode(message: StateRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.feeDenom !== "") {
-      writer.uint32(10).string(message.feeDenom);
-    }
+  encode(_: StateRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
@@ -144,6 +149,102 @@ export const StateRequest = {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseStateRequest } as StateRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): StateRequest {
+    const message = { ...baseStateRequest } as StateRequest;
+    return message;
+  },
+
+  toJSON(_: StateRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(_: DeepPartial<StateRequest>): StateRequest {
+    const message = { ...baseStateRequest } as StateRequest;
+    return message;
+  },
+};
+
+const baseStateResponse: object = {};
+
+export const StateResponse = {
+  encode(message: StateResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.state !== undefined) {
+      State.encode(message.state, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): StateResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseStateResponse } as StateResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.state = State.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): StateResponse {
+    const message = { ...baseStateResponse } as StateResponse;
+    if (object.state !== undefined && object.state !== null) {
+      message.state = State.fromJSON(object.state);
+    } else {
+      message.state = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: StateResponse): unknown {
+    const obj: any = {};
+    message.state !== undefined && (obj.state = message.state ? State.toJSON(message.state) : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<StateResponse>): StateResponse {
+    const message = { ...baseStateResponse } as StateResponse;
+    if (object.state !== undefined && object.state !== null) {
+      message.state = State.fromPartial(object.state);
+    } else {
+      message.state = undefined;
+    }
+    return message;
+  },
+};
+
+const baseFeeDenomParamRequest: object = { feeDenom: "" };
+
+export const FeeDenomParamRequest = {
+  encode(message: FeeDenomParamRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.feeDenom !== "") {
+      writer.uint32(10).string(message.feeDenom);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): FeeDenomParamRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseFeeDenomParamRequest } as FeeDenomParamRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -158,8 +259,8 @@ export const StateRequest = {
     return message;
   },
 
-  fromJSON(object: any): StateRequest {
-    const message = { ...baseStateRequest } as StateRequest;
+  fromJSON(object: any): FeeDenomParamRequest {
+    const message = { ...baseFeeDenomParamRequest } as FeeDenomParamRequest;
     if (object.feeDenom !== undefined && object.feeDenom !== null) {
       message.feeDenom = String(object.feeDenom);
     } else {
@@ -168,14 +269,14 @@ export const StateRequest = {
     return message;
   },
 
-  toJSON(message: StateRequest): unknown {
+  toJSON(message: FeeDenomParamRequest): unknown {
     const obj: any = {};
     message.feeDenom !== undefined && (obj.feeDenom = message.feeDenom);
     return obj;
   },
 
-  fromPartial(object: DeepPartial<StateRequest>): StateRequest {
-    const message = { ...baseStateRequest } as StateRequest;
+  fromPartial(object: DeepPartial<FeeDenomParamRequest>): FeeDenomParamRequest {
+    const message = { ...baseFeeDenomParamRequest } as FeeDenomParamRequest;
     if (object.feeDenom !== undefined && object.feeDenom !== null) {
       message.feeDenom = object.feeDenom;
     } else {
@@ -185,26 +286,26 @@ export const StateRequest = {
   },
 };
 
-const baseStateResponse: object = {};
+const baseFeeDenomParamResponse: object = {};
 
-export const StateResponse = {
-  encode(message: StateResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.states) {
-      State.encode(v!, writer.uint32(10).fork()).ldelim();
+export const FeeDenomParamResponse = {
+  encode(message: FeeDenomParamResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.feeDenomParams) {
+      FeeDenomParam.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): StateResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): FeeDenomParamResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseStateResponse } as StateResponse;
-    message.states = [];
+    const message = { ...baseFeeDenomParamResponse } as FeeDenomParamResponse;
+    message.feeDenomParams = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.states.push(State.decode(reader, reader.uint32()));
+          message.feeDenomParams.push(FeeDenomParam.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -214,33 +315,33 @@ export const StateResponse = {
     return message;
   },
 
-  fromJSON(object: any): StateResponse {
-    const message = { ...baseStateResponse } as StateResponse;
-    message.states = [];
-    if (object.states !== undefined && object.states !== null) {
-      for (const e of object.states) {
-        message.states.push(State.fromJSON(e));
+  fromJSON(object: any): FeeDenomParamResponse {
+    const message = { ...baseFeeDenomParamResponse } as FeeDenomParamResponse;
+    message.feeDenomParams = [];
+    if (object.feeDenomParams !== undefined && object.feeDenomParams !== null) {
+      for (const e of object.feeDenomParams) {
+        message.feeDenomParams.push(FeeDenomParam.fromJSON(e));
       }
     }
     return message;
   },
 
-  toJSON(message: StateResponse): unknown {
+  toJSON(message: FeeDenomParamResponse): unknown {
     const obj: any = {};
-    if (message.states) {
-      obj.states = message.states.map((e) => (e ? State.toJSON(e) : undefined));
+    if (message.feeDenomParams) {
+      obj.feeDenomParams = message.feeDenomParams.map((e) => (e ? FeeDenomParam.toJSON(e) : undefined));
     } else {
-      obj.states = [];
+      obj.feeDenomParams = [];
     }
     return obj;
   },
 
-  fromPartial(object: DeepPartial<StateResponse>): StateResponse {
-    const message = { ...baseStateResponse } as StateResponse;
-    message.states = [];
-    if (object.states !== undefined && object.states !== null) {
-      for (const e of object.states) {
-        message.states.push(State.fromPartial(e));
+  fromPartial(object: DeepPartial<FeeDenomParamResponse>): FeeDenomParamResponse {
+    const message = { ...baseFeeDenomParamResponse } as FeeDenomParamResponse;
+    message.feeDenomParams = [];
+    if (object.feeDenomParams !== undefined && object.feeDenomParams !== null) {
+      for (const e of object.feeDenomParams) {
+        message.feeDenomParams.push(FeeDenomParam.fromPartial(e));
       }
     }
     return message;
@@ -363,6 +464,11 @@ export interface Query {
   Params(request: DeepPartial<ParamsRequest>, metadata?: grpc.Metadata): Promise<ParamsResponse>;
   /** State returns the current feemarket module state. */
   State(request: DeepPartial<StateRequest>, metadata?: grpc.Metadata): Promise<StateResponse>;
+  /** State returns the feeDenomParam of feeDenom. */
+  FeeDenomParam(
+    request: DeepPartial<FeeDenomParamRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<FeeDenomParamResponse>;
   /** BaseFee returns the current feemarket module base fee. */
   BaseFee(request: DeepPartial<BaseFeeRequest>, metadata?: grpc.Metadata): Promise<BaseFeeResponse>;
 }
@@ -374,6 +480,7 @@ export class QueryClientImpl implements Query {
     this.rpc = rpc;
     this.Params = this.Params.bind(this);
     this.State = this.State.bind(this);
+    this.FeeDenomParam = this.FeeDenomParam.bind(this);
     this.BaseFee = this.BaseFee.bind(this);
   }
 
@@ -383,6 +490,13 @@ export class QueryClientImpl implements Query {
 
   State(request: DeepPartial<StateRequest>, metadata?: grpc.Metadata): Promise<StateResponse> {
     return this.rpc.unary(QueryStateDesc, StateRequest.fromPartial(request), metadata);
+  }
+
+  FeeDenomParam(
+    request: DeepPartial<FeeDenomParamRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<FeeDenomParamResponse> {
+    return this.rpc.unary(QueryFeeDenomParamDesc, FeeDenomParamRequest.fromPartial(request), metadata);
   }
 
   BaseFee(request: DeepPartial<BaseFeeRequest>, metadata?: grpc.Metadata): Promise<BaseFeeResponse> {
@@ -430,6 +544,28 @@ export const QueryStateDesc: UnaryMethodDefinitionish = {
     deserializeBinary(data: Uint8Array) {
       return {
         ...StateResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QueryFeeDenomParamDesc: UnaryMethodDefinitionish = {
+  methodName: "FeeDenomParam",
+  service: QueryDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return FeeDenomParamRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...FeeDenomParamResponse.decode(data),
         toObject() {
           return this;
         },
