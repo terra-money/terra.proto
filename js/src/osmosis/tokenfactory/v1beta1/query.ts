@@ -502,8 +502,10 @@ export interface Query {
    */
   Params(request: DeepPartial<QueryParamsRequest>, metadata?: grpc.Metadata): Promise<QueryParamsResponse>;
   /**
-   * DenomAuthorityMetadata defines a gRPC query method for fetching
-   * DenomAuthorityMetadata for a particular denom.
+   * Given the denom, returns the authority metadata for the denom.
+   * This method can receive both the denom encoded to URL (for the LCD requests)
+   * and the denom not encoded:
+   * e.g. factory%2Fterra1v0eee20gjl68fuk0chyrkch2z7suw2mhg3wkxf%2Futoken931
    */
   DenomAuthorityMetadata(
     request: DeepPartial<QueryDenomAuthorityMetadataRequest>,

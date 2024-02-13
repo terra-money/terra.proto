@@ -1,6 +1,6 @@
 {
   "name": "@terra-money/terra.proto",
-  "version": "4.0.4",
+  "version": "4.0.8",
   "description": "JS and TS types relating to Protocol Buffers used by Terra project",
   "contributors": [
     "Yun Yeo <YunSuk-Yeo@users.noreply.github.com>"
@@ -24,12 +24,12 @@
     "gogoproto/",
     "google/",
     "ibc/",
-    "jax/",
     "osmosis/",
     "juno/",
     "pob/",
     "router/",
     "tendermint/",
+    "feemarket/",
     "*.md",
     "proofs.d.ts",
     "proofs.js",
