@@ -23,12 +23,6 @@ export interface Params {
      * learning rate by Beta.
      */
     theta: string;
-    /**
-     * Delta is the amount we additively increase/decrease the base fee when the
-     * net block utilization difference in the window is above/below the target
-     * utilization.
-     */
-    delta: string;
     /** MinLearningRate is the lower bound for the learning rate. */
     minLearningRate: string;
     /** MaxLearningRate is the upper bound for the learning rate. */

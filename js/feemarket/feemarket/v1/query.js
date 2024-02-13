@@ -3,15 +3,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GrpcWebImpl = exports.QueryBaseFeeDesc = exports.QueryStateDesc = exports.QueryParamsDesc = exports.QueryDesc = exports.QueryClientImpl = exports.BaseFeeResponse = exports.BaseFeeRequest = exports.StateResponse = exports.StateRequest = exports.ParamsResponse = exports.ParamsRequest = exports.protobufPackage = void 0;
+exports.GrpcWebImpl = exports.QueryBaseFeeDesc = exports.QueryFeeDenomParamDesc = exports.QueryStateDesc = exports.QueryParamsDesc = exports.QueryDesc = exports.QueryClientImpl = exports.BaseFeeResponse = exports.BaseFeeRequest = exports.FeeDenomParamResponse = exports.FeeDenomParamRequest = exports.StateResponse = exports.StateRequest = exports.ParamsResponse = exports.ParamsRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const grpc_web_1 = require("@improbable-eng/grpc-web");
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const params_1 = require("../../../feemarket/feemarket/v1/params");
+const genesis_1 = require("../../../feemarket/feemarket/v1/genesis");
 const coin_1 = require("../../../cosmos/base/v1beta1/coin");
 const browser_headers_1 = require("browser-headers");
-const genesis_1 = require("../../../feemarket/feemarket/v1/genesis");
 exports.protobufPackage = "feemarket.feemarket.v1";
 const baseParamsRequest = {};
 exports.ParamsRequest = {
@@ -96,8 +96,91 @@ exports.ParamsResponse = {
         return message;
     },
 };
-const baseStateRequest = { feeDenom: "" };
+const baseStateRequest = {};
 exports.StateRequest = {
+    encode(_, writer = minimal_1.default.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = Object.assign({}, baseStateRequest);
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(_) {
+        const message = Object.assign({}, baseStateRequest);
+        return message;
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    fromPartial(_) {
+        const message = Object.assign({}, baseStateRequest);
+        return message;
+    },
+};
+const baseStateResponse = {};
+exports.StateResponse = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.state !== undefined) {
+            genesis_1.State.encode(message.state, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = Object.assign({}, baseStateResponse);
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.state = genesis_1.State.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        const message = Object.assign({}, baseStateResponse);
+        if (object.state !== undefined && object.state !== null) {
+            message.state = genesis_1.State.fromJSON(object.state);
+        }
+        else {
+            message.state = undefined;
+        }
+        return message;
+    },
+    toJSON(message) {
+        const obj = {};
+        message.state !== undefined && (obj.state = message.state ? genesis_1.State.toJSON(message.state) : undefined);
+        return obj;
+    },
+    fromPartial(object) {
+        const message = Object.assign({}, baseStateResponse);
+        if (object.state !== undefined && object.state !== null) {
+            message.state = genesis_1.State.fromPartial(object.state);
+        }
+        else {
+            message.state = undefined;
+        }
+        return message;
+    },
+};
+const baseFeeDenomParamRequest = { feeDenom: "" };
+exports.FeeDenomParamRequest = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.feeDenom !== "") {
             writer.uint32(10).string(message.feeDenom);
@@ -107,7 +190,7 @@ exports.StateRequest = {
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = Object.assign({}, baseStateRequest);
+        const message = Object.assign({}, baseFeeDenomParamRequest);
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -122,7 +205,7 @@ exports.StateRequest = {
         return message;
     },
     fromJSON(object) {
-        const message = Object.assign({}, baseStateRequest);
+        const message = Object.assign({}, baseFeeDenomParamRequest);
         if (object.feeDenom !== undefined && object.feeDenom !== null) {
             message.feeDenom = String(object.feeDenom);
         }
@@ -137,7 +220,7 @@ exports.StateRequest = {
         return obj;
     },
     fromPartial(object) {
-        const message = Object.assign({}, baseStateRequest);
+        const message = Object.assign({}, baseFeeDenomParamRequest);
         if (object.feeDenom !== undefined && object.feeDenom !== null) {
             message.feeDenom = object.feeDenom;
         }
@@ -147,24 +230,24 @@ exports.StateRequest = {
         return message;
     },
 };
-const baseStateResponse = {};
-exports.StateResponse = {
+const baseFeeDenomParamResponse = {};
+exports.FeeDenomParamResponse = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        for (const v of message.states) {
-            genesis_1.State.encode(v, writer.uint32(10).fork()).ldelim();
+        for (const v of message.feeDenomParams) {
+            genesis_1.FeeDenomParam.encode(v, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = Object.assign({}, baseStateResponse);
-        message.states = [];
+        const message = Object.assign({}, baseFeeDenomParamResponse);
+        message.feeDenomParams = [];
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.states.push(genesis_1.State.decode(reader, reader.uint32()));
+                    message.feeDenomParams.push(genesis_1.FeeDenomParam.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -174,31 +257,31 @@ exports.StateResponse = {
         return message;
     },
     fromJSON(object) {
-        const message = Object.assign({}, baseStateResponse);
-        message.states = [];
-        if (object.states !== undefined && object.states !== null) {
-            for (const e of object.states) {
-                message.states.push(genesis_1.State.fromJSON(e));
+        const message = Object.assign({}, baseFeeDenomParamResponse);
+        message.feeDenomParams = [];
+        if (object.feeDenomParams !== undefined && object.feeDenomParams !== null) {
+            for (const e of object.feeDenomParams) {
+                message.feeDenomParams.push(genesis_1.FeeDenomParam.fromJSON(e));
             }
         }
         return message;
     },
     toJSON(message) {
         const obj = {};
-        if (message.states) {
-            obj.states = message.states.map((e) => (e ? genesis_1.State.toJSON(e) : undefined));
+        if (message.feeDenomParams) {
+            obj.feeDenomParams = message.feeDenomParams.map((e) => (e ? genesis_1.FeeDenomParam.toJSON(e) : undefined));
         }
         else {
-            obj.states = [];
+            obj.feeDenomParams = [];
         }
         return obj;
     },
     fromPartial(object) {
-        const message = Object.assign({}, baseStateResponse);
-        message.states = [];
-        if (object.states !== undefined && object.states !== null) {
-            for (const e of object.states) {
-                message.states.push(genesis_1.State.fromPartial(e));
+        const message = Object.assign({}, baseFeeDenomParamResponse);
+        message.feeDenomParams = [];
+        if (object.feeDenomParams !== undefined && object.feeDenomParams !== null) {
+            for (const e of object.feeDenomParams) {
+                message.feeDenomParams.push(genesis_1.FeeDenomParam.fromPartial(e));
             }
         }
         return message;
@@ -311,6 +394,7 @@ class QueryClientImpl {
         this.rpc = rpc;
         this.Params = this.Params.bind(this);
         this.State = this.State.bind(this);
+        this.FeeDenomParam = this.FeeDenomParam.bind(this);
         this.BaseFee = this.BaseFee.bind(this);
     }
     Params(request, metadata) {
@@ -318,6 +402,9 @@ class QueryClientImpl {
     }
     State(request, metadata) {
         return this.rpc.unary(exports.QueryStateDesc, exports.StateRequest.fromPartial(request), metadata);
+    }
+    FeeDenomParam(request, metadata) {
+        return this.rpc.unary(exports.QueryFeeDenomParamDesc, exports.FeeDenomParamRequest.fromPartial(request), metadata);
     }
     BaseFee(request, metadata) {
         return this.rpc.unary(exports.QueryBaseFeeDesc, exports.BaseFeeRequest.fromPartial(request), metadata);
@@ -358,6 +445,24 @@ exports.QueryStateDesc = {
     responseType: {
         deserializeBinary(data) {
             return Object.assign(Object.assign({}, exports.StateResponse.decode(data)), { toObject() {
+                    return this;
+                } });
+        },
+    },
+};
+exports.QueryFeeDenomParamDesc = {
+    methodName: "FeeDenomParam",
+    service: exports.QueryDesc,
+    requestStream: false,
+    responseStream: false,
+    requestType: {
+        serializeBinary() {
+            return exports.FeeDenomParamRequest.encode(this).finish();
+        },
+    },
+    responseType: {
+        deserializeBinary(data) {
+            return Object.assign(Object.assign({}, exports.FeeDenomParamResponse.decode(data)), { toObject() {
                     return this;
                 } });
         },

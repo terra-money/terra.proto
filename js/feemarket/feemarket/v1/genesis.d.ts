@@ -11,14 +11,15 @@ export interface GenesisState {
      */
     params?: Params;
     /** States contains the current states of the AIMD fee market for all FeeDenom. */
-    states: State[];
+    state?: State;
+    /** FeeDenomParams contains the current state of the fee denom. */
+    feeDenomParams: FeeDenomParam[];
 }
 /**
- * State is utilized to track the current state of the fee market. This includes
- * the current base fee, learning rate, and block utilization within the
- * specified AIMD window.
+ * FeeDenomParam is utilized to track the current state of the fee denom. This includes
+ * the current base fee, min base fee.
  */
-export interface State {
+export interface FeeDenomParam {
     /** FeeDenom is the denom that will be used for all fee payments. */
     feeDenom: string;
     /**
@@ -31,6 +32,13 @@ export interface State {
      * unit.
      */
     baseFee: string;
+}
+/**
+ * State is utilized to track the current state of the fee market. This includes
+ * the current learning rate, and block utilization within the
+ * specified AIMD window.
+ */
+export interface State {
     /** LearningRate is the current learning rate. */
     learningRate: string;
     /**
@@ -48,6 +56,13 @@ export declare const GenesisState: {
     fromJSON(object: any): GenesisState;
     toJSON(message: GenesisState): unknown;
     fromPartial(object: DeepPartial<GenesisState>): GenesisState;
+};
+export declare const FeeDenomParam: {
+    encode(message: FeeDenomParam, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): FeeDenomParam;
+    fromJSON(object: any): FeeDenomParam;
+    toJSON(message: FeeDenomParam): unknown;
+    fromPartial(object: DeepPartial<FeeDenomParam>): FeeDenomParam;
 };
 export declare const State: {
     encode(message: State, writer?: _m0.Writer): _m0.Writer;

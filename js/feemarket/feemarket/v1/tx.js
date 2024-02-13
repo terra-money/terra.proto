@@ -3,13 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GrpcWebImpl = exports.MsgStateDesc = exports.MsgParamsDesc = exports.MsgDesc = exports.MsgClientImpl = exports.MsgStateResponse = exports.MsgState = exports.MsgParamsResponse = exports.MsgParams = exports.protobufPackage = void 0;
+exports.GrpcWebImpl = exports.MsgFeeDenomParamDesc = exports.MsgParamsDesc = exports.MsgDesc = exports.MsgClientImpl = exports.MsgFeeDenomParamResponse = exports.MsgFeeDenomParam = exports.MsgParamsResponse = exports.MsgParams = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const grpc_web_1 = require("@improbable-eng/grpc-web");
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const params_1 = require("../../../feemarket/feemarket/v1/params");
-const genesis_1 = require("../../../feemarket/feemarket/v1/genesis");
 const browser_headers_1 = require("browser-headers");
 exports.protobufPackage = "feemarket.feemarket.v1";
 const baseMsgParams = { authority: "" };
@@ -114,28 +113,34 @@ exports.MsgParamsResponse = {
         return message;
     },
 };
-const baseMsgState = { authority: "" };
-exports.MsgState = {
+const baseMsgFeeDenomParam = { feeDenom: "", minBaseFee: "", authority: "" };
+exports.MsgFeeDenomParam = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.state !== undefined) {
-            genesis_1.State.encode(message.state, writer.uint32(10).fork()).ldelim();
+        if (message.feeDenom !== "") {
+            writer.uint32(10).string(message.feeDenom);
+        }
+        if (message.minBaseFee !== "") {
+            writer.uint32(18).string(message.minBaseFee);
         }
         if (message.authority !== "") {
-            writer.uint32(18).string(message.authority);
+            writer.uint32(26).string(message.authority);
         }
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = Object.assign({}, baseMsgState);
+        const message = Object.assign({}, baseMsgFeeDenomParam);
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.state = genesis_1.State.decode(reader, reader.uint32());
+                    message.feeDenom = reader.string();
                     break;
                 case 2:
+                    message.minBaseFee = reader.string();
+                    break;
+                case 3:
                     message.authority = reader.string();
                     break;
                 default:
@@ -146,12 +151,18 @@ exports.MsgState = {
         return message;
     },
     fromJSON(object) {
-        const message = Object.assign({}, baseMsgState);
-        if (object.state !== undefined && object.state !== null) {
-            message.state = genesis_1.State.fromJSON(object.state);
+        const message = Object.assign({}, baseMsgFeeDenomParam);
+        if (object.feeDenom !== undefined && object.feeDenom !== null) {
+            message.feeDenom = String(object.feeDenom);
         }
         else {
-            message.state = undefined;
+            message.feeDenom = "";
+        }
+        if (object.minBaseFee !== undefined && object.minBaseFee !== null) {
+            message.minBaseFee = String(object.minBaseFee);
+        }
+        else {
+            message.minBaseFee = "";
         }
         if (object.authority !== undefined && object.authority !== null) {
             message.authority = String(object.authority);
@@ -163,17 +174,24 @@ exports.MsgState = {
     },
     toJSON(message) {
         const obj = {};
-        message.state !== undefined && (obj.state = message.state ? genesis_1.State.toJSON(message.state) : undefined);
+        message.feeDenom !== undefined && (obj.feeDenom = message.feeDenom);
+        message.minBaseFee !== undefined && (obj.minBaseFee = message.minBaseFee);
         message.authority !== undefined && (obj.authority = message.authority);
         return obj;
     },
     fromPartial(object) {
-        const message = Object.assign({}, baseMsgState);
-        if (object.state !== undefined && object.state !== null) {
-            message.state = genesis_1.State.fromPartial(object.state);
+        const message = Object.assign({}, baseMsgFeeDenomParam);
+        if (object.feeDenom !== undefined && object.feeDenom !== null) {
+            message.feeDenom = object.feeDenom;
         }
         else {
-            message.state = undefined;
+            message.feeDenom = "";
+        }
+        if (object.minBaseFee !== undefined && object.minBaseFee !== null) {
+            message.minBaseFee = object.minBaseFee;
+        }
+        else {
+            message.minBaseFee = "";
         }
         if (object.authority !== undefined && object.authority !== null) {
             message.authority = object.authority;
@@ -184,15 +202,15 @@ exports.MsgState = {
         return message;
     },
 };
-const baseMsgStateResponse = {};
-exports.MsgStateResponse = {
+const baseMsgFeeDenomParamResponse = {};
+exports.MsgFeeDenomParamResponse = {
     encode(_, writer = minimal_1.default.Writer.create()) {
         return writer;
     },
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = Object.assign({}, baseMsgStateResponse);
+        const message = Object.assign({}, baseMsgFeeDenomParamResponse);
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -204,7 +222,7 @@ exports.MsgStateResponse = {
         return message;
     },
     fromJSON(_) {
-        const message = Object.assign({}, baseMsgStateResponse);
+        const message = Object.assign({}, baseMsgFeeDenomParamResponse);
         return message;
     },
     toJSON(_) {
@@ -212,7 +230,7 @@ exports.MsgStateResponse = {
         return obj;
     },
     fromPartial(_) {
-        const message = Object.assign({}, baseMsgStateResponse);
+        const message = Object.assign({}, baseMsgFeeDenomParamResponse);
         return message;
     },
 };
@@ -220,13 +238,13 @@ class MsgClientImpl {
     constructor(rpc) {
         this.rpc = rpc;
         this.Params = this.Params.bind(this);
-        this.State = this.State.bind(this);
+        this.FeeDenomParam = this.FeeDenomParam.bind(this);
     }
     Params(request, metadata) {
         return this.rpc.unary(exports.MsgParamsDesc, exports.MsgParams.fromPartial(request), metadata);
     }
-    State(request, metadata) {
-        return this.rpc.unary(exports.MsgStateDesc, exports.MsgState.fromPartial(request), metadata);
+    FeeDenomParam(request, metadata) {
+        return this.rpc.unary(exports.MsgFeeDenomParamDesc, exports.MsgFeeDenomParam.fromPartial(request), metadata);
     }
 }
 exports.MsgClientImpl = MsgClientImpl;
@@ -251,19 +269,19 @@ exports.MsgParamsDesc = {
         },
     },
 };
-exports.MsgStateDesc = {
-    methodName: "State",
+exports.MsgFeeDenomParamDesc = {
+    methodName: "FeeDenomParam",
     service: exports.MsgDesc,
     requestStream: false,
     responseStream: false,
     requestType: {
         serializeBinary() {
-            return exports.MsgState.encode(this).finish();
+            return exports.MsgFeeDenomParam.encode(this).finish();
         },
     },
     responseType: {
         deserializeBinary(data) {
-            return Object.assign(Object.assign({}, exports.MsgStateResponse.decode(data)), { toObject() {
+            return Object.assign(Object.assign({}, exports.MsgFeeDenomParamResponse.decode(data)), { toObject() {
                     return this;
                 } });
         },

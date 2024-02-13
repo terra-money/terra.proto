@@ -23,4 +23,5 @@ node_modules
 /osmosis/
 /.temp/
 /router/
+/feemarket/
 /icq/

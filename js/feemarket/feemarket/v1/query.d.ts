@@ -2,8 +2,8 @@ import Long from "long";
 import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Params } from "../../../feemarket/feemarket/v1/params";
+import { State, FeeDenomParam } from "../../../feemarket/feemarket/v1/genesis";
 import { DecCoin } from "../../../cosmos/base/v1beta1/coin";
-import { State } from "../../../feemarket/feemarket/v1/genesis";
 export declare const protobufPackage = "feemarket.feemarket.v1";
 /** ParamsRequest is the request type for the Query/Params RPC method. */
 export interface ParamsRequest {
@@ -14,11 +14,18 @@ export interface ParamsResponse {
 }
 /** StateRequest is the request type for the Query/State RPC method. */
 export interface StateRequest {
-    feeDenom: string;
 }
 /** StateResponse is the response type for the Query/State RPC method. */
 export interface StateResponse {
-    states: State[];
+    state?: State;
+}
+/** FeeDenomParamRequest is the request type for the Query/State RPC method. */
+export interface FeeDenomParamRequest {
+    feeDenom: string;
+}
+/** FeeDenomParamResponse is the response type for the Query/State RPC method. */
+export interface FeeDenomParamResponse {
+    feeDenomParams: FeeDenomParam[];
 }
 /** BaseFeeRequest is the request type for the Query/BaseFee RPC method. */
 export interface BaseFeeRequest {
@@ -43,11 +50,11 @@ export declare const ParamsResponse: {
     fromPartial(object: DeepPartial<ParamsResponse>): ParamsResponse;
 };
 export declare const StateRequest: {
-    encode(message: StateRequest, writer?: _m0.Writer): _m0.Writer;
+    encode(_: StateRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number | undefined): StateRequest;
-    fromJSON(object: any): StateRequest;
-    toJSON(message: StateRequest): unknown;
-    fromPartial(object: DeepPartial<StateRequest>): StateRequest;
+    fromJSON(_: any): StateRequest;
+    toJSON(_: StateRequest): unknown;
+    fromPartial(_: DeepPartial<StateRequest>): StateRequest;
 };
 export declare const StateResponse: {
     encode(message: StateResponse, writer?: _m0.Writer): _m0.Writer;
@@ -55,6 +62,20 @@ export declare const StateResponse: {
     fromJSON(object: any): StateResponse;
     toJSON(message: StateResponse): unknown;
     fromPartial(object: DeepPartial<StateResponse>): StateResponse;
+};
+export declare const FeeDenomParamRequest: {
+    encode(message: FeeDenomParamRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): FeeDenomParamRequest;
+    fromJSON(object: any): FeeDenomParamRequest;
+    toJSON(message: FeeDenomParamRequest): unknown;
+    fromPartial(object: DeepPartial<FeeDenomParamRequest>): FeeDenomParamRequest;
+};
+export declare const FeeDenomParamResponse: {
+    encode(message: FeeDenomParamResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): FeeDenomParamResponse;
+    fromJSON(object: any): FeeDenomParamResponse;
+    toJSON(message: FeeDenomParamResponse): unknown;
+    fromPartial(object: DeepPartial<FeeDenomParamResponse>): FeeDenomParamResponse;
 };
 export declare const BaseFeeRequest: {
     encode(message: BaseFeeRequest, writer?: _m0.Writer): _m0.Writer;
@@ -76,6 +97,8 @@ export interface Query {
     Params(request: DeepPartial<ParamsRequest>, metadata?: grpc.Metadata): Promise<ParamsResponse>;
     /** State returns the current feemarket module state. */
     State(request: DeepPartial<StateRequest>, metadata?: grpc.Metadata): Promise<StateResponse>;
+    /** State returns the feeDenomParam of feeDenom. */
+    FeeDenomParam(request: DeepPartial<FeeDenomParamRequest>, metadata?: grpc.Metadata): Promise<FeeDenomParamResponse>;
     /** BaseFee returns the current feemarket module base fee. */
     BaseFee(request: DeepPartial<BaseFeeRequest>, metadata?: grpc.Metadata): Promise<BaseFeeResponse>;
 }
@@ -84,6 +107,7 @@ export declare class QueryClientImpl implements Query {
     constructor(rpc: Rpc);
     Params(request: DeepPartial<ParamsRequest>, metadata?: grpc.Metadata): Promise<ParamsResponse>;
     State(request: DeepPartial<StateRequest>, metadata?: grpc.Metadata): Promise<StateResponse>;
+    FeeDenomParam(request: DeepPartial<FeeDenomParamRequest>, metadata?: grpc.Metadata): Promise<FeeDenomParamResponse>;
     BaseFee(request: DeepPartial<BaseFeeRequest>, metadata?: grpc.Metadata): Promise<BaseFeeResponse>;
 }
 export declare const QueryDesc: {
@@ -91,6 +115,7 @@ export declare const QueryDesc: {
 };
 export declare const QueryParamsDesc: UnaryMethodDefinitionish;
 export declare const QueryStateDesc: UnaryMethodDefinitionish;
+export declare const QueryFeeDenomParamDesc: UnaryMethodDefinitionish;
 export declare const QueryBaseFeeDesc: UnaryMethodDefinitionish;
 interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
     requestStream: any;

@@ -2,7 +2,6 @@ import Long from "long";
 import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Params } from "../../../feemarket/feemarket/v1/params";
-import { State } from "../../../feemarket/feemarket/v1/genesis";
 export declare const protobufPackage = "feemarket.feemarket.v1";
 /**
  * MsgParams defines the Msg/Params request type. It contains the
@@ -21,20 +20,25 @@ export interface MsgParams {
 export interface MsgParamsResponse {
 }
 /**
- * MsgState defines the Msg/State request type. It contains the
- * new state of feeDenom for the feemarket module.
+ * MsgFeeDenomParam defines the Msg/FeeDenomParam request type. It contains the
+ * new feeDenomParam of feeDenom for the feemarket module.
  */
-export interface MsgState {
-    /** State defines the new state for the feemarket module. */
-    state?: State;
+export interface MsgFeeDenomParam {
+    /** FeeDenom is the denom that will be used for all fee payments. */
+    feeDenom: string;
+    /**
+     * MinBaseFee determines the initial base fee of the fee denom.
+     * This is denominated in fee per gas unit.
+     */
+    minBaseFee: string;
     /**
      * Authority defines the authority that is updating the feemarket module
      * parameters.
      */
     authority: string;
 }
-/** MsgStateResponse defines the Msg/State response type. */
-export interface MsgStateResponse {
+/** MsgFeeDenomParamResponse defines the Msg/State response type. */
+export interface MsgFeeDenomParamResponse {
 }
 export declare const MsgParams: {
     encode(message: MsgParams, writer?: _m0.Writer): _m0.Writer;
@@ -50,19 +54,19 @@ export declare const MsgParamsResponse: {
     toJSON(_: MsgParamsResponse): unknown;
     fromPartial(_: DeepPartial<MsgParamsResponse>): MsgParamsResponse;
 };
-export declare const MsgState: {
-    encode(message: MsgState, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): MsgState;
-    fromJSON(object: any): MsgState;
-    toJSON(message: MsgState): unknown;
-    fromPartial(object: DeepPartial<MsgState>): MsgState;
+export declare const MsgFeeDenomParam: {
+    encode(message: MsgFeeDenomParam, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): MsgFeeDenomParam;
+    fromJSON(object: any): MsgFeeDenomParam;
+    toJSON(message: MsgFeeDenomParam): unknown;
+    fromPartial(object: DeepPartial<MsgFeeDenomParam>): MsgFeeDenomParam;
 };
-export declare const MsgStateResponse: {
-    encode(_: MsgStateResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): MsgStateResponse;
-    fromJSON(_: any): MsgStateResponse;
-    toJSON(_: MsgStateResponse): unknown;
-    fromPartial(_: DeepPartial<MsgStateResponse>): MsgStateResponse;
+export declare const MsgFeeDenomParamResponse: {
+    encode(_: MsgFeeDenomParamResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): MsgFeeDenomParamResponse;
+    fromJSON(_: any): MsgFeeDenomParamResponse;
+    toJSON(_: MsgFeeDenomParamResponse): unknown;
+    fromPartial(_: DeepPartial<MsgFeeDenomParamResponse>): MsgFeeDenomParamResponse;
 };
 /**
  * Message service defines the types of messages supported by the feemarket
@@ -72,19 +76,19 @@ export interface Msg {
     /** Params defines a method for updating the feemarket module parameters. */
     Params(request: DeepPartial<MsgParams>, metadata?: grpc.Metadata): Promise<MsgParamsResponse>;
     /** State defines a method for updating the feemarket module states. */
-    State(request: DeepPartial<MsgState>, metadata?: grpc.Metadata): Promise<MsgStateResponse>;
+    FeeDenomParam(request: DeepPartial<MsgFeeDenomParam>, metadata?: grpc.Metadata): Promise<MsgFeeDenomParamResponse>;
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
     constructor(rpc: Rpc);
     Params(request: DeepPartial<MsgParams>, metadata?: grpc.Metadata): Promise<MsgParamsResponse>;
-    State(request: DeepPartial<MsgState>, metadata?: grpc.Metadata): Promise<MsgStateResponse>;
+    FeeDenomParam(request: DeepPartial<MsgFeeDenomParam>, metadata?: grpc.Metadata): Promise<MsgFeeDenomParamResponse>;
 }
 export declare const MsgDesc: {
     serviceName: string;
 };
 export declare const MsgParamsDesc: UnaryMethodDefinitionish;
-export declare const MsgStateDesc: UnaryMethodDefinitionish;
+export declare const MsgFeeDenomParamDesc: UnaryMethodDefinitionish;
 interface UnaryMethodDefinitionishR extends grpc.UnaryMethodDefinition<any, any> {
     requestStream: any;
     responseStream: any;
