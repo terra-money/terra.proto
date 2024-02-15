@@ -46,6 +46,26 @@ export interface MsgFeeDenomParam {
 /** MsgFeeDenomParamResponse defines the Msg/State response type. */
 export interface MsgFeeDenomParamResponse {}
 
+/**
+ * MsgRemoveFeeDenomParam defines the Msg/RemoveFeeDenomParam request type. It
+ * contains the feeDenom to be removed from the feemarket module.
+ */
+export interface MsgRemoveFeeDenomParam {
+  /** FeeDenom is the denom that will be removed from the feemarket module. */
+  feeDenom: string;
+  /**
+   * Authority defines the authority that is updating the feemarket module
+   * parameters.
+   */
+  authority: string;
+}
+
+/**
+ * MsgRemoveFeeDenomParamResponse defines the Msg/RemoveFeeDenomParam response
+ * type.
+ */
+export interface MsgRemoveFeeDenomParamResponse {}
+
 const baseMsgParams: object = { authority: "" };
 
 export const MsgParams = {
@@ -283,6 +303,116 @@ export const MsgFeeDenomParamResponse = {
   },
 };
 
+const baseMsgRemoveFeeDenomParam: object = { feeDenom: "", authority: "" };
+
+export const MsgRemoveFeeDenomParam = {
+  encode(message: MsgRemoveFeeDenomParam, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.feeDenom !== "") {
+      writer.uint32(10).string(message.feeDenom);
+    }
+    if (message.authority !== "") {
+      writer.uint32(18).string(message.authority);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgRemoveFeeDenomParam {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgRemoveFeeDenomParam } as MsgRemoveFeeDenomParam;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.feeDenom = reader.string();
+          break;
+        case 2:
+          message.authority = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgRemoveFeeDenomParam {
+    const message = { ...baseMsgRemoveFeeDenomParam } as MsgRemoveFeeDenomParam;
+    if (object.feeDenom !== undefined && object.feeDenom !== null) {
+      message.feeDenom = String(object.feeDenom);
+    } else {
+      message.feeDenom = "";
+    }
+    if (object.authority !== undefined && object.authority !== null) {
+      message.authority = String(object.authority);
+    } else {
+      message.authority = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgRemoveFeeDenomParam): unknown {
+    const obj: any = {};
+    message.feeDenom !== undefined && (obj.feeDenom = message.feeDenom);
+    message.authority !== undefined && (obj.authority = message.authority);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<MsgRemoveFeeDenomParam>): MsgRemoveFeeDenomParam {
+    const message = { ...baseMsgRemoveFeeDenomParam } as MsgRemoveFeeDenomParam;
+    if (object.feeDenom !== undefined && object.feeDenom !== null) {
+      message.feeDenom = object.feeDenom;
+    } else {
+      message.feeDenom = "";
+    }
+    if (object.authority !== undefined && object.authority !== null) {
+      message.authority = object.authority;
+    } else {
+      message.authority = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgRemoveFeeDenomParamResponse: object = {};
+
+export const MsgRemoveFeeDenomParamResponse = {
+  encode(_: MsgRemoveFeeDenomParamResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgRemoveFeeDenomParamResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgRemoveFeeDenomParamResponse } as MsgRemoveFeeDenomParamResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgRemoveFeeDenomParamResponse {
+    const message = { ...baseMsgRemoveFeeDenomParamResponse } as MsgRemoveFeeDenomParamResponse;
+    return message;
+  },
+
+  toJSON(_: MsgRemoveFeeDenomParamResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(_: DeepPartial<MsgRemoveFeeDenomParamResponse>): MsgRemoveFeeDenomParamResponse {
+    const message = { ...baseMsgRemoveFeeDenomParamResponse } as MsgRemoveFeeDenomParamResponse;
+    return message;
+  },
+};
+
 /**
  * Message service defines the types of messages supported by the feemarket
  * module.
@@ -290,11 +420,16 @@ export const MsgFeeDenomParamResponse = {
 export interface Msg {
   /** Params defines a method for updating the feemarket module parameters. */
   Params(request: DeepPartial<MsgParams>, metadata?: grpc.Metadata): Promise<MsgParamsResponse>;
-  /** State defines a method for updating the feemarket module states. */
+  /** State defines a method for adding/updating the feedenomparam. */
   FeeDenomParam(
     request: DeepPartial<MsgFeeDenomParam>,
     metadata?: grpc.Metadata,
   ): Promise<MsgFeeDenomParamResponse>;
+  /** RemoveFeeDenomParam defines a method for removing the feedenomparam. */
+  RemoveFeeDenomParam(
+    request: DeepPartial<MsgRemoveFeeDenomParam>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgRemoveFeeDenomParamResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -304,6 +439,7 @@ export class MsgClientImpl implements Msg {
     this.rpc = rpc;
     this.Params = this.Params.bind(this);
     this.FeeDenomParam = this.FeeDenomParam.bind(this);
+    this.RemoveFeeDenomParam = this.RemoveFeeDenomParam.bind(this);
   }
 
   Params(request: DeepPartial<MsgParams>, metadata?: grpc.Metadata): Promise<MsgParamsResponse> {
@@ -315,6 +451,13 @@ export class MsgClientImpl implements Msg {
     metadata?: grpc.Metadata,
   ): Promise<MsgFeeDenomParamResponse> {
     return this.rpc.unary(MsgFeeDenomParamDesc, MsgFeeDenomParam.fromPartial(request), metadata);
+  }
+
+  RemoveFeeDenomParam(
+    request: DeepPartial<MsgRemoveFeeDenomParam>,
+    metadata?: grpc.Metadata,
+  ): Promise<MsgRemoveFeeDenomParamResponse> {
+    return this.rpc.unary(MsgRemoveFeeDenomParamDesc, MsgRemoveFeeDenomParam.fromPartial(request), metadata);
   }
 }
 
@@ -358,6 +501,28 @@ export const MsgFeeDenomParamDesc: UnaryMethodDefinitionish = {
     deserializeBinary(data: Uint8Array) {
       return {
         ...MsgFeeDenomParamResponse.decode(data),
+        toObject() {
+          return this;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MsgRemoveFeeDenomParamDesc: UnaryMethodDefinitionish = {
+  methodName: "RemoveFeeDenomParam",
+  service: MsgDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MsgRemoveFeeDenomParam.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      return {
+        ...MsgRemoveFeeDenomParamResponse.decode(data),
         toObject() {
           return this;
         },
