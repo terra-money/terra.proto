@@ -1,0 +1,11 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/jarrodcolburn/features/android-sdk:0": {}
+  }
+}"ghcr.io/nordcominc/devcontainer-features/android-sdk:1": {}
+"ghcr.io/akhildevelops/devcontainer-features/android-cli:0": {}
+"ghcr.io/devcontainers-contrib/features/atmos:1": {}
+"ghcr.io/audacioustux/devcontainers/pack-cli:1": {}
+"ghcr.io/lee-orr/rusty-dev-containers/cosmonic:0": {}
+"ghcr.io/devcontainers/features/git:1": {}
