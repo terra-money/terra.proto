@@ -4,7 +4,6 @@ import { grpc } from "@improbable-eng/grpc-web";
 import _m0 from "protobufjs/minimal";
 import { Params } from "../../../feemarket/feemarket/v1/params";
 import { State, FeeDenomParam } from "../../../feemarket/feemarket/v1/genesis";
-import { DecCoin } from "../../../cosmos/base/v1beta1/coin";
 import { BrowserHeaders } from "browser-headers";
 
 export const protobufPackage = "feemarket.feemarket.v1";
@@ -33,16 +32,6 @@ export interface FeeDenomParamRequest {
 /** FeeDenomParamResponse is the response type for the Query/State RPC method. */
 export interface FeeDenomParamResponse {
   feeDenomParams: FeeDenomParam[];
-}
-
-/** BaseFeeRequest is the request type for the Query/BaseFee RPC method. */
-export interface BaseFeeRequest {
-  feeDenom: string;
-}
-
-/** StateResponse is the response type for the Query/BaseFee RPC method. */
-export interface BaseFeeResponse {
-  fee?: DecCoin;
 }
 
 const baseParamsRequest: object = {};
@@ -348,116 +337,6 @@ export const FeeDenomParamResponse = {
   },
 };
 
-const baseBaseFeeRequest: object = { feeDenom: "" };
-
-export const BaseFeeRequest = {
-  encode(message: BaseFeeRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.feeDenom !== "") {
-      writer.uint32(10).string(message.feeDenom);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): BaseFeeRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseBaseFeeRequest } as BaseFeeRequest;
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.feeDenom = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): BaseFeeRequest {
-    const message = { ...baseBaseFeeRequest } as BaseFeeRequest;
-    if (object.feeDenom !== undefined && object.feeDenom !== null) {
-      message.feeDenom = String(object.feeDenom);
-    } else {
-      message.feeDenom = "";
-    }
-    return message;
-  },
-
-  toJSON(message: BaseFeeRequest): unknown {
-    const obj: any = {};
-    message.feeDenom !== undefined && (obj.feeDenom = message.feeDenom);
-    return obj;
-  },
-
-  fromPartial(object: DeepPartial<BaseFeeRequest>): BaseFeeRequest {
-    const message = { ...baseBaseFeeRequest } as BaseFeeRequest;
-    if (object.feeDenom !== undefined && object.feeDenom !== null) {
-      message.feeDenom = object.feeDenom;
-    } else {
-      message.feeDenom = "";
-    }
-    return message;
-  },
-};
-
-const baseBaseFeeResponse: object = {};
-
-export const BaseFeeResponse = {
-  encode(message: BaseFeeResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.fee !== undefined) {
-      DecCoin.encode(message.fee, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): BaseFeeResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseBaseFeeResponse } as BaseFeeResponse;
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.fee = DecCoin.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): BaseFeeResponse {
-    const message = { ...baseBaseFeeResponse } as BaseFeeResponse;
-    if (object.fee !== undefined && object.fee !== null) {
-      message.fee = DecCoin.fromJSON(object.fee);
-    } else {
-      message.fee = undefined;
-    }
-    return message;
-  },
-
-  toJSON(message: BaseFeeResponse): unknown {
-    const obj: any = {};
-    message.fee !== undefined && (obj.fee = message.fee ? DecCoin.toJSON(message.fee) : undefined);
-    return obj;
-  },
-
-  fromPartial(object: DeepPartial<BaseFeeResponse>): BaseFeeResponse {
-    const message = { ...baseBaseFeeResponse } as BaseFeeResponse;
-    if (object.fee !== undefined && object.fee !== null) {
-      message.fee = DecCoin.fromPartial(object.fee);
-    } else {
-      message.fee = undefined;
-    }
-    return message;
-  },
-};
-
 /** Query Service for the feemarket module. */
 export interface Query {
   /** Params returns the current feemarket module parameters. */
@@ -469,8 +348,6 @@ export interface Query {
     request: DeepPartial<FeeDenomParamRequest>,
     metadata?: grpc.Metadata,
   ): Promise<FeeDenomParamResponse>;
-  /** BaseFee returns the current feemarket module base fee. */
-  BaseFee(request: DeepPartial<BaseFeeRequest>, metadata?: grpc.Metadata): Promise<BaseFeeResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -481,7 +358,6 @@ export class QueryClientImpl implements Query {
     this.Params = this.Params.bind(this);
     this.State = this.State.bind(this);
     this.FeeDenomParam = this.FeeDenomParam.bind(this);
-    this.BaseFee = this.BaseFee.bind(this);
   }
 
   Params(request: DeepPartial<ParamsRequest>, metadata?: grpc.Metadata): Promise<ParamsResponse> {
@@ -497,10 +373,6 @@ export class QueryClientImpl implements Query {
     metadata?: grpc.Metadata,
   ): Promise<FeeDenomParamResponse> {
     return this.rpc.unary(QueryFeeDenomParamDesc, FeeDenomParamRequest.fromPartial(request), metadata);
-  }
-
-  BaseFee(request: DeepPartial<BaseFeeRequest>, metadata?: grpc.Metadata): Promise<BaseFeeResponse> {
-    return this.rpc.unary(QueryBaseFeeDesc, BaseFeeRequest.fromPartial(request), metadata);
   }
 }
 
@@ -566,28 +438,6 @@ export const QueryFeeDenomParamDesc: UnaryMethodDefinitionish = {
     deserializeBinary(data: Uint8Array) {
       return {
         ...FeeDenomParamResponse.decode(data),
-        toObject() {
-          return this;
-        },
-      };
-    },
-  } as any,
-};
-
-export const QueryBaseFeeDesc: UnaryMethodDefinitionish = {
-  methodName: "BaseFee",
-  service: QueryDesc,
-  requestStream: false,
-  responseStream: false,
-  requestType: {
-    serializeBinary() {
-      return BaseFeeRequest.encode(this).finish();
-    },
-  } as any,
-  responseType: {
-    deserializeBinary(data: Uint8Array) {
-      return {
-        ...BaseFeeResponse.decode(data),
         toObject() {
           return this;
         },
