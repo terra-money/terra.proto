@@ -235,6 +235,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class QueryBase(ServiceBase):
+
     async def app_options(
         self, app_options_request: "AppOptionsRequest"
     ) -> "AppOptionsResponse":

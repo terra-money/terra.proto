@@ -16,9 +16,9 @@ class Module(betterproto.Message):
     bech32_prefix: str = betterproto.string_field(1)
     """bech32_prefix is the bech32 account prefix for the app."""
 
-    module_account_permissions: List[
-        "ModuleAccountPermission"
-    ] = betterproto.message_field(2)
+    module_account_permissions: List["ModuleAccountPermission"] = (
+        betterproto.message_field(2)
+    )
     """module_account_permissions are module account permissions."""
 
     authority: str = betterproto.string_field(3)

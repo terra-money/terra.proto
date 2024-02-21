@@ -22,7 +22,6 @@ WASMD_DIR=$(readlink -f "../wasmd/proto")
 GRPC_DIR=$(readlink -f "../grpc-gateway")
 COSMOS_DIR=$(readlink -f "../cosmos-proto/proto")
 TERRA_DIR=$(readlink -f "../terra/proto")
-POB_DIR=$(readlink -f "../pob/proto")
 
 protoc  \
   --python_betterproto_out="${OUT_DIR}" \
@@ -38,6 +37,5 @@ protoc  \
   -I "$GRPC_DIR/third_party/googleapis" \
   -I "$COSMOS_DIR" \
   -I "$TERRA_DIR" \
-  -I "$POB_DIR" \
-  $(find $COSMOS_SDK_DIR $ALLIANCE_DIR $IBC_DIR $PFM_DIR $WASMD_DIR $COSMOS_DIR $TERRA_DIR $POB_DIR -path -prune -o -name '*.proto' -print0 | xargs -0) 
+  $(find $COSMOS_SDK_DIR $ALLIANCE_DIR $IBC_DIR $PFM_DIR $WASMD_DIR $COSMOS_DIR $TERRA_DIR -path -prune -o -name '*.proto' -print0 | xargs -0) 
 

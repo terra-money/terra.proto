@@ -59,6 +59,7 @@ class ServiceStub(betterproto.ServiceStub):
 
 
 class ServiceBase(ServiceBase):
+
     async def config(self, config_request: "ConfigRequest") -> "ConfigResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 

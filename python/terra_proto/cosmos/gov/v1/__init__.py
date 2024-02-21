@@ -478,59 +478,6 @@ class MsgUpdateParamsResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the gov module's genesis state."""
-
-    starting_proposal_id: int = betterproto.uint64_field(1)
-    """starting_proposal_id is the ID of the starting proposal."""
-
-    deposits: List["Deposit"] = betterproto.message_field(2)
-    """deposits defines all the deposits present at genesis."""
-
-    votes: List["Vote"] = betterproto.message_field(3)
-    """votes defines all the votes present at genesis."""
-
-    proposals: List["Proposal"] = betterproto.message_field(4)
-    """proposals defines all the proposals present at genesis."""
-
-    deposit_params: "DepositParams" = betterproto.message_field(5)
-    """
-    Deprecated: Prefer to use `params` instead. deposit_params defines all the
-    paramaters of related to deposit.
-    """
-
-    voting_params: "VotingParams" = betterproto.message_field(6)
-    """
-    Deprecated: Prefer to use `params` instead. voting_params defines all the
-    paramaters of related to voting.
-    """
-
-    tally_params: "TallyParams" = betterproto.message_field(7)
-    """
-    Deprecated: Prefer to use `params` instead. tally_params defines all the
-    paramaters of related to tally.
-    """
-
-    params: "Params" = betterproto.message_field(8)
-    """
-    params defines all the paramaters of x/gov module. Since: cosmos-sdk 0.47
-    """
-
-    def __post_init__(self) -> None:
-        super().__post_init__()
-        if self.is_set("deposit_params"):
-            warnings.warn(
-                "GenesisState.deposit_params is deprecated", DeprecationWarning
-            )
-        if self.is_set("voting_params"):
-            warnings.warn(
-                "GenesisState.voting_params is deprecated", DeprecationWarning
-            )
-        if self.is_set("tally_params"):
-            warnings.warn("GenesisState.tally_params is deprecated", DeprecationWarning)
-
-
-@dataclass(eq=False, repr=False)
 class QueryProposalRequest(betterproto.Message):
     """
     QueryProposalRequest is the request type for the Query/Proposal RPC method.
@@ -759,6 +706,59 @@ class QueryTallyResultResponse(betterproto.Message):
 
     tally: "TallyResult" = betterproto.message_field(1)
     """tally defines the requested tally."""
+
+
+@dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the gov module's genesis state."""
+
+    starting_proposal_id: int = betterproto.uint64_field(1)
+    """starting_proposal_id is the ID of the starting proposal."""
+
+    deposits: List["Deposit"] = betterproto.message_field(2)
+    """deposits defines all the deposits present at genesis."""
+
+    votes: List["Vote"] = betterproto.message_field(3)
+    """votes defines all the votes present at genesis."""
+
+    proposals: List["Proposal"] = betterproto.message_field(4)
+    """proposals defines all the proposals present at genesis."""
+
+    deposit_params: "DepositParams" = betterproto.message_field(5)
+    """
+    Deprecated: Prefer to use `params` instead. deposit_params defines all the
+    paramaters of related to deposit.
+    """
+
+    voting_params: "VotingParams" = betterproto.message_field(6)
+    """
+    Deprecated: Prefer to use `params` instead. voting_params defines all the
+    paramaters of related to voting.
+    """
+
+    tally_params: "TallyParams" = betterproto.message_field(7)
+    """
+    Deprecated: Prefer to use `params` instead. tally_params defines all the
+    paramaters of related to tally.
+    """
+
+    params: "Params" = betterproto.message_field(8)
+    """
+    params defines all the paramaters of x/gov module. Since: cosmos-sdk 0.47
+    """
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+        if self.is_set("deposit_params"):
+            warnings.warn(
+                "GenesisState.deposit_params is deprecated", DeprecationWarning
+            )
+        if self.is_set("voting_params"):
+            warnings.warn(
+                "GenesisState.voting_params is deprecated", DeprecationWarning
+            )
+        if self.is_set("tally_params"):
+            warnings.warn("GenesisState.tally_params is deprecated", DeprecationWarning)
 
 
 class MsgStub(betterproto.ServiceStub):
@@ -1004,6 +1004,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class MsgBase(ServiceBase):
+
     async def submit_proposal(
         self, msg_submit_proposal: "MsgSubmitProposal"
     ) -> "MsgSubmitProposalResponse":
@@ -1116,6 +1117,7 @@ class MsgBase(ServiceBase):
 
 
 class QueryBase(ServiceBase):
+
     async def proposal(
         self, query_proposal_request: "QueryProposalRequest"
     ) -> "QueryProposalResponse":

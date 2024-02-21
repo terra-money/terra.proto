@@ -145,6 +145,20 @@ impl State {
         }
     }
 }
+/// GenesisState defines the ibc connection submodule's genesis state.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenesisState {
+    #[prost(message, repeated, tag = "1")]
+    pub connections: ::prost::alloc::vec::Vec<IdentifiedConnection>,
+    #[prost(message, repeated, tag = "2")]
+    pub client_connection_paths: ::prost::alloc::vec::Vec<ConnectionPaths>,
+    /// the sequence for the next generated connection identifier
+    #[prost(uint64, tag = "3")]
+    pub next_connection_sequence: u64,
+    #[prost(message, optional, tag = "4")]
+    pub params: ::core::option::Option<Params>,
+}
 /// MsgConnectionOpenInit defines the msg sent by an account on Chain A to
 /// initialize a connection with Chain B.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -310,12 +324,13 @@ pub mod msg_client {
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+            T:
+                tonic::codegen::Service<
+                    http::Request<tonic::body::BoxBody>,
+                    Response = http::Response<
+                        <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                    >,
                 >,
-            >,
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {
@@ -657,20 +672,6 @@ pub mod msg_server {
         const NAME: &'static str = "ibc.core.connection.v1.Msg";
     }
 }
-/// GenesisState defines the ibc connection submodule's genesis state.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenesisState {
-    #[prost(message, repeated, tag = "1")]
-    pub connections: ::prost::alloc::vec::Vec<IdentifiedConnection>,
-    #[prost(message, repeated, tag = "2")]
-    pub client_connection_paths: ::prost::alloc::vec::Vec<ConnectionPaths>,
-    /// the sequence for the next generated connection identifier
-    #[prost(uint64, tag = "3")]
-    pub next_connection_sequence: u64,
-    #[prost(message, optional, tag = "4")]
-    pub params: ::core::option::Option<Params>,
-}
 /// QueryConnectionRequest is the request type for the Query/Connection RPC
 /// method
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -862,12 +863,13 @@ pub mod query_client {
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+            T:
+                tonic::codegen::Service<
+                    http::Request<tonic::body::BoxBody>,
+                    Response = http::Response<
+                        <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                    >,
                 >,
-            >,
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {

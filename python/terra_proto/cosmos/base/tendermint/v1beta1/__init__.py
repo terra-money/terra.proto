@@ -437,6 +437,7 @@ class ServiceStub(betterproto.ServiceStub):
 
 
 class ServiceBase(ServiceBase):
+
     async def get_node_info(
         self, get_node_info_request: "GetNodeInfoRequest"
     ) -> "GetNodeInfoResponse":

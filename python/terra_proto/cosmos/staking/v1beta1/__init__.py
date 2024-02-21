@@ -508,53 +508,6 @@ class ValidatorUpdates(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the staking module's genesis state."""
-
-    params: "Params" = betterproto.message_field(1)
-    """params defines all the parameters of related to deposit."""
-
-    last_total_power: bytes = betterproto.bytes_field(2)
-    """
-    last_total_power tracks the total amounts of bonded tokens recorded during
-    the previous end block.
-    """
-
-    last_validator_powers: List["LastValidatorPower"] = betterproto.message_field(3)
-    """
-    last_validator_powers is a special index that provides a historical list of
-    the last-block's bonded validators.
-    """
-
-    validators: List["Validator"] = betterproto.message_field(4)
-    """delegations defines the validator set at genesis."""
-
-    delegations: List["Delegation"] = betterproto.message_field(5)
-    """delegations defines the delegations active at genesis."""
-
-    unbonding_delegations: List["UnbondingDelegation"] = betterproto.message_field(6)
-    """
-    unbonding_delegations defines the unbonding delegations active at genesis.
-    """
-
-    redelegations: List["Redelegation"] = betterproto.message_field(7)
-    """redelegations defines the redelegations active at genesis."""
-
-    exported: bool = betterproto.bool_field(8)
-
-
-@dataclass(eq=False, repr=False)
-class LastValidatorPower(betterproto.Message):
-    """LastValidatorPower required for validator set update logic."""
-
-    address: str = betterproto.string_field(1)
-    """address is the address of the validator."""
-
-    power: int = betterproto.int64_field(2)
-    """power defines the power of the validator."""
-
-
-@dataclass(eq=False, repr=False)
 class MsgCreateValidator(betterproto.Message):
     """
     MsgCreateValidator defines a SDK message for creating a new validator.
@@ -1104,6 +1057,53 @@ class StakeAuthorizationValidators(betterproto.Message):
     address: List[str] = betterproto.string_field(1)
 
 
+@dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the staking module's genesis state."""
+
+    params: "Params" = betterproto.message_field(1)
+    """params defines all the parameters of related to deposit."""
+
+    last_total_power: bytes = betterproto.bytes_field(2)
+    """
+    last_total_power tracks the total amounts of bonded tokens recorded during
+    the previous end block.
+    """
+
+    last_validator_powers: List["LastValidatorPower"] = betterproto.message_field(3)
+    """
+    last_validator_powers is a special index that provides a historical list of
+    the last-block's bonded validators.
+    """
+
+    validators: List["Validator"] = betterproto.message_field(4)
+    """delegations defines the validator set at genesis."""
+
+    delegations: List["Delegation"] = betterproto.message_field(5)
+    """delegations defines the delegations active at genesis."""
+
+    unbonding_delegations: List["UnbondingDelegation"] = betterproto.message_field(6)
+    """
+    unbonding_delegations defines the unbonding delegations active at genesis.
+    """
+
+    redelegations: List["Redelegation"] = betterproto.message_field(7)
+    """redelegations defines the redelegations active at genesis."""
+
+    exported: bool = betterproto.bool_field(8)
+
+
+@dataclass(eq=False, repr=False)
+class LastValidatorPower(betterproto.Message):
+    """LastValidatorPower required for validator set update logic."""
+
+    address: str = betterproto.string_field(1)
+    """address is the address of the validator."""
+
+    power: int = betterproto.int64_field(2)
+    """power defines the power of the validator."""
+
+
 class MsgStub(betterproto.ServiceStub):
     async def create_validator(
         self,
@@ -1466,6 +1466,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class MsgBase(ServiceBase):
+
     async def create_validator(
         self, msg_create_validator: "MsgCreateValidator"
     ) -> "MsgCreateValidatorResponse":
@@ -1600,6 +1601,7 @@ class MsgBase(ServiceBase):
 
 
 class QueryBase(ServiceBase):
+
     async def validators(
         self, query_validators_request: "QueryValidatorsRequest"
     ) -> "QueryValidatorsResponse":

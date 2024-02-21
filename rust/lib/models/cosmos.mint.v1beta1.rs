@@ -98,12 +98,13 @@ pub mod msg_client {
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+            T:
+                tonic::codegen::Service<
+                    http::Request<tonic::body::BoxBody>,
+                    Response = http::Response<
+                        <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                    >,
                 >,
-            >,
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {
@@ -283,17 +284,6 @@ pub mod msg_server {
         const NAME: &'static str = "cosmos.mint.v1beta1.Msg";
     }
 }
-/// GenesisState defines the mint module's genesis state.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenesisState {
-    /// minter is a space for holding current inflation information.
-    #[prost(message, optional, tag = "1")]
-    pub minter: ::core::option::Option<Minter>,
-    /// params defines all the parameters of the module.
-    #[prost(message, optional, tag = "2")]
-    pub params: ::core::option::Option<Params>,
-}
 /// QueryParamsRequest is the request type for the Query/Params RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -380,12 +370,13 @@ pub mod query_client {
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+            T:
+                tonic::codegen::Service<
+                    http::Request<tonic::body::BoxBody>,
+                    Response = http::Response<
+                        <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                    >,
                 >,
-            >,
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {
@@ -662,4 +653,15 @@ pub mod query_server {
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
         const NAME: &'static str = "cosmos.mint.v1beta1.Query";
     }
+}
+/// GenesisState defines the mint module's genesis state.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenesisState {
+    /// minter is a space for holding current inflation information.
+    #[prost(message, optional, tag = "1")]
+    pub minter: ::core::option::Option<Minter>,
+    /// params defines all the parameters of the module.
+    #[prost(message, optional, tag = "2")]
+    pub params: ::core::option::Option<Params>,
 }

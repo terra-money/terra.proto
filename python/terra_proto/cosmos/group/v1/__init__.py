@@ -437,334 +437,6 @@ class Vote(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class QueryGroupInfoRequest(betterproto.Message):
-    """QueryGroupInfoRequest is the Query/GroupInfo request type."""
-
-    group_id: int = betterproto.uint64_field(1)
-    """group_id is the unique ID of the group."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryGroupInfoResponse(betterproto.Message):
-    """QueryGroupInfoResponse is the Query/GroupInfo response type."""
-
-    info: "GroupInfo" = betterproto.message_field(1)
-    """info is the GroupInfo of the group."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryGroupPolicyInfoRequest(betterproto.Message):
-    """
-    QueryGroupPolicyInfoRequest is the Query/GroupPolicyInfo request type.
-    """
-
-    address: str = betterproto.string_field(1)
-    """address is the account address of the group policy."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryGroupPolicyInfoResponse(betterproto.Message):
-    """
-    QueryGroupPolicyInfoResponse is the Query/GroupPolicyInfo response type.
-    """
-
-    info: "GroupPolicyInfo" = betterproto.message_field(1)
-    """info is the GroupPolicyInfo of the group policy."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryGroupMembersRequest(betterproto.Message):
-    """QueryGroupMembersRequest is the Query/GroupMembers request type."""
-
-    group_id: int = betterproto.uint64_field(1)
-    """group_id is the unique ID of the group."""
-
-    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
-    """pagination defines an optional pagination for the request."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryGroupMembersResponse(betterproto.Message):
-    """
-    QueryGroupMembersResponse is the Query/GroupMembersResponse response type.
-    """
-
-    members: List["GroupMember"] = betterproto.message_field(1)
-    """members are the members of the group with given group_id."""
-
-    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
-    """pagination defines the pagination in the response."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryGroupsByAdminRequest(betterproto.Message):
-    """QueryGroupsByAdminRequest is the Query/GroupsByAdmin request type."""
-
-    admin: str = betterproto.string_field(1)
-    """admin is the account address of a group's admin."""
-
-    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
-    """pagination defines an optional pagination for the request."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryGroupsByAdminResponse(betterproto.Message):
-    """
-    QueryGroupsByAdminResponse is the Query/GroupsByAdminResponse response
-    type.
-    """
-
-    groups: List["GroupInfo"] = betterproto.message_field(1)
-    """groups are the groups info with the provided admin."""
-
-    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
-    """pagination defines the pagination in the response."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryGroupPoliciesByGroupRequest(betterproto.Message):
-    """
-    QueryGroupPoliciesByGroupRequest is the Query/GroupPoliciesByGroup request
-    type.
-    """
-
-    group_id: int = betterproto.uint64_field(1)
-    """group_id is the unique ID of the group policy's group."""
-
-    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
-    """pagination defines an optional pagination for the request."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryGroupPoliciesByGroupResponse(betterproto.Message):
-    """
-    QueryGroupPoliciesByGroupResponse is the Query/GroupPoliciesByGroup
-    response type.
-    """
-
-    group_policies: List["GroupPolicyInfo"] = betterproto.message_field(1)
-    """
-    group_policies are the group policies info associated with the provided
-    group.
-    """
-
-    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
-    """pagination defines the pagination in the response."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryGroupPoliciesByAdminRequest(betterproto.Message):
-    """
-    QueryGroupPoliciesByAdminRequest is the Query/GroupPoliciesByAdmin request
-    type.
-    """
-
-    admin: str = betterproto.string_field(1)
-    """admin is the admin address of the group policy."""
-
-    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
-    """pagination defines an optional pagination for the request."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryGroupPoliciesByAdminResponse(betterproto.Message):
-    """
-    QueryGroupPoliciesByAdminResponse is the Query/GroupPoliciesByAdmin
-    response type.
-    """
-
-    group_policies: List["GroupPolicyInfo"] = betterproto.message_field(1)
-    """group_policies are the group policies info with provided admin."""
-
-    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
-    """pagination defines the pagination in the response."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryProposalRequest(betterproto.Message):
-    """QueryProposalRequest is the Query/Proposal request type."""
-
-    proposal_id: int = betterproto.uint64_field(1)
-    """proposal_id is the unique ID of a proposal."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryProposalResponse(betterproto.Message):
-    """QueryProposalResponse is the Query/Proposal response type."""
-
-    proposal: "Proposal" = betterproto.message_field(1)
-    """proposal is the proposal info."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryProposalsByGroupPolicyRequest(betterproto.Message):
-    """
-    QueryProposalsByGroupPolicyRequest is the Query/ProposalByGroupPolicy
-    request type.
-    """
-
-    address: str = betterproto.string_field(1)
-    """
-    address is the account address of the group policy related to proposals.
-    """
-
-    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
-    """pagination defines an optional pagination for the request."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryProposalsByGroupPolicyResponse(betterproto.Message):
-    """
-    QueryProposalsByGroupPolicyResponse is the Query/ProposalByGroupPolicy
-    response type.
-    """
-
-    proposals: List["Proposal"] = betterproto.message_field(1)
-    """proposals are the proposals with given group policy."""
-
-    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
-    """pagination defines the pagination in the response."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryVoteByProposalVoterRequest(betterproto.Message):
-    """
-    QueryVoteByProposalVoterRequest is the Query/VoteByProposalVoter request
-    type.
-    """
-
-    proposal_id: int = betterproto.uint64_field(1)
-    """proposal_id is the unique ID of a proposal."""
-
-    voter: str = betterproto.string_field(2)
-    """voter is a proposal voter account address."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryVoteByProposalVoterResponse(betterproto.Message):
-    """
-    QueryVoteByProposalVoterResponse is the Query/VoteByProposalVoter response
-    type.
-    """
-
-    vote: "Vote" = betterproto.message_field(1)
-    """vote is the vote with given proposal_id and voter."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryVotesByProposalRequest(betterproto.Message):
-    """
-    QueryVotesByProposalRequest is the Query/VotesByProposal request type.
-    """
-
-    proposal_id: int = betterproto.uint64_field(1)
-    """proposal_id is the unique ID of a proposal."""
-
-    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
-    """pagination defines an optional pagination for the request."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryVotesByProposalResponse(betterproto.Message):
-    """
-    QueryVotesByProposalResponse is the Query/VotesByProposal response type.
-    """
-
-    votes: List["Vote"] = betterproto.message_field(1)
-    """votes are the list of votes for given proposal_id."""
-
-    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
-    """pagination defines the pagination in the response."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryVotesByVoterRequest(betterproto.Message):
-    """QueryVotesByVoterRequest is the Query/VotesByVoter request type."""
-
-    voter: str = betterproto.string_field(1)
-    """voter is a proposal voter account address."""
-
-    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
-    """pagination defines an optional pagination for the request."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryVotesByVoterResponse(betterproto.Message):
-    """QueryVotesByVoterResponse is the Query/VotesByVoter response type."""
-
-    votes: List["Vote"] = betterproto.message_field(1)
-    """votes are the list of votes by given voter."""
-
-    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
-    """pagination defines the pagination in the response."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryGroupsByMemberRequest(betterproto.Message):
-    """QueryGroupsByMemberRequest is the Query/GroupsByMember request type."""
-
-    address: str = betterproto.string_field(1)
-    """address is the group member address."""
-
-    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
-    """pagination defines an optional pagination for the request."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryGroupsByMemberResponse(betterproto.Message):
-    """
-    QueryGroupsByMemberResponse is the Query/GroupsByMember response type.
-    """
-
-    groups: List["GroupInfo"] = betterproto.message_field(1)
-    """groups are the groups info with the provided group member."""
-
-    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
-    """pagination defines the pagination in the response."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryTallyResultRequest(betterproto.Message):
-    """QueryTallyResultRequest is the Query/TallyResult request type."""
-
-    proposal_id: int = betterproto.uint64_field(1)
-    """proposal_id is the unique id of a proposal."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryTallyResultResponse(betterproto.Message):
-    """QueryTallyResultResponse is the Query/TallyResult response type."""
-
-    tally: "TallyResult" = betterproto.message_field(1)
-    """tally defines the requested tally."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryGroupsRequest(betterproto.Message):
-    """
-    QueryGroupsRequest is the Query/Groups request type. Since: cosmos-sdk
-    0.47.1
-    """
-
-    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
-    """pagination defines an optional pagination for the request."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryGroupsResponse(betterproto.Message):
-    """
-    QueryGroupsResponse is the Query/Groups response type. Since: cosmos-sdk
-    0.47.1
-    """
-
-    groups: List["GroupInfo"] = betterproto.message_field(1)
-    """`groups` is all the groups present in state."""
-
-    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
-    """pagination defines the pagination in the response."""
-
-
-@dataclass(eq=False, repr=False)
 class MsgCreateGroup(betterproto.Message):
     """MsgCreateGroup is the Msg/CreateGroup request type."""
 
@@ -1155,44 +827,6 @@ class MsgLeaveGroupResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the group module's genesis state."""
-
-    group_seq: int = betterproto.uint64_field(1)
-    """
-    group_seq is the group table orm.Sequence, it is used to get the next group
-    ID.
-    """
-
-    groups: List["GroupInfo"] = betterproto.message_field(2)
-    """groups is the list of groups info."""
-
-    group_members: List["GroupMember"] = betterproto.message_field(3)
-    """group_members is the list of groups members."""
-
-    group_policy_seq: int = betterproto.uint64_field(4)
-    """
-    group_policy_seq is the group policy table orm.Sequence, it is used to
-    generate the next group policy account address.
-    """
-
-    group_policies: List["GroupPolicyInfo"] = betterproto.message_field(5)
-    """group_policies is the list of group policies info."""
-
-    proposal_seq: int = betterproto.uint64_field(6)
-    """
-    proposal_seq is the proposal table orm.Sequence, it is used to get the next
-    proposal ID.
-    """
-
-    proposals: List["Proposal"] = betterproto.message_field(7)
-    """proposals is the list of proposals."""
-
-    votes: List["Vote"] = betterproto.message_field(8)
-    """votes is the list of votes."""
-
-
-@dataclass(eq=False, repr=False)
 class EventCreateGroup(betterproto.Message):
     """EventCreateGroup is an event emitted when a group is created."""
 
@@ -1298,244 +932,370 @@ class EventProposalPruned(betterproto.Message):
     """tally_result is the proposal tally result (when applicable)."""
 
 
-class QueryStub(betterproto.ServiceStub):
-    async def group_info(
-        self,
-        query_group_info_request: "QueryGroupInfoRequest",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "QueryGroupInfoResponse":
-        return await self._unary_unary(
-            "/cosmos.group.v1.Query/GroupInfo",
-            query_group_info_request,
-            QueryGroupInfoResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+@dataclass(eq=False, repr=False)
+class QueryGroupInfoRequest(betterproto.Message):
+    """QueryGroupInfoRequest is the Query/GroupInfo request type."""
 
-    async def group_policy_info(
-        self,
-        query_group_policy_info_request: "QueryGroupPolicyInfoRequest",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "QueryGroupPolicyInfoResponse":
-        return await self._unary_unary(
-            "/cosmos.group.v1.Query/GroupPolicyInfo",
-            query_group_policy_info_request,
-            QueryGroupPolicyInfoResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+    group_id: int = betterproto.uint64_field(1)
+    """group_id is the unique ID of the group."""
 
-    async def group_members(
-        self,
-        query_group_members_request: "QueryGroupMembersRequest",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "QueryGroupMembersResponse":
-        return await self._unary_unary(
-            "/cosmos.group.v1.Query/GroupMembers",
-            query_group_members_request,
-            QueryGroupMembersResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
 
-    async def groups_by_admin(
-        self,
-        query_groups_by_admin_request: "QueryGroupsByAdminRequest",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "QueryGroupsByAdminResponse":
-        return await self._unary_unary(
-            "/cosmos.group.v1.Query/GroupsByAdmin",
-            query_groups_by_admin_request,
-            QueryGroupsByAdminResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+@dataclass(eq=False, repr=False)
+class QueryGroupInfoResponse(betterproto.Message):
+    """QueryGroupInfoResponse is the Query/GroupInfo response type."""
 
-    async def group_policies_by_group(
-        self,
-        query_group_policies_by_group_request: "QueryGroupPoliciesByGroupRequest",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "QueryGroupPoliciesByGroupResponse":
-        return await self._unary_unary(
-            "/cosmos.group.v1.Query/GroupPoliciesByGroup",
-            query_group_policies_by_group_request,
-            QueryGroupPoliciesByGroupResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+    info: "GroupInfo" = betterproto.message_field(1)
+    """info is the GroupInfo of the group."""
 
-    async def group_policies_by_admin(
-        self,
-        query_group_policies_by_admin_request: "QueryGroupPoliciesByAdminRequest",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "QueryGroupPoliciesByAdminResponse":
-        return await self._unary_unary(
-            "/cosmos.group.v1.Query/GroupPoliciesByAdmin",
-            query_group_policies_by_admin_request,
-            QueryGroupPoliciesByAdminResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
 
-    async def proposal(
-        self,
-        query_proposal_request: "QueryProposalRequest",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "QueryProposalResponse":
-        return await self._unary_unary(
-            "/cosmos.group.v1.Query/Proposal",
-            query_proposal_request,
-            QueryProposalResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+@dataclass(eq=False, repr=False)
+class QueryGroupPolicyInfoRequest(betterproto.Message):
+    """
+    QueryGroupPolicyInfoRequest is the Query/GroupPolicyInfo request type.
+    """
 
-    async def proposals_by_group_policy(
-        self,
-        query_proposals_by_group_policy_request: "QueryProposalsByGroupPolicyRequest",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "QueryProposalsByGroupPolicyResponse":
-        return await self._unary_unary(
-            "/cosmos.group.v1.Query/ProposalsByGroupPolicy",
-            query_proposals_by_group_policy_request,
-            QueryProposalsByGroupPolicyResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+    address: str = betterproto.string_field(1)
+    """address is the account address of the group policy."""
 
-    async def vote_by_proposal_voter(
-        self,
-        query_vote_by_proposal_voter_request: "QueryVoteByProposalVoterRequest",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "QueryVoteByProposalVoterResponse":
-        return await self._unary_unary(
-            "/cosmos.group.v1.Query/VoteByProposalVoter",
-            query_vote_by_proposal_voter_request,
-            QueryVoteByProposalVoterResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
 
-    async def votes_by_proposal(
-        self,
-        query_votes_by_proposal_request: "QueryVotesByProposalRequest",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "QueryVotesByProposalResponse":
-        return await self._unary_unary(
-            "/cosmos.group.v1.Query/VotesByProposal",
-            query_votes_by_proposal_request,
-            QueryVotesByProposalResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+@dataclass(eq=False, repr=False)
+class QueryGroupPolicyInfoResponse(betterproto.Message):
+    """
+    QueryGroupPolicyInfoResponse is the Query/GroupPolicyInfo response type.
+    """
 
-    async def votes_by_voter(
-        self,
-        query_votes_by_voter_request: "QueryVotesByVoterRequest",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "QueryVotesByVoterResponse":
-        return await self._unary_unary(
-            "/cosmos.group.v1.Query/VotesByVoter",
-            query_votes_by_voter_request,
-            QueryVotesByVoterResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+    info: "GroupPolicyInfo" = betterproto.message_field(1)
+    """info is the GroupPolicyInfo of the group policy."""
 
-    async def groups_by_member(
-        self,
-        query_groups_by_member_request: "QueryGroupsByMemberRequest",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "QueryGroupsByMemberResponse":
-        return await self._unary_unary(
-            "/cosmos.group.v1.Query/GroupsByMember",
-            query_groups_by_member_request,
-            QueryGroupsByMemberResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
 
-    async def tally_result(
-        self,
-        query_tally_result_request: "QueryTallyResultRequest",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "QueryTallyResultResponse":
-        return await self._unary_unary(
-            "/cosmos.group.v1.Query/TallyResult",
-            query_tally_result_request,
-            QueryTallyResultResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+@dataclass(eq=False, repr=False)
+class QueryGroupMembersRequest(betterproto.Message):
+    """QueryGroupMembersRequest is the Query/GroupMembers request type."""
 
-    async def groups(
-        self,
-        query_groups_request: "QueryGroupsRequest",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "QueryGroupsResponse":
-        return await self._unary_unary(
-            "/cosmos.group.v1.Query/Groups",
-            query_groups_request,
-            QueryGroupsResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+    group_id: int = betterproto.uint64_field(1)
+    """group_id is the unique ID of the group."""
+
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
+    """pagination defines an optional pagination for the request."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryGroupMembersResponse(betterproto.Message):
+    """
+    QueryGroupMembersResponse is the Query/GroupMembersResponse response type.
+    """
+
+    members: List["GroupMember"] = betterproto.message_field(1)
+    """members are the members of the group with given group_id."""
+
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
+    """pagination defines the pagination in the response."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryGroupsByAdminRequest(betterproto.Message):
+    """QueryGroupsByAdminRequest is the Query/GroupsByAdmin request type."""
+
+    admin: str = betterproto.string_field(1)
+    """admin is the account address of a group's admin."""
+
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
+    """pagination defines an optional pagination for the request."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryGroupsByAdminResponse(betterproto.Message):
+    """
+    QueryGroupsByAdminResponse is the Query/GroupsByAdminResponse response
+    type.
+    """
+
+    groups: List["GroupInfo"] = betterproto.message_field(1)
+    """groups are the groups info with the provided admin."""
+
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
+    """pagination defines the pagination in the response."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryGroupPoliciesByGroupRequest(betterproto.Message):
+    """
+    QueryGroupPoliciesByGroupRequest is the Query/GroupPoliciesByGroup request
+    type.
+    """
+
+    group_id: int = betterproto.uint64_field(1)
+    """group_id is the unique ID of the group policy's group."""
+
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
+    """pagination defines an optional pagination for the request."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryGroupPoliciesByGroupResponse(betterproto.Message):
+    """
+    QueryGroupPoliciesByGroupResponse is the Query/GroupPoliciesByGroup
+    response type.
+    """
+
+    group_policies: List["GroupPolicyInfo"] = betterproto.message_field(1)
+    """
+    group_policies are the group policies info associated with the provided
+    group.
+    """
+
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
+    """pagination defines the pagination in the response."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryGroupPoliciesByAdminRequest(betterproto.Message):
+    """
+    QueryGroupPoliciesByAdminRequest is the Query/GroupPoliciesByAdmin request
+    type.
+    """
+
+    admin: str = betterproto.string_field(1)
+    """admin is the admin address of the group policy."""
+
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
+    """pagination defines an optional pagination for the request."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryGroupPoliciesByAdminResponse(betterproto.Message):
+    """
+    QueryGroupPoliciesByAdminResponse is the Query/GroupPoliciesByAdmin
+    response type.
+    """
+
+    group_policies: List["GroupPolicyInfo"] = betterproto.message_field(1)
+    """group_policies are the group policies info with provided admin."""
+
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
+    """pagination defines the pagination in the response."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryProposalRequest(betterproto.Message):
+    """QueryProposalRequest is the Query/Proposal request type."""
+
+    proposal_id: int = betterproto.uint64_field(1)
+    """proposal_id is the unique ID of a proposal."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryProposalResponse(betterproto.Message):
+    """QueryProposalResponse is the Query/Proposal response type."""
+
+    proposal: "Proposal" = betterproto.message_field(1)
+    """proposal is the proposal info."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryProposalsByGroupPolicyRequest(betterproto.Message):
+    """
+    QueryProposalsByGroupPolicyRequest is the Query/ProposalByGroupPolicy
+    request type.
+    """
+
+    address: str = betterproto.string_field(1)
+    """
+    address is the account address of the group policy related to proposals.
+    """
+
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
+    """pagination defines an optional pagination for the request."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryProposalsByGroupPolicyResponse(betterproto.Message):
+    """
+    QueryProposalsByGroupPolicyResponse is the Query/ProposalByGroupPolicy
+    response type.
+    """
+
+    proposals: List["Proposal"] = betterproto.message_field(1)
+    """proposals are the proposals with given group policy."""
+
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
+    """pagination defines the pagination in the response."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryVoteByProposalVoterRequest(betterproto.Message):
+    """
+    QueryVoteByProposalVoterRequest is the Query/VoteByProposalVoter request
+    type.
+    """
+
+    proposal_id: int = betterproto.uint64_field(1)
+    """proposal_id is the unique ID of a proposal."""
+
+    voter: str = betterproto.string_field(2)
+    """voter is a proposal voter account address."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryVoteByProposalVoterResponse(betterproto.Message):
+    """
+    QueryVoteByProposalVoterResponse is the Query/VoteByProposalVoter response
+    type.
+    """
+
+    vote: "Vote" = betterproto.message_field(1)
+    """vote is the vote with given proposal_id and voter."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryVotesByProposalRequest(betterproto.Message):
+    """
+    QueryVotesByProposalRequest is the Query/VotesByProposal request type.
+    """
+
+    proposal_id: int = betterproto.uint64_field(1)
+    """proposal_id is the unique ID of a proposal."""
+
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
+    """pagination defines an optional pagination for the request."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryVotesByProposalResponse(betterproto.Message):
+    """
+    QueryVotesByProposalResponse is the Query/VotesByProposal response type.
+    """
+
+    votes: List["Vote"] = betterproto.message_field(1)
+    """votes are the list of votes for given proposal_id."""
+
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
+    """pagination defines the pagination in the response."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryVotesByVoterRequest(betterproto.Message):
+    """QueryVotesByVoterRequest is the Query/VotesByVoter request type."""
+
+    voter: str = betterproto.string_field(1)
+    """voter is a proposal voter account address."""
+
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
+    """pagination defines an optional pagination for the request."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryVotesByVoterResponse(betterproto.Message):
+    """QueryVotesByVoterResponse is the Query/VotesByVoter response type."""
+
+    votes: List["Vote"] = betterproto.message_field(1)
+    """votes are the list of votes by given voter."""
+
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
+    """pagination defines the pagination in the response."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryGroupsByMemberRequest(betterproto.Message):
+    """QueryGroupsByMemberRequest is the Query/GroupsByMember request type."""
+
+    address: str = betterproto.string_field(1)
+    """address is the group member address."""
+
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
+    """pagination defines an optional pagination for the request."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryGroupsByMemberResponse(betterproto.Message):
+    """
+    QueryGroupsByMemberResponse is the Query/GroupsByMember response type.
+    """
+
+    groups: List["GroupInfo"] = betterproto.message_field(1)
+    """groups are the groups info with the provided group member."""
+
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
+    """pagination defines the pagination in the response."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryTallyResultRequest(betterproto.Message):
+    """QueryTallyResultRequest is the Query/TallyResult request type."""
+
+    proposal_id: int = betterproto.uint64_field(1)
+    """proposal_id is the unique id of a proposal."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryTallyResultResponse(betterproto.Message):
+    """QueryTallyResultResponse is the Query/TallyResult response type."""
+
+    tally: "TallyResult" = betterproto.message_field(1)
+    """tally defines the requested tally."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryGroupsRequest(betterproto.Message):
+    """
+    QueryGroupsRequest is the Query/Groups request type. Since: cosmos-sdk
+    0.47.1
+    """
+
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
+    """pagination defines an optional pagination for the request."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryGroupsResponse(betterproto.Message):
+    """
+    QueryGroupsResponse is the Query/Groups response type. Since: cosmos-sdk
+    0.47.1
+    """
+
+    groups: List["GroupInfo"] = betterproto.message_field(1)
+    """`groups` is all the groups present in state."""
+
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
+    """pagination defines the pagination in the response."""
+
+
+@dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the group module's genesis state."""
+
+    group_seq: int = betterproto.uint64_field(1)
+    """
+    group_seq is the group table orm.Sequence, it is used to get the next group
+    ID.
+    """
+
+    groups: List["GroupInfo"] = betterproto.message_field(2)
+    """groups is the list of groups info."""
+
+    group_members: List["GroupMember"] = betterproto.message_field(3)
+    """group_members is the list of groups members."""
+
+    group_policy_seq: int = betterproto.uint64_field(4)
+    """
+    group_policy_seq is the group policy table orm.Sequence, it is used to
+    generate the next group policy account address.
+    """
+
+    group_policies: List["GroupPolicyInfo"] = betterproto.message_field(5)
+    """group_policies is the list of group policies info."""
+
+    proposal_seq: int = betterproto.uint64_field(6)
+    """
+    proposal_seq is the proposal table orm.Sequence, it is used to get the next
+    proposal ID.
+    """
+
+    proposals: List["Proposal"] = betterproto.message_field(7)
+    """proposals is the list of proposals."""
+
+    votes: List["Vote"] = betterproto.message_field(8)
+    """votes is the list of votes."""
 
 
 class MsgStub(betterproto.ServiceStub):
@@ -1778,7 +1538,514 @@ class MsgStub(betterproto.ServiceStub):
         )
 
 
+class QueryStub(betterproto.ServiceStub):
+    async def group_info(
+        self,
+        query_group_info_request: "QueryGroupInfoRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "QueryGroupInfoResponse":
+        return await self._unary_unary(
+            "/cosmos.group.v1.Query/GroupInfo",
+            query_group_info_request,
+            QueryGroupInfoResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def group_policy_info(
+        self,
+        query_group_policy_info_request: "QueryGroupPolicyInfoRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "QueryGroupPolicyInfoResponse":
+        return await self._unary_unary(
+            "/cosmos.group.v1.Query/GroupPolicyInfo",
+            query_group_policy_info_request,
+            QueryGroupPolicyInfoResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def group_members(
+        self,
+        query_group_members_request: "QueryGroupMembersRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "QueryGroupMembersResponse":
+        return await self._unary_unary(
+            "/cosmos.group.v1.Query/GroupMembers",
+            query_group_members_request,
+            QueryGroupMembersResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def groups_by_admin(
+        self,
+        query_groups_by_admin_request: "QueryGroupsByAdminRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "QueryGroupsByAdminResponse":
+        return await self._unary_unary(
+            "/cosmos.group.v1.Query/GroupsByAdmin",
+            query_groups_by_admin_request,
+            QueryGroupsByAdminResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def group_policies_by_group(
+        self,
+        query_group_policies_by_group_request: "QueryGroupPoliciesByGroupRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "QueryGroupPoliciesByGroupResponse":
+        return await self._unary_unary(
+            "/cosmos.group.v1.Query/GroupPoliciesByGroup",
+            query_group_policies_by_group_request,
+            QueryGroupPoliciesByGroupResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def group_policies_by_admin(
+        self,
+        query_group_policies_by_admin_request: "QueryGroupPoliciesByAdminRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "QueryGroupPoliciesByAdminResponse":
+        return await self._unary_unary(
+            "/cosmos.group.v1.Query/GroupPoliciesByAdmin",
+            query_group_policies_by_admin_request,
+            QueryGroupPoliciesByAdminResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def proposal(
+        self,
+        query_proposal_request: "QueryProposalRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "QueryProposalResponse":
+        return await self._unary_unary(
+            "/cosmos.group.v1.Query/Proposal",
+            query_proposal_request,
+            QueryProposalResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def proposals_by_group_policy(
+        self,
+        query_proposals_by_group_policy_request: "QueryProposalsByGroupPolicyRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "QueryProposalsByGroupPolicyResponse":
+        return await self._unary_unary(
+            "/cosmos.group.v1.Query/ProposalsByGroupPolicy",
+            query_proposals_by_group_policy_request,
+            QueryProposalsByGroupPolicyResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def vote_by_proposal_voter(
+        self,
+        query_vote_by_proposal_voter_request: "QueryVoteByProposalVoterRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "QueryVoteByProposalVoterResponse":
+        return await self._unary_unary(
+            "/cosmos.group.v1.Query/VoteByProposalVoter",
+            query_vote_by_proposal_voter_request,
+            QueryVoteByProposalVoterResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def votes_by_proposal(
+        self,
+        query_votes_by_proposal_request: "QueryVotesByProposalRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "QueryVotesByProposalResponse":
+        return await self._unary_unary(
+            "/cosmos.group.v1.Query/VotesByProposal",
+            query_votes_by_proposal_request,
+            QueryVotesByProposalResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def votes_by_voter(
+        self,
+        query_votes_by_voter_request: "QueryVotesByVoterRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "QueryVotesByVoterResponse":
+        return await self._unary_unary(
+            "/cosmos.group.v1.Query/VotesByVoter",
+            query_votes_by_voter_request,
+            QueryVotesByVoterResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def groups_by_member(
+        self,
+        query_groups_by_member_request: "QueryGroupsByMemberRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "QueryGroupsByMemberResponse":
+        return await self._unary_unary(
+            "/cosmos.group.v1.Query/GroupsByMember",
+            query_groups_by_member_request,
+            QueryGroupsByMemberResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def tally_result(
+        self,
+        query_tally_result_request: "QueryTallyResultRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "QueryTallyResultResponse":
+        return await self._unary_unary(
+            "/cosmos.group.v1.Query/TallyResult",
+            query_tally_result_request,
+            QueryTallyResultResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def groups(
+        self,
+        query_groups_request: "QueryGroupsRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "QueryGroupsResponse":
+        return await self._unary_unary(
+            "/cosmos.group.v1.Query/Groups",
+            query_groups_request,
+            QueryGroupsResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+
+class MsgBase(ServiceBase):
+
+    async def create_group(
+        self, msg_create_group: "MsgCreateGroup"
+    ) -> "MsgCreateGroupResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def update_group_members(
+        self, msg_update_group_members: "MsgUpdateGroupMembers"
+    ) -> "MsgUpdateGroupMembersResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def update_group_admin(
+        self, msg_update_group_admin: "MsgUpdateGroupAdmin"
+    ) -> "MsgUpdateGroupAdminResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def update_group_metadata(
+        self, msg_update_group_metadata: "MsgUpdateGroupMetadata"
+    ) -> "MsgUpdateGroupMetadataResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def create_group_policy(
+        self, msg_create_group_policy: "MsgCreateGroupPolicy"
+    ) -> "MsgCreateGroupPolicyResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def create_group_with_policy(
+        self, msg_create_group_with_policy: "MsgCreateGroupWithPolicy"
+    ) -> "MsgCreateGroupWithPolicyResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def update_group_policy_admin(
+        self, msg_update_group_policy_admin: "MsgUpdateGroupPolicyAdmin"
+    ) -> "MsgUpdateGroupPolicyAdminResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def update_group_policy_decision_policy(
+        self,
+        msg_update_group_policy_decision_policy: "MsgUpdateGroupPolicyDecisionPolicy",
+    ) -> "MsgUpdateGroupPolicyDecisionPolicyResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def update_group_policy_metadata(
+        self, msg_update_group_policy_metadata: "MsgUpdateGroupPolicyMetadata"
+    ) -> "MsgUpdateGroupPolicyMetadataResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def submit_proposal(
+        self, msg_submit_proposal: "MsgSubmitProposal"
+    ) -> "MsgSubmitProposalResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def withdraw_proposal(
+        self, msg_withdraw_proposal: "MsgWithdrawProposal"
+    ) -> "MsgWithdrawProposalResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def vote(self, msg_vote: "MsgVote") -> "MsgVoteResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def exec(self, msg_exec: "MsgExec") -> "MsgExecResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def leave_group(
+        self, msg_leave_group: "MsgLeaveGroup"
+    ) -> "MsgLeaveGroupResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def __rpc_create_group(
+        self, stream: "grpclib.server.Stream[MsgCreateGroup, MsgCreateGroupResponse]"
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.create_group(request)
+        await stream.send_message(response)
+
+    async def __rpc_update_group_members(
+        self,
+        stream: "grpclib.server.Stream[MsgUpdateGroupMembers, MsgUpdateGroupMembersResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.update_group_members(request)
+        await stream.send_message(response)
+
+    async def __rpc_update_group_admin(
+        self,
+        stream: "grpclib.server.Stream[MsgUpdateGroupAdmin, MsgUpdateGroupAdminResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.update_group_admin(request)
+        await stream.send_message(response)
+
+    async def __rpc_update_group_metadata(
+        self,
+        stream: "grpclib.server.Stream[MsgUpdateGroupMetadata, MsgUpdateGroupMetadataResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.update_group_metadata(request)
+        await stream.send_message(response)
+
+    async def __rpc_create_group_policy(
+        self,
+        stream: "grpclib.server.Stream[MsgCreateGroupPolicy, MsgCreateGroupPolicyResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.create_group_policy(request)
+        await stream.send_message(response)
+
+    async def __rpc_create_group_with_policy(
+        self,
+        stream: "grpclib.server.Stream[MsgCreateGroupWithPolicy, MsgCreateGroupWithPolicyResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.create_group_with_policy(request)
+        await stream.send_message(response)
+
+    async def __rpc_update_group_policy_admin(
+        self,
+        stream: "grpclib.server.Stream[MsgUpdateGroupPolicyAdmin, MsgUpdateGroupPolicyAdminResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.update_group_policy_admin(request)
+        await stream.send_message(response)
+
+    async def __rpc_update_group_policy_decision_policy(
+        self,
+        stream: "grpclib.server.Stream[MsgUpdateGroupPolicyDecisionPolicy, MsgUpdateGroupPolicyDecisionPolicyResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.update_group_policy_decision_policy(request)
+        await stream.send_message(response)
+
+    async def __rpc_update_group_policy_metadata(
+        self,
+        stream: "grpclib.server.Stream[MsgUpdateGroupPolicyMetadata, MsgUpdateGroupPolicyMetadataResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.update_group_policy_metadata(request)
+        await stream.send_message(response)
+
+    async def __rpc_submit_proposal(
+        self,
+        stream: "grpclib.server.Stream[MsgSubmitProposal, MsgSubmitProposalResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.submit_proposal(request)
+        await stream.send_message(response)
+
+    async def __rpc_withdraw_proposal(
+        self,
+        stream: "grpclib.server.Stream[MsgWithdrawProposal, MsgWithdrawProposalResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.withdraw_proposal(request)
+        await stream.send_message(response)
+
+    async def __rpc_vote(
+        self, stream: "grpclib.server.Stream[MsgVote, MsgVoteResponse]"
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.vote(request)
+        await stream.send_message(response)
+
+    async def __rpc_exec(
+        self, stream: "grpclib.server.Stream[MsgExec, MsgExecResponse]"
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.exec(request)
+        await stream.send_message(response)
+
+    async def __rpc_leave_group(
+        self, stream: "grpclib.server.Stream[MsgLeaveGroup, MsgLeaveGroupResponse]"
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.leave_group(request)
+        await stream.send_message(response)
+
+    def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
+        return {
+            "/cosmos.group.v1.Msg/CreateGroup": grpclib.const.Handler(
+                self.__rpc_create_group,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgCreateGroup,
+                MsgCreateGroupResponse,
+            ),
+            "/cosmos.group.v1.Msg/UpdateGroupMembers": grpclib.const.Handler(
+                self.__rpc_update_group_members,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgUpdateGroupMembers,
+                MsgUpdateGroupMembersResponse,
+            ),
+            "/cosmos.group.v1.Msg/UpdateGroupAdmin": grpclib.const.Handler(
+                self.__rpc_update_group_admin,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgUpdateGroupAdmin,
+                MsgUpdateGroupAdminResponse,
+            ),
+            "/cosmos.group.v1.Msg/UpdateGroupMetadata": grpclib.const.Handler(
+                self.__rpc_update_group_metadata,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgUpdateGroupMetadata,
+                MsgUpdateGroupMetadataResponse,
+            ),
+            "/cosmos.group.v1.Msg/CreateGroupPolicy": grpclib.const.Handler(
+                self.__rpc_create_group_policy,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgCreateGroupPolicy,
+                MsgCreateGroupPolicyResponse,
+            ),
+            "/cosmos.group.v1.Msg/CreateGroupWithPolicy": grpclib.const.Handler(
+                self.__rpc_create_group_with_policy,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgCreateGroupWithPolicy,
+                MsgCreateGroupWithPolicyResponse,
+            ),
+            "/cosmos.group.v1.Msg/UpdateGroupPolicyAdmin": grpclib.const.Handler(
+                self.__rpc_update_group_policy_admin,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgUpdateGroupPolicyAdmin,
+                MsgUpdateGroupPolicyAdminResponse,
+            ),
+            "/cosmos.group.v1.Msg/UpdateGroupPolicyDecisionPolicy": grpclib.const.Handler(
+                self.__rpc_update_group_policy_decision_policy,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgUpdateGroupPolicyDecisionPolicy,
+                MsgUpdateGroupPolicyDecisionPolicyResponse,
+            ),
+            "/cosmos.group.v1.Msg/UpdateGroupPolicyMetadata": grpclib.const.Handler(
+                self.__rpc_update_group_policy_metadata,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgUpdateGroupPolicyMetadata,
+                MsgUpdateGroupPolicyMetadataResponse,
+            ),
+            "/cosmos.group.v1.Msg/SubmitProposal": grpclib.const.Handler(
+                self.__rpc_submit_proposal,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgSubmitProposal,
+                MsgSubmitProposalResponse,
+            ),
+            "/cosmos.group.v1.Msg/WithdrawProposal": grpclib.const.Handler(
+                self.__rpc_withdraw_proposal,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgWithdrawProposal,
+                MsgWithdrawProposalResponse,
+            ),
+            "/cosmos.group.v1.Msg/Vote": grpclib.const.Handler(
+                self.__rpc_vote,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgVote,
+                MsgVoteResponse,
+            ),
+            "/cosmos.group.v1.Msg/Exec": grpclib.const.Handler(
+                self.__rpc_exec,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgExec,
+                MsgExecResponse,
+            ),
+            "/cosmos.group.v1.Msg/LeaveGroup": grpclib.const.Handler(
+                self.__rpc_leave_group,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgLeaveGroup,
+                MsgLeaveGroupResponse,
+            ),
+        }
+
+
 class QueryBase(ServiceBase):
+
     async def group_info(
         self, query_group_info_request: "QueryGroupInfoRequest"
     ) -> "QueryGroupInfoResponse":
@@ -2046,270 +2313,5 @@ class QueryBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryGroupsRequest,
                 QueryGroupsResponse,
-            ),
-        }
-
-
-class MsgBase(ServiceBase):
-    async def create_group(
-        self, msg_create_group: "MsgCreateGroup"
-    ) -> "MsgCreateGroupResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def update_group_members(
-        self, msg_update_group_members: "MsgUpdateGroupMembers"
-    ) -> "MsgUpdateGroupMembersResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def update_group_admin(
-        self, msg_update_group_admin: "MsgUpdateGroupAdmin"
-    ) -> "MsgUpdateGroupAdminResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def update_group_metadata(
-        self, msg_update_group_metadata: "MsgUpdateGroupMetadata"
-    ) -> "MsgUpdateGroupMetadataResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def create_group_policy(
-        self, msg_create_group_policy: "MsgCreateGroupPolicy"
-    ) -> "MsgCreateGroupPolicyResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def create_group_with_policy(
-        self, msg_create_group_with_policy: "MsgCreateGroupWithPolicy"
-    ) -> "MsgCreateGroupWithPolicyResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def update_group_policy_admin(
-        self, msg_update_group_policy_admin: "MsgUpdateGroupPolicyAdmin"
-    ) -> "MsgUpdateGroupPolicyAdminResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def update_group_policy_decision_policy(
-        self,
-        msg_update_group_policy_decision_policy: "MsgUpdateGroupPolicyDecisionPolicy",
-    ) -> "MsgUpdateGroupPolicyDecisionPolicyResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def update_group_policy_metadata(
-        self, msg_update_group_policy_metadata: "MsgUpdateGroupPolicyMetadata"
-    ) -> "MsgUpdateGroupPolicyMetadataResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def submit_proposal(
-        self, msg_submit_proposal: "MsgSubmitProposal"
-    ) -> "MsgSubmitProposalResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def withdraw_proposal(
-        self, msg_withdraw_proposal: "MsgWithdrawProposal"
-    ) -> "MsgWithdrawProposalResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def vote(self, msg_vote: "MsgVote") -> "MsgVoteResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def exec(self, msg_exec: "MsgExec") -> "MsgExecResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def leave_group(
-        self, msg_leave_group: "MsgLeaveGroup"
-    ) -> "MsgLeaveGroupResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def __rpc_create_group(
-        self, stream: "grpclib.server.Stream[MsgCreateGroup, MsgCreateGroupResponse]"
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.create_group(request)
-        await stream.send_message(response)
-
-    async def __rpc_update_group_members(
-        self,
-        stream: "grpclib.server.Stream[MsgUpdateGroupMembers, MsgUpdateGroupMembersResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.update_group_members(request)
-        await stream.send_message(response)
-
-    async def __rpc_update_group_admin(
-        self,
-        stream: "grpclib.server.Stream[MsgUpdateGroupAdmin, MsgUpdateGroupAdminResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.update_group_admin(request)
-        await stream.send_message(response)
-
-    async def __rpc_update_group_metadata(
-        self,
-        stream: "grpclib.server.Stream[MsgUpdateGroupMetadata, MsgUpdateGroupMetadataResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.update_group_metadata(request)
-        await stream.send_message(response)
-
-    async def __rpc_create_group_policy(
-        self,
-        stream: "grpclib.server.Stream[MsgCreateGroupPolicy, MsgCreateGroupPolicyResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.create_group_policy(request)
-        await stream.send_message(response)
-
-    async def __rpc_create_group_with_policy(
-        self,
-        stream: "grpclib.server.Stream[MsgCreateGroupWithPolicy, MsgCreateGroupWithPolicyResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.create_group_with_policy(request)
-        await stream.send_message(response)
-
-    async def __rpc_update_group_policy_admin(
-        self,
-        stream: "grpclib.server.Stream[MsgUpdateGroupPolicyAdmin, MsgUpdateGroupPolicyAdminResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.update_group_policy_admin(request)
-        await stream.send_message(response)
-
-    async def __rpc_update_group_policy_decision_policy(
-        self,
-        stream: "grpclib.server.Stream[MsgUpdateGroupPolicyDecisionPolicy, MsgUpdateGroupPolicyDecisionPolicyResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.update_group_policy_decision_policy(request)
-        await stream.send_message(response)
-
-    async def __rpc_update_group_policy_metadata(
-        self,
-        stream: "grpclib.server.Stream[MsgUpdateGroupPolicyMetadata, MsgUpdateGroupPolicyMetadataResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.update_group_policy_metadata(request)
-        await stream.send_message(response)
-
-    async def __rpc_submit_proposal(
-        self,
-        stream: "grpclib.server.Stream[MsgSubmitProposal, MsgSubmitProposalResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.submit_proposal(request)
-        await stream.send_message(response)
-
-    async def __rpc_withdraw_proposal(
-        self,
-        stream: "grpclib.server.Stream[MsgWithdrawProposal, MsgWithdrawProposalResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.withdraw_proposal(request)
-        await stream.send_message(response)
-
-    async def __rpc_vote(
-        self, stream: "grpclib.server.Stream[MsgVote, MsgVoteResponse]"
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.vote(request)
-        await stream.send_message(response)
-
-    async def __rpc_exec(
-        self, stream: "grpclib.server.Stream[MsgExec, MsgExecResponse]"
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.exec(request)
-        await stream.send_message(response)
-
-    async def __rpc_leave_group(
-        self, stream: "grpclib.server.Stream[MsgLeaveGroup, MsgLeaveGroupResponse]"
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.leave_group(request)
-        await stream.send_message(response)
-
-    def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
-        return {
-            "/cosmos.group.v1.Msg/CreateGroup": grpclib.const.Handler(
-                self.__rpc_create_group,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgCreateGroup,
-                MsgCreateGroupResponse,
-            ),
-            "/cosmos.group.v1.Msg/UpdateGroupMembers": grpclib.const.Handler(
-                self.__rpc_update_group_members,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgUpdateGroupMembers,
-                MsgUpdateGroupMembersResponse,
-            ),
-            "/cosmos.group.v1.Msg/UpdateGroupAdmin": grpclib.const.Handler(
-                self.__rpc_update_group_admin,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgUpdateGroupAdmin,
-                MsgUpdateGroupAdminResponse,
-            ),
-            "/cosmos.group.v1.Msg/UpdateGroupMetadata": grpclib.const.Handler(
-                self.__rpc_update_group_metadata,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgUpdateGroupMetadata,
-                MsgUpdateGroupMetadataResponse,
-            ),
-            "/cosmos.group.v1.Msg/CreateGroupPolicy": grpclib.const.Handler(
-                self.__rpc_create_group_policy,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgCreateGroupPolicy,
-                MsgCreateGroupPolicyResponse,
-            ),
-            "/cosmos.group.v1.Msg/CreateGroupWithPolicy": grpclib.const.Handler(
-                self.__rpc_create_group_with_policy,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgCreateGroupWithPolicy,
-                MsgCreateGroupWithPolicyResponse,
-            ),
-            "/cosmos.group.v1.Msg/UpdateGroupPolicyAdmin": grpclib.const.Handler(
-                self.__rpc_update_group_policy_admin,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgUpdateGroupPolicyAdmin,
-                MsgUpdateGroupPolicyAdminResponse,
-            ),
-            "/cosmos.group.v1.Msg/UpdateGroupPolicyDecisionPolicy": grpclib.const.Handler(
-                self.__rpc_update_group_policy_decision_policy,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgUpdateGroupPolicyDecisionPolicy,
-                MsgUpdateGroupPolicyDecisionPolicyResponse,
-            ),
-            "/cosmos.group.v1.Msg/UpdateGroupPolicyMetadata": grpclib.const.Handler(
-                self.__rpc_update_group_policy_metadata,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgUpdateGroupPolicyMetadata,
-                MsgUpdateGroupPolicyMetadataResponse,
-            ),
-            "/cosmos.group.v1.Msg/SubmitProposal": grpclib.const.Handler(
-                self.__rpc_submit_proposal,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgSubmitProposal,
-                MsgSubmitProposalResponse,
-            ),
-            "/cosmos.group.v1.Msg/WithdrawProposal": grpclib.const.Handler(
-                self.__rpc_withdraw_proposal,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgWithdrawProposal,
-                MsgWithdrawProposalResponse,
-            ),
-            "/cosmos.group.v1.Msg/Vote": grpclib.const.Handler(
-                self.__rpc_vote,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgVote,
-                MsgVoteResponse,
-            ),
-            "/cosmos.group.v1.Msg/Exec": grpclib.const.Handler(
-                self.__rpc_exec,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgExec,
-                MsgExecResponse,
-            ),
-            "/cosmos.group.v1.Msg/LeaveGroup": grpclib.const.Handler(
-                self.__rpc_leave_group,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgLeaveGroup,
-                MsgLeaveGroupResponse,
             ),
         }

@@ -85,10 +85,8 @@ fn compile_protos_and_services() {
     let wasmd_dir = fs::canonicalize(PathBuf::from("../wasmd/proto")).unwrap();
     let cosmos_dir = fs::canonicalize(PathBuf::from("../cosmos-proto/proto")).unwrap();
     let terra_dir = fs::canonicalize(PathBuf::from("../terra/proto")).unwrap();
-    let pob_dir = fs::canonicalize(PathBuf::from("../pob/proto")).unwrap();
 
     let proto_dirs = vec![
-        cosmos_sdk_dir.clone(),
         alliance_dir.clone(),
         ibc_dir.clone(),
         pfm_dir.clone(),
@@ -96,7 +94,7 @@ fn compile_protos_and_services() {
         wasmd_dir.clone(),
         cosmos_dir.clone(),
         terra_dir.clone(),
-        pob_dir.clone(),
+        cosmos_sdk_dir.clone(),
     ];
     let include_dirs = vec![
         fs::canonicalize(PathBuf::from("../protobuf/protobuf")).unwrap(),
@@ -112,12 +110,10 @@ fn compile_protos_and_services() {
         fs::canonicalize(PathBuf::from("../grpc-gateway/third_party/googleapis")).unwrap(),
         cosmos_dir,
         terra_dir,
-        pob_dir,
     ];
 
     for proto_path in proto_dirs.iter() {
         let query_file = list_files_in_dir(proto_path);
-
         if query_file.is_empty() {
             continue;
         }

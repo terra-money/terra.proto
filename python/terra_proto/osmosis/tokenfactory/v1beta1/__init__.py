@@ -41,9 +41,9 @@ class DenomAuthorityMetadata(betterproto.Message):
 class Params(betterproto.Message):
     """Params defines the parameters for the tokenfactory module."""
 
-    denom_creation_fee: List[
-        "___cosmos_base_v1_beta1__.Coin"
-    ] = betterproto.message_field(1)
+    denom_creation_fee: List["___cosmos_base_v1_beta1__.Coin"] = (
+        betterproto.message_field(1)
+    )
     """
     DenomCreationFee defines the fee to be charged on the creation of a new
     denom. The fee is drawn from the MsgCreateDenom's sender account, and
@@ -513,6 +513,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class MsgBase(ServiceBase):
+
     async def update_params(
         self, msg_update_params: "MsgUpdateParams"
     ) -> "MsgUpdateParamsResponse":
@@ -662,6 +663,7 @@ class MsgBase(ServiceBase):
 
 
 class QueryBase(ServiceBase):
+
     async def params(
         self, query_params_request: "QueryParamsRequest"
     ) -> "QueryParamsResponse":

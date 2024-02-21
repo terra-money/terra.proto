@@ -219,6 +219,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class QueryBase(ServiceBase):
+
     async def config(
         self, query_config_request: "QueryConfigRequest"
     ) -> "QueryConfigResponse":

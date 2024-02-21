@@ -261,6 +261,7 @@ class MsgStub(betterproto.ServiceStub):
 
 
 class MsgBase(ServiceBase):
+
     async def create_vesting_account(
         self, msg_create_vesting_account: "MsgCreateVestingAccount"
     ) -> "MsgCreateVestingAccountResponse":

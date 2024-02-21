@@ -168,12 +168,13 @@ pub mod msg_client {
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+            T:
+                tonic::codegen::Service<
+                    http::Request<tonic::body::BoxBody>,
+                    Response = http::Response<
+                        <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                    >,
                 >,
-            >,
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {
@@ -502,6 +503,18 @@ pub mod msg_server {
         const NAME: &'static str = "juno.feeshare.v1.Msg";
     }
 }
+/// FeeShareEvent defines an instance that organizes fee distribution conditions for
+/// the owner of a given smart contract
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FeePayoutEvent {
+    /// Address of the account that will receive the payout
+    #[prost(string, tag = "1")]
+    pub withdraw_address: ::prost::alloc::string::String,
+    /// Amount of the payout
+    #[prost(message, repeated, tag = "2")]
+    pub fees_paid: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
+}
 /// QueryFeeSharesRequest is the request type for the Query/FeeShares RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -653,12 +666,13 @@ pub mod query_client {
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+            T:
+                tonic::codegen::Service<
+                    http::Request<tonic::body::BoxBody>,
+                    Response = http::Response<
+                        <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                    >,
                 >,
-            >,
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {

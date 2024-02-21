@@ -86,17 +86,6 @@ class MsgUpdateParamsResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the mint module's genesis state."""
-
-    minter: "Minter" = betterproto.message_field(1)
-    """minter is a space for holding current inflation information."""
-
-    params: "Params" = betterproto.message_field(2)
-    """params defines all the parameters of the module."""
-
-
-@dataclass(eq=False, repr=False)
 class QueryParamsRequest(betterproto.Message):
     """
     QueryParamsRequest is the request type for the Query/Params RPC method.
@@ -155,6 +144,17 @@ class QueryAnnualProvisionsResponse(betterproto.Message):
 
     annual_provisions: bytes = betterproto.bytes_field(1)
     """annual_provisions is the current minting annual provisions value."""
+
+
+@dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the mint module's genesis state."""
+
+    minter: "Minter" = betterproto.message_field(1)
+    """minter is a space for holding current inflation information."""
+
+    params: "Params" = betterproto.message_field(2)
+    """params defines all the parameters of the module."""
 
 
 class MsgStub(betterproto.ServiceStub):
@@ -230,6 +230,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class MsgBase(ServiceBase):
+
     async def update_params(
         self, msg_update_params: "MsgUpdateParams"
     ) -> "MsgUpdateParamsResponse":
@@ -254,6 +255,7 @@ class MsgBase(ServiceBase):
 
 
 class QueryBase(ServiceBase):
+
     async def params(
         self, query_params_request: "QueryParamsRequest"
     ) -> "QueryParamsResponse":

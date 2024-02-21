@@ -562,6 +562,22 @@ class QuerySendEnabledResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class SendAuthorization(betterproto.Message):
+    """
+    SendAuthorization allows the grantee to spend up to spend_limit coins from
+    the granter's account. Since: cosmos-sdk 0.43
+    """
+
+    spend_limit: List["__base_v1_beta1__.Coin"] = betterproto.message_field(1)
+    allow_list: List[str] = betterproto.string_field(2)
+    """
+    allow_list specifies an optional list of addresses to whom the grantee can
+    send tokens on behalf of the granter. If omitted, any recipient is allowed.
+    Since: cosmos-sdk 0.47
+    """
+
+
+@dataclass(eq=False, repr=False)
 class GenesisState(betterproto.Message):
     """GenesisState defines the bank module's genesis state."""
 
@@ -600,22 +616,6 @@ class Balance(betterproto.Message):
 
     coins: List["__base_v1_beta1__.Coin"] = betterproto.message_field(2)
     """coins defines the different coins this balance holds."""
-
-
-@dataclass(eq=False, repr=False)
-class SendAuthorization(betterproto.Message):
-    """
-    SendAuthorization allows the grantee to spend up to spend_limit coins from
-    the granter's account. Since: cosmos-sdk 0.43
-    """
-
-    spend_limit: List["__base_v1_beta1__.Coin"] = betterproto.message_field(1)
-    allow_list: List[str] = betterproto.string_field(2)
-    """
-    allow_list specifies an optional list of addresses to whom the grantee can
-    send tokens on behalf of the granter. If omitted, any recipient is allowed.
-    Since: cosmos-sdk 0.47
-    """
 
 
 class MsgStub(betterproto.ServiceStub):
@@ -878,6 +878,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class MsgBase(ServiceBase):
+
     async def send(self, msg_send: "MsgSend") -> "MsgSendResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
@@ -955,6 +956,7 @@ class MsgBase(ServiceBase):
 
 
 class QueryBase(ServiceBase):
+
     async def balance(
         self, query_balance_request: "QueryBalanceRequest"
     ) -> "QueryBalanceResponse":

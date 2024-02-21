@@ -813,6 +813,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class MsgBase(ServiceBase):
+
     async def create_client(
         self, msg_create_client: "MsgCreateClient"
     ) -> "MsgCreateClientResponse":
@@ -893,6 +894,7 @@ class MsgBase(ServiceBase):
 
 
 class QueryBase(ServiceBase):
+
     async def client_state(
         self, query_client_state_request: "QueryClientStateRequest"
     ) -> "QueryClientStateResponse":

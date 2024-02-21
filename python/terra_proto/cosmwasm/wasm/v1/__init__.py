@@ -178,6 +178,853 @@ class Model(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class MsgStoreCode(betterproto.Message):
+    """MsgStoreCode submit Wasm code to the system"""
+
+    sender: str = betterproto.string_field(1)
+    """Sender is the actor that signed the messages"""
+
+    wasm_byte_code: bytes = betterproto.bytes_field(2)
+    """WASMByteCode can be raw or gzip compressed"""
+
+    instantiate_permission: "AccessConfig" = betterproto.message_field(5)
+    """
+    InstantiatePermission access control to apply on contract creation,
+    optional
+    """
+
+
+@dataclass(eq=False, repr=False)
+class MsgStoreCodeResponse(betterproto.Message):
+    """MsgStoreCodeResponse returns store result data."""
+
+    code_id: int = betterproto.uint64_field(1)
+    """CodeID is the reference to the stored WASM code"""
+
+    checksum: bytes = betterproto.bytes_field(2)
+    """Checksum is the sha256 hash of the stored code"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgInstantiateContract(betterproto.Message):
+    """
+    MsgInstantiateContract create a new smart contract instance for the given
+    code id.
+    """
+
+    sender: str = betterproto.string_field(1)
+    """Sender is the that actor that signed the messages"""
+
+    admin: str = betterproto.string_field(2)
+    """Admin is an optional address that can execute migrations"""
+
+    code_id: int = betterproto.uint64_field(3)
+    """CodeID is the reference to the stored WASM code"""
+
+    label: str = betterproto.string_field(4)
+    """Label is optional metadata to be stored with a contract instance."""
+
+    msg: bytes = betterproto.bytes_field(5)
+    """
+    Msg json encoded message to be passed to the contract on instantiation
+    """
+
+    funds: List["___cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(6)
+    """Funds coins that are transferred to the contract on instantiation"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgInstantiateContractResponse(betterproto.Message):
+    """MsgInstantiateContractResponse return instantiation result data"""
+
+    address: str = betterproto.string_field(1)
+    """Address is the bech32 address of the new contract instance."""
+
+    data: bytes = betterproto.bytes_field(2)
+    """Data contains bytes to returned from the contract"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgInstantiateContract2(betterproto.Message):
+    """
+    MsgInstantiateContract2 create a new smart contract instance for the given
+    code id with a predicable address.
+    """
+
+    sender: str = betterproto.string_field(1)
+    """Sender is the that actor that signed the messages"""
+
+    admin: str = betterproto.string_field(2)
+    """Admin is an optional address that can execute migrations"""
+
+    code_id: int = betterproto.uint64_field(3)
+    """CodeID is the reference to the stored WASM code"""
+
+    label: str = betterproto.string_field(4)
+    """Label is optional metadata to be stored with a contract instance."""
+
+    msg: bytes = betterproto.bytes_field(5)
+    """
+    Msg json encoded message to be passed to the contract on instantiation
+    """
+
+    funds: List["___cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(6)
+    """Funds coins that are transferred to the contract on instantiation"""
+
+    salt: bytes = betterproto.bytes_field(7)
+    """
+    Salt is an arbitrary value provided by the sender. Size can be 1 to 64.
+    """
+
+    fix_msg: bool = betterproto.bool_field(8)
+    """
+    FixMsg include the msg value into the hash for the predictable address.
+    Default is false
+    """
+
+
+@dataclass(eq=False, repr=False)
+class MsgInstantiateContract2Response(betterproto.Message):
+    """MsgInstantiateContract2Response return instantiation result data"""
+
+    address: str = betterproto.string_field(1)
+    """Address is the bech32 address of the new contract instance."""
+
+    data: bytes = betterproto.bytes_field(2)
+    """Data contains bytes to returned from the contract"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgExecuteContract(betterproto.Message):
+    """
+    MsgExecuteContract submits the given message data to a smart contract
+    """
+
+    sender: str = betterproto.string_field(1)
+    """Sender is the that actor that signed the messages"""
+
+    contract: str = betterproto.string_field(2)
+    """Contract is the address of the smart contract"""
+
+    msg: bytes = betterproto.bytes_field(3)
+    """Msg json encoded message to be passed to the contract"""
+
+    funds: List["___cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(5)
+    """Funds coins that are transferred to the contract on execution"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgExecuteContractResponse(betterproto.Message):
+    """MsgExecuteContractResponse returns execution result data."""
+
+    data: bytes = betterproto.bytes_field(1)
+    """Data contains bytes to returned from the contract"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgMigrateContract(betterproto.Message):
+    """
+    MsgMigrateContract runs a code upgrade/ downgrade for a smart contract
+    """
+
+    sender: str = betterproto.string_field(1)
+    """Sender is the that actor that signed the messages"""
+
+    contract: str = betterproto.string_field(2)
+    """Contract is the address of the smart contract"""
+
+    code_id: int = betterproto.uint64_field(3)
+    """CodeID references the new WASM code"""
+
+    msg: bytes = betterproto.bytes_field(4)
+    """Msg json encoded message to be passed to the contract on migration"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgMigrateContractResponse(betterproto.Message):
+    """MsgMigrateContractResponse returns contract migration result data."""
+
+    data: bytes = betterproto.bytes_field(1)
+    """
+    Data contains same raw bytes returned as data from the wasm contract. (May
+    be empty)
+    """
+
+
+@dataclass(eq=False, repr=False)
+class MsgUpdateAdmin(betterproto.Message):
+    """MsgUpdateAdmin sets a new admin for a smart contract"""
+
+    sender: str = betterproto.string_field(1)
+    """Sender is the that actor that signed the messages"""
+
+    new_admin: str = betterproto.string_field(2)
+    """NewAdmin address to be set"""
+
+    contract: str = betterproto.string_field(3)
+    """Contract is the address of the smart contract"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgUpdateAdminResponse(betterproto.Message):
+    """MsgUpdateAdminResponse returns empty data"""
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgClearAdmin(betterproto.Message):
+    """MsgClearAdmin removes any admin stored for a smart contract"""
+
+    sender: str = betterproto.string_field(1)
+    """Sender is the actor that signed the messages"""
+
+    contract: str = betterproto.string_field(3)
+    """Contract is the address of the smart contract"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgClearAdminResponse(betterproto.Message):
+    """MsgClearAdminResponse returns empty data"""
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgUpdateInstantiateConfig(betterproto.Message):
+    """
+    MsgUpdateInstantiateConfig updates instantiate config for a smart contract
+    """
+
+    sender: str = betterproto.string_field(1)
+    """Sender is the that actor that signed the messages"""
+
+    code_id: int = betterproto.uint64_field(2)
+    """CodeID references the stored WASM code"""
+
+    new_instantiate_permission: "AccessConfig" = betterproto.message_field(3)
+    """NewInstantiatePermission is the new access control"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgUpdateInstantiateConfigResponse(betterproto.Message):
+    """MsgUpdateInstantiateConfigResponse returns empty data"""
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgUpdateParams(betterproto.Message):
+    """MsgUpdateParams is the MsgUpdateParams request type. Since: 0.40"""
+
+    authority: str = betterproto.string_field(1)
+    """Authority is the address of the governance account."""
+
+    params: "Params" = betterproto.message_field(2)
+    """
+    params defines the x/wasm parameters to update. NOTE: All parameters must
+    be supplied.
+    """
+
+
+@dataclass(eq=False, repr=False)
+class MsgUpdateParamsResponse(betterproto.Message):
+    """
+    MsgUpdateParamsResponse defines the response structure for executing a
+    MsgUpdateParams message. Since: 0.40
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgSudoContract(betterproto.Message):
+    """MsgSudoContract is the MsgSudoContract request type. Since: 0.40"""
+
+    authority: str = betterproto.string_field(1)
+    """Authority is the address of the governance account."""
+
+    contract: str = betterproto.string_field(2)
+    """Contract is the address of the smart contract"""
+
+    msg: bytes = betterproto.bytes_field(3)
+    """Msg json encoded message to be passed to the contract as sudo"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgSudoContractResponse(betterproto.Message):
+    """
+    MsgSudoContractResponse defines the response structure for executing a
+    MsgSudoContract message. Since: 0.40
+    """
+
+    data: bytes = betterproto.bytes_field(1)
+    """Data contains bytes to returned from the contract"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgPinCodes(betterproto.Message):
+    """MsgPinCodes is the MsgPinCodes request type. Since: 0.40"""
+
+    authority: str = betterproto.string_field(1)
+    """Authority is the address of the governance account."""
+
+    code_ids: List[int] = betterproto.uint64_field(2)
+    """CodeIDs references the new WASM codes"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgPinCodesResponse(betterproto.Message):
+    """
+    MsgPinCodesResponse defines the response structure for executing a
+    MsgPinCodes message. Since: 0.40
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgUnpinCodes(betterproto.Message):
+    """MsgUnpinCodes is the MsgUnpinCodes request type. Since: 0.40"""
+
+    authority: str = betterproto.string_field(1)
+    """Authority is the address of the governance account."""
+
+    code_ids: List[int] = betterproto.uint64_field(2)
+    """CodeIDs references the WASM codes"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgUnpinCodesResponse(betterproto.Message):
+    """
+    MsgUnpinCodesResponse defines the response structure for executing a
+    MsgUnpinCodes message. Since: 0.40
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgStoreAndInstantiateContract(betterproto.Message):
+    """
+    MsgStoreAndInstantiateContract is the MsgStoreAndInstantiateContract
+    request type. Since: 0.40
+    """
+
+    authority: str = betterproto.string_field(1)
+    """Authority is the address of the governance account."""
+
+    wasm_byte_code: bytes = betterproto.bytes_field(3)
+    """WASMByteCode can be raw or gzip compressed"""
+
+    instantiate_permission: "AccessConfig" = betterproto.message_field(4)
+    """InstantiatePermission to apply on contract creation, optional"""
+
+    unpin_code: bool = betterproto.bool_field(5)
+    """
+    UnpinCode code on upload, optional. As default the uploaded contract is
+    pinned to cache.
+    """
+
+    admin: str = betterproto.string_field(6)
+    """Admin is an optional address that can execute migrations"""
+
+    label: str = betterproto.string_field(7)
+    """Label is optional metadata to be stored with a constract instance."""
+
+    msg: bytes = betterproto.bytes_field(8)
+    """
+    Msg json encoded message to be passed to the contract on instantiation
+    """
+
+    funds: List["___cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(9)
+    """
+    Funds coins that are transferred from the authority account to the contract
+    on instantiation
+    """
+
+    source: str = betterproto.string_field(10)
+    """Source is the URL where the code is hosted"""
+
+    builder: str = betterproto.string_field(11)
+    """
+    Builder is the docker image used to build the code deterministically, used
+    for smart contract verification
+    """
+
+    code_hash: bytes = betterproto.bytes_field(12)
+    """
+    CodeHash is the SHA256 sum of the code outputted by builder, used for smart
+    contract verification
+    """
+
+
+@dataclass(eq=False, repr=False)
+class MsgStoreAndInstantiateContractResponse(betterproto.Message):
+    """
+    MsgStoreAndInstantiateContractResponse defines the response structure for
+    executing a MsgStoreAndInstantiateContract message. Since: 0.40
+    """
+
+    address: str = betterproto.string_field(1)
+    """Address is the bech32 address of the new contract instance."""
+
+    data: bytes = betterproto.bytes_field(2)
+    """Data contains bytes to returned from the contract"""
+
+
+@dataclass(eq=False, repr=False)
+class QueryContractInfoRequest(betterproto.Message):
+    """
+    QueryContractInfoRequest is the request type for the Query/ContractInfo RPC
+    method
+    """
+
+    address: str = betterproto.string_field(1)
+    """address is the address of the contract to query"""
+
+
+@dataclass(eq=False, repr=False)
+class QueryContractInfoResponse(betterproto.Message):
+    """
+    QueryContractInfoResponse is the response type for the Query/ContractInfo
+    RPC method
+    """
+
+    address: str = betterproto.string_field(1)
+    """address is the address of the contract"""
+
+    contract_info: "ContractInfo" = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class QueryContractHistoryRequest(betterproto.Message):
+    """
+    QueryContractHistoryRequest is the request type for the
+    Query/ContractHistory RPC method
+    """
+
+    address: str = betterproto.string_field(1)
+    """address is the address of the contract to query"""
+
+    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
+        betterproto.message_field(2)
+    )
+    """pagination defines an optional pagination for the request."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryContractHistoryResponse(betterproto.Message):
+    """
+    QueryContractHistoryResponse is the response type for the
+    Query/ContractHistory RPC method
+    """
+
+    entries: List["ContractCodeHistoryEntry"] = betterproto.message_field(1)
+    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
+        betterproto.message_field(2)
+    )
+    """pagination defines the pagination in the response."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryContractsByCodeRequest(betterproto.Message):
+    """
+    QueryContractsByCodeRequest is the request type for the
+    Query/ContractsByCode RPC method
+    """
+
+    code_id: int = betterproto.uint64_field(1)
+    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
+        betterproto.message_field(2)
+    )
+    """pagination defines an optional pagination for the request."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryContractsByCodeResponse(betterproto.Message):
+    """
+    QueryContractsByCodeResponse is the response type for the
+    Query/ContractsByCode RPC method
+    """
+
+    contracts: List[str] = betterproto.string_field(1)
+    """contracts are a set of contract addresses"""
+
+    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
+        betterproto.message_field(2)
+    )
+    """pagination defines the pagination in the response."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryAllContractStateRequest(betterproto.Message):
+    """
+    QueryAllContractStateRequest is the request type for the
+    Query/AllContractState RPC method
+    """
+
+    address: str = betterproto.string_field(1)
+    """address is the address of the contract"""
+
+    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
+        betterproto.message_field(2)
+    )
+    """pagination defines an optional pagination for the request."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryAllContractStateResponse(betterproto.Message):
+    """
+    QueryAllContractStateResponse is the response type for the
+    Query/AllContractState RPC method
+    """
+
+    models: List["Model"] = betterproto.message_field(1)
+    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
+        betterproto.message_field(2)
+    )
+    """pagination defines the pagination in the response."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryRawContractStateRequest(betterproto.Message):
+    """
+    QueryRawContractStateRequest is the request type for the
+    Query/RawContractState RPC method
+    """
+
+    address: str = betterproto.string_field(1)
+    """address is the address of the contract"""
+
+    query_data: bytes = betterproto.bytes_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class QueryRawContractStateResponse(betterproto.Message):
+    """
+    QueryRawContractStateResponse is the response type for the
+    Query/RawContractState RPC method
+    """
+
+    data: bytes = betterproto.bytes_field(1)
+    """Data contains the raw store data"""
+
+
+@dataclass(eq=False, repr=False)
+class QuerySmartContractStateRequest(betterproto.Message):
+    """
+    QuerySmartContractStateRequest is the request type for the
+    Query/SmartContractState RPC method
+    """
+
+    address: str = betterproto.string_field(1)
+    """address is the address of the contract"""
+
+    query_data: bytes = betterproto.bytes_field(2)
+    """QueryData contains the query data passed to the contract"""
+
+
+@dataclass(eq=False, repr=False)
+class QuerySmartContractStateResponse(betterproto.Message):
+    """
+    QuerySmartContractStateResponse is the response type for the
+    Query/SmartContractState RPC method
+    """
+
+    data: bytes = betterproto.bytes_field(1)
+    """Data contains the json data returned from the smart contract"""
+
+
+@dataclass(eq=False, repr=False)
+class QueryCodeRequest(betterproto.Message):
+    """QueryCodeRequest is the request type for the Query/Code RPC method"""
+
+    code_id: int = betterproto.uint64_field(1)
+
+
+@dataclass(eq=False, repr=False)
+class CodeInfoResponse(betterproto.Message):
+    """CodeInfoResponse contains code meta data from CodeInfo"""
+
+    code_id: int = betterproto.uint64_field(1)
+    creator: str = betterproto.string_field(2)
+    data_hash: bytes = betterproto.bytes_field(3)
+    instantiate_permission: "AccessConfig" = betterproto.message_field(6)
+
+
+@dataclass(eq=False, repr=False)
+class QueryCodeResponse(betterproto.Message):
+    """QueryCodeResponse is the response type for the Query/Code RPC method"""
+
+    code_info: "CodeInfoResponse" = betterproto.message_field(1)
+    data: bytes = betterproto.bytes_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class QueryCodesRequest(betterproto.Message):
+    """QueryCodesRequest is the request type for the Query/Codes RPC method"""
+
+    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
+        betterproto.message_field(1)
+    )
+    """pagination defines an optional pagination for the request."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryCodesResponse(betterproto.Message):
+    """
+    QueryCodesResponse is the response type for the Query/Codes RPC method
+    """
+
+    code_infos: List["CodeInfoResponse"] = betterproto.message_field(1)
+    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
+        betterproto.message_field(2)
+    )
+    """pagination defines the pagination in the response."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryPinnedCodesRequest(betterproto.Message):
+    """
+    QueryPinnedCodesRequest is the request type for the Query/PinnedCodes RPC
+    method
+    """
+
+    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
+        betterproto.message_field(2)
+    )
+    """pagination defines an optional pagination for the request."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryPinnedCodesResponse(betterproto.Message):
+    """
+    QueryPinnedCodesResponse is the response type for the Query/PinnedCodes RPC
+    method
+    """
+
+    code_ids: List[int] = betterproto.uint64_field(1)
+    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
+        betterproto.message_field(2)
+    )
+    """pagination defines the pagination in the response."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryParamsRequest(betterproto.Message):
+    """
+    QueryParamsRequest is the request type for the Query/Params RPC method.
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class QueryParamsResponse(betterproto.Message):
+    """
+    QueryParamsResponse is the response type for the Query/Params RPC method.
+    """
+
+    params: "Params" = betterproto.message_field(1)
+    """params defines the parameters of the module."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryContractsByCreatorRequest(betterproto.Message):
+    """
+    QueryContractsByCreatorRequest is the request type for the
+    Query/ContractsByCreator RPC method.
+    """
+
+    creator_address: str = betterproto.string_field(1)
+    """CreatorAddress is the address of contract creator"""
+
+    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
+        betterproto.message_field(2)
+    )
+    """Pagination defines an optional pagination for the request."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryContractsByCreatorResponse(betterproto.Message):
+    """
+    QueryContractsByCreatorResponse is the response type for the
+    Query/ContractsByCreator RPC method.
+    """
+
+    contract_addresses: List[str] = betterproto.string_field(1)
+    """ContractAddresses result set"""
+
+    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
+        betterproto.message_field(2)
+    )
+    """Pagination defines the pagination in the response."""
+
+
+@dataclass(eq=False, repr=False)
+class ContractExecutionAuthorization(betterproto.Message):
+    """
+    ContractExecutionAuthorization defines authorization for wasm execute.
+    Since: wasmd 0.30
+    """
+
+    grants: List["ContractGrant"] = betterproto.message_field(1)
+    """Grants for contract executions"""
+
+
+@dataclass(eq=False, repr=False)
+class ContractMigrationAuthorization(betterproto.Message):
+    """
+    ContractMigrationAuthorization defines authorization for wasm contract
+    migration. Since: wasmd 0.30
+    """
+
+    grants: List["ContractGrant"] = betterproto.message_field(1)
+    """Grants for contract migrations"""
+
+
+@dataclass(eq=False, repr=False)
+class ContractGrant(betterproto.Message):
+    """
+    ContractGrant a granted permission for a single contract Since: wasmd 0.30
+    """
+
+    contract: str = betterproto.string_field(1)
+    """Contract is the bech32 address of the smart contract"""
+
+    limit: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(2)
+    """
+    Limit defines execution limits that are enforced and updated when the grant
+    is applied. When the limit lapsed the grant is removed.
+    """
+
+    filter: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(3)
+    """
+    Filter define more fine-grained control on the message payload passed to
+    the contract in the operation. When no filter applies on execution, the
+    operation is prohibited.
+    """
+
+
+@dataclass(eq=False, repr=False)
+class MaxCallsLimit(betterproto.Message):
+    """
+    MaxCallsLimit limited number of calls to the contract. No funds
+    transferable. Since: wasmd 0.30
+    """
+
+    remaining: int = betterproto.uint64_field(1)
+    """Remaining number that is decremented on each execution"""
+
+
+@dataclass(eq=False, repr=False)
+class MaxFundsLimit(betterproto.Message):
+    """
+    MaxFundsLimit defines the maximal amounts that can be sent to the contract.
+    Since: wasmd 0.30
+    """
+
+    amounts: List["___cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(1)
+    """
+    Amounts is the maximal amount of tokens transferable to the contract.
+    """
+
+
+@dataclass(eq=False, repr=False)
+class CombinedLimit(betterproto.Message):
+    """
+    CombinedLimit defines the maximal amounts that can be sent to a contract
+    and the maximal number of calls executable. Both need to remain >0 to be
+    valid. Since: wasmd 0.30
+    """
+
+    calls_remaining: int = betterproto.uint64_field(1)
+    """Remaining number that is decremented on each execution"""
+
+    amounts: List["___cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(2)
+    """
+    Amounts is the maximal amount of tokens transferable to the contract.
+    """
+
+
+@dataclass(eq=False, repr=False)
+class AllowAllMessagesFilter(betterproto.Message):
+    """
+    AllowAllMessagesFilter is a wildcard to allow any type of contract payload
+    message. Since: wasmd 0.30
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class AcceptedMessageKeysFilter(betterproto.Message):
+    """
+    AcceptedMessageKeysFilter accept only the specific contract message keys in
+    the json object to be executed. Since: wasmd 0.30
+    """
+
+    keys: List[str] = betterproto.string_field(1)
+    """Messages is the list of unique keys"""
+
+
+@dataclass(eq=False, repr=False)
+class AcceptedMessagesFilter(betterproto.Message):
+    """
+    AcceptedMessagesFilter accept only the specific raw contract messages to be
+    executed. Since: wasmd 0.30
+    """
+
+    messages: List[bytes] = betterproto.bytes_field(1)
+    """Messages is the list of raw contract messages"""
+
+
+@dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState - genesis state of x/wasm"""
+
+    params: "Params" = betterproto.message_field(1)
+    codes: List["Code"] = betterproto.message_field(2)
+    contracts: List["Contract"] = betterproto.message_field(3)
+    sequences: List["Sequence"] = betterproto.message_field(4)
+
+
+@dataclass(eq=False, repr=False)
+class Code(betterproto.Message):
+    """Code struct encompasses CodeInfo and CodeBytes"""
+
+    code_id: int = betterproto.uint64_field(1)
+    code_info: "CodeInfo" = betterproto.message_field(2)
+    code_bytes: bytes = betterproto.bytes_field(3)
+    pinned: bool = betterproto.bool_field(4)
+    """Pinned to wasmvm cache"""
+
+
+@dataclass(eq=False, repr=False)
+class Contract(betterproto.Message):
+    """
+    Contract struct encompasses ContractAddress, ContractInfo, and
+    ContractState
+    """
+
+    contract_address: str = betterproto.string_field(1)
+    contract_info: "ContractInfo" = betterproto.message_field(2)
+    contract_state: List["Model"] = betterproto.message_field(3)
+    contract_code_history: List["ContractCodeHistoryEntry"] = betterproto.message_field(
+        4
+    )
+
+
+@dataclass(eq=False, repr=False)
+class Sequence(betterproto.Message):
+    """Sequence key and value of an id generation counter"""
+
+    id_key: bytes = betterproto.bytes_field(1)
+    value: int = betterproto.uint64_field(2)
+
+
+@dataclass(eq=False, repr=False)
 class StoreCodeProposal(betterproto.Message):
     """
     Deprecated: Do not use. Since wasmd v0.40, there is no longer a need for an
@@ -613,520 +1460,6 @@ class StoreAndInstantiateContractProposal(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class MsgStoreCode(betterproto.Message):
-    """MsgStoreCode submit Wasm code to the system"""
-
-    sender: str = betterproto.string_field(1)
-    """Sender is the actor that signed the messages"""
-
-    wasm_byte_code: bytes = betterproto.bytes_field(2)
-    """WASMByteCode can be raw or gzip compressed"""
-
-    instantiate_permission: "AccessConfig" = betterproto.message_field(5)
-    """
-    InstantiatePermission access control to apply on contract creation,
-    optional
-    """
-
-
-@dataclass(eq=False, repr=False)
-class MsgStoreCodeResponse(betterproto.Message):
-    """MsgStoreCodeResponse returns store result data."""
-
-    code_id: int = betterproto.uint64_field(1)
-    """CodeID is the reference to the stored WASM code"""
-
-    checksum: bytes = betterproto.bytes_field(2)
-    """Checksum is the sha256 hash of the stored code"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgInstantiateContract(betterproto.Message):
-    """
-    MsgInstantiateContract create a new smart contract instance for the given
-    code id.
-    """
-
-    sender: str = betterproto.string_field(1)
-    """Sender is the that actor that signed the messages"""
-
-    admin: str = betterproto.string_field(2)
-    """Admin is an optional address that can execute migrations"""
-
-    code_id: int = betterproto.uint64_field(3)
-    """CodeID is the reference to the stored WASM code"""
-
-    label: str = betterproto.string_field(4)
-    """Label is optional metadata to be stored with a contract instance."""
-
-    msg: bytes = betterproto.bytes_field(5)
-    """
-    Msg json encoded message to be passed to the contract on instantiation
-    """
-
-    funds: List["___cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(6)
-    """Funds coins that are transferred to the contract on instantiation"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgInstantiateContractResponse(betterproto.Message):
-    """MsgInstantiateContractResponse return instantiation result data"""
-
-    address: str = betterproto.string_field(1)
-    """Address is the bech32 address of the new contract instance."""
-
-    data: bytes = betterproto.bytes_field(2)
-    """Data contains bytes to returned from the contract"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgInstantiateContract2(betterproto.Message):
-    """
-    MsgInstantiateContract2 create a new smart contract instance for the given
-    code id with a predicable address.
-    """
-
-    sender: str = betterproto.string_field(1)
-    """Sender is the that actor that signed the messages"""
-
-    admin: str = betterproto.string_field(2)
-    """Admin is an optional address that can execute migrations"""
-
-    code_id: int = betterproto.uint64_field(3)
-    """CodeID is the reference to the stored WASM code"""
-
-    label: str = betterproto.string_field(4)
-    """Label is optional metadata to be stored with a contract instance."""
-
-    msg: bytes = betterproto.bytes_field(5)
-    """
-    Msg json encoded message to be passed to the contract on instantiation
-    """
-
-    funds: List["___cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(6)
-    """Funds coins that are transferred to the contract on instantiation"""
-
-    salt: bytes = betterproto.bytes_field(7)
-    """
-    Salt is an arbitrary value provided by the sender. Size can be 1 to 64.
-    """
-
-    fix_msg: bool = betterproto.bool_field(8)
-    """
-    FixMsg include the msg value into the hash for the predictable address.
-    Default is false
-    """
-
-
-@dataclass(eq=False, repr=False)
-class MsgInstantiateContract2Response(betterproto.Message):
-    """MsgInstantiateContract2Response return instantiation result data"""
-
-    address: str = betterproto.string_field(1)
-    """Address is the bech32 address of the new contract instance."""
-
-    data: bytes = betterproto.bytes_field(2)
-    """Data contains bytes to returned from the contract"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgExecuteContract(betterproto.Message):
-    """
-    MsgExecuteContract submits the given message data to a smart contract
-    """
-
-    sender: str = betterproto.string_field(1)
-    """Sender is the that actor that signed the messages"""
-
-    contract: str = betterproto.string_field(2)
-    """Contract is the address of the smart contract"""
-
-    msg: bytes = betterproto.bytes_field(3)
-    """Msg json encoded message to be passed to the contract"""
-
-    funds: List["___cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(5)
-    """Funds coins that are transferred to the contract on execution"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgExecuteContractResponse(betterproto.Message):
-    """MsgExecuteContractResponse returns execution result data."""
-
-    data: bytes = betterproto.bytes_field(1)
-    """Data contains bytes to returned from the contract"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgMigrateContract(betterproto.Message):
-    """
-    MsgMigrateContract runs a code upgrade/ downgrade for a smart contract
-    """
-
-    sender: str = betterproto.string_field(1)
-    """Sender is the that actor that signed the messages"""
-
-    contract: str = betterproto.string_field(2)
-    """Contract is the address of the smart contract"""
-
-    code_id: int = betterproto.uint64_field(3)
-    """CodeID references the new WASM code"""
-
-    msg: bytes = betterproto.bytes_field(4)
-    """Msg json encoded message to be passed to the contract on migration"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgMigrateContractResponse(betterproto.Message):
-    """MsgMigrateContractResponse returns contract migration result data."""
-
-    data: bytes = betterproto.bytes_field(1)
-    """
-    Data contains same raw bytes returned as data from the wasm contract. (May
-    be empty)
-    """
-
-
-@dataclass(eq=False, repr=False)
-class MsgUpdateAdmin(betterproto.Message):
-    """MsgUpdateAdmin sets a new admin for a smart contract"""
-
-    sender: str = betterproto.string_field(1)
-    """Sender is the that actor that signed the messages"""
-
-    new_admin: str = betterproto.string_field(2)
-    """NewAdmin address to be set"""
-
-    contract: str = betterproto.string_field(3)
-    """Contract is the address of the smart contract"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgUpdateAdminResponse(betterproto.Message):
-    """MsgUpdateAdminResponse returns empty data"""
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class MsgClearAdmin(betterproto.Message):
-    """MsgClearAdmin removes any admin stored for a smart contract"""
-
-    sender: str = betterproto.string_field(1)
-    """Sender is the actor that signed the messages"""
-
-    contract: str = betterproto.string_field(3)
-    """Contract is the address of the smart contract"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgClearAdminResponse(betterproto.Message):
-    """MsgClearAdminResponse returns empty data"""
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class MsgUpdateInstantiateConfig(betterproto.Message):
-    """
-    MsgUpdateInstantiateConfig updates instantiate config for a smart contract
-    """
-
-    sender: str = betterproto.string_field(1)
-    """Sender is the that actor that signed the messages"""
-
-    code_id: int = betterproto.uint64_field(2)
-    """CodeID references the stored WASM code"""
-
-    new_instantiate_permission: "AccessConfig" = betterproto.message_field(3)
-    """NewInstantiatePermission is the new access control"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgUpdateInstantiateConfigResponse(betterproto.Message):
-    """MsgUpdateInstantiateConfigResponse returns empty data"""
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class MsgUpdateParams(betterproto.Message):
-    """MsgUpdateParams is the MsgUpdateParams request type. Since: 0.40"""
-
-    authority: str = betterproto.string_field(1)
-    """Authority is the address of the governance account."""
-
-    params: "Params" = betterproto.message_field(2)
-    """
-    params defines the x/wasm parameters to update. NOTE: All parameters must
-    be supplied.
-    """
-
-
-@dataclass(eq=False, repr=False)
-class MsgUpdateParamsResponse(betterproto.Message):
-    """
-    MsgUpdateParamsResponse defines the response structure for executing a
-    MsgUpdateParams message. Since: 0.40
-    """
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class MsgSudoContract(betterproto.Message):
-    """MsgSudoContract is the MsgSudoContract request type. Since: 0.40"""
-
-    authority: str = betterproto.string_field(1)
-    """Authority is the address of the governance account."""
-
-    contract: str = betterproto.string_field(2)
-    """Contract is the address of the smart contract"""
-
-    msg: bytes = betterproto.bytes_field(3)
-    """Msg json encoded message to be passed to the contract as sudo"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgSudoContractResponse(betterproto.Message):
-    """
-    MsgSudoContractResponse defines the response structure for executing a
-    MsgSudoContract message. Since: 0.40
-    """
-
-    data: bytes = betterproto.bytes_field(1)
-    """Data contains bytes to returned from the contract"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgPinCodes(betterproto.Message):
-    """MsgPinCodes is the MsgPinCodes request type. Since: 0.40"""
-
-    authority: str = betterproto.string_field(1)
-    """Authority is the address of the governance account."""
-
-    code_ids: List[int] = betterproto.uint64_field(2)
-    """CodeIDs references the new WASM codes"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgPinCodesResponse(betterproto.Message):
-    """
-    MsgPinCodesResponse defines the response structure for executing a
-    MsgPinCodes message. Since: 0.40
-    """
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class MsgUnpinCodes(betterproto.Message):
-    """MsgUnpinCodes is the MsgUnpinCodes request type. Since: 0.40"""
-
-    authority: str = betterproto.string_field(1)
-    """Authority is the address of the governance account."""
-
-    code_ids: List[int] = betterproto.uint64_field(2)
-    """CodeIDs references the WASM codes"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgUnpinCodesResponse(betterproto.Message):
-    """
-    MsgUnpinCodesResponse defines the response structure for executing a
-    MsgUnpinCodes message. Since: 0.40
-    """
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class MsgStoreAndInstantiateContract(betterproto.Message):
-    """
-    MsgStoreAndInstantiateContract is the MsgStoreAndInstantiateContract
-    request type. Since: 0.40
-    """
-
-    authority: str = betterproto.string_field(1)
-    """Authority is the address of the governance account."""
-
-    wasm_byte_code: bytes = betterproto.bytes_field(3)
-    """WASMByteCode can be raw or gzip compressed"""
-
-    instantiate_permission: "AccessConfig" = betterproto.message_field(4)
-    """InstantiatePermission to apply on contract creation, optional"""
-
-    unpin_code: bool = betterproto.bool_field(5)
-    """
-    UnpinCode code on upload, optional. As default the uploaded contract is
-    pinned to cache.
-    """
-
-    admin: str = betterproto.string_field(6)
-    """Admin is an optional address that can execute migrations"""
-
-    label: str = betterproto.string_field(7)
-    """Label is optional metadata to be stored with a constract instance."""
-
-    msg: bytes = betterproto.bytes_field(8)
-    """
-    Msg json encoded message to be passed to the contract on instantiation
-    """
-
-    funds: List["___cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(9)
-    """
-    Funds coins that are transferred from the authority account to the contract
-    on instantiation
-    """
-
-    source: str = betterproto.string_field(10)
-    """Source is the URL where the code is hosted"""
-
-    builder: str = betterproto.string_field(11)
-    """
-    Builder is the docker image used to build the code deterministically, used
-    for smart contract verification
-    """
-
-    code_hash: bytes = betterproto.bytes_field(12)
-    """
-    CodeHash is the SHA256 sum of the code outputted by builder, used for smart
-    contract verification
-    """
-
-
-@dataclass(eq=False, repr=False)
-class MsgStoreAndInstantiateContractResponse(betterproto.Message):
-    """
-    MsgStoreAndInstantiateContractResponse defines the response structure for
-    executing a MsgStoreAndInstantiateContract message. Since: 0.40
-    """
-
-    address: str = betterproto.string_field(1)
-    """Address is the bech32 address of the new contract instance."""
-
-    data: bytes = betterproto.bytes_field(2)
-    """Data contains bytes to returned from the contract"""
-
-
-@dataclass(eq=False, repr=False)
-class ContractExecutionAuthorization(betterproto.Message):
-    """
-    ContractExecutionAuthorization defines authorization for wasm execute.
-    Since: wasmd 0.30
-    """
-
-    grants: List["ContractGrant"] = betterproto.message_field(1)
-    """Grants for contract executions"""
-
-
-@dataclass(eq=False, repr=False)
-class ContractMigrationAuthorization(betterproto.Message):
-    """
-    ContractMigrationAuthorization defines authorization for wasm contract
-    migration. Since: wasmd 0.30
-    """
-
-    grants: List["ContractGrant"] = betterproto.message_field(1)
-    """Grants for contract migrations"""
-
-
-@dataclass(eq=False, repr=False)
-class ContractGrant(betterproto.Message):
-    """
-    ContractGrant a granted permission for a single contract Since: wasmd 0.30
-    """
-
-    contract: str = betterproto.string_field(1)
-    """Contract is the bech32 address of the smart contract"""
-
-    limit: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(2)
-    """
-    Limit defines execution limits that are enforced and updated when the grant
-    is applied. When the limit lapsed the grant is removed.
-    """
-
-    filter: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(3)
-    """
-    Filter define more fine-grained control on the message payload passed to
-    the contract in the operation. When no filter applies on execution, the
-    operation is prohibited.
-    """
-
-
-@dataclass(eq=False, repr=False)
-class MaxCallsLimit(betterproto.Message):
-    """
-    MaxCallsLimit limited number of calls to the contract. No funds
-    transferable. Since: wasmd 0.30
-    """
-
-    remaining: int = betterproto.uint64_field(1)
-    """Remaining number that is decremented on each execution"""
-
-
-@dataclass(eq=False, repr=False)
-class MaxFundsLimit(betterproto.Message):
-    """
-    MaxFundsLimit defines the maximal amounts that can be sent to the contract.
-    Since: wasmd 0.30
-    """
-
-    amounts: List["___cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(1)
-    """
-    Amounts is the maximal amount of tokens transferable to the contract.
-    """
-
-
-@dataclass(eq=False, repr=False)
-class CombinedLimit(betterproto.Message):
-    """
-    CombinedLimit defines the maximal amounts that can be sent to a contract
-    and the maximal number of calls executable. Both need to remain >0 to be
-    valid. Since: wasmd 0.30
-    """
-
-    calls_remaining: int = betterproto.uint64_field(1)
-    """Remaining number that is decremented on each execution"""
-
-    amounts: List["___cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(2)
-    """
-    Amounts is the maximal amount of tokens transferable to the contract.
-    """
-
-
-@dataclass(eq=False, repr=False)
-class AllowAllMessagesFilter(betterproto.Message):
-    """
-    AllowAllMessagesFilter is a wildcard to allow any type of contract payload
-    message. Since: wasmd 0.30
-    """
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class AcceptedMessageKeysFilter(betterproto.Message):
-    """
-    AcceptedMessageKeysFilter accept only the specific contract message keys in
-    the json object to be executed. Since: wasmd 0.30
-    """
-
-    keys: List[str] = betterproto.string_field(1)
-    """Messages is the list of unique keys"""
-
-
-@dataclass(eq=False, repr=False)
-class AcceptedMessagesFilter(betterproto.Message):
-    """
-    AcceptedMessagesFilter accept only the specific raw contract messages to be
-    executed. Since: wasmd 0.30
-    """
-
-    messages: List[bytes] = betterproto.bytes_field(1)
-    """Messages is the list of raw contract messages"""
-
-
-@dataclass(eq=False, repr=False)
 class MsgIbcSend(betterproto.Message):
     """MsgIBCSend"""
 
@@ -1165,339 +1498,6 @@ class MsgIbcCloseChannel(betterproto.Message):
     """MsgIBCCloseChannel port and channel need to be owned by the contract"""
 
     channel: str = betterproto.string_field(2)
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState - genesis state of x/wasm"""
-
-    params: "Params" = betterproto.message_field(1)
-    codes: List["Code"] = betterproto.message_field(2)
-    contracts: List["Contract"] = betterproto.message_field(3)
-    sequences: List["Sequence"] = betterproto.message_field(4)
-
-
-@dataclass(eq=False, repr=False)
-class Code(betterproto.Message):
-    """Code struct encompasses CodeInfo and CodeBytes"""
-
-    code_id: int = betterproto.uint64_field(1)
-    code_info: "CodeInfo" = betterproto.message_field(2)
-    code_bytes: bytes = betterproto.bytes_field(3)
-    pinned: bool = betterproto.bool_field(4)
-    """Pinned to wasmvm cache"""
-
-
-@dataclass(eq=False, repr=False)
-class Contract(betterproto.Message):
-    """
-    Contract struct encompasses ContractAddress, ContractInfo, and
-    ContractState
-    """
-
-    contract_address: str = betterproto.string_field(1)
-    contract_info: "ContractInfo" = betterproto.message_field(2)
-    contract_state: List["Model"] = betterproto.message_field(3)
-    contract_code_history: List["ContractCodeHistoryEntry"] = betterproto.message_field(
-        4
-    )
-
-
-@dataclass(eq=False, repr=False)
-class Sequence(betterproto.Message):
-    """Sequence key and value of an id generation counter"""
-
-    id_key: bytes = betterproto.bytes_field(1)
-    value: int = betterproto.uint64_field(2)
-
-
-@dataclass(eq=False, repr=False)
-class QueryContractInfoRequest(betterproto.Message):
-    """
-    QueryContractInfoRequest is the request type for the Query/ContractInfo RPC
-    method
-    """
-
-    address: str = betterproto.string_field(1)
-    """address is the address of the contract to query"""
-
-
-@dataclass(eq=False, repr=False)
-class QueryContractInfoResponse(betterproto.Message):
-    """
-    QueryContractInfoResponse is the response type for the Query/ContractInfo
-    RPC method
-    """
-
-    address: str = betterproto.string_field(1)
-    """address is the address of the contract"""
-
-    contract_info: "ContractInfo" = betterproto.message_field(2)
-
-
-@dataclass(eq=False, repr=False)
-class QueryContractHistoryRequest(betterproto.Message):
-    """
-    QueryContractHistoryRequest is the request type for the
-    Query/ContractHistory RPC method
-    """
-
-    address: str = betterproto.string_field(1)
-    """address is the address of the contract to query"""
-
-    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
-        betterproto.message_field(2)
-    )
-    """pagination defines an optional pagination for the request."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryContractHistoryResponse(betterproto.Message):
-    """
-    QueryContractHistoryResponse is the response type for the
-    Query/ContractHistory RPC method
-    """
-
-    entries: List["ContractCodeHistoryEntry"] = betterproto.message_field(1)
-    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
-        betterproto.message_field(2)
-    )
-    """pagination defines the pagination in the response."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryContractsByCodeRequest(betterproto.Message):
-    """
-    QueryContractsByCodeRequest is the request type for the
-    Query/ContractsByCode RPC method
-    """
-
-    code_id: int = betterproto.uint64_field(1)
-    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
-        betterproto.message_field(2)
-    )
-    """pagination defines an optional pagination for the request."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryContractsByCodeResponse(betterproto.Message):
-    """
-    QueryContractsByCodeResponse is the response type for the
-    Query/ContractsByCode RPC method
-    """
-
-    contracts: List[str] = betterproto.string_field(1)
-    """contracts are a set of contract addresses"""
-
-    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
-        betterproto.message_field(2)
-    )
-    """pagination defines the pagination in the response."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryAllContractStateRequest(betterproto.Message):
-    """
-    QueryAllContractStateRequest is the request type for the
-    Query/AllContractState RPC method
-    """
-
-    address: str = betterproto.string_field(1)
-    """address is the address of the contract"""
-
-    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
-        betterproto.message_field(2)
-    )
-    """pagination defines an optional pagination for the request."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryAllContractStateResponse(betterproto.Message):
-    """
-    QueryAllContractStateResponse is the response type for the
-    Query/AllContractState RPC method
-    """
-
-    models: List["Model"] = betterproto.message_field(1)
-    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
-        betterproto.message_field(2)
-    )
-    """pagination defines the pagination in the response."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryRawContractStateRequest(betterproto.Message):
-    """
-    QueryRawContractStateRequest is the request type for the
-    Query/RawContractState RPC method
-    """
-
-    address: str = betterproto.string_field(1)
-    """address is the address of the contract"""
-
-    query_data: bytes = betterproto.bytes_field(2)
-
-
-@dataclass(eq=False, repr=False)
-class QueryRawContractStateResponse(betterproto.Message):
-    """
-    QueryRawContractStateResponse is the response type for the
-    Query/RawContractState RPC method
-    """
-
-    data: bytes = betterproto.bytes_field(1)
-    """Data contains the raw store data"""
-
-
-@dataclass(eq=False, repr=False)
-class QuerySmartContractStateRequest(betterproto.Message):
-    """
-    QuerySmartContractStateRequest is the request type for the
-    Query/SmartContractState RPC method
-    """
-
-    address: str = betterproto.string_field(1)
-    """address is the address of the contract"""
-
-    query_data: bytes = betterproto.bytes_field(2)
-    """QueryData contains the query data passed to the contract"""
-
-
-@dataclass(eq=False, repr=False)
-class QuerySmartContractStateResponse(betterproto.Message):
-    """
-    QuerySmartContractStateResponse is the response type for the
-    Query/SmartContractState RPC method
-    """
-
-    data: bytes = betterproto.bytes_field(1)
-    """Data contains the json data returned from the smart contract"""
-
-
-@dataclass(eq=False, repr=False)
-class QueryCodeRequest(betterproto.Message):
-    """QueryCodeRequest is the request type for the Query/Code RPC method"""
-
-    code_id: int = betterproto.uint64_field(1)
-
-
-@dataclass(eq=False, repr=False)
-class CodeInfoResponse(betterproto.Message):
-    """CodeInfoResponse contains code meta data from CodeInfo"""
-
-    code_id: int = betterproto.uint64_field(1)
-    creator: str = betterproto.string_field(2)
-    data_hash: bytes = betterproto.bytes_field(3)
-    instantiate_permission: "AccessConfig" = betterproto.message_field(6)
-
-
-@dataclass(eq=False, repr=False)
-class QueryCodeResponse(betterproto.Message):
-    """QueryCodeResponse is the response type for the Query/Code RPC method"""
-
-    code_info: "CodeInfoResponse" = betterproto.message_field(1)
-    data: bytes = betterproto.bytes_field(2)
-
-
-@dataclass(eq=False, repr=False)
-class QueryCodesRequest(betterproto.Message):
-    """QueryCodesRequest is the request type for the Query/Codes RPC method"""
-
-    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
-        betterproto.message_field(1)
-    )
-    """pagination defines an optional pagination for the request."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryCodesResponse(betterproto.Message):
-    """
-    QueryCodesResponse is the response type for the Query/Codes RPC method
-    """
-
-    code_infos: List["CodeInfoResponse"] = betterproto.message_field(1)
-    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
-        betterproto.message_field(2)
-    )
-    """pagination defines the pagination in the response."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryPinnedCodesRequest(betterproto.Message):
-    """
-    QueryPinnedCodesRequest is the request type for the Query/PinnedCodes RPC
-    method
-    """
-
-    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
-        betterproto.message_field(2)
-    )
-    """pagination defines an optional pagination for the request."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryPinnedCodesResponse(betterproto.Message):
-    """
-    QueryPinnedCodesResponse is the response type for the Query/PinnedCodes RPC
-    method
-    """
-
-    code_ids: List[int] = betterproto.uint64_field(1)
-    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
-        betterproto.message_field(2)
-    )
-    """pagination defines the pagination in the response."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryParamsRequest(betterproto.Message):
-    """
-    QueryParamsRequest is the request type for the Query/Params RPC method.
-    """
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class QueryParamsResponse(betterproto.Message):
-    """
-    QueryParamsResponse is the response type for the Query/Params RPC method.
-    """
-
-    params: "Params" = betterproto.message_field(1)
-    """params defines the parameters of the module."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryContractsByCreatorRequest(betterproto.Message):
-    """
-    QueryContractsByCreatorRequest is the request type for the
-    Query/ContractsByCreator RPC method.
-    """
-
-    creator_address: str = betterproto.string_field(1)
-    """CreatorAddress is the address of contract creator"""
-
-    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
-        betterproto.message_field(2)
-    )
-    """Pagination defines an optional pagination for the request."""
-
-
-@dataclass(eq=False, repr=False)
-class QueryContractsByCreatorResponse(betterproto.Message):
-    """
-    QueryContractsByCreatorResponse is the response type for the
-    Query/ContractsByCreator RPC method.
-    """
-
-    contract_addresses: List[str] = betterproto.string_field(1)
-    """ContractAddresses result set"""
-
-    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
-        betterproto.message_field(2)
-    )
-    """Pagination defines the pagination in the response."""
 
 
 class MsgStub(betterproto.ServiceStub):
@@ -1913,6 +1913,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class MsgBase(ServiceBase):
+
     async def store_code(
         self, msg_store_code: "MsgStoreCode"
     ) -> "MsgStoreCodeResponse":
@@ -2157,6 +2158,7 @@ class MsgBase(ServiceBase):
 
 
 class QueryBase(ServiceBase):
+
     async def contract_info(
         self, query_contract_info_request: "QueryContractInfoRequest"
     ) -> "QueryContractInfoResponse":

@@ -200,12 +200,13 @@ pub mod msg_client {
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+            T:
+                tonic::codegen::Service<
+                    http::Request<tonic::body::BoxBody>,
+                    Response = http::Response<
+                        <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                    >,
                 >,
-            >,
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {
@@ -838,12 +839,13 @@ pub mod query_client {
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+            T:
+                tonic::codegen::Service<
+                    http::Request<tonic::body::BoxBody>,
+                    Response = http::Response<
+                        <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                    >,
                 >,
-            >,
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {
@@ -881,8 +883,10 @@ pub mod query_client {
                 http::uri::PathAndQuery::from_static("/osmosis.tokenfactory.v1beta1.Query/Params");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        /// DenomAuthorityMetadata defines a gRPC query method for fetching
-        /// DenomAuthorityMetadata for a particular denom.
+        /// Given the denom, returns the authority metadata for the denom.
+        /// This method can receive both the denom encoded to URL (for the LCD requests)
+        /// and the denom not encoded:
+        /// e.g. factory%2Fterra1v0eee20gjl68fuk0chyrkch2z7suw2mhg3wkxf%2Futoken931
         pub async fn denom_authority_metadata(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDenomAuthorityMetadataRequest>,
@@ -954,8 +958,10 @@ pub mod query_server {
             &self,
             request: tonic::Request<super::QueryParamsRequest>,
         ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>;
-        /// DenomAuthorityMetadata defines a gRPC query method for fetching
-        /// DenomAuthorityMetadata for a particular denom.
+        /// Given the denom, returns the authority metadata for the denom.
+        /// This method can receive both the denom encoded to URL (for the LCD requests)
+        /// and the denom not encoded:
+        /// e.g. factory%2Fterra1v0eee20gjl68fuk0chyrkch2z7suw2mhg3wkxf%2Futoken931
         async fn denom_authority_metadata(
             &self,
             request: tonic::Request<super::QueryDenomAuthorityMetadataRequest>,

@@ -30,48 +30,6 @@ if TYPE_CHECKING:
 
 
 @dataclass(eq=False, repr=False)
-class QueuedRedelegation(betterproto.Message):
-    """Used internally to keep track of redelegations"""
-
-    entries: List["Redelegation"] = betterproto.message_field(1)
-
-
-@dataclass(eq=False, repr=False)
-class Redelegation(betterproto.Message):
-    delegator_address: str = betterproto.string_field(1)
-    """internal or external user address"""
-
-    src_validator_address: str = betterproto.string_field(2)
-    """redelegation source validator"""
-
-    dst_validator_address: str = betterproto.string_field(3)
-    """redelegation destination validator"""
-
-    balance: "__cosmos_base_v1_beta1__.Coin" = betterproto.message_field(4)
-    """amount to redelegate"""
-
-
-@dataclass(eq=False, repr=False)
-class RedelegationEntry(betterproto.Message):
-    """Used on QueryServer"""
-
-    delegator_address: str = betterproto.string_field(1)
-    """internal or external user address"""
-
-    src_validator_address: str = betterproto.string_field(2)
-    """redelegation source validator"""
-
-    dst_validator_address: str = betterproto.string_field(3)
-    """redelegation destination validator"""
-
-    balance: "__cosmos_base_v1_beta1__.Coin" = betterproto.message_field(4)
-    """amount to redelegate"""
-
-    completion_time: datetime = betterproto.message_field(5)
-    """completion_time defines the unix time for redelegation completion."""
-
-
-@dataclass(eq=False, repr=False)
 class Params(betterproto.Message):
     reward_delay_time: timedelta = betterproto.message_field(1)
     take_rate_claim_interval: timedelta = betterproto.message_field(2)
@@ -138,196 +96,6 @@ class AllianceAsset(betterproto.Message):
 class RewardWeightChangeSnapshot(betterproto.Message):
     prev_reward_weight: str = betterproto.string_field(1)
     reward_histories: List["RewardHistory"] = betterproto.message_field(2)
-
-
-@dataclass(eq=False, repr=False)
-class Delegation(betterproto.Message):
-    delegator_address: str = betterproto.string_field(1)
-    """delegator_address is the bech32-encoded address of the delegator."""
-
-    validator_address: str = betterproto.string_field(2)
-    """validator_address is the bech32-encoded address of the validator."""
-
-    denom: str = betterproto.string_field(3)
-    """denom of token staked"""
-
-    shares: str = betterproto.string_field(4)
-    """shares define the delegation shares received."""
-
-    reward_history: List["RewardHistory"] = betterproto.message_field(5)
-    last_reward_claim_height: int = betterproto.uint64_field(6)
-
-
-@dataclass(eq=False, repr=False)
-class Undelegation(betterproto.Message):
-    delegator_address: str = betterproto.string_field(1)
-    validator_address: str = betterproto.string_field(2)
-    balance: "__cosmos_base_v1_beta1__.Coin" = betterproto.message_field(3)
-
-
-@dataclass(eq=False, repr=False)
-class QueuedUndelegation(betterproto.Message):
-    entries: List["Undelegation"] = betterproto.message_field(1)
-
-
-@dataclass(eq=False, repr=False)
-class AllianceValidatorInfo(betterproto.Message):
-    global_reward_history: List["RewardHistory"] = betterproto.message_field(1)
-    total_delegator_shares: List[
-        "__cosmos_base_v1_beta1__.DecCoin"
-    ] = betterproto.message_field(2)
-    validator_shares: List[
-        "__cosmos_base_v1_beta1__.DecCoin"
-    ] = betterproto.message_field(3)
-
-
-@dataclass(eq=False, repr=False)
-class ValidatorInfoState(betterproto.Message):
-    validator_address: str = betterproto.string_field(1)
-    validator: "AllianceValidatorInfo" = betterproto.message_field(2)
-
-
-@dataclass(eq=False, repr=False)
-class RedelegationState(betterproto.Message):
-    completion_time: datetime = betterproto.message_field(1)
-    redelegation: "Redelegation" = betterproto.message_field(2)
-
-
-@dataclass(eq=False, repr=False)
-class UndelegationState(betterproto.Message):
-    completion_time: datetime = betterproto.message_field(1)
-    undelegation: "QueuedUndelegation" = betterproto.message_field(2)
-
-
-@dataclass(eq=False, repr=False)
-class RewardWeightChangeSnapshotState(betterproto.Message):
-    height: int = betterproto.uint64_field(1)
-    validator: str = betterproto.string_field(2)
-    denom: str = betterproto.string_field(3)
-    snapshot: "RewardWeightChangeSnapshot" = betterproto.message_field(4)
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the module's genesis state."""
-
-    params: "Params" = betterproto.message_field(1)
-    assets: List["AllianceAsset"] = betterproto.message_field(2)
-    validator_infos: List["ValidatorInfoState"] = betterproto.message_field(3)
-    reward_weight_change_snaphots: List[
-        "RewardWeightChangeSnapshotState"
-    ] = betterproto.message_field(4)
-    delegations: List["Delegation"] = betterproto.message_field(5)
-    redelegations: List["RedelegationState"] = betterproto.message_field(6)
-    undelegations: List["UndelegationState"] = betterproto.message_field(7)
-
-
-@dataclass(eq=False, repr=False)
-class MsgCreateAllianceProposal(betterproto.Message):
-    title: str = betterproto.string_field(1)
-    """the title of the update proposal"""
-
-    description: str = betterproto.string_field(2)
-    """the description of the proposal"""
-
-    denom: str = betterproto.string_field(3)
-    """
-    Denom of the asset. It could either be a native token or an IBC token
-    """
-
-    reward_weight: str = betterproto.string_field(4)
-    """
-    The reward weight specifies the ratio of rewards that will be given to each
-    alliance asset It does not need to sum to 1. rate = weight / total_weight
-    Native asset is always assumed to have a weight of 1.
-    """
-
-    take_rate: str = betterproto.string_field(5)
-    """
-    A positive take rate is used for liquid staking derivatives. It defines an
-    annualized reward rate that will be redirected to the distribution rewards
-    pool
-    """
-
-    reward_change_rate: str = betterproto.string_field(6)
-    reward_change_interval: timedelta = betterproto.message_field(7)
-    reward_weight_range: "RewardWeightRange" = betterproto.message_field(8)
-    """
-    set a bound of weight range to limit how much reward weights can scale.
-    """
-
-
-@dataclass(eq=False, repr=False)
-class MsgUpdateAllianceProposal(betterproto.Message):
-    title: str = betterproto.string_field(1)
-    """the title of the update proposal"""
-
-    description: str = betterproto.string_field(2)
-    """the description of the proposal"""
-
-    denom: str = betterproto.string_field(3)
-    """
-    Denom of the asset. It could either be a native token or an IBC token
-    """
-
-    reward_weight: str = betterproto.string_field(4)
-    """
-    The reward weight specifies the ratio of rewards that will be given to each
-    alliance asset It does not need to sum to 1. rate = weight / total_weight
-    Native asset is always assumed to have a weight of 1.
-    """
-
-    take_rate: str = betterproto.string_field(5)
-    reward_change_rate: str = betterproto.string_field(6)
-    reward_change_interval: timedelta = betterproto.message_field(7)
-
-
-@dataclass(eq=False, repr=False)
-class MsgDeleteAllianceProposal(betterproto.Message):
-    title: str = betterproto.string_field(1)
-    """the title of the update proposal"""
-
-    description: str = betterproto.string_field(2)
-    """the description of the proposal"""
-
-    denom: str = betterproto.string_field(3)
-
-
-@dataclass(eq=False, repr=False)
-class DelegateAllianceEvent(betterproto.Message):
-    alliance_sender: str = betterproto.string_field(1)
-    validator: str = betterproto.string_field(2)
-    coin: "__cosmos_base_v1_beta1__.Coin" = betterproto.message_field(3)
-    new_shares: str = betterproto.string_field(4)
-
-
-@dataclass(eq=False, repr=False)
-class UndelegateAllianceEvent(betterproto.Message):
-    alliance_sender: str = betterproto.string_field(1)
-    validator: str = betterproto.string_field(2)
-    coin: "__cosmos_base_v1_beta1__.Coin" = betterproto.message_field(3)
-    completion_time: datetime = betterproto.message_field(4)
-
-
-@dataclass(eq=False, repr=False)
-class RedelegateAllianceEvent(betterproto.Message):
-    alliance_sender: str = betterproto.string_field(1)
-    source_validator: str = betterproto.string_field(2)
-    destination_validator: str = betterproto.string_field(3)
-    coin: "__cosmos_base_v1_beta1__.Coin" = betterproto.message_field(4)
-    completion_time: datetime = betterproto.message_field(5)
-
-
-@dataclass(eq=False, repr=False)
-class ClaimAllianceRewardsEvent(betterproto.Message):
-    alliance_sender: str = betterproto.string_field(1)
-    validator: str = betterproto.string_field(2)
-    coins: List["__cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(3)
-
-
-@dataclass(eq=False, repr=False)
-class DeductAllianceAssetsEvent(betterproto.Message):
-    coins: List["__cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -443,6 +211,10 @@ class MsgUpdateAlliance(betterproto.Message):
     take_rate: str = betterproto.string_field(4)
     reward_change_rate: str = betterproto.string_field(5)
     reward_change_interval: timedelta = betterproto.message_field(6)
+    reward_weight_range: "RewardWeightRange" = betterproto.message_field(7)
+    """
+    set a bound of weight range to limit how much reward weights can scale.
+    """
 
 
 @dataclass(eq=False, repr=False)
@@ -459,6 +231,201 @@ class MsgDeleteAlliance(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class MsgDeleteAllianceResponse(betterproto.Message):
     pass
+
+
+@dataclass(eq=False, repr=False)
+class QueuedRedelegation(betterproto.Message):
+    """Used internally to keep track of redelegations"""
+
+    entries: List["Redelegation"] = betterproto.message_field(1)
+
+
+@dataclass(eq=False, repr=False)
+class Redelegation(betterproto.Message):
+    delegator_address: str = betterproto.string_field(1)
+    """internal or external user address"""
+
+    src_validator_address: str = betterproto.string_field(2)
+    """redelegation source validator"""
+
+    dst_validator_address: str = betterproto.string_field(3)
+    """redelegation destination validator"""
+
+    balance: "__cosmos_base_v1_beta1__.Coin" = betterproto.message_field(4)
+    """amount to redelegate"""
+
+
+@dataclass(eq=False, repr=False)
+class RedelegationEntry(betterproto.Message):
+    """Used on QueryServer"""
+
+    delegator_address: str = betterproto.string_field(1)
+    """internal or external user address"""
+
+    src_validator_address: str = betterproto.string_field(2)
+    """redelegation source validator"""
+
+    dst_validator_address: str = betterproto.string_field(3)
+    """redelegation destination validator"""
+
+    balance: "__cosmos_base_v1_beta1__.Coin" = betterproto.message_field(4)
+    """amount to redelegate"""
+
+    completion_time: datetime = betterproto.message_field(5)
+    """completion_time defines the unix time for redelegation completion."""
+
+
+@dataclass(eq=False, repr=False)
+class MsgCreateAllianceProposal(betterproto.Message):
+    title: str = betterproto.string_field(1)
+    """the title of the update proposal"""
+
+    description: str = betterproto.string_field(2)
+    """the description of the proposal"""
+
+    denom: str = betterproto.string_field(3)
+    """
+    Denom of the asset. It could either be a native token or an IBC token
+    """
+
+    reward_weight: str = betterproto.string_field(4)
+    """
+    The reward weight specifies the ratio of rewards that will be given to each
+    alliance asset It does not need to sum to 1. rate = weight / total_weight
+    Native asset is always assumed to have a weight of 1.
+    """
+
+    take_rate: str = betterproto.string_field(5)
+    """
+    A positive take rate is used for liquid staking derivatives. It defines an
+    annualized reward rate that will be redirected to the distribution rewards
+    pool
+    """
+
+    reward_change_rate: str = betterproto.string_field(6)
+    reward_change_interval: timedelta = betterproto.message_field(7)
+    reward_weight_range: "RewardWeightRange" = betterproto.message_field(8)
+    """
+    set a bound of weight range to limit how much reward weights can scale.
+    """
+
+
+@dataclass(eq=False, repr=False)
+class MsgUpdateAllianceProposal(betterproto.Message):
+    title: str = betterproto.string_field(1)
+    """the title of the update proposal"""
+
+    description: str = betterproto.string_field(2)
+    """the description of the proposal"""
+
+    denom: str = betterproto.string_field(3)
+    """
+    Denom of the asset. It could either be a native token or an IBC token
+    """
+
+    reward_weight: str = betterproto.string_field(4)
+    """
+    The reward weight specifies the ratio of rewards that will be given to each
+    alliance asset It does not need to sum to 1. rate = weight / total_weight
+    Native asset is always assumed to have a weight of 1.
+    """
+
+    take_rate: str = betterproto.string_field(5)
+    reward_change_rate: str = betterproto.string_field(6)
+    reward_change_interval: timedelta = betterproto.message_field(7)
+    reward_weight_range: "RewardWeightRange" = betterproto.message_field(8)
+    """
+    set a bound of weight range to limit how much reward weights can scale.
+    """
+
+
+@dataclass(eq=False, repr=False)
+class MsgDeleteAllianceProposal(betterproto.Message):
+    title: str = betterproto.string_field(1)
+    """the title of the update proposal"""
+
+    description: str = betterproto.string_field(2)
+    """the description of the proposal"""
+
+    denom: str = betterproto.string_field(3)
+
+
+@dataclass(eq=False, repr=False)
+class DelegateAllianceEvent(betterproto.Message):
+    alliance_sender: str = betterproto.string_field(1)
+    validator: str = betterproto.string_field(2)
+    coin: "__cosmos_base_v1_beta1__.Coin" = betterproto.message_field(3)
+    new_shares: str = betterproto.string_field(4)
+
+
+@dataclass(eq=False, repr=False)
+class UndelegateAllianceEvent(betterproto.Message):
+    alliance_sender: str = betterproto.string_field(1)
+    validator: str = betterproto.string_field(2)
+    coin: "__cosmos_base_v1_beta1__.Coin" = betterproto.message_field(3)
+    completion_time: datetime = betterproto.message_field(4)
+
+
+@dataclass(eq=False, repr=False)
+class RedelegateAllianceEvent(betterproto.Message):
+    alliance_sender: str = betterproto.string_field(1)
+    source_validator: str = betterproto.string_field(2)
+    destination_validator: str = betterproto.string_field(3)
+    coin: "__cosmos_base_v1_beta1__.Coin" = betterproto.message_field(4)
+    completion_time: datetime = betterproto.message_field(5)
+
+
+@dataclass(eq=False, repr=False)
+class ClaimAllianceRewardsEvent(betterproto.Message):
+    alliance_sender: str = betterproto.string_field(1)
+    validator: str = betterproto.string_field(2)
+    coins: List["__cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(3)
+
+
+@dataclass(eq=False, repr=False)
+class DeductAllianceAssetsEvent(betterproto.Message):
+    coins: List["__cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(1)
+
+
+@dataclass(eq=False, repr=False)
+class Delegation(betterproto.Message):
+    delegator_address: str = betterproto.string_field(1)
+    """delegator_address is the bech32-encoded address of the delegator."""
+
+    validator_address: str = betterproto.string_field(2)
+    """validator_address is the bech32-encoded address of the validator."""
+
+    denom: str = betterproto.string_field(3)
+    """denom of token staked"""
+
+    shares: str = betterproto.string_field(4)
+    """shares define the delegation shares received."""
+
+    reward_history: List["RewardHistory"] = betterproto.message_field(5)
+    last_reward_claim_height: int = betterproto.uint64_field(6)
+
+
+@dataclass(eq=False, repr=False)
+class Undelegation(betterproto.Message):
+    delegator_address: str = betterproto.string_field(1)
+    validator_address: str = betterproto.string_field(2)
+    balance: "__cosmos_base_v1_beta1__.Coin" = betterproto.message_field(3)
+
+
+@dataclass(eq=False, repr=False)
+class QueuedUndelegation(betterproto.Message):
+    entries: List["Undelegation"] = betterproto.message_field(1)
+
+
+@dataclass(eq=False, repr=False)
+class AllianceValidatorInfo(betterproto.Message):
+    global_reward_history: List["RewardHistory"] = betterproto.message_field(1)
+    total_delegator_shares: List["__cosmos_base_v1_beta1__.DecCoin"] = (
+        betterproto.message_field(2)
+    )
+    validator_shares: List["__cosmos_base_v1_beta1__.DecCoin"] = (
+        betterproto.message_field(3)
+    )
 
 
 @dataclass(eq=False, repr=False)
@@ -655,12 +622,12 @@ class QueryAllianceDelegationRewardsResponse(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class QueryAllianceValidatorResponse(betterproto.Message):
     validator_addr: str = betterproto.string_field(1)
-    total_delegation_shares: List[
-        "__cosmos_base_v1_beta1__.DecCoin"
-    ] = betterproto.message_field(2)
-    validator_shares: List[
-        "__cosmos_base_v1_beta1__.DecCoin"
-    ] = betterproto.message_field(3)
+    total_delegation_shares: List["__cosmos_base_v1_beta1__.DecCoin"] = (
+        betterproto.message_field(2)
+    )
+    validator_shares: List["__cosmos_base_v1_beta1__.DecCoin"] = (
+        betterproto.message_field(3)
+    )
     total_staked: List["__cosmos_base_v1_beta1__.DecCoin"] = betterproto.message_field(
         4
     )
@@ -728,6 +695,47 @@ class QueryAllianceRedelegationsResponse(betterproto.Message):
     pagination: "__cosmos_base_query_v1_beta1__.PageResponse" = (
         betterproto.message_field(2)
     )
+
+
+@dataclass(eq=False, repr=False)
+class ValidatorInfoState(betterproto.Message):
+    validator_address: str = betterproto.string_field(1)
+    validator: "AllianceValidatorInfo" = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class RedelegationState(betterproto.Message):
+    completion_time: datetime = betterproto.message_field(1)
+    redelegation: "Redelegation" = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class UndelegationState(betterproto.Message):
+    completion_time: datetime = betterproto.message_field(1)
+    undelegation: "QueuedUndelegation" = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class RewardWeightChangeSnapshotState(betterproto.Message):
+    height: int = betterproto.uint64_field(1)
+    validator: str = betterproto.string_field(2)
+    denom: str = betterproto.string_field(3)
+    snapshot: "RewardWeightChangeSnapshot" = betterproto.message_field(4)
+
+
+@dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the module's genesis state."""
+
+    params: "Params" = betterproto.message_field(1)
+    assets: List["AllianceAsset"] = betterproto.message_field(2)
+    validator_infos: List["ValidatorInfoState"] = betterproto.message_field(3)
+    reward_weight_change_snaphots: List["RewardWeightChangeSnapshotState"] = (
+        betterproto.message_field(4)
+    )
+    delegations: List["Delegation"] = betterproto.message_field(5)
+    redelegations: List["RedelegationState"] = betterproto.message_field(6)
+    undelegations: List["UndelegationState"] = betterproto.message_field(7)
 
 
 class MsgStub(betterproto.ServiceStub):
@@ -1143,6 +1151,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class MsgBase(ServiceBase):
+
     async def delegate(self, msg_delegate: "MsgDelegate") -> "MsgDelegateResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
@@ -1295,6 +1304,7 @@ class MsgBase(ServiceBase):
 
 
 class QueryBase(ServiceBase):
+
     async def params(
         self, query_params_request: "QueryParamsRequest"
     ) -> "QueryParamsResponse":

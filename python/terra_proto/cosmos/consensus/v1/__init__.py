@@ -24,31 +24,6 @@ if TYPE_CHECKING:
 
 
 @dataclass(eq=False, repr=False)
-class QueryParamsRequest(betterproto.Message):
-    """
-    QueryParamsRequest defines the request type for querying x/consensus
-    parameters.
-    """
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class QueryParamsResponse(betterproto.Message):
-    """
-    QueryParamsResponse defines the response type for querying x/consensus
-    parameters.
-    """
-
-    params: "___tendermint_types__.ConsensusParams" = betterproto.message_field(1)
-    """
-    params are the tendermint consensus params stored in the consensus module.
-    Please note that `params.version` is not populated in this response, it is
-    tracked separately in the x/upgrade module.
-    """
-
-
-@dataclass(eq=False, repr=False)
 class MsgUpdateParams(betterproto.Message):
     """MsgUpdateParams is the Msg/UpdateParams request type."""
 
@@ -79,23 +54,29 @@ class MsgUpdateParamsResponse(betterproto.Message):
     pass
 
 
-class QueryStub(betterproto.ServiceStub):
-    async def params(
-        self,
-        query_params_request: "QueryParamsRequest",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "QueryParamsResponse":
-        return await self._unary_unary(
-            "/cosmos.consensus.v1.Query/Params",
-            query_params_request,
-            QueryParamsResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+@dataclass(eq=False, repr=False)
+class QueryParamsRequest(betterproto.Message):
+    """
+    QueryParamsRequest defines the request type for querying x/consensus
+    parameters.
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class QueryParamsResponse(betterproto.Message):
+    """
+    QueryParamsResponse defines the response type for querying x/consensus
+    parameters.
+    """
+
+    params: "___tendermint_types__.ConsensusParams" = betterproto.message_field(1)
+    """
+    params are the tendermint consensus params stored in the consensus module.
+    Please note that `params.version` is not populated in this response, it is
+    tracked separately in the x/upgrade module.
+    """
 
 
 class MsgStub(betterproto.ServiceStub):
@@ -117,31 +98,27 @@ class MsgStub(betterproto.ServiceStub):
         )
 
 
-class QueryBase(ServiceBase):
+class QueryStub(betterproto.ServiceStub):
     async def params(
-        self, query_params_request: "QueryParamsRequest"
+        self,
+        query_params_request: "QueryParamsRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
     ) -> "QueryParamsResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def __rpc_params(
-        self, stream: "grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]"
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.params(request)
-        await stream.send_message(response)
-
-    def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
-        return {
-            "/cosmos.consensus.v1.Query/Params": grpclib.const.Handler(
-                self.__rpc_params,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                QueryParamsRequest,
-                QueryParamsResponse,
-            ),
-        }
+        return await self._unary_unary(
+            "/cosmos.consensus.v1.Query/Params",
+            query_params_request,
+            QueryParamsResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
 
 
 class MsgBase(ServiceBase):
+
     async def update_params(
         self, msg_update_params: "MsgUpdateParams"
     ) -> "MsgUpdateParamsResponse":
@@ -161,5 +138,30 @@ class MsgBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgUpdateParams,
                 MsgUpdateParamsResponse,
+            ),
+        }
+
+
+class QueryBase(ServiceBase):
+
+    async def params(
+        self, query_params_request: "QueryParamsRequest"
+    ) -> "QueryParamsResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def __rpc_params(
+        self, stream: "grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]"
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.params(request)
+        await stream.send_message(response)
+
+    def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
+        return {
+            "/cosmos.consensus.v1.Query/Params": grpclib.const.Handler(
+                self.__rpc_params,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                QueryParamsRequest,
+                QueryParamsResponse,
             ),
         }
