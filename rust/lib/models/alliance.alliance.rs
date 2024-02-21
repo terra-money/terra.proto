@@ -1,46 +1,3 @@
-/// Used internally to keep track of redelegations
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueuedRedelegation {
-    #[prost(message, repeated, tag = "1")]
-    pub entries: ::prost::alloc::vec::Vec<Redelegation>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Redelegation {
-    /// internal or external user address
-    #[prost(string, tag = "1")]
-    pub delegator_address: ::prost::alloc::string::String,
-    /// redelegation source validator
-    #[prost(string, tag = "2")]
-    pub src_validator_address: ::prost::alloc::string::String,
-    /// redelegation destination validator
-    #[prost(string, tag = "3")]
-    pub dst_validator_address: ::prost::alloc::string::String,
-    /// amount to redelegate
-    #[prost(message, optional, tag = "4")]
-    pub balance: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-}
-/// Used on QueryServer
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RedelegationEntry {
-    /// internal or external user address
-    #[prost(string, tag = "1")]
-    pub delegator_address: ::prost::alloc::string::String,
-    /// redelegation source validator
-    #[prost(string, tag = "2")]
-    pub src_validator_address: ::prost::alloc::string::String,
-    /// redelegation destination validator
-    #[prost(string, tag = "3")]
-    pub dst_validator_address: ::prost::alloc::string::String,
-    /// amount to redelegate
-    #[prost(message, optional, tag = "4")]
-    pub balance: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-    /// completion_time defines the unix time for redelegation completion.
-    #[prost(message, optional, tag = "5")]
-    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
-}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Params {
@@ -111,227 +68,6 @@ pub struct RewardWeightChangeSnapshot {
     pub prev_reward_weight: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "2")]
     pub reward_histories: ::prost::alloc::vec::Vec<RewardHistory>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Delegation {
-    /// delegator_address is the bech32-encoded address of the delegator.
-    #[prost(string, tag = "1")]
-    pub delegator_address: ::prost::alloc::string::String,
-    /// validator_address is the bech32-encoded address of the validator.
-    #[prost(string, tag = "2")]
-    pub validator_address: ::prost::alloc::string::String,
-    /// denom of token staked
-    #[prost(string, tag = "3")]
-    pub denom: ::prost::alloc::string::String,
-    /// shares define the delegation shares received.
-    #[prost(string, tag = "4")]
-    pub shares: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "5")]
-    pub reward_history: ::prost::alloc::vec::Vec<RewardHistory>,
-    #[prost(uint64, tag = "6")]
-    pub last_reward_claim_height: u64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Undelegation {
-    #[prost(string, tag = "1")]
-    pub delegator_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator_address: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub balance: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueuedUndelegation {
-    #[prost(message, repeated, tag = "1")]
-    pub entries: ::prost::alloc::vec::Vec<Undelegation>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AllianceValidatorInfo {
-    #[prost(message, repeated, tag = "1")]
-    pub global_reward_history: ::prost::alloc::vec::Vec<RewardHistory>,
-    #[prost(message, repeated, tag = "2")]
-    pub total_delegator_shares:
-        ::prost::alloc::vec::Vec<super::super::cosmos::base::v1beta1::DecCoin>,
-    #[prost(message, repeated, tag = "3")]
-    pub validator_shares: ::prost::alloc::vec::Vec<super::super::cosmos::base::v1beta1::DecCoin>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ValidatorInfoState {
-    #[prost(string, tag = "1")]
-    pub validator_address: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub validator: ::core::option::Option<AllianceValidatorInfo>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RedelegationState {
-    #[prost(message, optional, tag = "1")]
-    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub redelegation: ::core::option::Option<Redelegation>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UndelegationState {
-    #[prost(message, optional, tag = "1")]
-    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub undelegation: ::core::option::Option<QueuedUndelegation>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RewardWeightChangeSnapshotState {
-    #[prost(uint64, tag = "1")]
-    pub height: u64,
-    #[prost(string, tag = "2")]
-    pub validator: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub denom: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub snapshot: ::core::option::Option<RewardWeightChangeSnapshot>,
-}
-/// GenesisState defines the module's genesis state.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenesisState {
-    #[prost(message, optional, tag = "1")]
-    pub params: ::core::option::Option<Params>,
-    #[prost(message, repeated, tag = "2")]
-    pub assets: ::prost::alloc::vec::Vec<AllianceAsset>,
-    #[prost(message, repeated, tag = "3")]
-    pub validator_infos: ::prost::alloc::vec::Vec<ValidatorInfoState>,
-    #[prost(message, repeated, tag = "4")]
-    pub reward_weight_change_snaphots: ::prost::alloc::vec::Vec<RewardWeightChangeSnapshotState>,
-    #[prost(message, repeated, tag = "5")]
-    pub delegations: ::prost::alloc::vec::Vec<Delegation>,
-    #[prost(message, repeated, tag = "6")]
-    pub redelegations: ::prost::alloc::vec::Vec<RedelegationState>,
-    #[prost(message, repeated, tag = "7")]
-    pub undelegations: ::prost::alloc::vec::Vec<UndelegationState>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgCreateAllianceProposal {
-    /// the title of the update proposal
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// the description of the proposal
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// Denom of the asset. It could either be a native token or an IBC token
-    #[prost(string, tag = "3")]
-    pub denom: ::prost::alloc::string::String,
-    /// The reward weight specifies the ratio of rewards that will be given to each alliance asset
-    /// It does not need to sum to 1. rate = weight / total_weight
-    /// Native asset is always assumed to have a weight of 1.
-    #[prost(string, tag = "4")]
-    pub reward_weight: ::prost::alloc::string::String,
-    /// A positive take rate is used for liquid staking derivatives. It defines an annualized reward rate that
-    /// will be redirected to the distribution rewards pool
-    #[prost(string, tag = "5")]
-    pub take_rate: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub reward_change_rate: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "7")]
-    pub reward_change_interval: ::core::option::Option<::prost_types::Duration>,
-    /// set a bound of weight range to limit how much reward weights can scale.
-    #[prost(message, optional, tag = "8")]
-    pub reward_weight_range: ::core::option::Option<RewardWeightRange>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgUpdateAllianceProposal {
-    /// the title of the update proposal
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// the description of the proposal
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// Denom of the asset. It could either be a native token or an IBC token
-    #[prost(string, tag = "3")]
-    pub denom: ::prost::alloc::string::String,
-    /// The reward weight specifies the ratio of rewards that will be given to each alliance asset
-    /// It does not need to sum to 1. rate = weight / total_weight
-    /// Native asset is always assumed to have a weight of 1.
-    #[prost(string, tag = "4")]
-    pub reward_weight: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub take_rate: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub reward_change_rate: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "7")]
-    pub reward_change_interval: ::core::option::Option<::prost_types::Duration>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgDeleteAllianceProposal {
-    /// the title of the update proposal
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    /// the description of the proposal
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub denom: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DelegateAllianceEvent {
-    #[prost(string, tag = "1")]
-    pub alliance_sender: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub coin: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-    #[prost(string, tag = "4")]
-    pub new_shares: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UndelegateAllianceEvent {
-    #[prost(string, tag = "1")]
-    pub alliance_sender: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub coin: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-    #[prost(message, optional, tag = "4")]
-    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RedelegateAllianceEvent {
-    #[prost(string, tag = "1")]
-    pub alliance_sender: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub source_validator: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub destination_validator: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub coin: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
-    #[prost(message, optional, tag = "5")]
-    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ClaimAllianceRewardsEvent {
-    #[prost(string, tag = "1")]
-    pub alliance_sender: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub coins: ::prost::alloc::vec::Vec<super::super::cosmos::base::v1beta1::Coin>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DeductAllianceAssetsEvent {
-    #[prost(message, repeated, tag = "1")]
-    pub coins: ::prost::alloc::vec::Vec<super::super::cosmos::base::v1beta1::Coin>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -445,6 +181,9 @@ pub struct MsgUpdateAlliance {
     pub reward_change_rate: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "6")]
     pub reward_change_interval: ::core::option::Option<::prost_types::Duration>,
+    /// set a bound of weight range to limit how much reward weights can scale.
+    #[prost(message, optional, tag = "7")]
+    pub reward_weight_range: ::core::option::Option<RewardWeightRange>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -503,12 +242,13 @@ pub mod msg_client {
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+            T:
+                tonic::codegen::Service<
+                    http::Request<tonic::body::BoxBody>,
+                    Response = http::Response<
+                        <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                    >,
                 >,
-            >,
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {
@@ -1030,6 +770,218 @@ pub mod msg_server {
         const NAME: &'static str = "alliance.alliance.Msg";
     }
 }
+/// Used internally to keep track of redelegations
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueuedRedelegation {
+    #[prost(message, repeated, tag = "1")]
+    pub entries: ::prost::alloc::vec::Vec<Redelegation>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Redelegation {
+    /// internal or external user address
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+    /// redelegation source validator
+    #[prost(string, tag = "2")]
+    pub src_validator_address: ::prost::alloc::string::String,
+    /// redelegation destination validator
+    #[prost(string, tag = "3")]
+    pub dst_validator_address: ::prost::alloc::string::String,
+    /// amount to redelegate
+    #[prost(message, optional, tag = "4")]
+    pub balance: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+}
+/// Used on QueryServer
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RedelegationEntry {
+    /// internal or external user address
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+    /// redelegation source validator
+    #[prost(string, tag = "2")]
+    pub src_validator_address: ::prost::alloc::string::String,
+    /// redelegation destination validator
+    #[prost(string, tag = "3")]
+    pub dst_validator_address: ::prost::alloc::string::String,
+    /// amount to redelegate
+    #[prost(message, optional, tag = "4")]
+    pub balance: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+    /// completion_time defines the unix time for redelegation completion.
+    #[prost(message, optional, tag = "5")]
+    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgCreateAllianceProposal {
+    /// the title of the update proposal
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// the description of the proposal
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// Denom of the asset. It could either be a native token or an IBC token
+    #[prost(string, tag = "3")]
+    pub denom: ::prost::alloc::string::String,
+    /// The reward weight specifies the ratio of rewards that will be given to each alliance asset
+    /// It does not need to sum to 1. rate = weight / total_weight
+    /// Native asset is always assumed to have a weight of 1.
+    #[prost(string, tag = "4")]
+    pub reward_weight: ::prost::alloc::string::String,
+    /// A positive take rate is used for liquid staking derivatives. It defines an annualized reward rate that
+    /// will be redirected to the distribution rewards pool
+    #[prost(string, tag = "5")]
+    pub take_rate: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub reward_change_rate: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub reward_change_interval: ::core::option::Option<::prost_types::Duration>,
+    /// set a bound of weight range to limit how much reward weights can scale.
+    #[prost(message, optional, tag = "8")]
+    pub reward_weight_range: ::core::option::Option<RewardWeightRange>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateAllianceProposal {
+    /// the title of the update proposal
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// the description of the proposal
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// Denom of the asset. It could either be a native token or an IBC token
+    #[prost(string, tag = "3")]
+    pub denom: ::prost::alloc::string::String,
+    /// The reward weight specifies the ratio of rewards that will be given to each alliance asset
+    /// It does not need to sum to 1. rate = weight / total_weight
+    /// Native asset is always assumed to have a weight of 1.
+    #[prost(string, tag = "4")]
+    pub reward_weight: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub take_rate: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub reward_change_rate: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub reward_change_interval: ::core::option::Option<::prost_types::Duration>,
+    /// set a bound of weight range to limit how much reward weights can scale.
+    #[prost(message, optional, tag = "8")]
+    pub reward_weight_range: ::core::option::Option<RewardWeightRange>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgDeleteAllianceProposal {
+    /// the title of the update proposal
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    /// the description of the proposal
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub denom: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DelegateAllianceEvent {
+    #[prost(string, tag = "1")]
+    pub alliance_sender: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub coin: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+    #[prost(string, tag = "4")]
+    pub new_shares: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UndelegateAllianceEvent {
+    #[prost(string, tag = "1")]
+    pub alliance_sender: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub coin: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+    #[prost(message, optional, tag = "4")]
+    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RedelegateAllianceEvent {
+    #[prost(string, tag = "1")]
+    pub alliance_sender: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub source_validator: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub destination_validator: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub coin: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+    #[prost(message, optional, tag = "5")]
+    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ClaimAllianceRewardsEvent {
+    #[prost(string, tag = "1")]
+    pub alliance_sender: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub coins: ::prost::alloc::vec::Vec<super::super::cosmos::base::v1beta1::Coin>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeductAllianceAssetsEvent {
+    #[prost(message, repeated, tag = "1")]
+    pub coins: ::prost::alloc::vec::Vec<super::super::cosmos::base::v1beta1::Coin>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Delegation {
+    /// delegator_address is the bech32-encoded address of the delegator.
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+    /// validator_address is the bech32-encoded address of the validator.
+    #[prost(string, tag = "2")]
+    pub validator_address: ::prost::alloc::string::String,
+    /// denom of token staked
+    #[prost(string, tag = "3")]
+    pub denom: ::prost::alloc::string::String,
+    /// shares define the delegation shares received.
+    #[prost(string, tag = "4")]
+    pub shares: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "5")]
+    pub reward_history: ::prost::alloc::vec::Vec<RewardHistory>,
+    #[prost(uint64, tag = "6")]
+    pub last_reward_claim_height: u64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Undelegation {
+    #[prost(string, tag = "1")]
+    pub delegator_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator_address: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub balance: ::core::option::Option<super::super::cosmos::base::v1beta1::Coin>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueuedUndelegation {
+    #[prost(message, repeated, tag = "1")]
+    pub entries: ::prost::alloc::vec::Vec<Undelegation>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AllianceValidatorInfo {
+    #[prost(message, repeated, tag = "1")]
+    pub global_reward_history: ::prost::alloc::vec::Vec<RewardHistory>,
+    #[prost(message, repeated, tag = "2")]
+    pub total_delegator_shares:
+        ::prost::alloc::vec::Vec<super::super::cosmos::base::v1beta1::DecCoin>,
+    #[prost(message, repeated, tag = "3")]
+    pub validator_shares: ::prost::alloc::vec::Vec<super::super::cosmos::base::v1beta1::DecCoin>,
+}
 /// UnbondingDelegation defines an unbonding object with relevant metadata.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1337,12 +1289,13 @@ pub mod query_client {
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+            T:
+                tonic::codegen::Service<
+                    http::Request<tonic::body::BoxBody>,
+                    Response = http::Response<
+                        <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                    >,
                 >,
-            >,
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {
@@ -2051,17 +2004,19 @@ pub mod query_server {
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
                     let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = AlliancesDelegationByValidatorSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
+                    let fut =
+                        async move {
+                            let inner = inner.0;
+                            let method = AlliancesDelegationByValidatorSvc(inner);
+                            let codec = tonic::codec::ProstCodec::default();
+                            let mut grpc = tonic::server::Grpc::new(codec)
+                                .apply_compression_config(
+                                    accept_compression_encodings,
+                                    send_compression_encodings,
+                                );
+                            let res = grpc.unary(method, req).await;
+                            Ok(res)
+                        };
                     Box::pin(fut)
                 }
                 "/alliance.alliance.Query/AllianceDelegation" => {
@@ -2234,17 +2189,19 @@ pub mod query_server {
                     let accept_compression_encodings = self.accept_compression_encodings;
                     let send_compression_encodings = self.send_compression_encodings;
                     let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = AllianceUnbondingsByDenomAndDelegatorSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
+                    let fut =
+                        async move {
+                            let inner = inner.0;
+                            let method = AllianceUnbondingsByDenomAndDelegatorSvc(inner);
+                            let codec = tonic::codec::ProstCodec::default();
+                            let mut grpc = tonic::server::Grpc::new(codec)
+                                .apply_compression_config(
+                                    accept_compression_encodings,
+                                    send_compression_encodings,
+                                );
+                            let res = grpc.unary(method, req).await;
+                            Ok(res)
+                        };
                     Box::pin(fut)
                 }
                 "/alliance.alliance.Query/AllianceUnbondings" => {
@@ -2380,4 +2337,59 @@ pub mod query_server {
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
         const NAME: &'static str = "alliance.alliance.Query";
     }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ValidatorInfoState {
+    #[prost(string, tag = "1")]
+    pub validator_address: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub validator: ::core::option::Option<AllianceValidatorInfo>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RedelegationState {
+    #[prost(message, optional, tag = "1")]
+    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub redelegation: ::core::option::Option<Redelegation>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UndelegationState {
+    #[prost(message, optional, tag = "1")]
+    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub undelegation: ::core::option::Option<QueuedUndelegation>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RewardWeightChangeSnapshotState {
+    #[prost(uint64, tag = "1")]
+    pub height: u64,
+    #[prost(string, tag = "2")]
+    pub validator: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub denom: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub snapshot: ::core::option::Option<RewardWeightChangeSnapshot>,
+}
+/// GenesisState defines the module's genesis state.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenesisState {
+    #[prost(message, optional, tag = "1")]
+    pub params: ::core::option::Option<Params>,
+    #[prost(message, repeated, tag = "2")]
+    pub assets: ::prost::alloc::vec::Vec<AllianceAsset>,
+    #[prost(message, repeated, tag = "3")]
+    pub validator_infos: ::prost::alloc::vec::Vec<ValidatorInfoState>,
+    #[prost(message, repeated, tag = "4")]
+    pub reward_weight_change_snaphots: ::prost::alloc::vec::Vec<RewardWeightChangeSnapshotState>,
+    #[prost(message, repeated, tag = "5")]
+    pub delegations: ::prost::alloc::vec::Vec<Delegation>,
+    #[prost(message, repeated, tag = "6")]
+    pub redelegations: ::prost::alloc::vec::Vec<RedelegationState>,
+    #[prost(message, repeated, tag = "7")]
+    pub undelegations: ::prost::alloc::vec::Vec<UndelegationState>,
 }

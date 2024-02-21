@@ -220,18 +220,18 @@ class TxBody(betterproto.Message):
     processed by the chain
     """
 
-    extension_options: List[
-        "betterproto_lib_google_protobuf.Any"
-    ] = betterproto.message_field(1023)
+    extension_options: List["betterproto_lib_google_protobuf.Any"] = (
+        betterproto.message_field(1023)
+    )
     """
     extension_options are arbitrary options that can be added by chains when
     the default options are not sufficient. If any of these are present and
     can't be handled, the transaction will be rejected
     """
 
-    non_critical_extension_options: List[
-        "betterproto_lib_google_protobuf.Any"
-    ] = betterproto.message_field(2047)
+    non_critical_extension_options: List["betterproto_lib_google_protobuf.Any"] = (
+        betterproto.message_field(2047)
+    )
     """
     extension_options are arbitrary options that can be added by chains when
     the default options are not sufficient. If any of these are present and
@@ -829,6 +829,7 @@ class ServiceStub(betterproto.ServiceStub):
 
 
 class ServiceBase(ServiceBase):
+
     async def simulate(self, simulate_request: "SimulateRequest") -> "SimulateResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 

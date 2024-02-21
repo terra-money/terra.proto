@@ -125,6 +125,7 @@ class MsgStub(betterproto.ServiceStub):
 
 
 class MsgBase(ServiceBase):
+
     async def verify_invariant(
         self, msg_verify_invariant: "MsgVerifyInvariant"
     ) -> "MsgVerifyInvariantResponse":

@@ -13,6 +13,40 @@ from .....tendermint import abci as ____tendermint_abci__
 
 
 @dataclass(eq=False, repr=False)
+class CommitInfo(betterproto.Message):
+    """
+    CommitInfo defines commit information used by the multi-store when
+    committing a version/height.
+    """
+
+    version: int = betterproto.int64_field(1)
+    store_infos: List["StoreInfo"] = betterproto.message_field(2)
+    timestamp: datetime = betterproto.message_field(3)
+
+
+@dataclass(eq=False, repr=False)
+class StoreInfo(betterproto.Message):
+    """
+    StoreInfo defines store-specific commit information. It contains a
+    reference between a store name and the commit ID.
+    """
+
+    name: str = betterproto.string_field(1)
+    commit_id: "CommitId" = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class CommitId(betterproto.Message):
+    """
+    CommitID defines the commitment information when a specific store is
+    committed.
+    """
+
+    version: int = betterproto.int64_field(1)
+    hash: bytes = betterproto.bytes_field(2)
+
+
+@dataclass(eq=False, repr=False)
 class StoreKvPair(betterproto.Message):
     """
     StoreKVPair is a KVStore KVPair used for listening to state changes (Sets
@@ -58,37 +92,3 @@ class BlockMetadataDeliverTx(betterproto.Message):
 
     request: "____tendermint_abci__.RequestDeliverTx" = betterproto.message_field(1)
     response: "____tendermint_abci__.ResponseDeliverTx" = betterproto.message_field(2)
-
-
-@dataclass(eq=False, repr=False)
-class CommitInfo(betterproto.Message):
-    """
-    CommitInfo defines commit information used by the multi-store when
-    committing a version/height.
-    """
-
-    version: int = betterproto.int64_field(1)
-    store_infos: List["StoreInfo"] = betterproto.message_field(2)
-    timestamp: datetime = betterproto.message_field(3)
-
-
-@dataclass(eq=False, repr=False)
-class StoreInfo(betterproto.Message):
-    """
-    StoreInfo defines store-specific commit information. It contains a
-    reference between a store name and the commit ID.
-    """
-
-    name: str = betterproto.string_field(1)
-    commit_id: "CommitId" = betterproto.message_field(2)
-
-
-@dataclass(eq=False, repr=False)
-class CommitId(betterproto.Message):
-    """
-    CommitID defines the commitment information when a specific store is
-    committed.
-    """
-
-    version: int = betterproto.int64_field(1)
-    hash: bytes = betterproto.bytes_field(2)

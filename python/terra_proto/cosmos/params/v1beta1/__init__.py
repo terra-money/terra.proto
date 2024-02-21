@@ -135,6 +135,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class QueryBase(ServiceBase):
+
     async def params(
         self, query_params_request: "QueryParamsRequest"
     ) -> "QueryParamsResponse":

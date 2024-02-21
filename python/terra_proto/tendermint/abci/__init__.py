@@ -782,6 +782,7 @@ class AbciApplicationStub(betterproto.ServiceStub):
 
 
 class AbciApplicationBase(ServiceBase):
+
     async def echo(self, request_echo: "RequestEcho") -> "ResponseEcho":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 

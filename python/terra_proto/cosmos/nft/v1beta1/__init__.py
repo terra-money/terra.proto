@@ -26,6 +26,36 @@ if TYPE_CHECKING:
 
 
 @dataclass(eq=False, repr=False)
+class MsgSend(betterproto.Message):
+    """
+    MsgSend represents a message to send a nft from one account to another
+    account.
+    """
+
+    class_id: str = betterproto.string_field(1)
+    """
+    class_id defines the unique identifier of the nft classification, similar
+    to the contract address of ERC721
+    """
+
+    id: str = betterproto.string_field(2)
+    """id defines the unique identification of nft"""
+
+    sender: str = betterproto.string_field(3)
+    """sender is the address of the owner of nft"""
+
+    receiver: str = betterproto.string_field(4)
+    """receiver is the receiver address of nft"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgSendResponse(betterproto.Message):
+    """MsgSendResponse defines the Msg/Send response type."""
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
 class Class(betterproto.Message):
     """Class defines the class of the nft type."""
 
@@ -79,103 +109,6 @@ class Nft(betterproto.Message):
 
     data: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(10)
     """data is an app specific data of the NFT. Optional"""
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the nft module's genesis state."""
-
-    classes: List["Class"] = betterproto.message_field(1)
-    """class defines the class of the nft type."""
-
-    entries: List["Entry"] = betterproto.message_field(2)
-    """entry defines all nft owned by a person."""
-
-
-@dataclass(eq=False, repr=False)
-class Entry(betterproto.Message):
-    """Entry Defines all nft owned by a person"""
-
-    owner: str = betterproto.string_field(1)
-    """owner is the owner address of the following nft"""
-
-    nfts: List["Nft"] = betterproto.message_field(2)
-    """nfts is a group of nfts of the same owner"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgSend(betterproto.Message):
-    """
-    MsgSend represents a message to send a nft from one account to another
-    account.
-    """
-
-    class_id: str = betterproto.string_field(1)
-    """
-    class_id defines the unique identifier of the nft classification, similar
-    to the contract address of ERC721
-    """
-
-    id: str = betterproto.string_field(2)
-    """id defines the unique identification of nft"""
-
-    sender: str = betterproto.string_field(3)
-    """sender is the address of the owner of nft"""
-
-    receiver: str = betterproto.string_field(4)
-    """receiver is the receiver address of nft"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgSendResponse(betterproto.Message):
-    """MsgSendResponse defines the Msg/Send response type."""
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class EventSend(betterproto.Message):
-    """EventSend is emitted on Msg/Send"""
-
-    class_id: str = betterproto.string_field(1)
-    """class_id associated with the nft"""
-
-    id: str = betterproto.string_field(2)
-    """id is a unique identifier of the nft"""
-
-    sender: str = betterproto.string_field(3)
-    """sender is the address of the owner of nft"""
-
-    receiver: str = betterproto.string_field(4)
-    """receiver is the receiver address of nft"""
-
-
-@dataclass(eq=False, repr=False)
-class EventMint(betterproto.Message):
-    """EventMint is emitted on Mint"""
-
-    class_id: str = betterproto.string_field(1)
-    """class_id associated with the nft"""
-
-    id: str = betterproto.string_field(2)
-    """id is a unique identifier of the nft"""
-
-    owner: str = betterproto.string_field(3)
-    """owner is the owner address of the nft"""
-
-
-@dataclass(eq=False, repr=False)
-class EventBurn(betterproto.Message):
-    """EventBurn is emitted on Burn"""
-
-    class_id: str = betterproto.string_field(1)
-    """class_id associated with the nft"""
-
-    id: str = betterproto.string_field(2)
-    """id is a unique identifier of the nft"""
-
-    owner: str = betterproto.string_field(3)
-    """owner is the owner address of the nft"""
 
 
 @dataclass(eq=False, repr=False)
@@ -329,6 +262,73 @@ class QueryClassesResponse(betterproto.Message):
     """pagination defines the pagination in the response."""
 
 
+@dataclass(eq=False, repr=False)
+class EventSend(betterproto.Message):
+    """EventSend is emitted on Msg/Send"""
+
+    class_id: str = betterproto.string_field(1)
+    """class_id associated with the nft"""
+
+    id: str = betterproto.string_field(2)
+    """id is a unique identifier of the nft"""
+
+    sender: str = betterproto.string_field(3)
+    """sender is the address of the owner of nft"""
+
+    receiver: str = betterproto.string_field(4)
+    """receiver is the receiver address of nft"""
+
+
+@dataclass(eq=False, repr=False)
+class EventMint(betterproto.Message):
+    """EventMint is emitted on Mint"""
+
+    class_id: str = betterproto.string_field(1)
+    """class_id associated with the nft"""
+
+    id: str = betterproto.string_field(2)
+    """id is a unique identifier of the nft"""
+
+    owner: str = betterproto.string_field(3)
+    """owner is the owner address of the nft"""
+
+
+@dataclass(eq=False, repr=False)
+class EventBurn(betterproto.Message):
+    """EventBurn is emitted on Burn"""
+
+    class_id: str = betterproto.string_field(1)
+    """class_id associated with the nft"""
+
+    id: str = betterproto.string_field(2)
+    """id is a unique identifier of the nft"""
+
+    owner: str = betterproto.string_field(3)
+    """owner is the owner address of the nft"""
+
+
+@dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the nft module's genesis state."""
+
+    classes: List["Class"] = betterproto.message_field(1)
+    """class defines the class of the nft type."""
+
+    entries: List["Entry"] = betterproto.message_field(2)
+    """entry defines all nft owned by a person."""
+
+
+@dataclass(eq=False, repr=False)
+class Entry(betterproto.Message):
+    """Entry Defines all nft owned by a person"""
+
+    owner: str = betterproto.string_field(1)
+    """owner is the owner address of the following nft"""
+
+    nfts: List["Nft"] = betterproto.message_field(2)
+    """nfts is a group of nfts of the same owner"""
+
+
 class MsgStub(betterproto.ServiceStub):
     async def send(
         self,
@@ -470,6 +470,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class MsgBase(ServiceBase):
+
     async def send(self, msg_send: "MsgSend") -> "MsgSendResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
@@ -492,6 +493,7 @@ class MsgBase(ServiceBase):
 
 
 class QueryBase(ServiceBase):
+
     async def balance(
         self, query_balance_request: "QueryBalanceRequest"
     ) -> "QueryBalanceResponse":

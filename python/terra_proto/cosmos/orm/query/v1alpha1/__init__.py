@@ -205,6 +205,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class QueryBase(ServiceBase):
+
     async def get(self, get_request: "GetRequest") -> "GetResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 

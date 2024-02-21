@@ -27,6 +27,50 @@ if TYPE_CHECKING:
 
 
 @dataclass(eq=False, repr=False)
+class MsgSubmitEvidence(betterproto.Message):
+    """
+    MsgSubmitEvidence represents a message that supports submitting arbitrary
+    Evidence of misbehavior such as equivocation or counterfactual signing.
+    """
+
+    submitter: str = betterproto.string_field(1)
+    """submitter is the signer account address of evidence."""
+
+    evidence: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(2)
+    """evidence defines the evidence of misbehavior."""
+
+
+@dataclass(eq=False, repr=False)
+class MsgSubmitEvidenceResponse(betterproto.Message):
+    """
+    MsgSubmitEvidenceResponse defines the Msg/SubmitEvidence response type.
+    """
+
+    hash: bytes = betterproto.bytes_field(4)
+    """hash defines the hash of the evidence."""
+
+
+@dataclass(eq=False, repr=False)
+class Equivocation(betterproto.Message):
+    """
+    Equivocation implements the Evidence interface and defines evidence of
+    double signing misbehavior.
+    """
+
+    height: int = betterproto.int64_field(1)
+    """height is the equivocation height."""
+
+    time: datetime = betterproto.message_field(2)
+    """time is the equivocation time."""
+
+    power: int = betterproto.int64_field(3)
+    """power is the equivocation validator power."""
+
+    consensus_address: str = betterproto.string_field(4)
+    """consensus_address is the equivocation validator consensus address."""
+
+
+@dataclass(eq=False, repr=False)
 class QueryEvidenceRequest(betterproto.Message):
     """
     QueryEvidenceRequest is the request type for the Query/Evidence RPC method.
@@ -89,55 +133,30 @@ class QueryAllEvidenceResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class Equivocation(betterproto.Message):
-    """
-    Equivocation implements the Evidence interface and defines evidence of
-    double signing misbehavior.
-    """
-
-    height: int = betterproto.int64_field(1)
-    """height is the equivocation height."""
-
-    time: datetime = betterproto.message_field(2)
-    """time is the equivocation time."""
-
-    power: int = betterproto.int64_field(3)
-    """power is the equivocation validator power."""
-
-    consensus_address: str = betterproto.string_field(4)
-    """consensus_address is the equivocation validator consensus address."""
-
-
-@dataclass(eq=False, repr=False)
-class MsgSubmitEvidence(betterproto.Message):
-    """
-    MsgSubmitEvidence represents a message that supports submitting arbitrary
-    Evidence of misbehavior such as equivocation or counterfactual signing.
-    """
-
-    submitter: str = betterproto.string_field(1)
-    """submitter is the signer account address of evidence."""
-
-    evidence: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(2)
-    """evidence defines the evidence of misbehavior."""
-
-
-@dataclass(eq=False, repr=False)
-class MsgSubmitEvidenceResponse(betterproto.Message):
-    """
-    MsgSubmitEvidenceResponse defines the Msg/SubmitEvidence response type.
-    """
-
-    hash: bytes = betterproto.bytes_field(4)
-    """hash defines the hash of the evidence."""
-
-
-@dataclass(eq=False, repr=False)
 class GenesisState(betterproto.Message):
     """GenesisState defines the evidence module's genesis state."""
 
     evidence: List["betterproto_lib_google_protobuf.Any"] = betterproto.message_field(1)
     """evidence defines all the evidence at genesis."""
+
+
+class MsgStub(betterproto.ServiceStub):
+    async def submit_evidence(
+        self,
+        msg_submit_evidence: "MsgSubmitEvidence",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "MsgSubmitEvidenceResponse":
+        return await self._unary_unary(
+            "/cosmos.evidence.v1beta1.Msg/SubmitEvidence",
+            msg_submit_evidence,
+            MsgSubmitEvidenceResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
 
 
 class QueryStub(betterproto.ServiceStub):
@@ -176,26 +195,34 @@ class QueryStub(betterproto.ServiceStub):
         )
 
 
-class MsgStub(betterproto.ServiceStub):
+class MsgBase(ServiceBase):
+
     async def submit_evidence(
-        self,
-        msg_submit_evidence: "MsgSubmitEvidence",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
+        self, msg_submit_evidence: "MsgSubmitEvidence"
     ) -> "MsgSubmitEvidenceResponse":
-        return await self._unary_unary(
-            "/cosmos.evidence.v1beta1.Msg/SubmitEvidence",
-            msg_submit_evidence,
-            MsgSubmitEvidenceResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def __rpc_submit_evidence(
+        self,
+        stream: "grpclib.server.Stream[MsgSubmitEvidence, MsgSubmitEvidenceResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.submit_evidence(request)
+        await stream.send_message(response)
+
+    def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
+        return {
+            "/cosmos.evidence.v1beta1.Msg/SubmitEvidence": grpclib.const.Handler(
+                self.__rpc_submit_evidence,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgSubmitEvidence,
+                MsgSubmitEvidenceResponse,
+            ),
+        }
 
 
 class QueryBase(ServiceBase):
+
     async def evidence(
         self, query_evidence_request: "QueryEvidenceRequest"
     ) -> "QueryEvidenceResponse":
@@ -235,30 +262,5 @@ class QueryBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryAllEvidenceRequest,
                 QueryAllEvidenceResponse,
-            ),
-        }
-
-
-class MsgBase(ServiceBase):
-    async def submit_evidence(
-        self, msg_submit_evidence: "MsgSubmitEvidence"
-    ) -> "MsgSubmitEvidenceResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def __rpc_submit_evidence(
-        self,
-        stream: "grpclib.server.Stream[MsgSubmitEvidence, MsgSubmitEvidenceResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.submit_evidence(request)
-        await stream.send_message(response)
-
-    def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
-        return {
-            "/cosmos.evidence.v1beta1.Msg/SubmitEvidence": grpclib.const.Handler(
-                self.__rpc_submit_evidence,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgSubmitEvidence,
-                MsgSubmitEvidenceResponse,
             ),
         }

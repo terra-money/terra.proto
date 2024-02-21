@@ -181,6 +181,18 @@ class Params(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the ibc connection submodule's genesis state."""
+
+    connections: List["IdentifiedConnection"] = betterproto.message_field(1)
+    client_connection_paths: List["ConnectionPaths"] = betterproto.message_field(2)
+    next_connection_sequence: int = betterproto.uint64_field(3)
+    """the sequence for the next generated connection identifier"""
+
+    params: "Params" = betterproto.message_field(4)
+
+
+@dataclass(eq=False, repr=False)
 class MsgConnectionOpenInit(betterproto.Message):
     """
     MsgConnectionOpenInit defines the msg sent by an account on Chain A to
@@ -330,18 +342,6 @@ class MsgConnectionOpenConfirmResponse(betterproto.Message):
     """
 
     pass
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the ibc connection submodule's genesis state."""
-
-    connections: List["IdentifiedConnection"] = betterproto.message_field(1)
-    client_connection_paths: List["ConnectionPaths"] = betterproto.message_field(2)
-    next_connection_sequence: int = betterproto.uint64_field(3)
-    """the sequence for the next generated connection identifier"""
-
-    params: "Params" = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)
@@ -694,6 +694,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class MsgBase(ServiceBase):
+
     async def connection_open_init(
         self, msg_connection_open_init: "MsgConnectionOpenInit"
     ) -> "MsgConnectionOpenInitResponse":
@@ -776,6 +777,7 @@ class MsgBase(ServiceBase):
 
 
 class QueryBase(ServiceBase):
+
     async def connection(
         self, query_connection_request: "QueryConnectionRequest"
     ) -> "QueryConnectionResponse":

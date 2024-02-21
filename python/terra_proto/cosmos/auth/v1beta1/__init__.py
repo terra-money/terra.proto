@@ -83,14 +83,33 @@ class Params(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the auth module's genesis state."""
+class MsgUpdateParams(betterproto.Message):
+    """
+    MsgUpdateParams is the Msg/UpdateParams request type. Since: cosmos-sdk
+    0.47
+    """
 
-    params: "Params" = betterproto.message_field(1)
-    """params defines all the parameters of the module."""
+    authority: str = betterproto.string_field(1)
+    """
+    authority is the address that controls the module (defaults to x/gov unless
+    overwritten).
+    """
 
-    accounts: List["betterproto_lib_google_protobuf.Any"] = betterproto.message_field(2)
-    """accounts are the accounts present at genesis."""
+    params: "Params" = betterproto.message_field(2)
+    """
+    params defines the x/auth parameters to update. NOTE: All parameters must
+    be supplied.
+    """
+
+
+@dataclass(eq=False, repr=False)
+class MsgUpdateParamsResponse(betterproto.Message):
+    """
+    MsgUpdateParamsResponse defines the response structure for executing a
+    MsgUpdateParams message. Since: cosmos-sdk 0.47
+    """
+
+    pass
 
 
 @dataclass(eq=False, repr=False)
@@ -319,33 +338,33 @@ class QueryAccountInfoResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class MsgUpdateParams(betterproto.Message):
-    """
-    MsgUpdateParams is the Msg/UpdateParams request type. Since: cosmos-sdk
-    0.47
-    """
+class GenesisState(betterproto.Message):
+    """GenesisState defines the auth module's genesis state."""
 
-    authority: str = betterproto.string_field(1)
-    """
-    authority is the address that controls the module (defaults to x/gov unless
-    overwritten).
-    """
+    params: "Params" = betterproto.message_field(1)
+    """params defines all the parameters of the module."""
 
-    params: "Params" = betterproto.message_field(2)
-    """
-    params defines the x/auth parameters to update. NOTE: All parameters must
-    be supplied.
-    """
+    accounts: List["betterproto_lib_google_protobuf.Any"] = betterproto.message_field(2)
+    """accounts are the accounts present at genesis."""
 
 
-@dataclass(eq=False, repr=False)
-class MsgUpdateParamsResponse(betterproto.Message):
-    """
-    MsgUpdateParamsResponse defines the response structure for executing a
-    MsgUpdateParams message. Since: cosmos-sdk 0.47
-    """
-
-    pass
+class MsgStub(betterproto.ServiceStub):
+    async def update_params(
+        self,
+        msg_update_params: "MsgUpdateParams",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "MsgUpdateParamsResponse":
+        return await self._unary_unary(
+            "/cosmos.auth.v1beta1.Msg/UpdateParams",
+            msg_update_params,
+            MsgUpdateParamsResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
 
 
 class QueryStub(betterproto.ServiceStub):
@@ -520,26 +539,33 @@ class QueryStub(betterproto.ServiceStub):
         )
 
 
-class MsgStub(betterproto.ServiceStub):
+class MsgBase(ServiceBase):
+
     async def update_params(
-        self,
-        msg_update_params: "MsgUpdateParams",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
+        self, msg_update_params: "MsgUpdateParams"
     ) -> "MsgUpdateParamsResponse":
-        return await self._unary_unary(
-            "/cosmos.auth.v1beta1.Msg/UpdateParams",
-            msg_update_params,
-            MsgUpdateParamsResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def __rpc_update_params(
+        self, stream: "grpclib.server.Stream[MsgUpdateParams, MsgUpdateParamsResponse]"
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.update_params(request)
+        await stream.send_message(response)
+
+    def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
+        return {
+            "/cosmos.auth.v1beta1.Msg/UpdateParams": grpclib.const.Handler(
+                self.__rpc_update_params,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgUpdateParams,
+                MsgUpdateParamsResponse,
+            ),
+        }
 
 
 class QueryBase(ServiceBase):
+
     async def accounts(
         self, query_accounts_request: "QueryAccountsRequest"
     ) -> "QueryAccountsResponse":
@@ -728,29 +754,5 @@ class QueryBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryAccountInfoRequest,
                 QueryAccountInfoResponse,
-            ),
-        }
-
-
-class MsgBase(ServiceBase):
-    async def update_params(
-        self, msg_update_params: "MsgUpdateParams"
-    ) -> "MsgUpdateParamsResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def __rpc_update_params(
-        self, stream: "grpclib.server.Stream[MsgUpdateParams, MsgUpdateParamsResponse]"
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.update_params(request)
-        await stream.send_message(response)
-
-    def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
-        return {
-            "/cosmos.auth.v1beta1.Msg/UpdateParams": grpclib.const.Handler(
-                self.__rpc_update_params,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgUpdateParams,
-                MsgUpdateParamsResponse,
             ),
         }

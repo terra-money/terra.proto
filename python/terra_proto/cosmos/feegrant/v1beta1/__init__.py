@@ -31,6 +31,66 @@ if TYPE_CHECKING:
 
 
 @dataclass(eq=False, repr=False)
+class MsgGrantAllowance(betterproto.Message):
+    """
+    MsgGrantAllowance adds permission for Grantee to spend up to Allowance of
+    fees from the account of Granter.
+    """
+
+    granter: str = betterproto.string_field(1)
+    """
+    granter is the address of the user granting an allowance of their funds.
+    """
+
+    grantee: str = betterproto.string_field(2)
+    """
+    grantee is the address of the user being granted an allowance of another
+    user's funds.
+    """
+
+    allowance: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(3)
+    """allowance can be any of basic, periodic, allowed fee allowance."""
+
+
+@dataclass(eq=False, repr=False)
+class MsgGrantAllowanceResponse(betterproto.Message):
+    """
+    MsgGrantAllowanceResponse defines the Msg/GrantAllowanceResponse response
+    type.
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgRevokeAllowance(betterproto.Message):
+    """
+    MsgRevokeAllowance removes any existing Allowance from Granter to Grantee.
+    """
+
+    granter: str = betterproto.string_field(1)
+    """
+    granter is the address of the user granting an allowance of their funds.
+    """
+
+    grantee: str = betterproto.string_field(2)
+    """
+    grantee is the address of the user being granted an allowance of another
+    user's funds.
+    """
+
+
+@dataclass(eq=False, repr=False)
+class MsgRevokeAllowanceResponse(betterproto.Message):
+    """
+    MsgRevokeAllowanceResponse defines the Msg/RevokeAllowanceResponse response
+    type.
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
 class BasicAllowance(betterproto.Message):
     """
     BasicAllowance implements Allowance with a one-time grant of coins that
@@ -119,75 +179,6 @@ class Grant(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """
-    GenesisState contains a set of fee allowances, persisted from the store
-    """
-
-    allowances: List["Grant"] = betterproto.message_field(1)
-
-
-@dataclass(eq=False, repr=False)
-class MsgGrantAllowance(betterproto.Message):
-    """
-    MsgGrantAllowance adds permission for Grantee to spend up to Allowance of
-    fees from the account of Granter.
-    """
-
-    granter: str = betterproto.string_field(1)
-    """
-    granter is the address of the user granting an allowance of their funds.
-    """
-
-    grantee: str = betterproto.string_field(2)
-    """
-    grantee is the address of the user being granted an allowance of another
-    user's funds.
-    """
-
-    allowance: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(3)
-    """allowance can be any of basic, periodic, allowed fee allowance."""
-
-
-@dataclass(eq=False, repr=False)
-class MsgGrantAllowanceResponse(betterproto.Message):
-    """
-    MsgGrantAllowanceResponse defines the Msg/GrantAllowanceResponse response
-    type.
-    """
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class MsgRevokeAllowance(betterproto.Message):
-    """
-    MsgRevokeAllowance removes any existing Allowance from Granter to Grantee.
-    """
-
-    granter: str = betterproto.string_field(1)
-    """
-    granter is the address of the user granting an allowance of their funds.
-    """
-
-    grantee: str = betterproto.string_field(2)
-    """
-    grantee is the address of the user being granted an allowance of another
-    user's funds.
-    """
-
-
-@dataclass(eq=False, repr=False)
-class MsgRevokeAllowanceResponse(betterproto.Message):
-    """
-    MsgRevokeAllowanceResponse defines the Msg/RevokeAllowanceResponse response
-    type.
-    """
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
 class QueryAllowanceRequest(betterproto.Message):
     """
     QueryAllowanceRequest is the request type for the Query/Allowance RPC
@@ -267,6 +258,15 @@ class QueryAllowancesByGranterResponse(betterproto.Message):
 
     pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
     """pagination defines an pagination for the response."""
+
+
+@dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """
+    GenesisState contains a set of fee allowances, persisted from the store
+    """
+
+    allowances: List["Grant"] = betterproto.message_field(1)
 
 
 class MsgStub(betterproto.ServiceStub):
@@ -359,6 +359,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class MsgBase(ServiceBase):
+
     async def grant_allowance(
         self, msg_grant_allowance: "MsgGrantAllowance"
     ) -> "MsgGrantAllowanceResponse":
@@ -403,6 +404,7 @@ class MsgBase(ServiceBase):
 
 
 class QueryBase(ServiceBase):
+
     async def allowance(
         self, query_allowance_request: "QueryAllowanceRequest"
     ) -> "QueryAllowanceResponse":

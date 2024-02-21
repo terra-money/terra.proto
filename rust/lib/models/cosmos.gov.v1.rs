@@ -456,12 +456,13 @@ pub mod msg_client {
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+            T:
+                tonic::codegen::Service<
+                    http::Request<tonic::body::BoxBody>,
+                    Response = http::Response<
+                        <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                    >,
                 >,
-            >,
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {
@@ -897,43 +898,6 @@ pub mod msg_server {
         const NAME: &'static str = "cosmos.gov.v1.Msg";
     }
 }
-/// GenesisState defines the gov module's genesis state.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenesisState {
-    /// starting_proposal_id is the ID of the starting proposal.
-    #[prost(uint64, tag = "1")]
-    pub starting_proposal_id: u64,
-    /// deposits defines all the deposits present at genesis.
-    #[prost(message, repeated, tag = "2")]
-    pub deposits: ::prost::alloc::vec::Vec<Deposit>,
-    /// votes defines all the votes present at genesis.
-    #[prost(message, repeated, tag = "3")]
-    pub votes: ::prost::alloc::vec::Vec<Vote>,
-    /// proposals defines all the proposals present at genesis.
-    #[prost(message, repeated, tag = "4")]
-    pub proposals: ::prost::alloc::vec::Vec<Proposal>,
-    /// Deprecated: Prefer to use `params` instead.
-    /// deposit_params defines all the paramaters of related to deposit.
-    #[deprecated]
-    #[prost(message, optional, tag = "5")]
-    pub deposit_params: ::core::option::Option<DepositParams>,
-    /// Deprecated: Prefer to use `params` instead.
-    /// voting_params defines all the paramaters of related to voting.
-    #[deprecated]
-    #[prost(message, optional, tag = "6")]
-    pub voting_params: ::core::option::Option<VotingParams>,
-    /// Deprecated: Prefer to use `params` instead.
-    /// tally_params defines all the paramaters of related to tally.
-    #[deprecated]
-    #[prost(message, optional, tag = "7")]
-    pub tally_params: ::core::option::Option<TallyParams>,
-    /// params defines all the paramaters of x/gov module.
-    ///
-    /// Since: cosmos-sdk 0.47
-    #[prost(message, optional, tag = "8")]
-    pub params: ::core::option::Option<Params>,
-}
 /// QueryProposalRequest is the request type for the Query/Proposal RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1158,12 +1122,13 @@ pub mod query_client {
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+            T:
+                tonic::codegen::Service<
+                    http::Request<tonic::body::BoxBody>,
+                    Response = http::Response<
+                        <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                    >,
                 >,
-            >,
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {
@@ -1692,4 +1657,41 @@ pub mod query_server {
     impl<T: Query> tonic::server::NamedService for QueryServer<T> {
         const NAME: &'static str = "cosmos.gov.v1.Query";
     }
+}
+/// GenesisState defines the gov module's genesis state.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenesisState {
+    /// starting_proposal_id is the ID of the starting proposal.
+    #[prost(uint64, tag = "1")]
+    pub starting_proposal_id: u64,
+    /// deposits defines all the deposits present at genesis.
+    #[prost(message, repeated, tag = "2")]
+    pub deposits: ::prost::alloc::vec::Vec<Deposit>,
+    /// votes defines all the votes present at genesis.
+    #[prost(message, repeated, tag = "3")]
+    pub votes: ::prost::alloc::vec::Vec<Vote>,
+    /// proposals defines all the proposals present at genesis.
+    #[prost(message, repeated, tag = "4")]
+    pub proposals: ::prost::alloc::vec::Vec<Proposal>,
+    /// Deprecated: Prefer to use `params` instead.
+    /// deposit_params defines all the paramaters of related to deposit.
+    #[deprecated]
+    #[prost(message, optional, tag = "5")]
+    pub deposit_params: ::core::option::Option<DepositParams>,
+    /// Deprecated: Prefer to use `params` instead.
+    /// voting_params defines all the paramaters of related to voting.
+    #[deprecated]
+    #[prost(message, optional, tag = "6")]
+    pub voting_params: ::core::option::Option<VotingParams>,
+    /// Deprecated: Prefer to use `params` instead.
+    /// tally_params defines all the paramaters of related to tally.
+    #[deprecated]
+    #[prost(message, optional, tag = "7")]
+    pub tally_params: ::core::option::Option<TallyParams>,
+    /// params defines all the paramaters of x/gov module.
+    ///
+    /// Since: cosmos-sdk 0.47
+    #[prost(message, optional, tag = "8")]
+    pub params: ::core::option::Option<Params>,
 }

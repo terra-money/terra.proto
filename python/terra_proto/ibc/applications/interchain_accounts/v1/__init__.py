@@ -39,6 +39,28 @@ class InterchainAccount(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class InterchainAccountPacketData(betterproto.Message):
+    """
+    InterchainAccountPacketData is comprised of a raw transaction, type of
+    transaction and optional memo field.
+    """
+
+    type: "Type" = betterproto.enum_field(1)
+    data: bytes = betterproto.bytes_field(2)
+    memo: str = betterproto.string_field(3)
+
+
+@dataclass(eq=False, repr=False)
+class CosmosTx(betterproto.Message):
+    """
+    CosmosTx contains a list of sdk.Msg's. It should be used when sending
+    transactions to an SDK host chain.
+    """
+
+    messages: List["betterproto_lib_google_protobuf.Any"] = betterproto.message_field(1)
+
+
+@dataclass(eq=False, repr=False)
 class Metadata(betterproto.Message):
     """
     Metadata defines a set of protocol specific data encoded into the ICS27
@@ -76,25 +98,3 @@ class Metadata(betterproto.Message):
     """
     tx_type defines the type of transactions the interchain account can execute
     """
-
-
-@dataclass(eq=False, repr=False)
-class InterchainAccountPacketData(betterproto.Message):
-    """
-    InterchainAccountPacketData is comprised of a raw transaction, type of
-    transaction and optional memo field.
-    """
-
-    type: "Type" = betterproto.enum_field(1)
-    data: bytes = betterproto.bytes_field(2)
-    memo: str = betterproto.string_field(3)
-
-
-@dataclass(eq=False, repr=False)
-class CosmosTx(betterproto.Message):
-    """
-    CosmosTx contains a list of sdk.Msg's. It should be used when sending
-    transactions to an SDK host chain.
-    """
-
-    messages: List["betterproto_lib_google_protobuf.Any"] = betterproto.message_field(1)

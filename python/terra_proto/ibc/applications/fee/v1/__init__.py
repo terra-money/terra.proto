@@ -85,6 +85,143 @@ class IdentifiedPacketFees(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class MsgRegisterPayee(betterproto.Message):
+    """MsgRegisterPayee defines the request type for the RegisterPayee rpc"""
+
+    port_id: str = betterproto.string_field(1)
+    """unique port identifier"""
+
+    channel_id: str = betterproto.string_field(2)
+    """unique channel identifier"""
+
+    relayer: str = betterproto.string_field(3)
+    """the relayer address"""
+
+    payee: str = betterproto.string_field(4)
+    """the payee address"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgRegisterPayeeResponse(betterproto.Message):
+    """
+    MsgRegisterPayeeResponse defines the response type for the RegisterPayee
+    rpc
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgRegisterCounterpartyPayee(betterproto.Message):
+    """
+    MsgRegisterCounterpartyPayee defines the request type for the
+    RegisterCounterpartyPayee rpc
+    """
+
+    port_id: str = betterproto.string_field(1)
+    """unique port identifier"""
+
+    channel_id: str = betterproto.string_field(2)
+    """unique channel identifier"""
+
+    relayer: str = betterproto.string_field(3)
+    """the relayer address"""
+
+    counterparty_payee: str = betterproto.string_field(4)
+    """the counterparty payee address"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgRegisterCounterpartyPayeeResponse(betterproto.Message):
+    """
+    MsgRegisterCounterpartyPayeeResponse defines the response type for the
+    RegisterCounterpartyPayee rpc
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgPayPacketFee(betterproto.Message):
+    """
+    MsgPayPacketFee defines the request type for the PayPacketFee rpc This Msg
+    can be used to pay for a packet at the next sequence send & should be
+    combined with the Msg that will be paid for
+    """
+
+    fee: "Fee" = betterproto.message_field(1)
+    """
+    fee encapsulates the recv, ack and timeout fees associated with an IBC
+    packet
+    """
+
+    source_port_id: str = betterproto.string_field(2)
+    """the source port unique identifier"""
+
+    source_channel_id: str = betterproto.string_field(3)
+    """the source channel unique identifer"""
+
+    signer: str = betterproto.string_field(4)
+    """account address to refund fee if necessary"""
+
+    relayers: List[str] = betterproto.string_field(5)
+    """optional list of relayers permitted to the receive packet fees"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgPayPacketFeeResponse(betterproto.Message):
+    """
+    MsgPayPacketFeeResponse defines the response type for the PayPacketFee rpc
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgPayPacketFeeAsync(betterproto.Message):
+    """
+    MsgPayPacketFeeAsync defines the request type for the PayPacketFeeAsync rpc
+    This Msg can be used to pay for a packet at a specified sequence (instead
+    of the next sequence send)
+    """
+
+    packet_id: "___core_channel_v1__.PacketId" = betterproto.message_field(1)
+    """
+    unique packet identifier comprised of the channel ID, port ID and sequence
+    """
+
+    packet_fee: "PacketFee" = betterproto.message_field(2)
+    """the packet fee associated with a particular IBC packet"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgPayPacketFeeAsyncResponse(betterproto.Message):
+    """
+    MsgPayPacketFeeAsyncResponse defines the response type for the
+    PayPacketFeeAsync rpc
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class IncentivizedAcknowledgement(betterproto.Message):
+    """
+    IncentivizedAcknowledgement is the acknowledgement format to be used by
+    applications wrapped in the fee middleware
+    """
+
+    app_acknowledgement: bytes = betterproto.bytes_field(1)
+    """the underlying app acknowledgement bytes"""
+
+    forward_relayer_address: str = betterproto.string_field(2)
+    """the relayer address which submits the recv packet message"""
+
+    underlying_app_success: bool = betterproto.bool_field(3)
+    """success flag of the base application callback"""
+
+
+@dataclass(eq=False, repr=False)
 class GenesisState(betterproto.Message):
     """GenesisState defines the ICS29 fee middleware genesis state"""
 
@@ -97,9 +234,9 @@ class GenesisState(betterproto.Message):
     registered_payees: List["RegisteredPayee"] = betterproto.message_field(3)
     """list of registered payees"""
 
-    registered_counterparty_payees: List[
-        "RegisteredCounterpartyPayee"
-    ] = betterproto.message_field(4)
+    registered_counterparty_payees: List["RegisteredCounterpartyPayee"] = (
+        betterproto.message_field(4)
+    )
     """list of registered counterparty payees"""
 
     forward_relayers: List["ForwardRelayerAddress"] = betterproto.message_field(5)
@@ -414,143 +551,6 @@ class QueryFeeEnabledChannelResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class IncentivizedAcknowledgement(betterproto.Message):
-    """
-    IncentivizedAcknowledgement is the acknowledgement format to be used by
-    applications wrapped in the fee middleware
-    """
-
-    app_acknowledgement: bytes = betterproto.bytes_field(1)
-    """the underlying app acknowledgement bytes"""
-
-    forward_relayer_address: str = betterproto.string_field(2)
-    """the relayer address which submits the recv packet message"""
-
-    underlying_app_success: bool = betterproto.bool_field(3)
-    """success flag of the base application callback"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgRegisterPayee(betterproto.Message):
-    """MsgRegisterPayee defines the request type for the RegisterPayee rpc"""
-
-    port_id: str = betterproto.string_field(1)
-    """unique port identifier"""
-
-    channel_id: str = betterproto.string_field(2)
-    """unique channel identifier"""
-
-    relayer: str = betterproto.string_field(3)
-    """the relayer address"""
-
-    payee: str = betterproto.string_field(4)
-    """the payee address"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgRegisterPayeeResponse(betterproto.Message):
-    """
-    MsgRegisterPayeeResponse defines the response type for the RegisterPayee
-    rpc
-    """
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class MsgRegisterCounterpartyPayee(betterproto.Message):
-    """
-    MsgRegisterCounterpartyPayee defines the request type for the
-    RegisterCounterpartyPayee rpc
-    """
-
-    port_id: str = betterproto.string_field(1)
-    """unique port identifier"""
-
-    channel_id: str = betterproto.string_field(2)
-    """unique channel identifier"""
-
-    relayer: str = betterproto.string_field(3)
-    """the relayer address"""
-
-    counterparty_payee: str = betterproto.string_field(4)
-    """the counterparty payee address"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgRegisterCounterpartyPayeeResponse(betterproto.Message):
-    """
-    MsgRegisterCounterpartyPayeeResponse defines the response type for the
-    RegisterCounterpartyPayee rpc
-    """
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class MsgPayPacketFee(betterproto.Message):
-    """
-    MsgPayPacketFee defines the request type for the PayPacketFee rpc This Msg
-    can be used to pay for a packet at the next sequence send & should be
-    combined with the Msg that will be paid for
-    """
-
-    fee: "Fee" = betterproto.message_field(1)
-    """
-    fee encapsulates the recv, ack and timeout fees associated with an IBC
-    packet
-    """
-
-    source_port_id: str = betterproto.string_field(2)
-    """the source port unique identifier"""
-
-    source_channel_id: str = betterproto.string_field(3)
-    """the source channel unique identifer"""
-
-    signer: str = betterproto.string_field(4)
-    """account address to refund fee if necessary"""
-
-    relayers: List[str] = betterproto.string_field(5)
-    """optional list of relayers permitted to the receive packet fees"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgPayPacketFeeResponse(betterproto.Message):
-    """
-    MsgPayPacketFeeResponse defines the response type for the PayPacketFee rpc
-    """
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class MsgPayPacketFeeAsync(betterproto.Message):
-    """
-    MsgPayPacketFeeAsync defines the request type for the PayPacketFeeAsync rpc
-    This Msg can be used to pay for a packet at a specified sequence (instead
-    of the next sequence send)
-    """
-
-    packet_id: "___core_channel_v1__.PacketId" = betterproto.message_field(1)
-    """
-    unique packet identifier comprised of the channel ID, port ID and sequence
-    """
-
-    packet_fee: "PacketFee" = betterproto.message_field(2)
-    """the packet fee associated with a particular IBC packet"""
-
-
-@dataclass(eq=False, repr=False)
-class MsgPayPacketFeeAsyncResponse(betterproto.Message):
-    """
-    MsgPayPacketFeeAsyncResponse defines the response type for the
-    PayPacketFeeAsync rpc
-    """
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
 class Metadata(betterproto.Message):
     """
     Metadata defines the ICS29 channel specific metadata encoded into the
@@ -567,6 +567,76 @@ class Metadata(betterproto.Message):
     app_version defines the underlying application version, which may or may
     not be a JSON encoded bytestring
     """
+
+
+class MsgStub(betterproto.ServiceStub):
+    async def register_payee(
+        self,
+        msg_register_payee: "MsgRegisterPayee",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "MsgRegisterPayeeResponse":
+        return await self._unary_unary(
+            "/ibc.applications.fee.v1.Msg/RegisterPayee",
+            msg_register_payee,
+            MsgRegisterPayeeResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def register_counterparty_payee(
+        self,
+        msg_register_counterparty_payee: "MsgRegisterCounterpartyPayee",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "MsgRegisterCounterpartyPayeeResponse":
+        return await self._unary_unary(
+            "/ibc.applications.fee.v1.Msg/RegisterCounterpartyPayee",
+            msg_register_counterparty_payee,
+            MsgRegisterCounterpartyPayeeResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def pay_packet_fee(
+        self,
+        msg_pay_packet_fee: "MsgPayPacketFee",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "MsgPayPacketFeeResponse":
+        return await self._unary_unary(
+            "/ibc.applications.fee.v1.Msg/PayPacketFee",
+            msg_pay_packet_fee,
+            MsgPayPacketFeeResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def pay_packet_fee_async(
+        self,
+        msg_pay_packet_fee_async: "MsgPayPacketFeeAsync",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "MsgPayPacketFeeAsyncResponse":
+        return await self._unary_unary(
+            "/ibc.applications.fee.v1.Msg/PayPacketFeeAsync",
+            msg_pay_packet_fee_async,
+            MsgPayPacketFeeAsyncResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
 
 
 class QueryStub(betterproto.ServiceStub):
@@ -741,77 +811,90 @@ class QueryStub(betterproto.ServiceStub):
         )
 
 
-class MsgStub(betterproto.ServiceStub):
+class MsgBase(ServiceBase):
+
     async def register_payee(
-        self,
-        msg_register_payee: "MsgRegisterPayee",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
+        self, msg_register_payee: "MsgRegisterPayee"
     ) -> "MsgRegisterPayeeResponse":
-        return await self._unary_unary(
-            "/ibc.applications.fee.v1.Msg/RegisterPayee",
-            msg_register_payee,
-            MsgRegisterPayeeResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def register_counterparty_payee(
-        self,
-        msg_register_counterparty_payee: "MsgRegisterCounterpartyPayee",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
+        self, msg_register_counterparty_payee: "MsgRegisterCounterpartyPayee"
     ) -> "MsgRegisterCounterpartyPayeeResponse":
-        return await self._unary_unary(
-            "/ibc.applications.fee.v1.Msg/RegisterCounterpartyPayee",
-            msg_register_counterparty_payee,
-            MsgRegisterCounterpartyPayeeResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def pay_packet_fee(
-        self,
-        msg_pay_packet_fee: "MsgPayPacketFee",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
+        self, msg_pay_packet_fee: "MsgPayPacketFee"
     ) -> "MsgPayPacketFeeResponse":
-        return await self._unary_unary(
-            "/ibc.applications.fee.v1.Msg/PayPacketFee",
-            msg_pay_packet_fee,
-            MsgPayPacketFeeResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def pay_packet_fee_async(
-        self,
-        msg_pay_packet_fee_async: "MsgPayPacketFeeAsync",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
+        self, msg_pay_packet_fee_async: "MsgPayPacketFeeAsync"
     ) -> "MsgPayPacketFeeAsyncResponse":
-        return await self._unary_unary(
-            "/ibc.applications.fee.v1.Msg/PayPacketFeeAsync",
-            msg_pay_packet_fee_async,
-            MsgPayPacketFeeAsyncResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def __rpc_register_payee(
+        self,
+        stream: "grpclib.server.Stream[MsgRegisterPayee, MsgRegisterPayeeResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.register_payee(request)
+        await stream.send_message(response)
+
+    async def __rpc_register_counterparty_payee(
+        self,
+        stream: "grpclib.server.Stream[MsgRegisterCounterpartyPayee, MsgRegisterCounterpartyPayeeResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.register_counterparty_payee(request)
+        await stream.send_message(response)
+
+    async def __rpc_pay_packet_fee(
+        self, stream: "grpclib.server.Stream[MsgPayPacketFee, MsgPayPacketFeeResponse]"
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.pay_packet_fee(request)
+        await stream.send_message(response)
+
+    async def __rpc_pay_packet_fee_async(
+        self,
+        stream: "grpclib.server.Stream[MsgPayPacketFeeAsync, MsgPayPacketFeeAsyncResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.pay_packet_fee_async(request)
+        await stream.send_message(response)
+
+    def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
+        return {
+            "/ibc.applications.fee.v1.Msg/RegisterPayee": grpclib.const.Handler(
+                self.__rpc_register_payee,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgRegisterPayee,
+                MsgRegisterPayeeResponse,
+            ),
+            "/ibc.applications.fee.v1.Msg/RegisterCounterpartyPayee": grpclib.const.Handler(
+                self.__rpc_register_counterparty_payee,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgRegisterCounterpartyPayee,
+                MsgRegisterCounterpartyPayeeResponse,
+            ),
+            "/ibc.applications.fee.v1.Msg/PayPacketFee": grpclib.const.Handler(
+                self.__rpc_pay_packet_fee,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgPayPacketFee,
+                MsgPayPacketFeeResponse,
+            ),
+            "/ibc.applications.fee.v1.Msg/PayPacketFeeAsync": grpclib.const.Handler(
+                self.__rpc_pay_packet_fee_async,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgPayPacketFeeAsync,
+                MsgPayPacketFeeAsyncResponse,
+            ),
+        }
 
 
 class QueryBase(ServiceBase):
+
     async def incentivized_packets(
         self, query_incentivized_packets_request: "QueryIncentivizedPacketsRequest"
     ) -> "QueryIncentivizedPacketsResponse":
@@ -1003,86 +1086,5 @@ class QueryBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryFeeEnabledChannelRequest,
                 QueryFeeEnabledChannelResponse,
-            ),
-        }
-
-
-class MsgBase(ServiceBase):
-    async def register_payee(
-        self, msg_register_payee: "MsgRegisterPayee"
-    ) -> "MsgRegisterPayeeResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def register_counterparty_payee(
-        self, msg_register_counterparty_payee: "MsgRegisterCounterpartyPayee"
-    ) -> "MsgRegisterCounterpartyPayeeResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def pay_packet_fee(
-        self, msg_pay_packet_fee: "MsgPayPacketFee"
-    ) -> "MsgPayPacketFeeResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def pay_packet_fee_async(
-        self, msg_pay_packet_fee_async: "MsgPayPacketFeeAsync"
-    ) -> "MsgPayPacketFeeAsyncResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def __rpc_register_payee(
-        self,
-        stream: "grpclib.server.Stream[MsgRegisterPayee, MsgRegisterPayeeResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.register_payee(request)
-        await stream.send_message(response)
-
-    async def __rpc_register_counterparty_payee(
-        self,
-        stream: "grpclib.server.Stream[MsgRegisterCounterpartyPayee, MsgRegisterCounterpartyPayeeResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.register_counterparty_payee(request)
-        await stream.send_message(response)
-
-    async def __rpc_pay_packet_fee(
-        self, stream: "grpclib.server.Stream[MsgPayPacketFee, MsgPayPacketFeeResponse]"
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.pay_packet_fee(request)
-        await stream.send_message(response)
-
-    async def __rpc_pay_packet_fee_async(
-        self,
-        stream: "grpclib.server.Stream[MsgPayPacketFeeAsync, MsgPayPacketFeeAsyncResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.pay_packet_fee_async(request)
-        await stream.send_message(response)
-
-    def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
-        return {
-            "/ibc.applications.fee.v1.Msg/RegisterPayee": grpclib.const.Handler(
-                self.__rpc_register_payee,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgRegisterPayee,
-                MsgRegisterPayeeResponse,
-            ),
-            "/ibc.applications.fee.v1.Msg/RegisterCounterpartyPayee": grpclib.const.Handler(
-                self.__rpc_register_counterparty_payee,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgRegisterCounterpartyPayee,
-                MsgRegisterCounterpartyPayeeResponse,
-            ),
-            "/ibc.applications.fee.v1.Msg/PayPacketFee": grpclib.const.Handler(
-                self.__rpc_pay_packet_fee,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgPayPacketFee,
-                MsgPayPacketFeeResponse,
-            ),
-            "/ibc.applications.fee.v1.Msg/PayPacketFeeAsync": grpclib.const.Handler(
-                self.__rpc_pay_packet_fee_async,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgPayPacketFeeAsync,
-                MsgPayPacketFeeAsyncResponse,
             ),
         }

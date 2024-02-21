@@ -28,9 +28,9 @@ class ControllerGenesisState(betterproto.Message):
     """
 
     active_channels: List["ActiveChannel"] = betterproto.message_field(1)
-    interchain_accounts: List[
-        "RegisteredInterchainAccount"
-    ] = betterproto.message_field(2)
+    interchain_accounts: List["RegisteredInterchainAccount"] = (
+        betterproto.message_field(2)
+    )
     ports: List[str] = betterproto.string_field(3)
     params: "__controller_v1__.Params" = betterproto.message_field(4)
 
@@ -40,9 +40,9 @@ class HostGenesisState(betterproto.Message):
     """HostGenesisState defines the interchain accounts host genesis state"""
 
     active_channels: List["ActiveChannel"] = betterproto.message_field(1)
-    interchain_accounts: List[
-        "RegisteredInterchainAccount"
-    ] = betterproto.message_field(2)
+    interchain_accounts: List["RegisteredInterchainAccount"] = (
+        betterproto.message_field(2)
+    )
     port: str = betterproto.string_field(3)
     params: "__host_v1__.Params" = betterproto.message_field(4)
 

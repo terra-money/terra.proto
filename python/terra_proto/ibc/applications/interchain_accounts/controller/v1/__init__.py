@@ -24,6 +24,49 @@ if TYPE_CHECKING:
 
 
 @dataclass(eq=False, repr=False)
+class MsgRegisterInterchainAccount(betterproto.Message):
+    """
+    MsgRegisterInterchainAccount defines the payload for Msg/RegisterAccount
+    """
+
+    owner: str = betterproto.string_field(1)
+    connection_id: str = betterproto.string_field(2)
+    version: str = betterproto.string_field(3)
+
+
+@dataclass(eq=False, repr=False)
+class MsgRegisterInterchainAccountResponse(betterproto.Message):
+    """
+    MsgRegisterInterchainAccountResponse defines the response for
+    Msg/RegisterAccount
+    """
+
+    channel_id: str = betterproto.string_field(1)
+    port_id: str = betterproto.string_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class MsgSendTx(betterproto.Message):
+    """MsgSendTx defines the payload for Msg/SendTx"""
+
+    owner: str = betterproto.string_field(1)
+    connection_id: str = betterproto.string_field(2)
+    packet_data: "__v1__.InterchainAccountPacketData" = betterproto.message_field(3)
+    relative_timeout: int = betterproto.uint64_field(4)
+    """
+    Relative timeout timestamp provided will be added to the current block time
+    during transaction execution. The timeout timestamp must be non-zero.
+    """
+
+
+@dataclass(eq=False, repr=False)
+class MsgSendTxResponse(betterproto.Message):
+    """MsgSendTxResponse defines the response for MsgSendTx"""
+
+    sequence: int = betterproto.uint64_field(1)
+
+
+@dataclass(eq=False, repr=False)
 class Params(betterproto.Message):
     """
     Params defines the set of on-chain interchain accounts parameters. The
@@ -74,47 +117,40 @@ class QueryParamsResponse(betterproto.Message):
     """params defines the parameters of the module."""
 
 
-@dataclass(eq=False, repr=False)
-class MsgRegisterInterchainAccount(betterproto.Message):
-    """
-    MsgRegisterInterchainAccount defines the payload for Msg/RegisterAccount
-    """
+class MsgStub(betterproto.ServiceStub):
+    async def register_interchain_account(
+        self,
+        msg_register_interchain_account: "MsgRegisterInterchainAccount",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "MsgRegisterInterchainAccountResponse":
+        return await self._unary_unary(
+            "/ibc.applications.interchain_accounts.controller.v1.Msg/RegisterInterchainAccount",
+            msg_register_interchain_account,
+            MsgRegisterInterchainAccountResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
 
-    owner: str = betterproto.string_field(1)
-    connection_id: str = betterproto.string_field(2)
-    version: str = betterproto.string_field(3)
-
-
-@dataclass(eq=False, repr=False)
-class MsgRegisterInterchainAccountResponse(betterproto.Message):
-    """
-    MsgRegisterInterchainAccountResponse defines the response for
-    Msg/RegisterAccount
-    """
-
-    channel_id: str = betterproto.string_field(1)
-    port_id: str = betterproto.string_field(2)
-
-
-@dataclass(eq=False, repr=False)
-class MsgSendTx(betterproto.Message):
-    """MsgSendTx defines the payload for Msg/SendTx"""
-
-    owner: str = betterproto.string_field(1)
-    connection_id: str = betterproto.string_field(2)
-    packet_data: "__v1__.InterchainAccountPacketData" = betterproto.message_field(3)
-    relative_timeout: int = betterproto.uint64_field(4)
-    """
-    Relative timeout timestamp provided will be added to the current block time
-    during transaction execution. The timeout timestamp must be non-zero.
-    """
-
-
-@dataclass(eq=False, repr=False)
-class MsgSendTxResponse(betterproto.Message):
-    """MsgSendTxResponse defines the response for MsgSendTx"""
-
-    sequence: int = betterproto.uint64_field(1)
+    async def send_tx(
+        self,
+        msg_send_tx: "MsgSendTx",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "MsgSendTxResponse":
+        return await self._unary_unary(
+            "/ibc.applications.interchain_accounts.controller.v1.Msg/SendTx",
+            msg_send_tx,
+            MsgSendTxResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
 
 
 class QueryStub(betterproto.ServiceStub):
@@ -153,43 +189,50 @@ class QueryStub(betterproto.ServiceStub):
         )
 
 
-class MsgStub(betterproto.ServiceStub):
-    async def register_interchain_account(
-        self,
-        msg_register_interchain_account: "MsgRegisterInterchainAccount",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "MsgRegisterInterchainAccountResponse":
-        return await self._unary_unary(
-            "/ibc.applications.interchain_accounts.controller.v1.Msg/RegisterInterchainAccount",
-            msg_register_interchain_account,
-            MsgRegisterInterchainAccountResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+class MsgBase(ServiceBase):
 
-    async def send_tx(
+    async def register_interchain_account(
+        self, msg_register_interchain_account: "MsgRegisterInterchainAccount"
+    ) -> "MsgRegisterInterchainAccountResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def send_tx(self, msg_send_tx: "MsgSendTx") -> "MsgSendTxResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def __rpc_register_interchain_account(
         self,
-        msg_send_tx: "MsgSendTx",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
-    ) -> "MsgSendTxResponse":
-        return await self._unary_unary(
-            "/ibc.applications.interchain_accounts.controller.v1.Msg/SendTx",
-            msg_send_tx,
-            MsgSendTxResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+        stream: "grpclib.server.Stream[MsgRegisterInterchainAccount, MsgRegisterInterchainAccountResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.register_interchain_account(request)
+        await stream.send_message(response)
+
+    async def __rpc_send_tx(
+        self, stream: "grpclib.server.Stream[MsgSendTx, MsgSendTxResponse]"
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.send_tx(request)
+        await stream.send_message(response)
+
+    def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
+        return {
+            "/ibc.applications.interchain_accounts.controller.v1.Msg/RegisterInterchainAccount": grpclib.const.Handler(
+                self.__rpc_register_interchain_account,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgRegisterInterchainAccount,
+                MsgRegisterInterchainAccountResponse,
+            ),
+            "/ibc.applications.interchain_accounts.controller.v1.Msg/SendTx": grpclib.const.Handler(
+                self.__rpc_send_tx,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgSendTx,
+                MsgSendTxResponse,
+            ),
+        }
 
 
 class QueryBase(ServiceBase):
+
     async def interchain_account(
         self, query_interchain_account_request: "QueryInterchainAccountRequest"
     ) -> "QueryInterchainAccountResponse":
@@ -228,46 +271,5 @@ class QueryBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryParamsRequest,
                 QueryParamsResponse,
-            ),
-        }
-
-
-class MsgBase(ServiceBase):
-    async def register_interchain_account(
-        self, msg_register_interchain_account: "MsgRegisterInterchainAccount"
-    ) -> "MsgRegisterInterchainAccountResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def send_tx(self, msg_send_tx: "MsgSendTx") -> "MsgSendTxResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def __rpc_register_interchain_account(
-        self,
-        stream: "grpclib.server.Stream[MsgRegisterInterchainAccount, MsgRegisterInterchainAccountResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.register_interchain_account(request)
-        await stream.send_message(response)
-
-    async def __rpc_send_tx(
-        self, stream: "grpclib.server.Stream[MsgSendTx, MsgSendTxResponse]"
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.send_tx(request)
-        await stream.send_message(response)
-
-    def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
-        return {
-            "/ibc.applications.interchain_accounts.controller.v1.Msg/RegisterInterchainAccount": grpclib.const.Handler(
-                self.__rpc_register_interchain_account,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgRegisterInterchainAccount,
-                MsgRegisterInterchainAccountResponse,
-            ),
-            "/ibc.applications.interchain_accounts.controller.v1.Msg/SendTx": grpclib.const.Handler(
-                self.__rpc_send_tx,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgSendTx,
-                MsgSendTxResponse,
             ),
         }

@@ -133,6 +133,57 @@ class ModuleVersion(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class MsgSoftwareUpgrade(betterproto.Message):
+    """
+    MsgSoftwareUpgrade is the Msg/SoftwareUpgrade request type. Since: cosmos-
+    sdk 0.46
+    """
+
+    authority: str = betterproto.string_field(1)
+    """
+    authority is the address that controls the module (defaults to x/gov unless
+    overwritten).
+    """
+
+    plan: "Plan" = betterproto.message_field(2)
+    """plan is the upgrade plan."""
+
+
+@dataclass(eq=False, repr=False)
+class MsgSoftwareUpgradeResponse(betterproto.Message):
+    """
+    MsgSoftwareUpgradeResponse is the Msg/SoftwareUpgrade response type. Since:
+    cosmos-sdk 0.46
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgCancelUpgrade(betterproto.Message):
+    """
+    MsgCancelUpgrade is the Msg/CancelUpgrade request type. Since: cosmos-sdk
+    0.46
+    """
+
+    authority: str = betterproto.string_field(1)
+    """
+    authority is the address that controls the module (defaults to x/gov unless
+    overwritten).
+    """
+
+
+@dataclass(eq=False, repr=False)
+class MsgCancelUpgradeResponse(betterproto.Message):
+    """
+    MsgCancelUpgradeResponse is the Msg/CancelUpgrade response type. Since:
+    cosmos-sdk 0.46
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
 class QueryCurrentPlanRequest(betterproto.Message):
     """
     QueryCurrentPlanRequest is the request type for the Query/CurrentPlan RPC
@@ -260,55 +311,40 @@ class QueryAuthorityResponse(betterproto.Message):
     address: str = betterproto.string_field(1)
 
 
-@dataclass(eq=False, repr=False)
-class MsgSoftwareUpgrade(betterproto.Message):
-    """
-    MsgSoftwareUpgrade is the Msg/SoftwareUpgrade request type. Since: cosmos-
-    sdk 0.46
-    """
+class MsgStub(betterproto.ServiceStub):
+    async def software_upgrade(
+        self,
+        msg_software_upgrade: "MsgSoftwareUpgrade",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "MsgSoftwareUpgradeResponse":
+        return await self._unary_unary(
+            "/cosmos.upgrade.v1beta1.Msg/SoftwareUpgrade",
+            msg_software_upgrade,
+            MsgSoftwareUpgradeResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
 
-    authority: str = betterproto.string_field(1)
-    """
-    authority is the address that controls the module (defaults to x/gov unless
-    overwritten).
-    """
-
-    plan: "Plan" = betterproto.message_field(2)
-    """plan is the upgrade plan."""
-
-
-@dataclass(eq=False, repr=False)
-class MsgSoftwareUpgradeResponse(betterproto.Message):
-    """
-    MsgSoftwareUpgradeResponse is the Msg/SoftwareUpgrade response type. Since:
-    cosmos-sdk 0.46
-    """
-
-    pass
-
-
-@dataclass(eq=False, repr=False)
-class MsgCancelUpgrade(betterproto.Message):
-    """
-    MsgCancelUpgrade is the Msg/CancelUpgrade request type. Since: cosmos-sdk
-    0.46
-    """
-
-    authority: str = betterproto.string_field(1)
-    """
-    authority is the address that controls the module (defaults to x/gov unless
-    overwritten).
-    """
-
-
-@dataclass(eq=False, repr=False)
-class MsgCancelUpgradeResponse(betterproto.Message):
-    """
-    MsgCancelUpgradeResponse is the Msg/CancelUpgrade response type. Since:
-    cosmos-sdk 0.46
-    """
-
-    pass
+    async def cancel_upgrade(
+        self,
+        msg_cancel_upgrade: "MsgCancelUpgrade",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None
+    ) -> "MsgCancelUpgradeResponse":
+        return await self._unary_unary(
+            "/cosmos.upgrade.v1beta1.Msg/CancelUpgrade",
+            msg_cancel_upgrade,
+            MsgCancelUpgradeResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
 
 
 class QueryStub(betterproto.ServiceStub):
@@ -398,43 +434,53 @@ class QueryStub(betterproto.ServiceStub):
         )
 
 
-class MsgStub(betterproto.ServiceStub):
+class MsgBase(ServiceBase):
+
     async def software_upgrade(
-        self,
-        msg_software_upgrade: "MsgSoftwareUpgrade",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
+        self, msg_software_upgrade: "MsgSoftwareUpgrade"
     ) -> "MsgSoftwareUpgradeResponse":
-        return await self._unary_unary(
-            "/cosmos.upgrade.v1beta1.Msg/SoftwareUpgrade",
-            msg_software_upgrade,
-            MsgSoftwareUpgradeResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def cancel_upgrade(
-        self,
-        msg_cancel_upgrade: "MsgCancelUpgrade",
-        *,
-        timeout: Optional[float] = None,
-        deadline: Optional["Deadline"] = None,
-        metadata: Optional["MetadataLike"] = None
+        self, msg_cancel_upgrade: "MsgCancelUpgrade"
     ) -> "MsgCancelUpgradeResponse":
-        return await self._unary_unary(
-            "/cosmos.upgrade.v1beta1.Msg/CancelUpgrade",
-            msg_cancel_upgrade,
-            MsgCancelUpgradeResponse,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata,
-        )
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def __rpc_software_upgrade(
+        self,
+        stream: "grpclib.server.Stream[MsgSoftwareUpgrade, MsgSoftwareUpgradeResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.software_upgrade(request)
+        await stream.send_message(response)
+
+    async def __rpc_cancel_upgrade(
+        self,
+        stream: "grpclib.server.Stream[MsgCancelUpgrade, MsgCancelUpgradeResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.cancel_upgrade(request)
+        await stream.send_message(response)
+
+    def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
+        return {
+            "/cosmos.upgrade.v1beta1.Msg/SoftwareUpgrade": grpclib.const.Handler(
+                self.__rpc_software_upgrade,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgSoftwareUpgrade,
+                MsgSoftwareUpgradeResponse,
+            ),
+            "/cosmos.upgrade.v1beta1.Msg/CancelUpgrade": grpclib.const.Handler(
+                self.__rpc_cancel_upgrade,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgCancelUpgrade,
+                MsgCancelUpgradeResponse,
+            ),
+        }
 
 
 class QueryBase(ServiceBase):
+
     async def current_plan(
         self, query_current_plan_request: "QueryCurrentPlanRequest"
     ) -> "QueryCurrentPlanResponse":
@@ -532,49 +578,5 @@ class QueryBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryAuthorityRequest,
                 QueryAuthorityResponse,
-            ),
-        }
-
-
-class MsgBase(ServiceBase):
-    async def software_upgrade(
-        self, msg_software_upgrade: "MsgSoftwareUpgrade"
-    ) -> "MsgSoftwareUpgradeResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def cancel_upgrade(
-        self, msg_cancel_upgrade: "MsgCancelUpgrade"
-    ) -> "MsgCancelUpgradeResponse":
-        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def __rpc_software_upgrade(
-        self,
-        stream: "grpclib.server.Stream[MsgSoftwareUpgrade, MsgSoftwareUpgradeResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.software_upgrade(request)
-        await stream.send_message(response)
-
-    async def __rpc_cancel_upgrade(
-        self,
-        stream: "grpclib.server.Stream[MsgCancelUpgrade, MsgCancelUpgradeResponse]",
-    ) -> None:
-        request = await stream.recv_message()
-        response = await self.cancel_upgrade(request)
-        await stream.send_message(response)
-
-    def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
-        return {
-            "/cosmos.upgrade.v1beta1.Msg/SoftwareUpgrade": grpclib.const.Handler(
-                self.__rpc_software_upgrade,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgSoftwareUpgrade,
-                MsgSoftwareUpgradeResponse,
-            ),
-            "/cosmos.upgrade.v1beta1.Msg/CancelUpgrade": grpclib.const.Handler(
-                self.__rpc_cancel_upgrade,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                MsgCancelUpgrade,
-                MsgCancelUpgradeResponse,
             ),
         }

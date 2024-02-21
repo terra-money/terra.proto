@@ -122,64 +122,6 @@ class MsgUpdateParamsResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the slashing module's genesis state."""
-
-    params: "Params" = betterproto.message_field(1)
-    """params defines all the parameters of the module."""
-
-    signing_infos: List["SigningInfo"] = betterproto.message_field(2)
-    """
-    signing_infos represents a map between validator addresses and their
-    signing infos.
-    """
-
-    missed_blocks: List["ValidatorMissedBlocks"] = betterproto.message_field(3)
-    """
-    missed_blocks represents a map between validator addresses and their missed
-    blocks.
-    """
-
-
-@dataclass(eq=False, repr=False)
-class SigningInfo(betterproto.Message):
-    """SigningInfo stores validator signing info of corresponding address."""
-
-    address: str = betterproto.string_field(1)
-    """address is the validator address."""
-
-    validator_signing_info: "ValidatorSigningInfo" = betterproto.message_field(2)
-    """
-    validator_signing_info represents the signing info of this validator.
-    """
-
-
-@dataclass(eq=False, repr=False)
-class ValidatorMissedBlocks(betterproto.Message):
-    """
-    ValidatorMissedBlocks contains array of missed blocks of corresponding
-    address.
-    """
-
-    address: str = betterproto.string_field(1)
-    """address is the validator address."""
-
-    missed_blocks: List["MissedBlock"] = betterproto.message_field(2)
-    """missed_blocks is an array of missed blocks by the validator."""
-
-
-@dataclass(eq=False, repr=False)
-class MissedBlock(betterproto.Message):
-    """MissedBlock contains height and missed status as boolean."""
-
-    index: int = betterproto.int64_field(1)
-    """index is the height at which the block was missed."""
-
-    missed: bool = betterproto.bool_field(2)
-    """missed is the missed status."""
-
-
-@dataclass(eq=False, repr=False)
 class QueryParamsRequest(betterproto.Message):
     """
     QueryParamsRequest is the request type for the Query/Params RPC method
@@ -240,6 +182,64 @@ class QuerySigningInfosResponse(betterproto.Message):
     """info is the signing info of all validators"""
 
     pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the slashing module's genesis state."""
+
+    params: "Params" = betterproto.message_field(1)
+    """params defines all the parameters of the module."""
+
+    signing_infos: List["SigningInfo"] = betterproto.message_field(2)
+    """
+    signing_infos represents a map between validator addresses and their
+    signing infos.
+    """
+
+    missed_blocks: List["ValidatorMissedBlocks"] = betterproto.message_field(3)
+    """
+    missed_blocks represents a map between validator addresses and their missed
+    blocks.
+    """
+
+
+@dataclass(eq=False, repr=False)
+class SigningInfo(betterproto.Message):
+    """SigningInfo stores validator signing info of corresponding address."""
+
+    address: str = betterproto.string_field(1)
+    """address is the validator address."""
+
+    validator_signing_info: "ValidatorSigningInfo" = betterproto.message_field(2)
+    """
+    validator_signing_info represents the signing info of this validator.
+    """
+
+
+@dataclass(eq=False, repr=False)
+class ValidatorMissedBlocks(betterproto.Message):
+    """
+    ValidatorMissedBlocks contains array of missed blocks of corresponding
+    address.
+    """
+
+    address: str = betterproto.string_field(1)
+    """address is the validator address."""
+
+    missed_blocks: List["MissedBlock"] = betterproto.message_field(2)
+    """missed_blocks is an array of missed blocks by the validator."""
+
+
+@dataclass(eq=False, repr=False)
+class MissedBlock(betterproto.Message):
+    """MissedBlock contains height and missed status as boolean."""
+
+    index: int = betterproto.int64_field(1)
+    """index is the height at which the block was missed."""
+
+    missed: bool = betterproto.bool_field(2)
+    """missed is the missed status."""
 
 
 class MsgStub(betterproto.ServiceStub):
@@ -332,6 +332,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class MsgBase(ServiceBase):
+
     async def unjail(self, msg_unjail: "MsgUnjail") -> "MsgUnjailResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
@@ -372,6 +373,7 @@ class MsgBase(ServiceBase):
 
 
 class QueryBase(ServiceBase):
+
     async def params(
         self, query_params_request: "QueryParamsRequest"
     ) -> "QueryParamsResponse":

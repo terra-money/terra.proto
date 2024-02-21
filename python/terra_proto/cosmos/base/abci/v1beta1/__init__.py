@@ -144,9 +144,9 @@ class Result(betterproto.Message):
     or handler execution.
     """
 
-    msg_responses: List[
-        "betterproto_lib_google_protobuf.Any"
-    ] = betterproto.message_field(4)
+    msg_responses: List["betterproto_lib_google_protobuf.Any"] = (
+        betterproto.message_field(4)
+    )
     """
     msg_responses contains the Msg handler responses type packed in Anys.
     Since: cosmos-sdk 0.46
@@ -194,9 +194,9 @@ class TxMsgData(betterproto.Message):
     data: List["MsgData"] = betterproto.message_field(1)
     """data field is deprecated and not populated."""
 
-    msg_responses: List[
-        "betterproto_lib_google_protobuf.Any"
-    ] = betterproto.message_field(2)
+    msg_responses: List["betterproto_lib_google_protobuf.Any"] = (
+        betterproto.message_field(2)
+    )
     """
     msg_responses contains the Msg handler responses packed into Anys. Since:
     cosmos-sdk 0.46

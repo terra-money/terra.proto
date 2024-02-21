@@ -34,9 +34,9 @@ class FileDescriptorsRequest(betterproto.Message):
 class FileDescriptorsResponse(betterproto.Message):
     """FileDescriptorsResponse is the Query/FileDescriptors response type."""
 
-    files: List[
-        "betterproto_lib_google_protobuf.FileDescriptorProto"
-    ] = betterproto.message_field(1)
+    files: List["betterproto_lib_google_protobuf.FileDescriptorProto"] = (
+        betterproto.message_field(1)
+    )
     """files is the file descriptors."""
 
 
@@ -60,6 +60,7 @@ class ReflectionServiceStub(betterproto.ServiceStub):
 
 
 class ReflectionServiceBase(ServiceBase):
+
     async def file_descriptors(
         self, file_descriptors_request: "FileDescriptorsRequest"
     ) -> "FileDescriptorsResponse":

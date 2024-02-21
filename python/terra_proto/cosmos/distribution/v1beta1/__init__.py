@@ -70,9 +70,9 @@ class ValidatorHistoricalRewards(betterproto.Message):
     zeroeth period, set on initialization
     """
 
-    cumulative_reward_ratio: List[
-        "__base_v1_beta1__.DecCoin"
-    ] = betterproto.message_field(1)
+    cumulative_reward_ratio: List["__base_v1_beta1__.DecCoin"] = (
+        betterproto.message_field(1)
+    )
     reference_count: int = betterproto.uint32_field(2)
 
 
@@ -718,40 +718,40 @@ class GenesisState(betterproto.Message):
     previous_proposer: str = betterproto.string_field(4)
     """fee_pool defines the previous proposer at genesis."""
 
-    outstanding_rewards: List[
-        "ValidatorOutstandingRewardsRecord"
-    ] = betterproto.message_field(5)
+    outstanding_rewards: List["ValidatorOutstandingRewardsRecord"] = (
+        betterproto.message_field(5)
+    )
     """
     fee_pool defines the outstanding rewards of all validators at genesis.
     """
 
-    validator_accumulated_commissions: List[
-        "ValidatorAccumulatedCommissionRecord"
-    ] = betterproto.message_field(6)
+    validator_accumulated_commissions: List["ValidatorAccumulatedCommissionRecord"] = (
+        betterproto.message_field(6)
+    )
     """
     fee_pool defines the accumulated commissions of all validators at genesis.
     """
 
-    validator_historical_rewards: List[
-        "ValidatorHistoricalRewardsRecord"
-    ] = betterproto.message_field(7)
+    validator_historical_rewards: List["ValidatorHistoricalRewardsRecord"] = (
+        betterproto.message_field(7)
+    )
     """
     fee_pool defines the historical rewards of all validators at genesis.
     """
 
-    validator_current_rewards: List[
-        "ValidatorCurrentRewardsRecord"
-    ] = betterproto.message_field(8)
+    validator_current_rewards: List["ValidatorCurrentRewardsRecord"] = (
+        betterproto.message_field(8)
+    )
     """fee_pool defines the current rewards of all validators at genesis."""
 
-    delegator_starting_infos: List[
-        "DelegatorStartingInfoRecord"
-    ] = betterproto.message_field(9)
+    delegator_starting_infos: List["DelegatorStartingInfoRecord"] = (
+        betterproto.message_field(9)
+    )
     """fee_pool defines the delegator starting infos at genesis."""
 
-    validator_slash_events: List[
-        "ValidatorSlashEventRecord"
-    ] = betterproto.message_field(10)
+    validator_slash_events: List["ValidatorSlashEventRecord"] = (
+        betterproto.message_field(10)
+    )
     """fee_pool defines the validator slash events at genesis."""
 
 
@@ -1032,6 +1032,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class MsgBase(ServiceBase):
+
     async def set_withdraw_address(
         self, msg_set_withdraw_address: "MsgSetWithdrawAddress"
     ) -> "MsgSetWithdrawAddressResponse":
@@ -1151,6 +1152,7 @@ class MsgBase(ServiceBase):
 
 
 class QueryBase(ServiceBase):
+
     async def params(
         self, query_params_request: "QueryParamsRequest"
     ) -> "QueryParamsResponse":

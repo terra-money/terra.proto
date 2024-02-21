@@ -138,41 +138,6 @@ class MsgRevokeResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the authz module's genesis state."""
-
-    authorization: List["GrantAuthorization"] = betterproto.message_field(1)
-
-
-@dataclass(eq=False, repr=False)
-class EventGrant(betterproto.Message):
-    """EventGrant is emitted on Msg/Grant"""
-
-    msg_type_url: str = betterproto.string_field(2)
-    """Msg type URL for which an autorization is granted"""
-
-    granter: str = betterproto.string_field(3)
-    """Granter account address"""
-
-    grantee: str = betterproto.string_field(4)
-    """Grantee account address"""
-
-
-@dataclass(eq=False, repr=False)
-class EventRevoke(betterproto.Message):
-    """EventRevoke is emitted on Msg/Revoke"""
-
-    msg_type_url: str = betterproto.string_field(2)
-    """Msg type URL for which an autorization is revoked"""
-
-    granter: str = betterproto.string_field(3)
-    """Granter account address"""
-
-    grantee: str = betterproto.string_field(4)
-    """Grantee account address"""
-
-
-@dataclass(eq=False, repr=False)
 class QueryGrantsRequest(betterproto.Message):
     """
     QueryGrantsRequest is the request type for the Query/Grants RPC method.
@@ -254,6 +219,41 @@ class QueryGranteeGrantsResponse(betterproto.Message):
 
     pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
     """pagination defines an pagination for the response."""
+
+
+@dataclass(eq=False, repr=False)
+class EventGrant(betterproto.Message):
+    """EventGrant is emitted on Msg/Grant"""
+
+    msg_type_url: str = betterproto.string_field(2)
+    """Msg type URL for which an autorization is granted"""
+
+    granter: str = betterproto.string_field(3)
+    """Granter account address"""
+
+    grantee: str = betterproto.string_field(4)
+    """Grantee account address"""
+
+
+@dataclass(eq=False, repr=False)
+class EventRevoke(betterproto.Message):
+    """EventRevoke is emitted on Msg/Revoke"""
+
+    msg_type_url: str = betterproto.string_field(2)
+    """Msg type URL for which an autorization is revoked"""
+
+    granter: str = betterproto.string_field(3)
+    """Granter account address"""
+
+    grantee: str = betterproto.string_field(4)
+    """Grantee account address"""
+
+
+@dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the authz module's genesis state."""
+
+    authorization: List["GrantAuthorization"] = betterproto.message_field(1)
 
 
 class MsgStub(betterproto.ServiceStub):
@@ -363,6 +363,7 @@ class QueryStub(betterproto.ServiceStub):
 
 
 class MsgBase(ServiceBase):
+
     async def grant(self, msg_grant: "MsgGrant") -> "MsgGrantResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
@@ -417,6 +418,7 @@ class MsgBase(ServiceBase):
 
 
 class QueryBase(ServiceBase):
+
     async def grants(
         self, query_grants_request: "QueryGrantsRequest"
     ) -> "QueryGrantsResponse":
