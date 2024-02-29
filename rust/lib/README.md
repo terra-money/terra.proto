@@ -4,9 +4,9 @@ Clients used to interact with Terra Blockchain from Rust. It can be used directl
 
 ## Usage in CosmWasm
 
-Add terra-proto-rs into the Cargo.toml from your smart contract with default-features to false that way you avoid importing libraries that will make your smart contract fail:
+Integrate terra-proto-rs into the Cargo.toml from your smart contract with default-features to false that way you avoid importing libraries that will make your smart contract fail:
 ```Cargo.toml
-terra-proto-rs = {version = "4.0.0", default-features = false}
+terra-proto-rs = {version = "5.0.0", default-features = false}
 ```
 ## Available models for CosmWasm
 

@@ -13,7 +13,7 @@ branch = release/v0.3.x
 [submodule "terra"]
 path = terra
 url = https://github.com/terra-money/core
-branch = feat/v2.9/ibc-go
+branch = release/v2.10
 [submodule "wasmd"]
 path = wasmd
 url = https://github.com/cosmwasm/wasmd

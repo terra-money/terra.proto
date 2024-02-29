@@ -1,3 +1,12 @@
+/// GenesisState defines the crisis module's genesis state.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenesisState {
+    /// constant_fee is the fee used to verify the invariant in the crisis
+    /// module.
+    #[prost(message, optional, tag = "3")]
+    pub constant_fee: ::core::option::Option<super::super::base::v1beta1::Coin>,
+}
 /// MsgVerifyInvariant represents a message to verify a particular invariance.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -80,13 +89,12 @@ pub mod msg_client {
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
-            T:
-                tonic::codegen::Service<
-                    http::Request<tonic::body::BoxBody>,
-                    Response = http::Response<
-                        <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                    >,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
+            >,
             <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
                 Into<StdError> + Send + Sync,
         {
@@ -317,13 +325,4 @@ pub mod msg_server {
     impl<T: Msg> tonic::server::NamedService for MsgServer<T> {
         const NAME: &'static str = "cosmos.crisis.v1beta1.Msg";
     }
-}
-/// GenesisState defines the crisis module's genesis state.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenesisState {
-    /// constant_fee is the fee used to verify the invariant in the crisis
-    /// module.
-    #[prost(message, optional, tag = "3")]
-    pub constant_fee: ::core::option::Option<super::super::base::v1beta1::Coin>,
 }
