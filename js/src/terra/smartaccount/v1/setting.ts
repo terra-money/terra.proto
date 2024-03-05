@@ -17,7 +17,7 @@ export interface Setting {
   /** List of contract addresses to perform post-txn logic */
   postTransaction: string[];
   /** Fallback to default SigVerify if custom authorization fails */
-  Fallback: boolean;
+  fallback: boolean;
 }
 
 export interface AuthorizationMsg {
@@ -25,7 +25,7 @@ export interface AuthorizationMsg {
   initMsg: string;
 }
 
-const baseSetting: object = { owner: "", preTransaction: "", postTransaction: "", Fallback: false };
+const baseSetting: object = { owner: "", preTransaction: "", postTransaction: "", fallback: false };
 
 export const Setting = {
   encode(message: Setting, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
@@ -41,8 +41,8 @@ export const Setting = {
     for (const v of message.postTransaction) {
       writer.uint32(34).string(v!);
     }
-    if (message.Fallback === true) {
-      writer.uint32(40).bool(message.Fallback);
+    if (message.fallback === true) {
+      writer.uint32(40).bool(message.fallback);
     }
     return writer;
   },
@@ -70,7 +70,7 @@ export const Setting = {
           message.postTransaction.push(reader.string());
           break;
         case 5:
-          message.Fallback = reader.bool();
+          message.fallback = reader.bool();
           break;
         default:
           reader.skipType(tag & 7);
@@ -105,10 +105,10 @@ export const Setting = {
         message.postTransaction.push(String(e));
       }
     }
-    if (object.Fallback !== undefined && object.Fallback !== null) {
-      message.Fallback = Boolean(object.Fallback);
+    if (object.fallback !== undefined && object.fallback !== null) {
+      message.fallback = Boolean(object.fallback);
     } else {
-      message.Fallback = false;
+      message.fallback = false;
     }
     return message;
   },
@@ -131,7 +131,7 @@ export const Setting = {
     } else {
       obj.postTransaction = [];
     }
-    message.Fallback !== undefined && (obj.Fallback = message.Fallback);
+    message.fallback !== undefined && (obj.fallback = message.fallback);
     return obj;
   },
 
@@ -160,10 +160,10 @@ export const Setting = {
         message.postTransaction.push(e);
       }
     }
-    if (object.Fallback !== undefined && object.Fallback !== null) {
-      message.Fallback = object.Fallback;
+    if (object.fallback !== undefined && object.fallback !== null) {
+      message.fallback = object.fallback;
     } else {
-      message.Fallback = false;
+      message.fallback = false;
     }
     return message;
   },
