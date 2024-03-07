@@ -1,6 +1,7 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal";
+import { Initialization } from "../../../terra/smartaccount/v1/wasm";
 
 export const protobufPackage = "terra.smartaccount.v1";
 
@@ -22,7 +23,7 @@ export interface Setting {
 
 export interface AuthorizationMsg {
   contractAddress: string;
-  initMsg: string;
+  initMsg?: Initialization;
 }
 
 const baseSetting: object = { owner: "", preTransaction: "", postTransaction: "", fallback: false };
@@ -169,15 +170,15 @@ export const Setting = {
   },
 };
 
-const baseAuthorizationMsg: object = { contractAddress: "", initMsg: "" };
+const baseAuthorizationMsg: object = { contractAddress: "" };
 
 export const AuthorizationMsg = {
   encode(message: AuthorizationMsg, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.contractAddress !== "") {
       writer.uint32(10).string(message.contractAddress);
     }
-    if (message.initMsg !== "") {
-      writer.uint32(18).string(message.initMsg);
+    if (message.initMsg !== undefined) {
+      Initialization.encode(message.initMsg, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -193,7 +194,7 @@ export const AuthorizationMsg = {
           message.contractAddress = reader.string();
           break;
         case 2:
-          message.initMsg = reader.string();
+          message.initMsg = Initialization.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -211,9 +212,9 @@ export const AuthorizationMsg = {
       message.contractAddress = "";
     }
     if (object.initMsg !== undefined && object.initMsg !== null) {
-      message.initMsg = String(object.initMsg);
+      message.initMsg = Initialization.fromJSON(object.initMsg);
     } else {
-      message.initMsg = "";
+      message.initMsg = undefined;
     }
     return message;
   },
@@ -221,7 +222,8 @@ export const AuthorizationMsg = {
   toJSON(message: AuthorizationMsg): unknown {
     const obj: any = {};
     message.contractAddress !== undefined && (obj.contractAddress = message.contractAddress);
-    message.initMsg !== undefined && (obj.initMsg = message.initMsg);
+    message.initMsg !== undefined &&
+      (obj.initMsg = message.initMsg ? Initialization.toJSON(message.initMsg) : undefined);
     return obj;
   },
 
@@ -233,9 +235,9 @@ export const AuthorizationMsg = {
       message.contractAddress = "";
     }
     if (object.initMsg !== undefined && object.initMsg !== null) {
-      message.initMsg = object.initMsg;
+      message.initMsg = Initialization.fromPartial(object.initMsg);
     } else {
-      message.initMsg = "";
+      message.initMsg = undefined;
     }
     return message;
   },
