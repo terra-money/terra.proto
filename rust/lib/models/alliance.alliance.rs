@@ -351,6 +351,9 @@ pub struct UnbondingDelegation {
     /// amount defines the tokens to receive at completion.
     #[prost(string, tag = "3")]
     pub amount: ::prost::alloc::string::String,
+    /// alliance denom of the unbonding delegation
+    #[prost(string, tag = "4")]
+    pub denom: ::prost::alloc::string::String,
 }
 /// Params
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -541,6 +544,21 @@ pub struct QueryAllianceValidatorsResponse {
 /// AllianceDelegation
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryAllianceUnbondingsByDelegatorRequest {
+    #[prost(string, tag = "1")]
+    pub delegator_addr: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub pagination: ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageRequest>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryAllianceUnbondingsByDelegatorResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub unbondings: ::prost::alloc::vec::Vec<UnbondingDelegation>,
+}
+/// AllianceDelegation
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAllianceUnbondingsByDenomAndDelegatorRequest {
     #[prost(string, tag = "1")]
     pub denom: ::prost::alloc::string::String,
@@ -593,6 +611,23 @@ pub struct QueryAllianceRedelegationsRequest {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAllianceRedelegationsResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub redelegations: ::prost::alloc::vec::Vec<RedelegationEntry>,
+    #[prost(message, optional, tag = "2")]
+    pub pagination:
+        ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageResponse>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryAllianceRedelegationsByDelegatorRequest {
+    #[prost(string, tag = "1")]
+    pub delegator_addr: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub pagination: ::core::option::Option<super::super::cosmos::base::query::v1beta1::PageRequest>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryAllianceRedelegationsByDelegatorResponse {
     #[prost(message, repeated, tag = "1")]
     pub redelegations: ::prost::alloc::vec::Vec<RedelegationEntry>,
     #[prost(message, optional, tag = "2")]
@@ -671,6 +706,8 @@ pub mod query_client {
             self.inner = self.inner.accept_compressed(encoding);
             self
         }
+        /// Query Alliance module parameters more info about the params
+        /// https://docs.alliance.money/tech/parameters
         pub async fn params(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryParamsRequest>,
@@ -685,7 +722,7 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static("/alliance.alliance.Query/Params");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        /// Query paginated alliances
+        /// Query all alliances with pagination
         pub async fn alliances(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAlliancesRequest>,
@@ -700,24 +737,7 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static("/alliance.alliance.Query/Alliances");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        /// Query a specific alliance by ibc hash
-        /// @deprecated: this endpoint will be replaced for by the encoded version
-        /// of the denom e.g.: GET:/terra/alliances/ibc%2Falliance
-        pub async fn ibc_alliance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryIbcAllianceRequest>,
-        ) -> Result<tonic::Response<super::QueryAllianceResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/alliance.alliance.Query/IBCAlliance");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// Query all paginated alliance delegations
+        /// Query all alliances delegations with pagination
         pub async fn all_alliances_delegations(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAllAlliancesDelegationsRequest>,
@@ -805,7 +825,7 @@ pub mod query_client {
             );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        /// Query a delegation to an alliance by delegator addr, validator_addr and denom
+        /// Query a specific delegation by delegator addr, validator addr and denom
         pub async fn alliance_delegation(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAllianceDelegationRequest>,
@@ -822,27 +842,7 @@ pub mod query_client {
                 http::uri::PathAndQuery::from_static("/alliance.alliance.Query/AllianceDelegation");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        /// Query a delegation to an alliance by delegator addr, validator_addr and denom
-        /// @deprecated: this endpoint will be replaced for by the encoded version
-        /// of the denom e.g.: GET:/terra/alliances/terradr1231/terravaloper41234/ibc%2Falliance
-        pub async fn ibc_alliance_delegation(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryIbcAllianceDelegationRequest>,
-        ) -> Result<tonic::Response<super::QueryAllianceDelegationResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/alliance.alliance.Query/IBCAllianceDelegation",
-            );
-            self.inner.unary(request.into_request(), path, codec).await
-        }
-        /// Query for rewards by delegator addr, validator_addr and denom
+        /// Query a specific delegation rewards by delegator addr, validator addr and denom
         pub async fn alliance_delegation_rewards(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAllianceDelegationRewardsRequest>,
@@ -880,7 +880,25 @@ pub mod query_client {
             );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        /// Query for rewards by delegator addr, validator_addr and denom
+        /// Query unbondings by delegator address
+        pub async fn alliance_unbondings_by_delegator(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryAllianceUnbondingsByDelegatorRequest>,
+        ) -> Result<tonic::Response<super::QueryAllianceUnbondingsByDelegatorResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/alliance.alliance.Query/AllianceUnbondingsByDelegator",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// Query unbondings by denom, delegator addr
         pub async fn alliance_unbondings_by_denom_and_delegator(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAllianceUnbondingsByDenomAndDelegatorRequest>,
@@ -900,7 +918,7 @@ pub mod query_client {
             );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        /// Query for rewards by delegator addr, validator_addr and denom
+        /// Query unbondings by denom, delegator addr, validator addr
         pub async fn alliance_unbondings(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAllianceUnbondingsRequest>,
@@ -917,7 +935,27 @@ pub mod query_client {
                 http::uri::PathAndQuery::from_static("/alliance.alliance.Query/AllianceUnbondings");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        /// Query redelegations by denom and delegator address
+        /// Query paginated redelegations delegator addr
+        pub async fn alliance_redelegations_by_delegator(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryAllianceRedelegationsByDelegatorRequest>,
+        ) -> Result<
+            tonic::Response<super::QueryAllianceRedelegationsByDelegatorResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/alliance.alliance.Query/AllianceRedelegationsByDelegator",
+            );
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// Query paginated redelegations by denom and delegator addr
         pub async fn alliance_redelegations(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAllianceRedelegationsRequest>,
@@ -961,23 +999,18 @@ pub mod query_server {
     /// Generated trait containing gRPC methods that should be implemented for use with QueryServer.
     #[async_trait]
     pub trait Query: Send + Sync + 'static {
+        /// Query Alliance module parameters more info about the params
+        /// https://docs.alliance.money/tech/parameters
         async fn params(
             &self,
             request: tonic::Request<super::QueryParamsRequest>,
         ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>;
-        /// Query paginated alliances
+        /// Query all alliances with pagination
         async fn alliances(
             &self,
             request: tonic::Request<super::QueryAlliancesRequest>,
         ) -> Result<tonic::Response<super::QueryAlliancesResponse>, tonic::Status>;
-        /// Query a specific alliance by ibc hash
-        /// @deprecated: this endpoint will be replaced for by the encoded version
-        /// of the denom e.g.: GET:/terra/alliances/ibc%2Falliance
-        async fn ibc_alliance(
-            &self,
-            request: tonic::Request<super::QueryIbcAllianceRequest>,
-        ) -> Result<tonic::Response<super::QueryAllianceResponse>, tonic::Status>;
-        /// Query all paginated alliance delegations
+        /// Query all alliances delegations with pagination
         async fn all_alliances_delegations(
             &self,
             request: tonic::Request<super::QueryAllAlliancesDelegationsRequest>,
@@ -1002,19 +1035,12 @@ pub mod query_server {
             &self,
             request: tonic::Request<super::QueryAlliancesDelegationByValidatorRequest>,
         ) -> Result<tonic::Response<super::QueryAlliancesDelegationsResponse>, tonic::Status>;
-        /// Query a delegation to an alliance by delegator addr, validator_addr and denom
+        /// Query a specific delegation by delegator addr, validator addr and denom
         async fn alliance_delegation(
             &self,
             request: tonic::Request<super::QueryAllianceDelegationRequest>,
         ) -> Result<tonic::Response<super::QueryAllianceDelegationResponse>, tonic::Status>;
-        /// Query a delegation to an alliance by delegator addr, validator_addr and denom
-        /// @deprecated: this endpoint will be replaced for by the encoded version
-        /// of the denom e.g.: GET:/terra/alliances/terradr1231/terravaloper41234/ibc%2Falliance
-        async fn ibc_alliance_delegation(
-            &self,
-            request: tonic::Request<super::QueryIbcAllianceDelegationRequest>,
-        ) -> Result<tonic::Response<super::QueryAllianceDelegationResponse>, tonic::Status>;
-        /// Query for rewards by delegator addr, validator_addr and denom
+        /// Query a specific delegation rewards by delegator addr, validator addr and denom
         async fn alliance_delegation_rewards(
             &self,
             request: tonic::Request<super::QueryAllianceDelegationRewardsRequest>,
@@ -1026,7 +1052,12 @@ pub mod query_server {
             &self,
             request: tonic::Request<super::QueryIbcAllianceDelegationRewardsRequest>,
         ) -> Result<tonic::Response<super::QueryAllianceDelegationRewardsResponse>, tonic::Status>;
-        /// Query for rewards by delegator addr, validator_addr and denom
+        /// Query unbondings by delegator address
+        async fn alliance_unbondings_by_delegator(
+            &self,
+            request: tonic::Request<super::QueryAllianceUnbondingsByDelegatorRequest>,
+        ) -> Result<tonic::Response<super::QueryAllianceUnbondingsByDelegatorResponse>, tonic::Status>;
+        /// Query unbondings by denom, delegator addr
         async fn alliance_unbondings_by_denom_and_delegator(
             &self,
             request: tonic::Request<super::QueryAllianceUnbondingsByDenomAndDelegatorRequest>,
@@ -1034,12 +1065,20 @@ pub mod query_server {
             tonic::Response<super::QueryAllianceUnbondingsByDenomAndDelegatorResponse>,
             tonic::Status,
         >;
-        /// Query for rewards by delegator addr, validator_addr and denom
+        /// Query unbondings by denom, delegator addr, validator addr
         async fn alliance_unbondings(
             &self,
             request: tonic::Request<super::QueryAllianceUnbondingsRequest>,
         ) -> Result<tonic::Response<super::QueryAllianceUnbondingsResponse>, tonic::Status>;
-        /// Query redelegations by denom and delegator address
+        /// Query paginated redelegations delegator addr
+        async fn alliance_redelegations_by_delegator(
+            &self,
+            request: tonic::Request<super::QueryAllianceRedelegationsByDelegatorRequest>,
+        ) -> Result<
+            tonic::Response<super::QueryAllianceRedelegationsByDelegatorResponse>,
+            tonic::Status,
+        >;
+        /// Query paginated redelegations by denom and delegator addr
         async fn alliance_redelegations(
             &self,
             request: tonic::Request<super::QueryAllianceRedelegationsRequest>,
@@ -1155,37 +1194,6 @@ pub mod query_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = AlliancesSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/alliance.alliance.Query/IBCAlliance" => {
-                    #[allow(non_camel_case_types)]
-                    struct IBCAllianceSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query> tonic::server::UnaryService<super::QueryIbcAllianceRequest> for IBCAllianceSvc<T> {
-                        type Response = super::QueryAllianceResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryIbcAllianceRequest>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut = async move { (*inner).ibc_alliance(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = IBCAllianceSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,
@@ -1406,41 +1414,6 @@ pub mod query_server {
                     };
                     Box::pin(fut)
                 }
-                "/alliance.alliance.Query/IBCAllianceDelegation" => {
-                    #[allow(non_camel_case_types)]
-                    struct IBCAllianceDelegationSvc<T: Query>(pub Arc<T>);
-                    impl<T: Query>
-                        tonic::server::UnaryService<super::QueryIbcAllianceDelegationRequest>
-                        for IBCAllianceDelegationSvc<T>
-                    {
-                        type Response = super::QueryAllianceDelegationResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::QueryIbcAllianceDelegationRequest>,
-                        ) -> Self::Future {
-                            let inner = self.0.clone();
-                            let fut =
-                                async move { (*inner).ibc_alliance_delegation(request).await };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = IBCAllianceDelegationSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
-                            accept_compression_encodings,
-                            send_compression_encodings,
-                        );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
                 "/alliance.alliance.Query/AllianceDelegationRewards" => {
                     #[allow(non_camel_case_types)]
                     struct AllianceDelegationRewardsSvc<T: Query>(pub Arc<T>);
@@ -1504,6 +1477,45 @@ pub mod query_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = IBCAllianceDelegationRewardsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/alliance.alliance.Query/AllianceUnbondingsByDelegator" => {
+                    #[allow(non_camel_case_types)]
+                    struct AllianceUnbondingsByDelegatorSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query>
+                        tonic::server::UnaryService<
+                            super::QueryAllianceUnbondingsByDelegatorRequest,
+                        > for AllianceUnbondingsByDelegatorSvc<T>
+                    {
+                        type Response = super::QueryAllianceUnbondingsByDelegatorResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<
+                                super::QueryAllianceUnbondingsByDelegatorRequest,
+                            >,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move {
+                                (*inner).alliance_unbondings_by_delegator(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = AllianceUnbondingsByDelegatorSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,
@@ -1579,6 +1591,45 @@ pub mod query_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = AllianceUnbondingsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/alliance.alliance.Query/AllianceRedelegationsByDelegator" => {
+                    #[allow(non_camel_case_types)]
+                    struct AllianceRedelegationsByDelegatorSvc<T: Query>(pub Arc<T>);
+                    impl<T: Query>
+                        tonic::server::UnaryService<
+                            super::QueryAllianceRedelegationsByDelegatorRequest,
+                        > for AllianceRedelegationsByDelegatorSvc<T>
+                    {
+                        type Response = super::QueryAllianceRedelegationsByDelegatorResponse;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<
+                                super::QueryAllianceRedelegationsByDelegatorRequest,
+                            >,
+                        ) -> Self::Future {
+                            let inner = self.0.clone();
+                            let fut = async move {
+                                (*inner).alliance_redelegations_by_delegator(request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = AllianceRedelegationsByDelegatorSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
                             accept_compression_encodings,

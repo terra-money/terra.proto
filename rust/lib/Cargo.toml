@@ -1,7 +1,7 @@
 [package]
 name = "terra-proto-rs"
 description = "Clients used to interact with Terra Blockchain v2.10 from Rust. It can be used directly in CosmWasm smart contracts or from external blockchain API."
-version = "5.0.0"
+version = "5.2.0"
 authors = ["Terra Money Core <core@terra.money>"]
 edition = "2021"
 rust-version = "1.65"
