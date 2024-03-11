@@ -5,23 +5,19 @@ import _m0 from "protobufjs/minimal";
 export const protobufPackage = "terra.smartaccount.v1";
 
 export interface Initialization {
-  senders: string[];
   account: string;
   msg: Uint8Array;
 }
 
-const baseInitialization: object = { senders: "", account: "" };
+const baseInitialization: object = { account: "" };
 
 export const Initialization = {
   encode(message: Initialization, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.senders) {
-      writer.uint32(10).string(v!);
-    }
     if (message.account !== "") {
-      writer.uint32(18).string(message.account);
+      writer.uint32(10).string(message.account);
     }
     if (message.msg.length !== 0) {
-      writer.uint32(26).bytes(message.msg);
+      writer.uint32(18).bytes(message.msg);
     }
     return writer;
   },
@@ -30,18 +26,14 @@ export const Initialization = {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseInitialization } as Initialization;
-    message.senders = [];
     message.msg = new Uint8Array();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.senders.push(reader.string());
-          break;
-        case 2:
           message.account = reader.string();
           break;
-        case 3:
+        case 2:
           message.msg = reader.bytes();
           break;
         default:
@@ -54,13 +46,7 @@ export const Initialization = {
 
   fromJSON(object: any): Initialization {
     const message = { ...baseInitialization } as Initialization;
-    message.senders = [];
     message.msg = new Uint8Array();
-    if (object.senders !== undefined && object.senders !== null) {
-      for (const e of object.senders) {
-        message.senders.push(String(e));
-      }
-    }
     if (object.account !== undefined && object.account !== null) {
       message.account = String(object.account);
     } else {
@@ -74,11 +60,6 @@ export const Initialization = {
 
   toJSON(message: Initialization): unknown {
     const obj: any = {};
-    if (message.senders) {
-      obj.senders = message.senders.map((e) => e);
-    } else {
-      obj.senders = [];
-    }
     message.account !== undefined && (obj.account = message.account);
     message.msg !== undefined &&
       (obj.msg = base64FromBytes(message.msg !== undefined ? message.msg : new Uint8Array()));
@@ -87,12 +68,6 @@ export const Initialization = {
 
   fromPartial(object: DeepPartial<Initialization>): Initialization {
     const message = { ...baseInitialization } as Initialization;
-    message.senders = [];
-    if (object.senders !== undefined && object.senders !== null) {
-      for (const e of object.senders) {
-        message.senders.push(e);
-      }
-    }
     if (object.account !== undefined && object.account !== null) {
       message.account = object.account;
     } else {
